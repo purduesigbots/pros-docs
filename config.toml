@@ -1,0 +1,104 @@
+baseurl = "http://replace-this-with-your-hugo-site.com/"
+languageCode = "en-us"
+title = "PROS"
+theme = "prosdocs"
+metadataformat = "yaml"
+canonifyurls = true
+# Enable Google Analytics by entering your tracking id
+googleAnalytics = "UA-84548828-3"
+
+[params]
+	# General information
+	author = "purduesigbots"
+	description = "An open source programming environment for the VEX EDR Platform"
+	copyright = "Released under the MPL 2.0 license"
+
+	# Repository
+	provider = "GitHub"
+	repo_url = "https://github.com/purduesigbots/pros"
+
+	version = "2.11.0"
+	logo = "images/logo.png"
+	favicon = ""
+
+	permalink = "#"
+
+	# Custom assets
+	custom_css = []
+	custom_js  = []
+
+	# Syntax highlighting theme
+	highlight_css  = "atom-one-light.css"
+
+	[params.palette]
+    	primary = "amber"
+    	accent  = "grey"
+
+    [params.font]
+    	text = "Montserrat"
+    	code = "Ubuntu Mono"
+
+
+[social]
+	twitter = ""
+	github  = "purduesigbots"
+	email   = "pros_development@cs.purdue.edu  "
+
+
+[[menu.main]]
+	name   = "Home"
+	url    = "/"
+	weight = 0
+
+[[menu.main]]
+	name   = "Download"
+	url    = "download.html"
+	weight = 5
+
+[[menu.main]]
+	identifier = "getting-started"
+	name   = "Getting started"
+	url    = "getting-started/"
+	weight = 10
+
+[[menu.main]]
+	parent  = "getting-started"
+	name    = "Windows"
+	url     = "getting-started/windows"
+	weight  = 11
+
+[[menu.main]]
+	parent  = "getting-started"
+	name    = "OS X"
+	url     = "getting-started/os-x"
+	weight  = 12
+
+[[menu.main]]
+	parent  = "getting-started"
+	name    = "Linux"
+	url     = "getting-started/debian-linux"
+	weight  = 13
+
+[[menu.main]]
+	name	 = "Tutorials"
+	url    = "tutorials/"
+	weight = 15
+
+
+
+[[menu.main]]
+	name   = "API"
+	url    = "api/"
+	weight = 20
+
+[[menu.main]]
+	name   = "License"
+	url    = "license/"
+	weight = 100
+
+
+[blackfriday]
+	smartypants	= true
+	fractions = true
+	smartDashes = true
+	plainIDAnchors = true
