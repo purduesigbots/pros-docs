@@ -62,24 +62,6 @@ googleAnalytics = "UA-84548828-3"
 	weight = 10
 
 [[menu.main]]
-	parent  = "getting-started"
-	name    = "Windows"
-	url     = "getting-started/windows"
-	weight  = 11
-
-[[menu.main]]
-	parent  = "getting-started"
-	name    = "OS X"
-	url     = "getting-started/os-x"
-	weight  = 12
-
-[[menu.main]]
-	parent  = "getting-started"
-	name    = "Linux"
-	url     = "getting-started/debian-linux"
-	weight  = 13
-
-[[menu.main]]
 	name	 = "Tutorials"
 	url    = "tutorials/"
 	weight = 15

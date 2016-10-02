@@ -1,0 +1,10 @@
+;aiu;
+
+[pros2.1.5]
+Name = PROS for Windows 2.1.5
+Description = Initial release
+URL = https://github.com/purduesigbots/pros/releases/download/2.11.0/pros-win.exe
+Size = 654321
+ServerFileName = pros-win.msi
+FilePath = [APPDIR]pros-win.exe
+Version = 2.1.5

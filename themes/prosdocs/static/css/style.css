@@ -207,7 +207,7 @@ button{
 
 /* Change the picture of the home background here */
 #slides_background_home .slides-container .img0{
-	background:url(../img/bg.jpg) center fixed ;
+	background:url(../img/atom-bg1.jpg) center fixed ;
 }
 
 #slides_background_home .slides-container .img1{
@@ -343,7 +343,7 @@ button{
 }
 
 .fullbg_smalltxt{
-	color: white;
+	color: black;
 	font-size: 18px;
 	margin-bottom: 30px;
 }
@@ -2907,6 +2907,10 @@ div.jp-volume-bar-value {
 	background-color: #333333;
 	color: white;
 	font-size: 14px;
+}
+
+.footer4 a {
+  color: white;
 }
 
 .footer4 p{
