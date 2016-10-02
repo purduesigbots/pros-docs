@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,700,700i,900,900i);
 @import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 body {
@@ -7,14 +7,14 @@ body {
 
 /* Initial font */
 body, a, blockquote{
-	font-family: 'Lato', sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
 	color: #333333;
 	background: url(../img/body_bg.png);
 }
 
 p{
-	font-family: 'Lato', sans-serif;
+	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
 	color: #505050;
 	font-size: 14px;
@@ -166,7 +166,10 @@ button{
 	opacity: 0.9;
 }
 
-
+.nav a {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
 
 /* Super Slides background */
 #home {
@@ -314,7 +317,7 @@ button{
 .main{
 	position:absolute;
 	width:100%;
-	top:25%;
+	bottom:0;
 	margin:0 auto;
 	z-index:2;
 	background: transparent;
@@ -333,7 +336,7 @@ button{
 
 .fullbg_bigtxt > img {
   max-height: 400px;
-  max-width: 400px;
+  max-width: 100%;
 }
 
 .fullbg_bigtxt_slider{
@@ -390,6 +393,7 @@ button{
 	font-size: 0px;
   width: 700px;
   margin: 100px auto 55px auto;
+  max-width: 100%;
 }
 
 .big_title_txt{

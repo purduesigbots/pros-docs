@@ -78,29 +78,6 @@ $(document).ready(function(){
 
 
 
-	/* Partners Block */
-	 $(".partner_items").owlCarousel({
-		autoPlay: 3000, //Set AutoPlay to 3 seconds
-		items : 5,
-		itemsDesktop : [1199,4],
-		itemsDesktopSmall : [979,3],
-		itemsTablet	: [768,2],
-		navigation : false,
-		pagination : false
-	});
-
-	 /* Testimonials 2 Block */
-	 $(".testimonial2_all").owlCarousel({
-		autoPlay: 3000, //Set AutoPlay to 3 seconds
-		items : 1,
-		itemsDesktop : [1199,1],
-		itemsDesktopSmall : [979,1],
-		itemsTablet	: [768,1],
-		navigation : false,
-		pagination : false
-	});
-
-
 	/* Portfolio Isotop */
  	var $container = $('.portfolio_items');
 	$container.imagesLoaded( function() {
@@ -350,64 +327,6 @@ $(document).ready(function(){
 	  pagerCustom: '#bx-pager'
 	});
 	$('.bx-viewport').css("position","static");
-
-
-	/* Pretty Photo */
-	$("a[rel^='prettyPhoto']").prettyPhoto({
-		animationSpeed: 'fast',
-		opacity: 0.7,
-		social_tools: "",
-		deeplinking: false
-	});
-
-
-
-	/* Video Player */
-	$(".player").mb_YTPlayer();
-
-
-	// validate and process contact form
-	$(".contact_btn").click(function() {
-
-		var name = $("input#name").val();
-		var email = $("input#email").val();
-		var message = $("textarea#message").val();
-		var dataString = 'name='+ name + '&email=' + email + '&message=' + message;
-
-		//alert (dataString);//return false;
-		$.ajax({
-		  type: "POST",
-		  url: "mailer.php",
-		  data: dataString,
-		  success: function() {
-			$('.contact_form').html("<div class='contact_message text_color'>Contact Form Submitted!</div>");
-
-		  }
-		});
-		return false;
-
-	});
-
-
-	 // Action Subscribe
-	$(".action_btn").click(function() {
-
-		var subscribe = $("input#subscribe").val();
-
-		//alert (subscribe);//return false;
-		$.ajax({
-		  type: "POST",
-		  url: "subscribe.php",
-		  data: subscribe,
-		  data: {'subscribe': subscribe},
-		  success: function() {
-			$('.subscribe_form').html("<div class='subscribe_message text_color'> <i class='fa fa-check'></i>You are Subscribed</div>");
-
-		  }
-		});
-		return false;
-
-	});
 
 	/* Wow Animation initialisation */
 	new WOW().init();
