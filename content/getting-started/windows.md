@@ -21,10 +21,17 @@ by VEX.
 Once the installation is completed, Atom can be started via the Start Menu or Desktop shortcut.
 
 
-## Issues during Installation
+## Issues and Notes about Installation
 
 ### APM Failure
 During some installations, Atom may not install correctly. This is best diagnosed by there note being shortcuts to
 Atom after installation, or if `apm` isn't on PATH. If this is the case, you may need to manually install Atom by visiting
 https://atom.io/download/windows. Once installed and Atom appears, you will be able to install the PROS plugin by pressing
 **Win**+**R** and entering `apm install file-icons linter tool-bar tool-bar-main busy build pros`.
+
+### Installing alongside PROS for Eclipse
+It is possible to install Atom alongside Eclipse, if you have previously installed Eclipse. However, the uninstall utility for
+PROS for Eclipse will remove all the contents in `C:\Program Files\PROS`, so the new version of PROS will also be affected.
+If you decide to remove Eclipse but want to keep the PROS Core components, either run the PROS for Eclipse uninstall utility and
+reinstall/repair the new version of PROS or manually delete all files/folders in `C:\Program Files\PROS` except: `C:\Program Files\PROS\cli-64` 
+(or just `cli` if x86), `C:\Program Files\PROS\toolchain`, `C:\Program Files\PROS\updater.exe`, and `C:\Program Files\PROS\updater.ini`

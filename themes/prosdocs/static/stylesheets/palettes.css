@@ -473,15 +473,15 @@ upports (-webkit-appearance:none) {
 }
 
 .palette-primary-yellow .footer, .palette-primary-yellow .header {
-    background: #f9a825
+    background: #E6B85C
 }
 
 .palette-primary-yellow .drawer .toc a.current, .palette-primary-yellow .drawer .toc a:focus, .palette-primary-yellow .drawer .toc a:hover {
-    color: #f9a825
+    color: #CCA352
 }
 
 .palette-primary-yellow .drawer .anchor a {
-    border-left: 2px solid #f9a825
+    border-left: 2px solid #CCA352
 }
 
 .ios.standalone .palette-primary-yellow .article {
@@ -489,8 +489,8 @@ upports (-webkit-appearance:none) {
     background: linear-gradient(180deg, #fff 50%, #f9a825 0)
 }
 
-.palette-primary-yellow .article a, .palette-primary-yellow .article code, .palette-primary-yellow .article h1, .palette-primary-yellow .article h2 {
-    color: #f9a825
+.palette-primary-yellow .article a, .palette-primary-yellow .article h1, .palette-primary-yellow .article h2 {
+    color: #CCA352
 }
 
 .palette-primary-yellow .article .headerlink {
@@ -498,11 +498,11 @@ upports (-webkit-appearance:none) {
 }
 
 .palette-primary-yellow .article table th {
-    background: #fbbe5c
+    background: #E6B85C
 }
 
 .palette-primary-yellow .results .meta {
-    background: #f9a825
+    background: #CCA352
 }
 
 @supports (-webkit-appearance:none) {
@@ -905,7 +905,7 @@ upports (-webkit-appearance:none) {
         background: #c0ca33
     }
     .palette-primary-yellow .project {
-        background: #f9a825
+        background: #E6B85C
     }
     .palette-primary-amber .project {
         background: #ffb300
