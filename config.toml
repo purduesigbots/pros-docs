@@ -1,4 +1,4 @@
-baseurl = "http://replace-this-with-your-hugo-site.com/"
+baseurl = "http://pros.cs.purdue.edu/"
 languageCode = "en-us"
 title = "PROS"
 theme = "prosdocs"
@@ -27,11 +27,8 @@ googleAnalytics = "UA-84548828-3"
 	custom_css = []
 	custom_js  = []
 
-	# Syntax highlighting theme
-	highlight_css  = "atom-one-light.css"
-
 	[params.palette]
-    	primary = "amber"
+    	primary = "yellow"
     	accent  = "grey"
 
     [params.font]
