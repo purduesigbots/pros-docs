@@ -79,7 +79,7 @@ pre {
 }
 
 pre, pre code {
-    color: rgba(0, 0, 0, .87)
+    color: #c5c8c6
 }
 
 .c, .c1, .cm, .o {
@@ -206,7 +206,7 @@ body {
 
 @supports (-webkit-appearance:none) {
     body {
-        background: #e84e40
+        background: #E6B85C
     }
 }
 
@@ -745,7 +745,7 @@ pre span {
 }
 
 .footer {
-    background: #ffb300;
+    background: #E6B85C;
     color: #fff
 }
 
@@ -754,7 +754,7 @@ pre span {
 }
 
 .copyright {
-    color: rgba(0, 0, 0, .54)
+    color: rgba(230, 184, 92, .54)
 }
 
 .pagination a .button, .pagination a .title {
@@ -1540,7 +1540,7 @@ h1 .article .headerlink {
         box-shadow: none
     }
     .article table th {
-        color: #e84e40
+        color: #E6B85C
     }
 }
 

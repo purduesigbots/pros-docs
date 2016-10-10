@@ -4,10 +4,28 @@
   text-transform: uppercase;
 }
 .api table > thead > tr > th {
-  background: none !important;
+  background: #282c34 !important;
 }
 
 .api table {
   box-shadow: none;
+  border-collapse: collapse;
   display: table !important;
+}
+
+.api tr {
+  border-bottom: 2px solid #282c34;
+}
+
+.api ol, .api p, .api ul {
+  line-height: 1.1em;
+  margin-top: 1.1em;
+}
+
+.api h2, .api h1 {
+  color: white;
+}
+
+#functions {
+  padding-bottom: 0;
 }
