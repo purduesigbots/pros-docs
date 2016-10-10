@@ -24,7 +24,7 @@ googleAnalytics = "UA-84548828-3"
 	permalink = "#"
 
 	# Custom assets
-	custom_css = []
+	custom_css = ['stylesheets/api.css']
 	custom_js  = []
 
 	[params.palette]

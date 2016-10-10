@@ -1,0 +1,13 @@
+
+/* TABLES */
+.api thead {
+  text-transform: uppercase;
+}
+.api table > thead > tr > th {
+  background: none !important;
+}
+
+.api table {
+  box-shadow: none;
+  display: table !important;
+}

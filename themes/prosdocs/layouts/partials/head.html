@@ -49,9 +49,8 @@
 
     <link rel="stylesheet" href="{{ .Site.BaseURL }}stylesheets/application.css">
     <link rel="stylesheet" href="{{ .Site.BaseURL }}stylesheets/temporary.css">
-    <link rel="stylesheet" href="{{ .Site.BaseURL }}stylesheets/palettes.css">
 
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-light.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/styles/atom-one-dark.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
     <script>hljs.initHighlightingOnLoad();</script>
 
@@ -79,4 +78,4 @@
     {{ end }}
 
   </head>
-  <body class="{{ with .Site.Params.palette.primary }}palette-primary-{{ . }}{{end }} {{ with .Site.Params.palette.accent }}palette-accent-{{ .  }}{{ end }}">
+  <body>
