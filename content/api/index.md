@@ -508,6 +508,20 @@ Reads and returns one character from "stdin", which is the PC debug terminal.
 
 **Returns** the next character from 0 to 255, or -1 if no character can be read
 
+## gyroGet {#gyroGet}
+```
+int gyroGet ( Gyro gyro )
+```
+Gets the current gyro angle in degrees, rounded to the nearest degree.
+
+There are 360 degrees in a circle.
+
+| Parameters | |
+| ---:|:--- |
+| `gyro` | the Gyro object from [gyroInit()]({{< relref "#gyroGet" >}}) to read |
+
+**Returns** the signed and cumulative number of degrees rotated around the gyro's vertical axis since the last start or reset
+
 
 ## gyroInit
 ```
@@ -528,6 +542,135 @@ The multiplier parameter can tune the gyro to adapt to specific sensors. The def
 
 **Returns** a Gyro object to be stored and used for later calls to gyro functions
 
+## gyroReset {#gyroReset}
+```
+void gyroReset ( Gyro gyro )
+```
+Resets the gyro to zero.
+
+It is safe to use this method while a gyro is enabled. It is not necessary to call this method before stopping or starting a gyro.
+
+| Parameters | |
+| ---:|:--- |
+| `gyro` | the Gyro object from [gyroInit()]({{< relref "#gyroGet" >}}) to reset |
+
+
+## gyroShutdown {#gyroShutdown}
+```
+void gyroShutdown ( Gyro gyro )
+```
+Stops and disables the gyro.
+
+Gyros use processing power, so disabling unused gyros increases code performance. The gyro's position will be retained.
+
+| Parameters | |
+| ---:|:--- |
+| `gyro` | the Gyro object from [gyroInit()]({{< relref "#gyroGet" >}}) to stop |
+
+
+## imeGet {#imeGet}
+```
+bool imeGet ( unsigned char address,
+              int * value
+            )
+```
+Gets the current 32-bit count of the specified IME.
+
+Much like the count for a quadrature encoder, the tick count is signed and cumulative. The value reflects total counts since the last reset. Different VEX Motor Encoders have a different number of counts per revolution:
+
+ * 240.448 for the 269 IME
+ * 627.2 for the 393 IME in high torque mode (factory default)
+ * 392 for the 393 IME in high speed mode
+ * 261.333 for the 393 IME in turbo mode
+
+If the IME address is invalid, or the IME has not been reset or initialized, the value stored in \*value is undefined.
+
+| Parameters | |
+| ---:|:--- |
+| `address` | the IME address to fetch from 0 to IME_ADDR_MAX |
+| `value`   | a pointer to the location where the value will be stored (obtained using the "&" operator on the target variable name e.g. imeGet(2, &counts)) |
+
+**Returns** true if the count was successfully read and the value stored in \*value is valid; false otherwise
+
+
+
+##imeGetVelocity {#imeGetVelocity}
+```
+bool imeGetVelocity ( unsigned char address,
+                      int * value
+                    )
+```
+Gets the current rotational velocity of the specified IME.
+
+In this version of PROS, the velocity is positive if the IME count is increasing and negative if the IME count is decreasing. The velocity is in RPM of the internal encoder wheel. Since checking the IME for its type cannot reveal whether the motor gearing is high speed or high torque (in the 2-Wire Motor 393 case), the user must divide the return value by the number of output revolutions per encoder revolution:
+
+ * 30.056 for the 269 IME
+ * 39.2 for the 393 IME in high torque mode (factory default)
+ * 24.5 for the 393 IME in high speed mode
+
+If the IME address is invalid, or the IME has not been reset or initialized, the value stored in \*value is undefined.
+
+| Parameters | |
+| ---:|:--- |
+| `address` | the IME address to fetch from 0 to IME_ADDR_MAX |
+| `value`   | a pointer to the location where the value will be stored (obtained using the "&" operator on the target variable name e.g. imeGet(imeGetVelocity, &counts)) |
+
+**Returns** true if the velocity was successfully read and the value stored in \*value is valid; false otherwise
+
+
+## imeInitializeAll
+```
+unsigned int imeInitializeAll ( )
+```
+Initializes all IMEs.
+
+IMEs are assigned sequential incrementing addresses, beginning with the first IME on the chain (closest to the VEX Cortex I2C port). Therefore, a given configuration of IMEs will always have the same ID assigned to each encoder. The addresses range from 0 to IME_ADDR_MAX, so the first encoder gets 0, the second gets 1, ...
+
+This function should most likely be used in initialize(). Do not use it in initializeIO() or at any other time when the scheduler is paused (like an interrupt). Checking the return value of this function is important to ensure that all IMEs are plugged in and responding as expected.
+
+This function, unlike the other IME functions, is not thread safe. If using imeInitializeAll to re-initialize encoders, calls to other IME functions might behave unpredictably during this function's execution.
+
+**Returns** the number of IMEs successfully initialized
+
+
+## imeReset
+```
+bool imeReset ( unsigned char address )
+```
+Resets the specified IME's counters to zero.
+
+This method can be used while the IME is rotating.
+
+| Parameters | |
+| ---:|:--- |
+| `address` | the IME address to fetch from 0 to IME_ADDR_MAX |
+
+**Returns** true if the reset succeeded; false otherwise
+
+
+## imeShutdown
+```
+void imeShutdown ( )
+```
+Shuts down all IMEs on the chain; their addresses return to the default and the stored counts and velocities are lost.
+
+This function, unlike the other IME functions, is not thread safe.
+
+To use the IME chain again, wait at least 0.25 seconds before using imeInitializeAll again.
+
+
+## ioClearInterrupt
+```
+void ioClearInterrupt ( unsigned char pin )
+```
+Disables interrupts on the specified pin.
+
+Disabling interrupts on interrupt pins which are not in use conserves processing time.
+
+| Parameters | |
+| ---:|:--- |
+| `pin` | the pin on which to reset interrupts from 1-9,11-12 |
+
 
 ## ioSetInterrupt {#ioSetInterrupt}
 ```
@@ -540,7 +683,7 @@ Sets up an interrupt to occur on the specified pin, and resets any counters or t
 
 Each time the specified change occurs, the function pointer passed in will be called with the pin that changed as an argument. Enabling pin-change interrupts consumes processing time, so it is best to only enable necessary interrupts and to keep the InterruptHandler function short. Pin change interrupts can only be enabled on pins 1-9 and 11-12.
 
-Do not use API functions such as delay() inside the handler function, as the function will run in an ISR where the scheduler is paused and no other interrupts can execute. It is best to quickly update some state and allow a task to perform the work.
+Do not use API functions such as [delay()]({{< relref "#delay" >}}) inside the handler function, as the function will run in an ISR where the scheduler is paused and no other interrupts can execute. It is best to quickly update some state and allow a task to perform the work.
 
 Do not use this function on pins that are also being used by the built-in ultrasonic or shaft encoder drivers, or on pins which have been switched to output mode.
 
@@ -550,6 +693,827 @@ Do not use this function on pins that are also being used by the built-in ultras
 | `edges`| one of INTERRUPT_EDGE_RISING, INTERRUPT_EDGE_FALLING, or INTERRUPT_EDGE_BOTH |
 | `handler`| the function to call when the condition is satisfied|
 
+
+## isAutonomous {#isAutonomous}
+```
+bool isAutonomous ( )
+```
+While in autonomous mode, joystick inputs will return a neutral value, but serial port communications (even over VexNET) will still work properly.
+
+**Returns** true if the robot is in autonomous mode, or false otherwise.
+
+
+## isEnabled {#isEnabled}
+```
+bool isEnabled ( )
+```
+While disabled via the VEX Competition Switch or VEX Field Controller, motors will not function. However, the digital I/O ports can still be changed, which may indirectly affect the robot state (e.g. solenoids). Avoid performing externally visible actions while disabled (the kernel should take care of this most of the time).
+
+**Returns** true if the robot is enabled, or false otherwise.
+
+
+## isJoystickConnected {#isJoystickConnected}
+```
+bool isJoystickConnected ( unsigned char joystick )
+```
+Useful for automatically merging joysticks for one operator, or splitting for two. This function does not work properly during initialize() or initializeIO() and can return false positives. It should be checked once and stored at the beginning of operatorControl().
+
+| Parameters | |
+| ---:|:--- |
+| `joystick` | the joystick slot to check |
+
+**Returns** true if a joystick is connected to the specified slot number (1 or 2), or false otherwise.
+
+
+
+## isOnline {#isOnline}
+```
+bool isOnline ( )
+```
+When in online mode, the switching between autonomous() and operatorControl() tasks is managed by the PROS kernel.
+
+**Returns** true if a VEX field controller or Competition switch is connected, or false otherwise
+
+## joystickGetAnalog {#joystickGetAnalog}
+```
+int joystickGetAnalog ( unsigned char joystick,
+                        unsigned char axis
+                      )
+```
+Gets the value of a control axis on the VEX joystick.
+
+| Parameters | |
+| ---:|:--- |
+| `joystick` | the joystick slot to check |
+| `axis` | one of the 1, 2, 3, 4, ACCEL_X, or ACCEL_Y anaglog channels on a Vex joystick |
+
+**Returns** the value from -127 to 127, or 0 if no joystick is connected to the requested slot.
+
+
+## joystickGetDigital {#joystickGetDigital}
+```
+int joystickGetDigital ( unsigned char joystick,
+                         unsigned char buttonGroup,
+                         unsigned char button
+                       )
+```
+Gets the value of a button on the VEX joystick.
+
+| Parameters | |
+| ---:|:--- |
+| `joystick` | the joystick slot to check |
+| `buttonGroup` | one of 5, 6, 7, or 8 to request that button as labelled on the joystick |
+| `button` | one of JOY_UP, JOY_DOWN, JOY_LEFT, or JOY_RIGHT; requesting JOY_LEFT or JOY_RIGHT for groups 5 or 6 will cause an undefined value to be returned |
+
+**Returns** true if that button is pressed, or false otherwise. If no joystick is connected to the requested slot, returns false.
+
+
+## lcdClear {#lcdClear}
+```
+void lcdClear ( FILE * lcdPort )
+```
+Clears the LCD screen on the specified port.
+
+Printing to a line implicitly overwrites the contents, so clearing should only be required at startup.
+
+| Parameters | |
+| ---:|:--- |
+| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+
+
+## lcdInit {#lcdInit}
+```
+void lcdInit ( FILE * lcdPort )
+```
+Initializes the LCD port, but does not change the text or settings.
+
+If the LCD was not initialized before, the text currently on the screen will be undefined. The port will not be usable with standard serial port functions until the LCD is stopped.
+
+| Parameters | |
+| ---:|:--- |
+| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+
+
+## lcdPrint {#lcdPrint}
+```
+void lcdPrint ( FILE * lcdPort,
+                unsigned char line,
+                const char * formatString,
+                ...
+              )
+```
+Prints the formatted string to the attached LCD.
+
+The output string will be truncated as necessary to fit on the LCD screen, 16 characters wide. It is probably better to generate the string in a local buffer and use [lcdSetText()]({{< relref "#lcdSetText" >}}) but this method is provided for convenience.
+
+| Parameters | |
+| ---:|:--- |
+| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+| `line` | the LCD line to write, either 1 or 2 |
+| `formatString` | the format string as specified in [fprintf()]({{< relref "#fprintf" >}}) |
+
+
+## lcdReadButtons {#lcdReadButtons}
+```
+unsigned int lcdReadButtons (FILE * lcdPort )
+```
+Reads the user button status from the LCD display.
+
+For example, if the left and right buttons are pushed, (1 | 4) = 5 will be returned. 0 is returned if no buttons are pushed
+
+| Parameters | |
+| ---:|:--- |
+| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+
+**Returns** the buttons pressed as a bit mask
+
+
+## lcdSetBacklight {#lcdSetBacklight}
+```
+void lcdSetBacklight ( FILE * lcdPort,
+                       bool backlight
+                     )
+```
+Sets the specified LCD backlight to be on or off.
+
+Turning it off will save power but may make it more difficult to read in dim conditions.
+
+| Parameters | |
+| ---:|:--- |
+| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+| `backlight` | true to turn the backlight on, or false to turn it off
+
+
+## lcdSetText {#lcdSetText}
+```
+void lcdSetText ( FILE * lcdPort,
+                  unsigned char line,
+                  const char * buffer
+                )
+```
+Prints the string buffer to the attached LCD.
+
+The output string will be truncated as necessary to fit on the LCD screen, 16 characters wide. This function, like [fprint()]({{< relref "#fprintf" >}}), is much, much faster than a formatted routine such as [lcdPrint()]({{< relref "#lcdPrint" >}}) and consumes less memory.
+
+| Parameters | |
+| ---:|:--- |
+| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+| `line` | the LCD line to write, either 1 or 2 |
+| `formatString` | the string to write |
+
+
+## lcdShutdown {#lcdShutdown}
+```
+void lcdShutdown ( FILE * lcdPort )
+```
+Shut down the specified LCD port.
+
+| Parameters | |
+| ---:|:--- |
+| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+
+
+## micros {#micros}
+```
+unsigned long micros ( )
+```
+There are 10^6 microseconds in a second, so as a 32-bit integer, this will overflow and wrap back to zero every two hours or so.
+
+This function is Wiring-compatible.
+
+**Returns** the number of microseconds since the Cortex was turned on or the last overflow
+
+
+## millis {#millis}
+```
+unsigned long millis ( )
+```
+There are 1000 milliseconds in a second, so as a 32-bit integer, this will not overflow for 50 days.
+
+This function is Wiring-compatible.
+
+**Returns**  the number of milliseconds since Cortex power-up.
+
+
+## motorGet {#motorGet}
+```
+int motorGet ( unsigned char channel )
+```
+Gets the last set speed of the specified motor channel.
+
+This speed may have been set by any task or the PROS kernel itself. This is not guaranteed to be the speed that the motor is actually running at, or even the speed currently being sent to the motor, due to latency in the Motor Controller 29 protocol and physical loading. To measure actual motor shaft revolution speed, attach a VEX Integrated Motor Encoder or VEX Quadrature Encoder and use the velocity functions associated with each.
+
+| Parameters | |
+| ---:|:--- |
+| `channel` | channel	the motor channel to fetch from 1-10 |
+
+**Returns** the speed last sent to this channel; -127 is full reverse and 127 is full forward, with 0 being off
+
+
+## motorSet {#motorset}
+```
+void motorSet ( unsigned char channel,
+                int speed
+              )
+```
+Sets the speed of the specified motor channel.
+
+Do not use [motorSet()]({{< relref "#motorSet" >}}) with the same channel argument from two different tasks. It is safe to use [motorSet()]({{< relref "#motorSet" >}}) with different channel arguments from different tasks.
+
+| Parameters | |
+| ---:|:--- |
+| `channel` | channel	the motor channel to fetch from 1-10 |
+| `speed` | the new signed speed; -127 is full reverse and 127 is full forward, with 0 being off
+
+
+## motorStop {#motorStop}
+```
+void motorStop ( unsigned char channel )
+```
+Stops the motor on the specified channel, equivalent to calling [motorSet()]({{< relref "#motorSet" >}}) with an argument of zero.
+
+This performs a coasting stop, not an active brake. Since motorStop is similar to motorSet(0), see the note for [motorSet()]({{< relref "#motorSet" >}}) about use from multiple tasks.
+
+| Parameters | |
+| ---:|:--- |
+| `channel` | channel	the motor channel to fetch from 1-10 |
+
+
+## mutexCreate {#mutexCreate}
+```
+Mutex mutexCreate ( )
+```
+Creates a mutex intended to allow only one task to use a resource at a time.
+
+For signalling and synchronization, try using semaphores.
+
+Mutexes created using this function can be accessed using the [mutexTake()]({{< relref "#mutexTake" >}}) and [mutexGive()]]({{< relref "#mutexGive" >}}) functions. The semaphore functions must not be used on objects of this type.
+
+This type of object uses a priority inheritance mechanism so a task 'taking' a mutex MUST ALWAYS 'give' the mutex back once the mutex is no longer required.
+
+**Returns** a handle to the created mutex
+
+
+## mutexDelete {#mutexDelete}
+```
+void mutexDelete ( Mutex mutex )
+```
+Deletes the specified mutex.
+
+This function can be dangerous; deleting semaphores being waited on by a task may cause deadlock or a crash.
+
+| Parameters | |
+| ---:|:--- |
+| `mutex` | the mutex to destroy |
+
+
+## mutexGive {#mutexGive}
+```
+bool mutexGive ( Mutex mutex )
+```
+Relinquishes a mutex so that other tasks can use the resource it guards.
+
+The mutex must be held by the current task using a corresponding call to [mutexTake()]({{< relref "#mutexTake" >}}).
+
+| Parameters | |
+| ---:|:--- |
+| `mutex` | the mutex to release |
+
+**Returns** true if the mutex was released, or false if the mutex was not already held
+
+
+## mutexTake {#mutexTake}
+```
+bool mutexTake ( Mutex mutex,
+                 const unsigned long blockTime
+               )
+```
+Requests a mutex so that other tasks cannot simultaneously use the resource it guards.
+
+The mutex must not already be held by the current task. If another task already holds the mutex, the function will wait for the mutex to be released. Other tasks can run during this time.
+
+| Parameters | |
+| ---:|:--- |
+| `mutex` | the mutex to request |
+| `blocktime` | the maximum time to wait for the mutex to be available, where -1 specifies an infinite timeout |
+
+**Returns** true if the mutex was successfully taken, or false if the timeout expired
+
+
+## pinMode {#pinMode}
+```
+void pinMode ( unsigned char pin,
+               unsigned char mode
+             )
+```
+Configures the pin as an input or output with a variety of settings.
+
+Do note that INPUT by default turns on the pull-up resistor, as most VEX sensors are open-drain active low. It should not be a big deal for most push-pull sources. This function is Wiring-compatible.
+
+| Parameters | |
+| ---:|:--- |
+| `pin` | the pin to read from 1-26 |
+| `mode` | one of INPUT, INPUT_ANALOG, INPUT_FLOATING, OUTPUT, or OUTPUT_OD
+
+
+## powerLevelBackup {#powerLevelBackup}
+```
+unsigned int powerLevelBackup ( )
+```
+**Returns** the backup battery voltage in millivolts. If no backup battery is connected, returns 0
+
+
+
+## powerLevelMain {#powerLevelMain}
+```
+unsigned int powerLevelMain ( )
+```
+In rare circumstances, this method might return 0. Check the output value for reasonability before blindly blasting the user.
+
+**Returns** the main battery voltage in millivolts
+
+
+## print {#print}
+```
+void print ( const char * string )
+```
+Prints the simple string to the debug terminal without formatting.
+
+This method is much, much faster than [printf()]({{< relref "#printf" >}}).
+
+| Parameters | |
+| ---:|:--- |
+| `string` the string to write |
+
+
+## printf {#printf}
+```
+int printf ( const char * formatString,
+             ...
+           )
+```
+Prints the formatted string to the debug stream (the PC terminal).
+
+| Parameters | |
+| ---:|:--- |
+| `formatString` | the format string as specified in [fprintf()]({{< relref "#fprintf" >}}) |
+
+**Returns** the number of characters written
+
+
+## putchar {#putchar}
+```
+int putchar ( int value )
+```
+Writes one character to "stdout", which is the PC debug terminal, and returns the input value.
+
+When using a wireless connection, one may need to press the spacebar before the input is visible on the terminal.
+
+| Parameters | |
+| ---:|:--- |
+| `value` | the character to write (a value of type "char" can be used) |
+
+**Returns** the number of characters writen, excluding the new line
+
+
+## semaphoreCreate {#semaphoreCreate}
+```
+Semaphore semaphoreCreate ( )
+```
+Creates a semaphore intended for synchronizing tasks.
+
+To prevent some critical code from simultaneously modifying a shared resource, use mutexes instead.
+
+Semaphores created using this function can be accessed using the [semaphoreTake()]({{< relref "#semaphoreTake" >}}) and [semaphoreGive()]({{< relref "#semaphoreGive" >}}) functions. The mutex functions must not be used on objects of this type.
+
+This type of object does not need to have balanced take and give calls, so priority inheritance is not used. Semaphores can be signalled by an interrupt routine.
+
+**Returns** a handle to the created semaphore
+
+
+## semaphoreDelete {#semaphoreDelete}
+```
+void semaphoreDelete ( Semaphore semaphore )
+```
+Deletes the specified semaphore.
+
+This function can be dangerous; deleting semaphores being waited on by a task may cause deadlock or a crash.
+
+| Parameters | |
+| ---:|:--- |
+| `semaphore` | the semaphore to destroy |
+
+
+## semaphoreGive {#semaphoreGive}
+```
+bool semaphoreGive (Semaphore semaphore )
+```
+Signals a semaphore.
+
+Tasks waiting for a signal using [semaphoreTake()]({{< relref "#semaphoreTake" >}}) will be unblocked by this call and can continue execution.
+
+Slow processes can give semaphores when ready, and fast processes waiting to take the semaphore will continue at that point.
+
+| Parameters | |
+| ---:|:--- |
+| `semaphore` | the semaphore to destroy |
+
+**Returns** true if the semaphore was successfully given, or false if the semaphore was not taken since the last give
+
+
+## semaphoreTake {#semaphoreTake}
+```
+bool semaphoreTake ( Semaphore semaphore,
+                     const unsigned long blockTime
+                   )
+```
+Waits on a semaphore.
+
+If the semaphore is already in the "taken" state, the current task will wait for the semaphore to be signaled. Other tasks can run during this time.
+
+| Parameters | |
+| ---:|:--- |
+| `semaphore` | the semaphore to wait |
+| `blockTime` | the maximum time to wait for the semaphore to be given, where -1 specifies an infinite timeout |
+
+**Returns** true if the semaphore was successfully taken, or false if the timeout expired
+
+
+## setTeamName {#setTeamName}
+```
+void setTeamName ( const char * name )
+```
+Sets the team name displayed to the VEX field control and VEX Firmware Upgrade.
+
+| Parameters | |
+| ---:|:--- |
+| `name` | a string containing the team name; only the first eight characters will be shown |
+
+
+## snprintf {#snprintf}
+```
+int snprintf ( char * buffer,
+               size_t limit,
+               const char * formatString,
+               ...
+             )
+```
+Prints the formatted string to the string buffer with the specified length limit.
+
+The length limit, as per the C standard, includes the trailing null character, so an argument of 256 will cause a maximum of 255 non-null characters to be printed, and one null terminator in all cases.
+
+| Parameters | |
+| ---:|:--- |
+| `buffer` | the string buffer where characters can be placed |
+| `limit` | the maximum number of characters to write |
+| `formatString` | the format string as specified in [fprintf()]({{< relref "#fprintf" >}}) |
+
+**Returns** the number of characters stored
+
+
+## speakerInit {#speakerInit}
+```
+void speakerInit ( )
+```
+Initializes VEX speaker support.
+
+The VEX speaker is not thread safe; it can only be used from one task at a time. Using the VEX speaker may impact robot performance. Teams may benefit from an if statement that only enables sound if [isOnline()]({{< relref "#isOnline" >}}) returns false.
+
+
+## speakerPlayArray {#speakerPlayArray}
+```
+void speakerPlayArray ( const char ** songs )
+```
+Plays up to three RTTTL (Ring Tone Text Transfer Language) songs simultaneously over the VEX speaker.
+
+The audio is mixed to allow polyphonic sound to be played. Many simple songs are available in RTTTL format online, or compose your own.
+
+The song must not be NULL, but unused tracks within the song can be set to NULL. If any of the three song tracks is invalid, the result of this function is undefined.
+
+The VEX speaker is not thread safe; it can only be used from one task at a time. Using the VEX speaker may impact robot performance. Teams may benefit from an if statement that only enables sound if [isOnline()]({{< relref "#isOnline" >}}) returns false.
+
+| Parameters | |
+| ---:|:--- |
+| `songs` | an array of up to three (3) RTTTL songs as string values to play |
+
+
+## speakerPlayRtttl {#speakerPlayRtttl}
+```
+void speakerPlayRtttl ( const char * song )
+```
+Plays an RTTTL (Ring Tone Text Transfer Language) song over the VEX speaker.
+
+Many simple songs are available in RTTTL format online, or compose your own.
+
+The song must not be NULL. If an invalid song is specified, the result of this function is undefined.
+
+The VEX speaker is not thread safe; it can only be used from one task at a time. Using the VEX speaker may impact robot performance. Teams may benefit from an if statement that only enables sound if [isOnline()]({{< relref "#isOnline" >}}) returns false.
+
+| Parameters | |
+| ---:|:--- |
+| `song` | 	the RTTTL song as a string value to play |
+
+
+## speakerShutdown {#speakerShutdown}
+```
+void speakerShutdown ( )
+```
+Powers down and disables the VEX speaker.
+
+If a song is currently being played in another task, the behavior of this function is undefined, since the VEX speaker is not thread safe.
+
+
+## sprintf {#sprintf}
+```
+int sprintf ( char * buffer,
+               const char * formatString,
+               ...
+             )
+```
+Prints the formatted string to the string buffer.
+
+If the buffer is not big enough to contain the complete formatted output, undefined behavior occurs. See [snprintf()]({{< relref "#snprintf" >}}) for a safer version of this function.
+
+| Parameters | |
+| ---:|:--- |
+| `buffer` | the string buffer where characters can be placed |
+| `formatString` | the format string as specified in [fprintf()]({{< relref "#fprintf" >}}) |
+
+**Returns** the number of characters stored
+
+## taskCreate {#taskCreate}
+```
+TaskHandle taskCreate ( TaskCode taskCode,
+                        const unsigned int stackDepth,
+                        void * parameters,
+                        const unsigned int priority
+                      )
+```
+Creates a new task and add it to the list of tasks that are ready to run.
+
+| Parameters | |
+| ---:|:--- |
+| `taskCode` | the function to execute in its own task |
+| `stackDepth` | the number of variables available on the stack (4 * stackDepth bytes will be allocated on the Cortex) |
+| `parameters` | an argument passed to the taskCode function |
+| `priority` | a value from TASK_PRIORITY_LOWEST to TASK_PRIORITY_HIGHEST determining the initial priority of the task |
+
+**Returns** a handle to the created task, or NULL if an error occurred
+
+
+## taskDelay {#taskDelay}
+```
+void taskDelay ( const unsigned long msToDelay )
+```
+Delays the current task for a given number of milliseconds.
+
+Delaying for a period of zero will force a reschedule, where tasks of equal priority may be scheduled if available. The calling task will still be available for immediate rescheduling once the other tasks have had their turn or if nothing of equal or higher priority is available to be scheduled.
+
+This is not the best method to have a task execute code at predefined intervals, as the delay time is measured from when the delay is requested. To delay cyclically, use [taskDelayUntil()]({{< relref "#taskDelayUntil" >}}).
+
+| Parameters | |
+| ---:|:--- |
+| `msToDelay` | the number of milliseconds to wait, with 1000 milliseconds per second |
+
+
+## taskDelayUntil {#taskDelayUntil}
+```
+void taskDelayUntil ( unsigned long * previousWakeTime,
+                      const unsigned long cycleTime
+                    )
+```
+Delays the current task until a specified time.
+
+The task will be unblocked at the time \*previousWakeTime + cycleTime, and \*previousWakeTime will be changed to reflect the time at which the task will unblock.
+
+If the target time is in the past, no delay occurs, but a reschedule is forced, as if [taskDelay()]({{< relref "#taskDelay" >}}) was called with an argument of zero. If the sum of cycleTime and \*previousWakeTime overflows or underflows, undefined behavior occurs.
+
+This function should be used by cyclical tasks to ensure a constant execution frequency. While [taskDelay()]({{< relref "#taskDelay" >}}) specifies a wake time relative to the time at which the function is called, [taskDelayUntil()]({{< relref "#taskDelayUntil" >}}) specifies the absolute future time at which it wishes to unblock. Calling [taskDelayUntil()]({{< relref "#taskDelayUntil" >}}) with the same cycleTime parameter value in a loop, with previousWakeTime referring to a local variable initialized to [millis()]({{< relref "#millis" >}}), will cause the loop to execute with a fixed period.
+
+| Parameters | |
+| ---:|:--- |
+| `previousWakeTime` | a pointer to the location storing the last unblock time, obtained by using the "&" operator on a variable (e.g. "taskDelayUntil(&now, 50);")
+| `cycleTime` | the number of milliseconds to wait, with 1000 milliseconds per second |
+
+
+## taskDelete {#taskDelete}
+```
+void taskDelete ( TaskHandle taskToDelete )
+```
+Kills and removes the specified task from the kernel task list.
+
+Deleting the last task will end the program, possibly leading to undesirable states as some outputs may remain in their last set configuration.
+
+NOTE: The idle task is responsible for freeing the kernel allocated memory from tasks that have been deleted. It is therefore important that the idle task is not starved of processing time. Memory allocated by the task code is not automatically freed, and should be freed before the task is deleted.
+
+| Parameters | |
+| ---:|:--- |
+| `taskToDelete` | the task to kill; passing NULL kills the current task |
+
+
+## taskGetCount {#taskGetCount}
+```
+unsigned int taskGetCount ( )
+```
+Determines the number of tasks that are currently being managed.
+
+This includes all ready, blocked and suspended tasks. A task that has been deleted but not yet freed by the idle task will also be included in the count. Tasks recently created may take one context switch to be counted.
+
+**Returns** the number of tasks that are currently running, waiting, or suspended
+
+
+## taskGetState {#taskGetState}
+```
+unsigned int taskGetState ( TaskHandle task )
+```
+Retrieves the state of the specified task.
+
+Note that the state of tasks which have died may be re-used for future tasks, causing the value returned by this function to reflect a different task than possibly intended in this case.
+
+| Parameters | |
+| ---:|:--- |
+| `task` | Handle to the task to query. Passing NULL will query the current task status (which will, by definition, be TASK_RUNNING if this call returns) |
+
+**Returns** A value reflecting the task's status, one of the constants TASK_DEAD, TASK_RUNNING, TASK_RUNNABLE, TASK_SLEEPING, or TASK_SUSPENDED
+
+
+## taskPriorityGet {#taskPriorityGet}
+```
+unsigned int taskPriorityGet ( const TaskHandle task )
+```
+Obtains the priority of the specified task.
+
+| Parameters | |
+| ---:|:--- |
+| `task` | the task to check; passing NULL checks the current task |
+
+**Returns** the priority of that task from 0 to TASK_MAX_PRIORITIES
+
+
+## taskPrioritySet {#taskPrioritySet}
+```
+void taskPrioritySet ( TaskHandle task,
+                       const unsigned int newPriority
+                     )
+```
+Sets the priority of the specified task.
+
+A context switch may occur before the function returns if the priority being set is higher than the currently executing task and the task being mutated is available to be scheduled.
+
+| Parameters | |
+| ---:|:--- |
+| `task` | the task to change; passing NULL changes the current task |
+| `newPriority` | a value between TASK_PRIORITY_LOWEST and TASK_PRIORITY_HIGHEST inclusive indicating the new task priority |
+
+
+## taskResume {#taskResume}
+```
+void taskResume ( TaskHandle taskToResume )
+```
+Resumes the specified task.
+
+A task that has been suspended by one or more calls to [taskSuspend()]({{< relref "#taskSuspend" >}}) will be made available for scheduling again by a call to [taskResume()]({{< relref "#taskResume" >}}). If the task was not suspended at the time of the call to [taskResume()]({{< relref "#taskResume" >}}), undefined behavior occurs.
+
+| Parameters | |
+| ---:|:--- |
+| `taskToResume` | the task to change; passing NULL is not allowed as the current task cannot be suspended (it is obviously running if this function is called) |
+
+
+## taskRunLoop {#taskRunLoop}
+```
+TaskHandle taskRunLoop ( void(*)(void) fn,
+                         const unsigned long increment
+                       )
+```
+Starts a task which will periodically call the specified function.
+
+Intended for use as a quick-start skeleton for cyclic tasks with higher priority than the "main" tasks. The created task will have priority TASK_PRIORITY_DEFAULT + 1 with the default stack size. To customize behavior, create a task manually with the specified function.
+
+This task will automatically terminate after one further function invocation when the robot is disabled or when the robot mode is switched.
+
+| Parameters | |
+| ---:|:--- |
+| `fn` | the function to call in this loop |
+| `increment` | the delay between successive calls in milliseconds; the [taskDelayUntil()]({{< relref "#taskDelayUntil" >}}) function is used for accurate cycle timing |
+
+**Returns** a handle to the task, or NULL if an error occurred
+
+
+## taskSuspend {#taskSuspend}
+```
+void taskSuspend ( TaskHandle taskToSuspend )
+```
+Suspends the specified task.
+
+When suspended a task will not be scheduled, regardless of whether it might be otherwise available to run.
+
+| Parameters | |
+| ---:|:--- |
+| `taskToSuspend` | the task to suspend; passing NULL suspends the current task |
+
+
+## ultrasonicGet {#ultrasonicGet}
+```
+int ultrasonicGet ( ultrasonic ult )
+```
+Gets the current ultrasonic sensor value in centimeters.
+
+If no object was found, zero is returned. If the ultrasonic sensor was never started, the return value is undefined. Round and fluffy objects can cause inaccurate values to be returned.
+
+| Parameters | |
+| ---:|:--- |
+| `ult` | the Ultrasonic object from [ultrasonicInit()]({{< relref "#ultrasonicInit" >}}) to read |
+
+**Returns** the distance to the nearest object in centimeters
+
+
+## ultrasonicInit {#ultrasonicInit}
+```
+Ultrasonic ultrasonicInit ( unsigned char portEcho,
+                            unsigned char portPing
+                          )
+```
+Initializes an ultrasonic sensor on the specified digital ports.
+
+The ultrasonic sensor will be polled in the background in concert with the other sensors registered using this method. NULL will be returned if either port is invalid or the ultrasonic sensor port is already in use.
+
+| Parameters | |
+| ---:|:--- |
+| `portEcho` | the port connected to the orange cable from 1-9,11-12 |
+| `portPing` | the port connected to the yellow cable from 1-12 |
+
+**Returns** an Ultrasonic object to be stored and used for later calls to ultrasonic functions
+
+
+## ultrasonicShutdown {#ultrasonicShutdown}
+```
+void ultrasonicShutdown ( Ultrasonic ult )
+```
+Stops and disables the ultrasonic sensor.
+
+The last distance it had before stopping will be retained. One more ping operation may occur before the sensor is fully disabled.
+
+| Parameters | |
+| ---:|:--- |
+| `ult` | the Ultrasonic object from [ultrasonicInit()]({{< relref "#ultrasonicInit" >}}) to stop |
+
+
+## usartInit {#usartInit}
+```
+void usartInit ( FILE * usart,
+                 unsigned int baud,
+                 unsigned int flags
+               )
+```
+Initialize the specified serial interface with the given connection parameters.
+
+I/O to the port is accomplished using the "standard" I/O functions such as [fputs()]({{< relref "#fputs" >}}), [fprintf()]({{< relref "#fprintf" >}}), and [fputc()]({{< relref "#fputc" >}}).
+
+Re-initializing an open port may cause loss of data in the buffers. This routine may be safely called from initializeIO() or when the scheduler is paused. If I/O is attempted on a serial port which has never been opened, the behavior will be the same as if the port had been disabled.
+
+| Parameters | |
+| ---:|:--- |
+| `usart` | the port to open, either "uart1" or "uart2" |
+| `baud` | the baud rate to use from 2400 to 1000000 baud |
+| `flags` | a bit mask combination of the SERIAL_* flags specifying parity, stop, and data bits |
+
+
+## usartShutdown {#usartShutdown}
+```
+void usartShutdown ( FILE * usart )
+```
+Disables the specified USART interface.
+
+Any data in the transmit and receive buffers will be lost. Attempts to read from the port when it is disabled will deadlock, and attempts to write to it may deadlock depending on the state of the buffer.
+
+| Parameters | |
+| ---:|:--- |
+| `usart` | the port to close, either "uart1" or "uart2" |
+
+
+## wait {#wait}
+```
+void wait ( const unsigned long time )
+```
+Alias of [taskDelay()]({{< relref "#taskDelay" >}}) intended to help EasyC users.
+
+| Parameters | |
+| ---:|:--- |
+| `time` | the duration of the delay in milliseconds (1 000 milliseconds per second) |
+
+
+## waitUntil {#waitUntil}
+```
+void waitUntil ( unsigned long * previousWakeTime,
+                 const unsigned long time
+               )
+```
+Alias of [taskDelayUntil()]({{< relref "#taskDelayUntil" >}}) intended to help EasyC users.
+
+| Parameters | |
+| ---:|:--- |
+| `previousWakeTime` | a pointer to the last wakeup time |
+| `time` | the duration of the delay in milliseconds (1 000 milliseconds per second) |
 
 ## Macros
 
