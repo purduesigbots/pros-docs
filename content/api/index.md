@@ -262,13 +262,266 @@ Successful completion of an fflush function on a file in Write mode cannot guara
 
 | Parameters | |
 | ---:|:--- |
-| `stream` | the channel to flush (an open file in Write mode)
+| `stream` | the channel to flush (an open file in Write mode) |
 
 **Returns** 0 if the data was successfully flushed, EOF otherwise
 
+## fgetc {#fgetc}
+```
+int fgetc ( FILE * stream )
+```
+Reads and returns one character from the specified stream, blocking until complete.
+
+Do not use [fgetc()]({{< relref "#fgetc" >}}) on a VEX LCD port; deadlock may occur.
+
+| Parameters | |
+| ---:|:--- |
+| `stream` | the stream to read (stdin, uart1, uart2, or an open file in Read mode) |
+
+**Returns** the next character from 0 to 255, or -1 if no character can be read
+
+## fgets {#fgets}
+```
+char * fgets ( char * str,
+               int num,
+               FILE * stream
+             )
+```
+Reads a string from the specified stream, storing the characters into the memory at str.
+
+Characters will be read until the specified limit is reached, a new line is found, or the end of file is reached.
+
+If the stream is already at end of file (for files in Read mode), NULL will be returned; otherwise, at least one character will be read and stored into str.
+
+| Parameters | |
+| ---:|:--- |
+| `str` | the location where the characters read will be stored |
+| `num` | the maximum number of characters to store; at most (num - 1) characters will be read, with a null terminator ('\0') automatically appended |
+| `stream` | the stream to read (stdin, uart1, uart2, or an open file in Read mode)
+
+**Returns** str, or NULL if zero characters could be read
 
 
+## fopen {#fopen}
+```
+FILE * fopen ( const char * file,
+               const char * mode
+             )
+```
+Opens the given file in the specified mode.
 
+The file name is truncated to eight characters. Only four files can be in use simultaneously in any given time, with at most one of those files in Write mode. This function does not work on communication ports; use [usartInit()]({{< relref "#usartInit" >}}) instead.
+
+mode can be "r" or "w". Due to the nature of the VEX Cortex memory, the "r+", "w+", and "a" modes are not supported by the file system.
+
+Opening a file that does not exist in Read mode will fail and return NULL, but opening a new file in Write mode will create it if there is space. Opening a file that already exists in Write mode will destroy the contents and create a new blank file if space is available.
+
+There are important considerations when using of the file system on the VEX Cortex. Reading from files is safe, but writing to files should only be performed when robot actuators have been stopped. PROS will attempt to continue to handle events during file writes, but most user tasks cannot execute during file writing. Powering down the VEX Cortex mid-write may cause file system corruption.
+
+| Parameters | |
+| ---:|:--- |
+| `file` | the file name |
+| `mode` | the file mode |
+
+**Returns** a file descriptor pointing to the new file, or NULL if the file could not be opened
+
+
+## fprint {#fprint}
+```
+void fprint ( const char * string,
+              FILE * stream
+            )
+```
+Prints the simple string to the specified stream.
+
+This method is much, much faster than [fprintf()]({{< relref "#fprintf" >}}) and does not add a new line like [fputs()]({{< relref "#fputs" >}}). Do not use [fprint()]({{< relref "#fprint" >}}) on a VEX LCD port. Use [lcdSetText()]({{< relref "#lcdSetText" >}}) instead.
+
+| Parameters | |
+| ---:|:--- |
+| `string` | the string to write |
+| `stream` | the stream to write (stdout, uart1, uart2, or an open file in Write mode) |
+
+
+## fprintf {#fprintf}
+```
+int fprintf ( FILE * stream,
+              const char * formatString,
+              ...
+            )
+```
+Prints the formatted string to the specified output stream.
+
+The specifiers supported by this minimalistic printf() function are:
+
+ * %d: Signed integer in base 10 (int)
+ * %u: Unsigned integer in base 10 (unsigned int)
+ * %x, %X: Integer in base 16 (unsigned int, int)
+ * %p: Pointer (void \*, int \*, ...)
+ * %c: Character (char)
+ * %s: Null-terminated string (char \*)
+ * %%: Single literal percent sign
+ * %f: Floating-point number
+
+Specifiers can be modified with:
+
+ * 0: Zero-pad, instead of space-pad
+ * a.b: Make the field at least "a" characters wide. If "b" is specified for "%f", changes the number of digits after the decimal point
+ * -: Left-align, instead of right-align
+ * +: Always display the sign character (displays a leading "+" for positive numbers)
+ * l: Ignored for compatibility
+
+Invalid format specifiers, or mismatched parameters to specifiers, cause undefined behavior. Other characters are written out verbatim. Do not use [fprintf()]({{< relref "#fprintf" >}}) on a VEX LCD port. Use [lcdPrint()]({{< relref "#lcdPrint" >}}) instead.
+
+| Parameters | |
+| ---:|:--- |
+| `stream` | the stream to write (stdout, uart1, uart2, or an open file in Write mode) |
+| `formatString` | the format string as specified above |
+
+**Returns** the number of characters written
+
+## fputc {#fputc}
+```
+int fputc ( int value,
+            FILE * stream
+          )
+```
+Writes one character to the specified stream.
+
+Do not use [fputc()]({{< relref "#fputc" >}}) on a VEX LCD port. Use [lcdSetText()]({{< relref "#lcdSetText" >}}) instead.
+
+| Parameters | |
+| ---:|:--- |
+| `value` | the character to write (a value of type "char" can be used) |
+| `stream` | the stream to write (stdout, uart1, uart2, or an open file in Write mode) |
+
+**Returns** the character written
+
+
+## fputs {#fputs}
+```
+int fputs ( const char * string,
+            FILE * stream
+          )
+```
+Behaves the same as the "fprint" function, and appends a trailing newline ("\n").
+
+Do not use [fputs()]({{< relref "#fputs" >}}) on a VEX LCD port. Use [lcdSetText()]({{< relref "#lcdSetText" >}}) instead.
+
+| Parameters | |
+| ---:|:--- |
+| `string` | the string to write |
+| `stream` | the stream to write (stdout, uart1, uart2, or an open file in Write mode) |
+
+**Returns** the number of characters written, excluding the new line
+
+
+## fread {#fread}
+```
+size_t fread ( void * ptr,
+               size_t size,
+               size_t count,
+               FILE * stream
+             )
+```
+Reads data from a stream into memory.
+
+If the memory at ptr cannot store (size * count) bytes, undefined behavior occurs.
+
+| Parameters | |
+| ---:|:--- |
+| `ptr` | a pointer to where the data will be stored |
+| `size` | 	the size of each data element to read in bytes |
+| `count` | the number of data elements to read |
+| `stream` | the stream to read (stdout, uart1, uart2, or an open file in Read mode) |
+
+**Returns** the number of bytes successfully read
+
+
+## fseek {#fseek}
+```
+int fseek ( FILE * stream,
+            long int offset,
+            int origin
+          )
+```
+Seeks within a file open in Read mode.
+
+This function will fail when used on a file in Write mode or on any communications port.
+
+| Parameters | |
+| ---:|:--- |
+| `stream` | the stream to seek within |
+| `offset` | the location within the stream to seek |
+| `origin` | the reference location for offest: SEEK_CUR, SEEK_SET, or SEEK_END |
+
+**Returns** 0 if the seek was successful, or 1 otherwise
+
+
+## ftell {#ftell}
+```
+long int ftell ( FILE * stream )
+```
+Returns the current position of the stream.
+
+This function works on files in either Read or Write mode, but will fail on communications ports.
+
+| Parameters | |
+| ---:|:--- |
+| `stream` | the stream to check |
+
+**Returns** the offset of the stream, or -1 if the offset could not be determined
+
+
+## fwrite {#fwrite}
+```
+size_t fwrite ( const void * ptr,
+                size_t size,
+                size_t count,
+                FILE * stream
+              )
+```
+Writes data from memory to a stream.
+
+Returns the number of bytes thus written.
+
+If the memory at ptr is not as long as (size * count) bytes, undefined behavior occurs.
+
+| Parameters | |
+| ---:|:--- |
+| `ptr` | a pointer to the data to write |
+| `size` | the size of each data element to write in bytes |
+| `count` | the number of data elements to write |
+| `stream` | the stream to write (stdout, uart1, uart2 or an open file in Write mode) |
+
+**Returns** the number of bytes successfully written
+
+## getchar {#getchar}
+```
+int getchar ( )
+```
+Reads and returns one character from "stdin", which is the PC debug terminal.
+
+**Returns** the next character from 0 to 255, or -1 if no character can be read
+
+
+## gyroInit
+```
+Gyro gyroInit ( unsigned char port,
+                unsigned short multiplier
+              )
+```
+Initializes and enables a gyro on an analog port.
+
+NULL will be returned if the port is invalid or the gyro is already in use. Initializing a gyro implicitly calibrates it and resets its count. Do not move the robot while the gyro is being calibrated. It is suggested to call this function in initialize() and to place the robot in its final position before powering it on.
+
+The multiplier parameter can tune the gyro to adapt to specific sensors. The default value at this time is 196; higher values will increase the number of degrees reported for a fixed actual rotation, while lower values will decrease the number of degrees reported. If your robot is consistently turning too far, increase the multiplier, and if it is not turning far enough, decrease the multiplier.
+
+| Parameters | |
+| ---:|:--- |
+| `port` | the analog port to use from 1-8 |
+| `multiplier` | an optional constant to tune the gyro readings; use 0 for the default value |
+
+**Returns** a Gyro object to be stored and used for later calls to gyro functions
 
 
 ## ioSetInterrupt {#ioSetInterrupt}
@@ -286,11 +539,11 @@ Do not use API functions such as delay() inside the handler function, as the fun
 
 Do not use this function on pins that are also being used by the built-in ultrasonic or shaft encoder drivers, or on pins which have been switched to output mode.
 
-| Parameters |     |
-|        ---:|:---|
-|       `pin`| the pin on which to enable interrupts from 1-9,11-12 |
-|     `edges`| one of INTERRUPT_EDGE_RISING, INTERRUPT_EDGE_FALLING, or INTERRUPT_EDGE_BOTH |
-|   `handler`| the function to call when the condition is satisfied|
+| Parameters | |
+| ---:|:--- |
+| `pin`| the pin on which to enable interrupts from 1-9,11-12 |
+| `edges`| one of INTERRUPT_EDGE_RISING, INTERRUPT_EDGE_FALLING, or INTERRUPT_EDGE_BOTH |
+| `handler`| the function to call when the condition is satisfied|
 
 
 ## Macros
