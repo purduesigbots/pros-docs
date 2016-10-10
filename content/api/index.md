@@ -1,3 +1,8 @@
+---
+title: API
+---
+
+{{< div class="api" >}}
 This document serves as a quick reference for API.h functions.
 
 # Functions
@@ -741,3 +746,5 @@ UART 1 on the Cortex; must be opened first using usartInit().
 
 ### #define 	uart2   ((FILE \*)2)
 UART 2 on the Cortex; must be opened first using usartInit().
+
+{{< /div >}}
