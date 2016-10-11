@@ -65,10 +65,40 @@ googleAnalytics = "UA-84548828-3"
 	weight = 1
 
 [[menu.main]]
+	parent = "getting-started"
+	name = "OS X"
+	url = "getting-started/os-x/"
+	weight = 2
+
+[[menu.main]]
+	parent = "getting-started"
+	name = "Linux"
+	url = "getting-started/debian-linux/"
+	weight = 3
+
+[[menu.main]]
+	identifier = "tutorials"
 	name	 = "Tutorials"
 	url    = "tutorials/"
 	weight = 15
 
+[[menu.main]]
+	parent = "tutorials"
+	name = "Debugging"
+	url = "tutorials/debugging/"
+	weight = 1
+
+[[menu.main]]
+	parent = "tutorials"
+	name = "Encoders"
+	url = "tutorials/encoders/"
+	weight = 2
+
+[[menu.main]]
+	parent = "tutorials"
+	name = "JINX"
+	url = "tutorials/jinx/"
+	weight = 5
 
 [[menu.main]]
 	name   = "API"
