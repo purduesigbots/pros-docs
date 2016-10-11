@@ -59,10 +59,15 @@ googleAnalytics = "UA-84548828-3"
 	weight = 10
 
 [[menu.main]]
+	parent = "getting-started"
+	name = "Windows"
+	url = "getting-started/windows/"
+	weight = 1
+
+[[menu.main]]
 	name	 = "Tutorials"
 	url    = "tutorials/"
 	weight = 15
-
 
 
 [[menu.main]]
