@@ -567,6 +567,91 @@ Gyros use processing power, so disabling unused gyros increases code performance
 | ---:|:--- |
 | `gyro` | the Gyro object from [gyroInit()]({{< relref "#gyroGet" >}}) to stop |
 
+## i2cRead {#i2cRead}
+```
+bool i2cRead ( uint8_t addr,
+               uint8_t * data,
+               uint16_t count
+             )
+```
+Reads the specified number of data bytes from the specified 7-bit I2C address. The bytes will be stored at the specified location.
+
+The I2C address should be right-aligned; the R/W bit is automatically supplied.
+
+Since most I2C devices use an 8-bit register architecture, this method has limited usefulness. Consider [i2cReadRegister()]({{< relref "#i2cReadRegister" >}}) instead for the vast majority of applications.
+
+| Parameters | |
+| ---:|:--- |
+| `addr` | address to read |
+| `data` | a pointer to the location where the value will be stored |
+| `count`| number of bytes to read |
+
+**Returns** true if successful or false if failed. If only some bytes could be read, false is still returned.
+
+
+## i2cReadRegister {#i2cReadRegister}
+```
+bool i2cReadRegister ( uint8_t addr,
+                       uint8_t * data,
+                       uint16_t count
+                     )
+```
+Reads the specified amount of data from the given register address on the specified 7-bit I2C address.
+
+The I2C address should be right-aligned; the R/W bit is automatically supplied.
+
+Most I2C devices support an auto-increment address feature, so using this method to read more than one byte will usually read a block of sequential registers. Try to merge reads to separate registers into a larger read using this function whenever possible to improve code reliability, even if a few intermediate values need to be thrown away.
+
+| Parameters | |
+| ---:|:--- |
+| `addr` | register address to read |
+| `data` | a pointer to the location where the value will be stored |
+| `count`| number of bytes to read |
+
+**Returns** true if successful or false if failed. If only some bytes could be read, false is still returned.
+
+
+## i2cWrite {#i2cWrite}
+```
+bool i2cWrite ( uint8_t addr,
+                uint8_t * data,
+                uint16_t count
+              )
+```
+Writes the specified number of data bytes to the specified 7-bit I2C address.
+
+The I2C address should be right-aligned; the R/W bit is automatically supplied.
+
+Since most I2C devices use an 8-bit register architecture, this method is mostly useful for setting the register position (most devices remember the last-used address) or writing a sequence of bytes to one register address using an auto-increment feature. In these cases, the first byte written from the data buffer should have the register address to use.
+
+| Parameters | |
+| ---:|:--- |
+| `addr` | address to write to |
+| `data` | a pointer to the data to be written |
+| `count`| number of bytes to write |
+
+**Returns** true if successful or false if failed. If only some bytes could be written, false is still returned.
+
+## i2cWriteRegister {#i2cWriteRegister}
+```
+bool i2cWriteRegister ( uint8_t addr,
+                        uint8_t reg,
+                        uint16_t value
+                      )
+```
+Writes the specified data byte to a register address on the specified 7-bit I2C address.
+
+The I2C address should be right-aligned; the R/W bit is automatically supplied.
+
+Only one byte can be written to each register address using this method. While useful for the vast majority of I2C operations, writing multiple bytes requires the i2cWrite method.
+
+| Parameters | |
+| ---:|:--- |
+| `addr` | base address of i2c device |
+| `reg` | register address to be written to |
+| `value`| byte to write to register |
+
+**Returns** true if successful or false if failed
 
 ## imeGet {#imeGet}
 ```
@@ -859,7 +944,7 @@ The output string will be truncated as necessary to fit on the LCD screen, 16 ch
 | ---:|:--- |
 | `lcdPort` | the LCD to clear, either uart1 or uart2 |
 | `line` | the LCD line to write, either 1 or 2 |
-| `formatString` | the string to write |
+| `buffer` | the string to write |
 
 
 ## lcdShutdown {#lcdShutdown}
