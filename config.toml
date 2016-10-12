@@ -1,7 +1,7 @@
 baseurl = "http://pros.cs.purdue.edu/"
 languageCode = "en-us"
 title = "PROS"
-theme = "prosdocs"
+# theme = "prosdocs"
 metadataformat = "yaml"
 canonifyurls = true
 # Enable Google Analytics by entering your tracking id
