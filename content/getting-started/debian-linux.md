@@ -11,7 +11,7 @@ If you are installing on Ubuntu or Arch linux there are install scripts availabl
   * **Arch Linux:** [pros-install_arch.sh](https://github.com/purduesigbots/pros/releases/download/2.11.0/pros-install_arch.sh)
 
 ## Other Distro Installation Requirements
-To follows these instructions you need an operating system on you machine which is not Windows. We recommend the latest version of Ubuntu LTS. If you choose to not use Ubuntu LTS be sure that the flavor of linux you are using has support for the following packages:
+To follows these instructions you need an operating system on your machine which is not Windows. We recommend the latest version of Ubuntu LTS. If you choose to not use Ubuntu LTS be sure that the flavor of linux you are using has support for the following packages:
 
     * [Atom 1.10.x+](https://atom.io/)
     * [git 2.x](https://git-scm.com/downloads)
