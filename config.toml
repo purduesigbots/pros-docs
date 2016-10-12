@@ -96,9 +96,51 @@ googleAnalytics = "UA-84548828-3"
 
 [[menu.main]]
 	parent = "tutorials"
+	name = "Digital Input"
+	url = "tutorials/digitalRead/"
+	weight = 3
+
+[[menu.main]]
+	parent = "tutorials"
+	name = "Analog Sensors"
+	url = "tutorials/analog/"
+	weight = 4
+
+[[menu.main]]
+	parent = "tutorials"
+	name = "Gyroscopes"
+	url = "tutorials/gyro/"
+	weight = 5
+
+[[menu.main]]
+	parent = "tutorials"
 	name = "JINX"
 	url = "tutorials/jinx/"
-	weight = 5
+	weight = 6
+
+[[menu.main]]
+	parent = "tutorials"
+	name = "Pneumatics"
+	url = "tutorials/pneumatics/"
+	weight = 7
+
+[[menu.main]]
+	parent = "tutorials"
+	name = "Ultrasonic"
+	url = "tutorials/ultrasonic/"
+	weight = 8
+
+[[menu.main]]
+	parent = "tutorials"
+	name = "Tasks/Multithreading"
+	url = "tutorials/tasks/"
+	weight = 9
+
+[[menu.main]]
+	parent = "tutorials"
+	name = "Common Problems"
+	url = "tutorials/common-problems/"
+	weight = 10
 
 [[menu.main]]
 	name   = "API"

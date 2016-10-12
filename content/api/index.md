@@ -679,7 +679,7 @@ If the IME address is invalid, or the IME has not been reset or initialized, the
 
 
 
-##imeGetVelocity {#imeGetVelocity}
+## imeGetVelocity {#imeGetVelocity}
 ```
 bool imeGetVelocity ( unsigned char address,
                       int * value
@@ -700,7 +700,7 @@ If the IME address is invalid, or the IME has not been reset or initialized, the
 | `address` | the IME address to fetch from 0 to IME_ADDR_MAX |
 | `value`   | a pointer to the location where the value will be stored (obtained using the "&" operator on the target variable name e.g. imeGet(imeGetVelocity, &counts)) |
 
-**Returns** true if the velocity was successfully read and the value stored in \*value is valid; false otherwise
+_**Returns**_ true if the velocity was successfully read and the value stored in \*value is valid; false otherwise
 
 
 ## imeInitializeAll

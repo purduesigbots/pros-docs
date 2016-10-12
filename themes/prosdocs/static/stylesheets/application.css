@@ -708,20 +708,16 @@ pre span {
     box-shadow: inset 0 -1px 0 #bbb
 }
 
-.article h1 {
-    border-bottom: 1px solid rgba(0, 0, 0, .12)
-}
-
 .article a {
     border-bottom: 1px dotted
 }
 
 .article a:focus, .article a:hover {
-    color: #00bfa5
+    color: #fdc658;
 }
 
 .article .headerlink {
-    color: rgba(0, 0, 0, .26);
+    color: rgba(197, 200, 198, 0.5);
     border: none
 }
 
