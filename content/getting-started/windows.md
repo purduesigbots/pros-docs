@@ -24,7 +24,7 @@ Once the installation is completed, Atom can be started via the Start Menu or De
 ## Issues and Notes about Installation
 
 ### APM Failure
-During some installations, Atom may not install correctly. This is best diagnosed by there note being shortcuts to
+During some installations, Atom may not install correctly. This is best diagnosed by there not being shortcuts to
 Atom after installation, or if `apm` isn't on PATH. If this is the case, you may need to manually install Atom by visiting
 https://atom.io/download/windows. Once installed and Atom appears, you will be able to install the PROS plugin by pressing
 **Win**+**R** and entering `apm install file-icons linter tool-bar tool-bar-main busy build pros`.
