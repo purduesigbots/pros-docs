@@ -12,8 +12,8 @@ other waiting action.
 
 Tasks are creating using `taskCreate()`, which invokes a user function in the new
 task:
-```
-void myFirstTask(void *parameter) {
+```c
+void myFirstTask(void * parameter) {
   while(true) {
     printf("Hello from another task!\n");
     delay(500);
@@ -59,12 +59,12 @@ motor at the same time, unexpected behavior may occur since two tasks are trying
 to read/write to the same piece of data.
 
 Tasks can be designed to never conflict over motors or sensors: (division of responsibility)
-```
-void Task1(void *ignore) {
+```c
+void Task1(void * ignore) {
   // update motors 2 and 4
 }
 
-void Task2(void *ignore) {
+void Task2(void * ignore) {
   // update motors 5 and 6
 }
 ```

@@ -17,12 +17,12 @@ PROS provides an ultrasonic library to automatically send out pulses and determi
 response takes.
 
 main.h:
-```
+```c
 Ultrasonic sonar;
 ```
 
 init.c:
-```
+```c
 void initialize() {
   // ...
   sonar = ultrasonicInit(orange_port_number, yellow_port_number);
@@ -31,7 +31,7 @@ void initialize() {
 ```
 
 opcontrol.c, auto.c, etc.:
-```
+```c
 #include "main.h"
 
 void myFunction() {
