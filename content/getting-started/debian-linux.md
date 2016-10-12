@@ -1,4 +1,4 @@
----
+    ---
 weight: 4
 title: Installing on Linux
 slug: debian-linux
