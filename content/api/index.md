@@ -518,7 +518,7 @@ There are 360 degrees in a circle.
 
 | Parameters | |
 | ---:|:--- |
-| `gyro` | the Gyro object from [gyroInit()]({{< relref "#gyroGet" >}}) to read |
+| `gyro` | the Gyro object from [gyroInit()]({{< relref "#gyroInit" >}}) to read |
 
 **Returns** the signed and cumulative number of degrees rotated around the gyro's vertical axis since the last start or reset
 
@@ -552,7 +552,7 @@ It is safe to use this method while a gyro is enabled. It is not necessary to ca
 
 | Parameters | |
 | ---:|:--- |
-| `gyro` | the Gyro object from [gyroInit()]({{< relref "#gyroGet" >}}) to reset |
+| `gyro` | the Gyro object from [gyroInit()]({{< relref "#gyroInit" >}}) to reset |
 
 
 ## gyroShutdown {#gyroShutdown}
@@ -565,7 +565,7 @@ Gyros use processing power, so disabling unused gyros increases code performance
 
 | Parameters | |
 | ---:|:--- |
-| `gyro` | the Gyro object from [gyroInit()]({{< relref "#gyroGet" >}}) to stop |
+| `gyro` | the Gyro object from [gyroInit()]({{< relref "#gyroInit" >}}) to stop |
 
 ## i2cRead {#i2cRead}
 ```
