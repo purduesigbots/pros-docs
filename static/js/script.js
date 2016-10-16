@@ -28,6 +28,8 @@ $(document).ready(function(){
 		mousescrollstep: '45'
 	});
 
+	$('.fullbg_smalltxt a').niceScroll();
+
 	/* Full Backgrounf Slider */
 	$('#slides_background').superslides({
       animation: 'fade',

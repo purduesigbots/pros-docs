@@ -346,9 +346,17 @@ button{
 }
 
 .fullbg_smalltxt{
-	color: black;
+	color: white;
 	font-size: 18px;
 	margin-bottom: 30px;
+}
+
+.fullbg_smalltxt a {
+  color: white;
+}
+
+.fullbg_smalltxt a:hover {
+  color: #cca352;
 }
 
 .fullgb_extratxt{
