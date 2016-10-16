@@ -50,6 +50,7 @@ void writeJINXSerial ( const char *  message )
 Send single string with appropriate header and terminator
 
 This function can only take 1 character pointer, and does __not__ work like `printf()`. Therefore, it is advised that users calling this function directly use `sprintf(char *src, const char *formatString, ...)` to compose their message before calling this.  
+
 | Parameters | |
 | ---:|:--- |
 | `message` | The entire message to send |
