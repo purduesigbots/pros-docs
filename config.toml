@@ -108,12 +108,6 @@ googleAnalytics = "UA-84548828-3"
 
 [[menu.main]]
 	parent = "tutorials"
-	name = "Gyroscope"
-	url = "tutorials/gyro/"
-	weight = 5
-
-[[menu.main]]
-	parent = "tutorials"
 	name = "JINX"
 	url = "tutorials/jinx/"
 	weight = 6
