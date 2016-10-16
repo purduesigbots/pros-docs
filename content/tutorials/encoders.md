@@ -41,7 +41,7 @@ void myFunction(){
 ```
 
 ## Integrated Motor Encoder (IME)
-IME function a lot like the quadrature encoder except they are directly attached to the motor rather than mounted to a mechanism on your robot. In addition these sensors utilize the I2C bus on the cortex and can be daisy chained together on your robot.
+IMEs function a lot like the quadrature encoders except they are directly attached to the motor rather than mounted to a mechanism on your robot. In addition these sensors utilize the I2C bus on the cortex and can be daisy chained together on your robot.
 
 ### Advance User Warning
 When utilizing IMEs and 3rd party sensors on your I2C bus it is recommended that you write your own task to handle all the I2C communication to prevent resource thrashing. See the [I2C tutorial](/tutorials/i2c/) for more details.
