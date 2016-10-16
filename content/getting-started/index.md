@@ -6,8 +6,12 @@ title: Getting Started
 Getting started with PROS is simple. Download the installer for your platform from [GitHub](https://github.com/purduesigbots/pros/releases/latest). You may also choose to manually install each of the components required for PROS. You can view detailed installation instructions for [Windows](./windows), [OS X](./os-x), and [Debian-based Linux](./debian-linux).
 
 Once you've installed PROS, open Atom. Click PROS -> Create New Project to create your first PROS project.
-{{< figure src="/images/atom/menu-create-new.png" title="PROS Menu on Atom" >}}
-{{< figure src="/images/atom/window-create-new.png" title="Creating a new project in Atom" >}}
+
+_PROS Menu on Atom_
+{{< figure src="/images/atom/menu-create-new.png" >}}
+
+_Creating a new project in Atom_
+{{< figure src="/images/atom/window-create-new.png" >}}
 
 Pick a directory to create the new project in and click Create. The PROS CLI will now copy the latest kernel template into the specified directory and Atom will open it.
 {{< figure src="/images/atom/proj-brand-new.png" >}}
@@ -28,4 +32,7 @@ void operatorControl() {
 	}
 }
 ```
+Once you are complete your `opcontrol.c` file should look like this:
 {{< figure src="/images/atom/first-program.png" >}}
+
+Congratulations you have completed your first PROS program!
