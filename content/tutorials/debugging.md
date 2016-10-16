@@ -17,8 +17,4 @@ To view a robot's output, there are two officially supported methods:
     {{< figure src="/images/atom/open-cortex.png" >}}<br/>
 
     A terminal panel will open at the bottom of the screen containing the output of a connected robot.<br/>
-    //TODO add picture of atom terminal
-
-### Bonus: Atom Terminal
-The terminal in Atom can also run most commands that your system's regular command line can.
-{{< figure src="/images/atom/terminal-native.png" >}}
+    {{< figure src="/images/atom/terminal-platformio.png" >}}
