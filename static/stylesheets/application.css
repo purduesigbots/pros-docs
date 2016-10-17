@@ -727,7 +727,7 @@ pre span {
 }
 
 .article table th {
-    background: #ee7a70;
+    background: #282c34 !important;
     color: #fff
 }
 

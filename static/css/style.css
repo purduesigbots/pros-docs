@@ -210,7 +210,7 @@ button{
 
 /* Change the picture of the home background here */
 #slides_background_home .slides-container .img0{
-	background:url(../img/background.gif) center fixed ;
+	background:url(../img/background.gif) left ;
 }
 
 #slides_background_home .slides-container .img1{
