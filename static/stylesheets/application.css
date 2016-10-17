@@ -1099,6 +1099,7 @@ h1 .article .headerlink {
 .results .list a {
     -webkit-transition: background .25s;
     transition: background .25s
+
 }
 
 .no-csstransforms3d .bar.default {
@@ -1242,10 +1243,16 @@ h1 .article .headerlink {
 }
 
 .results .list a {
-    display: block
+    display: block;
+    font-size: 18px;
+    padding: 13px 0;
+    margin: 0;
+    width: 100%;
+    height: 48px
 }
 
 .result {
+  font-size: initial;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
