@@ -46,6 +46,11 @@ button{
 	color: #333333;
 }
 
+#features .div {
+  padding: 15px;
+  background: rgba(0,0,0,0.2);
+}
+
 
 /* Page Loading */
 
@@ -210,6 +215,7 @@ button{
 
 /* Change the picture of the home background here */
 #slides_background_home .slides-container .img0{
+  filter: blur(1px);
 	background:url(../img/background.gif) left ;
 }
 

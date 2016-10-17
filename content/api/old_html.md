@@ -2232,7 +2232,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89
 </div><div class="memdoc">
 
 <p>Returns true if the robot is in autonomous mode, or false otherwise. </p>
-<p>While in autonomous mode, joystick inputs will return a neutral value, but serial port communications (even over VexNET) will still work properly. </p>
+<p>While in autonomous mode, joystick inputs will return a neutral value, but serial port communications (even over VEXnet) will still work properly. </p>
 
 </div>
 </div>

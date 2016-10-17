@@ -9,7 +9,7 @@ To view a robot's output, there are two officially supported methods:
 
 1. Through the PROS CLI: <br/>
 
-    Running `pros terminal` on the command line will open an output stream from a robot connected over direct USB connection, VexNet, or [JiNX](/tutorials/jinx/).
+    Running `pros terminal` on the command line will open an output stream from a robot connected over direct USB connection, VEXnet, or [JINX](/tutorials/jinx/).
 
 2. From within Atom: <br/>
 

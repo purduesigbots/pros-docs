@@ -783,7 +783,7 @@ Do not use this function on pins that are also being used by the built-in ultras
 ```
 bool isAutonomous ( )
 ```
-While in autonomous mode, joystick inputs will return a neutral value, but serial port communications (even over VexNET) will still work properly.
+While in autonomous mode, joystick inputs will return a neutral value, but serial port communications (even over VEXnet) will still work properly.
 
 **Returns** true if the robot is in autonomous mode, or false otherwise.
 
