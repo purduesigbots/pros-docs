@@ -59,10 +59,10 @@ while(analogReadCalibratedHR(LINE_TRACKER_PORT) < 2000)
 ```
 
 ## Gyroscope
-One of the most powerful sensors available for the Vex Cortex is the Vex Yaw Rate Gyro. Through proper utilization of this sensors you can consistently make your robot perform precise turns.
+One of the most powerful sensors available for the VEX Cortex is the VEX Yaw Rate Gyro. Through proper utilization of this sensors you can consistently make your robot perform precise turns.
 
 #### Warning
-The Vex Yaw Rate Gyro is an analog sensor which means that it is very susceptible to analog noise during its operation. When utilizing this sensor, pay special attention to the connection wires between cortex and the gyro and keep them far away from motors.
+The VEX Yaw Rate Gyro is an analog sensor which means that it is very susceptible to analog noise during its operation. When utilizing this sensor, pay special attention to the connection wires between cortex and the gyro and keep them far away from motors.
 
 PROS provides a gyro library to simplify using it. A sample usage would be as follows:
 
@@ -100,7 +100,7 @@ void myFunction(){
 }
 ```
 ## Accelerometer
-The VEX Accelerometer measures acceleration on the x, y, and z axes simultaneously. Accelerometers can be used to infer velocity and displacement, but due to the error induced by such integration it is recommended that simply the acceleration data be used. By design of the Vex Accelerometer each axis is treated as its own analog sensors. Due to this the Vex Accelerometer requires three analog input ports on the Cortex.
+The VEX Accelerometer measures acceleration on the x, y, and z axes simultaneously. Accelerometers can be used to infer velocity and displacement, but due to the error induced by such integration it is recommended that simply the acceleration data be used. By design of the VEX Accelerometer each axis is treated as its own analog sensors. Due to this the VEX Accelerometer requires three analog input ports on the Cortex.
 
 Example accelerometer use:
 

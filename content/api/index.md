@@ -830,7 +830,7 @@ Gets the value of a control axis on the VEX joystick.
 | Parameters | |
 | ---:|:--- |
 | `joystick` | the joystick slot to check |
-| `axis` | one of the 1, 2, 3, 4, ACCEL_X, or ACCEL_Y anaglog channels on a Vex joystick |
+| `axis` | one of the 1, 2, 3, 4, ACCEL_X, or ACCEL_Y anaglog channels on a VEX joystick |
 
 **Returns** the value from -127 to 127, or 0 if no joystick is connected to the requested slot.
 
