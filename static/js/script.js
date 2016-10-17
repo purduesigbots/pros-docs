@@ -8,6 +8,18 @@ $(document).ready(function(){
 		$("#pageloader").delay(1200).fadeOut("slow");
 	});
 
+		tag = $.getJSON('https://api.github.com/repos/purduesigbots/pros/releases/latest', function(data) {
+		baseUrl = "https://github.com/purduesigbots/pros/releases/download/" + data.tag_name;
+		anchor = $("#pros-dl-link");
+		if(navigator.platform.startsWith("Win")) {
+			anchor.attr("href", baseUrl + "/pros-win.exe");
+			anchor.parent().parent().append("<div class=\"text-center\">For Windows. <a href=\"https://github.com/purduesigbots/pros/releases/latest\">Other Platforms</a></div>");
+		}
+		else if(navigator.platform.startsWith("Mac")) {
+			anchor.attr("href", baseUrl + "/pros-macOS.pkg");
+			anchor.parent().parent().append("<div class=\"text-center\">For OS X. <a href=\"https://github.com/purduesigbots/pros/releases/latest\">Other Platforms</a></div>");
+		}
+	});
 
 
 	/* Link Transition */

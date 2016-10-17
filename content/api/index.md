@@ -574,6 +574,8 @@ bool i2cRead ( uint8_t addr,
                uint16_t count
              )
 ```
+_Included in PROS API since 2.11.0_
+
 Reads the specified number of data bytes from the specified 7-bit I2C address. The bytes will be stored at the specified location.
 
 The I2C address should be right-aligned; the R/W bit is automatically supplied.
@@ -596,6 +598,8 @@ bool i2cReadRegister ( uint8_t addr,
                        uint16_t count
                      )
 ```
+_Included in PROS API since 2.11.0_
+
 Reads the specified amount of data from the given register address on the specified 7-bit I2C address.
 
 The I2C address should be right-aligned; the R/W bit is automatically supplied.
@@ -618,6 +622,8 @@ bool i2cWrite ( uint8_t addr,
                 uint16_t count
               )
 ```
+_Included in PROS API since 2.11.0_
+
 Writes the specified number of data bytes to the specified 7-bit I2C address.
 
 The I2C address should be right-aligned; the R/W bit is automatically supplied.
@@ -639,6 +645,8 @@ bool i2cWriteRegister ( uint8_t addr,
                         uint16_t value
                       )
 ```
+_Included in PROS API since 2.11.0_
+
 Writes the specified data byte to a register address on the specified 7-bit I2C address.
 
 The I2C address should be right-aligned; the R/W bit is automatically supplied.
