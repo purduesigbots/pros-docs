@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <script src="../js/jquery-1.11.0.min.js"></script>
+  <script>
+    tag = $.getJSON('https://api.github.com/repos/purduesigbots/pros/releases/latest', function(data) {
+    baseUrl = "https://github.com/purduesigbots/pros/releases/download/" + data.tag_name;
+    anchor = $("#pros-dl-link");
+    if(navigator.platform.startsWith("Win")) {
+      window.location = baseUrl + "/pros-win.exe";
+    }
+    else if(navigator.platform.startsWith("Mac")) {
+      window.location = baseUrl + "/pros-macOS.pkg";
+    }
+    else {
+      window.location = "https://github.com/purduesigbots/pros/releases/latest"
+    }
+  });
+  </script>
+</body>
+</html>
