@@ -592,7 +592,8 @@ Since most I2C devices use an 8-bit register architecture, this method has limit
 ## i2cReadRegister {#i2cReadRegister}
 ```
 bool i2cReadRegister ( uint8_t addr,
-                       uint8_t * data,
+                       uint8_t reg,
+                       uint8_t * value,
                        uint16_t count
                      )
 ```
