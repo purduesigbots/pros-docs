@@ -35,4 +35,14 @@ void operatorControl() {
 Once you are complete your `opcontrol.c` file should look like this:
 {{< figure src="/images/atom/first-program.png" >}}
 
+Now that you have written code, you will need to translate your source into a
+format that the microcontroller can understand. This process is called _compilation_.
+To compile your project, press the `F9` key.
+
+{{< figure src="/images/atom/build.png" >}}
+
+Now that your project has been built, you can upload it to the Cortex by clicking upload.
+
+{{< figure src="/images/atom/upload.png" >}}
+
 Congratulations you have completed your first PROS program!
