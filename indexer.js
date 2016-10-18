@@ -22,7 +22,12 @@ var processFile = function() {
   var entries = content.split(/#{2,3}.+\s/g);
   var links = []
   titlesFormatted.forEach(function(title, index, titles) {
-    links.push('#' + title);
+    var t = title;
+    if(t.includes("define")) {
+      t = t.toLowerCase().replace(/#/, '').replace(/_/,'-').replace(/\s+/g, '-');
+    }
+    t = '#' + t;
+    links.push(t);
   });
   titlesFormatted.forEach(function(title, index, titles) {
     indices.push({

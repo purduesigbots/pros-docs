@@ -23,7 +23,6 @@
     </div>
     {{ end }}
 
-    <!-- TODO: disabled until Hugo supports the generation of a content index natively -->
     {{ $page := . }}
     {{ if eq $page.Title "API"  }}
     <script type="text/javascript" src="/js/jquery-3.1.1.min.js"></script>
@@ -41,7 +40,7 @@
           index.forEach(function(entry) {
             apiIndex.push(entry);
           });
-          console.log(apiIndex);
+
           lunrIndex = lunr(function(){
             this.field("title", {
               boost: 10
@@ -71,7 +70,7 @@
         });
       }
       function renderResults(results) {
-        console.log(results);
+
         if (!results.length) return;
         results.slice(0,10).forEach(function(result) {
           var $result = $("<li>");
@@ -84,7 +83,7 @@
         });
       }
       initLunr();
-      console.log(apiIndex);
+
       $(document).ready(function() {
         initUI();
       });

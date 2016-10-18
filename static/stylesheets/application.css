@@ -1226,7 +1226,9 @@ h1 .article .headerlink {
 
 #toggle-search:checked~.main .results, .toggle-search .results {
     width: 100%;
-    overflow-y: visible
+    overflow-y: visible;
+    background-color: rgba(255,255,255,0.75);
+    padding-left: 5%;
 }
 
 .results .meta {
@@ -1252,11 +1254,12 @@ h1 .article .headerlink {
 }
 
 .result {
-  font-size: initial;
+    font-size: initial;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding: 12px 16px 16px
+    padding: 12px 16px 16px;
+    background-color: rgba(255,255,255,0);
 }
 
 .result h1 {
