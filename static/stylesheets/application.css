@@ -219,12 +219,6 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, .12)
 }
 
-@media only screen and (max-width:959px) {
-  .button.button-search {
-    display: none;
-  }
-}
-
 .toggle-button {
     cursor: pointer;
     color: inherit
@@ -1105,7 +1099,6 @@ h1 .article .headerlink {
 .results .list a {
     -webkit-transition: background .25s;
     transition: background .25s
-
 }
 
 .no-csstransforms3d .bar.default {
@@ -1232,9 +1225,7 @@ h1 .article .headerlink {
 
 #toggle-search:checked~.main .results, .toggle-search .results {
     width: 100%;
-    overflow-y: visible;
-    background-color: rgba(255,255,255,0.75);
-    padding-left: 5%;
+    overflow-y: visible
 }
 
 .results .meta {
@@ -1251,21 +1242,14 @@ h1 .article .headerlink {
 }
 
 .results .list a {
-    display: block;
-    font-size: 18px;
-    padding: 13px 0;
-    margin: 0;
-    width: 100%;
-    height: 48px
+    display: block
 }
 
 .result {
-    font-size: initial;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding: 12px 16px 16px;
-    background-color: rgba(255,255,255,0);
+    padding: 12px 16px 16px
 }
 
 .result h1 {
