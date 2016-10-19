@@ -3,7 +3,8 @@ title: JINX
 ---
 
 {{< warning title="JINX is in Beta" >}}
-JINX is in active development and should not be considered safe for use in competition.
+JINX is in active development and could change at any time. This document is
+intended to introduce JINX to advanced PROS users who may wish to experiment with JINX.
 {{< /warning >}}
 
 JINX is the graphical debugger and interactive data visualization tool for PROS. With JINX, you get to graph data, generate CSV files, send commands back to the cortex, and more, all from the browser of choice. JINX works by using a computer connected to the cortex via serial as the central hub enabling other computers and mobile devices on the network to connect as clients and enjoy the use of the interactive features.
@@ -20,7 +21,7 @@ Once you have python3 installed on your machine you can easily install pySerial 
 `pip3 install pyserial` or `pip3 install --upgrade pyserial` to upgrade to the latest if a previous instance is already installed.
 
 ## JINX Installation
-//TODO JINX Installation instructions
+Release 0.1: https://github.com/purduesigbots/JINX/releases/tag/v0.1
 
 ## Debugging with JINX
 To utilize the power of JINX simply:
