@@ -2,6 +2,11 @@
 title: JINX
 ---
 
+{{< warning title="JINX is in Beta" >}}
+JINX is in active development and could change at any time. This document is
+intended to introduce JINX to advanced PROS users who may wish to experiment with JINX.
+{{< /warning >}}
+
 JINX is the graphical debugger and interactive data visualization tool for PROS. With JINX, you get to graph data, generate CSV files, send commands back to the cortex, and more, all from the browser of choice. JINX works by using a computer connected to the cortex via serial as the central hub enabling other computers and mobile devices on the network to connect as clients and enjoy the use of the interactive features.
 
 Before you can run JINX there are some required setup tasks.
@@ -16,7 +21,7 @@ Once you have python3 installed on your machine you can easily install pySerial 
 `pip3 install pyserial` or `pip3 install --upgrade pyserial` to upgrade to the latest if a previous instance is already installed.
 
 ## JINX Installation
-//TODO JINX Installation instructions
+Release 0.1: https://github.com/purduesigbots/JINX/releases/tag/v0.1
 
 ## Debugging with JINX
 To utilize the power of JINX simply:
@@ -87,7 +92,8 @@ Simple wrapper function for `writeJINXData` with `name` as "msg" and `value` set
 
 
 ## JINX Reader {#JINX_Reader}  
-The read task is started by calling ```c
+The read task is started by calling
+```c
 taskCreate(JINXRun, TASK_DEFAULT_STACK_SIZE, NULL, (TASK_PRIORITY_DEFAULT));
 ```
 in `initialize()`
@@ -102,54 +108,54 @@ Automatically called by whenever a message is sent to the cortex. The user shoul
 
 ```c
 //Example parse. User can and should replace with own body.
-void parseMessage(JINX *inStr) {
-//Echo entire recieved message
-writeJINXMessage(inStr->command);
-//Set inStr->token to first token (space-delimated word)
-getToken(inStr, 0);   
+void parseMessage(JINX * inStr) {
+  //Echo entire recieved message
+  writeJINXMessage(inStr->command);
+  //Set inStr->token to first token (space-delimated word)
+  getToken(inStr, 0);   
 
-if (strcmp(inStr->token, "Option_1") == 0) {
-//Do option 1
-writeJINXMessage("Option 1 chosen.");
-} else if(strcmp(inStr->token, "get") == 0) {
-//Call another function to handle "get"
-handleGet(inStr);
-} else {
-//Do default
-writeJINXMessage("No comparison found");
-}
+  if (strcmp(inStr->token, "Option_1") == 0) {
+    //Do option 1
+    writeJINXMessage("Option 1 chosen.");
+  } else if(strcmp(inStr->token, "get") == 0) {
+    //Call another function to handle "get"
+    handleGet(inStr);
+  } else {
+    //Do default
+    writeJINXMessage("No comparison found");
+  }
 }
 ```   
 and `handleGet()`   
 
 ```c  
-//Example of user defined JINX helper function.  
-//Since it is at the top of this file, it can be called from anywhere   else in this file.  
-//Good practice is to put its prototype in JINX.h, though.  
-void handleGet(JINX *inStr) {  
-//Get the first token from the sent command  
-getToken(inStr, 1);
+  //Example of user defined JINX helper function.  
+  //Since it is at the top of this file, it can be called from anywhere   else in this file.  
+  //Good practice is to put its prototype in JINX.h, though.  
+  void handleGet(JINX * inStr) {  
+  //Get the first token from the sent command  
+  getToken(inStr, 1);
 
-//Host outgoing messages
-char *message = (char*)malloc(sizeof(char) * (strlen(inStr->token) + 30));
-if (strcmp(inStr->token, "DEBUG_JINX") == 0) {
-writeJINXMessage("Asked for Debug");
-sprintf(message, "%s, %d", inStr->token, DEBUG_JINX);
-} else {
-sprintf(message, "%s %s", inStr->token, " was unable to be gotten.");
-}
+  //Host outgoing messages
+  char * message = (char *)malloc(sizeof(char) * (strlen(inStr->token) + 30));
+  if (strcmp(inStr->token, "DEBUG_JINX") == 0) {
+    writeJINXMessage("Asked for Debug");
+    sprintf(message, "%s, %d", inStr->token, DEBUG_JINX);
+  } else {
+    sprintf(message, "%s %s", inStr->token, " was unable to be gotten.");
+  }
 
-//Free malloc'd string
-writeJINXMessage(message);
-free(message);
-message = NULL;
+  //Free malloc'd string
+  writeJINXMessage(message);
+  free(message);
+  message = NULL;
 }
 ```
 
 ## getToken {#getToken}
 ```c
 int getToken ( JINX *  inStr
-int     tokenNum
+  int     tokenNum
 )
 ```
 Sets `inStr->token` to the `tokenNum`th + 1 space-delimated word within `inStr->command`

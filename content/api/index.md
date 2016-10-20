@@ -610,7 +610,8 @@ Most I2C devices support an auto-increment address feature, so using this method
 | Parameters | |
 | ---:|:--- |
 | `addr` | register address to read |
-| `data` | a pointer to the location where the value will be stored |
+| `reg`  | register address to be written to |
+| `value`| a pointer to the location where the value will be stored  |
 | `count`| number of bytes to read |
 
 **Returns** true if successful or false if failed. If only some bytes could be read, false is still returned.

@@ -49,7 +49,7 @@ googleAnalytics = "UA-84548828-3"
 
 [[menu.main]]
 	name   = "Download"
-	url    = "download.html"
+	url    = "download/"
 	weight = 5
 
 [[menu.main]]
