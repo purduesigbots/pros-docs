@@ -736,8 +736,8 @@ pre span {
 }
 
 .article blockquote {
-    border-left: 2px solid rgba(0, 0, 0, .54);
-    color: rgba(0, 0, 0, .54)
+    border-left: 2px solid rgba(197, 200, 198, 0.69);
+    color: rgba(197, 200, 198, 0.69)
 }
 
 .footer {
@@ -762,7 +762,7 @@ pre span {
 }
 
 .admonition {
-    background: #29b6f6;
+    background: #2291c3;
     color: #fff
 }
 
@@ -771,7 +771,7 @@ pre span {
 }
 
 .admonition.warning {
-    background: #e84e40
+    background: #d84638;
 }
 
 .admonition a, .admonition a:hover {

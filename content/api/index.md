@@ -840,7 +840,7 @@ Gets the value of a control axis on the VEX joystick.
 | Parameters | |
 | ---:|:--- |
 | `joystick` | the joystick slot to check |
-| `axis` | one of the 1, 2, 3, 4, ACCEL_X, or ACCEL_Y anaglog channels on a VEX joystick |
+| `axis` | one of the 1, 2, 3, 4, ACCEL_X, or ACCEL_Y analog channels on a VEX joystick |
 
 **Returns** the value from -127 to 127, or 0 if no joystick is connected to the requested slot.
 
@@ -1000,7 +1000,7 @@ This speed may have been set by any task or the PROS kernel itself. This is not 
 
 | Parameters | |
 | ---:|:--- |
-| `channel` | channel	the motor channel to fetch from 1-10 |
+| `channel` | the motor channel to fetch from 1-10 |
 
 **Returns** the speed last sent to this channel; -127 is full reverse and 127 is full forward, with 0 being off
 
@@ -1017,7 +1017,7 @@ Do not use [motorSet()]({{< relref "#motorSet" >}}) with the same channel argume
 
 | Parameters | |
 | ---:|:--- |
-| `channel` | channel	the motor channel to fetch from 1-10 |
+| `channel` | the motor channel to set from 1-10 |
 | `speed` | the new signed speed; -127 is full reverse and 127 is full forward, with 0 being off
 
 
@@ -1031,7 +1031,7 @@ This performs a coasting stop, not an active brake. Since motorStop is similar t
 
 | Parameters | |
 | ---:|:--- |
-| `channel` | channel	the motor channel to fetch from 1-10 |
+| `channel` | the motor channel to fetch from 1-10 |
 
 
 ## mutexCreate {#mutexCreate}

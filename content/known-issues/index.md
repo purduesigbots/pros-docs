@@ -17,3 +17,7 @@ When utilizing PROS in your Linux environment you cannot interact with or flash 
 {{< figure src="/img/wiring-diagram.png" attr="Diagram courtesy of VEX Robotics" >}}
 
 Both wired and wirless (VEXnet 1.0 & 2.0) are supported.
+
+## Failed to install platformio-ide-terminal  {#platformio-ide-terminal}
+This issue may occur when install PROS from within the Atom GUI. The current cause of the issue is
+unknown. You can get the dependency installed by manually installing `platformio-ide-terminal` by going to settings (`Ctrl`+`,`), click `Install`, then search for and install `platformio-ide-terminal`. In some instances, restarting Atom will allow the plugin to install.
