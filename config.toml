@@ -120,21 +120,27 @@ googleAnalytics = "UA-84548828-3"
 
 [[menu.main]]
 	parent = "tutorials"
+	name = "LCD Screen"
+	url = "tutorials/lcd/"
+	weight = 9
+
+[[menu.main]]
+	parent = "tutorials"
 	name = "Tasks/Multithreading"
 	url = "tutorials/tasks/"
-	weight = 9
+	weight = 10
 
 [[menu.main]]
 	parent = "tutorials"
 	name = "I2C Communication"
 	url = "tutorials/i2c/"
-	weight = 10
+	weight = 11
 
 [[menu.main]]
 	parent = "tutorials"
 	name = "Coding FAQ"
 	url = "tutorials/coding-faq/"
-	weight = 11
+	weight = 12
 
 [[menu.main]]
 	name   = "API"

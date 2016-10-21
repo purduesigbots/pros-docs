@@ -6,15 +6,15 @@ title: Programming the Clawbot
 This tutorial will guide you through basic programming of the VEX Clawbot.
 
 #### Intended Audience:
-This tutorial is intended for developers with some programming experience, but with little to no experience with the PROS library.
+This tutorial is intended for developers with some programming experience, but with little to no experience with the PROS library. If you haven't programmed before, we recommend checking out all the "Introduction and Basic C Features" sections of [this tutorial series](Introduction and Basic C Features); you may also benefit from the "Pointers, Arrays and Strings" sections as well (although they aren't as pertintent).
 
 #### Goals:
 At the end of this tutorial you will have:
 
 - Understood the basic project structure of PROS
 - Programmed a basic chassis with "tank" control or "arcade" control
-- Programmed buttons to control the clawbot's life
-- Programmed a joystick axis to control the clawbot's claws
+- Programmed buttons to control the clawbot's lift
+- Programmed a joystick axis to control the clawbot's claw
 - Understood the standard subsystem module methodology
 - Programmed a dead-reckoned autonomous routine
 
@@ -31,6 +31,8 @@ For the purposes of this tutorial, we've plugged in our motors into the followin
 |  3   | Right wheels|  8   |    Lift     |
 |  4   |             |  9   |    Claw     |
 |  5   |             |  10  |             | |
+
+We modified our clawbot to include a quadrature encoder on the lift arm. We plugged the top and bottom ports into digital ports 2 and 3, respectively.
 
 With Atom started, you can create a new PROS project by clicking the `PROS` menu, then click `Create new Project`.
 
@@ -142,6 +144,8 @@ To compile code within Atom, press `Ctrl`+`Shift`+`P` to bring up the Command Pa
 ## Uploading Code to the Cortex   {#uploading}
 Now that you have compiled a binary file that the Cortex can understand, you need to upload it to the microcontroller. Within Atom, click the 'Upload to Cortex' button in Atom. This process will upload the binary the compilation process created (`bin/output.bin`) to the Cortex and begin running it.
 
+If you followed these instructions correctly, you can connect a joystick to the clawbot and drive it using arcade controls!
+
 ## Subsystem Module Methodology     {#subsystem-methodology}
 In this section, we'll introduce the subsystem module methodology. When developing code for complicated robotic systems, it's extremely helpful to abstract away the necessary steps to perform actions on a system. For instance, to set the speed of a 4 motor chassis, you may need to set the speed of the front left motor, the rear left motor, and so on. You might just have four `motorSet()` calls every time you want to set robot's speed, but what happens when you add another pair of motors to your chassis, or collapse your left and right sides onto two Y-cables? You would need to comb through all of your code to find all of the times you set the chassis speeds and adjust those calls accordingly. Similarly, you may want a level of abstraction for getting sensor values - what happens if you decide to switch from quadrature encoders to integrated motor encoders?
 
@@ -190,3 +194,101 @@ void opcontrol() {
   }
 }
 ```
+
+It should be clear that congregating similar pieces of code into a C source file and a header file for other source files simplifies and organizes your code.
+
+{{< note title="Reduce even more" >}}
+You can modify `main.h` and include your own header files. In our example, we could modify our `main.h` to look like the following:
+
+~~~c
+// top of main.h omitted
+#ifndef MAIN_H_
+
+// This prevents multiple inclusion, which isn't bad for this file but is good practice
+#define MAIN_H_
+
+#include <API.h>
+#include "chassis.h" // Added this line
+
+// rest of main.h omitted from this listing
+~~~
+
+Then, in `opcontrol.c`, the only file we would need to `#include` is `main.h`. In future source files, we would only ever need to `#include "main.h"` in order to get access to all of our robot's subsystems' functions!
+
+{{< /note >}}
+
+## Programming the VEX Claw   {#claw}
+We now want to use the left horizontal joystick to control the aperture of the claw. We'll continue using the modular methodology:
+
+`include/claw.h`:
+~~~c
+#ifndef _CLAW_H_
+#define _CLAW_H_
+
+void clawSet(int speed);
+
+#endif
+~~~
+
+`src/claw.c`:
+~~~c
+#include "main.h"
+#include "claw.h"
+
+void clawSet(int speed) {
+  motorSet(9, -speed);
+}
+~~~
+
+`src/opcontrol.c`:
+~~~c
+#include "main.h"
+
+void operatorControl() {
+  int power, turn;
+	while (1) {
+    power = joystickGetAnalog(1, 2); // vertical axis on left joystick
+    turn  = joystickGetAnalog(1, 1); // horizontal axis on left joystick
+    chassisSet(power + turn, power - turn);
+
+    // add the following line:
+    clawSet(joystickGetAnalog(1, 4));
+
+    delay(20);
+	}
+}
+~~~
+
+## Controlling the Lift   {#lift}
+Our drivers requested that they be able to use the trigger buttons to control the lift. At this point, complete the lift submodule on your own just like we did for the chassis and claw. If you're having trouble, take a look at the complete Clawbot code sample at the bottom of this page.
+
+`src/opcontrol.c`:
+~~~c
+#include "main.h"
+
+void operatorControl() {
+  int power, turn;
+	while (1) {
+    power = joystickGetAnalog(1, 2); // vertical axis on left joystick
+    turn  = joystickGetAnalog(1, 1); // horizontal axis on left joystick
+    chassisSet(power + turn, power - turn);
+
+    clawSet(joystickGetAnalog(1, 4));
+
+    // add the following logic:
+    if(joystickGetDigital(1, 6, JOY_UP)) {
+      liftSet(127); // pressing up, so lift should go up
+    }
+    else if(joystickGetDigital(1, 6, JOY_DOWN)) {
+      liftSet(-127); // pressing down, so lift should go down
+    }
+    else {
+      liftSet(0); // no buttons are pressed, stop the lift
+    }
+
+    delay(20);
+	}
+}
+~~~
+
+Depending on your motor, you may notice that the arm falls back down when stopped mid-raise. This can be alleviated by applying some power to the motor when no buttons are pressed (instead of 0), or by using a control system such as PID.
