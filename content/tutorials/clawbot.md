@@ -40,7 +40,11 @@ With Atom started, you can create a new PROS project by clicking the `PROS` menu
 
 Create a directory that you'd like to keep the source files for your Clawbot project. We're creating ours in `C:\Users\Elliot\dev\Clawbot`.
 
-{{< figure src="/images/tuts/create-new-prompt.png" >}}
+{{< figure src="/images/atom/window-create-new.png" >}}
+
+
+Pick a directory to create the new project in and click Create. The PROS CLI will now copy the latest kernel template into the specified directory and Atom will open it.
+{{< figure src="/images/atom/proj-brand-new.png" >}}
 
 ## PROS Project Structure
 When you create your project, PROS will copy all of the files necessary to build your project. The structure of the project looks like:
@@ -141,10 +145,14 @@ The final stage of compilation is linking. Objects contain pieces of machine ins
 
 To compile code within Atom, press `Ctrl`+`Shift`+`P` to bring up the Command Palette. You can start typing the command you wish to execute, "Build: Trigger". You should also notice that it will display the available shortcut keys to execute the command. By default, triggering a build can be done by pressing `Ctrl`+`Alt`+`B` (`⌘`+`Alt`+`B`) or `F9`. If you have unsaved files, Build will prompt you to save those files. You should always save before building.
 
+{{< figure src="/images/atom/build.png" >}}
+
 ## Uploading Code to the Cortex   {#uploading}
 Now that you have compiled a binary file that the Cortex can understand, you need to upload it to the microcontroller. Within Atom, click the 'Upload to Cortex' button in Atom. This process will upload the binary the compilation process created (`bin/output.bin`) to the Cortex and begin running it.
 
 If you followed these instructions correctly, you can connect a joystick to the clawbot and drive it using arcade controls!
+
+{{< figure src="/images/atom/upload.png" >}}
 
 ## Subsystem Module Methodology     {#subsystem-methodology}
 In this section, we'll introduce the subsystem module methodology. When developing code for complicated robotic systems, it's extremely helpful to abstract away the necessary steps to perform actions on a system. For instance, to set the speed of a 4 motor chassis, you may need to set the speed of the front left motor, the rear left motor, and so on. You might just have four `motorSet()` calls every time you want to set robot's speed, but what happens when you add another pair of motors to your chassis, or collapse your left and right sides onto two Y-cables? You would need to comb through all of your code to find all of the times you set the chassis speeds and adjust those calls accordingly. Similarly, you may want a level of abstraction for getting sensor values - what happens if you decide to switch from quadrature encoders to integrated motor encoders?
@@ -292,3 +300,5 @@ void operatorControl() {
 ~~~
 
 Depending on your motor, you may notice that the arm falls back down when stopped mid-raise. This can be alleviated by applying some power to the motor when no buttons are pressed (instead of 0), or by using a control system such as PID.
+
+Congratulations you have completed your first PROS program!
