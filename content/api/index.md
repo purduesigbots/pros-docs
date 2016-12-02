@@ -152,10 +152,10 @@ There are 360 ticks in one revolution.
 
 ## encoderInit {#encoderInit}
 ```
-int encoderInit ( unsigned char portTop,
-                  unsigned char portBottom,
-                  bool reverse
-                )
+Encoder encoderInit ( unsigned char portTop,
+                      unsigned char portBottom,
+                      bool reverse
+                    )
 ```
 Initializes and enables a quadrature encoder on two digital ports.
 
