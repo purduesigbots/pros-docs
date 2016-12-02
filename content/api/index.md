@@ -152,7 +152,7 @@ There are 360 ticks in one revolution.
 
 ## encoderInit {#encoderInit}
 ```
-int encoderInit ( unsigned char portTop,
+Encoder encoderInit ( unsigned char portTop,
                   unsigned char portBottom,
                   bool reverse
                 )
