@@ -21,3 +21,10 @@ Both wired and wirless (VEXnet 1.0 & 2.0) are supported.
 ## Failed to install platformio-ide-terminal  {#platformio-ide-terminal}
 This issue may occur when install PROS from within the Atom GUI. The current cause of the issue is
 unknown. You can get the dependency installed by manually installing `platformio-ide-terminal` by going to settings (`Ctrl`+`,`), click `Install`, then search for and install `platformio-ide-terminal`. In some instances, restarting Atom will allow the plugin to install.
+
+Another workaround for this issue is to clone the [`platformio-atom-ide-terminal`](https://github.com/platformio/platformio-atom-ide-terminal/) repository and set up a [symlink](https://en.wikipedia.org/wiki/Symbolic_link) using the Atom package manager:
+
+`git clone https://github.com/platformio/platformio-atom-ide-terminal.git`
+
+`apm link <path to cloned repository>`
+
