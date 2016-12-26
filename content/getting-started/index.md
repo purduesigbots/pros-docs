@@ -164,6 +164,7 @@ Let's modify our existing operator control to use the subsystem methodology. We'
 > Your own header files contain declarations for interfaces between the source files of your program. Each time you have a group of related declarations and macro definitions all or most of which are needed in several different source files, it is a good idea to create a header file for them. _([GNU](https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html))_
 
 
+`include/chassis.h`:
 ```c
 #ifndef _CHASSIS_H_
 #define _CHASSIS_H_
@@ -174,6 +175,7 @@ void chassisSet(int left, int right);
 #endif // _CHASSIS_H_
 ```
 
+`src/chassis.c`:
 ```c
 #include "main.h"    // includes API.h and other headers
 #include "chassis.h" // redundant, but ensures that the corresponding header file (chassis.h) is included
