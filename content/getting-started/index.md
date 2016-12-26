@@ -269,6 +269,10 @@ void operatorControl() {
 }
 ~~~
 
+Your project structure should now look something like this:
+{{< figure src="/images/tuts/clawbot-atom.png" >}}
+
+
 ## Controlling the Lift   {#lift}
 Our drivers requested that they be able to use the trigger buttons to control the lift. At this point, complete the lift submodule on your own just like we did for the chassis and claw. If you're having trouble, take a look at the complete Clawbot code sample at the bottom of this page.
 
@@ -304,3 +308,5 @@ void operatorControl() {
 Depending on your motor, you may notice that the arm falls back down when stopped mid-raise. This can be alleviated by applying some power to the motor when no buttons are pressed (instead of 0), or by using a control system such as PID.
 
 Congratulations you have completed your first PROS program!
+
+[Complete source code is available here.](/clawbot.zip)
