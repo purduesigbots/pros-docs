@@ -9,8 +9,8 @@ sensor configuration is insufficient.
 init.c:
 ```c
 void initializeIO() {
-  pinMode(solenoid_pin, OUTPUT);
-  digitalWrite(solenoid_pin, LOW);
+  pinMode(1, OUTPUT); // configure digital port 1 as an output
+  digitalWrite(1, LOW); // write LOW to port 1 (solenoid may be extended or not, depending on wiring)
 }
 ```
 
@@ -18,7 +18,7 @@ opcontrol.c, auto.c, etc.
 ```c
 void myFunction() {
   // ...
-  digitalWrite(solenoid_pin, new_value);
+  digitalWrite(1, new_value); // write HIGH or LOW to port 1 in place of new_value
   // ...
 }
 ```

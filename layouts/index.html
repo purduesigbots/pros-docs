@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head itemscope itemtype="http://schema.org/Website">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>PROS</title>
+    <title itemprop="name">PROS</title>
 
     <!-- CSS Files
         ========================================================================= -->
@@ -29,6 +29,10 @@
     <![endif]-->
 	<meta name="google-site-verification" content="8MtEh5oJlG54N6V67RRbsdnfsC0UQWdxA9NcRBsVCic" />
 	<script type="application/ld+json">{"@context":"http://schema.org/","@type":"SoftwareApplication","name":"PROS","image":"http://pros.cs.purdue.edu/images/logo.png","description":"PROS is a lightweight and fast alternative open source operating system for the VEX Cortex Microcontroller.","offers":{"@type":"Offer","priceCurrency":"USD","price":"0.00","availability":"http://schema.org/InStock"},"operatingSystem":"Windows 7+, Linux, macOS","downloadUrl":"http://pros.cs.purdue.edu/download","applicationCategory":"Development Tools","applicationSubCategory":"Robotics","releaseNotes":"https://github.com/purduesigbots/pros/releases","author":{"@type":"Organization","name":"Purdue ACM SIGBots","location":{"@type":"PostalAddress","addressLocality":"West Lafayette","addressRegion":"IN"},"parentOrganization":{"@type":"Organization","sameAs":"http://cs.purdue.edu"}}}</script>
+	<script type="application/ld+json">{"@context":"http://schema.org","@type":"Organization","url":"{{ $.Site.BaseURL }}","logo":"{{ $.Site.BaseURL}}/images/logo.png"}</script>
+	<script type="application/ld+json">{"@context":"http://schema.org/","@type":"Product","name":"PROS","image":"http://pros.cs.purdue.edu/images/logo.png","description":"PROS is a lightweight and fast alternative open source operating system for the VEX Cortex Microcontroller.","offers":{"@type":"Offer","priceCurrency":"USD","price":"0.00","availability":"http://schema.org/InStock","url":"http://pros.cs.purdue.edu"}}</script>
+	<link rel="canonical" href="{{ $.Site.BaseURL }}" itemprop="url">
+
   </head>
   <body>
 
