@@ -2,6 +2,8 @@
 title: VEX Speaker
 ---
 
+PROS supports playing Ring Tone Text Transfer Language (RTTTL) tones on the VEX Speaker as demonstrated below:
+
 init.c:
 ```c
 void initialize() {

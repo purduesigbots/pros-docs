@@ -10,7 +10,7 @@ If you are installing on Ubuntu or Arch linux there are install scripts availabl
   * **Ubuntu:** [pros-install_ubuntu.sh](https://github.com/purduesigbots/pros/releases/download/2.11.0/pros-install_ubuntu.sh)
   * **Arch Linux:** [pros-install_arch.sh](https://github.com/purduesigbots/pros/releases/download/2.11.0/pros-install_arch.sh)
 
-**Note** When using PROS for linux you cannot program or interact with a cortex directly tethered via A-A. This is a [known issue]({{< relref "known-issues/index.md#linuxAA" >}}) with a simple solution.
+**Note** When using PROS for linux you cannot program or interact with a cortex directly tethered via A-A. This is a [known issue]({{< relref "known-issues.md#linuxAA" >}}) with a simple solution.
 
 ## Other Distro Installation Requirements
 To follows these instructions you need an operating system on your machine which is not Windows. We recommend the latest version of Ubuntu LTS. If you choose to not use Ubuntu LTS be sure that the flavor of linux you are using has support for the following packages:

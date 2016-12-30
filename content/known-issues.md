@@ -27,4 +27,3 @@ Another workaround for this issue is to clone the [`platformio-atom-ide-terminal
 `git clone https://github.com/platformio/platformio-atom-ide-terminal.git`
 
 `apm link <path to cloned repository>`
-

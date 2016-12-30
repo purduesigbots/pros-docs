@@ -256,7 +256,7 @@ void clawSet(int speed) {
 
 void operatorControl() {
   int power, turn;
-	while (1) {
+  while (1) {
     power = joystickGetAnalog(1, 2); // vertical axis on left joystick
     turn  = joystickGetAnalog(1, 1); // horizontal axis on left joystick
     chassisSet(power + turn, power - turn);
@@ -265,7 +265,7 @@ void operatorControl() {
     clawSet(joystickGetAnalog(1, 4));
 
     delay(20);
-	}
+  }
 }
 ~~~
 
@@ -306,6 +306,37 @@ void operatorControl() {
 ~~~
 
 Depending on your motor, you may notice that the arm falls back down when stopped mid-raise. This can be alleviated by applying some power to the motor when no buttons are pressed (instead of 0), or by using a control system such as PID.
+
+## Writing a simple autonomous  {#autonomous}
+Now that we've written our code using subsystem modules, writing an autonomous can be simple. In autonomous mode, your robot receives no input from the joystick and operates on its own logic. This mode is typically initiated by a competition controller ([field](http://www.vexrobotics.com/vexedr/products/competition-products/276-2335.html) or [switch](http://www.vexrobotics.com/vexedr/products/competition-products/275-1401.html)), however you can call `autonomous()` like you would any other function.
+
+Our autonomous routine will be simple: we want to drive forward for 3.5 seconds and lift the claw for 2 seconds, then rotate left/right every 3 seconds 3 times. Hopefully, this autonomous will score our preload object and knock an object into a scored position.
+
+The code to accomplish this looks like:
+
+`src/auto.c`:
+~~~c
+#include "main.h"
+
+void autonomous() {
+  chassisSet(127, 127); // drive forward
+  delay(3500); // delay 3.5 seconds = 3500 milliseconds
+  chassisSet(0, 0); // stop driving forward
+  liftSet(127); // lift goes up
+  delay(2000);
+  liftSet(0);
+  for(int i = 0; i < 3; i++) {
+    chassisSet(-127, 127); // rotate left
+    delay(1000);
+    chassisSet(127, 127); // rotate right for twice as long \\--/
+    delay(2000);
+  }
+  chassisSet(0, 0); // stop chassis for safety, although potentially not necessary
+}
+~~~
+
+You may notice that this code runs quite inconsistently. Time delayed autonomous routines do not provide the robot with any progress reports. Due to variations caused by wheels slipping, motor output speed due to battery voltage, and other factors, a time delayed autonomous will rarely perform better than an autonomous using sensor feedback. To create a better autonomous routine, the Internet provides lots of a resources for creating commonly used feedback controllers like the PID Controller.
+
 
 Congratulations you have completed your first PROS program!
 
