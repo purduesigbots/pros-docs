@@ -10,7 +10,7 @@ To take these analog inputs and convert them to information that the Cortex can 
 Unlike many of the other VEX sensors, no initialization process is needed in the `initializeIO()` or `initialize()` functions. However, it is often worthwhile to calibrate analog sensors before using them, which would take place in the `initialize()` function. The [`analogCalibrate()`]({{< relref "api/index.md#analogCalibrate" >}}) function collects approximately 500 data samples over a period of half a second and returns the average value received over the sampling period. This average value can be used to account for variations like gyroscope orientation or ambient light for line trackers.
 
 ## Potentiometer
-Potentiometers measure angular position and can be used to determine the direction of rotation of its input. Potentiometers are best used in applications such as lifts where the sensor is not at risk of being rotated beyond its 250-degree physical constraint. Potentiometers typically do not need to be calibrated, although it may be desired to find the actual range of the potentiometer due to its mechanical stops as that range may be closer to 5-4090 instead of 0-4095. If the potentiometer is not calibrated, the [`analogRead()`]({{< relref "api/index.md#analogRead" >}}) function may be used to obtain the raw input value of the potentiometer. If the sensor was calibrated, the [`analogReadCalibratedHR()`]({{< relref "api/index.md#analogCalibrateHR" >}}) function should be used, as it will account for the sensor's calibration and return more accurate results. The input to both of these functions is the channel number of the sensor, and an integer is returned.
+Potentiometers measure angular position and can be used to determine the direction of rotation of its input. Potentiometers are best used in applications such as lifts where the sensor is not at risk of being rotated beyond its 250-degree physical constraint. Potentiometers typically do not need to be calibrated, although it may be desired to find the actual range of the potentiometer due to its mechanical stops as that range may be closer to 5-4090 instead of 0-4095. If the potentiometer is not calibrated, the [`analogRead()`]({{< relref "api/index.md#analogRead" >}}) function may be used to obtain the raw input value of the potentiometer. If the sensor was calibrated, the [`analogReadCalibrated()`]({{< relref "api/index.md#analogCalibrate" >}}) function should be used, as it will account for the sensor's calibration and return more accurate results. The input to both of these functions is the channel number of the sensor, and an integer is returned.
 
 Thus an example of use on a lift would look like:
 ```c
@@ -50,7 +50,7 @@ opcontrol.c:
 #include "main.h"
 
 //2000 arbitrarily set as cutoff between light and dark
-while(analogReadCalibratedHR(LINE_TRACKER_PORT) < 2000)
+while(analogReadCalibrated(LINE_TRACKER_PORT) < 2000)
 {
   // drive forward until a line is hit
   motorSet(DRIVE_MOTOR_LEFT,127);
