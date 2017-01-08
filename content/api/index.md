@@ -811,11 +811,11 @@ While disabled via the VEX Competition Switch or VEX Field Controller, motors wi
 ```
 bool isJoystickConnected ( unsigned char joystick )
 ```
-Useful for automatically merging joysticks for one operator, or splitting for two. This function does not work properly during initialize() or initializeIO() and can return false positives. It should be checked once and stored at the beginning of operatorControl().
+Useful for automatically merging joysticks for one operator, or splitting for two. This function does not work properly during initialize() or initializeIO() and can return false positives. It should be checked once and stored at the beginning of operatorControl(). Valid values for the joystick parameter are 1 and 2 for the master and partner joysticks, respectively.
 
 | Parameters | |
 | ---:|:--- |
-| `joystick` | the joystick slot to check |
+| `joystick` | the joystick slot to check (1, 2) |
 
 **Returns** true if a joystick is connected to the specified slot number (1 or 2), or false otherwise.
 
@@ -835,11 +835,11 @@ int joystickGetAnalog ( unsigned char joystick,
                         unsigned char axis
                       )
 ```
-Gets the value of a control axis on the VEX joystick.
+Gets the value of a control axis on the VEX joystick. Valid values for the joystick parameter are 1 and 2 for the master and partner joysticks, respectively.
 
 | Parameters | |
 | ---:|:--- |
-| `joystick` | the joystick slot to check |
+| `joystick` | the joystick slot to check (1, 2) |
 | `axis` | one of the 1, 2, 3, 4, ACCEL_X, or ACCEL_Y analog channels on a VEX joystick |
 
 **Returns** the value from -127 to 127, or 0 if no joystick is connected to the requested slot.
@@ -852,11 +852,11 @@ int joystickGetDigital ( unsigned char joystick,
                          unsigned char button
                        )
 ```
-Gets the value of a button on the VEX joystick.
+Gets the value of a button on the VEX joystick. Valid values for the joystick are 1 and 2 for the master and partner joysticks, respectively.
 
 | Parameters | |
 | ---:|:--- |
-| `joystick` | the joystick slot to check |
+| `joystick` | the joystick slot to check (1,2) |
 | `buttonGroup` | one of 5, 6, 7, or 8 to request that button as labelled on the joystick |
 | `button` | one of JOY_UP, JOY_DOWN, JOY_LEFT, or JOY_RIGHT; requesting JOY_LEFT or JOY_RIGHT for groups 5 or 6 will cause an undefined value to be returned |
 
