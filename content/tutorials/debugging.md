@@ -21,7 +21,7 @@ The [PROS API](/api/) provides various functions, like [`print()`](/api/#print) 
 
 ###Alternate method: <br />
 
-Use the serial communication monitor of your choice (such as [this one](https://marketplace.visualstudio.com/items?itemName=EgorGrushko.SerialMonitor) if using Visual Studio) with the following settings: <br />
+Use the serial communication monitor of your choice (such as [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html), [CoolTerm](http://freeware.the-meiers.org/) or [this plugin for Visual Studio](https://marketplace.visualstudio.com/items?itemName=EgorGrushko.SerialMonitor) if using Visual Studio) with the following settings: <br />
 
 * **Serial Port:** May vary; unplugging and replugging the VEXnet device from the computer should allow you to determine the correct port.
 * **Baud Rate:** *115200*
