@@ -40,5 +40,8 @@ void myFunction(){
 }
 ```
 
-## Wiring Notes
-One important thing to note with the use of encoders is that they should **not** be plugged into digital **port 10** on the Cortex. This is not unique to PROS, it is simply a result of the way that [digital interrupts](http://users.ece.utexas.edu/~valvano/Volume1/E-Book/C12_Interrupts.htm) are configured for the Cortex. Other types of sensors may be used on port 10 with no effect on their performance, but encoders cannot.  
+### Wiring Notes
+One important thing to note with the use of encoders is that they should **not** be plugged into digital **port 10** on the Cortex. This is not unique to PROS, it is simply a result of the way that [digital interrupts](http://users.ece.utexas.edu/~valvano/Volume1/E-Book/C12_Interrupts.htm) are configured for the Cortex. Other types of sensors may be used on port 10 with no effect on their performance, but encoders cannot.
+
+## Integrated Motor Encoders (IMEs)
+See the [I2C Communication](/tutorials/i2c.md/#vex-integrated-motor-encoder-ime) page.
