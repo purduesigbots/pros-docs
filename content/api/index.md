@@ -912,7 +912,7 @@ The output string will be truncated as necessary to fit on the LCD screen, 16 ch
 ```
 unsigned int lcdReadButtons (FILE * lcdPort )
 ```
-Reads the user button status from the LCD display.
+Reads the user button status from the LCD display. The value returned is a 3 bit integer where `1 0 0` indicates the left button being pressed, `0 1 0` indicates the center button being pressed, and `0 0 1` indicates the right button being pressed.
 
 For example, if the left and right buttons are pushed, (1 | 4) = 5 will be returned. 0 is returned if no buttons are pushed
 

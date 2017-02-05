@@ -299,6 +299,98 @@ void operatorControl() {
 }
 ~~~
 
-Depending on your motor, you may notice that the arm falls back down when stopped mid-raise. This can be alleviated by applying some power to the motor when no buttons are pressed (instead of 0), or by using a control system such as PID.
+Depending on your motor, you may notice that the arm falls back down when stopped mid-raise. This can be alleviated by applying some power to the motor when no buttons are pressed (instead of 0), or by using a feedback control system such as PID. In the next section, we will focus on PID specifically.
 
-Congratulations you have completed your first PROS program!
+### PID Controllers
+PID Controllers are just one of many types of _feedback controllers_, but because PID controllers are used most commonly in industry ([roughly 95%](http://www.madison-schools.com/site/handlers/filedownload.ashx?moduleinstanceid=19089&dataid=70925&FileName=PID%20Programming%20Guide.pdf )), this tutorial will focus on that algorithm in particular. Feedback controllers focus on minimizing the difference in the actual state of a system and the system's current state (henceforth referred to as the _error_) to make sure that the actions of the robot match what they were programmed to do.
+
+This error can be calculated from the value commanded to the system and a sensor attached to the system, such as a potentiometer or encoder. In this example, we will be using an encoder attached to the arm.
+
+//TODO: change variable initialization
+main.h:
+```c
+// Digital port number for top and bottom port of quad encoder
+#define QUAD_TOP_PORT 1
+#define QUAD_BOTTOM_PORT 2
+
+// Multiple encoders can be declared
+Encoder arm_encoder;
+```
+opcontrol.c:
+```c
+int target = SET_TARGET; //set the target to however many ticks you want the arm to move
+
+int counts = encoderGet(arm_encoder);
+int error = counts - target;
+```
+
+#### Proportional Term
+PID seeks to minimize this error by focusing on the past, present, and future of the system. Firstly, the error at the time of calculation is considered. This error is then multiplied by a constant and added to the output of the system in an attempt to minimize the error. This part of the controller is referred to as the **Proportional** control, or the **P** portion of PID. This constant is determined arbitrarily, though there are a few methods available to help: [Zeigler-Nichols Method](http://www.mstarlabs.com/control/znrule.html)
+
+This step would get implemented as follows:
+
+main.h:
+```c
+// Digital port number for top and bottom port of quad encoder
+#define QUAD_TOP_PORT 1
+#define QUAD_BOTTOM_PORT 2
+
+#define K_P 1
+/////////////
+
+// Multiple encoders can be declared
+Encoder arm_encoder;
+```
+
+opcontrol.c:
+```c
+int target = SET_TARGET; //set the target to however many ticks you want the arm to move
+int counts, error;
+
+while(TRUE) {
+  counts = encoderGet(arm_encoder);
+  error = counts - target;
+
+int command = error * K_P;
+}
+```
+
+#### Integral Term
+Next, the controller looks to the history of the system to better respond to error. The past error is accumulated as the controller runs by [integration](http://www.mathsisfun.com/calculus/integration-introduction.html). As a result, this component is referred to as the **Integral** term, or the **I** term of PID. The integral term helps close the gap left by the proportional term, as the proportional term has less and less effect as the error grows smaller. This behavior, without the assistance of the integral term, would cause the system to never quite reach its target.
+
+The integral term can be added as such:
+
+main.h:
+```c
+// Digital port number for top and bottom port of quad encoder
+#define QUAD_TOP_PORT 1
+#define QUAD_BOTTOM_PORT 2
+
+#define K_P 1
+/////////////
+#define K_I 1
+/////////////
+
+// Multiple encoders can be declared
+Encoder arm_encoder;
+```
+
+opcontrol.c:
+```c
+int target = SET_TARGET; //set the target to however many ticks you want the arm to move
+int counts, error, sum;
+
+while(TRUE) {
+  counts = encoderGet(arm_encoder);
+  error = counts - target;
+  sum = sum + error;
+
+int command = error * K_P + sum * K_I;
+}
+```
+{{< note title="Integral term and varying load" >}}
+Due to the "past" nature of the Integral term, the system will respond in accordance with the physical load on the system throughout the controller's use. In cases like the arm of a clawbot, the arm will sometimes have to raise a weight (adding additional weight and thus additional error), but other times the arm will not lift as much weight or any at all. The Integral term will summing in accordance with those past, different weights and thus cause the controller to act as though it is not properly tuned. As a result, it is typically recommended to avoid incorporating the I term for lifts, and instead simply use a **PD** controller.
+{{< / note >}}
+
+#### Derivative Term
+The final component to the PID controller is the **Derivative Term**, or the part of the controller that focuses on the future. The [derivative](http://www.sosmath.com/calculus/diff/der00/der00.html) is a way of measuring the change in the system. This change can be used to get an idea of how aggressively the controller will react to error, and the derivative term reacts as a brake to prevent the controller from oscillating.
