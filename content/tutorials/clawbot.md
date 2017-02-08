@@ -299,6 +299,6 @@ void operatorControl() {
 }
 ~~~
 
-Depending on your motor, you may notice that the arm falls back down when stopped mid-raise. This can be alleviated by applying some power to the motor when no buttons are pressed (instead of 0), or by using a control system such as PID.
+Depending on your motor, you may notice that the arm falls back down when stopped mid-raise. This can be alleviated by applying some power to the motor when no buttons are pressed (instead of 0), or by using a feedback control system such as PID.
 
-Congratulations you have completed your first PROS program!
+-Congratulations, you have completed your first PROS program!
