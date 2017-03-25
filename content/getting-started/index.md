@@ -141,7 +141,7 @@ The assembler translates assembly instructions directly into machine code (calle
 
 4\. Linking
 
-The final stage of compilation is linking. Objects contain pieces of machine instructions, but may not be complete. For instance, when compiling your source files, the PROS API are not directly incorporated into your object code (merely references to the PROS API functions, as specified by the function declarations). The Linker will incorporate and rearrange all the difference object files (and libraries) into one file that _can_ be interpreted by the processor.
+The final stage of compilation is linking. Objects contain pieces of machine instructions, but may not be complete. For instance, when compiling your source files, the PROS API are not directly incorporated into your object code (merely references to the PROS API functions, as specified by the function declarations). The Linker will incorporate and rearrange all the different object files (and libraries) into one file that _can_ be interpreted by the processor.
 
 To compile code within Atom, press `Ctrl`+`Shift`+`P` to bring up the Command Palette. You can start typing the command you wish to execute, "Build: Trigger". You should also notice that it will display the available shortcut keys to execute the command. By default, triggering a build can be done by pressing `Ctrl`+`Alt`+`B` (`⌘`+`Alt`+`B`) or `F9`. If you have unsaved files, Build will prompt you to save those files. You should always save before building.
 
