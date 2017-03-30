@@ -1610,6 +1610,16 @@ Alias of [taskDelayUntil()]({{< relref "#taskDelayUntil" >}}) intended to help E
 | `previousWakeTime` | a pointer to the last wakeup time |
 | `time` | the duration of the delay in milliseconds (1 000 milliseconds per second) |
 
+## watchdogEnable {#watchdogEnable}
+```
+void watchdogEnable ( )
+```
+Enables IWDG watchdog timer that will reset the Cortex if static shock or a misbehaving task cause the Cortex to lock up. This reset will prevent undefined behavior from the motors if the Cortex locks up.
+
+It is highly recommended that users enable the watchdog if using IMEs, as the Cortex is particularly vulnerable to static shock through the I2C line.
+
+**Should be called once in initializeIO().** Calling the function multiple times or anywhere besides initializeIO() will have no effect.
+
 ## Macros
 
 ### #define ACCEL_X  5
