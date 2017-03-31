@@ -48,7 +48,7 @@ void initialize() {
 }
 ```
 
-## Reading from an I2C Slave
+## Reading from an I2C Slave {#readingI2CSlave}
 As the vast majority of I2C slave devices serve as sensors, PROS provides both [i2cRead()](/api/#i2cRead) and [i2cReadRegister()](/api/#i2cReadRegister) to receive data from them.  Since I2C slave devices do not emit data onto the bus without the request of the master device, [i2cRead()](/api/#i2cRead) is limited in its usefulness.  To that extent, below is an example showing how to read from data from a fictional sensor using the more typical [i2cReadRegister()](/api/#i2cReadRegister).
 
 main.h
@@ -141,7 +141,7 @@ void myFunction(){
 ```
 
 
-## Third-Party I2C Devices
+## Third-Party I2C Devices {#thirdPartyI2CDevices}
 <!--- TODO mention consulting datasheets -->
 Writing to and reading from third-party I2C devices with the Cortex using PROS is a relatively painless process with the techniques described earlier in this tutorial.  PROS essentially only requires the 7-bit I2C address of the target slave and a register you wish to interact with if any.  These can all be found in the third-party device's datasheet.
 
@@ -255,11 +255,74 @@ void autonomous() {
 ```
 
 ## I2C Polling Tasks {#pollingTask}
+A dedicated I2C polling task is necessary when using multiple I2C devices at once to ensure that they are all read properly. It is recommended that this task be run at a high priority (TASK_PRIORITY_DEFAULT + 2 should work well) to ensure that the task runs at very consistent intervals and it is never starved for processing resources. The I2C line updates at 4KHz in PROS, but it is typically unnecessary to read any faster than once per millisecond.
 
+The I2C polling task can be run like any other task. It is highly recommended that the `taskDelayUntil()` function be used instead of `delay()` to set the loop frequency to prevent even-odd jitter.
+
+i2cTask.c
+```c
+#include "third_party_gyro.h" //custom gyro
+
+#define NUM_IMES 2 //using two IMEs on the robot
+#define IME_LEFT 0
+#define IME_RIGHT 1
+
+#define CYCLE_TIME 2 //loop delay in milliseconds
+
+volatile int32_t leftIME, rightIME;
+
+static void i2cHandler(void* ignore) {  
+  gyroInit(); //initialization for custom gyro
+  int num_IMEs_initialized = imeInitializeAll();
+  if (num_IMEs_initialized != NUM_IMES) {
+    printf("ERROR: INCORRECT NUMBER OF IMEs INITIALIZED\n");
+    break;
+  }
+
+  uint32_t now = millis();
+  while(true) {
+    gyroIntegrate(); //summing third party gyro's readings
+    imeGet(IME_LEFT, &leftIME);
+    imeGet(IME_RIGHT, &rightIME);
+
+    taskDelayUntil(&now, CYCLE_TIME);
+  }
+}
+
+void i2cTaskStart() {
+  taskCreate(i2cHandler, TASK_DEFAULT_STACK_SIZE, NULL, (TASK_PRIORITY_DEFAULT + 2));
+}
+```  
+
+init.c
+```c
+void initialize() {
+  i2cTaskStart();
+}
+```
 
 ## Debugging Tips and Tricks
-<!---
-Sign extension
-union/struct method
-endianness
--->
+As with most advanced topics, a lot of debugging is typically needed when working with the I2C bus, both for beginners and experienced users. It can sometimes be difficult to know where to start with debugging any issues that arise, but here are few good places to start looking.
+
+### Cortex Crashes
+The Cortex's I2C line is particularly vulnerable to static shock, which can cause the Cortex to reset or other undefined behavior. This issue is often seen when using IMEs, as they are typically used in locations on the robot that are prime candidates for static discharge from the field.
+
+To help prevent this issue, a watchdog is available with PROS to monitor the status of the Cortex and perform a reset in the case of a static shock. The watchdog is a feature that is implemented in the Cortex M3 chip itself, and PROS simply provides a wrapper for this.
+
+To enable the watchdog, it must be started in `initalizeIO()`. Calling the watchdog anywhere else will not have an effect.
+
+init.c
+```c
+void initializeIO() {
+  watchdogInit();
+}
+```
+
+### Sign Extension
+It is very important to keep track of the size of the data being read from or written to your I2C device. Sign Extension occurs when casting a signed value with a smaller number of bytes to a signed value with a larger number of bytes. In this case, the sign bit is copied to all of the additional bits, which can cause readings to be different than their intended values.
+
+### Endianness
+Endianness is the direction in which bytes are arranged when being output from a device. A device is either big-endian or little-endian, with these two options being the opposite of one another. A big-endian device will arrange bytes with the most significant (highest order) byte first, and little-endian arranges bytes with the least significant byte first. An example of reading a big-endian device can be found in [Reading from an I2C Slave](/tutorials/i2c/#readingI2CSlave). If an I2C reading is an unexpected value, try reading in the opposite endianness.
+
+### Union/Struct method
+One solution to reading a collection of bits from a device is to use a struct wrapped in a union as seen in the `LIDAR_REG_CFG` union in [Third-Party I2C Devices](/tutorials/i2c/#thirdPartyI2CDevices). The union contains a value that contains the reading from the sensor, and the struct contains each significant bit as an individual value. Write to the union's value, and then read individual bits from the struct. If you are not familiar with unions and structs, reading an [Online C Tutorial](https://www.codingunit.com/c-tutorial-structures-unions-typedef) about the subject is recommended.
