@@ -16,7 +16,7 @@ stage('Build') {
     checkout scm
     sh 'hugo'
     zip archive: true, dir: 'public', glob: '', zipFile: 'pros-website.zip'
-    env.GH_REF = sh returnStdout: true, script: 'echo `git remote get-url origin | sed \'s/.*[\\/:]\\(.*\\/.*\\).git/\\1/\'`@`git rev-parse HEAD | grep -o "......$"`'
+    env.GH_REF = sh returnStdout: true, script: 'echo `git remote get-url origin | sed \'s/.*[\\/:]\\(.*\\/.*\\).git/\\1/\'`@`git rev-parse HEAD | grep -o ".......$"`'
   }
 }
 doDeploy()
