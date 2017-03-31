@@ -1,12 +1,12 @@
 ;aiu;
 
-[PROS2.4.3]
-Name = PROS 2.4.3
-ProductVersion = 2.4.3.0
-URL = https://github.com/purduesigbots/pros/releases/download/2.11.0/pros-win.exe
-Size = 55509064
-ReleaseDate = 08/02/2017
-MD5 = 56f3d6189f197b598a1aa9a3fa2c2df8
+[PROS2.5.0]
+Name = PROS 2.5.0
+ProductVersion = 2.5.0.0
+URL = https://github.com/purduesigbots/pros-cli/releases/download/2.5.0/pros-win.exe
+Size = 55510003
+ReleaseDate = 31/03/2017
+MD5 = a47704945f10c31fb5b34bdd9b795b21
 ServerFileName = pros-win.exe
 RegistryKey = HKUD\Software\Purdue ACM SIGBots\PROS\Version
-Version = 2.4.3.0
+Version = 2.5.0.0
