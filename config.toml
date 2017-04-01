@@ -83,40 +83,46 @@ googleAnalytics = "UA-84548828-3"
 	weight = 15
 
 [[menu.main]]
+  parent = "tutorials"
+  name   = "Upgrading"
+  url    = "tutorials/upgrading/"
+  weight = 1
+
+[[menu.main]]
 	parent = "tutorials"
 	name = "Debugging"
 	url = "tutorials/debugging/"
-	weight = 1
+	weight = 2
 
 [[menu.main]]
 	parent = "tutorials"
 	name = "Encoders"
 	url = "tutorials/encoders/"
-	weight = 2
+	weight = 3
 
 [[menu.main]]
 	parent = "tutorials"
 	name = "Digital Input"
 	url = "tutorials/digitalRead/"
-	weight = 3
+	weight = 4
 
 [[menu.main]]
 	parent = "tutorials"
 	name = "Analog Sensors"
 	url = "tutorials/analog/"
-	weight = 4
+	weight = 5
 
 [[menu.main]]
 	parent = "tutorials"
 	name = "Pneumatics"
 	url = "tutorials/pneumatics/"
-	weight = 7
+	weight = 6
 
 [[menu.main]]
 	parent = "tutorials"
 	name = "Ultrasonic"
 	url = "tutorials/ultrasonic/"
-	weight = 8
+	weight = 7
 
 [[menu.main]]
 	parent = "tutorials"
