@@ -2,6 +2,12 @@
 title: Known Issues
 ---
 
+If you're running into issues, the first thing you should do is check whether you are running the very latest version of PROS. To do so with Atom, you will need to open the PROS Welcome Page. If it's not already open, you can open it by toggling the Command Palette (`Ctrl`+`Shift`+`P` or `⌘`+`SHIFT`+`P`) and searching for the pros welcome page
+{{< figure src="/images/atom/open-welcome.png" >}}
+
+With the PROS screen welcome, you can see what version you're running. If you've kept the PROS plugin up to date, you will get a notification to upgrade PROS if there
+{{< figure src="/images/atom/welcome-page-updater-split.png">}}
+
 ## Cannot find libstdc++.a
 On Ubuntu 14.04 it is a [known bug](https://bugs.launchpad.net/ubuntu/+source/gcc-arm-none-eabi/+bug/1293024) that libstdc++-arm-none-eabi-newlib package is missing from the repositories and fails to install with arm-none-eabi-gcc. This can lead to the following error when trying to compile your PROS project:
 {{< figure src="/img/ubuntu-error.png" >}}
