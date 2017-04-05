@@ -3,22 +3,24 @@ title: Uploading PROS Projects
 ---
 
 The PROS uploading utility allows you to flash compiled binaries to your VEX microcontroller. There are a variety of different ways to flash code:
+
 - USB A-A (Windows only)
 - Programming module w/USB between Joystick and Microcontroller
 - Programming module w/VEXnet between Joystick and Microcontroller
 
 Within Atom, click the 'Upload to Cortex' button in Atom. This process will upload the binary the compilation process created (`bin/output.bin`) to the Cortex and begin running it.
 
-If you followed these instructions correctly, you can connect a joystick to the clawbot and drive it using arcade controls!
-
 {{< figure src="/images/atom/upload.png" >}}
 
+Using just the terminal, this can be done by navigating to the directory (or subdirectory) of the PROS project and invoking `pros upload`. You can get all of the command options by running `pros upload --help`. Some additional commands you may find helpful is `pros mu`, which runs the default Make target (forks and calls `make`) and then uploads your code, and `pros mut`, which does the same but also opens the PROS terminal after uploading.
 
 ## Having issues flashing? {#issues}
 
 {{< warning title="PROS CLI 2.5.0 Available" >}}
 We fixed a number of issues flashing code onto the VEX Cortex. Make sure you've [updated PROS to at least 2.5.0](https://github.com/purduesigbots/pros-cli/releases/latest).
 {{< /warning >}}
+
+Before trying these solutions, make sure you have built your project! If there's nothing to upload, the flasher will throw an error!
 
 ### Use USB {#issues-use-usb}
 First, try putting the fewest amount of electronics between the Cortex and computer. If you're on Windows, try flashing using only a USB A-A cable. If you're on a Unix-like OS, flash using a programming module with a USB cable between the Joystick and microcontroller. Sometimes commands to upload your code are dropped when flashing wirelessly, especially when the distance between the joystick and microcontroller is large.
