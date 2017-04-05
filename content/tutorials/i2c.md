@@ -259,6 +259,8 @@ A dedicated I2C polling task is necessary when using multiple I2C devices at onc
 
 The I2C polling task can be run like any other task. It is highly recommended that the `taskDelayUntil()` function be used instead of `delay()` to set the loop frequency to prevent even-odd jitter.
 
+A Third-party gyroscope is used as an example here because it needs to be polled regularly. This same technique can be applied to any other I2C device that needs to be polled regularly, provided that you use its appropriate initialization and integration functions as opposed to the examples here.
+
 i2cTask.c
 ```c
 #include "third_party_gyro.h" //custom gyro
@@ -272,7 +274,7 @@ i2cTask.c
 volatile int32_t leftIME, rightIME;
 
 static void i2cHandler(void* ignore) {  
-  gyroInit(); //initialization for custom gyro
+  third_party_gyroInit(); //initialization for custom gyro
   int num_IMEs_initialized = imeInitializeAll();
   if (num_IMEs_initialized != NUM_IMES) {
     printf("ERROR: INCORRECT NUMBER OF IMEs INITIALIZED\n");
@@ -281,7 +283,7 @@ static void i2cHandler(void* ignore) {
 
   uint32_t now = millis();
   while(true) {
-    gyroIntegrate(); //summing third party gyro's readings
+    third_party_gyroIntegrate(); //summing third party gyro's readings
     imeGet(IME_LEFT, &leftIME);
     imeGet(IME_RIGHT, &rightIME);
 
