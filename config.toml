@@ -1,4 +1,4 @@
-baseurl = "http://pros.cs.purdue.edu/"
+baseurl = "https://pros.cs.purdue.edu/"
 languageCode = "en-us"
 title = "PROS"
 # theme = "prosdocs"
