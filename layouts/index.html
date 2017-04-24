@@ -89,28 +89,20 @@
             </nav>
          </div>
       </div>
-      <!-- About Us Section
-         ========================================================================= -->
-      <section id="about" class="container">
+      <!-- Download Section -->
+      <section id="download" class="container">
          <div class="big_title">
-            <div class="big_title_txt montserrat_font">SAY HELLO TO PROS</div>
+            <div class="big_title_txt montserrat_font">GET STARTED <span class="text_color">NOW</span></div>
             <div class="text_und_big_title">
-               PROS is a lightweight and fast alternative open source operating system for VEX EDR Microcontrollers.
-               It features multitasking, low-level control, and Wiring compatible functions to harness the full
-               power of the Cortex. PROS is built with developers in mind and with a focus on providing an environment for
-               industry-applicable experience.
+               After installing PROS, read <a href="./getting-started">Getting Started</a> for an introduction to PROS. <br/>
+               Then, refer to the <a href="./tutorials">tutorials</a> or <a href="./api">API documentation</a>.
             </div>
             <div class="big_title_txt_separ background_color"></div>
          </div>
-         <div class="big_title">
-            <div class="big_title_txt montserrat_font">Developed by Students</div>
-            <div class="text_und_big_title">
-               Primary maintenance of PROS is done by students at Purdue University through
-               <a href="http://purduesigbots.com">Purdue ACM SIGBots</a>.
-               Inspiration for this project came from several computer science and engineering students itching
-               to write code for the extended autonomous period. We created PROS to leverage this opportunity.
+         <div class="section_content">
+            <div class="buy_content text-center">
+               <a id="pros-dl-link" href="https://github.com/purduesigbots/pros/releases/latest" class="buy_btn">DOWNLOAD</a>
             </div>
-            <div class="big_title_txt_separ background_color"></div>
          </div>
       </section>
       <!-- Features
@@ -143,9 +135,9 @@
                      NATIVE
                   </div>
                   <div class="service_p">
-                     PROS is built using the GCC toolchain and strives to emulate POSIX style where possible to 
-					 make the learning curve small. Structures, pointers, dynamic memory allocation, and function 
-					 pointers are all available. Additionally, code is run on bare metal, allowing you to take 
+                     PROS is built using the GCC toolchain and strives to emulate POSIX style where possible to
+					 make the learning curve small. Structures, pointers, dynamic memory allocation, and function
+					 pointers are all available. Additionally, code is run on bare metal, allowing you to take
 					 full advantage of the microcontroller's power.
                   </div>
                </div>
@@ -176,19 +168,28 @@
             </div>
          </div>
       </section>
-      <section id="download" class="container">
+      <!-- About Us Section
+         ========================================================================= -->
+      <section id="about" class="container">
          <div class="big_title">
-            <div class="big_title_txt montserrat_font">GET STARTED <span class="text_color">NOW</span></div>
+            <div class="big_title_txt montserrat_font">SAY HELLO TO PROS</div>
             <div class="text_und_big_title">
-               After installing PROS, read <a href="./getting-started">Getting Started</a> for an introduction to PROS. <br/>
-               Then, refer to the <a href="./tutorials">tutorials</a> or <a href="./api">API documentation</a>.
+               PROS is a lightweight and fast alternative open source operating system for VEX EDR Microcontrollers.
+               It features multitasking, low-level control, and Wiring compatible functions to harness the full
+               power of the Cortex. PROS is built with developers in mind and with a focus on providing an environment for
+               industry-applicable experience.
             </div>
             <div class="big_title_txt_separ background_color"></div>
          </div>
-         <div class="section_content">
-            <div class="buy_content text-center">
-               <a id="pros-dl-link" href="https://github.com/purduesigbots/pros/releases/latest" class="buy_btn">DOWNLOAD</a>
+         <div class="big_title">
+            <div class="big_title_txt montserrat_font">Developed by Students</div>
+            <div class="text_und_big_title">
+               Primary maintenance of PROS is done by students at Purdue University through
+               <a href="http://purduesigbots.com">Purdue ACM SIGBots</a>.
+               Inspiration for this project came from several computer science and engineering students itching
+               to write code for the extended autonomous period. We created PROS to leverage this opportunity.
             </div>
+            <div class="big_title_txt_separ background_color"></div>
          </div>
       </section>
       <!-- Footer
@@ -202,7 +203,8 @@
                   Binaries distributed by Purdue ACM SIGBots are released under the BSD 3-Clause License (BSD-3-Clause).<br/>
                   &copy; 2011-2016 <a href="http://purduesigbots.com">Purdue ACM SIGBots</a><br/>
                   All names and trademarks are property of their respective owners.<br/><br/>
-                  Questions, comments, or concerns? Contact us at <a href="mailto:pros_development@cs.purdue.edu">pros_development@cs.purdue.edu</a>
+                  Questions, comments, or concerns? Contact us at <a href="mailto:pros_development@cs.purdue.edu">pros_development@cs.purdue.edu</a><br/>
+                  Copyright or licensing questions? Contact us at <a href="mailto:pros_admin@cs.purdue.edu">pros_admin@cs.purdue.edu</a>
                </p>
             </div>
          </div>
@@ -215,11 +217,11 @@
            m.parentNode.insertBefore(a,m)
          })(window, document,
            'script', '//www.google-analytics.com/analytics.js', 'ga');
-         
+
          ga('create', 'UA-84548828-3', 'auto');
          ga('set', 'anonymizeIp', true);
          ga('send', 'pageview');
-         
+
          var buttons = document.querySelectorAll('a');
          Array.prototype.map.call(buttons, function(item) {
            if (item.host != document.location.host) {
@@ -229,7 +231,7 @@
              });
            }
          });
-         
+
          var query = document.querySelector('.query');
          query.addEventListener('blur', function() {
            if (this.value) {
