@@ -17,7 +17,7 @@ $(document).ready(function(){
 		}
 		else if(navigator.platform.startsWith("Mac")) {
 			anchor.attr("href", baseUrl + "/pros-macOS.pkg");
-			anchor.parent().parent().append("<div class=\"text-center\">For OS X. <a href=\"https://github.com/purduesigbots/pros/releases/latest\">Other Platforms</a></div>");
+			anchor.parent().parent().append("<div class=\"text-center\">For OS X. <a href=\"https://github.com/purduesigbots/pros/releases/latest\">Other Platforms</a><br/><b>Requires </b><a href=\"https://python.org/downloads\"><b>Python 3.5+</b></a></div>");
 		}
 	});
 
