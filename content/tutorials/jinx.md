@@ -37,6 +37,13 @@ If at any point in time you want to stop the JINX server simply type `q` in the 
 __Note__:
 Since JINX is a network application not everyone has to crowd around a single machine to observe the data feed. If you are on the same local network you can navigate to the IP address of the JINX host machine to get access to the dashboard as well. For example, if the IP address of the JINX host machine is `192.168.1.105` you would navigate to http://192.168.1.105:9001/views/combined.html.
 
+### Sending data from the Cortex
+1. Create a "large enough" char array, 20 characters or so should work.
+2. Use `sprintf(destination, formatString, dataToSend)` to save data.
+3. Use `writeJINXData("DataID", char_array)` to send data.
+
+Alternatively, use `writeJINXMessage("Message")` to send a message with no data value.
+
 ## initJINX {#initJINX}
 ```c
 void initJINX ( FILE * port )
