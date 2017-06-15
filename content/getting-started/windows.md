@@ -37,8 +37,14 @@ https://atom.io/download/windows. Once installed and Atom appears, you will be a
   5. Click 'Environment Variables'
   6. Select 'PATH' under 'User Variables,' then click 'Edit'
   7. Add a semicolon (`;`) to the end of the value, then paste in the path to atom.exe
+  8. Click 'OK'
 3. Windows 10:
-  1. TODO: go home and remember how to get here
+  1. Type 'Environment Variables' into the search bar
+  2. Select 'Edit environment variables for your account
+  3. Select 'Path' in the upper box
+  4. Click 'Edit,' then click 'New'
+  5. Paste in the path to atom.exe
+  6. Click 'OK'
 
 ### Installing alongside PROS for Eclipse
 It is possible to install Atom alongside Eclipse, if you have previously installed Eclipse. However, the uninstall utility for
