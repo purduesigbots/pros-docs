@@ -39,4 +39,4 @@ var processFile = function() {
   return indices;
 };
 
-fs.writeFileSync(__dirname + '/static/apiIndex.json', JSON.stringify(indexAPI()));
+fs.writeFileSync(__dirname + '/static/search_index.json', JSON.stringify(indexAPI())); // make lunr happy
