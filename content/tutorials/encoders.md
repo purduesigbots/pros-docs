@@ -40,47 +40,8 @@ void myFunction(){
 }
 ```
 
-## Integrated Motor Encoder (IME)
-IMEs function a lot like the quadrature encoders except they are directly attached to the motor rather than mounted to a mechanism on your robot. In addition these sensors utilize the I2C bus on the cortex and can be daisy chained together on your robot.
+### Wiring Notes
+One important thing to note with the use of encoders is that they should **not** be plugged into digital **port 10** on the Cortex. This is not unique to PROS, it is simply a result of the way that [digital interrupts](http://users.ece.utexas.edu/~valvano/Volume1/E-Book/C12_Interrupts.htm) are configured for the Cortex. Other types of sensors may be used on port 10 with no effect on their performance, but encoders cannot.
 
-### Advance User Warning
-When utilizing IMEs and 3rd party sensors on your I2C bus it is recommended that you write your own task to handle all the I2C communication to prevent resource thrashing. See the [I2C tutorial](/tutorials/i2c/) for more details.
-
-PROS provides a simple library for interacting with your IMEs. A sample usage would be as follows:
-
-main.h:
-```c
-#define IME_LEFT_MOTOR 0
-#define IME_RIGHT_MOTOR 1
-#define NUMBER_OF_IME 2
-```
-
-init.c:
-```c
-void initialize(){
-    // ...
-    // Check count to ensure all IMEs are plugged in!
-    int IMECount = imeInitializeAll();
-    if(IMECount != NUMBER_OF_IME){
-        // something has gone wrong
-    }
-}
-```
-
-opcontrolc or auto.c:
-```c
-void myFunction(){
-    // ... do work
-    // Get IME tick count in the "counts" variable
-    // (conversion to rotations varies depending on the motor type in use)
-    int counts;
-    imeGet(0, &counts);
-
-    // Or if #define was used:
-    imeGet(IME_LEFT_MOTOR, &counts);
-
-    // ... Do other work
-    // Reset IME to zero
-    imeReset(IME_RIGHT_MOTOR);
-}
-```
+## Integrated Motor Encoders (IMEs)
+See the [I2C Communication](/tutorials/i2c.md/#vex-integrated-motor-encoder-ime) page.

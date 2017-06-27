@@ -152,7 +152,7 @@ There are 360 ticks in one revolution.
 
 ## encoderInit {#encoderInit}
 ```
-int encoderInit ( unsigned char portTop,
+Encoder encoderInit ( unsigned char portTop,
                   unsigned char portBottom,
                   bool reverse
                 )
@@ -574,6 +574,8 @@ bool i2cRead ( uint8_t addr,
                uint16_t count
              )
 ```
+_Included in PROS API since 2.11.0_
+
 Reads the specified number of data bytes from the specified 7-bit I2C address. The bytes will be stored at the specified location.
 
 The I2C address should be right-aligned; the R/W bit is automatically supplied.
@@ -592,10 +594,13 @@ Since most I2C devices use an 8-bit register architecture, this method has limit
 ## i2cReadRegister {#i2cReadRegister}
 ```
 bool i2cReadRegister ( uint8_t addr,
-                       uint8_t * data,
+                       uint8_t reg,
+                       uint8_t * value,
                        uint16_t count
                      )
 ```
+_Included in PROS API since 2.11.0_
+
 Reads the specified amount of data from the given register address on the specified 7-bit I2C address.
 
 The I2C address should be right-aligned; the R/W bit is automatically supplied.
@@ -605,7 +610,8 @@ Most I2C devices support an auto-increment address feature, so using this method
 | Parameters | |
 | ---:|:--- |
 | `addr` | register address to read |
-| `data` | a pointer to the location where the value will be stored |
+| `reg`  | register address to be written to |
+| `value`| a pointer to the location where the value will be stored  |
 | `count`| number of bytes to read |
 
 **Returns** true if successful or false if failed. If only some bytes could be read, false is still returned.
@@ -618,6 +624,8 @@ bool i2cWrite ( uint8_t addr,
                 uint16_t count
               )
 ```
+_Included in PROS API since 2.11.0_
+
 Writes the specified number of data bytes to the specified 7-bit I2C address.
 
 The I2C address should be right-aligned; the R/W bit is automatically supplied.
@@ -639,6 +647,8 @@ bool i2cWriteRegister ( uint8_t addr,
                         uint16_t value
                       )
 ```
+_Included in PROS API since 2.11.0_
+
 Writes the specified data byte to a register address on the specified 7-bit I2C address.
 
 The I2C address should be right-aligned; the R/W bit is automatically supplied.
@@ -783,7 +793,7 @@ Do not use this function on pins that are also being used by the built-in ultras
 ```
 bool isAutonomous ( )
 ```
-While in autonomous mode, joystick inputs will return a neutral value, but serial port communications (even over VexNET) will still work properly.
+While in autonomous mode, joystick inputs will return a neutral value, but serial port communications (even over VEXnet) will still work properly.
 
 **Returns** true if the robot is in autonomous mode, or false otherwise.
 
@@ -801,11 +811,11 @@ While disabled via the VEX Competition Switch or VEX Field Controller, motors wi
 ```
 bool isJoystickConnected ( unsigned char joystick )
 ```
-Useful for automatically merging joysticks for one operator, or splitting for two. This function does not work properly during initialize() or initializeIO() and can return false positives. It should be checked once and stored at the beginning of operatorControl().
+Useful for automatically merging joysticks for one operator, or splitting for two. This function does not work properly during initialize() or initializeIO() and can return false positives. It should be checked once and stored at the beginning of operatorControl(). Valid values for the joystick parameter are 1 and 2 for the master and partner joysticks, respectively.
 
 | Parameters | |
 | ---:|:--- |
-| `joystick` | the joystick slot to check |
+| `joystick` | the joystick slot to check (1, 2) |
 
 **Returns** true if a joystick is connected to the specified slot number (1 or 2), or false otherwise.
 
@@ -825,12 +835,12 @@ int joystickGetAnalog ( unsigned char joystick,
                         unsigned char axis
                       )
 ```
-Gets the value of a control axis on the VEX joystick.
+Gets the value of a control axis on the VEX joystick. Valid values for the joystick parameter are 1 and 2 for the master and partner joysticks, respectively.
 
 | Parameters | |
 | ---:|:--- |
-| `joystick` | the joystick slot to check |
-| `axis` | one of the 1, 2, 3, 4, ACCEL_X, or ACCEL_Y anaglog channels on a Vex joystick |
+| `joystick` | the joystick slot to check (1, 2) |
+| `axis` | one of the 1, 2, 3, 4, ACCEL_X, or ACCEL_Y analog channels on a VEX joystick |
 
 **Returns** the value from -127 to 127, or 0 if no joystick is connected to the requested slot.
 
@@ -842,11 +852,11 @@ int joystickGetDigital ( unsigned char joystick,
                          unsigned char button
                        )
 ```
-Gets the value of a button on the VEX joystick.
+Gets the value of a button on the VEX joystick. Valid values for the joystick are 1 and 2 for the master and partner joysticks, respectively.
 
 | Parameters | |
 | ---:|:--- |
-| `joystick` | the joystick slot to check |
+| `joystick` | the joystick slot to check (1,2) |
 | `buttonGroup` | one of 5, 6, 7, or 8 to request that button as labelled on the joystick |
 | `button` | one of JOY_UP, JOY_DOWN, JOY_LEFT, or JOY_RIGHT; requesting JOY_LEFT or JOY_RIGHT for groups 5 or 6 will cause an undefined value to be returned |
 
@@ -902,7 +912,7 @@ The output string will be truncated as necessary to fit on the LCD screen, 16 ch
 ```
 unsigned int lcdReadButtons (FILE * lcdPort )
 ```
-Reads the user button status from the LCD display.
+Reads the user button status from the LCD display. The value returned is a 3 bit integer where `1 0 0` indicates the left button being pressed, `0 1 0` indicates the center button being pressed, and `0 0 1` indicates the right button being pressed.
 
 For example, if the left and right buttons are pushed, (1 | 4) = 5 will be returned. 0 is returned if no buttons are pushed
 
@@ -990,7 +1000,7 @@ This speed may have been set by any task or the PROS kernel itself. This is not 
 
 | Parameters | |
 | ---:|:--- |
-| `channel` | channel	the motor channel to fetch from 1-10 |
+| `channel` | the motor channel to fetch from 1-10 |
 
 **Returns** the speed last sent to this channel; -127 is full reverse and 127 is full forward, with 0 being off
 
@@ -1007,7 +1017,7 @@ Do not use [motorSet()]({{< relref "#motorSet" >}}) with the same channel argume
 
 | Parameters | |
 | ---:|:--- |
-| `channel` | channel	the motor channel to fetch from 1-10 |
+| `channel` | the motor channel to set from 1-10 |
 | `speed` | the new signed speed; -127 is full reverse and 127 is full forward, with 0 being off
 
 
@@ -1021,7 +1031,7 @@ This performs a coasting stop, not an active brake. Since motorStop is similar t
 
 | Parameters | |
 | ---:|:--- |
-| `channel` | channel	the motor channel to fetch from 1-10 |
+| `channel` | the motor channel to fetch from 1-10 |
 
 
 ## mutexCreate {#mutexCreate}
@@ -1599,6 +1609,16 @@ Alias of [taskDelayUntil()]({{< relref "#taskDelayUntil" >}}) intended to help E
 | ---:|:--- |
 | `previousWakeTime` | a pointer to the last wakeup time |
 | `time` | the duration of the delay in milliseconds (1 000 milliseconds per second) |
+
+## watchdogInit {#watchdogInit}
+```
+void watchdogInit ( )
+```
+Enables IWDG watchdog timer that will reset the Cortex if static shock or a misbehaving task cause the Cortex to lock up. This reset will prevent undefined behavior from the motors if the Cortex locks up.
+
+It is highly recommended that users enable the watchdog if using IMEs, as the Cortex is particularly vulnerable to static shock through the I2C line.
+
+**Should be called once in initializeIO().** Calling the function multiple times or anywhere besides initializeIO() will have no effect.
 
 ## Macros
 

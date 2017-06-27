@@ -16,7 +16,7 @@ title: Coding FAQ
  * **Some tasks are running, others are not:** <br/>
    A task is not waiting using [`delay()`](/api/#delay) or [`taskDelayUntil()`](/api/#taskDelayUntil). Due to the fact that PROS utilizes a priority based non-preemptive scheduler, tasks of higher or equal priority to the blocking task will still run while lower priority tasks will not. This scenario is also known as [starvation](https://en.wikipedia.org/wiki/Starvation_\(computer_science\)). See [Tasks/Multithreading](/tutorials/tasks/) for more information.
 
- * **Vex LCD updates very slowly or is "frozen":** <br/>
+ * **VEX LCD updates very slowly or is "frozen":** <br/>
     A task is not waiting using [`delay()`](/api/#delay) or [`taskDelayUntil()`](/api/#taskDelayUntil). From the kernel's perspective, updating the LCD is usually less important than how well the robot is running, so PROS prioritizes user tasks over the LCD. <br/><br/>
 
     The LCD is only updated if all other tasks are waiting.
@@ -42,4 +42,4 @@ title: Coding FAQ
     Turn the Cortex microcontroller off and on again. This usually resolves the problem, and it is generally good practice to re-initialize the robot to simulate conditions at most competitions. If the error persists, see the "**Code restarts unexpectedly**" section above.<br/>
 
  * **[`printf()`](/api/#printf) doesn't work**: <br/>
-    [`printf()`](/api/#printf) prints information over a serial connection (see [Debugging](/tutorials/debugging/)), not to the Vex LCD. To print to the LCD, use [`lcdPrint()`](/api/#lcdPrint) instead.
+    [`printf()`](/api/#printf) prints information over a serial connection (see [Debugging](/tutorials/debugging/)), not to the VEX LCD. To print to the LCD, use [`lcdPrint()`](/api/#lcdPrint) instead.

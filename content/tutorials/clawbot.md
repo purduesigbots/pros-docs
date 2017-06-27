@@ -6,7 +6,7 @@ title: Programming the Clawbot
 This tutorial will guide you through basic programming of the VEX Clawbot.
 
 #### Intended Audience:
-This tutorial is intended for developers with some programming experience, but with little to no experience with the PROS library. If you haven't programmed before, we recommend checking out all the "Introduction and Basic C Features" sections of [this tutorial series](http://www.cprogramming.com/tutorial/c-tutorial.html); you may also benefit from the "Pointers, Arrays and Strings" sections as well (although they aren't as pertintent).
+This tutorial is intended for developers with some programming experience, but with little to no experience with the PROS library. If you haven't programmed before, we recommend checking out all the "Introduction and Basic C Features" sections of [this tutorial series](Introduction and Basic C Features); you may also benefit from the "Pointers, Arrays and Strings" sections as well (although they aren't as pertintent).
 
 #### Goals:
 At the end of this tutorial you will have:
@@ -141,7 +141,7 @@ The assembler translates assembly instructions directly into machine code (calle
 
 4\. Linking
 
-The final stage of compilation is linking. Objects contain pieces of machine instructions, but may not be complete. For instance, when compiling your source files, the PROS API are not directly incorporated into your object code (merely references to the PROS API functions, as specified by the function declarations). The Linker will incorporate and rearrange all the different object files (and libraries) into one file that _can_ be interpreted by the processor.
+The final stage of compilation is linking. Objects contain pieces of machine instructions, but may not be complete. For instance, when compiling your source files, the PROS API are not directly incorporated into your object code (merely references to the PROS API functions, as specified by the function declarations). The Linker will incorporate and rearrange all the difference object files (and libraries) into one file that _can_ be interpreted by the processor.
 
 To compile code within Atom, press `Ctrl`+`Shift`+`P` to bring up the Command Palette. You can start typing the command you wish to execute, "Build: Trigger". You should also notice that it will display the available shortcut keys to execute the command. By default, triggering a build can be done by pressing `Ctrl`+`Alt`+`B` (`⌘`+`Alt`+`B`) or `F9`. If you have unsaved files, Build will prompt you to save those files. You should always save before building.
 
@@ -164,7 +164,6 @@ Let's modify our existing operator control to use the subsystem methodology. We'
 > Your own header files contain declarations for interfaces between the source files of your program. Each time you have a group of related declarations and macro definitions all or most of which are needed in several different source files, it is a good idea to create a header file for them. _([GNU](https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html))_
 
 
-`include/chassis.h`:
 ```c
 #ifndef _CHASSIS_H_
 #define _CHASSIS_H_
@@ -175,7 +174,6 @@ void chassisSet(int left, int right);
 #endif // _CHASSIS_H_
 ```
 
-`src/chassis.c`:
 ```c
 #include "main.h"    // includes API.h and other headers
 #include "chassis.h" // redundant, but ensures that the corresponding header file (chassis.h) is included
@@ -256,7 +254,7 @@ void clawSet(int speed) {
 
 void operatorControl() {
   int power, turn;
-  while (1) {
+	while (1) {
     power = joystickGetAnalog(1, 2); // vertical axis on left joystick
     turn  = joystickGetAnalog(1, 1); // horizontal axis on left joystick
     chassisSet(power + turn, power - turn);
@@ -265,13 +263,9 @@ void operatorControl() {
     clawSet(joystickGetAnalog(1, 4));
 
     delay(20);
-  }
+	}
 }
 ~~~
-
-Your project structure should now look something like this:
-{{< figure src="/images/tuts/clawbot-atom.png" >}}
-
 
 ## Controlling the Lift   {#lift}
 Our drivers requested that they be able to use the trigger buttons to control the lift. At this point, complete the lift submodule on your own just like we did for the chassis and claw. If you're having trouble, take a look at the complete Clawbot code sample at the bottom of this page.
@@ -305,39 +299,6 @@ void operatorControl() {
 }
 ~~~
 
-Depending on your motor, you may notice that the arm falls back down when stopped mid-raise. This can be alleviated by applying some power to the motor when no buttons are pressed (instead of 0), or by using a control system such as PID.
+Depending on your motor, you may notice that the arm falls back down when stopped mid-raise. This can be alleviated by applying some power to the motor when no buttons are pressed (instead of 0), or by using a feedback control system such as PID.
 
-## Writing a simple autonomous  {#autonomous}
-Now that we've written our code using subsystem modules, writing an autonomous can be simple. In autonomous mode, your robot receives no input from the joystick and operates on its own logic. This mode is typically initiated by a competition controller ([field](http://www.vexrobotics.com/vexedr/products/competition-products/276-2335.html) or [switch](http://www.vexrobotics.com/vexedr/products/competition-products/275-1401.html)), however you can call `autonomous()` like you would any other function.
-
-Our autonomous routine will be simple: we want to drive forward for 3.5 seconds and lift the claw for 2 seconds, then rotate left/right every 3 seconds 3 times. Hopefully, this autonomous will score our preload object and knock an object into a scored position.
-
-The code to accomplish this looks like:
-
-`src/auto.c`:
-~~~c
-#include "main.h"
-
-void autonomous() {
-  chassisSet(127, 127); // drive forward
-  delay(3500); // delay 3.5 seconds = 3500 milliseconds
-  chassisSet(0, 0); // stop driving forward
-  liftSet(127); // lift goes up
-  delay(2000);
-  liftSet(0);
-  for(int i = 0; i < 3; i++) {
-    chassisSet(-127, 127); // rotate left
-    delay(1000);
-    chassisSet(127, 127); // rotate right for twice as long \\--/
-    delay(2000);
-  }
-  chassisSet(0, 0); // stop chassis for safety, although potentially not necessary
-}
-~~~
-
-You may notice that this code runs quite inconsistently. Time delayed autonomous routines do not provide the robot with any progress reports. Due to variations caused by wheels slipping, motor output speed due to battery voltage, and other factors, a time delayed autonomous will rarely perform better than an autonomous using sensor feedback. To create a better autonomous routine, the Internet provides lots of a resources for creating commonly used feedback controllers like the PID Controller.
-
-
-Congratulations you have completed your first PROS program!
-
-[Complete source code is available here.](/clawbot.zip)
+-Congratulations, you have completed your first PROS program!

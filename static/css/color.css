@@ -125,7 +125,7 @@ a:hover{
 .buy_btn{
 	border: solid 1px #cca352;
 	background-color: #cca352;
-	color: white;
+	color: white !important;
 	background-image: none;
 }
 

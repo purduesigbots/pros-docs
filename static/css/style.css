@@ -1,5 +1,5 @@
-@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,700,700i,900,900i);
-@import url(http://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,700,700i,900,900i);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 body {
     overflow:auto;
@@ -10,7 +10,7 @@ body, a, blockquote{
 	font-family: 'Source Sans Pro', sans-serif;
 	font-weight: 400;
 	color: #333333;
-	background: url(../img/body_bg.png);
+	background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACsAAAArCAMAAADWg4HyAAAAElBMVEUyMSn///8yMSkyMSkyMSkyMSnmzaSyAAAABnRSTlMAABsxMjOet23PAAAALUlEQVR4AWNgYmZiYCQOMLCwMhOrliRzgYBotSBiCKgdVTuqdlTtqNpRtaNqAQMgB0TxjTgjAAAAAElFTkSuQmCC);
 }
 
 p{
@@ -44,6 +44,11 @@ button{
 	font-size: 14px;
 	padding: 12px 22px;
 	color: #333333;
+}
+
+#features > div {
+  padding: 15px;
+  background: rgba(0,0,0,0.2);
 }
 
 
@@ -210,45 +215,11 @@ button{
 
 /* Change the picture of the home background here */
 #slides_background_home .slides-container .img0{
-	background:url(../img/background.gif) left ;
+  filter: blur(1px);
+	background:url(../img/background.gif) repeat left bottom;
+  background-color: #282c34;
+  background-repeat: no-repeat;
 }
-
-#slides_background_home .slides-container .img1{
-	background:url(../img/bg6.jpg) center fixed ;
-}
-
-#slides_background_home .slides-container .img5{
-	background:url(../img/bg23.jpg) center fixed ;
-}
-
-#slides_background_home .slides-container .img6{
-	background:url(../img/pattern_2.png) center fixed ;
-}
-
-
-
-
-
-
-#slides_background .slides-container .img1{
-	background:url(../img/bg6.jpg) center fixed ;
-}
-
-#slides_background .slides-container .img2{
-	background:url(../img/bg18.jpg) center fixed ;
-}
-
-#slides_background .slides-container .img3{
-	background:url(../img/bg15.jpg) center fixed ;
-}
-
-#slides_background .slides-container .img4{
-	background:url(../img/bg11.jpg) center fixed ;
-}
-
-
-
-
 
 /* Super Slides Navigation */
 
@@ -2803,8 +2774,11 @@ div.jp-volume-bar-value {
 }
 
 /* Buy Section*/
+#download a {
+  color: #868686;
+}
 .buy_content{
-	margin: 85px 0;
+	margin: 85px 0 30px 0;
 }
 
 .buy_btn{
@@ -4404,3 +4378,33 @@ div.jp-volume-bar-value {
 }
 
 /*==========  Mobile First Method  ==========*/
+
+/* Bouncing Text */
+.pros-bounce {
+  -moz-animation: pros-bounce 3s infinite;
+  -webkit-animation: pros-bounce 3s infinite;
+  animation: pros-bounce 3s infinite;
+}
+
+@-webkit-keyframes pros-bounce {
+ 0%, 20%, 50%, 80%, 100% {-webkit-transform: translateY(0);}
+ 40% {-webkit-transform: translateY(15px);}
+ 60% {-webkit-transform: translateY(8px);}
+}
+
+@-moz-keyframes pros-bounce {
+ 0%, 20%, 50%, 80%, 100% {-moz-transform: translateY(0);}
+ 40% {-moz-transform: translateY(15px);}
+ 60% {-moz-transform: translateY(8px);}
+}
+
+@-o-keyframes pros-bounce {
+ 0%, 20%, 50%, 80%, 100% {-o-transform: translateY(0);}
+ 40% {-o-transform: translateY(15px);}
+ 60% {-o-transform: translateY(8px);}
+}
+@keyframes pros-bounce {
+ 0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+ 40% {transform: translateY(15px);}
+ 60% {transform: translateY(8px);}
+}

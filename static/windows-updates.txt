@@ -1,10 +1,12 @@
 ;aiu;
 
-[pros2.1.5]
-Name = PROS for Windows 2.1.5
-Description = Initial release
-URL = https://github.com/purduesigbots/pros/releases/download/2.11.0/pros-win.exe
-Size = 654321
-ServerFileName = pros-win.msi
-FilePath = [APPDIR]pros-win.exe
-Version = 2.1.5
+[PROS2.5.1]
+Name = PROS 2.5.1
+ProductVersion = 2.5.1.0
+URL = https://github.com/purduesigbots/pros-cli/releases/download/2.5.1/pros-win.exe
+Size = 55510942
+ReleaseDate = 06/04/2017
+MD5 = 6c26c763f6020de088aeeb255ba96238
+ServerFileName = pros-win.exe
+RegistryKey = HKUD\Software\Purdue ACM SIGBots\PROS\Version
+Version = 2.5.1.0

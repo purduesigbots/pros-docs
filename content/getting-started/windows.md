@@ -27,7 +27,24 @@ Once the installation is completed, Atom can be started via the Start Menu or De
 During some installations, Atom may not install correctly. This is best diagnosed by there not being shortcuts to
 Atom after installation, or if `apm` isn't on PATH. If this is the case, you may need to manually install Atom by visiting
 https://atom.io/download/windows. Once installed and Atom appears, you will be able to install the PROS plugin by pressing
-**Win**+**R** and entering `apm install file-icons linter tool-bar tool-bar-main busy build platformio-ide-terminal pros`
+**Win**+**R** and entering `apm install file-icons linter tool-bar tool-bar-main busy build platformio-ide-terminal pros`. If you are still having trouble after installing Atom manually, it may be necessary to add Atom to `PATH` manually as well. To do so, follow these instructions:
+1. Find the location of atom.exe. One good way of doing this is by right clicking on the Atom shortcut on your dekstop, clicking 'Open File Location,' and copying the path from the Explorer address bar.
+2. Windows 7/8/8.1:
+  1. Open the Start menu
+  2. Right click on 'Computer'
+  3. Select 'Properties'
+  4. Click 'Advanced System Settings'
+  5. Click 'Environment Variables'
+  6. Select 'PATH' under 'User Variables,' then click 'Edit'
+  7. Add a semicolon (`;`) to the end of the value, then paste in the path to atom.exe
+  8. Click 'OK'
+3. Windows 10:
+  1. Type 'Environment Variables' into the search bar
+  2. Select 'Edit environment variables for your account
+  3. Select 'Path' in the upper box
+  4. Click 'Edit,' then click 'New'
+  5. Paste in the path to atom.exe
+  6. Click 'OK'
 
 ### Installing alongside PROS for Eclipse
 It is possible to install Atom alongside Eclipse, if you have previously installed Eclipse. However, the uninstall utility for
