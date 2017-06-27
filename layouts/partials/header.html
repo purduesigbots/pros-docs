@@ -33,7 +33,7 @@
       var apiIndex = []; // declaration
       function initLunr() {
         $.getJSON("/apiIndex.json", function(index) {
-          continueLunr(index)
+          continueLunr(index);
         });
       }
       function continueLunr(index) {
@@ -77,7 +77,6 @@
         });
       }
       function renderResults(results) {
-
         if (!results.length) return;
         results.slice(0,10).forEach(function(result) {
           var $result = $("<li>");
@@ -88,7 +87,7 @@
             text: result.title,
             click: function() {
               $results.empty();
-              renderResults($results)
+              renderResults($results);
             }
           }));
           $results.append($result);
@@ -103,7 +102,6 @@
     <div class="button button-search" role="button" aria-label="Search">
       <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
     </div>
-    -->    
   </div>
   <div class="bar search">
     <div class="button button-close" role="button" aria-label="Close">
