@@ -24,7 +24,7 @@ var processFile = function() {
   titlesFormatted.forEach(function(title, index, titles) {
     var t = title;
     if(t.includes("define")) {
-      t = t.toLowerCase().replace(/#/, '').replace(/_/,'-').replace(/\s+/g, '-');
+      t = t.toLowerCase().replace(/#/, '').replace(/_/g,'-').replace(/\s+/g, '-');
     }
     t = '#' + t;
     links.push(t);

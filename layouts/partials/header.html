@@ -61,6 +61,13 @@
           var results = search(query);
           renderResults(results);
         });
+        $(".query").click(function() {
+          var query = $(this).val();
+          if (query.length > 0) {
+            var results = search(query);
+            renderResults(results);
+          }
+        })
       }
       function search(query) {
         return lunrIndex.search(query).map(function(result) {
@@ -76,8 +83,13 @@
           var $result = $("<li>");
           $result.addClass("result");
           $result.append($("<a>", {
+            class: "result-link",
             href: result.href,
-            text: result.title
+            text: result.title,
+            click: function() {
+              $results.empty();
+              renderResults($results)
+            }
           }));
           $results.append($result);
         });
