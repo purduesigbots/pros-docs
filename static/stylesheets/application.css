@@ -219,6 +219,12 @@ hr {
     border-top: 1px solid rgba(0, 0, 0, .12)
 }
 
+@media only screen and (max-width:959px) {
+  .button.button-search {
+    display: none;
+  }
+}
+
 .toggle-button {
     cursor: pointer;
     color: inherit
@@ -736,8 +742,8 @@ pre span {
 }
 
 .article blockquote {
-    border-left: 2px solid rgba(197, 200, 198, 0.69);
-    color: rgba(197, 200, 198, 0.69)
+    border-left: 2px solid rgba(0, 0, 0, .54);
+    color: rgba(0, 0, 0, .54)
 }
 
 .footer {
@@ -762,7 +768,7 @@ pre span {
 }
 
 .admonition {
-    background: #2291c3;
+    background: #29b6f6;
     color: #fff
 }
 
@@ -771,7 +777,7 @@ pre span {
 }
 
 .admonition.warning {
-    background: #d84638;
+    background: #e84e40
 }
 
 .admonition a, .admonition a:hover {
@@ -1099,6 +1105,7 @@ h1 .article .headerlink {
 .results .list a {
     -webkit-transition: background .25s;
     transition: background .25s
+
 }
 
 .no-csstransforms3d .bar.default {
@@ -1146,8 +1153,8 @@ h1 .article .headerlink {
 .results {
     box-shadow: 0 4px 7px rgba(0, 0, 0, .23), 0 8px 25px rgba(0, 0, 0, .05);
     background: #fff;
-    color: rgba(0, 0, 0, .87);
-    opacity: 0
+    color: rgba(0, 0, 0, .90);
+    opacity: 0;
 }
 
 #toggle-search:checked~.main .results, .toggle-search .results {
@@ -1225,7 +1232,9 @@ h1 .article .headerlink {
 
 #toggle-search:checked~.main .results, .toggle-search .results {
     width: 100%;
-    overflow-y: visible
+    overflow-y: visible;
+    background-color: rgba(255,255,255,0.90);
+    padding-left: 5%;
 }
 
 .results .meta {
@@ -1242,14 +1251,30 @@ h1 .article .headerlink {
 }
 
 .results .list a {
-    display: block
+    display: block;
+    font-size: 18px;
+    padding: 13px 0;
+    margin: 0;
+    width: 100%;
+    height: 48px
+}
+
+#results {
+  list-style-type: none;
+}
+
+#results li:last-child {
+  border-bottom: none;
 }
 
 .result {
+    font-size: initial;
     max-width: 1200px;
     margin-left: auto;
     margin-right: auto;
-    padding: 12px 16px 16px
+    padding: 12px 16px 16px;
+    background-color: rgba(255,255,255,0);
+    border-bottom: 1px rgba(127,127,127,.75) solid;
 }
 
 .result h1 {

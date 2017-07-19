@@ -22,12 +22,87 @@
       <a href="https://github.com/{{ . }}" title="@{{ . }} on GitHub" target="_blank" class="toggle-button icon icon-github"></a>
     </div>
     {{ end }}
-    
-    <!-- TODO: disabled until Hugo supports the generation of a content index natively 
+
+    {{ $page := . }}
+    {{ if eq $page.Title "API"  }}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <script type="text/javascript">
+      var lunrIndex;
+      var $results;
+      var apiIndex = []; // declaration
+      function initLunr() {
+        $.getJSON("/search_index.json", function(index) {
+          continueLunr(index);
+        });
+      }
+      function continueLunr(index) {
+          index.forEach(function(entry) {
+            apiIndex.push(entry);
+          });
+
+          lunrIndex = lunr(function(){
+            this.field("title", {
+              boost: 10
+            });
+            this.field("content");
+            this.ref("href");
+          });
+          apiIndex.forEach(function(entry) {
+            lunrIndex.add(entry);
+          });
+      }
+      function initUI() {
+        $results = $("#results");
+        $(".query").keyup(function() {
+          $results.empty();
+          var query = $(this).val();
+          if(query.length < 2) return;
+          var results = search(query);
+          renderResults(results);
+        });
+        $(".query").click(function() {
+          var query = $(this).val();
+          if(query.length > 0) {
+            var results = search(query);
+            renderResults(results);
+          }
+        })
+      }
+      function search(query) {
+        return lunrIndex.search(query).map(function(result) {
+          return apiIndex.filter(function(entry) {
+            return entry.href === result.ref;
+          })[0];
+        });
+      }
+      function renderResults(results) {
+        if (!Array.isArray(results) || !results.length) return;
+        results.slice(0,10).forEach(function(result) {
+          var $result = $("<li>");
+          $result.addClass("result");
+          $result.append($("<a>", {
+            class: "result-link",
+            href: result.href,
+            text: result.title,
+            click: function() {
+              $results.empty();
+              renderResults($results);
+            }
+          }));
+          $results.append($result);
+        });
+      }
+      initLunr();
+
+      $(document).ready(function() {
+        initUI();
+      });
+    </script>
     <div class="button button-search" role="button" aria-label="Search">
       <label class="toggle-button icon icon-search" title="Search" for="toggle-search"></label>
     </div>
-    -->    
+    {{ end }}
   </div>
   <div class="bar search">
     <div class="button button-close" role="button" aria-label="Close">
@@ -40,6 +115,11 @@
     </div>
     <div class="button button-reset" role="button" aria-label="Search">
       <button class="toggle-button icon icon-close" id="reset-search"></button>
+    </div>
+  </div>
+  <div class="results list">
+    <div class="stretch">
+      <ul id="results"></ul>
     </div>
   </div>
 </nav>
