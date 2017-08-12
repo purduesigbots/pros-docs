@@ -328,7 +328,7 @@ void autonomous() {
   for(int i = 0; i < 3; i++) {
     chassisSet(-127, 127); // rotate left
     delay(1000);
-    chassisSet(127, 127); // rotate right for twice as long \\--/
+    chassisSet(127, -127); // rotate right for twice as long \\--/
     delay(2000);
   }
   chassisSet(0, 0); // stop chassis for safety, although potentially not necessary
