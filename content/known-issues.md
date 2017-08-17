@@ -37,4 +37,4 @@ Another workaround for this issue is to clone the [`platformio-atom-ide-terminal
 ## Terminal doesn't show up! {#terminal-update}
 After updating Atom to a new minor version, some packages (including `platformio-ide-terminal`) will not work until they have been rebuilt for the new Atom version. Symptoms include missing terminal buttons and an inability to open the terminal manually using `PROS:Toggle-Terminal`.
 
-If these symptoms apply, check if there is a red bug icon in the right-hand corner of the bottom status bar. If so, click this icon, and you will be prompted to rebuild any broken packages.
+If these symptoms apply, check if there is a red bug icon in the right-hand corner of the bottom status bar. If so, click this icon, and you will be prompted to rebuild any broken packages. For more information, see [this section of the Atom flight manual](http://flight-manual.atom.io/hacking-atom/sections/debugging/#check-for-incompatible-packages).
