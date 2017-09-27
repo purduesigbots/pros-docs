@@ -133,7 +133,7 @@ For instance, to call the PROS API, all of the _function declarations_ need to g
 
 2\. Compilation
 
-The next stage of compilation is to translate preprocessed code into _assembly instructions_ that the ARM Cortex-M3 processor can almost understand. Assembly code is human readable and reasonably converted into a language that the processor can understand.
+The next stage of compilation is to translate preprocessed code into _assembly instructions_ that the Arm Cortex-M3 processor can almost understand. Assembly code is human readable and reasonably converted into a language that the processor can understand.
 
 3\. Assembly
 
