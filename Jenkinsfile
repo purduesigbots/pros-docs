@@ -1,4 +1,4 @@
-node('linux') {
+node('lin64') {
     stage('Tools') {
       sh '''
          wget -nv https://github.com/spf13/hugo/releases/download/v0.19/hugo_0.19-64bit.deb
