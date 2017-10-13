@@ -4,14 +4,14 @@ title: Libraries
 
 _Since PROS CLI 2.5.2_
 
-PROS supports the concept of adding plugable libraries, allowing you to modularize and share code with others. PROS libraries can be any set of files, but are typically a collection of precompiled code with some header files.
+PROS supports the concept of adding pluggable libraries, allowing you to modularize and share code with others. PROS libraries can be any set of files, but typically consist of a collection of precompiled code and some header files.
 
 {{< note title="Under Construction" >}}
 This section of our documentation is still under construction.
 {{< /note >}}
 
 ## Using Libraries for PROS
-For example, to set up Boiler Robotics' libblrs, you can do the following from command line:
+For example, to set up [Boiler Robotics' libblrs](https://github.com/purduesigbots/libblrs), you can do the following from command line:
 ```
 pros conduct add-depot --name libblrs --registrar github-releases --location purduesigbots/libblrs --no-configure
 pros conduct download libmtrmgr
@@ -43,12 +43,12 @@ library: clean $(BINDIR) $(SUBDIRS) $(ASMOBJ) $(COBJ) $(CPPOBJ)
 	@echo Need to zip $(TEMPLATE)
 ```
 
-You should change the first several values as needed.
+You should change `LIBNAME`, `VERSION`, `TEMPLATEFILES`, and `TEMPLATEOBJS` to fit your project.
 
-In the project's makefile, add the following lines to around line 14:
+In the project's Makefile, add the following line to line 14:
 
 ```
 -include $(ROOT)/template.mk
 ```
 
-Then to build the library, run `make library`.
+Then to build the library, run `pros make library`.
