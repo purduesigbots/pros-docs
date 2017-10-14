@@ -2,12 +2,13 @@
 title: Libraries
 ---
 
-_Since PROS CLI 2.5.2_
+_Since PROS CLI 2.6.0_
 
-PROS supports the concept of adding pluggable libraries, allowing you to modularize and share code with others. PROS libraries can be any set of files, but typically consist of a collection of precompiled code and some header files.
+
+PROS supports the concept of adding libraries, allowing you to modularize and share code with others. PROS libraries can be any set of files, but are typically a collection of precompiled code with some header files.
 
 {{< note title="Under Construction" >}}
-This section of our documentation is still under construction.
+This section of our documentation is still under construction. Atom documentation is cooming soon.
 {{< /note >}}
 
 ## Using Libraries for PROS
@@ -18,7 +19,9 @@ pros conduct download libmtrmgr
 pros conduct add-lib <project-path> libmtrmgr
 ```
 
-## Making Libraries for PROS
+
+
+## Making Libraries for PROS using GitHub Releases
 Make a template.mk file in the root directory of your project and paste the following template:
 
 ```
@@ -51,4 +54,8 @@ In the project's Makefile, add the following line to line 14:
 -include $(ROOT)/template.mk
 ```
 
-Then to build the library, run `pros make library`.
+Then to build the library, run `make library`. Next, you will need to zip the 
+template directory. The zip file should not contain the `libfbc-template` directory
+(that is, the root of the zip file should contain template.pros and all your 
+other files). Next, you should [create a release on GitHub](https://help.github.com/articles/creating-releases/) and upload your template(s)
+to the release. You can see Purdue SIGBots' repository at [purduesigbots/libblrs](https://github.com/purduesigbots/libblrs/releases).
