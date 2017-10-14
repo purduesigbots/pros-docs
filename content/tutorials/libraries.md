@@ -54,7 +54,7 @@ In the project's Makefile, add the following line to line 14:
 -include $(ROOT)/template.mk
 ```
 
-Then to build the library, run `make library`. Next, you will need to zip the 
+Then to build the library, run `pros make library`. Next, you will need to zip the 
 template directory. The zip file should not contain the `libfbc-template` directory
 (that is, the root of the zip file should contain template.pros and all your 
 other files). Next, you should [create a release on GitHub](https://help.github.com/articles/creating-releases/) and upload your template(s)
