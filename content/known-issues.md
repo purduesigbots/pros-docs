@@ -8,11 +8,6 @@ If you're running into issues, the first thing you should do is check whether yo
 With the PROS screen welcome, you can see what version you're running. If you've kept the PROS plugin up to date, you will get a notification to upgrade PROS if there
 {{< figure src="/images/atom/welcome-page-updater-split.png">}}
 
-## Error reading from file when installing on Windows {#windows-install-long-path}
-When installing PROS on Windows, you may receive a warning box along the lines of:
-> There was an error reading from file "...". Verify that the file exists and you can access it.
-In most cases, this is because the file length is too long due to a limitation of Windows. Move the installer to a folder closer to the root directory of the drive, such as C:\pros-temp.
-
 ## Failed to install platformio-ide-terminal  {#platformio-ide-terminal}
 This issue may occur when installing PROS from within the Atom GUI. The current cause of the issue is
 unknown. You can get the dependency installed by manually installing `platformio-ide-terminal` by going to settings (`Ctrl`+`,`), click `Install`, then search for and install `platformio-ide-terminal`. In some instances, restarting Atom will allow the plugin to install.
