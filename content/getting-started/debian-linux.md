@@ -4,11 +4,8 @@ title: Installing on Linux
 slug: debian-linux
 ---
 
-## Easy Install Scripts
-If you are installing on Ubuntu or Arch linux there are install scripts available which should handle most of the process. The scripts can be downloaded from Github:   
-
-  * **Ubuntu:** [pros-install_ubuntu.sh](https://github.com/purduesigbots/pros/releases/download/2.11.0/pros-install_ubuntu.sh)
-  * **Arch Linux:** [pros-install_arch.sh](https://github.com/purduesigbots/pros/releases/download/2.11.0/pros-install_arch.sh)
+## Installer binaries
+If you are installing on a Debian-based Linux distribution, such as Ubuntu, or have a distribution which can install Debian packages, you should download the provided packages from the [latest release](https://github.com/purduesigbots/pros/releases/latest). The PROS Core package provides the PROS CLI and Arm Embedded GCC Toolchain. The PROS Editor package provides our rebranded version of Atom. Most users will install both, although the PROS Core package is always required.
 
 **Note** When using PROS for linux you cannot program or interact with a cortex directly tethered via A-A. This is a [known issue]({{< relref "known-issues.md#linuxAA" >}}) with a simple solution.
 

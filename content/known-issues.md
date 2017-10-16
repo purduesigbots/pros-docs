@@ -8,6 +8,16 @@ If you're running into issues, the first thing you should do is check whether yo
 With the PROS screen welcome, you can see what version you're running. If you've kept the PROS plugin up to date, you will get a notification to upgrade PROS if there
 {{< figure src="/images/atom/welcome-page-updater-split.png">}}
 
+## Failed to install platformio-ide-terminal  {#platformio-ide-terminal}
+This issue may occur when installing PROS from within the Atom GUI. The current cause of the issue is
+unknown. You can get the dependency installed by manually installing `platformio-ide-terminal` by going to settings (`Ctrl`+`,`), click `Install`, then search for and install `platformio-ide-terminal`. In some instances, restarting Atom will allow the plugin to install.
+
+Another workaround for this issue is to clone the [`platformio-atom-ide-terminal`](https://github.com/platformio/platformio-atom-ide-terminal/) repository and set up a [symlink](https://en.wikipedia.org/wiki/Symbolic_link) using the Atom package manager:
+
+`git clone https://github.com/platformio/platformio-atom-ide-terminal.git`
+
+`apm link <path to cloned repository>`
+
 ## Cannot find libstdc++.a
 On Ubuntu 14.04 it is a [known bug](https://bugs.launchpad.net/ubuntu/+source/gcc-arm-none-eabi/+bug/1293024) that libstdc++-arm-none-eabi-newlib package is missing from the repositories and fails to install with arm-none-eabi-gcc. This can lead to the following error when trying to compile your PROS project:
 {{< figure src="/img/ubuntu-error.png" >}}
@@ -24,17 +34,8 @@ When utilizing PROS in your Linux environment you cannot interact with or flash 
 
 Both wired and wirless (VEXnet 1.0 & 2.0) are supported.
 
-## Failed to install platformio-ide-terminal  {#platformio-ide-terminal}
-This issue may occur when installing PROS from within the Atom GUI. The current cause of the issue is
-unknown. You can get the dependency installed by manually installing `platformio-ide-terminal` by going to settings (`Ctrl`+`,`), click `Install`, then search for and install `platformio-ide-terminal`. In some instances, restarting Atom will allow the plugin to install.
-
-Another workaround for this issue is to clone the [`platformio-atom-ide-terminal`](https://github.com/platformio/platformio-atom-ide-terminal/) repository and set up a [symlink](https://en.wikipedia.org/wiki/Symbolic_link) using the Atom package manager:
-
-`git clone https://github.com/platformio/platformio-atom-ide-terminal.git`
-
-`apm link <path to cloned repository>`
-
 ## Terminal doesn't show up! {#terminal-update}
 After updating Atom to a new minor version, some packages (including `platformio-ide-terminal`) will not work until they have been rebuilt for the new Atom version. Symptoms include missing terminal buttons and an inability to open the terminal manually using `PROS:Toggle-Terminal`.
 
 If these symptoms apply, check if there is a red bug icon in the right-hand corner of the bottom status bar. If so, click this icon, and you will be prompted to rebuild any broken packages. For more information, see [this section of the Atom flight manual](http://flight-manual.atom.io/hacking-atom/sections/debugging/#check-for-incompatible-packages).
+
