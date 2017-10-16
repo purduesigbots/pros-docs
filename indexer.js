@@ -40,3 +40,4 @@ var processFile = function() {
 };
 
 fs.writeFileSync(__dirname + '/static/search_index.json', JSON.stringify(indexAPI())); // make lunr happy
+console.log('Created search_index.json');

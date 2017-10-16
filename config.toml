@@ -156,6 +156,12 @@ googleAnalytics = "UA-84548828-3"
 
 [[menu.main]]
 	parent = "tutorials"
+	name = "Libraries"
+	url = "tutorials/libraries/"
+	weight = 12
+	
+[[menu.main]]
+	parent = "tutorials"
 	name = "Coding FAQ"
 	url = "tutorials/coding-faq/"
 	weight = 13

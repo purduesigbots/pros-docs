@@ -8,20 +8,22 @@ slug: windows
 
 PROS for Atom is the new best way to program for VEX Robotics. Getting started with PROS is easy on Windows.
 
-To begin, [download](https://github.com/purduesigbots/pros/releases/latest) and run the installer. Please note
-that an Internet connection is required throughout the installation process.
+To begin, [download](https://github.com/purduesigbots/pros/releases/latest) and run the installer. Please note that an Internet connection is required throughout the installation process.
 
-Most users will wish to complete the typical installation process, which will install the PROS Core components
-(the PROS CLI and GCC toolchain) and Atom with Clang and the PROS plugin. If you already have Atom installed, then
-the installer will simply add the PROS plugin to your existing Atom environment.
+Most users will wish to complete the typical installation process, which will install the PROS Core components (the PROS CLI and GCC toolchain) and PROS Editor. If you already have Atom installed, you may opt to not install PROS Editor and install the PROS plugin on your installation of Atom.
 
-If VEX drivers haven't previously been installed, you will be prompted to install the official drivers released
-by VEX.
+If VEX drivers haven't previously been installed, you will be prompted to install the official drivers released by VEX.
 
 Once the installation is completed, Atom can be started via the Start Menu or Desktop shortcut.
 
 
 ## Issues and Notes about Installation
+
+## Error reading from file when installing {#install-long-path}
+_Since 2.6.0_
+When installing PROS on Windows, you may receive a warning box along the lines of:
+> There was an error reading from file "...". Verify that the file exists and you can access it.
+In most cases, this is because the file length is too long due to a limitation of Windows. Move the installer to a folder closer to the root directory of the drive, such as C:\pros-temp.
 
 ### APM Failure
 During some installations, Atom may not install correctly. This is best diagnosed by there not being shortcuts to

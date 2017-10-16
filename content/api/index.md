@@ -1620,6 +1620,14 @@ It is highly recommended that users enable the watchdog if using IMEs, as the Co
 
 **Should be called once in initializeIO().** Calling the function multiple times or anywhere besides initializeIO() will have no effect.
 
+## void standaloneModeEnable {#standaloneModeEnable}
+```
+void standaloneModeEnable ( )
+```
+Enables the Cortex to run the op control task in a standalone mode- no VEXnet connection required.
+
+**Should be called once in initializeIO().** Calling the function outside initializeIO() may produce unexpected behavior.
+
 ## Macros
 
 ### #define ACCEL_X  5
