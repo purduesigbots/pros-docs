@@ -1513,7 +1513,7 @@ int ultrasonicGet ( ultrasonic ult )
 ```
 Gets the current ultrasonic sensor value in centimeters.
 
-If no object was found, zero is returned. If the ultrasonic sensor was never started, the return value is undefined. Round and fluffy objects can cause inaccurate values to be returned.
+If no object was found or if the ultrasonic sensor is polled while it is pinging and waiting for a response, -1 ([ULTRA_BAD_RESPONSE]({{< relref "#ULTRA_BAD_RESPONSE" >}})) is returned. If the ultrasonic sensor was never started, the return value is undefined. Round and fluffy objects can cause inaccurate values to be returned.
 
 | Parameters | |
 | ---:|:--- |
@@ -1823,5 +1823,8 @@ UART 1 on the Cortex; must be opened first using usartInit().
 
 ### #define 	uart2   ((FILE \*)2)
 UART 2 on the Cortex; must be opened first using usartInit().
+
+### #define   ULTRA_BAD_RESPONSE   -1
+ This value is returned if the ultrasonic sensor cannot find an object in range or if the sensor is polled while it is in the midst of sending a ping. It is recommended that such values be discarded through the use of a filter.
 
 {{< /div >}}
