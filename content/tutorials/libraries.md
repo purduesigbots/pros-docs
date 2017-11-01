@@ -60,7 +60,7 @@ library: clean $(BINDIR) $(SUBDIRS) $(ASMOBJ) $(COBJ) $(CPPOBJ)
 	mkdir -p $(TEMPLATE) $(TEMPLATE)/firmware $(addprefix $(TEMPLATE)/, $(dir $(TEMPLATEFILES)))
 	cp $(BINDIR)/$(LIBNAME).a $(TEMPLATE)/firmware/$(LIBNAME).a
 	$(foreach f,$(TEMPLATEFILES),cp $(f) $(TEMPLATE)/$(f);)
-	pros conduct create-template $(LIBNAME) $(VERSION) $(TEMPLATE) --ignore template.pros --upgrade-files "firmware/$(LIBNAME).a $(TEMPLATEFILES)"
+	pros conduct create-template $(LIBNAME) $(VERSION) $(TEMPLATE) --ignore template.pros --upgrade-files firmware/$(LIBNAME).a $(foreach f,$(TEMPLATEFILES),--upgrade-files $(f))
 	@echo Need to zip $(TEMPLATE) without the base directory
 	# cd $(TEMPLATE) && zip -r ../$(basename $(TEMPLATE)) *
 ```
