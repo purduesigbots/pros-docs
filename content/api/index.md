@@ -886,7 +886,7 @@ If the LCD was not initialized before, the text currently on the screen will be 
 
 | Parameters | |
 | ---:|:--- |
-| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+| `lcdPort` | the LCD to initialize, either uart1 or uart2 |
 
 
 ## lcdPrint {#lcdPrint}
@@ -903,7 +903,7 @@ The output string will be truncated as necessary to fit on the LCD screen, 16 ch
 
 | Parameters | |
 | ---:|:--- |
-| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+| `lcdPort` | the LCD to write, either uart1 or uart2 |
 | `line` | the LCD line to write, either 1 or 2 |
 | `formatString` | the format string as specified in [fprintf()]({{< relref "#fprintf" >}}) |
 
@@ -918,7 +918,7 @@ For example, if the left and right buttons are pushed, (1 | 4) = 5 will be retur
 
 | Parameters | |
 | ---:|:--- |
-| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+| `lcdPort` | the LCD to read, either uart1 or uart2 |
 
 **Returns** the buttons pressed as a bit mask
 
@@ -935,7 +935,7 @@ Turning it off will save power but may make it more difficult to read in dim con
 
 | Parameters | |
 | ---:|:--- |
-| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+| `lcdPort` | the LCD to set, either uart1 or uart2 |
 | `backlight` | true to turn the backlight on, or false to turn it off
 
 
@@ -952,7 +952,7 @@ The output string will be truncated as necessary to fit on the LCD screen, 16 ch
 
 | Parameters | |
 | ---:|:--- |
-| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+| `lcdPort` | the LCD to set, either uart1 or uart2 |
 | `line` | the LCD line to write, either 1 or 2 |
 | `buffer` | the string to write |
 
@@ -965,7 +965,7 @@ Shut down the specified LCD port.
 
 | Parameters | |
 | ---:|:--- |
-| `lcdPort` | the LCD to clear, either uart1 or uart2 |
+| `lcdPort` | the LCD to shutdown, either uart1 or uart2 |
 
 
 ## micros {#micros}
@@ -1018,7 +1018,7 @@ Do not use [motorSet()]({{< relref "#motorSet" >}}) with the same channel argume
 | Parameters | |
 | ---:|:--- |
 | `channel` | the motor channel to set from 1-10 |
-| `speed` | the new signed speed; -127 is full reverse and 127 is full forward, with 0 being off
+| `speed` | the new signed speed; -127 is full reverse and 127 is full forward, with 0 being off. For servos, the position of the servo is set.
 
 
 ## motorStop {#motorStop}
