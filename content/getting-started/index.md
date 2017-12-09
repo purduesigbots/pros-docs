@@ -13,7 +13,7 @@ If you find yourself saying the following things often:
 
 ...then PROS may not be the best choice for programming your robot.
 
-But if you're one of the lovely people who says the following things:
+But if you're one of the lovely people who say the following things:
 
 * "Writing code may not be easy, but I'm determined to put in the effort required to write great code!"
 * "I want to pursue a future career writing software (or doing any sort of STEM, really)."
@@ -24,7 +24,7 @@ But if you're one of the lovely people who says the following things:
 ...then PROS is just right for you!
 
 ## Awesome! I want to use PROS -- what next?
-PROS is C programming. It's not "based on C" or "similar to C", it's just a set of functions to be used with the exact same C programming language that is used outside of VEX applications. As a result, familiarizing yourself with standard C concepts is a must for writing code with PROS. Find a good C tutorial ([we recommend this one](https://www.cprogramming.com/tutorial/c-tutorial.html)) and familiarize yourself with C programming before jumping right into writing code. If you run into issues later, consulting these tutorials and other C references will likely help you solve any issues you may have with your code.
+PROS is C programming. It's not "based on C" or "similar to C", it's just a set of functions to be used with the exact same C programming language that is used outside of VEX applications. As a result, familiarizing yourself with standard C concepts is a must for writing code with PROS. Find a good C tutorial (we recommend [this one](https://www.cprogramming.com/tutorial/c-tutorial.html)) and familiarize yourself with C programming before jumping right into writing code. If you run into issues later, consulting these tutorials and other C references will likely help you solve any issues you may have with your code.
 
 Once you're familiar with C programming, check out these guides to starting writing some cool PROS code:
 
