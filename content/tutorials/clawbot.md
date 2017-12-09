@@ -6,7 +6,7 @@ title: Programming the Clawbot
 This tutorial will guide you through basic programming of the VEX Clawbot.
 
 #### Intended Audience:
-This tutorial is intended for developers with some programming experience, but with little to no experience with the PROS library. If you haven't programmed before, we recommend checking out all the "Introduction and Basic C Features" sections of [this tutorial series](Introduction and Basic C Features); you may also benefit from the "Pointers, Arrays and Strings" sections as well (although they aren't as pertintent).
+This tutorial is intended for developers with some programming experience, but with little to no experience with the PROS library. If you haven't programmed before, we recommend checking out all the "Introduction and Basic C Features" sections of [this tutorial series](Introduction and Basic C Features); you may also benefit from the "Pointers, Arrays and Strings" sections as well (although they aren't as pertinent).
 
 #### Goals:
 At the end of this tutorial you will have:
