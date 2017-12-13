@@ -2,36 +2,30 @@
 title: Getting Started with PROS
 ---
 
-## Should I use PROS?
-Since you're here and reading our documentation, the answer is most likely yes! However, PROS (and C programming in general) can be difficult for a lot of beginners, so it may not be the ideal solution for everyone.
+## First Steps
+The most important characteristic of PROS to note when getting started is that PROS is just C. Anything that works in standard C will work as a part of a PROS project, and similarly the errors given for code that doesn't work will match errors given for any similar C code. Learning C is essential for using PROS.
 
-If you find yourself saying the following things often:
+If you are already familiar with C development outside of VEX, skip ahead to [Using PROS](#using-PROS).
 
-* "I don't want to actually learn to code, I just want some code to make my awesome mechanical design move!"
-* "I'm not sure I like coding, but that PROS Editor's dark theme though..."
-* "Reading documentation is for losers, I'm sure I can get my code working with trial and error!"
+If you have not used PROS or done non-VEX C code development before, checking out these following C tutorials is highly recommended.
 
-...then PROS may not be the best choice for programming your robot.
+* [Functions](http://www.studytonight.com/c/user-defined-functions-in-c.php). C is a language that heavily emphasizes functions, and knowing how they work is essential to using PROS. The [PROS API]({{< relref "api/index.md" >}}) is a set of functions, so any time that you want to interact with a sensor or motor, you're using functions.
 
-But if you're one of the lovely people who say the following things:
+* [Header Files](https://www.tutorialspoint.com/cprogramming/c_header_files.htm). The PROS template (the set of files automatically created when you start a PROS project) contains a couple of header files, and it's recommended that you make additional header files as you develop your code. Header files contain the declarations for functions and global variables (among other things), which is why the [PROS API]({{< relref "api/index.md" >}}) can be found in `API.h`. Knowing what code should go in a header file (`.h`) or a source file (`.c`) can be difficult to determine at first, but it is a very useful skill to learn.
 
-* "Writing code may not be easy, but I'm determined to put in the effort required to write great code!"
-* "I want to pursue a future career writing software (or doing any sort of STEM, really)."
-* "I already know how to write C code for non-VEX applications, and I want something similar for VEX."
-* "I'm dead-set on using my favorite text editor for VEX code."
-* "I have this grand plan for writing the most feature-packed, complex code ever implemented on a VEX robot and I need a programming environment that can support that."
+* [`printf()`](https://www.codingunit.com/printf-format-specifiers-format-conversions-and-formatted-output). At some point when developing PROS code, you will likely want to get some feedback on what the value of a variable is. This is not an exact replacement for a full debugging utility by any means, but is the standard method for troubleshooting issues in most languages and can be used for viewing sensor values or your own variables' values. The output from these `printf()` statements can be viewed in the terminal by running `pros terminal`.
 
-...then PROS is just right for you!
+And then for additional C tutorial topics, visit [CProgramming.com](https://www.cprogramming.com/tutorial/c-tutorial.html) or [StudyTonight](http://www.studytonight.com/c/overview-of-c.php).
 
-## Awesome! I want to use PROS -- what next?
-PROS is C programming. It's not "based on C" or "similar to C", it's just a set of functions to be used with the exact same C programming language that is used outside of VEX applications. As a result, familiarizing yourself with standard C concepts is a must for writing code with PROS. Find a good C tutorial (we recommend [this one](https://www.cprogramming.com/tutorial/c-tutorial.html)) and familiarize yourself with C programming before jumping right into writing code. If you run into issues later, consulting these tutorials and other C references will likely help you solve any issues you may have with your code.
-
-Once you're familiar with C programming, check out these guides to starting writing some cool PROS code:
-
-* [Sample Program: Programming the Clawbot]({{< relref "tutorials/clawbot.md" >}})
+## I know C, now how do I use PROS? {#using-PROS}
+The PROS tutorials are designed to show the application of C programming to a PROS project. The [Programming the Clawbot]({{< relref "tutorials/clawbot.md" >}}) tutorial is a great place to start, as it goes through every step of putting together a sample PROS project. Once you are ready to branch out and create your own custom project, looking through the following tutorials is recommended:
 
 * [PROS Project Structure]({{< relref "tutorials/project-structure.md" >}})
+
+* [Uploading Code]({{< relref "tutorials/uploading.md" >}})
 
 * [Debugging]({{< relref "tutorials/debugging.md" >}})
 
 * [Coding FAQs]({{< relref "tutorials/coding-faq.md" >}})
+
+And then you can find tutorials for specific subjects from [analog sensors]({{< relref "tutorials/analog.md" >}}) to [tasks and multithreading]({{< relref "tutorials/tasks.md" >}}) as well.

@@ -5,7 +5,7 @@ title: Debugging in PROS
 The [PROS API](/api/) provides various functions, like [`print()`](/api/#print) or [`printf()`](/api/#printf), that allow your robot to output information to a connected serial console during operation.
 
 
-###To view a robot's output, there are two officially supported methods:
+### To view a robot's output, there are two officially supported methods:
 
 1. Through the PROS CLI: <br/>
 
@@ -19,7 +19,7 @@ The [PROS API](/api/) provides various functions, like [`print()`](/api/#print) 
     A terminal panel will open at the bottom of the screen containing the output of a connected robot.<br/>
     {{< figure src="/images/atom/terminal-platformio.png" >}}
 
-###Alternate method: <br />
+### Alternate method: <br />
 
 Use the serial communication monitor of your choice (such as [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html), [CoolTerm](http://freeware.the-meiers.org/) or [this plugin for Visual Studio](https://marketplace.visualstudio.com/items?itemName=EgorGrushko.SerialMonitor) if using Visual Studio) with the following settings: <br />
 
