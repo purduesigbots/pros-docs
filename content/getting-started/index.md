@@ -15,7 +15,7 @@ If you have not used PROS or done non-VEX C code development before, checking ou
 
 * [`printf()`](https://www.codingunit.com/printf-format-specifiers-format-conversions-and-formatted-output). At some point when developing PROS code, you will likely want to get some feedback on what the value of a variable is. This is not an exact replacement for a full debugging utility by any means, but is the standard method for troubleshooting issues in most languages and can be used for viewing sensor values or your own variables' values. The output from these `printf()` statements can be viewed in the terminal by running `pros terminal`.
 
-And then for additional C tutorial topics, visit [CProgramming.com](https://www.cprogramming.com/tutorial/c-tutorial.html) or [StudyTonight](http://www.studytonight.com/c/overview-of-c.php).
+And then for additional C tutorial topics, visit [CProgramming.com](https://www.cprogramming.com/tutorial/c-tutorial.html) or [StudyTonight](http://www.studytonight.com/c/overview-of-c.php). A good video tutorial series (as opposed to the previous text-based tutorials) can be found on [YouTube](https://youtu.be/nXvy5900m3M).
 
 ## I know C, now how do I use PROS? {#using-PROS}
 The PROS tutorials are designed to show the application of C programming to a PROS project. The [Programming the Clawbot]({{< relref "tutorials/clawbot.md" >}}) tutorial is a great place to start, as it goes through every step of putting together a sample PROS project. Once you are ready to branch out and create your own custom project, looking through the following tutorials is recommended:
