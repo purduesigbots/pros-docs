@@ -41,7 +41,7 @@ source_suffix = '.rst'
 pygments_style = 'monokai'
 
 # The master toctree document.
-master_doc = 'docs-home'
+master_doc = 'index'
 
 # General information about the project.
 project = u'PROS for Cortex'
@@ -104,8 +104,8 @@ html_context = {
 html_theme_options = {
     #'analytics_id': INSERT GOOGLE ANALYTICS CODE
     'versions': {
-        'V5': '../v5/docs-home',
-        'Cortex': 'docs-home',
+        'V5': '../v5/index',
+        'Cortex': 'index',
     }
 }
 
