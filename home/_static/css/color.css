@@ -1,0 +1,203 @@
+/* Style for Colors */
+
+a:hover{
+	color: #CCA352;
+	text-decoration: none;
+}
+
+.montserrat_font{
+	font-family: 'Montserrat', sans-serif;
+}
+
+.navbar-topaz{
+	border-bottom: solid 2px #cca352;
+}
+
+.text_color{
+	color: #cca352;
+}
+
+.content_btn:hover{
+	color: #cca352;
+}
+
+.price_btn_action:hover{
+	color: #cca352;
+}
+
+.background_color{
+	background-color: #cca352;
+}
+
+.portfolio_navigation_list a.active{
+	color: #cca352;
+}
+
+.purchase_btn{
+	border: solid 1px #cca352;
+	background-color: #cca352;
+	color: white;
+	background-image: none;
+}
+
+.purchase_btn:hover{
+	border: solid 1px #333333;
+	background-color: #333333;
+	color: #cca352;;
+}
+
+.portfolio_navigation_list a:hover{
+	color: #cca352;
+}
+
+.link_hoverw:hover{
+	color: #cca352;
+	text-decoration: none;
+}
+
+.contact_form_bnt{
+	border: solid 1px #cca352;
+	color: white;
+	background-color: #cca352;
+}
+
+.contact_form_bnt:hover{
+	border: solid 1px #333333;
+	color: #cca352;
+	background-color: #333333;
+}
+
+.follow_us_btn{
+	border: solid 1px #cca352;
+	background-color: #cca352;
+}
+
+.follow_us_btn:hover{
+	border: solid 1px #333333;
+	background-color: #333333;
+	color: #cca352;
+}
+
+
+.link_hoverb:hover{
+	color: #cca352;
+	text-decoration: none;
+	background-color: white;
+	background-image: none;
+}
+
+.more_blog_btn:hover{
+	background-color: #333333;
+	color: #cca352;
+	text-decoration: none;
+}
+
+.white_btn_hover{
+	background-image: none;
+	background-color: white;
+}
+
+.white_btn_hover:hover{
+	color: #cca352;
+	background-color: #333333;
+	text-decoration: none;
+	border: solid 1px #333333;
+}
+
+.portfolio_item_btn:hover{
+	color: #cca352;
+	background-color: #333333;
+	text-decoration: none;
+}
+
+.about_3 .current{
+	color: #cca352;
+	background-color: #333333;
+	text-decoration: none;
+	border: solid 1px #333333;
+}
+
+.subscribe_btn{
+	border: solid 1px #cca352;
+	background-color: #cca352;
+}
+
+.buy_btn{
+	border: solid 1px #cca352;
+	background-color: #cca352;
+	color: white !important;
+	background-image: none;
+}
+
+.buy_btn:hover{
+	border: solid 1px #333333;
+	background-color: #333333;
+	color: #cca352;
+	background-image: none;
+}
+
+.subscribe_btn:hover{
+	background-color: #333333;
+	color: #cca352;
+	border: solid 1px #333333;
+}
+
+.company_img_block:hover .company_img_desc{
+	color: #cca352;
+}
+
+.navsticky .nav .open>a, .navsticky .nav .open>a:hover, .navsticky .nav .open>a:focus,
+.navsticky .dropdown-menu>li>a:hover, .navsticky .dropdown-menu>li>a:focus,
+.navsticky .nav>li>a:hover, .navsticky .nav>li>a:focus, .nav>li.current>a{
+	color: #cca352;
+	background-color: transparent;
+}
+
+.widget_title{
+	border-color: #cca352;
+}
+
+.tags_widget ul li a:hover{
+	color: #cca352;
+	background: #333333;
+	text-decoration: none;
+}
+
+#twitterfeed .tweet_text a, #twitterfeed .tweet_text .at{
+	color: #cca352;
+}
+
+.readmore_link:hover{
+	text-decoration: none;
+	color: #cca352;
+}
+
+.service_1 .service_icon:hover, .service_3 .service_icon:hover{
+	background-color: #cca352;
+	border: solid 1px #cca352;
+}
+
+.skill_bar{
+	background-color: #cca352;
+}
+
+#icons .fa-hover:hover{
+	text-decoration: none;
+	color: #cca352;
+}
+
+button:hover{
+	color: #cca352;
+	background-color: #333333;
+	text-decoration: none;
+	border: solid 1px #333333;
+}
+
+#slides_background_home .slides-container .solid_bg{
+	background:#cca352 center fixed ;
+}
+
+
+.loader {
+  border-left: 1.1em solid #cca352;
+}
