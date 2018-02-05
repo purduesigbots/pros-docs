@@ -10,4 +10,6 @@ To install all of the dependencies for building the PROS Documentation, run
 > . ./docs-venv/bin/activate
 
 > pip3 install -r requirements.txt
+> git submodule init
+> git submodule update
 ```

@@ -2,3 +2,4 @@ docs-venv/
 build/
 .*.sw*
 .buildignore
+.vscode
