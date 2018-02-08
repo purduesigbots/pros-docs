@@ -34,12 +34,13 @@ PROS: Documentation Home
 
    ./api/index
 
-   .. toctree::
-      :hidden:
-      :maxdepth: -1
-      :glob:
-      :caption: Extended
-      ./extended/index
+.. toctree::
+   :hidden:
+   :maxdepth: -1
+   :glob:
+   :caption: Extended
+
+   ./extended/index
 
 Welcome to the PROS Documentation!
 
