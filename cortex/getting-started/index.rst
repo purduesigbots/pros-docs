@@ -28,7 +28,7 @@ checking out these following C tutorials is highly recommended.
 
 -  `Functions <http://www.studytonight.com/c/user-defined-functions-in-c.php>`__.
    C is a language that heavily emphasizes functions, and knowing how
-   they work is essential to using PROS. The `PROS API <api/index>`_` is a set of functions,
+   they work is essential to using PROS. The `PROS API <../api/index.html>`_` is a set of functions,
    so any time that you want to interact with a sensor or motor, you're using functions.
 
 -  `Header
@@ -37,7 +37,7 @@ checking out these following C tutorials is highly recommended.
    start a PROS project) contains a couple of header files, and it's
    recommended that you make additional header files as you develop your
    code. Header files contain the declarations for functions and global
-   variables (among other things), which is why the `PROS API <api/index>`_
+   variables (among other things), which is why the `PROS API <../api/index.html>`_
    can be found in ``API.h``. Knowing what
    code should go in a header file (``.h``) or a source file (``.c``)
    can be difficult to determine at first, but it is a very useful skill
@@ -62,20 +62,20 @@ I know C, now how do I use PROS?
 --------------------------------
 
 The PROS tutorials are designed to show the application of C programming
-to a PROS project. The `Programming the Clawbot <tutorials/clawbot>`_`
+to a PROS project. The `Programming the Clawbot <../tutorials/clawbot.html>`_`
 tutorial is a great place to start, as it
 goes through every step of putting together a sample PROS project. Once
 you are ready to branch out and create your own custom project, looking
 through the following tutorials is recommended:
 
--  `PROS Project Structure <tutorials/project-structure>`_
+-  `PROS Project Structure <../tutorials/project-structure.html>`_
 
--  `Uploading Code <tutorials/uploading>`_
+-  `Uploading Code <../tutorials/uploading.html>`_
 
--  `Debugging <tutorials/debugging>`_
+-  `Debugging <../tutorials/debugging.html>`_
 
--  `Coding FAQs <tutorials/coding-faq>`_
+-  `Coding FAQs <../tutorials/coding-faq.html>`_
 
 And then you can find tutorials for specific subjects from `analog
-sensors <tutorials/analog>`_ to `tasks and
-multithreading <tutorials/tasks.md>`_ as well.
+sensors <../tutorials/analog.html>`_ to `tasks and
+multithreading <../tutorials/tasks.html>`_ as well.
