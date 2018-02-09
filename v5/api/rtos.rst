@@ -484,57 +484,73 @@ Suspends the current task, making it ineligible to be scheduled.
 Macros
 ======
 
-#define CURRENT_TASK ((task_t)NULL)
------------------------------------
+CURRENT_TASK
+------------
 
 Refers to the current task. To be used for checking attributes of the task in which
 this macro is called.
 
-#define TASK_NAME_MAX_LEN 32
-----------------------------
+**Value:** ``((task_t)NULL)``
+
+TASK_NAME_MAX_LEN
+-----------------
 
 The maximum number of characters allowed in a task's name.
 
-#define TASK_PRIORITY_DEFAULT 8
--------------------------------
+**Value:** ``32``
+
+TASK_PRIORITY_DEFAULT
+---------------------
 
 The default task priority, which should be used for most tasks.
 
 Default tasks such as autonomous() inherit this priority.
 
-#define TASK_PRIORITY_MAX 16
-----------------------------
+**Value:** ``8``
+
+TASK_PRIORITY_MAX
+-----------------
 
 The highest priority that can be assigned to a task.
 
 Unlike the lowest priority, this priority can be safely used without
 hampering interrupts. Beware of deadlock.
 
-#define TASK_PRIORITY_MIN 1
----------------------------
+**Value:** ``16``
+
+TASK_PRIORITY_MIN
+-----------------
 
 The lowest priority that can be assigned to a task.
 
 This may cause severe performance problems and is generally not
 recommended.
 
-#define TASK_STACK_DEPTH_DEFAULT 0x2000
----------------------------------------
+**Value:** ``1``
+
+TASK_STACK_DEPTH_DEFAULT
+------------------------
 
 The recommended stack size for a new task. This stack size is used for
 default tasks such as autonomous(). This equates to 32,768 bytes, or 128 times
 the default stack size for a task in PROS 2.
 
-#define TASK_STACK_DEPTH_MIN 0x200
-----------------------------------
+**Value:** ``0x2000``
+
+TASK_STACK_DEPTH_MIN
+--------------------
 
 The minimal stack size for a task. This equates to 2048 bytes, or 8 times the
 default stack size for a task in PROS 2.
 
-#define TIMEOUT_MAX ((uint32_t)0xffffffffUL)
---------------------------------------------
+**Value:** ``0x200``
+
+TIMEOUT_MAX
+-----------
 
 The maximum timeout value that can be given to, for instance, a `mutex grab <mutex_take>`_.
+
+**Value:** ``((uint32_t)0xffffffffUL)``
 
 Enumerated Values
 =================

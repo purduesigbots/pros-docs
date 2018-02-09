@@ -105,115 +105,160 @@ Returns 0 or 1 if the controller is connected.
 Macros
 ======
 
-#define ANALOG_LEFT_X E_CONTROLLER_ANALOG_LEFT_X
-------------------------------------------------
+ANALOG_LEFT_X
+-------------
 
 The horizontal axis of the controller's left analog stick.
 
-#define ANALOG_LEFT_Y E_CONTROLLER_ANALOG_LEFT_Y
-------------------------------------------------
+**Value:** ``E_CONTROLLER_ANALOG_LEFT_X``
+
+ANALOG_LEFT_Y
+-------------
 
 The vertical axis of the controller's left analog stick.
 
-#define ANALOG_RIGHT_X E_CONTROLLER_ANALOG_RIGHT_X
---------------------------------------------------
+**Value:** ``E_CONTROLLER_ANALOG_LEFT_Y``
+
+ANALOG_RIGHT_X
+--------------
 
 The horizontal axis of the controller's right analog stick.
 
-#define ANALOG_RIGHT_Y E_CONTROLLER_ANALOG_RIGHT_Y
---------------------------------------------------
+**Value:** ``E_CONTROLLER_ANALOG_RIGHT_X``
+
+ANALOG_RIGHT_Y
+--------------
 
 The vertical axis of the controller's right analog stick.
 
-#define COMPETITION_AUTONOMOUS (1 << 0)
----------------------------------------
+**Value:** ``E_CONTROLLER_ANALOG_RIGHT_Y``
 
-A bitmask for checking whether the brain is in autonomous mode with `competition_get_status`_.
+COMPETITION_AUTONOMOUS
+----------------------
 
-#define COMPETITION_DISABLED (1 << 1)
--------------------------------------
+Use COMPETITION_AUTONOMOUS as a bitmask for checking whether the brain is in autonomous mode
+with `competition_get_status`_.
 
-A bitmask for checking whether the brain is disabled with `competition_get_status`_.
+**Value:** ``(1 << 0)``
 
-#define COMPETITION_CONNECTED (1 << 2)
---------------------------------------
+COMPETITION_DISABLED
+--------------------
 
-A bitmask for checking whether the brain is connected to competition control with `competition_get_status`_.
+Use COMPETITION_DISABLED as a bitmask for checking whether the brain is disabled with `competition_get_status`_.
 
-#define CONTROLLER_MASTER E_CONTROLLER_MASTER
----------------------------------------------
+**Value:** ``(1 << 1)``
+
+COMPETITION_CONNECTED
+---------------------
+
+Use COMPETITION_CONNECTED as a bitmask for checking whether the brain is connected to competition control with `competition_get_status`_.
+
+**Value:** ``(1 << 2)``
+
+CONTROLLER_MASTER
+-----------------
 
 The master controller.
 
-#define CONTORLLER_PARTNER E_CONTROLLER_PARTNER
------------------------------------------------
+**Value:** ``E_CONTROLLER_MASTER``
+
+CONTROLLER_PARTNER
+------------------
 
 The partner controller.
 
-#define DIGITAL_L1 E_CONTROLLER_DIGITAL_L1
-------------------------------------------
+**Value:** ``E_CONTROLLER_PARTNER``
+
+DIGITAL_L1
+----------
 
 The first trigger on the left side of the controller.
 
-#define DIGITAL_L2 E_CONTROLLER_DIGITAL_L2
-------------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_L1``
+
+DIGITAL_L2
+----------
 
 The second trigger on the left side of the controller.
 
-#define DIGITAL_R1 E_CONTROLLER_DIGITAL_R1
-------------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_L2``
+
+DIGITAL_R1
+----------
 
 The first trigger on the right side of the controller.
 
-#define DIGITAL_R2 E_CONTROLLER_DIGITAL_R2
-------------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_R1``
+
+DIGITAL_R2
+----------
 
 The second trigger on the right side of the controller.
 
-#define DIGITAL_UP E_CONTROLLER_DIGITAL_UP
-------------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_R2``
+
+DIGITAL_UP
+----------
 
 The up arrow on the left arrow pad of the controller.
 
-#define DIGITAL_DOWN E_CONTROLLER_DIGITAL_DOWN
-----------------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_UP``
+
+DIGITAL_DOWN
+------------
 
 The down arrow on the left arrow pad of the controller.
 
-#define DIGITAL_LEFT E_CONTROLLER_DIGITAL_LEFT
-----------------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_DOWN``
+
+DIGITAL_LEFT
+------------
 
 The left arrow on the left arrow pad of the controller.
 
-#define DIGITAL_RIGHT E_CONTROLLER_DIGITAL_RIGHT
-------------------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_LEFT``
+
+DIGITAL_RIGHT
+-------------
 
 The right arrow on the left arrow pad of the controller.
 
-#define DIGITAL_X E_CONTROLLER_DIGITAL_X
-----------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_RIGHT``
+
+DIGITAL_X
+---------
 
 The 'X' button on the right button pad of the controller.
 
-#define DIGITAL_B E_CONTROLLER_DIGITAL_B
-----------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_X``
+
+DIGITAL_B
+---------
 
 The 'B' button on the right button pad of the controller.
 
-#define DIGITAL_Y E_CONTROLLER_DIGITAL_Y
-----------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_B``
+
+DIGITAL_Y
+---------
 
 The 'Y' button on the right button pad of the controller.
 
-#define DIGITAL_A E_CONTROLLER_DIGITAL_A
-----------------------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_Y``
+
+DIGITAL_A
+---------
 
 The 'A' button on the right button pad of the controller.
 
-#define NUM_V5_PORTS (22)
--------------------------
+**Value:** ``E_CONTROLLER_DIGITAL_A``
+
+NUM_V5_PORTS
+------------
 
 The number of RJ11 ports available on the V5 brain.
+
+**Value:** ``(22)``
 
 Enumerated Values
 =================

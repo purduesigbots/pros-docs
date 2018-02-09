@@ -151,20 +151,26 @@ This function uses the following values of `errno` when an error state is reache
 Macros
 ======
 
-#define LCD_BTN_CENTER 2
-------------------------
+LCD_BTN_CENTER
+--------------
 
-A bitmask for determining if the center LCD button was pressed from `lcd_read_buttons`_.
+Use LCD_BTN_CENTER as a bitmask for determining if the center LCD button was pressed from `lcd_read_buttons`_.
 
-#define LCD_BTN_LEFT 4
-----------------------
+**Value:** ``2``
 
-A bitmask for determining if the left LCD button was pressed from `lcd_read_buttons`_.
+LCD_BTN_LEFT
+------------
 
-#define LCD_BTN_RIGHT 1
------------------------
+Use LCD_BTN_LEFT as a bitmask for determining if the left LCD button was pressed from `lcd_read_buttons`_.
 
-A bitmask for determining if the right LCD button was pressed from `lcd_read_buttons`_.
+**Value:** ``4``
+
+LCD_BTN_RIGHT
+-------------
+
+Use LCD_BTN_RIGHT as a bitmask for determining if the right LCD button was pressed from `lcd_read_buttons`_.
+
+**Value:** ``1``
 
 Enumerated Values
 =================
