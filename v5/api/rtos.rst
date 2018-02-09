@@ -52,7 +52,7 @@ mutex_give
 
 ::
 
-  bool_t mutex_give ( mutex_t mutex )
+  bool mutex_give ( mutex_t mutex )
 
 Unlocks a mutex.
 
@@ -78,7 +78,7 @@ See :doc:`../tutorials/multitasking` for details.
 
 ::
 
-  bool_t mutex_take ( mutex_t mutex,
+  bool mutex_take ( mutex_t mutex,
                       uint32_t timeout )
 
 ============ ==============================================================================================
@@ -122,7 +122,7 @@ sem_post
 
 ::
 
-  bool_t sem_post ( sem_t sem )
+  bool sem_post ( sem_t sem )
 
 Increments a semaphore's value.
 
@@ -143,7 +143,7 @@ sem_wait
 
 ::
 
-  bool_t sem_wait ( sem_t sem,
+  bool sem_wait ( sem_t sem,
                     uint32_t timeout )
 
 Waits for the semaphore's value to be greater than 0. If the value is already
@@ -361,7 +361,7 @@ task_notify_clear
 
 ::
 
-  bool_t task_notify_clear ( task_t task )
+  bool task_notify_clear ( task_t task )
 
 Clears the notification for a task.
 
@@ -412,7 +412,7 @@ task_notify_take
 
 ::
 
-  uint32_t task_notify_take ( bool_t clear_on_exit,
+  uint32_t task_notify_take ( bool clear_on_exit,
                               uint32_t timeout )
 
 Wait for a notification to be nonzero.

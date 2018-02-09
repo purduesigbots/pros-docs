@@ -42,7 +42,7 @@ mutex_recursive_give
 
 ::
 
-  bool_t mutex_recursive_give( mutex_t mutex )
+  bool mutex_recursive_give( mutex_t mutex )
 
 Gives a recursive mutex.
 
@@ -59,7 +59,7 @@ mutex_recursive_take
 
 ::
 
-  bool_t mutex_recursive_take ( mutex_t mutex,
+  bool mutex_recursive_take ( mutex_t mutex,
                                 uint32_t wait_time )
 
 Takes a recursive mutex.
@@ -82,7 +82,7 @@ queue_append
 
 ::
 
-  bool_t queue_append ( queue_t queue,
+  bool queue_append ( queue_t queue,
                         const void* item,
                         uint32_t timeout )
 
@@ -182,7 +182,7 @@ queue_peek
 
 ::
 
-  bool_t queue_peek ( queue_t queue,
+  bool queue_peek ( queue_t queue,
                       void* buffer,
                       uint32_t timeout )
 
@@ -206,7 +206,7 @@ queue_prepend
 
 ::
 
-  bool_t queue_prepend ( queue_t queue,
+  bool queue_prepend ( queue_t queue,
                          const void* item,
                          uint32_t timeout )
 
@@ -230,7 +230,7 @@ queue_recv
 
 ::
 
-  bool_t queue_recv ( queue_t queue,
+  bool queue_recv ( queue_t queue,
                       void* buffer,
                       uint32_t timeout )
 
@@ -301,7 +301,7 @@ task_abort_delay
 
 ::
 
-  bool_t task_abort_delay ( task_t task )
+  bool task_abort_delay ( task_t task )
 
 Unblocks a task in the Blocked state (e.g. waiting for a delay, on a semaphore, etc.)
 
