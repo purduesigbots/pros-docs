@@ -450,7 +450,7 @@ task_set_priority
 ::
 
   void task_set_priority ( task_t task,
-                           uint32_t prio)
+                           uint32_t prio )
 
 Sets the priority of the specified task.
 
