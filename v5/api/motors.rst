@@ -373,14 +373,349 @@ Gets the velocity commanded to the motor by the user.
 **Returns:** The commanded motor velocity from -128 to 127 or ``PROS_ERR`` if the
 operation failed, setting ``errno``.
 
+motor_get_voltage
+-----------------
+
+::
+
+  double motor_get_voltage ( int port )
+
+Gets the voltage delivered to the motor in V.
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's voltage in V or ``PROS_ERR_F`` if the operation failed,
+setting ``errno``.
+
+motor_get_voltage_limit
+-----------------------
+
+::
+
+  int32_t motor_get_voltage_limit ( int port )
+
+Gets the voltage limit set by the user.
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's voltage limit in V or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_get_zero_velocity_flag
+----------------------------
+
+::
+
+  int32_t motor_get_zero_velocity_flag ( int port )
+
+Gets the zero velocity flag for the motor.
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** ``1`` if the motor is not moving and ``0`` if the motor is moving,
+or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+motor_get_zero_position_flag
+----------------------------
+
+::
+
+  int32_t motor_get_zero_position_flag ( int port )
+
+Gets the zero position flag for the motor.
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** ``1`` if the motor is at zero absolute position and ``0`` if the motor has
+moved from its absolute zero, or ``PROS_ERR`` if the operation failed
+setting ``errno``.
+
+motor_reset_position
+--------------------
+
+::
+
+  int32_t motor_reset_position ( int port )
+
+Sets the "absolute" zero position of the motor to its current position.
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_absolute_target
+-------------------------
+
+::
+
+  int32_t motor_set_absolute_target ( int port,
+                                      double position,
+                                      int32_t velocity )
+
+Sets the target absolute position for the motor to move to.
+
+This movement is relative to the position of the motor when initialized or
+the position when it was most recently reset with `motor_reset_position`_.
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ position     The absolute position to move to in the motor's encoder units
+ velocity     The maximum allowable velocity for the movement
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_brake_mode
+--------------------
+
+::
+
+  int32_t motor_set_brake_mode ( int port,
+                                 motor_brake_mode_e_t mode )
+
+Sets one of `motor_brake_mode_e_t`_ to the motor.
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ mode         The `motor_brake_mode_e_t`_ to set for the motor
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_current_limit
+-----------------------
+
+::
+
+  int32_t motor_set_current_limit ( int port,
+                                    int32_t limit )
+
+Sets the current limit for the motor in mA.
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ limit        The new current limit in mA
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_encoder_units
+-----------------------
+
+::
+
+  int32_t motor_set_encoder_units ( int port,
+                                    motor_encoder_units_e_t units )
+
+Sets one of `motor_encoder_units_e_t`_ for the motor encoder.
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ units        The new motor encoder units
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_gearing
+-----------------
+
+::
+
+  int32_t motor_set_gearing ( int port,
+                              motor_gearset_e_t gearset )
+
+Sets one of `motor_gearset_e_t`_ for the motor.
+
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ gearset      The new motor gearset
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_position
+------------------
+
+::
+
+  int32_t motor_set_position ( int port,
+                               double position )
+
+Sets the position for the motor in its encoder units.
+
+This will be the future reference point for the motor's "absolute" position.
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ position     The new reference position in its encoder units
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_relative_target
+-------------------------
+
+::
+
+  int32_t motor_set_relative_target ( int port,
+                                      double position,
+                                      int32_t velocity )
+
+Sets the relative target position for the motor to move to.
+
+This movement is relative to the current position of the motor as given in
+`motor_get_position`_.
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ position     The relative position to move to in the motor's encoder units
+ velocity     The maximum allowable velocity for the movement
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_reverse
+-----------------
+
+::
+
+  int32_t motor_set_reverse ( int port,
+                              bool reverse )
+
+Sets the reverse flag for the motor.
+
+This will invert its movements and the values returned for its position.
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ reverse      ``1`` reverses the motor, ``0`` is default
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_velocity
+------------------
+
+::
+
+  int32_t motor_set_velocity ( int port,
+                               int16_t velocity )
+
+Sets the velocity for the motor from -128 to 127.
+
+This velocity corresponds to different actual speeds depending on the gearset
+used for the motor. The velocity is held with PID to ensure consistent speed,
+as opposed to setting the motor's voltage.
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ velocity     The new motor velocity from -128 to 127
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_voltage
+-----------------
+
+::
+
+  int32_t motor_set_voltage ( int port,
+                              int16_t voltage )
+
+Sets the voltage for the motor from -128 to 127.
+
+This voltage is controlled by PWM, and does not immediately correspond to
+the value returned by `motor_get_voltage`_ (which is in Volts)
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ voltage      The new PWM value from -128 to 127
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+motor_set_voltage_limit
+-----------------------
+
+::
+
+  int32_t motor_set_voltage_limit ( int port,
+                                    int32_t limit )
+
+Sets the voltage limit for the motor in Volts.
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ limit        The new voltage limit in Volts
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
 Macros
 ======
+
+None.
 
 Enumerated Values
 =================
 
 motor_brake_mode_e_t
------------------
+--------------------
 
 Indicates the current 'brake mode' of the motor.
 
@@ -423,3 +758,5 @@ Indicates the internal gearing used by the motor.
 
 Typedefs
 ========
+
+None.
