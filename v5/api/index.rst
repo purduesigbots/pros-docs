@@ -10,6 +10,7 @@ This document covers the main PROS API, which is completely sufficient for most 
    rtos
    misc
    llemu
+   motors
 
 For additional RTOS-related features, check out the `Extended API </extended/api.html>`_. Be warned, these features
 are intended for advanced users only and may be very complex to use.
