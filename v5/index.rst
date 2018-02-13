@@ -38,6 +38,14 @@ PROS: Documentation Home
    :hidden:
    :maxdepth: -1
    :glob:
+   :caption: CLI
+
+   ./cli/index
+
+.. toctree::
+   :hidden:
+   :maxdepth: -1
+   :glob:
    :caption: Extended
 
    ./extended/index
