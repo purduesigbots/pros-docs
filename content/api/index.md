@@ -1755,10 +1755,10 @@ Bit mask for usartInit() for 1 stop bit (typical)
 ### #define 	SERIAL_STOPBITS_2   0x2000
 Bit mask for usartInit() for 2 stop bits.
 
-### #define 	stdin   ((FILE \*)3)
+### #define 	stdin   ((PROS_FILE \*)3)
 The standard input stream uses the PC debug terminal.
 
-### #define 	stdout   ((FILE \*)3)
+### #define 	stdout   ((PROS_FILE \*)3)
 The standard output stream uses the PC debug terminal.
 
 ### #define 	TASK_DEAD   0
@@ -1818,10 +1818,10 @@ Constant returned from taskGetState() when the task is delayed or blocked waitin
 ### #define 	TASK_SUSPENDED   4
 Constant returned from taskGetState() when the task is suspended using taskSuspend().
 
-### #define 	uart1   ((FILE \*)1)
+### #define 	uart1   ((PROS_FILE \*)1)
 UART 1 on the Cortex; must be opened first using usartInit().
 
-### #define 	uart2   ((FILE \*)2)
+### #define 	uart2   ((PROS_FILE \*)2)
 UART 2 on the Cortex; must be opened first using usartInit().
 
 ### #define   ULTRA_BAD_RESPONSE   -1
