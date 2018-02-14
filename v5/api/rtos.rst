@@ -94,74 +94,6 @@ See :doc:`../tutorials/multitasking` for details.
 is returned, then ``errno`` is set with a hint about why the the mutex
 couldn't be taken.
 
-sem_create
-----------
-
-::
-
-  sem_t sem_create ( uint32_t max_count,
-                     uint32_t init_count )
-
-Creates a counting semaphore.
-
-See :doc:`../tutorials/multitasking` for details.
-
-+------------+-------------------------------------------------------+
-| Parameters |                                                       |
-+============+=======================================================+
-| max_count  | The maximum count value that can be reached           |
-+------------+-------------------------------------------------------+
-| init_count | The initial count value assigned to the new semaphore |
-+------------+-------------------------------------------------------+
-
-**Returns:** A newly created semaphore. If an error occurred, NULL will be
-returned and ``errno`` can be checked for hints as to why `sem_create`_ failed.
-
-sem_post
---------
-
-::
-
-  bool sem_post ( sem_t sem )
-
-Increments a semaphore's value.
-
-See :doc:`../tutorials/multitasking` for details.
-
-+------------+---------------------------------+
-| Parameters |                                 |
-+============+=================================+
-| sem        | The semaphore to post.          |
-+------------+---------------------------------+
-
-**Returns:** True if the value was incremented, false otherwise. If false is
-returned, then ``errno`` is set with a hint about why the semaphore
-couldn't be taken.
-
-sem_wait
---------
-
-::
-
-  bool sem_wait ( sem_t sem,
-                    uint32_t timeout )
-
-Waits for the semaphore's value to be greater than 0. If the value is already
-greater than 0, this function immediately returns.
-
-See :doc:`../tutorials/multitasking` for details.
-
-============= =========================================================================================================================================================
- Parameters
-============= =========================================================================================================================================================
- sem           The semaphore to wait on.
- timeout       Time to wait before the semaphore's becomes available. A timeout of 0 can be used to poll the sempahore. TIMEOUT_MAX can be used to block indefinitely.
-============= =========================================================================================================================================================
-
-**Returns:** True if the semaphore was successfully taken, false otherwise.
-If false is returned, then errno is set with a hint about why the
-sempahore couldn't be taken.
-
 task_create
 -----------
 
@@ -624,15 +556,6 @@ task_fn_t
   typedef void (*task_fn_t)(void*);
 
 Points to the function associated with a task.
-
-sem_t
------
-
-::
-
-  typedef void* sem_t;
-
-A `semaphore <../tutorials/multitasking>`_.
 
 mutex_t
 -------
