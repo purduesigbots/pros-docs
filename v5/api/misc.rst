@@ -10,7 +10,7 @@ competition_get_status
 
 ::
 
-  uint8_t competition_get_status ( )
+  uint8_t competition_get_status ( void )
 
 **Returns:** The competition control status as a mask of bits with
 COMPETITION_{ENABLED,AUTONOMOUS,CONNECTED}.
@@ -20,7 +20,7 @@ competition_is_disabled
 
 ::
 
-  bool competition_is_disabled ( )
+  bool competition_is_disabled ( void )
 
 **Returns:** True if the V5 Brain is disabled, false otherwise.
 
@@ -29,7 +29,7 @@ competition_is_connected
 
 ::
 
-  bool competition_is_connected ( )
+  bool competition_is_connected ( void )
 
 **Returns:** True if the V5 Brain is connected to competition control, false otherwise.
 
@@ -38,7 +38,7 @@ competition_is_autonomous
 
 ::
 
-  bool competition_is_autonomous ( )
+  bool competition_is_autonomous ( void )
 
 **Returns:** True if the V5 Brain is in autonomous mode, false otherwise.
 

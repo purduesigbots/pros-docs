@@ -29,7 +29,7 @@ millis
 
 ::
 
-  uint32_t millis ( )
+  uint32_t millis ( void )
 
 **Returns:** Returns the number of milliseconds since PROS initialized.
 
@@ -38,7 +38,7 @@ mutex_create
 
 ::
 
-  mutex_t mutex_create ( )
+  mutex_t mutex_create ( void )
 
 Creates a mutex.
 
@@ -209,7 +209,7 @@ task_get_count
 
 ::
 
-  uint32_t task_get_count ( )
+  uint32_t task_get_count ( void )
 
 Returns the number of tasks the kernel is currently managing, including all
 ready, blocked, or suspended tasks. A task that has been deleted, but not yet
