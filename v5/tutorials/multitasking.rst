@@ -68,17 +68,24 @@ Tasks in PROS are simple to create:
                 printf("Hello %s\n", (char*)param);
             }
             void initialize() {
-                task_t my_task = task_create(my_task_fn, TASK_DEFAULT_STACK_SIZE, "PROS", TASK_PRIORITY_DEFAULT);
+                TaskHandle my_task = taskCreate(my_task_fn, TASK_DEFAULT_STACK_SIZE, "PROS", TASK_PRIORITY_DEFAULT);
             }
 
 The :code:`task_create` function takes in a function where the task starts, an argument to the function,
-a priority for the task, and two new fields not yet discussed: stack size and name. Stack size describes
-the amount of stack space that is allocated for the task. The stack is an area for your program to store
-variables, return addresses for functions, and more. Real-time operating systems like PROS work in
-limited-memory situations and do not allow for a dynamically resizable stack. Most tasks should opt to
-use :code:`TASK_STACK_DEPTH_DEFAULT`, which should provide ample stack space for the task. Very rudimentary
-and simple tasks (e.g. not many nested functions, no floating point context, few variables, only C) may be
-able to use :code:`TASK_STACK_DEPTH_MIN`.
+a priority for the task, and two new fields not yet discussed: stack size and name. 
+
+Stack size describes the amount of stack space that is allocated for the task. The stack is an area for your 
+program to store variables, return addresses for functions, and more. Real-time operating systems like PROS work 
+in limited-memory situations and do not allow for a dynamically resizable stack. Modern desktop operating systems
+do not need to worry about stack space as much as you would in a RTOS. The good news is tha most tasks should
+opt to use :code:`TASK_STACK_DEPTH_DEFAULT`, which should provide ample stack space for nearly any task. Very 
+rudimentary and simple tasks (e.g. not many nested functions, no floating point context, few variables, only C) 
+may be able to use :code:`TASK_STACK_DEPTH_MIN`.
+
+The last parameter is the task name. The task name allows you to give a task a human-friendly name for the task. It 
+is primarly for debugging purposes and allows you (the human) to easily identify tasks if performing advanced task 
+management. Task names may be up to 32 characters long, and you may pass NULL or an empty string into the function. 
+In API2, :code:`taskCreate` will automatically make the task name the name of the function passed in.
 
 Synchronization
 ===============
@@ -86,25 +93,35 @@ Synchronization
 One problem which one often runs into when dealing with tasks is the
 problem of synchronization. If two tasks try to read the same sensor or
 control the same motor at the same time, unexpected behavior may occur
-since two tasks are trying to read/write to the same piece of data.
+since two tasks are trying to write to the same piece of data or variable 
+(i.e. `race conditions<https://en.wikipedia.org/wiki/Race_condition#Software>`_).
+The concept of writing code which has protections against race conditions
+is called thread safety. There are many different ways to implement thread safety,
+and PROS has several facilities to help maintain thread safety.
 
-Tasks can be designed to never conflict over motors or sensors:
-(division of responsibility)
+The simplest way to ensure thread safety is to design tasks which will never access 
+the same variables or data. You may design your code to have each subsystem of your
+robot in its own task. Ensuring that tasks never write to the same variables is called
+division of responsibility or separation of domain.
 
 .. code:: c
 
+    int task1_variable = 0;
     void Task1(void * ignore) {
-      // update motors 2 and 4
+        // do things
+        task1_variable = 4;
     }
 
     void Task2(void * ignore) {
-      // update motors 5 and 6
+      // do things 
+      // I can read task1_variable, but NOT write to it
+      printf("%d\n", task1_variable);
     }
 
 Sometimes this is impossible: suppose you wanted to write a PID
 controller on its own task and you wanted to change the target of the
-controller. PROS features two types of synchronization structures,
-*mutexes* and *semaphores* that can be used to coordinate tasks.
+PID controller. PROS features two types of synchronization structures,
+*mutexes* and *notifications* that can be used to coordinate tasks.
 
 Mutexes
 -------
@@ -125,23 +142,39 @@ the mutex) before they may continue.
     // Release the mutex for other tasks
     mutex_give(mutex);
 
-Semaphores
-----------
+Mutexes do not magically prevent concurrent writing, but provide the ability for tasks to
+create "contracts" with each other. You can write your code such that a variable is never
+written to unless the task owns a mutex designated for that variable.
 
-Semaphores are like signals - one task can take a semaphore to wait for
-a coordination signal from another task which gives the semaphore.
-Multiple tasks may wait for a semaphore; if this is the case, the
-highest priority task will continue per signal given.
+Notifications
+-------------
+Task notifications are a powerful new feature in PROS 3 which allows direct-to-task 
+synchronization. Each task has a 32-bit notification value. Each task can block on its own
+notification (wait for it to become non-zero) and any task can update the notification value.
+Task notifications have a broad range of applications, are simple to use, and have significant
+memory and speed advantages when compared to traditional semaphore-based synchronization 
+mechanisms.
 
-.. code:: c
+The simplest application of task notifications does not care about the task notification value:
 
-    // Create a semaphore
-    sem_t semaphore = sem_create();
+.. tabs ::
+    .. tab :: C
+        .. highlight:: c
+        ::
+            void my_task_fn(void* ign) {
+                while(task_notify_take(true, TIMEOUT_MAX)) {
+                    puts("I was unblocked!");
+                }
+            }
+            void opcontrol() {
+                task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                                             TASK_STACK_DEPTH_DEFAULT, "Notify me! Task");
+                while(true) {
+                    if(controller_get_digital(CONTROLLER_MASTER, DIGITAL_L1)) {
+                        task_notify(my_task);
+                    }
+                }
+            }
 
-    // Waits for the semaphore to be signaled
-    // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
-    // If the timeout expires, "false" will be returned, otherwise "true"
-    sem_take(semaphore);
-    // do something
-    // Signal the semaphore
-    sem_give(semaphore);
+
+
