@@ -25,7 +25,7 @@ while(analogRead(POTENTIOMETER_PORT) < 4095)
 ```
 
 ## Line Tracker
-VEX Line Trackers operate by measuring the amount of light reflected to the sensor and determining the existence of lines from the difference in light reflected by the white tape and the dark tiles. The Line Trackers return a value between 0 and 405, with 0 being the lightest reading and 4095 the darkest. It is recommended that Line Trackers be calibrated to account for changes in ambient light.
+VEX Line Trackers operate by measuring the amount of light reflected to the sensor and determining the existence of lines from the difference in light reflected by the white tape and the dark tiles. The Line Trackers return a value between 0 and 4095, with 0 being the lightest reading and 4095 the darkest. It is recommended that Line Trackers be calibrated to account for changes in ambient light.
 
 An example of Line Tracker use:
 
