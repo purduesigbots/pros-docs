@@ -62,7 +62,7 @@ Gets the value of an analog channel (joystick) on a controller.
               `ANALOG_RIGHT_X <controller_analog_e_t>`_, `ANALOG_RIGHT_Y <controller_analog_e_t>`_
 ============ ======================================================================================================
 
-**Returns:** Returns the current reading of the analog channel: [-127, 127].
+**Returns:** The current reading of the analog channel: [-127, 127].
 If the controller was not connected, then 0 is returned
 
 controller_get_digital
@@ -81,7 +81,7 @@ controller_get_digital
  button       The button to read. Must be one of `DIGITAL_{RIGHT,DOWN,LEFT,UP,A,B,Y,X,R1,R2,L1,L2} <controller_digital_e_t>`_
 ============ =================================================================================================================
 
-*Returns:** 1 if the button on the controller is pressed.
+**Returns:** 1 if the button on the controller is pressed.
 If the controller was not connected, then 0 is returned
 
 controller_is_connected
