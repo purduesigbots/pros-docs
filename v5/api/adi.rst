@@ -171,11 +171,9 @@ Initializes and enables a quadrature encoder on two ADI ports.
 
 ::
 
-	adi_encoder_t adi_encoder_init ( int port_top,
-	                                 int port_bottom,
-																	 bool reverse )
-
-// ^ Fix this!!
+  adi_encoder_t adi_encoder_init ( int port_top,
+                                   int port_bottom,
+                                   bool reverse )
 
 ============ ====================================================================================================================================
  Parameters
