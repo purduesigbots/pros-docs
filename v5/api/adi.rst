@@ -19,6 +19,12 @@ the difference between this value and the current sensor value when called.
 Do not use this function when the sensor value might be unstable
 (gyro rotation, accelerometer movement).
 
+.. note::
+   The ADI currently returns data at 50ms intervals, despite the calibrate function's
+   1ms sample rate. This sample rate was kept for the sake of being similar to PROS
+   2, and increasing the sample rate would not have a tangible difference in the
+   function's performance.
+
 ::
 
 	int32_t adi_analog_calibrate ( int port )
@@ -26,7 +32,7 @@ Do not use this function when the sensor value might be unstable
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to calibrate
 ============ =================================================================================================================
 
 **Returns:** The average sensor value computed by this function.
@@ -48,7 +54,7 @@ meaning of the returned value varies depending on the sensor attached.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
 ============ =================================================================================================================
 
 **Returns:** The analog sensor value, where a value of 0 reflects an input voltage of nearly 0 V
@@ -70,7 +76,7 @@ causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
 ============ =================================================================================================================
 
 **Returns:** The difference of the sensor value from its calibrated default from -4095 to 4095.
@@ -95,7 +101,7 @@ in the wash when integrated over time. Think of the value as the true value time
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
 ============ =================================================================================================================
 
 **Returns:** The difference of the sensor value from its calibrated default from -16384 to 16384.
@@ -117,7 +123,7 @@ Communications interface. This function is `Wiring-compatible <https://www.ardui
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
 ============ =================================================================================================================
 
 **Returns:** True if the pin is `HIGH`_, or false if it is `LOW`_.
@@ -138,7 +144,7 @@ If the pin is configured as some other mode, behavior is undefined. This functio
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to write to
  value        an expression evaluating to "true" or "false" to set the output to HIGH or LOW
               respectively, or the constants HIGH or LOW themselves
 ============ =================================================================================================================
@@ -200,7 +206,7 @@ method before stopping or starting an encoder.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- enc          the `adi_encoder_t`_ object from `adi_encoder_init`_ to read, or simply the ADI port number
+ enc          the `adi_encoder_t`_ object from `adi_encoder_init`_ to reset or simply the ADI port number
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
@@ -217,7 +223,7 @@ Stops and disables the encoder.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- enc          the `adi_encoder_t`_ object from `adi_encoder_init`_ to read, or simply the ADI port number
+ enc          the `adi_encoder_t`_ object from `adi_encoder_init`_ to shut down, or simply the ADI port number
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
@@ -235,7 +241,7 @@ Sets the speed of the motor on the given port.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to set
  speed        the new signed speed; -127 is full reverse and 127 is full forward, with 0 being off
 ============ =================================================================================================================
 
@@ -253,7 +259,7 @@ Returns the last set speed of the motor on the given port.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to get
 ============ =================================================================================================================
 
 **Returns:** The last set speed of the motor on the given port.
@@ -270,7 +276,7 @@ Stops the motor on the given port.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to stop
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
@@ -306,7 +312,7 @@ Returns the configuration for the given ADI port.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to get
 ============ =================================================================================================================
 
 **Returns:** The `adi_port_config_e_t` set for the port.
@@ -382,7 +388,7 @@ Stops and disables the ultrasonic sensor.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- ult          the `adi_ultrasonic_t`_ object from `adi_ultrasonic_init`_ to read, or simply the ADI port number
+ ult          the `adi_ultrasonic_t`_ object from `adi_ultrasonic_init`_ to shut down, or simply the ADI port number
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
@@ -399,7 +405,7 @@ Returns the value for the given ADI port.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
 ============ =================================================================================================================
 
 **Returns:** The value for the given ADI port.
@@ -420,7 +426,7 @@ depending on the configuration of the port
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to set
  value        The value to set the ADI port to
 ============ =================================================================================================================
 
