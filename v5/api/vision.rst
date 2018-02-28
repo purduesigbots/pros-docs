@@ -206,6 +206,7 @@ Sets the exposure parameter of the Vision Sensor.
 ============ ==============================
  port         The V5 port number from 1-21
  percent      The new exposure percentage
+              from [0,100]
 ============ ==============================
 
 **Returns:** 0 if no errors occurred, PROS_ERR otherwise
