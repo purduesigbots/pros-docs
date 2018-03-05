@@ -84,6 +84,35 @@ controller_get_digital
 **Returns:** 1 if the button on the controller is pressed.
 If the controller was not connected, then 0 is returned
 
+controller_get_digital_new_press
+--------------------------------
+
+Returns a rising-edge case for a controller button press.
+
+This function is not thread-safe.
+Multiple tasks polling a single button may return different results under the
+same circumstances, so only one task should call this function for any given
+button. E.g., Task A calls this function for buttons 1 and 2. Task B may call
+this function for button 3, but should not for buttons 1 or 2. A typical
+use-case for this function is to call inside opcontrol to detect new button
+presses, and not in any other tasks.
+
+::
+
+ int32_t controller_get_digital_new_press ( controller_id_e_t id,
+                                            controller_digital_e_t button )
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ id           The ID of the controller (e.g. the master or partner controller).
+              Must be one of `CONTROLLER_MASTER <controller_id_e_t>`_ or `CONTROLLER_PARTNER <controller_id_e_t>`_
+ button       The button to read. Must be one of `DIGITAL_{RIGHT,DOWN,LEFT,UP,A,B,Y,X,R1,R2,L1,L2} <controller_digital_e_t>`_
+============ =================================================================================================================
+
+**Returns:** 1 if the button on the controller is pressed and had not been pressed
+the last time this function was called, 0 otherwise.
+
 controller_is_connected
 -----------------------
 

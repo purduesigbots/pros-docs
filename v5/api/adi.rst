@@ -106,6 +106,32 @@ in the wash when integrated over time. Think of the value as the true value time
 
 **Returns:** The difference of the sensor value from its calibrated default from -16384 to 16384.
 
+adi_digital_get_new_press
+-------------------------
+
+Returns a rising-edge case for a digital button press.
+
+This function is not thread-safe.
+Multiple tasks polling a single button may return different results under the
+same circumstances, so only one task should call this function for any given
+button. E.g., Task A calls this function for buttons 1 and 2. Task B may call
+this function for button 3, but should not for buttons 1 or 2. A typical
+use-case for this function is to call inside opcontrol to detect new button
+presses, and not in any other tasks.
+
+::
+
+  int32_t adi_digital_get_new_press ( uint8_t port )
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
+============ =================================================================================================================
+
+**Returns:** 1 if the button on the controller is pressed and had not been pressed
+the last time this function was called, 0 otherwise.
+
 adi_digital_read
 ----------------
 
