@@ -27,7 +27,7 @@ Do not use this function when the sensor value might be unstable
 
 ::
 
-	int32_t adi_analog_calibrate ( int port )
+	int32_t adi_analog_calibrate ( uint8_t port )
 
 ============ =================================================================================================================
  Parameters
@@ -42,7 +42,7 @@ adi_analog_read
 
 ::
 
-	int32_t adi_analog_read ( int port )
+	int32_t adi_analog_read ( uint8_t port )
 
 Reads an analog input channel and returns the 12-bit value.
 
@@ -71,7 +71,7 @@ causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 
 ::
 
-	int32_t adi_analog_read_calibrated ( int port )
+	int32_t adi_analog_read_calibrated ( uint8_t port )
 
 ============ =================================================================================================================
  Parameters
@@ -96,7 +96,7 @@ in the wash when integrated over time. Think of the value as the true value time
 
 ::
 
-	int32_t adi_analog_read_calibrated_HR ( int port )
+	int32_t adi_analog_read_calibrated_HR ( uint8_t port )
 
 ============ =================================================================================================================
  Parameters
@@ -118,7 +118,7 @@ Communications interface. This function is `Wiring-compatible <https://www.ardui
 
 ::
 
-	int32_t adi_digital_read ( int port )
+	int32_t adi_digital_read ( uint8_t port )
 
 ============ =================================================================================================================
  Parameters
@@ -138,8 +138,8 @@ If the pin is configured as some other mode, behavior is undefined. This functio
 
 ::
 
-	int32_t adi_digital_write ( int port,
-	                            bool value )
+	int32_t adi_digital_write ( uint8_t port,
+	                            const bool value )
 
 ============ =================================================================================================================
  Parameters
@@ -177,9 +177,9 @@ Initializes and enables a quadrature encoder on two ADI ports.
 
 ::
 
-  adi_encoder_t adi_encoder_init ( int port_top,
-                                   int port_bottom,
-                                   bool reverse )
+  adi_encoder_t adi_encoder_init ( uint8_t port_top,
+                                   uint8_t port_bottom,
+                                   const bool reverse )
 
 ============ ====================================================================================================================================
  Parameters
@@ -235,8 +235,8 @@ Sets the speed of the motor on the given port.
 
 ::
 
-	int32_t adi_motor_set ( int port,
-	                        int speed )
+	int32_t adi_motor_set ( uint8_t port,
+	                        const int8_t speed )
 
 ============ =================================================================================================================
  Parameters
@@ -254,7 +254,7 @@ Returns the last set speed of the motor on the given port.
 
 ::
 
-	int32_t adi_motor_get ( int port )
+	int32_t adi_motor_get ( uint8_t port )
 
 ============ =================================================================================================================
  Parameters
@@ -271,7 +271,7 @@ Stops the motor on the given port.
 
 ::
 
-	int32_t adi_motor_stop ( int port )
+	int32_t adi_motor_stop ( uint8_t port )
 
 ============ =================================================================================================================
  Parameters
@@ -288,8 +288,8 @@ Configures the pin as an input or output with a variety of settings.
 
 ::
 
-	int32_t adi_pin_mode ( int port,
-	                       unsigned char mode )
+	int32_t adi_pin_mode ( uint8_t port,
+	                       const unsigned char mode )
 
 ============ =================================================================================================================
  Parameters
@@ -307,7 +307,7 @@ Returns the configuration for the given ADI port.
 
 ::
 
-	adi_port_config_e_t adi_port_config_get ( int port )
+	adi_port_config_e_t adi_port_config_get ( uint8_t port )
 
 ============ =================================================================================================================
  Parameters
@@ -324,7 +324,7 @@ Configures an ADI port to act as a given sensor type.
 
 ::
 
-	int32_t adi_port_config_set ( int port,
+	int32_t adi_port_config_set ( uint8_t port,
 	                              adi_port_config_e_t type )
 
 ============ =================================================================================================================
@@ -364,8 +364,8 @@ Initializes an ultrasonic sensor on the specified ADI ports.
 
 ::
 
-	adi_ultrasonic_t adi_ultrasonic_init ( int port_echo,
-	                                       int port_ping )
+	adi_ultrasonic_t adi_ultrasonic_init ( uint8_t port_echo,
+	                                       uint8_t port_ping )
 
 ============ =============================================================================================================
  Parameters
@@ -400,7 +400,7 @@ Returns the value for the given ADI port.
 
 ::
 
-	int32_t adi_value_get ( int port )
+	int32_t adi_value_get ( uint8_t port )
 
 ============ =================================================================================================================
  Parameters
@@ -420,7 +420,7 @@ depending on the configuration of the port
 
 ::
 
-	int32_t adi_value_set ( int port,
+	int32_t adi_value_set ( uint8_t port,
 	                        int32_t value )
 
 ============ =================================================================================================================

@@ -443,10 +443,7 @@ Default tasks such as autonomous() inherit this priority.
 TASK_PRIORITY_MAX
 -----------------
 
-The highest priority that can be assigned to a task.
-
-Unlike the lowest priority, this priority can be safely used without
-hampering interrupts. Beware of deadlock.
+The highest priority that can be assigned to a task. Beware of deadlock.
 
 **Value:** ``16``
 

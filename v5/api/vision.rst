@@ -10,7 +10,7 @@ vision_get_object_count
 
 ::
 
-  int32_t vision_get_object_count ( const int32_t port )
+  int32_t vision_get_object_count (  uint8_t port )
 
 Returns the number of objects currently detected by the Vision Sensor.
 
@@ -28,7 +28,7 @@ vision_read_object
 
 ::
 
-  int32_t vision_read_object ( const int32_t port,
+  int32_t vision_read_object (  uint8_t port,
                                const uint32_t object_id,
                                vision_object_s_t* object_ptr )
 
@@ -51,7 +51,7 @@ vision_read_objects
 
 ::
 
-  int32_t vision_read_objects ( const int32_t port,
+  int32_t vision_read_objects (  uint8_t port,
                                 const uint32_t object_count,
                                 vision_object_s_t* object_arr )
 
@@ -74,7 +74,7 @@ vision_get_object
 
 ::
 
-  vision_object_s_t vision_get_object ( const int32_t port,
+  vision_object_s_t vision_get_object (  uint8_t port,
                                         const uint32_t object_id )
 
 Returns the object descriptor at ``object_id``.
@@ -99,7 +99,7 @@ vision_read_signature
 
 ::
 
-  int32_t vision_read_signature ( const int32_t port,
+  int32_t vision_read_signature (  uint8_t port,
                                   const uint8_t signature_id,
                                   vision_signature_s_t* signature_ptr )
 
@@ -120,7 +120,7 @@ vision_save_signature
 
 ::
 
-  int32_t vision_save_signature ( const int32_t port,
+  int32_t vision_save_signature (  uint8_t port,
                                   const uint8_t signature_id,
                                   vision_signature_s_t* signature_ptr )
 
@@ -141,7 +141,7 @@ vision_clear_led
 
 ::
 
-  int32_t vision_clear_led ( const int32_t port )
+  int32_t vision_clear_led (  uint8_t port )
 
 Clears the vision sensor LED color, reseting it back to its default behavior,
 displaying the most prominent object signature color.
@@ -159,7 +159,7 @@ vision_set_led
 
 ::
 
-  int32_t vision_set_led ( const int32_t port,
+  int32_t vision_set_led (  uint8_t port,
                            const int32_t rgb )
 
 Sets the vision sensor LED color, overriding the automatic behavior.
@@ -178,7 +178,7 @@ vision_get_exposure
 
 ::
 
-  int32_t vision_get_exposure ( const int32_t port )
+  int32_t vision_get_exposure (  uint8_t port )
 
 Gets the exposure parameter of the Vision Sensor.
 
@@ -196,7 +196,7 @@ vision_set_exposure
 
 ::
 
-  int32_t vision_set_exposure ( const int32_t port,
+  int32_t vision_set_exposure (  uint8_t port,
                                 const uint8_t percent )
 
 Sets the exposure parameter of the Vision Sensor.
@@ -216,7 +216,7 @@ vision_set_auto_white_balance
 
 ::
 
-  int32_t vision_set_auto_white_balance ( const int32_t port,
+  int32_t vision_set_auto_white_balance (  uint8_t port,
                                           const uint8_t enable )
 
 Enable/disable auto white-balancing on the Vision Sensor.
@@ -235,7 +235,7 @@ vision_set_white_balance
 
 ::
 
-  int32_t vision_set_white_balance ( const int32_t port,
+  int32_t vision_set_white_balance (  uint8_t port,
                                      const int32_t rgb )
 
 
@@ -257,7 +257,7 @@ vision_get_white_balance
 
 ::
 
-  int32_t vision_get_white_balance ( const int32_t port )
+  int32_t vision_get_white_balance (  uint8_t port )
 
 Gets the white balance parameter of the Vision Sensor.
 
