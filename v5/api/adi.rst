@@ -25,9 +25,18 @@ Do not use this function when the sensor value might be unstable
    2, and increasing the sample rate would not have a tangible difference in the
    function's performance.
 
-::
+.. tabs ::
+   .. tab :: C
+      .. highlight:: c
+      ::
 
-	int32_t adi_analog_calibrate ( uint8_t port )
+         int32_t adi_analog_calibrate ( uint8_t port )
+
+   .. tab :: C++
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::ADIAnalogIn::calibrate ( )
 
 ============ =================================================================================================================
  Parameters
@@ -40,16 +49,25 @@ Do not use this function when the sensor value might be unstable
 adi_analog_read
 ---------------
 
-::
-
-	int32_t adi_analog_read ( uint8_t port )
-
 Reads an analog input channel and returns the 12-bit value.
 
 The value returned is undefined if the analog pin has been switched to a different mode.
 This function is `Wiring-compatible <https://www.arduino.cc/en/Reference/Wire>`_
 with the exception of the larger output range. The
 meaning of the returned value varies depending on the sensor attached.
+
+.. tabs ::
+   .. tab :: C
+      .. highlight:: c
+      ::
+
+         int32_t adi_analog_read ( uint8_t port )
+
+   .. tab :: C++
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::ADIAnalogIn::value_get ( )
 
 ============ =================================================================================================================
  Parameters
@@ -69,9 +87,18 @@ The `adi_analog_calibrate`_ function must be run first on that channel. This fun
 inappropriate for sensor values intended for integration, as round-off error can accumulate
 causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 
-::
+.. tabs ::
+   .. tab :: C
+      .. highlight:: c
+      ::
 
-	int32_t adi_analog_read_calibrated ( uint8_t port )
+         int32_t adi_analog_read_calibrated ( uint8_t port )
+
+   .. tab :: C++
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::ADIAnalogIn::value_get_calibrated ( )
 
 ============ =================================================================================================================
  Parameters
@@ -94,9 +121,19 @@ The value returned actually has 16 bits of "precision", even though the ADC only
 12 bits, so that errors induced by the average value being between two values come out
 in the wash when integrated over time. Think of the value as the true value times 16.
 
-::
+.. tabs ::
+   .. tab :: C
+      .. highlight:: c
+      ::
 
-	int32_t adi_analog_read_calibrated_HR ( uint8_t port )
+         int32_t adi_analog_read_calibrated_HR ( uint8_t port )
+
+   .. tab :: C++
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::ADIAnalogIn::value_get_calibrated_HR ( )
+
 
 ============ =================================================================================================================
  Parameters
@@ -119,9 +156,18 @@ this function for button 3, but should not for buttons 1 or 2. A typical
 use-case for this function is to call inside opcontrol to detect new button
 presses, and not in any other tasks.
 
-::
+.. tabs ::
+   .. tab :: C
+      .. highlight:: c
+      ::
 
-  int32_t adi_digital_get_new_press ( uint8_t port )
+         int32_t adi_digital_get_new_press ( uint8_t port )
+
+   .. tab :: C++
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::ADIDigitalIn::get_new_press ( )
 
 ============ =================================================================================================================
  Parameters
@@ -142,9 +188,18 @@ state of the pin is returned, which may or may not differ from the currently set
 return value is undefined for pins configured as Analog inputs, or for ports in use by a
 Communications interface. This function is `Wiring-compatible <https://www.arduino.cc/en/Reference/Wire>`_.
 
-::
+.. tabs ::
+   .. tab :: C
+      .. highlight:: c
+      ::
 
-	int32_t adi_digital_read ( uint8_t port )
+         int32_t adi_digital_read ( uint8_t port )
+
+   .. tab :: C++
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::ADIDigitalIn::value_get ( )
 
 ============ =================================================================================================================
  Parameters
@@ -162,10 +217,19 @@ Sets the digital value (1 or 0) of a pin configured as a digital output.
 If the pin is configured as some other mode, behavior is undefined. This function is
 `Wiring-compatible <https://www.arduino.cc/en/Reference/Wire>`_.
 
-::
+.. tabs ::
+   .. tab :: C
+      .. highlight:: c
+      ::
 
-	int32_t adi_digital_write ( uint8_t port,
-	                            const bool value )
+        int32_t adi_digital_write ( uint8_t port,
+                                    const bool value )
+
+   .. tab :: C++
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::ADIDigitalOut::value_set ( int32_t value )
 
 ============ =================================================================================================================
  Parameters
@@ -184,9 +248,19 @@ Gets the number of ticks recorded by the encoder.
 
 There are 360 ticks in one revolution.
 
-::
+.. tabs ::
+   .. tab :: C
+      .. highlight:: c
+      ::
 
-	int32_t adi_encoder_get ( adi_encoder_t enc )
+        int32_t adi_encoder_get ( adi_encoder_t enc )
+
+   .. tab :: C++
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::ADIEncoder::value_get ( )
+
 
 ============ =================================================================================================================
  Parameters
@@ -201,11 +275,26 @@ adi_encoder_init
 
 Initializes and enables a quadrature encoder on two ADI ports.
 
-::
+.. tabs ::
+   .. tab :: C
+      .. highlight:: c
+      ::
 
-  adi_encoder_t adi_encoder_init ( uint8_t port_top,
-                                   uint8_t port_bottom,
-                                   const bool reverse )
+        adi_encoder_t adi_encoder_init ( uint8_t port_top,
+                                         uint8_t port_bottom,
+                                         const bool reverse )
+
+   .. tab :: C++
+      .. highlight:: cpp
+      ::
+
+        ADIEncoder::ADIEncoder ( uint8_t port_top,
+                                 uint8_t port_bottom,
+                                 const bool reverse )
+
+        ADIEncoder::ADIEncoder ( uint8_t port_top,
+                                 uint8_t port_bottom )
+
 
 ============ ====================================================================================================================================
  Parameters
