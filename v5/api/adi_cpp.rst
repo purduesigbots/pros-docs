@@ -228,6 +228,28 @@ stop
 
 Analogous to `adi_motor_stop <./adi_c.html#adi-motor-stop>`_.
 
+value_get
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIMotor::value_get ( ) const
+
+Inherited from `ADIPort::value_get <value_get_>`_.
+
+Analogous to `adi_motor_get <./adi_c.html#adi-motor-get>`_.
+
+value_set
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIMotor::value_set ( ) const
+
+Inherited from `ADIPort::value_set <value_set_>`_.
+
+Analogous to `adi_motor_set <./adi_c.html#adi-motor-set>`_.
+
 ADIPort
 =======
 
@@ -299,3 +321,35 @@ value_get
   int32_t value_get() const;
 
 Analogous to `adi_port_value_get <./adi_c.html#adi-port-value-get>`_.
+
+ADIUltrasonic
+=============
+
+Constructor(s)
+--------------
+
+::
+
+  pros::ADIUltrasonic::ADIUltrasonic ( uint8_t port_echo,
+                                       uint8_t port_ping )
+
+============ =============================================================================================================
+ Parameters
+============ =============================================================================================================
+ port_echo    the port connected to the yellow INPUT cable. This should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G').
+ port_ping    the port connected to the orange OUTPUT cable. This should be in the next highest port following port_echo.
+============ =============================================================================================================
+
+Methods
+-------
+
+value_get
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIUltrasonic::value_get ( ) const
+
+Inherited from `ADIPort::value_get <value_get_>`_.
+
+Analogous to `adi_ultrasonic_get <./adi_c.html#adi-ultrasonic-get>`_.
