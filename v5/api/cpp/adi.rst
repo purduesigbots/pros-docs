@@ -33,7 +33,7 @@ calibrate
 
   int32_t pros::ADIAnalogIn::calibrate ( ) const
 
-Analogous to `adi_analog_calibrate <./adi_c.html#adi-analog-calibrate>`_.
+Analogous to `adi_analog_calibrate <../c/adi.html#adi-analog-calibrate>`_.
 
 value_get
 ~~~~~~~~~
@@ -51,7 +51,7 @@ value_get_calibrated
 
   int32_t pros::ADIAnalogIn::value_get_calibrated ( ) const
 
-Analogous to `adi_analog_read_calibrated <./adi_c.html#adi_analog_read_calibrated>`_.
+Analogous to `adi_analog_read_calibrated <../c/adi.html#adi_analog_read_calibrated>`_.
 
 value_get_calibrated_HR
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -60,7 +60,7 @@ value_get_calibrated_HR
 
   int32_t pros::ADIAnalogIn::value_get_calibrated_HR ( ) const
 
-Analogous to `adi_analog_read_calibrated_HR <./adi_c.html#adi_analog_read_calibrated_HR>`_.
+Analogous to `adi_analog_read_calibrated_HR <../c/adi.html#adi_analog_read_calibrated_HR>`_.
 
 ADIAnalogOut
 ============
@@ -116,7 +116,7 @@ get_new_press
 
   int32_t pros::ADIDigitalIn::get_new_press() const
 
-Analogous to `adi_digital_get_new_press <./adi_c.html#adi-digital-get-new-press>`_.
+Analogous to `adi_digital_get_new_press <../c/adi.html#adi-digital-get-new-press>`_.
 
 value_get
 ~~~~~~~~~
@@ -187,7 +187,7 @@ reset
 
   int32_t pros::ADIEncoder::reset() const
 
-Analogous to `adi_encoder_reset <./adi_c.html#adi-encoder-reset>`_.
+Analogous to `adi_encoder_reset <../c/adi.html#adi-encoder-reset>`_.
 
 value_get
 ~~~~~~~~~
@@ -198,7 +198,7 @@ value_get
 
 Inherited from `ADIPort::value_get <value_get_>`_.
 
-Analogous to `adi_encoder_get <./adi_c.html#adi-encoder-get>`_.
+Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
 
 ADIMotor
 ========
@@ -226,7 +226,7 @@ stop
 
   int32_t pros::ADIMotor::stop ( ) const
 
-Analogous to `adi_motor_stop <./adi_c.html#adi-motor-stop>`_.
+Analogous to `adi_motor_stop <../c/adi.html#adi-motor-stop>`_.
 
 value_get
 ~~~~~~~~~
@@ -237,7 +237,7 @@ value_get
 
 Inherited from `ADIPort::value_get <value_get_>`_.
 
-Analogous to `adi_motor_get <./adi_c.html#adi-motor-get>`_.
+Analogous to `adi_motor_get <../c/adi.html#adi-motor-get>`_.
 
 value_set
 ~~~~~~~~~
@@ -248,7 +248,7 @@ value_set
 
 Inherited from `ADIPort::value_set <value_set_>`_.
 
-Analogous to `adi_motor_set <./adi_c.html#adi-motor-set>`_.
+Analogous to `adi_motor_set <../c/adi.html#adi-motor-set>`_.
 
 ADIPort
 =======
@@ -289,7 +289,7 @@ config_set
 
   int32_t config_set(adi_port_config_e_t type) const;
 
-Analogous to `adi_port_config_set <./adi_c.html#adi-port-config-set>`_.
+Analogous to `adi_port_config_set <../c/adi.html#adi-port-config-set>`_.
 
 config_get
 ~~~~~~~~~~
@@ -298,7 +298,7 @@ config_get
 
   int32_t config_get() const;
 
-Analogous to `adi_port_config_get <./adi_c.html#adi-port-config-get>`_.
+Analogous to `adi_port_config_get <../c/adi.html#adi-port-config-get>`_.
 
 .. _value_set:
 
@@ -309,7 +309,7 @@ value_set
 
   int32_t value_set() const;
 
-Analogous to `adi_port_value_set <./adi_c.html#adi-port-value-set>`_.
+Analogous to `adi_port_value_set <../c/adi.html#adi-port-value-set>`_.
 
 .. _value_get:
 
@@ -320,7 +320,7 @@ value_get
 
   int32_t value_get() const;
 
-Analogous to `adi_port_value_get <./adi_c.html#adi-port-value-get>`_.
+Analogous to `adi_port_value_get <../c/adi.html#adi-port-value-get>`_.
 
 ADIUltrasonic
 =============
@@ -352,4 +352,4 @@ value_get
 
 Inherited from `ADIPort::value_get <value_get_>`_.
 
-Analogous to `adi_ultrasonic_get <./adi_c.html#adi-ultrasonic-get>`_.
+Analogous to `adi_ultrasonic_get <../c/adi.html#adi-ultrasonic-get>`_.
