@@ -1,92 +1,6 @@
-=================
-ADI (TriPort) API
-=================
-
-Classes
-=======
-
-ADIAnalogIn
------------
-
-Constructor(s)
-~~~~~~~~~~~~~~
-
-::
-
-  pros::ADIAnalogIn::ADIAnalogIn ( uint8_t port )
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to calibrate
-============ =================================================================================================================
-
-Methods
-~~~~~~~
-
-::
-
-  int32_t pros::ADIAnalogIn::calibrate ( )
-
-Analogous to `adi_analog_calibrate`_.
-
-::
-
-  int32_t pros::ADIAnalogIn::value_get ( )
-
-Analogous to `adi_analog_read`_.
-
-ADIPort
--------
-
-Constructor(s)
-~~~~~~~~~~~~~~
-
-::
-
-  pros::ADIPort::ADIPort ( uint8_t port )
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to calibrate
-============ =================================================================================================================
-
-::
-
-  pros::ADIPort::ADIPort ( uint8_t port,
-                           adi_port_config_e_t type )
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
- type         The `configuration <adi_port_config_e_t>`_ type for the port
-============ =================================================================================================================
-
-
-Methods
-~~~~~~~
-
-* `config_set <adi_port_config_set>`_
-* `config_get <adi_port_config_get>`_
-* `value_set <adi_value_set>`_
-* `value_get <adi_value_get>`_
-
-ADIEncoder
-----------
-
-Constructor(s)
-~~~~~~~~~~~~~~
-
-::
-
-  ADIEncoder::ADIEncoder ( uint8_t port_top,
-                           uint8_t port_bottom,
-                           const bool reverse )
-
-  ADIEncoder::ADIEncoder ( uint8_t port_top,
-                           uint8_t port_bottom )
+====================
+ADI (TriPort) C API
+====================
 
 Functions
 =========
@@ -112,17 +26,24 @@ Do not use this function when the sensor value might be unstable
    function's performance.
 
 .. tabs ::
-   .. tab :: C
+   .. tab :: Prototype
       .. highlight:: c
       ::
 
          int32_t adi_analog_calibrate ( uint8_t port )
 
-   .. tab :: C++
-      .. highlight:: cpp
+   .. tab :: Example
+      .. highlight:: c
       ::
 
-        int32_t pros::ADIAnalogIn::calibrate ( )
+        #define ANALOG_SENSOR_PORT 1
+
+        void initialize() {
+          adi_analog_calibrate(ANALOG_SENSOR_PORT);
+          printf("Calibrated Reading: %d\n", adi_analog_read(ANALOG_SENSOR_PORT));
+          // All readings from then on will be calibrated
+        }
+
 
 ============ =================================================================================================================
  Parameters
@@ -143,30 +64,30 @@ with the exception of the larger output range. The
 meaning of the returned value varies depending on the sensor attached.
 
 .. tabs ::
-   .. tab :: C
+   .. tab :: Prototype
       .. highlight:: c
       ::
 
          int32_t adi_analog_read ( uint8_t port )
 
-   .. tab :: C++
-      .. highlight:: cpp
+   .. tab :: Example
+      .. highlight:: c
       ::
 
-        int32_t pros::ADIAnalogIn::value_get ( )
+        #define ANALOG_SENSOR_PORT 1
 
-.. tabs ::
-   .. tab :: C
+        void opcontrol() {
+          while (true) {
+            printf("Sensor Reading: %d\n", adi_analog_read(ANALOG_SENSOR_PORT));
+            delay(2);
+          }
+        }
 
-      ============ =================================================================================================================
-       Parameters
-      ============ =================================================================================================================
-       port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
-      ============ =================================================================================================================
-
-   .. tab :: C++
-
-      None.
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
+============ =================================================================================================================
 
 **Returns:** The analog sensor value, where a value of 0 reflects an input voltage of nearly 0 V
 and a value of 4095 reflects an input voltage of nearly 5 V
@@ -181,17 +102,24 @@ inappropriate for sensor values intended for integration, as round-off error can
 causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 
 .. tabs ::
-   .. tab :: C
+   .. tab :: Prototype
       .. highlight:: c
       ::
 
          int32_t adi_analog_read_calibrated ( uint8_t port )
 
-   .. tab :: C++
-      .. highlight:: cpp
+   .. tab :: Example
+      .. highlight:: c
       ::
 
-        int32_t pros::ADIAnalogIn::value_get_calibrated ( )
+        #define ANALOG_SENSOR_PORT 1
+
+        void opcontrol() {
+          while (true) {
+            printf("Sensor Reading: %d\n", adi_analog_read_calibrated(ANALOG_SENSOR_PORT));
+            delay(2);
+          }
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -215,17 +143,24 @@ The value returned actually has 16 bits of "precision", even though the ADC only
 in the wash when integrated over time. Think of the value as the true value times 16.
 
 .. tabs ::
-   .. tab :: C
+   .. tab :: Prototype
       .. highlight:: c
       ::
 
          int32_t adi_analog_read_calibrated_HR ( uint8_t port )
 
-   .. tab :: C++
-      .. highlight:: cpp
+   .. tab :: Example
+      .. highlight:: c
       ::
 
-        int32_t pros::ADIAnalogIn::value_get_calibrated_HR ( )
+        #define ANALOG_SENSOR_PORT 1
+
+        void opcontrol() {
+          while (true) {
+            printf("Sensor Reading: %d\n", adi_analog_read_calibrated_HR(ANALOG_SENSOR_PORT));
+            delay(2);
+          }
+        }
 
 
 ============ =================================================================================================================
@@ -250,17 +185,26 @@ use-case for this function is to call inside opcontrol to detect new button
 presses, and not in any other tasks.
 
 .. tabs ::
-   .. tab :: C
+   .. tab :: Prototype
       .. highlight:: c
       ::
 
          int32_t adi_digital_get_new_press ( uint8_t port )
 
-   .. tab :: C++
-      .. highlight:: cpp
+   .. tab :: Example
+      .. highlight:: c
       ::
 
-        int32_t pros::ADIDigitalIn::get_new_press ( )
+        #define DIGITAL_SENSOR_PORT
+
+        void opcontrol() {
+          while (true) {
+            if (adi_digital_get_new_press(DIGITAL_SENSOR_PORT)) {
+              // Toggle pneumatics or other state operations
+            }
+            delay(2);
+          }
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -282,17 +226,24 @@ return value is undefined for pins configured as Analog inputs, or for ports in 
 Communications interface. This function is `Wiring-compatible <https://www.arduino.cc/en/Reference/Wire>`_.
 
 .. tabs ::
-   .. tab :: C
+   .. tab :: Prototype
       .. highlight:: c
       ::
 
          int32_t adi_digital_read ( uint8_t port )
 
-   .. tab :: C++
-      .. highlight:: cpp
+   .. tab :: Example
+      .. highlight:: c
       ::
 
-        int32_t pros::ADIDigitalIn::value_get ( )
+        #define DIGITAL_SENSOR_PORT
+
+        void opcontrol() {
+          while (true) {
+            printf("Sensor Value: %d\n", adi_digital_read(DIGITAL_SENSOR_PORT));
+            delay(2);
+          }
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -311,18 +262,27 @@ If the pin is configured as some other mode, behavior is undefined. This functio
 `Wiring-compatible <https://www.arduino.cc/en/Reference/Wire>`_.
 
 .. tabs ::
-   .. tab :: C
+   .. tab :: Prototype
       .. highlight:: c
       ::
 
         int32_t adi_digital_write ( uint8_t port,
                                     const bool value )
 
-   .. tab :: C++
-      .. highlight:: cpp
+   .. tab :: Example
+      .. highlight:: c
       ::
 
-        int32_t pros::ADIDigitalOut::value_set ( int32_t value )
+        #define DIGITAL_SENSOR_PORT
+
+        void opcontrol() {
+          bool state = LOW;
+          while (true) {
+            state != state;
+            adi_digital_write(DIGITAL_SENSOR_PORT, state);
+            delay(20); // toggle the sensor value every 20ms
+          }
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -342,17 +302,26 @@ Gets the number of ticks recorded by the encoder.
 There are 360 ticks in one revolution.
 
 .. tabs ::
-   .. tab :: C
+   .. tab :: Prototype
       .. highlight:: c
       ::
 
         int32_t adi_encoder_get ( adi_encoder_t enc )
 
-   .. tab :: C++
-      .. highlight:: cpp
+   .. tab :: Example
+      .. highlight:: c
       ::
 
-        int32_t pros::ADIEncoder::value_get ( )
+        #define PORT_TOP 1
+        #define PORT_BOTTOM 2
+
+        void opcontrol() {
+          adi_encoder_t enc = adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
+          while (true) {
+            printf("Encoder Value: %d\n", adi_encoder_get(enc));
+            delay(2);
+          }
+        }
 
 
 ============ =================================================================================================================
@@ -369,7 +338,7 @@ adi_encoder_init
 Initializes and enables a quadrature encoder on two ADI ports.
 
 .. tabs ::
-   .. tab :: C
+   .. tab :: Prototype
       .. highlight:: c
       ::
 
@@ -377,8 +346,20 @@ Initializes and enables a quadrature encoder on two ADI ports.
                                          uint8_t port_bottom,
                                          const bool reverse )
 
-   .. tab :: C++
-      Create an `ADIEncoder`_ object.
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define PORT_TOP 1
+        #define PORT_BOTTOM 2
+
+        void opcontrol() {
+          adi_encoder_t enc = adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
+          while (true) {
+            printf("Encoder Value: %d\n", adi_encoder_get(enc));
+            delay(2);
+          }
+        }
 
 
 ============ ====================================================================================================================================
@@ -399,9 +380,26 @@ Resets the encoder to zero.
 It is safe to use this method while an encoder is enabled. It is not necessary to call this
 method before stopping or starting an encoder.
 
-::
 
-	int32_t adi_encoder_reset ( adi_encoder_t enc )
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t adi_encoder_reset ( adi_encoder_t enc )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define PORT_TOP 1
+        #define PORT_BOTTOM 2
+
+        void opcontrol() {
+          adi_encoder_t enc = adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
+          delay(1000); // Move the encoder around in this time
+          adi_encoder_reset(enc); // The encoder is now zero again
+        }
 
 ============ =================================================================================================================
  Parameters
