@@ -2,14 +2,16 @@
 ADI (TriPort) C++ API
 ======================
 
-Classes
-=======
 
 ADIAnalogIn
------------
+===========
+
+.. note::
+   **ADIPotentiometer**, **ADILineSensor**, **ADILightSensor**, and **ADIAccelerometer**
+   are all `ADIAnalogIn`_ objects as well.
 
 Constructor(s)
-~~~~~~~~~~~~~~
+--------------
 
 ::
 
@@ -18,29 +20,219 @@ Constructor(s)
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to calibrate
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
 ============ =================================================================================================================
 
 Methods
-~~~~~~~
-
-::
-
-  int32_t pros::ADIAnalogIn::calibrate ( )
-
-Analogous to `adi_analog_calibrate`_.
-
-::
-
-  int32_t pros::ADIAnalogIn::value_get ( )
-
-Analogous to `adi_analog_read`_.
-
-ADIPort
 -------
 
+calibrate
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIAnalogIn::calibrate ( ) const
+
+Analogous to `adi_analog_calibrate <./adi_c.html#adi-analog-calibrate>`_.
+
+value_get
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIAnalogIn::value_get ( ) const
+
+Inherited from `ADIPort::value_get <value_get_>`_.
+
+value_get_calibrated
+~~~~~~~~~~~~~~~~~~~~
+
+::
+
+  int32_t pros::ADIAnalogIn::value_get_calibrated ( ) const
+
+Analogous to `adi_analog_read_calibrated <./adi_c.html#adi_analog_read_calibrated>`_.
+
+value_get_calibrated_HR
+~~~~~~~~~~~~~~~~~~~~~~~
+
+::
+
+  int32_t pros::ADIAnalogIn::value_get_calibrated_HR ( ) const
+
+Analogous to `adi_analog_read_calibrated_HR <./adi_c.html#adi_analog_read_calibrated_HR>`_.
+
+ADIAnalogOut
+============
+
 Constructor(s)
-~~~~~~~~~~~~~~
+--------------
+
+::
+
+  pros::ADIAnalogOut::ADIAnalogOut ( uint8_t port )
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
+============ =================================================================================================================
+
+Methods
+-------
+
+value_set
+~~~~~~~~~
+
+::
+
+  pros::ADIAnalogOut::value_set ( int32_t value ) const
+
+Inherited from `ADIPort::value_set <value_set_>`_.
+
+ADIDigitalIn
+============
+
+Constructor(s)
+--------------
+
+::
+
+  pros::ADIDigitalIn::ADIDigitalIn ( uint8_t port )
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
+============ =================================================================================================================
+
+Methods
+-------
+
+get_new_press
+~~~~~~~~~~~~~
+
+::
+
+  int32_t pros::ADIDigitalIn::get_new_press() const
+
+Analogous to `adi_digital_get_new_press <./adi_c.html#adi-digital-get-new-press>`_.
+
+value_get
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIDigitalIn::value_get() const
+
+Inherited from `ADIPort::value_get <value_get_>`_.
+
+ADIDigitalOut
+=============
+
+Constructor(s)
+--------------
+
+::
+
+  pros::ADIDigitalOut::ADIDigitalOut ( uint8_t port
+                                       bool init_state = false )
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
+ init_state   The initial state for the digital output. The default value is false.
+============ =================================================================================================================
+
+Methods
+-------
+
+value_set
+~~~~~~~~~
+
+::
+
+  pros::ADIDigitalOut::value_set ( int32_t value ) const
+
+Inherited from `ADIPort::value_set <value_set_>`_.
+
+ADIEncoder
+==========
+
+Constructor(s)
+--------------
+
+::
+
+  ADIEncoder::ADIEncoder ( uint8_t port_top,
+                           uint8_t port_bottom,
+                           const bool reverse = false )
+
+============ ====================================================================================================================================
+ Parameters
+============ ====================================================================================================================================
+ port_top     the "top" wire from the encoder sensor with the removable cover side UP. This should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G').
+ port_bottom  the "bottom" wire from the encoder sensor
+ reverse      if "true", the sensor will count in the opposite direction. The default value is "false".
+============ ====================================================================================================================================
+
+Methods
+-------
+
+reset
+~~~~~
+
+::
+
+  int32_t pros::ADIEncoder::reset() const
+
+Analogous to `adi_encoder_reset <./adi_c.html#adi-encoder-reset>`_.
+
+value_get
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIEncoder::value_get ( ) const
+
+Inherited from `ADIPort::value_get <value_get_>`_.
+
+Analogous to `adi_encoder_get <./adi_c.html#adi-encoder-get>`_.
+
+ADIMotor
+========
+
+Constructor(s)
+--------------
+
+::
+
+  pros::ADIMotor::ADIMotor ( uint8_t port )
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
+============ =================================================================================================================
+
+Methods
+-------
+
+stop
+~~~~
+
+::
+
+  int32_t pros::ADIMotor::stop ( ) const
+
+Analogous to `adi_motor_stop <./adi_c.html#adi-motor-stop>`_.
+
+ADIPort
+=======
+
+Constructor(s)
+--------------
 
 ::
 
@@ -49,7 +241,7 @@ Constructor(s)
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to calibrate
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
 ============ =================================================================================================================
 
 ::
@@ -60,30 +252,50 @@ Constructor(s)
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
  type         The `configuration <adi_port_config_e_t>`_ type for the port
 ============ =================================================================================================================
 
 
 Methods
-~~~~~~~
+-------
 
-* `config_set <adi_port_config_set>`_
-* `config_get <adi_port_config_get>`_
-* `value_set <adi_value_set>`_
-* `value_get <adi_value_get>`_
-
-ADIEncoder
-----------
-
-Constructor(s)
-~~~~~~~~~~~~~~
+config_set
+~~~~~~~~~~
 
 ::
 
-  ADIEncoder::ADIEncoder ( uint8_t port_top,
-                           uint8_t port_bottom,
-                           const bool reverse )
+  int32_t config_set(adi_port_config_e_t type) const;
 
-  ADIEncoder::ADIEncoder ( uint8_t port_top,
-                           uint8_t port_bottom )
+Analogous to `adi_port_config_set <./adi_c.html#adi-port-config-set>`_.
+
+config_get
+~~~~~~~~~~
+
+::
+
+  int32_t config_get() const;
+
+Analogous to `adi_port_config_get <./adi_c.html#adi-port-config-get>`_.
+
+.. _value_set:
+
+value_set
+~~~~~~~~~
+
+::
+
+  int32_t value_set() const;
+
+Analogous to `adi_port_value_set <./adi_c.html#adi-port-value-set>`_.
+
+.. _value_get:
+
+value_get
+~~~~~~~~~
+
+::
+
+  int32_t value_get() const;
+
+Analogous to `adi_port_value_get <./adi_c.html#adi-port-value-get>`_.
