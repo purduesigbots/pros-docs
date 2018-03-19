@@ -79,7 +79,7 @@ meaning of the returned value varies depending on the sensor attached.
         void opcontrol() {
           while (true) {
             printf("Sensor Reading: %d\n", adi_analog_read(ANALOG_SENSOR_PORT));
-            delay(2);
+            delay(50);
           }
         }
 
@@ -117,7 +117,7 @@ causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
         void opcontrol() {
           while (true) {
             printf("Sensor Reading: %d\n", adi_analog_read_calibrated(ANALOG_SENSOR_PORT));
-            delay(2);
+            delay(50);
           }
         }
 
@@ -158,10 +158,9 @@ in the wash when integrated over time. Think of the value as the true value time
         void opcontrol() {
           while (true) {
             printf("Sensor Reading: %d\n", adi_analog_read_calibrated_HR(ANALOG_SENSOR_PORT));
-            delay(2);
+            delay(50);
           }
         }
-
 
 ============ =================================================================================================================
  Parameters
@@ -202,7 +201,7 @@ presses, and not in any other tasks.
             if (adi_digital_get_new_press(DIGITAL_SENSOR_PORT)) {
               // Toggle pneumatics or other state operations
             }
-            delay(2);
+            delay(50);
           }
         }
 
@@ -241,7 +240,7 @@ Communications interface. This function is `Wiring-compatible <https://www.ardui
         void opcontrol() {
           while (true) {
             printf("Sensor Value: %d\n", adi_digital_read(DIGITAL_SENSOR_PORT));
-            delay(2);
+            delay(50);
           }
         }
 
@@ -280,7 +279,7 @@ If the pin is configured as some other mode, behavior is undefined. This functio
           while (true) {
             state != state;
             adi_digital_write(DIGITAL_SENSOR_PORT, state);
-            delay(20); // toggle the sensor value every 20ms
+            delay(50); // toggle the sensor value every 50ms
           }
         }
 
@@ -319,10 +318,9 @@ There are 360 ticks in one revolution.
           adi_encoder_t enc = adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
           while (true) {
             printf("Encoder Value: %d\n", adi_encoder_get(enc));
-            delay(2);
+            delay(50);
           }
         }
-
 
 ============ =================================================================================================================
  Parameters
@@ -357,10 +355,9 @@ Initializes and enables a quadrature encoder on two ADI ports.
           adi_encoder_t enc = adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
           while (true) {
             printf("Encoder Value: %d\n", adi_encoder_get(enc));
-            delay(2);
+            delay(50);
           }
         }
-
 
 ============ ====================================================================================================================================
  Parameters
@@ -414,9 +411,25 @@ adi_encoder_shutdown
 
 Stops and disables the encoder.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	int32_t adi_encoder_shutdown ( adi_encoder_t enc )
+        int32_t adi_encoder_shutdown ( adi_encoder_t enc )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define PORT_TOP 1
+        #define PORT_BOTTOM 2
+
+        void opcontrol() {
+          adi_encoder_t enc = adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
+          // Use the encoder
+          adi_encoder_shutdown(enc);
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -431,10 +444,25 @@ adi_motor_set
 
 Sets the speed of the motor on the given port.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	int32_t adi_motor_set ( uint8_t port,
-	                        const int8_t speed )
+        int32_t adi_motor_set ( uint8_t port,
+                                const int8_t speed )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define MOTOR_PORT 1
+
+        void opcontrol() {
+          adi_motor_set(MOTOR_PORT, 127); // Go full speed forward
+          delay(1000);
+          adi_motor_set(MOTOR_PORT, 0); // Stop the motor
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -450,9 +478,25 @@ adi_motor_get
 
 Returns the last set speed of the motor on the given port.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	int32_t adi_motor_get ( uint8_t port )
+        int32_t adi_motor_get ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define MOTOR_PORT 1
+
+        void opcontrol() {
+          adi_motor_set(MOTOR_PORT, 127); // Go full speed forward
+          printf("Commanded Motor Power: %d\n", adi_motor_get(MOTOR_PORT)); // Will diplay 127
+          delay(1000);
+          adi_motor_set(MOTOR_PORT, 0); // Stop the motor
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -467,9 +511,25 @@ adi_motor_stop
 
 Stops the motor on the given port.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	int32_t adi_motor_stop ( uint8_t port )
+        int32_t adi_motor_stop ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define MOTOR_PORT 1
+
+        void opcontrol() {
+          adi_motor_set(MOTOR_PORT, 127); // Go full speed forward
+          delay(1000);
+          // adi_motor_set(MOTOR_PORT, 0); // Stop the motor
+          adi_motor_stop(MOTOR_PORT); // use this instead
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -484,10 +544,23 @@ adi_pin_mode
 
 Configures the pin as an input or output with a variety of settings.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	int32_t adi_pin_mode ( uint8_t port,
-	                       const unsigned char mode )
+        int32_t adi_pin_mode ( uint8_t port,
+                               const unsigned char mode )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ANALOG_SENSOR_PORT 1
+
+        void initialize() {
+          adi_pin_mode(ANALOG_SENSOR_PORT, INPUT_ANALOG);
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -503,9 +576,24 @@ adi_port_config_get
 
 Returns the configuration for the given ADI port.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	adi_port_config_e_t adi_port_config_get ( uint8_t port )
+        adi_port_config_e_t adi_port_config_get ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ANALOG_SENSOR_PORT 1
+
+        void initialize() {
+          adi_port_config_set(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+          // Displays the value of E_ADI_ANALOG_IN
+          printf("Port Type: %d\n", adi_port_config_get(ANALOG_SENSOR_PORT));
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -520,10 +608,23 @@ adi_port_config_set
 
 Configures an ADI port to act as a given sensor type.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	int32_t adi_port_config_set ( uint8_t port,
-	                              adi_port_config_e_t type )
+        int32_t adi_port_config_set ( uint8_t port,
+                                      adi_port_config_e_t type )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ANALOG_SENSOR_PORT 1
+
+        void initialize() {
+          adi_port_config_set(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -543,9 +644,28 @@ If no object was found, zero is returned. If the ultrasonic sensor was never sta
 return value is PROS_ERR. Round and fluffy objects can cause inaccurate values to be
 returned.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	int32_t adi_ultrasonic_get ( adi_ultrasonic_t ult )
+        int32_t adi_ultrasonic_get ( adi_ultrasonic_t ult )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define PORT_ECHO 1
+        #define PORT_PING 2
+
+        void opcontrol() {
+          adi_ultrasonic_t ult = adi_ultrasonic_init(PORT_ECHO, PORT_PING);
+          while (true) {
+            // Print the distance read by the ultrasonic
+            printf("Distance: %d\n", adi_ultrasonic_get(ult));
+            delay(50);
+          }
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -560,10 +680,29 @@ adi_ultrasonic_init
 
 Initializes an ultrasonic sensor on the specified ADI ports.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	adi_ultrasonic_t adi_ultrasonic_init ( uint8_t port_echo,
-	                                       uint8_t port_ping )
+        adi_ultrasonic_t adi_ultrasonic_init ( uint8_t port_echo,
+                                               uint8_t port_ping )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define PORT_ECHO 1
+        #define PORT_PING 2
+
+        void opcontrol() {
+          adi_ultrasonic_t ult = adi_ultrasonic_init(PORT_ECHO, PORT_PING);
+          while (true) {
+            // Print the distance read by the ultrasonic
+            printf("Distance: %d\n", adi_ultrasonic_get(ult));
+            delay(50);
+          }
+        }
 
 ============ =============================================================================================================
  Parameters
@@ -579,9 +718,29 @@ adi_ultrasonic_shutdown
 
 Stops and disables the ultrasonic sensor.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	int32_t adi_ultrasonic_shutdown ( adi_ultrasonic_t ult )
+        int32_t adi_ultrasonic_shutdown ( adi_ultrasonic_t ult )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define PORT_ECHO 1
+        #define PORT_PING 2
+
+        void opcontrol() {
+          adi_ultrasonic_t ult = adi_ultrasonic_init(PORT_ECHO, PORT_PING);
+          while (true) {
+            // Print the distance read by the ultrasonic
+            printf("Distance: %d\n", adi_ultrasonic_get(ult));
+            delay(50);
+          }
+          adi_ultrasonic_shutdown(ult);
+        }
 
 ============ =================================================================================================================
  Parameters
