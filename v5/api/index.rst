@@ -1,13 +1,12 @@
-===
-API
-===
+========
+API Home
+========
 
 This document covers the main PROS API, which is completely sufficient for most users' needs.
 
 .. toctree::
    :caption: C API Headers
    :titlesonly:
-   :glob:
 
    ./c/adi
    ./c/llemu
@@ -16,10 +15,10 @@ This document covers the main PROS API, which is completely sufficient for most 
    ./c/rtos
    ./c/vision
 
+
 .. toctree::
    :caption: C++ API Headers
    :titlesonly:
-   :glob:
 
    ./cpp/adi
    ./cpp/llemu

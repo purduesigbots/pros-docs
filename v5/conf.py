@@ -109,7 +109,8 @@ html_theme_options = {
     'versions': {
         'V5': 'index',
         'Cortex': '../cortex/index',
-    }
+    },
+    'navigation_depth': 8
 }
 
 # The name of an image file (relative to this directory) to place at the top

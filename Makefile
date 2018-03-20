@@ -1,4 +1,4 @@
-.PHONY: cortex home v5 all
+.PHONY: cortex home v5 all clean
 
 all: home v5 cortex
 

@@ -33,6 +33,8 @@ PROS: Documentation Home
    :caption: API
 
    ./api/index
+   ./api/c/index
+   ./api/cpp/index
 
 .. toctree::
    :hidden:
