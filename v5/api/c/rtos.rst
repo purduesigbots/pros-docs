@@ -16,13 +16,13 @@ Delay a task for a given number of milliseconds.
 
 This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
-To delay cyclically, use `task_delay_until() <task_delay_until>`_.
+To delay cyclically, use `task_delay_until`_.
 
-+--------------+-------------------------------------------------------------------+
-| Parameters   |                                                                   |
-+==============+===================================================================+
-| milliseconds | The number of milliseconds to wait (1000 milliseconds per second) |
-+--------------+-------------------------------------------------------------------+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ milliseconds    The number of milliseconds to wait (1000 milliseconds per second)
+=============== ===================================================================
 
 millis
 ------
@@ -42,7 +42,7 @@ mutex_create
 
 Creates a mutex.
 
-See :doc:`../tutorials/multitasking` for details.
+See :doc:`../../tutorials/multitasking` for details.
 
 **Returns:**  A handle to a newly created mutex. If an error occurred, NULL will be
 returned and ``errno`` can be checked for hints as to why mutex_create failed.
@@ -56,13 +56,13 @@ mutex_give
 
 Unlocks a mutex.
 
-See :doc:`../tutorials/multitasking` for details.
+See :doc:`../../tutorials/multitasking` for details.
 
-+------------+---------------------+
-| Parameters |                     |
-+============+=====================+
-| mutex      | The mutex to unlock |
-+------------+---------------------+
+============ =====================
+ Parameters
+============ =====================
+ mutex        The mutex to unlock
+============ =====================
 
 **Returns:** True if the mutex was successfully returned, false otherwise. If false
 is returned, then ``errno`` is set with a hint about why the mutex couldn't
@@ -74,7 +74,7 @@ mutex_take
 Takes and locks a mutex, waiting for up to a certain number of milliseconds
 before timing out.
 
-See :doc:`../tutorials/multitasking` for details.
+See :doc:`../../tutorials/multitasking` for details.
 
 ::
 
@@ -107,19 +107,15 @@ task_create
 
 Create a new task and add it to the list of tasks that are ready to run.
 
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Parameters      |                                                                                                                                                                                                               |
-+=================+===============================================================================================================================================================================================================+
-| ``function``    | Pointer to the task entry function                                                                                                                                                                            |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``parameters``  | Pointer to memory that will be used as a parameter for the task being created. This memory should not typically come from stack, but rather from dynamically (i.e., malloc'd) or statically allocated memory. |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``prio``        | The priority at which the task should run. TASK_PRIO_DEFAULT plus/minus 1 or 2 is typically used.                                                                                                             |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``stack_depth`` | The number of words (i.e. 4 * stack_depth) available on the task's stack. TASK_STACK_DEPTH_DEFAULT is typically sufficient.                                                                                   |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``name``        | A descriptive name for the task.  This is mainly used to facilitate debugging. The name may be up to 32 characters long.                                                                                      |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+================= ===============================================================================================================================================================================================================
+ Parameters
+================= ===============================================================================================================================================================================================================
+ function          Pointer to the task entry function
+ parameters        Pointer to memory that will be used as a parameter for the task being created. This memory should not typically come from stack, but rather from dynamically (i.e., malloc'd) or statically allocated memory.
+ prio              The priority at which the task should run. TASK_PRIO_DEFAULT plus/minus 1 or 2 is typically used.
+ stack_depth       The number of words (i.e. 4 * stack_depth) available on the task's stack. TASK_STACK_DEPTH_DEFAULT is typically sufficient.
+ name               A descriptive name for the task.  This is mainly used to facilitate debugging. The name may be up to 32 characters long.
+================= ===============================================================================================================================================================================================================
 
 **Returns:** Will return a handle by which the newly created task can be referenced.
 If an error occurred, NULL will be returned and ``errno`` can be checked for hints
@@ -136,13 +132,13 @@ Delay a task for a given number of milliseconds.
 
 This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
-To delay cyclically, use `task_delay_until() <task_delay_until>`_.
+To delay cyclically, use `task_delay_until`_.
 
-+--------------+-------------------------------------------------------------------+
-| Parameters   |                                                                   |
-+==============+===================================================================+
-| milliseconds | The number of milliseconds to wait (1000 milliseconds per second) |
-+--------------+-------------------------------------------------------------------+
+============== ===================================================================
+ Parameters
+============== ===================================================================
+ milliseconds  The number of milliseconds to wait (1000 milliseconds per second)
+============== ===================================================================
 
 task_delay_until
 ----------------
@@ -158,13 +154,12 @@ tasks to ensure a constant execution frequency.
 The task will be woken up at the time ``*prev_time + delta``, and ``*prev_time`` will
 be updated to reflect the time at which the task will unblock.
 
-+------------+-------------------------------------------------------------------+
-| Parameters |                                                                   |
-+============+===================================================================+
-| prev_time  | A pointer to the location storing the setpoint time               |
-+------------+-------------------------------------------------------------------+
-| delta      | The number of milliseconds to wait (1000 milliseconds per second) |
-+------------+-------------------------------------------------------------------+
+============ ===================================================================
+ Parameters
+============ ===================================================================
+ prev_time    A pointer to the location storing the setpoint time
+ delta        The number of milliseconds to wait (1000 milliseconds per second)
+============ ===================================================================
 
 task_delete
 -----------
@@ -179,11 +174,11 @@ deleted will be removed from all ready, blocked, suspended and event lists.
 Memory dynamically allocated by the task is not automatically freed, and
 should be freed before the task is deleted.
 
-+------------+------------------------------------------------------------------------------------------------+
-| Parameters |                                                                                                |
-+============+================================================================================================+
-| task       | The handle of the task to be deleted.  Passing NULL will cause the calling task to be deleted. |
-+------------+------------------------------------------------------------------------------------------------+
+============ ================================================================================================
+ Parameters
+============ ================================================================================================
+ task         The handle of the task to be deleted.  Passing NULL will cause the calling task to be deleted.
+============ ================================================================================================
 
 task_get_by_name
 ----------------
@@ -196,11 +191,11 @@ Obtains a task handle from the specified name.
 
 The operation takes a relatively long time and should be used sparingly.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| name       | The name to query                |
-+------------+----------------------------------+
+============ ==================================
+ Parameters
+============ ==================================
+ name        The name to query
+============ ==================================
 
 **Returns:** A task handle with a matching name, or NULL if none were found.
 
@@ -227,11 +222,11 @@ task_get_name
 
 Obtains the name of the specified task.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to check  |
-+------------+----------------------------------+
+============ ==================================
+ Parameters
+============ ==================================
+ task        The handle of the task to check
+============ ==================================
 
 **Returns:** A pointer to the name of the task
 
@@ -244,11 +239,11 @@ task_get_priority
 
 Obtains the priority of the specified task.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to check  |
-+------------+----------------------------------+
+============ ==================================
+ Parameters
+============ ==================================
+ task        The handle of the task to check
+============ ==================================
 
 **Returns:** The priority of the task.
 
@@ -261,11 +256,11 @@ task_get_state
 
 Returns the state of the specified task.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to check  |
-+------------+----------------------------------+
+============ ==================================
+ Parameters
+============ ==================================
+ task        The handle of the task to check
+============ ==================================
 
 **Returns:** The state of the task. (see `task_state_e_t`_).
 
@@ -278,13 +273,13 @@ task_notify
 
 Sends a simple notification to task and increments the notification counter.
 
-See :doc:`../tutorials/notifications` for details.
+See :doc:`../../tutorials/notifications` for details.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to notify |
-+------------+----------------------------------+
+============ ==================================
+ Parameters
+============ ==================================
+ task        The handle of the task to notify
+============ ==================================
 
 **Returns:** Always true.
 
@@ -297,13 +292,13 @@ task_notify_clear
 
 Clears the notification for a task.
 
-See :doc:`../tutorials/notifications` for details.
+See :doc:`../../tutorials/notifications` for details.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to clear  |
-+------------+----------------------------------+
+============ ==================================
+ Parameters
+============ ==================================
+ task        The handle of the task to clear
+============ ==================================
 
 **Returns:** False if there was not a notification waiting, true if there was
 
@@ -321,19 +316,16 @@ Sends a notification to a task, optionally performing some action. Will also
 retrieve the value of the notification in the target task before modifying
 the notification value.
 
-See :doc:`../tutorials/notifications` for details.
+See :doc:`../../tutorials/notifications` for details.
 
-+------------+--------------------------------------------------------------------------------------+
-| Parameters |                                                                                      |
-+============+======================================================================================+
-| task       | The handle of the task to notify                                                     |
-+------------+--------------------------------------------------------------------------------------+
-| value      | The value used in performing the action                                              |
-+------------+--------------------------------------------------------------------------------------+
-| action     | An action to optionally perform on the task's notification                           |
-+------------+--------------------------------------------------------------------------------------+
-| prev_value | A pointer to store the previous value of the target task's notification, may be NULL |
-+------------+--------------------------------------------------------------------------------------+
+============ ======================================================================================
+ Parameters
+============ ======================================================================================
+ task         The handle of the task to notify
+ value        The value used in performing the action
+ action       An action to optionally perform on the task's notification
+ prev_value   A pointer to store the previous value of the target task's notification, may be NULL
+============ ======================================================================================
 
 **Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <notify_action_e_t>`_:
 return 0 if the value could be written without needing to overwrite, 1 otherwise.
@@ -349,17 +341,16 @@ task_notify_take
 
 Wait for a notification to be nonzero.
 
-See :doc:`../tutorials/notifications` for details.
+See :doc:`../../tutorials/notifications` for details.
 
-+---------------+----------------------------------------------------------------------------------------------------------------+
-| Parameters    |                                                                                                                |
-+===============+================================================================================================================+
-| clear_on_exit | If true (1), then the notification value is cleared. If false (0), then the notification value is decremented. |
-+---------------+----------------------------------------------------------------------------------------------------------------+
-| timeout       | Specifies the amount of time to be spent waiting for a notification to occur.                                  |
-+---------------+----------------------------------------------------------------------------------------------------------------+
+=============== ================================================================================================================
+ Parameters
+=============== ================================================================================================================
+ clear_on_exit   If true (1), then the notification value is cleared. If false (0), then the notification value is decremented.
+ timeout         Specifies the amount of time to be spent waiting for a notification to occur.
+=============== ================================================================================================================
 
-**Returns:** TO BE ADDED
+**Returns:** The value of the task's notification value before it is decremented or cleared.
 
 task_resume
 -----------
@@ -370,11 +361,11 @@ task_resume
 
 Resumes the specified task, making it eligible to be scheduled.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to resume |
-+------------+----------------------------------+
+============ ==================================
+ Parameters
+============ ==================================
+ task        The handle of the task to resume
+============ ==================================
 
 task_set_priority
 -----------------
@@ -390,13 +381,12 @@ If the specified task's state is available to be scheduled (e.g. not blocked)
 and new priority is higher than the currently running task, a context switch
 may occur.
 
-+------------+-------------------------------+
-| Parameters |                               |
-+============+===============================+
-| task       | The handle of the task to set |
-+------------+-------------------------------+
-| prio       | The new priority of the task  |
-+------------+-------------------------------+
+============ ===============================
+ Parameters
+============ ===============================
+ task         The handle of the task to set
+ prio         The new priority of the task
+============ ===============================
 
 task_suspend
 ------------
@@ -407,11 +397,11 @@ task_suspend
 
 Suspends the current task, making it ineligible to be scheduled.
 
-+------------+------------------------------------+
-| Parameters |                                    |
-+============+====================================+
-| task       | The handle of the task to suspend  |
-+------------+------------------------------------+
+============ ==================================
+ Parameters
+============ ==================================
+ task        The handle of the task to suspend
+============ ==================================
 
 Macros
 ======
@@ -561,4 +551,4 @@ mutex_t
 
   typedef void* mutex_t;
 
-A `mutex <../tutorials/multitasking>`_.
+A `mutex <../../tutorials/multitasking>`_.
