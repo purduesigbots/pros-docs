@@ -2,155 +2,80 @@
 RTOS Facilities C++ API
 =======================
 
-Functions
-=========
-
-delay
-----------
-
-::
-
-  void delay ( const unsigned long milliseconds )
-
-Delay a task for a given number of milliseconds.
-
-This is not the best method to have a task execute code at predefined
-intervals, as the delay time is measured from when the delay is requested.
-To delay cyclically, use `task_delay_until() <task_delay_until>`_.
-
-+--------------+-------------------------------------------------------------------+
-| Parameters   |                                                                   |
-+==============+===================================================================+
-| milliseconds | The number of milliseconds to wait (1000 milliseconds per second) |
-+--------------+-------------------------------------------------------------------+
+pros
+====
 
 millis
 ------
 
 ::
 
-  uint32_t millis ( void )
+  uint32_t pros::millis ( void )
 
 **Returns:** Returns the number of milliseconds since PROS initialized.
 
-mutex_create
-------------
+pros::Task
+==========
+
+Constructor(s)
+--------------
 
 ::
 
-  mutex_t mutex_create ( void )
-
-Creates a mutex.
-
-See :doc:`../tutorials/multitasking` for details.
-
-**Returns:**  A handle to a newly created mutex. If an error occurred, NULL will be
-returned and ``errno`` can be checked for hints as to why mutex_create failed.
-
-mutex_give
-----------
-
-::
-
-  bool mutex_give ( mutex_t mutex )
-
-Unlocks a mutex.
-
-See :doc:`../tutorials/multitasking` for details.
-
-+------------+---------------------+
-| Parameters |                     |
-+============+=====================+
-| mutex      | The mutex to unlock |
-+------------+---------------------+
-
-**Returns:** True if the mutex was successfully returned, false otherwise. If false
-is returned, then ``errno`` is set with a hint about why the mutex couldn't
-be returned.
-
-mutex_take
-----------
-
-Takes and locks a mutex, waiting for up to a certain number of milliseconds
-before timing out.
-
-See :doc:`../tutorials/multitasking` for details.
-
-::
-
-  bool mutex_take ( mutex_t mutex,
-                      uint32_t timeout )
-
-============ ==============================================================================================
- Parameters
-============ ==============================================================================================
- mutex        The mutex to take.
- timeout      Time to wait before the mutex becomes available.
-
-              A timeout of 0 can be used to poll the mutex. TIMEOUT_MAX can be used to block indefinitely.
-============ ==============================================================================================
-
-**Returns:** True if the mutex was successfully taken, false otherwise. If false
-is returned, then ``errno`` is set with a hint about why the the mutex
-couldn't be taken.
-
-task_create
------------
-
-::
-
-    task_t task_create ( task_fn_t function,
-                         void* parameters,
-                         uint8_t prio,
-                         uint16_t stack_depth,
-                         const char* name )
+  pros::Task::Task ( task_fn_t function,
+                     void* parameters = NULL,
+                     uint32_t prio = TASK_PRIORITY_DEFAULT,
+                     uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT,
+                     const char* name = "")
 
 Create a new task and add it to the list of tasks that are ready to run.
 
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Parameters      |                                                                                                                                                                                                               |
-+=================+===============================================================================================================================================================================================================+
-| ``function``    | Pointer to the task entry function                                                                                                                                                                            |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``parameters``  | Pointer to memory that will be used as a parameter for the task being created. This memory should not typically come from stack, but rather from dynamically (i.e., malloc'd) or statically allocated memory. |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``prio``        | The priority at which the task should run. TASK_PRIO_DEFAULT plus/minus 1 or 2 is typically used.                                                                                                             |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``stack_depth`` | The number of words (i.e. 4 * stack_depth) available on the task's stack. TASK_STACK_DEPTH_DEFAULT is typically sufficient.                                                                                   |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| ``name``        | A descriptive name for the task.  This is mainly used to facilitate debugging. The name may be up to 32 characters long.                                                                                      |
-+-----------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-**Returns:** Will return a handle by which the newly created task can be referenced.
-If an error occurred, NULL will be returned and ``errno`` can be checked for hints
-as to why `task_create`_ failed.
-
-task_delay
-----------
+================= ===============================================================================================================================================================================================================
+ Parameters
+================= ===============================================================================================================================================================================================================
+ function          Pointer to the task entry function
+ parameters        Pointer to memory that will be used as a parameter for the task being created. This memory should not typically come from stack, but rather from dynamically (i.e., malloc'd) or statically allocated memory.
+ prio              The priority at which the task should run. TASK_PRIO_DEFAULT plus/minus 1 or 2 is typically used.
+ stack_depth       The number of words (i.e. 4 * stack_depth) available on the task's stack. TASK_STACK_DEPTH_DEFAULT is typically sufficient.
+ name               A descriptive name for the task.  This is mainly used to facilitate debugging. The name may be up to 32 characters long.
+================= ===============================================================================================================================================================================================================
 
 ::
 
-  void task_delay ( const unsigned long milliseconds )
+  pros::Task::Task ( task_t task )
+
+Creates a Task object from a task already created with the C API.
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ task            The task for which to create an object
+=============== ===================================================================
+
+Methods
+-------
 
 Delay a task for a given number of milliseconds.
 
 This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
-To delay cyclically, use `task_delay_until() <task_delay_until>`_.
+To delay cyclically, use `delay_until`_.
 
-+--------------+-------------------------------------------------------------------+
-| Parameters   |                                                                   |
-+==============+===================================================================+
-| milliseconds | The number of milliseconds to wait (1000 milliseconds per second) |
-+--------------+-------------------------------------------------------------------+
-
-task_delay_until
-----------------
+delay
+~~~~~
 
 ::
 
-  void task_delay_until ( unsigned long* const prev_time,
-                          const unsigned long delta )
+  static void pros::Task::delay ( const uint32_t milliseconds )
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ milliseconds    The number of milliseconds to wait (1000 milliseconds per second)
+=============== ===================================================================
+
+delay_until
+~~~~~~~~~~~
 
 Delay a task until a specified time.  This function can be used by periodic
 tasks to ensure a constant execution frequency.
@@ -158,231 +83,150 @@ tasks to ensure a constant execution frequency.
 The task will be woken up at the time ``*prev_time + delta``, and ``*prev_time`` will
 be updated to reflect the time at which the task will unblock.
 
-+------------+-------------------------------------------------------------------+
-| Parameters |                                                                   |
-+============+===================================================================+
-| prev_time  | A pointer to the location storing the setpoint time               |
-+------------+-------------------------------------------------------------------+
-| delta      | The number of milliseconds to wait (1000 milliseconds per second) |
-+------------+-------------------------------------------------------------------+
-
-task_delete
------------
-
 ::
 
-  void task_delete ( task_t task )
+  void pros::Task::delay_until ( uint32_t* const prev_time,
+                                 const uint32_t delta )
 
-Remove a task from the RTOS real time kernel's management.  The task being
-deleted will be removed from all ready, blocked, suspended and event lists.
+============ ===================================================================
+ Parameters
+============ ===================================================================
+ prev_time    A pointer to the location storing the setpoint time
+ delta        The number of milliseconds to wait (1000 milliseconds per second)
+============ ===================================================================
 
-Memory dynamically allocated by the task is not automatically freed, and
-should be freed before the task is deleted.
-
-+------------+------------------------------------------------------------------------------------------------+
-| Parameters |                                                                                                |
-+============+================================================================================================+
-| task       | The handle of the task to be deleted.  Passing NULL will cause the calling task to be deleted. |
-+------------+------------------------------------------------------------------------------------------------+
-
-task_get_by_name
-----------------
-
-::
-
-  task_t task_get_by_name ( char* name )
-
-Obtains a task handle from the specified name.
-
-The operation takes a relatively long time and should be used sparingly.
-
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| name       | The name to query                |
-+------------+----------------------------------+
-
-**Returns:** A task handle with a matching name, or NULL if none were found.
-
-task_get_count
---------------
-
-::
-
-  uint32_t task_get_count ( void )
+get_count
+~~~~~~~~~
 
 Returns the number of tasks the kernel is currently managing, including all
 ready, blocked, or suspended tasks. A task that has been deleted, but not yet
 reaped by the idle task will also be included in the count. Tasks recently
 created may take one context switch to be counted.
 
-**Returns:** The number of tasks that are currently being managed by the kernel
-
-task_get_name
--------------
-
 ::
 
-  char const* task_get_name ( task_t task )
+  uint32_t pros::task::get_count ( )
+
+**Returns:** The number of tasks that are currently being managed by the kernel
+
+get_name
+~~~~~~~~
 
 Obtains the name of the specified task.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to check  |
-+------------+----------------------------------+
+::
+
+  char const* pros::Task::get_name ( )
 
 **Returns:** A pointer to the name of the task
 
-task_get_priority
------------------
-
-::
-
-  uint32_t task_get_priority ( task_t task )
+get_priority
+~~~~~~~~~~~~
 
 Obtains the priority of the specified task.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to check  |
-+------------+----------------------------------+
+::
+
+  uint32_t pros::Task::get_priority ( )
 
 **Returns:** The priority of the task.
 
-task_get_state
---------------
-
-::
-
-  task_state_e_t task_get_state ( task_t task )
+get_state
+~~~~~~~~~
 
 Returns the state of the specified task.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to check  |
-+------------+----------------------------------+
+::
+
+  task_state_e_t pros::Task::get_state ( )
 
 **Returns:** The state of the task. (see `task_state_e_t`_).
 
-task_notify
------------
-
-::
-
-  uint32_t task_notify ( task_t task )
+notify
+~~~~~~
 
 Sends a simple notification to task and increments the notification counter.
 
-See :doc:`../tutorials/notifications` for details.
+See :doc:`../../tutorials/notifications` for details.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to notify |
-+------------+----------------------------------+
+::
+
+  uint32_t pros::Task::notify ( )
 
 **Returns:** Always true.
 
-task_notify_clear
------------------
-
-::
-
-  bool task_notify_clear ( task_t task )
+notify_clear
+~~~~~~~~~~~~
 
 Clears the notification for a task.
 
-See :doc:`../tutorials/notifications` for details.
-
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to clear  |
-+------------+----------------------------------+
-
-**Returns:** False if there was not a notification waiting, true if there was
-
-task_notify_ext
----------------
+See :doc:`../../tutorials/notifications` for details.
 
 ::
 
-  uint32_t task_notify_ext ( task_t task,
-                             uint32_t value,
-                             notify_action_e_t action,
-                             uint32_t* prev_value )
+  bool pros::Task::notify_clear ( )
+
+**Returns:** False if there was not a notification waiting, true if there was
+
+notify_ext
+~~~~~~~~~~
 
 Sends a notification to a task, optionally performing some action. Will also
 retrieve the value of the notification in the target task before modifying
 the notification value.
 
-See :doc:`../tutorials/notifications` for details.
+See :doc:`../../tutorials/notifications` for details.
 
-+------------+--------------------------------------------------------------------------------------+
-| Parameters |                                                                                      |
-+============+======================================================================================+
-| task       | The handle of the task to notify                                                     |
-+------------+--------------------------------------------------------------------------------------+
-| value      | The value used in performing the action                                              |
-+------------+--------------------------------------------------------------------------------------+
-| action     | An action to optionally perform on the task's notification                           |
-+------------+--------------------------------------------------------------------------------------+
-| prev_value | A pointer to store the previous value of the target task's notification, may be NULL |
-+------------+--------------------------------------------------------------------------------------+
+::
+
+  uint32_t pros::Task::notify_ext ( uint32_t value,
+                                    notify_action_e_t action,
+                                    uint32_t* prev_value )
+
+============ ======================================================================================
+ Parameters
+============ ======================================================================================
+ value        The value used in performing the action
+ action       An action to optionally perform on the task's notification
+ prev_value   A pointer to store the previous value of the target task's notification, may be NULL
+============ ======================================================================================
 
 **Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <notify_action_e_t>`_:
 return 0 if the value could be written without needing to overwrite, 1 otherwise.
 For all other `NOTIFY_ACTION <notify_action_e_t>`_ values: always return 0
 
-task_notify_take
-----------------
-
-::
-
-  uint32_t task_notify_take ( bool clear_on_exit,
-                              uint32_t timeout )
+notify_take
+~~~~~~~~~~~
 
 Wait for a notification to be nonzero.
 
-See :doc:`../tutorials/notifications` for details.
-
-+---------------+----------------------------------------------------------------------------------------------------------------+
-| Parameters    |                                                                                                                |
-+===============+================================================================================================================+
-| clear_on_exit | If true (1), then the notification value is cleared. If false (0), then the notification value is decremented. |
-+---------------+----------------------------------------------------------------------------------------------------------------+
-| timeout       | Specifies the amount of time to be spent waiting for a notification to occur.                                  |
-+---------------+----------------------------------------------------------------------------------------------------------------+
-
-**Returns:** TO BE ADDED
-
-task_resume
------------
+See :doc:`../../tutorials/notifications` for details.
 
 ::
 
-  void task_resume ( task_t task )
+  uint32_t pros::Task::notify_take ( bool clear_on_exit,
+                              uint32_t timeout )
+
+=============== ================================================================================================================
+ Parameters
+=============== ================================================================================================================
+ clear_on_exit   If true (1), then the notification value is cleared. If false (0), then the notification value is decremented.
+ timeout         Specifies the amount of time to be spent waiting for a notification to occur.
+=============== ================================================================================================================
+
+**Returns:** The value of the task's notification value before it is decremented or cleared.
+
+resume
+~~~~~~
 
 Resumes the specified task, making it eligible to be scheduled.
 
-+------------+----------------------------------+
-| Parameters |                                  |
-+============+==================================+
-| task       | The handle of the task to resume |
-+------------+----------------------------------+
-
-task_set_priority
------------------
-
 ::
 
-  void task_set_priority ( task_t task,
-                           uint32_t prio )
+  void pros::Task::resume ( )
+
+set_priority
+~~~~~~~~~~~~
 
 Sets the priority of the specified task.
 
@@ -390,25 +234,76 @@ If the specified task's state is available to be scheduled (e.g. not blocked)
 and new priority is higher than the currently running task, a context switch
 may occur.
 
-+------------+-------------------------------+
-| Parameters |                               |
-+============+===============================+
-| task       | The handle of the task to set |
-+------------+-------------------------------+
-| prio       | The new priority of the task  |
-+------------+-------------------------------+
-
-task_suspend
-------------
-
 ::
 
-  void task_suspend ( task_t task )
+  void pros::Task::set_priority ( uint32_t prio )
+
+============ ===============================
+ Parameters
+============ ===============================
+ prio         The new priority of the task
+============ ===============================
+
+suspend
+~~~~~~~
 
 Suspends the current task, making it ineligible to be scheduled.
 
-+------------+------------------------------------+
-| Parameters |                                    |
-+============+====================================+
-| task       | The handle of the task to suspend  |
-+------------+------------------------------------+
+::
+
+  void pros::Task::suspend ( )
+
+pros::Mutex
+===========
+
+Constructor(s)
+--------------
+
+::
+
+  pros::Mutex::Mutex ( )
+
+Creates a mutex.
+
+See :doc:`../../tutorials/multitasking` for details.
+
+Methods
+-------
+
+give
+~~~~
+
+Unlocks a mutex.
+
+See :doc:`../../tutorials/multitasking` for details.
+
+::
+
+  bool pros::Mutex::give ( )
+
+**Returns:** True if the mutex was successfully returned, false otherwise. If false
+is returned, then ``errno`` is set with a hint about why the mutex couldn't
+be returned.
+
+take
+~~~~
+
+Takes and locks a mutex, waiting for up to a certain number of milliseconds
+before timing out.
+
+See :doc:`../../tutorials/multitasking` for details.
+
+::
+
+  bool pros::Mutex::take ( uint32_t timeout )
+
+============ ==============================================================================================
+ Parameters
+============ ==============================================================================================
+ timeout      Time to wait before the mutex becomes available.
+              A timeout of 0 can be used to poll the mutex. TIMEOUT_MAX can be used to block indefinitely.
+============ ==============================================================================================
+
+**Returns:** True if the mutex was successfully taken, false otherwise. If false
+is returned, then ``errno`` is set with a hint about why the the mutex
+couldn't be taken.

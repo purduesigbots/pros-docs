@@ -10,7 +10,7 @@ delay
 
 ::
 
-  void delay ( const unsigned long milliseconds )
+  void delay ( const uint32_t milliseconds )
 
 Delay a task for a given number of milliseconds.
 
@@ -79,7 +79,7 @@ See :doc:`../../tutorials/multitasking` for details.
 ::
 
   bool mutex_take ( mutex_t mutex,
-                      uint32_t timeout )
+                    uint32_t timeout )
 
 ============ ==============================================================================================
  Parameters
@@ -145,8 +145,8 @@ task_delay_until
 
 ::
 
-  void task_delay_until ( unsigned long* const prev_time,
-                          const unsigned long delta )
+  void task_delay_until ( uint32_t* const prev_time,
+                          const uint32_t delta )
 
 Delay a task until a specified time.  This function can be used by periodic
 tasks to ensure a constant execution frequency.
