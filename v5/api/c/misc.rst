@@ -5,6 +5,50 @@ Miscellaneous C API
 Functions
 =========
 
+battery_get_capacity
+--------------------
+
+Gets the current capacity of the battery, as reported by VEXos.
+
+::
+
+  double battery_get_capacity ( )
+
+**Returns:** The current capacity of the battery.
+
+battery_get_current
+-------------------
+
+Gets the current current of the battery, as reported by VEXos.
+
+::
+
+  double battery_get_current ( )
+
+**Returns:** The current current of the battery.
+
+battery_get_temperature
+-----------------------
+
+Gets the current temperature of the battery, as reported by VEXos.
+
+::
+
+  double battery_get_temperature ( )
+
+**Returns:** The current temperature of the battery.
+
+battery_get_voltage
+-------------------
+
+Gets the current voltage of the battery, as reported by VEXos
+
+::
+
+  double battery_get_voltage ( )
+
+**Returns:** The current voltage of the battery.
+
 competition_get_status
 ----------------------
 
