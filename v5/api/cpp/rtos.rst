@@ -140,7 +140,7 @@ Returns the state of the specified task.
 
   task_state_e_t pros::Task::get_state ( )
 
-**Returns:** The state of the task. (see `task_state_e_t`_).
+**Returns:** The state of the task. (see `task_state_e_t <task_state_e_t_>`_).
 
 notify
 ~~~~~~
@@ -191,9 +191,9 @@ See :doc:`../../tutorials/notifications` for details.
  prev_value   A pointer to store the previous value of the target task's notification, may be NULL
 ============ ======================================================================================
 
-**Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <notify_action_e_t>`_:
+**Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <notify_action_e_t_>`_:
 return 0 if the value could be written without needing to overwrite, 1 otherwise.
-For all other `NOTIFY_ACTION <notify_action_e_t>`_ values: always return 0
+For all other `NOTIFY_ACTION <notify_action_e_t_>`_ values: always return 0
 
 notify_take
 ~~~~~~~~~~~
@@ -307,3 +307,6 @@ See :doc:`../../tutorials/multitasking` for details.
 **Returns:** True if the mutex was successfully taken, false otherwise. If false
 is returned, then ``errno`` is set with a hint about why the the mutex
 couldn't be taken.
+
+.. _notify_action_e_t: ../c/rtos.html#notify-action-e-t
+.. _task_state_e_t: ../c/rtos.html#task-state-e-t
