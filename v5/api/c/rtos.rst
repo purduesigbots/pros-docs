@@ -8,15 +8,15 @@ Functions
 delay
 ----------
 
-::
-
-  void delay ( const uint32_t milliseconds )
-
 Delay a task for a given number of milliseconds.
 
 This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
 To delay cyclically, use `task_delay_until`_.
+
+::
+
+  void delay ( const uint32_t milliseconds )
 
 =============== ===================================================================
  Parameters
@@ -36,13 +36,13 @@ millis
 mutex_create
 ------------
 
-::
-
-  mutex_t mutex_create ( void )
-
 Creates a mutex.
 
 See :doc:`../../tutorials/multitasking` for details.
+
+::
+
+  mutex_t mutex_create ( void )
 
 **Returns:**  A handle to a newly created mutex. If an error occurred, NULL will be
 returned and ``errno`` can be checked for hints as to why mutex_create failed.
@@ -50,13 +50,13 @@ returned and ``errno`` can be checked for hints as to why mutex_create failed.
 mutex_give
 ----------
 
-::
-
-  bool mutex_give ( mutex_t mutex )
-
 Unlocks a mutex.
 
 See :doc:`../../tutorials/multitasking` for details.
+
+::
+
+  bool mutex_give ( mutex_t mutex )
 
 ============ =====================
  Parameters
@@ -97,6 +97,8 @@ couldn't be taken.
 task_create
 -----------
 
+Create a new task and add it to the list of tasks that are ready to run.
+
 ::
 
     task_t task_create ( task_fn_t function,
@@ -104,8 +106,6 @@ task_create
                          uint8_t prio,
                          uint16_t stack_depth,
                          const char* name )
-
-Create a new task and add it to the list of tasks that are ready to run.
 
 ================= ===============================================================================================================================================================================================================
  Parameters
@@ -124,15 +124,15 @@ as to why `task_create`_ failed.
 task_delay
 ----------
 
-::
-
-  void task_delay ( const unsigned long milliseconds )
-
 Delay a task for a given number of milliseconds.
 
 This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
 To delay cyclically, use `task_delay_until`_.
+
+::
+
+  void task_delay ( const unsigned long milliseconds )
 
 ============== ===================================================================
  Parameters
@@ -143,16 +143,16 @@ To delay cyclically, use `task_delay_until`_.
 task_delay_until
 ----------------
 
-::
-
-  void task_delay_until ( uint32_t* const prev_time,
-                          const uint32_t delta )
-
 Delay a task until a specified time.  This function can be used by periodic
 tasks to ensure a constant execution frequency.
 
 The task will be woken up at the time ``*prev_time + delta``, and ``*prev_time`` will
 be updated to reflect the time at which the task will unblock.
+
+::
+
+  void task_delay_until ( uint32_t* const prev_time,
+                          const uint32_t delta )
 
 ============ ===================================================================
  Parameters
@@ -164,15 +164,15 @@ be updated to reflect the time at which the task will unblock.
 task_delete
 -----------
 
-::
-
-  void task_delete ( task_t task )
-
 Remove a task from the RTOS real time kernel's management.  The task being
 deleted will be removed from all ready, blocked, suspended and event lists.
 
 Memory dynamically allocated by the task is not automatically freed, and
 should be freed before the task is deleted.
+
+::
+
+  void task_delete ( task_t task )
 
 ============ ================================================================================================
  Parameters
@@ -183,13 +183,13 @@ should be freed before the task is deleted.
 task_get_by_name
 ----------------
 
-::
-
-  task_t task_get_by_name ( char* name )
-
 Obtains a task handle from the specified name.
 
 The operation takes a relatively long time and should be used sparingly.
+
+::
+
+  task_t task_get_by_name ( char* name )
 
 ============ ==================================
  Parameters
@@ -202,25 +202,25 @@ The operation takes a relatively long time and should be used sparingly.
 task_get_count
 --------------
 
-::
-
-  uint32_t task_get_count ( void )
-
 Returns the number of tasks the kernel is currently managing, including all
 ready, blocked, or suspended tasks. A task that has been deleted, but not yet
 reaped by the idle task will also be included in the count. Tasks recently
 created may take one context switch to be counted.
+
+::
+
+  uint32_t task_get_count ( void )
 
 **Returns:** The number of tasks that are currently being managed by the kernel
 
 task_get_name
 -------------
 
+Obtains the name of the specified task.
+
 ::
 
   char const* task_get_name ( task_t task )
-
-Obtains the name of the specified task.
 
 ============ ==================================
  Parameters
@@ -233,11 +233,11 @@ Obtains the name of the specified task.
 task_get_priority
 -----------------
 
+Obtains the priority of the specified task.
+
 ::
 
   uint32_t task_get_priority ( task_t task )
-
-Obtains the priority of the specified task.
 
 ============ ==================================
  Parameters
@@ -250,11 +250,11 @@ Obtains the priority of the specified task.
 task_get_state
 --------------
 
+Returns the state of the specified task.
+
 ::
 
   task_state_e_t task_get_state ( task_t task )
-
-Returns the state of the specified task.
 
 ============ ==================================
  Parameters
@@ -267,13 +267,13 @@ Returns the state of the specified task.
 task_notify
 -----------
 
-::
-
-  uint32_t task_notify ( task_t task )
-
 Sends a simple notification to task and increments the notification counter.
 
 See :doc:`../../tutorials/notifications` for details.
+
+::
+
+  uint32_t task_notify ( task_t task )
 
 ============ ==================================
  Parameters
@@ -286,13 +286,13 @@ See :doc:`../../tutorials/notifications` for details.
 task_notify_clear
 -----------------
 
-::
-
-  bool task_notify_clear ( task_t task )
-
 Clears the notification for a task.
 
 See :doc:`../../tutorials/notifications` for details.
+
+::
+
+  bool task_notify_clear ( task_t task )
 
 ============ ==================================
  Parameters
@@ -305,18 +305,18 @@ See :doc:`../../tutorials/notifications` for details.
 task_notify_ext
 ---------------
 
+Sends a notification to a task, optionally performing some action. Will also
+retrieve the value of the notification in the target task before modifying
+the notification value.
+
+See :doc:`../../tutorials/notifications` for details.
+
 ::
 
   uint32_t task_notify_ext ( task_t task,
                              uint32_t value,
                              notify_action_e_t action,
                              uint32_t* prev_value )
-
-Sends a notification to a task, optionally performing some action. Will also
-retrieve the value of the notification in the target task before modifying
-the notification value.
-
-See :doc:`../../tutorials/notifications` for details.
 
 ============ ======================================================================================
  Parameters
@@ -334,14 +334,14 @@ For all other `NOTIFY_ACTION <notify_action_e_t>`_ values: always return 0
 task_notify_take
 ----------------
 
+Wait for a notification to be nonzero.
+
+See :doc:`../../tutorials/notifications` for details.
+
 ::
 
   uint32_t task_notify_take ( bool clear_on_exit,
                               uint32_t timeout )
-
-Wait for a notification to be nonzero.
-
-See :doc:`../../tutorials/notifications` for details.
 
 =============== ================================================================================================================
  Parameters
@@ -355,11 +355,11 @@ See :doc:`../../tutorials/notifications` for details.
 task_resume
 -----------
 
+Resumes the specified task, making it eligible to be scheduled.
+
 ::
 
   void task_resume ( task_t task )
-
-Resumes the specified task, making it eligible to be scheduled.
 
 ============ ==================================
  Parameters
@@ -370,16 +370,16 @@ Resumes the specified task, making it eligible to be scheduled.
 task_set_priority
 -----------------
 
-::
-
-  void task_set_priority ( task_t task,
-                           uint32_t prio )
-
 Sets the priority of the specified task.
 
 If the specified task's state is available to be scheduled (e.g. not blocked)
 and new priority is higher than the currently running task, a context switch
 may occur.
+
+::
+
+  void task_set_priority ( task_t task,
+                           uint32_t prio )
 
 ============ ===============================
  Parameters
@@ -391,11 +391,11 @@ may occur.
 task_suspend
 ------------
 
+Suspends the current task, making it ineligible to be scheduled.
+
 ::
 
   void task_suspend ( task_t task )
-
-Suspends the current task, making it ineligible to be scheduled.
 
 ============ ==================================
  Parameters

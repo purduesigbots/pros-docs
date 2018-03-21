@@ -8,11 +8,11 @@ Functions
 vision_get_object_count
 -----------------------
 
+Returns the number of objects currently detected by the Vision Sensor.
+
 ::
 
   int32_t vision_get_object_count (  uint8_t port )
-
-Returns the number of objects currently detected by the Vision Sensor.
 
 ============ ==============================
  Parameters
@@ -26,13 +26,13 @@ Returns PROS_ERR if the port was invalid or an error occurred.
 vision_read_object
 ------------------
 
+Copies the specified object descriptor into object_ptr.
+
 ::
 
   int32_t vision_read_object (  uint8_t port,
                                const uint32_t object_id,
                                vision_object_s_t* object_ptr )
-
-Copies the specified object descriptor into object_ptr.
 
 ============ ========================================================
  Parameters
@@ -49,13 +49,13 @@ Returns PROS_ERR if the port was invalid, the object_id was out of range, or an 
 vision_read_objects
 -------------------
 
+Reads up to object_count object descriptors into object_arr.
+
 ::
 
   int32_t vision_read_objects (  uint8_t port,
                                 const uint32_t object_count,
                                 vision_object_s_t* object_arr )
-
-Reads up to object_count object descriptors into object_arr.
 
 ============== ========================================================
  Parameters
@@ -72,16 +72,16 @@ Returns PROS_ERR if the port was invalid or an error occurred.
 vision_get_object
 -----------------
 
-::
-
-  vision_object_s_t vision_get_object (  uint8_t port,
-                                        const uint32_t object_id )
-
 Returns the object descriptor at ``object_id``.
 
 .. note::
    This function is slightly less performant than `vision_read_object`_ since the object descriptor
    must be copied at the end of the function call. This may not be an issue for most users.
+
+::
+
+  vision_object_s_t vision_get_object (  uint8_t port,
+                                        const uint32_t object_id )
 
 ============ ========================================================
  Parameters
@@ -97,13 +97,13 @@ signature will be set to 255.
 vision_read_signature
 ---------------------
 
+Loads the object detection signature into the supplied pointer to memory.
+
 ::
 
   int32_t vision_read_signature (  uint8_t port,
                                   const uint8_t signature_id,
                                   vision_signature_s_t* signature_ptr )
-
-Loads the object detection signature into the supplied pointer to memory.
 
 =============== ========================================================
  Parameters
@@ -118,13 +118,13 @@ Loads the object detection signature into the supplied pointer to memory.
 vision_save_signature
 ---------------------
 
+Stores the supplied object detection signature onto the vision sensor.
+
 ::
 
   int32_t vision_save_signature (  uint8_t port,
                                   const uint8_t signature_id,
                                   vision_signature_s_t* signature_ptr )
-
-Stores the supplied object detection signature onto the vision sensor.
 
 =============== ========================================================
  Parameters
@@ -139,12 +139,12 @@ Stores the supplied object detection signature onto the vision sensor.
 vision_clear_led
 ----------------
 
+Clears the vision sensor LED color, reseting it back to its default behavior,
+displaying the most prominent object signature color.
+
 ::
 
   int32_t vision_clear_led (  uint8_t port )
-
-Clears the vision sensor LED color, reseting it back to its default behavior,
-displaying the most prominent object signature color.
 
 ============ ==============================
  Parameters
@@ -157,12 +157,12 @@ displaying the most prominent object signature color.
 vision_set_led
 --------------
 
+Sets the vision sensor LED color, overriding the automatic behavior.
+
 ::
 
   int32_t vision_set_led (  uint8_t port,
                            const int32_t rgb )
-
-Sets the vision sensor LED color, overriding the automatic behavior.
 
 ============ ==============================
  Parameters
@@ -176,11 +176,11 @@ Sets the vision sensor LED color, overriding the automatic behavior.
 vision_get_exposure
 -------------------
 
+Gets the exposure parameter of the Vision Sensor.
+
 ::
 
   int32_t vision_get_exposure (  uint8_t port )
-
-Gets the exposure parameter of the Vision Sensor.
 
 ============ ==============================
  Parameters
@@ -194,12 +194,12 @@ PROS_ERR if an error occurred
 vision_set_exposure
 -------------------
 
+Sets the exposure parameter of the Vision Sensor.
+
 ::
 
   int32_t vision_set_exposure (  uint8_t port,
                                 const uint8_t percent )
-
-Sets the exposure parameter of the Vision Sensor.
 
 ============ ==============================
  Parameters
@@ -214,12 +214,12 @@ Sets the exposure parameter of the Vision Sensor.
 vision_set_auto_white_balance
 -----------------------------
 
+Enable/disable auto white-balancing on the Vision Sensor.
+
 ::
 
   int32_t vision_set_auto_white_balance (  uint8_t port,
                                           const uint8_t enable )
-
-Enable/disable auto white-balancing on the Vision Sensor.
 
 ============ ===============================
  Parameters
@@ -233,15 +233,14 @@ Enable/disable auto white-balancing on the Vision Sensor.
 vision_set_white_balance
 ------------------------
 
-::
-
-  int32_t vision_set_white_balance (  uint8_t port,
-                                     const int32_t rgb )
-
-
 Set the white balance parameter manually on the Vision Sensor.
 
 This function will disable auto white-balancing.
+
+::
+
+  int32_t vision_set_white_balance (  uint8_t port,
+                                      const int32_t rgb )
 
 ============ ===============================
  Parameters
@@ -255,11 +254,11 @@ This function will disable auto white-balancing.
 vision_get_white_balance
 ------------------------
 
+Gets the white balance parameter of the Vision Sensor.
+
 ::
 
   int32_t vision_get_white_balance (  uint8_t port )
-
-Gets the white balance parameter of the Vision Sensor.
 
 ============ ==============================
  Parameters

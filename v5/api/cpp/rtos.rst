@@ -55,14 +55,14 @@ Creates a Task object from a task already created with the C API.
 Methods
 -------
 
+delay
+~~~~~
+
 Delay a task for a given number of milliseconds.
 
 This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
 To delay cyclically, use `delay_until`_.
-
-delay
-~~~~~
 
 ::
 
