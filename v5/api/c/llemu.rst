@@ -141,10 +141,10 @@ lcd_print
 
 Displays a formatted string on the emulated three-button LCD screen
 
-This function uses the following values of errno when an error state is
+This function uses the following values of ``errno`` when an error state is
 reached:
 
-- ``ENXIO``  - The LCD has not been initialized. Call lcd_initialize() first.
+- ``ENXIO``  - The LCD has not been initialized. Call `lcd_initialize`_ first.
 - ``EINVAL`` - The line number specified is not in the range [0-7]
 
 ============ ==================================================
@@ -302,9 +302,9 @@ lcd_read_buttons
 
 Reads the button status from the emulated three-button LCD.
 
-The value returned is a 3-bit integer where `1 0 0` indicates the left button
-is pressed, `0 1 0` indicates the center button is pressed, and `0 0 1`
-indicates the right button is pressed. `0` is returned if no buttons are
+The value returned is a 3-bit integer where ``1 0 0`` indicates the left button
+is pressed, ``0 1 0`` indicates the center button is pressed, and ``0 0 1``
+indicates the right button is pressed. ``0`` is returned if no buttons are
 currently being pressed.
 
 Note that this function is provided for legacy API compatibility purposes,
@@ -335,7 +335,7 @@ lcd_set_text
 
 Displays a string on the emulated three-button LCD screen
 
-This function uses the following values of errno when an error state is reached:
+This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENXIO``  - The LCD has not been initialized. Call lcd_initialize() first.
 - ``EINVAL`` - The line number specified is not in the range [0-7]
@@ -363,7 +363,7 @@ lcd_shutdown
    .. tab :: Example
       .. highlight:: c
       ::
-      
+
         void initialize() {
           lcd_initialize();
           lcd_set_text(1, "Hello World!");
@@ -375,7 +375,7 @@ Turn off the Legacy LCD Emulator
 Calling this function will clear the entire display, and you will not be able
 to call any further LLEMU functions until another call to `lcd_initialize`_.
 
-This function uses the following values of `errno` when an error state is reached:
+This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENXIO`` - The LCD has not been initialized. Call `lcd_initialize`_ first.
 
