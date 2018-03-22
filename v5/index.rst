@@ -17,6 +17,8 @@ PROS: Documentation Home
    :caption: Getting Started
 
    ./getting-started/index
+   ./getting-started/new-users
+   ./getting-started/installation
 
 .. toctree::
    :hidden:
@@ -58,7 +60,8 @@ If this is your first time using PROS, it is recommended that you check out one 
 
 :doc:`/getting-started/index`
 
-For topical tutorials on everything from the :doc:`VEX Clawbot</tutorials/clawbot>` to INSERT_A_THING_HERE, checkout the **Tutorial** section:
+For topical tutorials on everything from the :doc:`./tutorials/adi` to :doc:`./tutorials/uploading`,
+check out the **Tutorial** section:
 
 :doc:`/tutorials/index`
 
