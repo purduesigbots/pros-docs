@@ -8,9 +8,24 @@ pros
 millis
 ------
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  uint32_t pros::millis ( void )
+        uint32_t pros::millis ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          uint32_t now = pros::millis();
+          while (true) {
+            // Do opcontrol things
+            pros::Task::delay_until(&now, 2);
+          }
+        }
 
 **Returns:** Returns the number of milliseconds since PROS initialized.
 
@@ -20,13 +35,29 @@ pros::Task
 Constructor(s)
 --------------
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  pros::Task::Task ( task_fn_t function,
-                     void* parameters = NULL,
-                     uint32_t prio = TASK_PRIORITY_DEFAULT,
-                     uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT,
-                     const char* name = "")
+        pros::Task::Task ( task_fn_t function,
+                           void* parameters = NULL,
+                           uint32_t prio = TASK_PRIORITY_DEFAULT,
+                           uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT,
+                           const char* name = "")
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* param) {
+          std::cout << "Hello" << (char*)param;
+          // ...
+        }
+        void initialize() {
+          Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+                        TASK_STACK_DEPTH_DEFAULT, "My Task");
+        }
 
 Create a new task and add it to the list of tasks that are ready to run.
 
@@ -40,9 +71,26 @@ Create a new task and add it to the list of tasks that are ready to run.
  name               A descriptive name for the task.  This is mainly used to facilitate debugging. The name may be up to 32 characters long.
 ================= ===============================================================================================================================================================================================================
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  pros::Task::Task ( task_t task )
+        pros::Task::Task ( task_t task )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* param) {
+          std::cout << "Hello" << (char*)param;
+          // ...
+        }
+        void initialize() {
+          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+                                       TASK_STACK_DEPTH_DEFAULT, "My Task");
+          Task my_cpp_task (my_task);
+        }
 
 Creates a Task object from a task already created with the C API.
 
@@ -64,9 +112,23 @@ This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
 To delay cyclically, use `delay_until`_.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  static void pros::Task::delay ( const uint32_t milliseconds )
+         static void pros::Task::delay ( const uint32_t milliseconds )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          while (true) {
+            // Do opcontrol things
+            pros::Task::delay(2);
+          }
+        }
 
 =============== ===================================================================
  Parameters
@@ -83,10 +145,25 @@ tasks to ensure a constant execution frequency.
 The task will be woken up at the time ``*prev_time + delta``, and ``*prev_time`` will
 be updated to reflect the time at which the task will unblock.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  void pros::Task::delay_until ( uint32_t* const prev_time,
-                                 const uint32_t delta )
+        void pros::Task::delay_until ( uint32_t* const prev_time,
+                                       const uint32_t delta )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          uint32_t now = pros::millis();
+          while (true) {
+            // Do opcontrol things
+            pros::Task::delay_until(&now, 2);
+          }
+        }
 
 ============ ===================================================================
  Parameters
@@ -103,9 +180,26 @@ ready, blocked, or suspended tasks. A task that has been deleted, but not yet
 reaped by the idle task will also be included in the count. Tasks recently
 created may take one context switch to be counted.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  uint32_t pros::task::get_count ( )
+          uint32_t pros::task::get_count ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* param) {
+          std::cout << "Hello" << (char*)param;
+          // ...
+        }
+        void initialize() {
+          Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+                        TASK_STACK_DEPTH_DEFAULT, "My Task");
+          std::cout << "Number of Running Tasks:" << pros::Task::get_count();
+        }
 
 **Returns:** The number of tasks that are currently being managed by the kernel
 
@@ -114,9 +208,26 @@ get_name
 
 Obtains the name of the specified task.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  char const* pros::Task::get_name ( )
+          char const* pros::Task::get_name ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* param) {
+          std::cout << "Hello" << (char*)param;
+          // ...
+        }
+        void initialize() {
+          Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+                        TASK_STACK_DEPTH_DEFAULT, "My Task");
+          std::cout << "Task Name:" << my_task.get_name();
+        }
 
 **Returns:** A pointer to the name of the task
 
@@ -125,9 +236,25 @@ get_priority
 
 Obtains the priority of the specified task.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  uint32_t pros::Task::get_priority ( )
+        uint32_t pros::Task::get_priority ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* param) {
+          std::cout << "Hello" << (char*)param;
+          // ...
+        }
+        void initialize() {
+          Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+                        TASK_STACK_DEPTH_DEFAULT, "My Task");
+          std::cout << "Task Priority:" << my_task.get_priority();
 
 **Returns:** The priority of the task.
 
@@ -136,9 +263,28 @@ get_state
 
 Returns the state of the specified task.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  task_state_e_t pros::Task::get_state ( )
+        task_state_e_t pros::Task::get_state ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* param) {
+          std::cout << "Hello" << (char*)param;
+          // ...
+        }
+        void initialize() {
+          Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+                        TASK_STACK_DEPTH_DEFAULT, "My Task");
+          std::cout << "Task's State:" << my_task.get_state();
+        }
+
+
 
 **Returns:** The state of the task. (see `task_state_e_t <task_state_e_t_>`_).
 
@@ -149,9 +295,34 @@ Sends a simple notification to task and increments the notification counter.
 
 See :doc:`../../tutorials/notifications` for details.
 
-::
+.. warning:: verify this example code
 
-  uint32_t pros::Task::notify ( )
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        uint32_t pros::Task::notify ( )
+
+     .. tab :: Example
+        .. highlight:: cpp
+        ::
+
+          void my_task_fn(void* ign) {
+            while(my_task.notify_take(true, TIMEOUT_MAX)) {
+              std::cout << "I was unblocked!";
+            }
+          }
+          void opcontrol() {
+            Task my_task (my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                          TASK_STACK_DEPTH_DEFAULT, "Notify me! Task");
+            pros::Controller master (E_CONTROLLER_MASTER);
+            while(true) {
+              if(master.get_digital(DIGITAL_L1)) {
+                my_task.notify(my_task);
+              }
+            }
+          }
 
 **Returns:** Always true.
 
@@ -162,9 +333,18 @@ Clears the notification for a task.
 
 See :doc:`../../tutorials/notifications` for details.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  bool pros::Task::notify_clear ( )
+        bool pros::Task::notify_clear ( )
+
+     .. tab :: Example
+        .. highlight:: cpp
+        ::
+
+          TO BE ADDED
 
 **Returns:** False if there was not a notification waiting, true if there was
 
@@ -177,11 +357,20 @@ the notification value.
 
 See :doc:`../../tutorials/notifications` for details.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  uint32_t pros::Task::notify_ext ( uint32_t value,
-                                    notify_action_e_t action,
-                                    uint32_t* prev_value )
+        uint32_t pros::Task::notify_ext ( uint32_t value,
+                                          notify_action_e_t action,
+                                          uint32_t* prev_value )
+
+     .. tab :: Example
+        .. highlight:: cpp
+        ::
+
+          TO BE ADDED
 
 ============ ======================================================================================
  Parameters
@@ -202,10 +391,33 @@ Wait for a notification to be nonzero.
 
 See :doc:`../../tutorials/notifications` for details.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  uint32_t pros::Task::notify_take ( bool clear_on_exit,
-                              uint32_t timeout )
+        uint32_t pros::Task::notify_take ( bool clear_on_exit,
+                                           uint32_t timeout )
+
+     .. tab :: Example
+        .. highlight:: cpp
+        ::
+
+          void my_task_fn(void* ign) {
+            while(my_task.notify_take(true, TIMEOUT_MAX)) {
+              std::cout << "I was unblocked!";
+            }
+          }
+          void opcontrol() {
+            Task my_task (my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                          TASK_STACK_DEPTH_DEFAULT, "Notify me! Task");
+            pros::Controller master (E_CONTROLLER_MASTER);
+            while(true) {
+              if(master.get_digital(DIGITAL_L1)) {
+                my_task.notify(my_task);
+              }
+            }
+          }
 
 =============== ================================================================================================================
  Parameters
@@ -221,9 +433,28 @@ resume
 
 Resumes the specified task, making it eligible to be scheduled.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  void pros::Task::resume ( )
+        void pros::Task::resume ( )
+
+     .. tab :: Example
+        .. highlight:: cpp
+        ::
+
+          void my_task_fn(void* ign) {
+            // Do things
+          }
+          void opcontrol() {
+            Task my_task (my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                          TASK_STACK_DEPTH_DEFAULT, "Example Task");
+            // Do things
+            my_task.suspend(); // The task will no longer execute
+            // Do other things
+            my_task.resume(); // The task will resume execution
+          }
 
 set_priority
 ~~~~~~~~~~~~
@@ -234,9 +465,25 @@ If the specified task's state is available to be scheduled (e.g. not blocked)
 and new priority is higher than the currently running task, a context switch
 may occur.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  void pros::Task::set_priority ( uint32_t prio )
+        void pros::Task::set_priority ( uint32_t prio )
+
+     .. tab :: Example
+        .. highlight:: cpp
+        ::
+
+          void my_task_fn(void* ign) {
+            // Do things
+          }
+          void opcontrol() {
+            Task my_task (my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                          TASK_STACK_DEPTH_DEFAULT, "Example Task");
+            my_task.set_priority(TASK_PRIORITY_DEFAULT + 1);
+          }
 
 ============ ===============================
  Parameters
@@ -249,9 +496,28 @@ suspend
 
 Suspends the current task, making it ineligible to be scheduled.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  void pros::Task::suspend ( )
+        void pros::Task::suspend ( )
+
+     .. tab :: Example
+        .. highlight:: cpp
+        ::
+
+          void my_task_fn(void* ign) {
+            // Do things
+          }
+          void opcontrol() {
+            Task my_task (my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                          TASK_STACK_DEPTH_DEFAULT, "Example Task");
+            // Do things
+            my_task.suspend(); // The task will no longer execute
+            // Do other things
+            my_task.resume(); // The task will resume execution
+          }
 
 pros::Mutex
 ===========
@@ -259,9 +525,26 @@ pros::Mutex
 Constructor(s)
 --------------
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  pros::Mutex::Mutex ( )
+         pros::Mutex::Mutex ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        Mutex mutex;
+
+        // Acquire the mutex; other tasks using this command will wait until the mutex is released
+        // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
+        // If the timeout expires, "false" will be returned, otherwise "true"
+        mutex.take(MAX_DELAY);
+        // do some work
+        // Release the mutex for other tasks
+        mutex.give();
 
 Creates a mutex.
 
@@ -277,9 +560,26 @@ Unlocks a mutex.
 
 See :doc:`../../tutorials/multitasking` for details.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  bool pros::Mutex::give ( )
+         bool pros::Mutex::give ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        Mutex mutex;
+
+        // Acquire the mutex; other tasks using this command will wait until the mutex is released
+        // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
+        // If the timeout expires, "false" will be returned, otherwise "true"
+        mutex.take(MAX_DELAY);
+        // do some work
+        // Release the mutex for other tasks
+        mutex.give();
 
 **Returns:** True if the mutex was successfully returned, false otherwise. If false
 is returned, then ``errno`` is set with a hint about why the mutex couldn't
@@ -293,9 +593,26 @@ before timing out.
 
 See :doc:`../../tutorials/multitasking` for details.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  bool pros::Mutex::take ( uint32_t timeout )
+         bool pros::Mutex::take ( uint32_t timeout )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        Mutex mutex;
+
+        // Acquire the mutex; other tasks using this command will wait until the mutex is released
+        // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
+        // If the timeout expires, "false" will be returned, otherwise "true"
+        mutex.take(MAX_DELAY);
+        // do some work
+        // Release the mutex for other tasks
+        mutex.give();  
 
 ============ ==============================================================================================
  Parameters

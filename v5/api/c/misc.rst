@@ -10,9 +10,20 @@ battery_get_capacity
 
 Gets the current capacity of the battery, as reported by VEXos.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  double battery_get_capacity ( )
+         double battery_get_capacity ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Battery Level: %d\n", battery_get_capacity());
+        }
 
 **Returns:** The current capacity of the battery.
 
@@ -21,9 +32,20 @@ battery_get_current
 
 Gets the current current of the battery, as reported by VEXos.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  double battery_get_current ( )
+         double battery_get_current ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Battery Current: %d\n", battery_get_current());
+        }
 
 **Returns:** The current current of the battery.
 
@@ -32,9 +54,20 @@ battery_get_temperature
 
 Gets the current temperature of the battery, as reported by VEXos.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  double battery_get_temperature ( )
+         double battery_get_temperature ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Battery's Temperature: %d\n", battery_get_temperature());
+        }
 
 **Returns:** The current temperature of the battery.
 
@@ -43,18 +76,43 @@ battery_get_voltage
 
 Gets the current voltage of the battery, as reported by VEXos
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  double battery_get_voltage ( )
+        double battery_get_voltage ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Battery's Voltage: %d\n", battery_get_voltage());
+        }
 
 **Returns:** The current voltage of the battery.
 
 competition_get_status
 ----------------------
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  uint8_t competition_get_status ( void )
+        uint8_t competition_get_status ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          if (competition_get_status() & COMPETITION_CONNECTED == true) {
+            // Field Control is Connected
+            // Run LCD Selector code or similar
+          }
+        }
 
 **Returns:** The competition control status as a mask of bits with
 COMPETITION_{ENABLED,AUTONOMOUS,CONNECTED}.
@@ -62,39 +120,105 @@ COMPETITION_{ENABLED,AUTONOMOUS,CONNECTED}.
 competition_is_disabled
 -----------------------
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  bool competition_is_disabled ( void )
+        bool competition_is_disabled ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void my_task_fn(void* ignore) {
+          while (!competition_is_disabled) {
+            // Run competition tasks (like Lift Control or similar)
+          }
+        }
+
+        void initialize() {
+          task_t my_task = task_create(my_task_fn, NULL, TASK_PRIO_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
+        }
 
 **Returns:** True if the V5 Brain is disabled, false otherwise.
 
 competition_is_connected
 ------------------------
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  bool competition_is_connected ( void )
+        bool competition_is_connected ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          if (competition_is_connected()) {
+            // Field Control is Connected
+            // Run LCD Selector code or similar
+          }
+        }
 
 **Returns:** True if the V5 Brain is connected to competition control, false otherwise.
 
 competition_is_autonomous
 -------------------------
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  bool competition_is_autonomous ( void )
+        bool competition_is_autonomous ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void my_task_fn(void* ignore) {
+          while (!competition_is_autonomous) {
+            // Wait to do anything until autonomous starts
+            delay(2);
+          }
+          while (competition_is_autonomous) {
+            // Run whatever code is desired to just execute in autonomous
+          }
+        }
+
+        void initialize() {
+          task_t my_task = task_create(my_task_fn, NULL, TASK_PRIO_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
+        }
 
 **Returns:** True if the V5 Brain is in autonomous mode, false otherwise.
 
 controller_get_analog
 ---------------------
 
-::
-
-  int32_t controller_get_analog ( controller_id_e_t id,
-                                  controller_analog_e_t channel )
-
 Gets the value of an analog channel (joystick) on a controller.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t controller_get_analog ( controller_id_e_t id,
+                                        controller_analog_e_t channel )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_set(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            delay(2);
+          }
+        }
 
 ============ ======================================================================================================
  Parameters
@@ -112,10 +236,32 @@ If the controller was not connected, then 0 is returned
 controller_get_digital
 ----------------------
 
-::
+Gets the value of an digital channel (button) on a controller.
 
-  int32_t controller_get_digital ( controller_id_e_t id,
-                                   controller_digital_e_t button )
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t controller_get_digital ( controller_id_e_t id,
+                                         controller_digital_e_t button )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            if (controller_get_digital(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A)) {
+              motor_set(1, 100);
+            }
+            else {
+              motor_set(1, 0);
+            }
+
+            delay(2);
+          }
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -141,10 +287,27 @@ this function for button 3, but should not for buttons 1 or 2. A typical
 use-case for this function is to call inside opcontrol to detect new button
 presses, and not in any other tasks.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
- int32_t controller_get_digital_new_press ( controller_id_e_t id,
-                                            controller_digital_e_t button )
+        int32_t controller_get_digital_new_press ( controller_id_e_t id,
+                                                   controller_digital_e_t button )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            if (controller_get_digital_new_press(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A)) {
+              // Toggle pneumatics or other similar actions
+            }
+
+            delay(2);
+          }
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -160,11 +323,31 @@ the last time this function was called, 0 otherwise.
 controller_is_connected
 -----------------------
 
-::
-
-  int32_t controller_is_connected ( controller_id_e_t id )
-
 Returns 0 or 1 if the controller is connected.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t controller_is_connected ( controller_id_e_t id )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            if (controller_is_connected(E_CONTROLLER_PARTNER)) {
+              // Use a two controller control scheme
+            }
+            else {
+              // Just use a single controller control scheme
+            }
+
+            delay(2);
+          }
+        }
 
 ============ ======================================================================================================
  Parameters

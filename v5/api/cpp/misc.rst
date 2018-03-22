@@ -2,7 +2,7 @@
 Miscellaneous C++ API
 =====================
 
-Battery
+battery
 =======
 
 get_capacity
@@ -10,9 +10,20 @@ get_capacity
 
 Gets the current capacity of the battery, as reported by VEXos.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  double pros::Battery::get_capacity ( )
+         double pros::battery::get_capacity ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          std::cout << "Battery Level:" << pros::battery::get_capacity();
+        }
 
 **Returns:** The current capacity of the battery.
 
@@ -21,9 +32,20 @@ get_current
 
 Gets the current current of the battery, as reported by VEXos.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  double pros::Battery::get_current ( )
+         double pros::battery::get_current ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          std::cout << "Battery Current:" << pros::battery::get_current();
+        }
 
 **Returns:** The current current of the battery.
 
@@ -32,9 +54,20 @@ get_temperature
 
 Gets the current temperature of the battery, as reported by VEXos.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  double pros::Battery::get_temperature ( )
+         double pros::battery::get_temperature ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          std::cout << "Battery Temperature:" << pros::battery::get_temperature();
+        }
 
 **Returns:** The current temperature of the battery.
 
@@ -43,9 +76,20 @@ get_voltage
 
 Gets the current voltage of the battery, as reported by VEXos
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  double pros::Battery::get_voltage ( )
+         double pros::battery::get_voltage ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          std::cout << "Battery Voltage:" << pros::battery::get_voltage();
+        }
 
 **Returns:** The current voltage of the battery.
 
@@ -55,9 +99,24 @@ Controller
 Constructor(s)
 --------------
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  pros::Controller::Controller ( controller_id_e_t id )
+         pros::Controller::Controller ( controller_id_e_t id )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            1_m = master.get_analog(E_CONTROLLER_ANALOG_LEFT_X);
+            delay(2);
+          }
+        }
 
 ============ ======================================================================================================
  Parameters
@@ -76,9 +135,30 @@ Return 0 or 1 if the controller is connected.
 
 Analogous to `controller_is_connected <../c/misc.html#controller-is-connected>`_.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  int32_t pros::Controller::is_connected ( )
+        int32_t pros::Controller::is_connected ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          Controller partner (E_CONTROLLER_PARTNER);
+          while (true) {
+            if (partner.is_connected) {
+              // Use a two controller control scheme
+            }
+            else {
+              // Just use a single controller control scheme
+            }
+
+            delay(2);
+          }
+        }
 
 **Returns:** True if the V5 Brain is connected to competition control, false otherwise.
 
@@ -89,9 +169,24 @@ Gets the value of an analog channel (joystick) on a controller.
 
 Analogous to `controller_get_analog <../c/misc.html#controller-get-analog>`_.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  int32_t pros::Controller::get_analog ( controller_analog_e_t channel )
+         int32_t pros::Controller::get_analog ( controller_analog_e_t channel )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            1_m = master.get_analog(E_CONTROLLER_ANALOG_LEFT_X);
+            delay(2);
+          }
+        }
 
 ============ ======================================================================================================
  Parameters
@@ -111,9 +206,30 @@ Gets the value of an digital channel (button) on a controller.
 
 Analogous to `controller_get_digital <../c/misc.html#controller-get-digital>`_.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  int32_t pros::Controller::get_digital ( controller_digital_e_t button )
+        int32_t pros::Controller::get_digital ( controller_digital_e_t button )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            if (master.get_digital(E_CONTROLLER_DIGITAL_A)) {
+              motor_set(1, 100);
+            }
+            else {
+              motor_set(1, 0);
+            }
+
+            delay(2);
+          }
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -140,9 +256,27 @@ presses, and not in any other tasks.
 
 Analogous to `controller_get_digital_new_press <../c/misc.html#controller-get-digital-new-press>`_.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  int32_t pros::Controller::get_digital_new_press ( controller_digital_e_t button )
+        int32_t pros::Controller::get_digital_new_press ( controller_digital_e_t button )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_A)) {
+              // Toggle pneumatics or other similar actions
+            }
+
+            delay(2);
+          }
+        }
 
 ============ =================================================================================================================
  Parameters

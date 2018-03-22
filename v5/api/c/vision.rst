@@ -10,9 +10,23 @@ vision_get_object_count
 
 Returns the number of objects currently detected by the Vision Sensor.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  int32_t vision_get_object_count (  uint8_t port )
+         int32_t vision_get_object_count ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            printf("Number of Objects Detected: %d\n", vision_get_object_count(1));
+            delay(2);
+          }
+        }
 
 ============ ==============================
  Parameters
@@ -28,11 +42,31 @@ vision_read_object
 
 Copies the specified object descriptor into object_ptr.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-  int32_t vision_read_object (  uint8_t port,
-                               const uint32_t object_id,
-                               vision_object_s_t* object_ptr )
+        int32_t vision_read_object ( uint8_t port,
+                                     const uint32_t object_id,
+                                     vision_object_s_t* object_ptr )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+      
+        #define VISION_PORT 1
+        #define OBJECT_ID 1
+
+        void opcontrol() {
+          vision_object_s_t ptr;
+          while (true) {
+            vision_read_object(VISION_PORT, OBJECT_ID, &ptr);
+            std::cout << "Object detected at: " << ptr.x_middle_coord << ","
+            << ptr.y_middle_coord << std::endl;
+            delay(2);
+          }
+        }
 
 ============ ========================================================
  Parameters
