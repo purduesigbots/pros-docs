@@ -2,13 +2,15 @@
 Miscellaneous C++ API
 =====================
 
-battery
-=======
+pros::battery
+=============
 
 get_capacity
---------------------
+------------
 
 Gets the current capacity of the battery, as reported by VEXos.
+
+Analogous to `pros::battery::get_capacity <../c/misc.html#get-capacity>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -28,9 +30,11 @@ Gets the current capacity of the battery, as reported by VEXos.
 **Returns:** The current capacity of the battery.
 
 get_current
--------------------
+-----------
 
 Gets the current current of the battery, as reported by VEXos.
+
+Analogous to `pros::battery::get_current <../c/misc.html#get-current>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -50,9 +54,11 @@ Gets the current current of the battery, as reported by VEXos.
 **Returns:** The current current of the battery.
 
 get_temperature
------------------------
+---------------
 
 Gets the current temperature of the battery, as reported by VEXos.
+
+Analogous to `pros::battery::get_temperature <../c/misc.html#get-temperature>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -72,9 +78,11 @@ Gets the current temperature of the battery, as reported by VEXos.
 **Returns:** The current temperature of the battery.
 
 get_voltage
--------------------
+-----------
 
 Gets the current voltage of the battery, as reported by VEXos
+
+Analogous to `pros::battery::get_voltage <../c/misc.html#get-voltage>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -93,8 +101,8 @@ Gets the current voltage of the battery, as reported by VEXos
 
 **Returns:** The current voltage of the battery.
 
-Controller
-==========
+pros::Controller
+================
 
 Constructor(s)
 --------------

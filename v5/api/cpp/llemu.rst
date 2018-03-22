@@ -2,8 +2,8 @@
 LLEMU (Legacy LCD Emulator) C++ API
 ===================================
 
-lcd
-===
+pros::lcd
+=========
 
 clear
 -----
@@ -13,6 +13,8 @@ Clear the text on the emulated three-button LCD screen.
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENXIO``  - The LCD has not been initialized. Call `initialize`_ first.
+
+Analogous to `lcd_clear <../c/llemu.html#lcd-clear>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -43,6 +45,8 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO``  - The LCD has not been initialized. Call `initialize`_ first.
 - ``EINVAL`` - The line number specified is not in the range [0-7]
+
+Analogous to `lcd_clear_line <../c/llemu.html#lcd-clear-line>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -75,6 +79,8 @@ initialize
 
 Initialize the display to be an emulation of the three-button, UART-based VEX LCD.
 
+Analogous to `lcd_initialize <../c/llemu.html#lcd-initialize>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -97,6 +103,8 @@ is_initialized
 --------------
 
 Determines whether the emulated three-button LCD has already been initialized.
+
+Analogous to `lcd_is_initialized <../c/llemu.html#lcd-is-initialized>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -127,6 +135,8 @@ reached:
 
 - ``ENXIO``  - The LCD has not been initialized. Call `initialize`_ first.
 - ``EINVAL`` - The line number specified is not in the range [0-7]
+
+Analogous to `lcd_print <../c/llemu.html#lcd-print>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -168,6 +178,8 @@ Register a callback function for the leftmost button.
 When the leftmost button on the emulated three-button LCD is pressed, the
 user-provided callback function will be invoked.
 
+Analogous to `lcd_register_btn0_cb <../c/llemu.html#lcd-register-btn0-cb>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -208,6 +220,8 @@ Register a callback function for the center button.
 When the center button on the emulated three-button LCD is pressed, the
 user-provided callback function will be invoked.
 
+Analogous to `lcd_register_btn1_cb <../c/llemu.html#lcd-register-btn1-cb>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -247,6 +261,8 @@ Register a callback function for the rightmost button.
 
 When the rightmost button on the emulated three-button LCD is pressed, the
 user-provided callback function will be invoked.
+
+Analogous to `lcd_register_btn2_cb <../c/llemu.html#lcd-register-btn2-cb>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -294,6 +310,8 @@ Note that this function is provided for legacy API compatibility purposes,
 with the caveat that the V5 touch screen does not actually support pressing
 multiple points on the screen at the same time.
 
+Analogous to `lcd_read_buttons <../c/llemu.html#lcd-read-buttons>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -324,6 +342,8 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO``  - The LCD has not been initialized. Call `initialize`_ first.
 - ``EINVAL`` - The line number specified is not in the range [0-7]
+
+Analogous to `lcd_set_text <../c/llemu.html#lcd-set-text>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -363,6 +383,8 @@ to call any further LLEMU functions until another call to `initialize`_.
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENXIO`` - The LCD has not been initialized. Call `initialize`_ first.
+
+Analogous to `lcd_shutdown <../c/llemu.html#lcd-shutdown>`_.
 
 .. tabs ::
    .. tab :: Prototype

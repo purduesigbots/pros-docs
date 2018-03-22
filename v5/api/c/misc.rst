@@ -10,6 +10,8 @@ battery_get_capacity
 
 Gets the current capacity of the battery, as reported by VEXos.
 
+Analogous to `pros::battery::get_capacity <../cpp/misc.html#get-capacity>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -31,6 +33,8 @@ battery_get_current
 -------------------
 
 Gets the current current of the battery, as reported by VEXos.
+
+Analogous to `pros::battery::get_current <../cpp/misc.html#get-current>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -54,6 +58,8 @@ battery_get_temperature
 
 Gets the current temperature of the battery, as reported by VEXos.
 
+Analogous to `pros::battery::get_temperature <../cpp/misc.html#get-temperature>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -76,6 +82,8 @@ battery_get_voltage
 
 Gets the current voltage of the battery, as reported by VEXos
 
+Analogous to `pros::battery::get_voltage <../cpp/misc.html#get-voltage>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -95,6 +103,8 @@ Gets the current voltage of the battery, as reported by VEXos
 
 competition_get_status
 ----------------------
+
+.. warning:: needs a link
 
 .. tabs ::
    .. tab :: Prototype
@@ -119,6 +129,8 @@ COMPETITION_{ENABLED,AUTONOMOUS,CONNECTED}.
 
 competition_is_disabled
 -----------------------
+
+.. warning:: needs a link
 
 .. tabs ::
    .. tab :: Prototype
@@ -146,6 +158,8 @@ competition_is_disabled
 competition_is_connected
 ------------------------
 
+.. warning:: needs a link
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -168,6 +182,8 @@ competition_is_connected
 
 competition_is_autonomous
 -------------------------
+
+.. warning:: needs a link
 
 .. tabs ::
    .. tab :: Prototype
@@ -200,6 +216,8 @@ controller_get_analog
 ---------------------
 
 Gets the value of an analog channel (joystick) on a controller.
+
+Analogous to `pros::Controller::get_analog <../cpp/misc.html#get-analog>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -237,6 +255,8 @@ controller_get_digital
 ----------------------
 
 Gets the value of an digital channel (button) on a controller.
+
+Analogous to `pros::Controller::get_digital <../cpp/misc.html#get-digital>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -287,6 +307,8 @@ this function for button 3, but should not for buttons 1 or 2. A typical
 use-case for this function is to call inside opcontrol to detect new button
 presses, and not in any other tasks.
 
+Analogous to `pros::Controller::get_digital_new_press <../cpp/misc.html#get-digital-new-press>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -324,6 +346,8 @@ controller_is_connected
 -----------------------
 
 Returns 0 or 1 if the controller is connected.
+
+Analogous to `pros::Controller::is_connected <../cpp/misc.html#is-connected>`_.
 
 .. tabs ::
    .. tab :: Prototype

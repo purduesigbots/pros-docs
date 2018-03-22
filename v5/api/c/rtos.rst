@@ -14,6 +14,8 @@ This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
 To delay cyclically, use `task_delay_until`_.
 
+.. warning:: needs a link
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -40,6 +42,8 @@ To delay cyclically, use `task_delay_until`_.
 
 millis
 ------
+
+Analogous to `pros::millis <../cpp/rtos.html#millis>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -68,6 +72,8 @@ mutex_create
 Creates a mutex.
 
 See :doc:`../../tutorials/multitasking` for details.
+
+Analogous to `pros::Mutex::Mutex <../cpp/rtos.html#mutex>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -99,6 +105,8 @@ mutex_give
 Unlocks a mutex.
 
 See :doc:`../../tutorials/multitasking` for details.
+
+Analogous to `pros::Mutex::give <../cpp/rtos.html#give>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -139,6 +147,8 @@ before timing out.
 
 See :doc:`../../tutorials/multitasking` for details.
 
+Analogous to `pros::Mutex::take <../cpp/rtos.html#take>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -178,6 +188,8 @@ task_create
 -----------
 
 Create a new task and add it to the list of tasks that are ready to run.
+
+Analogous to `pros::Task::Task <../cpp/rtos.html#task>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -226,6 +238,8 @@ This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
 To delay cyclically, use `task_delay_until`_.
 
+.. warning:: needs a link
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -258,6 +272,8 @@ tasks to ensure a constant execution frequency.
 
 The task will be woken up at the time ``*prev_time + delta``, and ``*prev_time`` will
 be updated to reflect the time at which the task will unblock.
+
+Analogous to `pros::Task::delay_until <../cpp/rtos.html#delay_until>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -368,6 +384,8 @@ ready, blocked, or suspended tasks. A task that has been deleted, but not yet
 reaped by the idle task will also be included in the count. Tasks recently
 created may take one context switch to be counted.
 
+Analogous to `pros::Task::get_count <../cpp/rtos.html#get-count>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -395,6 +413,8 @@ task_get_name
 -------------
 
 Obtains the name of the specified task.
+
+Analogous to `pros::Task::get_name <../cpp/rtos.html#get-name>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -430,6 +450,8 @@ task_get_priority
 
 Obtains the priority of the specified task.
 
+Analogous to `pros::Task::get_priority <../cpp/rtos.html#get-priority>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -463,6 +485,8 @@ task_get_state
 --------------
 
 Returns the state of the specified task.
+
+Analogous to `pros::Task::get_state <../cpp/rtos.html#get-state>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -499,6 +523,8 @@ task_notify
 Sends a simple notification to task and increments the notification counter.
 
 See :doc:`../../tutorials/notifications` for details.
+
+Analogous to `pros::Task::notify <../cpp/rtos.html#notify>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -541,6 +567,8 @@ Clears the notification for a task.
 
 See :doc:`../../tutorials/notifications` for details.
 
+Analogous to `pros::Task::notify_clear <../cpp/rtos.html#notify-clear>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -570,6 +598,8 @@ retrieve the value of the notification in the target task before modifying
 the notification value.
 
 See :doc:`../../tutorials/notifications` for details.
+
+Analogous to `pros::Task::notify_ext <../cpp/rtos.html#notify-ext>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -606,6 +636,8 @@ task_notify_take
 Wait for a notification to be nonzero.
 
 See :doc:`../../tutorials/notifications` for details.
+
+Analogous to `pros::Task::notify_take <../cpp/rtos.html#notify-take>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -648,6 +680,8 @@ task_resume
 
 Resumes the specified task, making it eligible to be scheduled.
 
+Analogous to `pros::Task::resume <../cpp/rtos.html#resume>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -686,6 +720,8 @@ If the specified task's state is available to be scheduled (e.g. not blocked)
 and new priority is higher than the currently running task, a context switch
 may occur.
 
+Analogous to `pros::Task::set_priority <../cpp/rtos.html#set-priority>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -718,6 +754,8 @@ task_suspend
 ------------
 
 Suspends the current task, making it ineligible to be scheduled.
+
+Analogous to `pros::Task::suspend <../cpp/rtos.html#suspend>`_.
 
 .. tabs ::
    .. tab :: Prototype

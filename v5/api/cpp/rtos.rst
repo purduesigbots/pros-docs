@@ -8,6 +8,8 @@ pros
 millis
 ------
 
+Analogous to `millis <../c/rtos.html#millis>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -34,6 +36,8 @@ pros::Task
 
 Constructor(s)
 --------------
+
+Analogous to `task_create <../c/rtos.html#task-create>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -177,6 +181,8 @@ tasks to ensure a constant execution frequency.
 The task will be woken up at the time ``*prev_time + delta``, and ``*prev_time`` will
 be updated to reflect the time at which the task will unblock.
 
+Analogous to `task_delay_until <../c/rtos.html#delay-until>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -212,12 +218,14 @@ ready, blocked, or suspended tasks. A task that has been deleted, but not yet
 reaped by the idle task will also be included in the count. Tasks recently
 created may take one context switch to be counted.
 
+Analogous to `Task_get_count <../c/rtos.html#task-get-count>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-          uint32_t pros::task::get_count ( )
+          uint32_t pros::Task::get_count ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -239,6 +247,8 @@ get_name
 ~~~~~~~~
 
 Obtains the name of the specified task.
+
+Analogous to `task_get_name <../c/rtos.html#task-get-name>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -268,6 +278,8 @@ get_priority
 
 Obtains the priority of the specified task.
 
+Analogous to `task_get_priority <../c/rtos.html#task-get-priority>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -294,6 +306,8 @@ get_state
 ~~~~~~~~~
 
 Returns the state of the specified task.
+
+Analogous to `task_get_state <../c/rtos.html#task-get-state>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -326,6 +340,8 @@ notify
 Sends a simple notification to task and increments the notification counter.
 
 See :doc:`../../tutorials/notifications` for details.
+
+Analogous to `task_notify <../c/rtos.html#task-notify>`_.
 
 .. warning:: verify this example code
 
@@ -365,6 +381,8 @@ Clears the notification for a task.
 
 See :doc:`../../tutorials/notifications` for details.
 
+Analogous to `task_notify_clear <../c/rtos.html#task-notify-clear>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -388,6 +406,8 @@ retrieve the value of the notification in the target task before modifying
 the notification value.
 
 See :doc:`../../tutorials/notifications` for details.
+
+Analogous to `task_notify_ext <../c/rtos.html#task-notify-ext>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -422,6 +442,8 @@ notify_take
 Wait for a notification to be nonzero.
 
 See :doc:`../../tutorials/notifications` for details.
+
+Analogous to `task_notify_take <../c/rtos.html#task-notify-take>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -465,6 +487,8 @@ resume
 
 Resumes the specified task, making it eligible to be scheduled.
 
+Analogous to `task_resume <../c/rtos.html#task-resume>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -497,6 +521,8 @@ If the specified task's state is available to be scheduled (e.g. not blocked)
 and new priority is higher than the currently running task, a context switch
 may occur.
 
+Analogous to `task_set_priority <../c/rtos.html#task-set-priority>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -528,6 +554,8 @@ suspend
 
 Suspends the current task, making it ineligible to be scheduled.
 
+Analogous to `task_get_state <../c/rtos.html#task-get-state>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -557,6 +585,12 @@ pros::Mutex
 Constructor(s)
 --------------
 
+Creates a mutex.
+
+See :doc:`../../tutorials/multitasking` for details.
+
+Analogous to `mutex_create <../c/rtos.html#mutex-create>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -578,10 +612,6 @@ Constructor(s)
         // Release the mutex for other tasks
         mutex.give();
 
-Creates a mutex.
-
-See :doc:`../../tutorials/multitasking` for details.
-
 Methods
 -------
 
@@ -591,6 +621,8 @@ give
 Unlocks a mutex.
 
 See :doc:`../../tutorials/multitasking` for details.
+
+Analogous to `mutex_give <../c/rtos.html#mutex-give>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -624,6 +656,8 @@ Takes and locks a mutex, waiting for up to a certain number of milliseconds
 before timing out.
 
 See :doc:`../../tutorials/multitasking` for details.
+
+Analogous to `mutex_take <../c/rtos.html#mutex-take>`_.
 
 .. tabs ::
    .. tab :: Prototype
