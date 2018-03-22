@@ -2,13 +2,14 @@
 ADI (TriPort) C++ API
 ======================
 
+.. contents:: :local:
 
-ADIAnalogIn
-===========
+pros::ADIAnalogIn
+=================
 
 .. note::
    **ADIPotentiometer**, **ADILineSensor**, **ADILightSensor**, and **ADIAccelerometer**
-   are all `ADIAnalogIn`_ objects as well.
+   are all `pros::ADIAnalogIn`_ objects as well.
 
 Constructor(s)
 --------------
@@ -62,8 +63,8 @@ value_get_calibrated_HR
 
 Analogous to `adi_analog_read_calibrated_HR <../c/adi.html#adi_analog_read_calibrated_HR>`_.
 
-ADIAnalogOut
-============
+pros::ADIAnalogOut
+==================
 
 Constructor(s)
 --------------
@@ -90,8 +91,8 @@ value_set
 
 Inherited from `ADIPort::value_set <value_set_>`_.
 
-ADIDigitalIn
-============
+pros::ADIDigitalIn
+==================
 
 Constructor(s)
 --------------
@@ -127,8 +128,8 @@ value_get
 
 Inherited from `ADIPort::value_get <value_get_>`_.
 
-ADIDigitalOut
-=============
+pros::ADIDigitalOut
+===================
 
 Constructor(s)
 --------------
@@ -157,8 +158,8 @@ value_set
 
 Inherited from `ADIPort::value_set <value_set_>`_.
 
-ADIEncoder
-==========
+pros::ADIEncoder
+================
 
 Constructor(s)
 --------------
@@ -200,8 +201,8 @@ Inherited from `ADIPort::value_get <value_get_>`_.
 
 Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
 
-ADIMotor
-========
+pros::ADIMotor
+==============
 
 Constructor(s)
 --------------
@@ -250,8 +251,8 @@ Inherited from `ADIPort::value_set <value_set_>`_.
 
 Analogous to `adi_motor_set <../c/adi.html#adi-motor-set>`_.
 
-ADIPort
-=======
+pros::ADIPort
+=============
 
 Constructor(s)
 --------------
@@ -322,8 +323,8 @@ value_get
 
 Analogous to `adi_port_value_get <../c/adi.html#adi-port-value-get>`_.
 
-ADIUltrasonic
-=============
+pros::ADIUltrasonic
+===================
 
 Constructor(s)
 --------------

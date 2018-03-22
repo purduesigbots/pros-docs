@@ -2,6 +2,8 @@
 ADI (TriPort) C API
 ====================
 
+.. contents:: :local:
+
 Functions
 =========
 
@@ -25,6 +27,8 @@ Do not use this function when the sensor value might be unstable
    2, and increasing the sample rate would not have a tangible difference in the
    function's performance.
 
+Analogous to `pros::ADIAnalogIn::calibrate <../cpp/adi.html#calibrate>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -44,7 +48,6 @@ Do not use this function when the sensor value might be unstable
           // All readings from then on will be calibrated
         }
 
-
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -59,9 +62,9 @@ adi_analog_read
 Reads an analog input channel and returns the 12-bit value.
 
 The value returned is undefined if the analog pin has been switched to a different mode.
-This function is `Wiring-compatible <https://www.arduino.cc/en/Reference/Wire>`_
-with the exception of the larger output range. The
-meaning of the returned value varies depending on the sensor attached.
+The meaning of the returned value varies depending on the sensor attached.
+
+Analogous to `pros::ADIAnalogIn::get_value <../cpp/adi.html#get-value>`_.
 
 .. tabs ::
    .. tab :: Prototype

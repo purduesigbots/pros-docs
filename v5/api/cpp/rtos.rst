@@ -100,6 +100,38 @@ Creates a Task object from a task already created with the C API.
  task            The task for which to create an object
 =============== ===================================================================
 
+Operator Overloads
+------------------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void operator = ( const task_t in )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* param) {
+          std::cout << "Hello" << (char*)param;
+          // ...
+        }
+        void initialize() {
+          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+                                       TASK_STACK_DEPTH_DEFAULT, "My Task");
+          Task my_cpp_task = my_task;
+        }
+
+Creates a Task object from a task already created with the C API.
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ task            The task for which to create an object
+=============== ===================================================================
+
 Methods
 -------
 
@@ -612,7 +644,7 @@ See :doc:`../../tutorials/multitasking` for details.
         mutex.take(MAX_DELAY);
         // do some work
         // Release the mutex for other tasks
-        mutex.give();  
+        mutex.give();
 
 ============ ==============================================================================================
  Parameters

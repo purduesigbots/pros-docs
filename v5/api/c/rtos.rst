@@ -507,24 +507,24 @@ See :doc:`../../tutorials/notifications` for details.
 
         uint32_t task_notify ( task_t task )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
-          void my_task_fn(void* ign) {
-            while(task_notify_take(true, TIMEOUT_MAX)) {
-              puts("I was unblocked!");
+        void my_task_fn(void* ign) {
+          while(task_notify_take(true, TIMEOUT_MAX)) {
+            puts("I was unblocked!");
+          }
+        }
+        void opcontrol() {
+          task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                                       TASK_STACK_DEPTH_DEFAULT, "Notify me! Task");
+          while(true) {
+            if(controller_get_digital(CONTROLLER_MASTER, DIGITAL_L1)) {
+              task_notify(my_task);
             }
           }
-          void opcontrol() {
-            task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
-                                         TASK_STACK_DEPTH_DEFAULT, "Notify me! Task");
-            while(true) {
-              if(controller_get_digital(CONTROLLER_MASTER, DIGITAL_L1)) {
-                task_notify(my_task);
-              }
-            }
-          }
+        }
 
 ============ ==================================
  Parameters
@@ -548,11 +548,11 @@ See :doc:`../../tutorials/notifications` for details.
 
         bool task_notify_clear ( task_t task )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
-          TO BE ADDED
+        TO BE ADDED
 
 ============ ==================================
  Parameters
@@ -581,11 +581,11 @@ See :doc:`../../tutorials/notifications` for details.
                                    notify_action_e_t action,
                                    uint32_t* prev_value )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
-          TO BE ADDED
+        TO BE ADDED
 
 ============ ======================================================================================
  Parameters
