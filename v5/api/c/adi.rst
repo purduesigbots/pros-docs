@@ -44,7 +44,7 @@ Analogous to `pros::ADIAnalogIn::calibrate <../cpp/adi.html#calibrate>`_.
 
         void initialize() {
           adi_analog_calibrate(ANALOG_SENSOR_PORT);
-          printf("Calibrated Reading: %d\n", adi_analog_read(ANALOG_SENSOR_PORT));
+          printf("Calibrated Reading: %d\n", adi_analog_read_calibrated(ANALOG_SENSOR_PORT));
           // All readings from then on will be calibrated
         }
 
@@ -164,6 +164,7 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-va
 
         void opcontrol() {
           while (true) {
+            adi_analog_calibrate(ANALOG_SENSOR_PORT);
             printf("Sensor Reading: %d\n", adi_analog_read_calibrated_HR(ANALOG_SENSOR_PORT));
             delay(50);
           }
@@ -203,7 +204,7 @@ Analogous to `pros::ADIDigitalIn::get_new_press <../cpp/adi.html#get-new-press>`
       .. highlight:: c
       ::
 
-        #define DIGITAL_SENSOR_PORT
+        #define DIGITAL_SENSOR_PORT 1
 
         void opcontrol() {
           while (true) {
@@ -246,7 +247,7 @@ Analogous to `pros::ADIDigitalIn::get_value <../cpp/adi.html#id5>`_.
       .. highlight:: c
       ::
 
-        #define DIGITAL_SENSOR_PORT
+        #define DIGITAL_SENSOR_PORT 1
 
         void opcontrol() {
           while (true) {
@@ -463,9 +464,23 @@ Returns the value for the given ADI port.
 
 Analogous to `pros::ADIPort::get_value <../cpp/adi.html#id18>`_.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	int32_t adi_get_value ( uint8_t port )
+        int32_t adi_get_value ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ANALOG_SENSOR_PORT 1
+
+        void opcontrol() {
+          adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+          printf("Port Value: %d\n", adi_get_value(ANALOG_SENSOR_PORT));
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -497,7 +512,7 @@ Analogous to `pros::ADIMotor::get_value <../cpp/adi.html#id14>`_.
 
         void opcontrol() {
           adi_motor_set(MOTOR_PORT, 127); // Go full speed forward
-          printf("Commanded Motor Power: %d\n", adi_motor_get(MOTOR_PORT)); // Will diplay 127
+          printf("Commanded Motor Power: %d\n", adi_motor_get(MOTOR_PORT)); // Will display 127
           delay(1000);
           adi_motor_set(MOTOR_PORT, 0); // Stop the motor
         }
@@ -691,10 +706,24 @@ depending on the configuration of the port.
 
 Analogous to `pros::ADIPort::set_value <../cpp/adi.html#id20>`_.
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
 
-	int32_t adi_set_value ( uint8_t port,
-	                        int32_t value )
+        int32_t adi_set_value ( uint8_t port,
+                                int32_t value )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define DIGITAL_SENSOR_PORT 1
+
+        void initialize() {
+          adi_port_set_config(DIGITAL_SENSOR_PORT, E_ADI_DIGITAL_OUT);
+          adi_set_value(DIGITAL_SENSOR_PORT, HIGH);
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -859,6 +888,13 @@ In reality, using a zero expression or "false" will work to set a pin to LOW.
 
 **Value:** 0
 
+NUM_ADI_PORTS
+-------------
+
+The number of ADI ports available on the V5 Brain (from 1-8, 'a'-'h', 'A'-'H').
+
+**Value:** 8
+
 OUTPUT
 ------
 
@@ -872,13 +908,6 @@ OUTPUT_ANALOG
 `adi_pin_mode`_ state for an analog output.
 
 **Value:** 0x03
-
-NUM_ADI_PORTS
--------------
-
-The number of ADI ports available on the V5 Brain (from 1-8, 'a'-'h', 'A'-'H').
-
-**Value:** 8
 
 Enumerated Values
 =================
