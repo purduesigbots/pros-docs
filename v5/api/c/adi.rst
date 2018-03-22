@@ -104,6 +104,8 @@ The `adi_analog_calibrate`_ function must be run first on that channel. This fun
 inappropriate for sensor values intended for integration, as round-off error can accumulate
 causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 
+Analogous to `pros::ADIAnalogIn::get_value_calibrated <../cpp/adi.html#get-value-calibrated>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -144,6 +146,8 @@ used on a sensor such as a line tracker or potentiometer.
 The value returned actually has 16 bits of "precision", even though the ADC only reads
 12 bits, so that errors induced by the average value being between two values come out
 in the wash when integrated over time. Think of the value as the true value times 16.
+
+Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-value-calibrated-HR>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -186,6 +190,8 @@ this function for button 3, but should not for buttons 1 or 2. A typical
 use-case for this function is to call inside opcontrol to detect new button
 presses, and not in any other tasks.
 
+Analogous to `pros::ADIDigitalIn::get_new_press <../cpp/adi.html#get-new-press>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -225,7 +231,9 @@ Gets the digital value (1 or 0) of a pin configured as a digital input.
 If the pin is configured as some other mode, the digital value which reflects the current
 state of the pin is returned, which may or may not differ from the currently set value. The
 return value is undefined for pins configured as Analog inputs, or for ports in use by a
-Communications interface. This function is `Wiring-compatible <https://www.arduino.cc/en/Reference/Wire>`_.
+Communications interface.
+
+Analogous to `pros::ADIDigitalIn::get_value <../cpp/adi.html#id5>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -260,8 +268,9 @@ adi_digital_write
 
 Sets the digital value (1 or 0) of a pin configured as a digital output.
 
-If the pin is configured as some other mode, behavior is undefined. This function is
-`Wiring-compatible <https://www.arduino.cc/en/Reference/Wire>`_.
+If the pin is configured as some other mode, behavior is undefined.
+
+Analogous to `pros::ADIDigitalOut::set_value <../cpp/adi.html#id8>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -303,6 +312,8 @@ Gets the number of ticks recorded by the encoder.
 
 There are 360 ticks in one revolution.
 
+Analogous to `pros::ADIEncoder::get_value <../cpp/adi.html#id11>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -337,6 +348,8 @@ adi_encoder_init
 ----------------
 
 Initializes and enables a quadrature encoder on two ADI ports.
+
+Analogous to `pros::ADIEncoder::ADIEncoder <../cpp/adi.html#id9>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -380,6 +393,7 @@ Resets the encoder to zero.
 It is safe to use this method while an encoder is enabled. It is not necessary to call this
 method before stopping or starting an encoder.
 
+Analogous to `pros::ADIEncoder::reset <../cpp/adi.html#reset>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -442,10 +456,66 @@ Stops and disables the encoder.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+adi_get_value
+-------------
+
+Returns the value for the given ADI port.
+
+Analogous to `pros::ADIPort::get_value <../cpp/adi.html#id18>`_.
+
+::
+
+	int32_t adi_get_value ( uint8_t port )
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
+============ =================================================================================================================
+
+**Returns:** The value for the given ADI port.
+
+adi_motor_get
+-------------
+
+Returns the last set speed of the motor on the given port.
+
+Analogous to `pros::ADIMotor::get_value <../cpp/adi.html#id14>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t adi_motor_get ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define MOTOR_PORT 1
+
+        void opcontrol() {
+          adi_motor_set(MOTOR_PORT, 127); // Go full speed forward
+          printf("Commanded Motor Power: %d\n", adi_motor_get(MOTOR_PORT)); // Will diplay 127
+          delay(1000);
+          adi_motor_set(MOTOR_PORT, 0); // Stop the motor
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to get
+============ =================================================================================================================
+
+**Returns:** The last set speed of the motor on the given port.
+
 adi_motor_set
 -------------
 
 Sets the speed of the motor on the given port.
+
+Analogous to `pros::ADIMotor::set_value <../cpp/adi.html#id15>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -476,43 +546,12 @@ Sets the speed of the motor on the given port.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise
 
-adi_motor_get
--------------
-
-Returns the last set speed of the motor on the given port.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        int32_t adi_motor_get ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        #define MOTOR_PORT 1
-
-        void opcontrol() {
-          adi_motor_set(MOTOR_PORT, 127); // Go full speed forward
-          printf("Commanded Motor Power: %d\n", adi_motor_get(MOTOR_PORT)); // Will diplay 127
-          delay(1000);
-          adi_motor_set(MOTOR_PORT, 0); // Stop the motor
-        }
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to get
-============ =================================================================================================================
-
-**Returns:** The last set speed of the motor on the given port.
-
 adi_motor_stop
 --------------
 
 Stops the motor on the given port.
+
+Analogous to `pros::ADIMotor::stop <../cpp/adi.html#id16>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -574,17 +613,19 @@ Configures the pin as an input or output with a variety of settings.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
-adi_port_config_get
+adi_port_get_config
 -------------------
 
 Returns the configuration for the given ADI port.
+
+Analogous to `pros::ADIPort::get_config <../cpp/adi.html#get-config>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-        adi_port_config_e_t adi_port_config_get ( uint8_t port )
+        adi_port_config_e_t adi_port_get_config ( uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -593,9 +634,9 @@ Returns the configuration for the given ADI port.
         #define ANALOG_SENSOR_PORT 1
 
         void initialize() {
-          adi_port_config_set(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+          adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
           // Displays the value of E_ADI_ANALOG_IN
-          printf("Port Type: %d\n", adi_port_config_get(ANALOG_SENSOR_PORT));
+          printf("Port Type: %d\n", adi_port_get_config(ANALOG_SENSOR_PORT));
         }
 
 ============ =================================================================================================================
@@ -606,17 +647,19 @@ Returns the configuration for the given ADI port.
 
 **Returns:** The `adi_port_config_e_t` set for the port.
 
-adi_port_config_set
+adi_port_set_config
 -------------------
 
 Configures an ADI port to act as a given sensor type.
+
+Analogous to `pros::ADIPort::set_config <../cpp/adi.html#set-config>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-        int32_t adi_port_config_set ( uint8_t port,
+        int32_t adi_port_set_config ( uint8_t port,
                                       adi_port_config_e_t type )
 
    .. tab :: Example
@@ -626,7 +669,7 @@ Configures an ADI port to act as a given sensor type.
         #define ANALOG_SENSOR_PORT 1
 
         void initialize() {
-          adi_port_config_set(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+          adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
         }
 
 ============ =================================================================================================================
@@ -634,6 +677,30 @@ Configures an ADI port to act as a given sensor type.
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
  type         The `configuration <adi_port_config_e_t>`_ type for the port
+============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful, PROS_ERR otherwise.
+
+adi_set_value
+-------------
+
+Sets the value for the given ADI port
+
+This only works on ports configured as outputs, and the behavior will change
+depending on the configuration of the port.
+
+Analogous to `pros::ADIPort::set_value <../cpp/adi.html#id20>`_.
+
+::
+
+	int32_t adi_set_value ( uint8_t port,
+	                        int32_t value )
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to set
+ value        The value to set the ADI port to
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
@@ -646,6 +713,8 @@ Gets the current ultrasonic sensor value in centimeters.
 If no object was found, zero is returned. If the ultrasonic sensor was never started, the
 return value is PROS_ERR. Round and fluffy objects can cause inaccurate values to be
 returned.
+
+Analogous to `pros::ADIUltrasonic::get_value <../cpp/adi.html#id24>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -682,6 +751,8 @@ adi_ultrasonic_init
 -------------------
 
 Initializes an ultrasonic sensor on the specified ADI ports.
+
+Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -749,45 +820,6 @@ Stops and disables the ultrasonic sensor.
  Parameters
 ============ =================================================================================================================
  ult          the `adi_ultrasonic_t`_ object from `adi_ultrasonic_init`_ to shut down, or simply the ADI port number
-============ =================================================================================================================
-
-**Returns:** 1 if the operation was successful, PROS_ERR otherwise.
-
-adi_value_get
--------------
-
-Returns the value for the given ADI port.
-
-::
-
-	int32_t adi_value_get ( uint8_t port )
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
-============ =================================================================================================================
-
-**Returns:** The value for the given ADI port.
-
-adi_value_set
--------------
-
-Sets the value for the given ADI port
-
-This only works on ports configured as outputs, and the behavior will change
-depending on the configuration of the port
-
-::
-
-	int32_t adi_value_set ( uint8_t port,
-	                        int32_t value )
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to set
- value        The value to set the ADI port to
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.

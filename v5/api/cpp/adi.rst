@@ -36,30 +36,30 @@ calibrate
 
 Analogous to `adi_analog_calibrate <../c/adi.html#adi-analog-calibrate>`_.
 
-value_get
+get_value
 ~~~~~~~~~
 
 ::
 
-  int32_t pros::ADIAnalogIn::value_get ( ) const
+  int32_t pros::ADIAnalogIn::get_value ( ) const
 
-Inherited from `ADIPort::value_get <value_get_>`_.
+Inherited from `ADIPort::get_value <get_value_>`_.
 
-value_get_calibrated
+get_value_calibrated
 ~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-  int32_t pros::ADIAnalogIn::value_get_calibrated ( ) const
+  int32_t pros::ADIAnalogIn::get_value_calibrated ( ) const
 
 Analogous to `adi_analog_read_calibrated <../c/adi.html#adi_analog_read_calibrated>`_.
 
-value_get_calibrated_HR
+get_value_calibrated_HR
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 ::
 
-  int32_t pros::ADIAnalogIn::value_get_calibrated_HR ( ) const
+  int32_t pros::ADIAnalogIn::get_value_calibrated_HR ( ) const
 
 Analogous to `adi_analog_read_calibrated_HR <../c/adi.html#adi_analog_read_calibrated_HR>`_.
 
@@ -82,14 +82,14 @@ Constructor(s)
 Methods
 -------
 
-value_set
+set_value
 ~~~~~~~~~
 
 ::
 
-  pros::ADIAnalogOut::value_set ( int32_t value ) const
+  pros::ADIAnalogOut::set_value ( int32_t value ) const
 
-Inherited from `ADIPort::value_set <value_set_>`_.
+Inherited from `ADIPort::set_value <set_value_>`_.
 
 pros::ADIDigitalIn
 ==================
@@ -115,18 +115,18 @@ get_new_press
 
 ::
 
-  int32_t pros::ADIDigitalIn::get_new_press() const
+  int32_t pros::ADIDigitalIn::get_new_press ( ) const
 
 Analogous to `adi_digital_get_new_press <../c/adi.html#adi-digital-get-new-press>`_.
 
-value_get
+get_value
 ~~~~~~~~~
 
 ::
 
-  int32_t pros::ADIDigitalIn::value_get() const
+  int32_t pros::ADIDigitalIn::get_value ( ) const
 
-Inherited from `ADIPort::value_get <value_get_>`_.
+Inherited from `ADIPort::get_value <get_value_>`_.
 
 pros::ADIDigitalOut
 ===================
@@ -149,14 +149,14 @@ Constructor(s)
 Methods
 -------
 
-value_set
+set_value
 ~~~~~~~~~
 
 ::
 
-  pros::ADIDigitalOut::value_set ( int32_t value ) const
+  pros::ADIDigitalOut::set_value ( int32_t value ) const
 
-Inherited from `ADIPort::value_set <value_set_>`_.
+Inherited from `ADIPort::set_value <set_value_>`_.
 
 pros::ADIEncoder
 ================
@@ -181,25 +181,25 @@ Constructor(s)
 Methods
 -------
 
+get_value
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIEncoder::get_value ( ) const
+
+Inherited from `ADIPort::get_value <get_value_>`_.
+
+Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
+
 reset
 ~~~~~
 
 ::
 
-  int32_t pros::ADIEncoder::reset() const
+  int32_t pros::ADIEncoder::reset ( ) const
 
 Analogous to `adi_encoder_reset <../c/adi.html#adi-encoder-reset>`_.
-
-value_get
-~~~~~~~~~
-
-::
-
-  int32_t pros::ADIEncoder::value_get ( ) const
-
-Inherited from `ADIPort::value_get <value_get_>`_.
-
-Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
 
 pros::ADIMotor
 ==============
@@ -220,6 +220,28 @@ Constructor(s)
 Methods
 -------
 
+get_value
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIMotor::get_value ( ) const
+
+Inherited from `ADIPort::get_value <get_value_>`_.
+
+Analogous to `adi_motor_get <../c/adi.html#adi-motor-get>`_.
+
+set_value
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIMotor::set_value ( ) const
+
+Inherited from `ADIPort::set_value <set_value_>`_.
+
+Analogous to `adi_motor_set <../c/adi.html#adi-motor-set>`_.
+
 stop
 ~~~~
 
@@ -229,28 +251,6 @@ stop
 
 Analogous to `adi_motor_stop <../c/adi.html#adi-motor-stop>`_.
 
-value_get
-~~~~~~~~~
-
-::
-
-  int32_t pros::ADIMotor::value_get ( ) const
-
-Inherited from `ADIPort::value_get <value_get_>`_.
-
-Analogous to `adi_motor_get <../c/adi.html#adi-motor-get>`_.
-
-value_set
-~~~~~~~~~
-
-::
-
-  int32_t pros::ADIMotor::value_set ( ) const
-
-Inherited from `ADIPort::value_set <value_set_>`_.
-
-Analogous to `adi_motor_set <../c/adi.html#adi-motor-set>`_.
-
 pros::ADIPort
 =============
 
@@ -259,18 +259,8 @@ Constructor(s)
 
 ::
 
-  pros::ADIPort::ADIPort ( uint8_t port )
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
-============ =================================================================================================================
-
-::
-
   pros::ADIPort::ADIPort ( uint8_t port,
-                           adi_port_config_e_t type )
+                           adi_port_config_e_t type = E_ADI_TYPE_UNDEFINED )
 
 ============ =================================================================================================================
  Parameters
@@ -283,45 +273,45 @@ Constructor(s)
 Methods
 -------
 
-config_set
+get_config
 ~~~~~~~~~~
 
 ::
 
-  int32_t config_set(adi_port_config_e_t type) const;
+  int32_t pros::ADIPort::get_config ( ) const;
 
-Analogous to `adi_port_config_set <../c/adi.html#adi-port-config-set>`_.
+Analogous to `adi_port_get_config <../c/adi.html#adi-port-config-get>`_.
 
-config_get
+.. _get_value:
+
+get_value
+~~~~~~~~~
+
+::
+
+  int32_t pros::ADIPort::get_value ( ) const;
+
+Analogous to `adi_port_get_value <../c/adi.html#adi-port-value-get>`_.
+
+set_config
 ~~~~~~~~~~
 
 ::
 
-  int32_t config_get() const;
+  int32_t pros::ADIPort::set_config ( adi_port_config_e_t type ) const;
 
-Analogous to `adi_port_config_get <../c/adi.html#adi-port-config-get>`_.
+Analogous to `adi_port_set_config <../c/adi.html#adi-port-config-set>`_.
 
-.. _value_set:
+.. _set_value:
 
-value_set
+set_value
 ~~~~~~~~~
 
 ::
 
-  int32_t value_set() const;
+  int32_t pros::ADIPort::set_value ( ) const;
 
-Analogous to `adi_port_value_set <../c/adi.html#adi-port-value-set>`_.
-
-.. _value_get:
-
-value_get
-~~~~~~~~~
-
-::
-
-  int32_t value_get() const;
-
-Analogous to `adi_port_value_get <../c/adi.html#adi-port-value-get>`_.
+Analogous to `adi_port_set_value <../c/adi.html#adi-port-value-set>`_.
 
 pros::ADIUltrasonic
 ===================
@@ -344,13 +334,13 @@ Constructor(s)
 Methods
 -------
 
-value_get
+get_value
 ~~~~~~~~~
 
 ::
 
-  int32_t pros::ADIUltrasonic::value_get ( ) const
+  int32_t pros::ADIUltrasonic::get_value ( ) const
 
-Inherited from `ADIPort::value_get <value_get_>`_.
+Inherited from `ADIPort::get_value <get_value_>`_.
 
 Analogous to `adi_ultrasonic_get <../c/adi.html#adi-ultrasonic-get>`_.
