@@ -5,7 +5,6 @@ PROS: Documentation Home
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :glob:
    :caption: Home
 
    self
@@ -13,7 +12,6 @@ PROS: Documentation Home
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :glob:
    :caption: Getting Started
 
    ./getting-started/index
@@ -23,7 +21,6 @@ PROS: Documentation Home
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :glob:
    :caption: Tutorials
 
    ./tutorials/index
@@ -31,7 +28,6 @@ PROS: Documentation Home
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :glob:
    :caption: API
 
    ./api/index
@@ -41,7 +37,6 @@ PROS: Documentation Home
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :glob:
    :caption: CLI
 
    ./cli/index
@@ -49,7 +44,13 @@ PROS: Documentation Home
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :glob:
+   :caption: OkapiLib
+
+   ./okapi/index
+
+.. toctree::
+   :hidden:
+   :maxdepth: -1
    :caption: Extended
 
    ./extended/index
