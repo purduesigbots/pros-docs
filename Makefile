@@ -13,3 +13,4 @@ v5:
 
 clean:
 	-rm -rf ./build
+	make all
