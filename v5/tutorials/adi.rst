@@ -104,13 +104,30 @@ Thus an example of use on a lift would look like:
    .. group-tab:: C
       .. highlight:: c
       ::
-      
+
         #define POTENTIOMETER_PORT 1
-        #define LIFT_MOTOR 1
+        #define MOTOR_PORT 1
 
         //while the potentiometer is not at its maximum position
-        while (analogRead(POTENTIOMETER_PORT) < 4095) {
-          motorSet(LIFT_MOTOR, 127); //activate the lift
+        while (analog_read(POTENTIOMETER_PORT) < 4095) {
+          motor_set(MOTOR_PORT, 127); //activate the lift
+          delay(50);
+        }
+   .. group-tab:: C++
+      .. highlight:: cpp
+      ::
+
+        #define POTENTIOMETER_PORT 1
+        #define MOTOR_PORT 1
+
+        void autonomous() {
+          pros::ADIPotentiometer sensor (POTENTIOMETER_PORT);
+          pros::Motor motor (MOTOR_PORT);
+          //while the potentiometer is not at its maximum position
+          while (sensor.get_value() < 4095) {
+            motor = 127;
+            pros::delay(50);
+          }
         }
 
 Line Tracker
@@ -119,98 +136,47 @@ Line Tracker
 VEX Line Trackers operate by measuring the amount of light reflected to
 the sensor and determining the existence of lines from the difference in
 light reflected by the white tape and the dark tiles. The Line Trackers
-return a value between 0 and 405, with 0 being the lightest reading and
+return a value between 0 and 4095, with 0 being the lightest reading and
 4095 the darkest. It is recommended that Line Trackers be calibrated to
 account for changes in ambient light.
 
 An example of Line Tracker use:
 
-main.h:
+.. tabs::
+   .. group-tab:: C
+      .. highlight:: c
+      ::
 
-.. code:: c
+        #define LINE_TRACKER_PORT 1
+        #define MOTOR_PORT 1
 
-    #define LINE_TRACKER_PORT 1
-    #define DRIVE_MOTOR_LEFT 1
-    #define DRIVE_MOTOR_RIGHT 2
+        void autonomous() {
+          // Arbitrarily set the threshold for a line at 2000 quid
+          while(analogRead(LINE_TRACKER_PORT) < 2000) {
+            // drive forward until a line is hit
+            motorSet(MOTOR_PORT,127);
+            delay(50);
+          }
+        }
 
-init.c:
 
-.. code:: c
+   .. group-tab:: C++
+      .. highlight:: cpp
+      ::
 
-    #include "main.h"
+        #define LINE_TRACKER_PORT 1
+        #define MOTOR_PORT 1
 
-    void initialize() {
-      analogCalibrate(LINE_TRACKER_PORT);
-    }
-
-opcontrol.c:
-
-.. code:: c
-
-    #include "main.h"
-
-    //2000 arbitrarily set as cutoff between light and dark
-    while(analogReadCalibrated(LINE_TRACKER_PORT) < 2000)
-    {
-      // drive forward until a line is hit
-      motorSet(DRIVE_MOTOR_LEFT,127);
-      motorSet(DRIVE_MOTOR_RIGHT,127);
-    }
-
-Gyroscope
----------
-
-One of the most powerful sensors available for the VEX Cortex is the VEX
-Yaw Rate Gyro. Through proper utilization of this sensors you can
-consistently make your robot perform precise turns.
-
-Warning
-^^^^^^^
-
-The VEX Yaw Rate Gyro is an analog sensor which means that it is very
-susceptible to analog noise during its operation. When utilizing this
-sensor, pay special attention to the connection wires between cortex and
-the gyro and keep them far away from motors.
-
-PROS provides a gyro library to simplify using it. A sample usage would
-be as follows:
-
-main.h:
-
-.. code:: c
-
-    // Analog port number gyro is plugged into
-    #define GYRO_PORT 1
-
-    // Multiple gyros can be declared
-    Gyro gyro;
-
-init.c:
-
-.. code:: c
-
-    void initialize(){
-        // ... Other sensor initialization and port configuration
-        // If gyro reads inaccurately, change "0" to desired sensitivity
-        // See documentation on gyroInit() for up-to-date sensitivity details
-        gyro = gyroInit(GYRO_PORT, 0);
-    }
-
-opcontrol.c or auto.c:
-
-.. code:: c
-
-    void myFunction(){
-        // ... Do work
-        // Get gyro reading in degrees
-        int heading = gyroGet(gyro);
-
-        // ... Do other work
-        // Reset the gyro to zero
-        gyroReset(gyro);
-
-        // ...
-    }
+        void autonomous() {
+          pros::ADILineSensor sensor (LINE_TRACKER_PORT);
+          pros::Motor motor (MOTOR_PORT);
+          // Arbitrarily set the threshold for a line at 2000 quid
+          while(sensor.get_value < 2000) {
+            // drive forward until a line is hit
+            motor = 127;
+            delay(50);
+          }
+        }
 
 Accelerometer
 -------------
@@ -225,33 +191,45 @@ Cortex.
 
 Example accelerometer use:
 
-main.h:
+.. tabs::
+   .. group-tab:: C
+      .. highlight:: c
+      ::
 
-.. code:: c
+        #define ACCELEROMETER_X 1
+        #define ACCELEROMETER_Y 2
+        #define ACCELEROMETER_Z 3
 
-    #define ACCELEROMETER_X 1
-    #define ACCELEROMETER_Y 2
-    #define ACCELEROMETER_Z 3
+        void initialize() {
+          analog_calibrate(ACCELEROMETER_X); //calibrates the x axis input
+          analog_calibrate(ACCELEROMETER_Y); //calibrates the y axis input
+          analog_calibrate(ACCELEROMETER_Z); //calibrates the z axis input
 
-init.c:
+          int x_acc = analog_read_calibrated_HR(ACCELEROMETER_X);
+          int y_acc = analog_read_calibrated_HR(ACCELEROMETER_Y);
+          int z_acc = analog_read_calibrated_HR(ACCELEROMETER_Z);
+          printf("X: %d, Y: %d, Z: %d\n", x_acc, y_acc, z_acc);
+        }
 
-.. code:: c
 
-    #include "main.h"
+   .. group-tab:: C++
+      .. highlight:: cpp
+      ::
 
-    void initialize() {
-      analogCalibrate(ACCELEROMETER_X); //calibrates the x axis input
-      analogCalibrate(ACCELEROMETER_Y); //calibrates the y axis input
-      analogCalibrate(ACCELEROMETER_Z); //calibrates the z axis input
-    }
+        #define ACCELEROMETER_X 1
+        #define ACCELEROMETER_Y 2
+        #define ACCELEROMETER_Z 3
 
-opcontrol.c:
+        void initialize() {
+          pros::ADIAnalogIn acc_x (ACCELEROMETER_X);
+          pros::ADIAnalogIn acc_y (ACCELEROMETER_Y);
+          pros::ADIAnalogIn acc_z (ACCELEROMETER_Z);
+          acc_x.calibrate(); //calibrates the x axis input
+          acc_y.calibrate(); //calibrates the y axis input
+          acc_z.calibrate(); //calibrates the z axis input
 
-.. code:: c
-
-    #include "main.h"
-
-    //Read the acceleration data for each axis
-    int x_acc = analogReadCalibratedHR(ACCELEROMETER_X);
-    int y_acc = analogReadCalibratedHR(ACCELEROMETER_Y);
-    int z_acc = analogReadCalibratedHR(ACCELEROMETER_Z);
+          int x_acc = acc_x.value_get_calibrated_HR();
+          int y_acc = acc_y.value_get_calibrated_HR();
+          int z_acc = acc_z.value_get_calibrated_HR();
+          std::cout << "X: " << x_acc << "Y: " << y_acc << "Z: " z_acc;
+        }
