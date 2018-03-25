@@ -104,6 +104,7 @@ Thus an example of use on a lift would look like:
    .. group-tab:: C
       .. highlight:: c
       ::
+      
         #define POTENTIOMETER_PORT 1
         #define LIFT_MOTOR 1
 
