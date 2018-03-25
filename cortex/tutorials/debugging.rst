@@ -2,8 +2,8 @@
 Debugging
 =========
 
-The `PROS API </api/>`__ provides various functions, like
-`print() </api/#print>`__ or `printf() </api/#printf>`__, that
+The `PROS API <../api/index.html>`__ provides various functions, like
+`print() <../api/index.html#print>`__ or `printf() <../api/index.html#printf>`__, that
 allow your robot to output information to a connected serial console
 during operation.
 
@@ -14,7 +14,7 @@ To view a robot's output, there are two officially supported methods:
 
    Running ``pros terminal`` on the command line will open an output
    stream from a robot connected over direct USB connection, VEXnet, or
-   `JINX </tutorials/jinx/>`__.
+   `JINX <./tutorials/jinx.html>`__.
 
 2. From within Atom:
 

@@ -7,7 +7,7 @@ embedded communications protocols found commonly in robotics at large.
 It sports a master-slave configuration as well as a unified bus allowing
 devices to be daisy-chained together in series if so desired. A standard
 I2C bus consists of two signals seen by all devices - Serial Data (SDA)
-and Serial Clock (SCL). These two signals are found alongisde +5V and
+and Serial Clock (SCL). These two signals are found alongside +5V and
 GND power rails in the VEX Cortex I2C port to supply power to any
 attached I2C slave devices.
 
@@ -16,7 +16,7 @@ Encoder (IME) <http://www.vexrobotics.com/encoder-modules.html>`__; VEX
 U teams or hobbyists may feel so inclined to connect third-party I2C
 sensors to their robots such as gyroscopes or lidars. This tutorial aims
 to cover writing to and reading from I2C slave devices, a rundown of the
-IME-specific functions provided, and transisition into topics such as
+IME-specific functions provided, and transition into topics such as
 device initialization and polling tasks for managing multiple I2C slaves
 at once.
 
@@ -39,7 +39,7 @@ Advance User Warning
 When utilizing IMEs and 3rd party sensors on your I2C bus it is
 recommended that you write your own task to handle all the I2C
 communication to prevent resource thrashing. See the `I2C Polling
-Task </tutorials/i2c/#pollingTask>`__ for more details.
+Task <./tutorials/i2c.html#pollingTask>`__ for more details.
 
 PROS provides a simple library for interacting with your IMEs. A sample
 usage would be as follows:
@@ -92,10 +92,10 @@ an I2C master device, thus the primary I2C action it will perform is
 writing to I2C slave devices attached to it. During I2C slave
 initialization and operation it is common to modify single byte
 registers in non-sequential locations of the slave's memory. In these
-cases PROS provides the `i2cWriteRegister() </api/#i2cWriteRegister>`__.
-A sister function `i2cWrite() </api/#i2cWrite>`__ is better used when
+cases PROS provides the `i2cWriteRegister() <../api/index.html#i2cWriteRegister>`__.
+A sister function `i2cWrite() <../api/index.html#i2cWrite>`__ is better used when
 writing to sequential bytes of an I2C slave such as providing full
-32-bit integer parameters. When using `i2cWrite() </api/#i2cWrite>`__
+32-bit integer parameters. When using `i2cWrite() <../api/index.html#i2cWrite>`__
 the first byte of the data argument should be the first register of the
 slave being written to. Shown below is a short example of initializing
 and configuring a fictional I2C slave sensor.
@@ -106,7 +106,7 @@ main.h
 
     // 7-bit address of the slave I2C device, right aligned
     #define I2C_SLAVE_ADDR         0x4A
-    // Ficitonal "enable" register for the device
+    // Fictional "enable" register for the device
     #define I2C_SLAVE_REG_ENABLE   0x38
     // Fictional 32-bit "parameters" buffer for the device, 0x6D-0x6F
     #define I2C_SLAVE_BUF_PARAMS   0x6D
@@ -142,13 +142,13 @@ Reading from an I2C Slave
 -------------------------
 
 As the vast majority of I2C slave devices serve as sensors, PROS
-provides both `i2cRead() </api/#i2cRead>`__ and
-`i2cReadRegister() </api/#i2cReadRegister>`__ to receive data from them.
+provides both `i2cRead() <../api/index.html#i2cRead>`__ and
+`i2cReadRegister() <../api/index.html#i2cReadRegister>`__ to receive data from them.
 Since I2C slave devices do not emit data onto the bus without the
-request of the master device, `i2cRead() </api/#i2cRead>`__ is limited
+request of the master device, `i2cRead() <../api/index.html#i2cRead>`__ is limited
 in its usefulness. To that extent, below is an example showing how to
 read from data from a fictional sensor using the more typical
-`i2cReadRegister() </api/#i2cReadRegister>`__.
+`i2cReadRegister() <../api/index.html#i2cReadRegister>`__.
 
 main.h
 
@@ -199,10 +199,6 @@ auto.c
 Third-Party I2C Devices
 -----------------------
 
-.. raw:: html
-
-   <!--- TODO mention consulting datasheets -->
-
 Writing to and reading from third-party I2C devices with the Cortex
 using PROS is a relatively painless process with the techniques
 described earlier in this tutorial. PROS essentially only requires the
@@ -222,8 +218,8 @@ locations in the robot code rather than hard-coding the setup protocol
 into ``init.c``. This way if the device were to ever lose power or
 disconnect a reconnection attempt is feasible. This ``Xinit()`` function
 will contain several calls to
-`i2cWriteRegister() </api/#i2cWriteRegister>`__ and
-`i2cReadRegister() </api/#i2cReadRegister>`__ that follow the
+`i2cWriteRegister() <../api/index.html#i2cWriteRegister>`__ and
+`i2cReadRegister() <../api/index.html#i2cReadRegister>`__ that follow the
 datasheet's instructions to bring the sensor up and running.
 
 In addition to an initialization routine for the third-party sensor, it
@@ -291,7 +287,6 @@ lidar.h
 lidar.c
 
 .. code:: c
-
 
     bool lidarInit() {
         // Initialize with PVAL0 high quality, PVAL1 standard quality, enable, no interrupt
@@ -456,7 +451,7 @@ with these two options being the opposite of one another. A big-endian
 device will arrange bytes with the most significant (highest order) byte
 first, and little-endian arranges bytes with the least significant byte
 first. An example of reading a big-endian device can be found in
-`Reading from an I2C Slave </tutorials/i2c/#readingI2CSlave>`__. If an
+`Reading from an I2C Slave <./tutorials/i2c.html#readingI2CSlave>`_. If an
 I2C reading is an unexpected value, try reading in the opposite
 endianness.
 
@@ -465,10 +460,10 @@ Union/Struct method
 
 One solution to reading a collection of bits from a device is to use a
 struct wrapped in a union as seen in the ``LIDAR_REG_CFG`` union in
-`Third-Party I2C Devices </tutorials/i2c/#thirdPartyI2CDevices>`__. The
+`Third-Party I2C Devices <./tutorials/i2c.html#thirdPartyI2CDevices>`__. The
 union contains a value that contains the reading from the sensor, and
 the struct contains each significant bit as an individual value. Write
 to the union's value, and then read individual bits from the struct. If
 you are not familiar with unions and structs, reading an `Online C
-Tutorial <https://www.codingunit.com/c-tutorial-structures-unions-typedef>`__
+Tutorial <https://www.codingunit.com/c-tutorial-structures-unions-typedef>`_
 about the subject is recommended.

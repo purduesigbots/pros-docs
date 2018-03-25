@@ -41,10 +41,10 @@ typically do not need to be calibrated, although it may be desired as it
 helps account for possible shifting in the potentiometer mounting and to
 find the actual range of the potentiometer due to its mechanical stops
 as that range may be closer to 5-4090 instead of 0-4095. If the
-potentiometer is not calibrated, the `analogRead <api/index#analogRead>`_
+potentiometer is not calibrated, the `analogRead <../api/index.html#analogRead>`_
 function may be used to obtain the raw
 input value of the potentiometer. If the sensor was calibrated, the
-`analogReadCalibrated <api/index#analogCalibrate>`_ function should be used,
+`analogReadCalibrated <../api/index.html#analogCalibrate>`_ function should be used,
 as it will account for the sensor's
 calibration and return more accurate results. The input to both of these
 functions is the channel number of the sensor, and an integer is

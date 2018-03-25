@@ -64,7 +64,7 @@ Doing so will make the variables and functions local to the file in
 which they exist.
 
 Some functions and variables are useful in more than one location (e.g.
-a function to use `motorSet <api/index#motorset>`_ on
+a function to use `motorSet <../api/index.html#motorset>`_ on
 all the robot's drive motors with the same value). Such functions can be
 declared in any of the three files (or a custom file in the ``src``
 directory). To make them accessible to any other user code file,

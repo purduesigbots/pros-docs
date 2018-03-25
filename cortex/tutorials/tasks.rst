@@ -72,7 +72,7 @@ Best Task Practices
    updated by tasks, a run away task can cause unexpected behavior.
 -  The Cortex Microcontroller is very fast. It is unlikely that any
    repetitive task will gain from running continuously. Even in the
-   fastest scenarios, ``delay(2)`` will probably make no noticable
+   fastest scenarios, ``delay(2)`` will probably make no noticeable
    difference, but will prevent future task starvation issues.
 -  Tasks using motors or joysticks should use ``delay(20)`` as the
    motors and joysticks are only updated every 20 ms.
