@@ -31,12 +31,12 @@ Issues and Notes about Installation
 Error reading from file when installing
 ---------------------------------------
 
-*Since 2.6.0* When installing PROS on Windows, you may receive a warning
+**Since 2.6.0** When installing PROS on Windows, you may receive a warning
 box along the lines of: > There was an error reading from file "...".
 Verify that the file exists and you can access it. In most cases, this
 is because the file length is too long due to a limitation of Windows.
 Move the installer to a folder closer to the root directory of the
-drive, such as C::raw-latex:`\pros`-temp.
+drive, such as ``C::\pros-temp``.
 
 APM Failure
 ~~~~~~~~~~~

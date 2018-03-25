@@ -25,7 +25,7 @@ Unlike many of the other VEX sensors, no initialization process is
 needed in the ``initializeIO()`` or ``initialize()`` functions. However,
 it is often worthwhile to calibrate analog sensors before using them,
 which would take place in the ``initialize()`` function. The
-:ref:`analogCalibrate()` function collects approximately 500 data samples over a period of half a
+`analogCalibrate <../api/index.html#analogCalibrate>`_ function collects approximately 500 data samples over a period of half a
 second and returns the average value received over the sampling period.
 This average value can be used to account for variations like gyroscope
 orientation or ambient light for line trackers.

@@ -78,28 +78,30 @@ PROS Project Structure
 When you create your project, PROS will copy all of the files necessary
 to build your project. The structure of the project looks like:
 
+.. highlight:: none
+
 ::
 
-    project
-    │   project.pros        (used by PROS CLI to know kernel version and other metadata)
-    │   Makefile            (instructs make how to compile your project)
-    |   common.mk           (helper file for Makefile)
-    │
-    └───src                 (source files should go here)
-    │   │   auto.c          (source for autonomous function)
-    │   │   init.c          (source for initialization)
-    │   │   opcontrol.c     (source for operator control)
-    │   │   Makefile        (instructs make how to compile your source files)
-    |
-    └───include             (Header files should go in here)
-    │   │   API.h           (Lets source files know PROS API functions)
-    │   │   main.h          (Includes API.h and anything else you want to include project-wide)
-    │
-    └───firmware
-        │   cortex.ld       (Instructs the linker how to construct binaries for the Cortex)
-        │   libpros.a       (Pre-compiled PROS library)
-        |   STM32F10x.ld    (Instructs the linker how to construct binaries for the Cortex)
-        |   uniflash.jar    (Legacy flashing utility built w/Java)
+  project
+  │   project.pros        (used by PROS CLI to know kernel version and other metadata)
+  │   Makefile            (instructs make how to compile your project)
+  |   common.mk           (helper file for Makefile)
+  │
+  └───src                 (source files should go here)
+  │   │   auto.c          (source for autonomous function)
+  │   │   init.c          (source for initialization)
+  │   │   opcontrol.c     (source for operator control)
+  │   │   Makefile        (instructs make how to compile your source files)
+  |
+  └───include             (Header files should go in here)
+  │   │   API.h           (Lets source files know PROS API functions)
+  │   │   main.h          (Includes API.h and anything else you want to include project-wide)
+  │
+  └───firmware
+      │   cortex.ld       (Instructs the linker how to construct binaries for the Cortex)
+      │   libpros.a       (Pre-compiled PROS library)
+      |   STM32F10x.ld    (Instructs the linker how to construct binaries for the Cortex)
+      |   uniflash.jar    (Legacy flashing utility built w/Java)
 
 .. note::
    By convention, the ``opcontrol()``, ``autonomous()``, and initialize functions are separated into separate files (opcontrol.c, auto.c, and init.c). They could be all in the same file, but it can be helpful to organize your functions into multiple files to keep things from becoming messy.

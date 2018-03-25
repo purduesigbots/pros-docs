@@ -1,10 +1,8 @@
-.. Configuration options go up here prior to the doc title
 ===
 API
 ===
 
-This document serves as a quick reference for
-API.h functions.
+This document serves as a quick reference for API.h functions.
 
 Functions
 =========
@@ -14,7 +12,7 @@ analogCalibrate
 
 ::
 
-    int analogCalibrate ( unsigned char  channel )
+    int analogCalibrate ( unsigned char channel )
 
 Calibrates the analog sensor on the specified channel.
 
@@ -26,7 +24,7 @@ calculated is returned and stored for later calls to the
 functions will return the difference between this value and the current
 sensor value when called.
 
-Do not use this function in initializeIO(), or when the sensor value
+Do not use this function in ``initializeIO``, or when the sensor value
 might be unstable (gyro rotation, accelerometer movement).
 
 This function may not work properly if the VEX Cortex is tethered to a
@@ -46,7 +44,7 @@ analogRead
 
 ::
 
-    int analogRead ( unsigned char  channel )
+    int analogRead ( unsigned char channel )
 
 Reads an analog input channel and returns the 12-bit value.
 
@@ -74,7 +72,7 @@ analogReadCalibrated
 
 ::
 
-    int analogReadCalibrated ( unsigned char  channel )
+    int analogReadCalibrated ( unsigned char channel )
 
 Reads the calibrated value of an analog input channel.
 
@@ -101,7 +99,7 @@ analogReadCalibratedHR
 
 ::
 
-    int analogReadCalibratedHR ( unsigned char  channel )
+    int analogReadCalibratedHR ( unsigned char channel )
 
 Reads the calibrated value of an analog input channel 1-8 with enhanced
 precision.
@@ -134,7 +132,7 @@ delay
 
 ::
 
-    void delay ( const unsigned long  time)
+    void delay ( const unsigned long time)
 
 Wiring-compatible alias of `taskDelay`_
 
@@ -198,8 +196,7 @@ digitalWrite
 ::
 
     void digitalWrite ( unsigned char pin,
-                        bool value
-                      )
+                        bool value )
 
 Sets the digital value (1 or 0) of a pin configured as a digital output.
 
@@ -241,9 +238,8 @@ encoderInit
 ::
 
     Encoder encoderInit ( unsigned char portTop,
-                      unsigned char portBottom,
-                      bool reverse
-                    )
+                          unsigned char portBottom,
+                          bool reverse )
 
 Initializes and enables a quadrature encoder on two digital ports.
 
@@ -306,7 +302,7 @@ fclose
 
 ::
 
-    void fclose( FILE * stream )
+    void fclose( PROS_FILE * stream )
 
 Closes the specified file descriptor.
 
@@ -324,7 +320,7 @@ fcount
 
 ::
 
-    void fcount ( FILE * stream )
+    void fcount ( PROS_FILE * stream )
 
 Returns the number of characters that can be read without blocking (the
 number of characters available) from the specified stream.
@@ -372,7 +368,7 @@ feof
 
 ::
 
-    int feof ( FILE * stream )
+    int feof ( PROS_FILE * stream )
 
 Checks to see if the specified stream is at its end.
 
@@ -392,7 +388,7 @@ fflush
 
 ::
 
-    int fflush ( FILE * stream )
+    int fflush ( PROS_FILE * stream )
 
 Flushes the data on the specified file channel open in Write mode.
 
@@ -416,7 +412,7 @@ fgetc
 
 ::
 
-    int fgetc ( FILE * stream )
+    int fgetc ( PROS_FILE * stream )
 
 Reads and returns one character from the specified stream, blocking
 until complete.
@@ -440,8 +436,7 @@ fgets
 
     char * fgets ( char * str,
                    int num,
-                   FILE * stream
-                 )
+                   PROS_FILE * stream )
 
 Reads a string from the specified stream, storing the characters into
 the memory at str.
@@ -470,9 +465,8 @@ fopen
 
 ::
 
-    FILE * fopen ( const char * file,
-                   const char * mode
-                 )
+    PROS_FILE * fopen ( const char * file,
+                        const char * mode )
 
 Opens the given file in the specified mode.
 
@@ -513,8 +507,7 @@ fprint
 ::
 
     void fprint ( const char * string,
-                  FILE * stream
-                )
+                  PROS_FILE * stream )
 
 Prints the simple string to the specified stream.
 
@@ -534,33 +527,36 @@ fprintf
 
 ::
 
-    int fprintf ( FILE * stream,
+    int fprintf ( PROS_FILE * stream,
                   const char * formatString,
-                  ...
-                )
+                  ... )
 
 Prints the formatted string to the specified output stream.
 
 The specifiers supported by this minimalistic `printf`_ function are:
 
--  %d: Signed integer in base 10 (int)
--  %u: Unsigned integer in base 10 (unsigned int)
--  %x, %X: Integer in base 16 (unsigned int, int)
--  %p: Pointer (void *, int *, ...)
--  %c: Character (char)
--  %s: Null-terminated string (char *)
--  %%: Single literal percent sign
--  %f: Floating-point number
+::
+
+  -  %d: Signed integer in base 10 (int)
+  -  %u: Unsigned integer in base 10 (unsigned int)
+  -  %x, %X: Integer in base 16 (unsigned int, int)
+  -  %p: Pointer (void *, int *, ...)
+  -  %c: Character (char)
+  -  %s: Null-terminated string (char *)
+  -  %%: Single literal percent sign
+  -  %f: Floating-point number
 
 Specifiers can be modified with:
 
--  0: Zero-pad, instead of space-pad
--  a.b: Make the field at least "a" characters wide. If "b" is specified
-   for "%f", changes the number of digits after the decimal point
--  -: Left-align, instead of right-align
--  +: Always display the sign character (displays a leading "+" for
-   positive numbers)
--  l: Ignored for compatibility
+::
+
+  -  0: Zero-pad, instead of space-pad
+  -  a.b: Make the field at least "a" characters wide. If "b" is specified
+     for "%f", changes the number of digits after the decimal point
+  -  -: Left-align, instead of right-align
+  -  +: Always display the sign character (displays a leading "+" for
+     positive numbers)
+   -  l: Ignored for compatibility
 
 Invalid format specifiers, or mismatched parameters to specifiers, cause
 undefined behavior. Other characters are written out verbatim. Do not
@@ -583,8 +579,7 @@ fputc
 ::
 
     int fputc ( int value,
-                FILE * stream
-              )
+                PROS_FILE * stream )
 
 Writes one character to the specified stream.
 
@@ -606,8 +601,7 @@ fputs
 ::
 
     int fputs ( const char * string,
-                FILE * stream
-              )
+                PROS_FILE * stream )
 
 Behaves the same as the `fprint`_ function, and appends a trailing
 newline (``\n``).
@@ -632,8 +626,7 @@ fread
     size_t fread ( void * ptr,
                    size_t size,
                    size_t count,
-                   FILE * stream
-                 )
+                   PROS_FILE * stream )
 
 Reads data from a stream into memory.
 
@@ -659,10 +652,9 @@ fseek
 
 ::
 
-    int fseek ( FILE * stream,
+    int fseek ( PROS_FILE * stream,
                 long int offset,
-                int origin
-              )
+                int origin )
 
 Seeks within a file open in Read mode.
 
@@ -686,7 +678,7 @@ ftell
 
 ::
 
-    long int ftell ( FILE * stream )
+    long int ftell ( PROS_FILE * stream )
 
 Returns the current position of the stream.
 
@@ -710,8 +702,7 @@ fwrite
     size_t fwrite ( const void * ptr,
                     size_t size,
                     size_t count,
-                    FILE * stream
-                  )
+                    PROS_FILE * stream )
 
 Writes data from memory to a stream.
 
@@ -773,8 +764,7 @@ gyroInit
 ::
 
     Gyro gyroInit ( unsigned char port,
-                    unsigned short multiplier
-                  )
+                    unsigned short multiplier )
 
 Initializes and enables a gyro on an analog port.
 
@@ -845,8 +835,7 @@ i2cRead
 
     bool i2cRead ( uint8_t addr,
                    uint8_t * data,
-                   uint16_t count
-                 )
+                   uint16_t count )
 
 *Included in PROS API since 2.11.0*
 
@@ -880,8 +869,7 @@ i2cReadRegister
     bool i2cReadRegister ( uint8_t addr,
                            uint8_t reg,
                            uint8_t * value,
-                           uint16_t count
-                         )
+                           uint16_t count )
 
 *Included in PROS API since 2.11.0*
 
@@ -919,8 +907,7 @@ i2cWrite
 
     bool i2cWrite ( uint8_t addr,
                     uint8_t * data,
-                    uint16_t count
-                  )
+                    uint16_t count )
 
 *Included in PROS API since 2.11.0*
 
@@ -957,8 +944,7 @@ i2cWriteRegister
 
     bool i2cWriteRegister ( uint8_t addr,
                             uint8_t reg,
-                            uint16_t value
-                          )
+                            uint16_t value )
 
 *Included in PROS API since 2.11.0*
 
@@ -990,8 +976,7 @@ imeGet
 ::
 
     bool imeGet ( unsigned char address,
-                  int * value
-                )
+                  int * value )
 
 Gets the current 32-bit count of the specified IME.
 
@@ -1006,7 +991,7 @@ revolution:
 -  261.333 for the 393 IME in turbo mode
 
 If the IME address is invalid, or the IME has not been reset or
-initialized, the value stored in *value is undefined.
+initialized, the value stored in ``*value`` is undefined.
 
 +-------------+--------------------------------------------------------------------------------------------------------------------------------+
 | Parameters  |                                                                                                                                |
@@ -1017,7 +1002,7 @@ initialized, the value stored in *value is undefined.
 +-------------+--------------------------------------------------------------------------------------------------------------------------------+
 
 **Returns** true if the count was successfully read and the value stored
-in *value is valid; false otherwise
+in ``*value`` is valid; false otherwise
 
 imeGetVelocity
 --------------
@@ -1025,8 +1010,7 @@ imeGetVelocity
 ::
 
     bool imeGetVelocity ( unsigned char address,
-                          int * value
-                        )
+                          int * value )
 
 Gets the current rotational velocity of the specified IME.
 
@@ -1042,7 +1026,7 @@ value by the number of output revolutions per encoder revolution:
 -  24.5 for the 393 IME in high speed mode
 
 If the IME address is invalid, or the IME has not been reset or
-initialized, the value stored in *value is undefined.
+initialized, the value stored in ``*value`` is undefined.
 
 +-------------+--------------------------------------------------------------------------------------------------------------------------------+
 | Parameters  |                                                                                                                                |
@@ -1053,7 +1037,7 @@ initialized, the value stored in *value is undefined.
 +-------------+--------------------------------------------------------------------------------------------------------------------------------+
 
 ***Returns*** true if the velocity was successfully read and the value
-stored in *value is valid; false otherwise
+stored in ``*value`` is valid; false otherwise
 
 imeInitializeAll
 ----------------
@@ -1096,7 +1080,7 @@ This method can be used while the IME is rotating.
 +---------------+-----------------------------------------------------+
 | Parameters    |                                                     |
 +===============+=====================================================+
-| ``address``   | the IME address to fetch from 0 to IME_ADDR_MAX   |
+| ``address``   | the IME address to fetch from 0 to IME_ADDR_MAX     |
 +---------------+-----------------------------------------------------+
 
 **Returns** true if the reset succeeded; false otherwise
@@ -1141,8 +1125,7 @@ ioSetInterrupt
 
     void ioSetInterrupt( unsigned char    pin,
                          unsigned char    edges,
-                         InterruptHandler handler
-                       )
+                         InterruptHandler handler )
 
 Sets up an interrupt to occur on the specified pin, and resets any
 counters or timers associated with the pin.
@@ -1242,8 +1225,7 @@ joystickGetAnalog
 ::
 
     int joystickGetAnalog ( unsigned char joystick,
-                            unsigned char axis
-                          )
+                            unsigned char axis )
 
 Gets the value of a control axis on the VEX joystick. Valid values for
 the joystick parameter are 1 and 2 for the master and partner joysticks,
@@ -1267,8 +1249,7 @@ joystickGetDigital
 
     int joystickGetDigital ( unsigned char joystick,
                              unsigned char buttonGroup,
-                             unsigned char button
-                           )
+                             unsigned char button )
 
 Gets the value of a button on the VEX joystick. Valid values for the
 joystick are 1 and 2 for the master and partner joysticks, respectively.
@@ -1291,7 +1272,7 @@ lcdClear
 
 ::
 
-    void lcdClear ( FILE * lcdPort )
+    void lcdClear ( PROS_FILE * lcdPort )
 
 Clears the LCD screen on the specified port.
 
@@ -1309,7 +1290,7 @@ lcdInit
 
 ::
 
-    void lcdInit ( FILE * lcdPort )
+    void lcdInit ( PROS_FILE * lcdPort )
 
 Initializes the LCD port, but does not change the text or settings.
 
@@ -1328,11 +1309,10 @@ lcdPrint
 
 ::
 
-    void lcdPrint ( FILE * lcdPort,
+    void lcdPrint ( PROS_FILE * lcdPort,
                     unsigned char line,
                     const char * formatString,
-                    ...
-                  )
+                    ... )
 
 Prints the formatted string to the attached LCD.
 
@@ -1355,7 +1335,7 @@ lcdReadButtons
 
 ::
 
-    unsigned int lcdReadButtons (FILE * lcdPort )
+    unsigned int lcdReadButtons ( PROS_FILE * lcdPort )
 
 Reads the user button status from the LCD display. The value returned is
 a 3 bit integer where ``1 0 0`` indicates the left button being pressed,
@@ -1378,9 +1358,8 @@ lcdSetBacklight
 
 ::
 
-    void lcdSetBacklight ( FILE * lcdPort,
-                           bool backlight
-                         )
+    void lcdSetBacklight ( PROS_FILE * lcdPort,
+                           bool backlight )
 
 Sets the specified LCD backlight to be on or off.
 
@@ -1400,10 +1379,9 @@ lcdSetText
 
 ::
 
-    void lcdSetText ( FILE * lcdPort,
+    void lcdSetText ( PROS_FILE * lcdPort,
                       unsigned char line,
-                      const char * buffer
-                    )
+                      const char * buffer )
 
 Prints the string buffer to the attached LCD.
 
@@ -1426,7 +1404,7 @@ lcdShutdown
 
 ::
 
-    void lcdShutdown ( FILE * lcdPort )
+    void lcdShutdown ( PROS_FILE * lcdPort )
 
 Shut down the specified LCD port.
 
@@ -1497,8 +1475,7 @@ motorSet
 ::
 
     void motorSet ( unsigned char channel,
-                    int speed
-                  )
+                    int speed )
 
 Sets the speed of the specified motor channel.
 
@@ -1601,8 +1578,7 @@ mutexTake
 ::
 
     bool mutexTake ( Mutex mutex,
-                     const unsigned long blockTime
-                   )
+                     const unsigned long blockTime )
 
 Requests a mutex so that other tasks cannot simultaneously use the
 resource it guards.
@@ -1628,8 +1604,7 @@ pinMode
 ::
 
     void pinMode ( unsigned char pin,
-                   unsigned char mode
-                 )
+                   unsigned char mode )
 
 Configures the pin as an input or output with a variety of settings.
 
@@ -1690,8 +1665,7 @@ printf
 ::
 
     int printf ( const char * formatString,
-                 ...
-               )
+                 ... )
 
 Prints the formatted string to the debug stream (the PC terminal).
 
@@ -1769,7 +1743,7 @@ semaphoreGive
 
 ::
 
-    bool semaphoreGive (Semaphore semaphore )
+    bool semaphoreGive ( Semaphore semaphore )
 
 Signals a semaphore.
 
@@ -1794,8 +1768,7 @@ semaphoreTake
 ::
 
     bool semaphoreTake ( Semaphore semaphore,
-                         const unsigned long blockTime
-                       )
+                         const unsigned long blockTime )
 
 Waits on a semaphore.
 
@@ -1838,8 +1811,7 @@ snprintf
     int snprintf ( char * buffer,
                    size_t limit,
                    const char * formatString,
-                   ...
-                 )
+                   ... )
 
 Prints the formatted string to the string buffer with the specified
 length limit.
@@ -1945,8 +1917,7 @@ sprintf
 
     int sprintf ( char * buffer,
                    const char * formatString,
-                   ...
-                 )
+                   ... )
 
 Prints the formatted string to the string buffer.
 
@@ -1971,8 +1942,7 @@ taskCreate
     TaskHandle taskCreate ( TaskCode taskCode,
                             const unsigned int stackDepth,
                             void * parameters,
-                            const unsigned int priority
-                          )
+                            const unsigned int priority )
 
 Creates a new task and add it to the list of tasks that are ready to
 run.
@@ -2022,8 +1992,7 @@ taskDelayUntil
 ::
 
     void taskDelayUntil ( unsigned long * previousWakeTime,
-                          const unsigned long cycleTime
-                        )
+                          const unsigned long cycleTime )
 
 Delays the current task until a specified time.
 
@@ -2138,8 +2107,7 @@ taskPrioritySet
 ::
 
     void taskPrioritySet ( TaskHandle task,
-                           const unsigned int newPriority
-                         )
+                           const unsigned int newPriority )
 
 Sets the priority of the specified task.
 
@@ -2182,8 +2150,7 @@ taskRunLoop
 ::
 
     TaskHandle taskRunLoop ( void(*)(void) fn,
-                             const unsigned long increment
-                           )
+                             const unsigned long increment )
 
 Starts a task which will periodically call the specified function.
 
@@ -2253,8 +2220,7 @@ ultrasonicInit
 ::
 
     Ultrasonic ultrasonicInit ( unsigned char portEcho,
-                                unsigned char portPing
-                              )
+                                unsigned char portPing )
 
 Initializes an ultrasonic sensor on the specified digital ports.
 
@@ -2296,10 +2262,9 @@ usartInit
 
 ::
 
-    void usartInit ( FILE * usart,
+    void usartInit ( PROS_FILE * usart,
                      unsigned int baud,
-                     unsigned int flags
-                   )
+                     unsigned int flags )
 
 Initialize the specified serial interface with the given connection
 parameters.
@@ -2327,7 +2292,7 @@ usartShutdown
 
 ::
 
-    void usartShutdown ( FILE * usart )
+    void usartShutdown ( PROS_FILE * usart )
 
 Disables the specified USART interface.
 
@@ -2363,8 +2328,7 @@ waitUntil
 ::
 
     void waitUntil ( unsigned long * previousWakeTime,
-                     const unsigned long time
-                   )
+                     const unsigned long time )
 
 Alias of `taskDelayUntil`_ intended
 to help EasyC users.
@@ -2626,13 +2590,13 @@ Bit mask for `usartInit`_ for 1 stop bit (typical)
 
 Bit mask for `usartInit`_ for 2 stop bits.
 
-#define stdin ((FILE *)3)
--------------------------
+#define stdin ((PROS_FILE \*)3)
+-------------------------------
 
 The standard input stream uses the PC debug terminal.
 
-#define stdout ((FILE *)3)
---------------------------
+#define stdout ((PROS_FILE \*)3)
+--------------------------------
 
 The standard output stream uses the PC debug terminal.
 
@@ -2735,13 +2699,13 @@ blocked waiting for a semaphore, mutex, or I/O operation.
 Constant returned from `taskGetState`_ when the task is suspended using
 `taskSuspend`_.
 
-#define uart1 ((FILE *)1)
--------------------------
+#define uart1 ((PROS_FILE \*)1)
+-------------------------------
 
 UART 1 on the Cortex; must be opened first using `usartInit`_.
 
-#define uart2 ((FILE *)2)
--------------------------
+#define uart2 ((PROS_FILE \*)2)
+-------------------------------
 
 UART 2 on the Cortex; must be opened first using `usartInit`_.
 
