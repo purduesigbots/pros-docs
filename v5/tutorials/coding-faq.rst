@@ -10,7 +10,7 @@ Compile-Time Issues
     declared in a header file. Custom headers must be included in ``main.h`` or
     in the file in which they are used.
 
- * ``format ... expects argument of type ..., but argument has type ...```:
+ * ``format ... expects argument of type ..., but argument has type ...`:
     The value provided to a function like `printf <http://www.cplusplus.com/reference/cstdio/printf/>`_
     or `lcd_print <../api/c/llemu.html#lcd-print>`_ does not match the expected
     type inferred from the format string. Some instances of this warning can be
@@ -43,7 +43,7 @@ Run-Time Issues
     The LCD is only updated if all other tasks are waiting.
 
  * **Neither autonomous nor driver control code starts:**
-    The ``initialize()``` function may still be running. Some tasks such as
+    The ``initialize()`` function may still be running. Some tasks such as
     `analog_calibrate <../api/c/adi.html#analog-calibrate>`_ take time.
 
     If the ``initialize()`` function implements some type of loop or autonomous
