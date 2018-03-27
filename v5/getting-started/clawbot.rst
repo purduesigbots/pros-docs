@@ -4,7 +4,8 @@ Programming the Clawbot
 
 .. note ::
 
-    This tutorial is very much incomplete. This tutorial will guide you through creating and uploading code in the PROS 3 CLI environment.
+    This tutorial is very much incomplete. This tutorial will guide you through
+    creating and uploading code in the PROS 3 CLI environment.
 
 Objective:
 ==========
