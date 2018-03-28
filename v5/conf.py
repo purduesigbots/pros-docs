@@ -18,7 +18,7 @@
 #
 import os
 import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import ablog
 
 sys.path.append(os.path.abspath('../sphinx-tabs/sphinx_tabs/'))
 
@@ -28,11 +28,10 @@ sys.path.append(os.path.abspath('../sphinx-tabs/sphinx_tabs/'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-#extensions = ['sphinx_tabs.tabs']
-extensions = ['tabs']
+extensions = ['tabs', 'ablog']
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+templates_path = [ablog.get_html_templates_path()]
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:

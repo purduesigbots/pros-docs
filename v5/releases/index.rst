@@ -1,0 +1,16 @@
+=====================
+Version Release Notes
+=====================
+
+.. toctree::
+   :hidden:
+   :glob:
+
+   *
+
+.. postlist:: 5
+   :sort:
+   :date: %B %d, %Y
+   :format: {title} on {date}
+   :list-style: circle
+   :tags: release

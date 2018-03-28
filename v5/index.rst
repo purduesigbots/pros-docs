@@ -8,6 +8,7 @@ PROS: Documentation Home
    :caption: Home
 
    self
+   ./releases/index
 
 .. toctree::
    :hidden:
