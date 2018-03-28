@@ -153,7 +153,7 @@ Analogous to `lcd_print <../c/llemu.html#lcd-print>`_.
 
         void initialize() {
           pros::lcd::initialize();
-          while(true) {
+          while (true) {
             pros::lcd::print(0, "Buttons Bitmap: %d\n", pros::lcd::read_buttons());
             delay(20);
           }
@@ -169,6 +169,43 @@ Analogous to `lcd_print <../c/llemu.html#lcd-print>`_.
 
 **Returns:** ``true`` if the operation was successful, or ``false`` otherwise, setting
 ``errno`` values as specified above.
+
+read_buttons
+------------
+
+Reads the button status from the emulated three-button LCD.
+
+The value returned is a 3-bit integer where ``1 0 0`` indicates the left button
+is pressed, ``0 1 0`` indicates the center button is pressed, and ``0 0 1``
+indicates the right button is pressed. ``0`` is returned if no buttons are
+currently being pressed.
+
+Note that this function is provided for legacy API compatibility purposes,
+with the caveat that the V5 touch screen does not actually support pressing
+multiple points on the screen at the same time.
+
+Analogous to `lcd_read_buttons <../c/llemu.html#lcd-read-buttons>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         uint8_t pros::lcd::read_buttons ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          pros::lcd::initialize();
+          while (true) {
+            printf("Buttons Bitmap: %d\n", pros::lcd::read_buttons());
+            delay(20);
+          }
+        }
+
+**Returns:** The buttons pressed as a bit mask.
 
 register_btn0_cb
 ----------------
@@ -295,43 +332,6 @@ Analogous to `lcd_register_btn2_cb <../c/llemu.html#lcd-register-btn2-cb>`_.
 ============ ==================================================================================================
  cb           An `LCD callback function <../c/llemu.html#lcd-btn-cb-fn-t>`_ to be executed by this button press
 ============ ==================================================================================================
-
-read_buttons
-------------
-
-Reads the button status from the emulated three-button LCD.
-
-The value returned is a 3-bit integer where ``1 0 0`` indicates the left button
-is pressed, ``0 1 0`` indicates the center button is pressed, and ``0 0 1``
-indicates the right button is pressed. ``0`` is returned if no buttons are
-currently being pressed.
-
-Note that this function is provided for legacy API compatibility purposes,
-with the caveat that the V5 touch screen does not actually support pressing
-multiple points on the screen at the same time.
-
-Analogous to `lcd_read_buttons <../c/llemu.html#lcd-read-buttons>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-         uint8_t pros::lcd::read_buttons ( )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void initialize() {
-          pros::lcd::initialize();
-          while(true) {
-            printf("Buttons Bitmap: %d\n", pros::lcd::read_buttons());
-            delay(20);
-          }
-        }
-
-**Returns:** The buttons pressed as a bit mask.
 
 set_text
 --------

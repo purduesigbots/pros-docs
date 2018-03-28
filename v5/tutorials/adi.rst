@@ -37,6 +37,7 @@ for its ADI port.
         void initialize() {
           adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
         }
+        
    .. group-tab :: C++
       .. highlight:: cpp
       ::
