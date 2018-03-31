@@ -14,7 +14,7 @@ This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
 To delay cyclically, use `task_delay_until`_.
 
-.. warning:: needs a link
+Analogous to `pros::delay <../cpp/rtos.html#delay>`_.
 
 .. tabs ::
    .. tab :: Prototype

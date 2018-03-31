@@ -10,7 +10,7 @@ get_capacity
 
 Gets the current capacity of the battery, as reported by VEXos.
 
-Analogous to `pros::battery::get_capacity <../c/misc.html#get-capacity>`_.
+Analogous to `battery_get_capacity <../c/misc.html#battery-get-capacity>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -34,7 +34,7 @@ get_current
 
 Gets the current current of the battery, as reported by VEXos.
 
-Analogous to `pros::battery::get_current <../c/misc.html#get-current>`_.
+Analogous to `battery_get_current <../c/misc.html#battery-get-current>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -58,7 +58,7 @@ get_temperature
 
 Gets the current temperature of the battery, as reported by VEXos.
 
-Analogous to `pros::battery::get_temperature <../c/misc.html#get-temperature>`_.
+Analogous to `battery_get_temperature <../c/misc.html#battery-get-temperature>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -82,7 +82,7 @@ get_voltage
 
 Gets the current voltage of the battery, as reported by VEXos
 
-Analogous to `pros::battery::get_voltage <../c/misc.html#get-voltage>`_.
+Analogous to `battery_get_voltage <../c/misc.html#battery-get-voltage>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -233,10 +233,11 @@ Constructor(s)
       ::
 
         void opcontrol() {
-          Controller master (E_CONTROLLER_MASTER);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          pros::Motor motor (1);
           while (true) {
-            1_m = master.get_analog(E_CONTROLLER_ANALOG_LEFT_X);
-            delay(2);
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_X));
+            pros::delay(2);
           }
         }
 
@@ -269,16 +270,16 @@ Analogous to `controller_is_connected <../c/misc.html#controller-is-connected>`_
       ::
 
         void opcontrol() {
-          Controller partner (E_CONTROLLER_PARTNER);
+          pros::Controller partner (E_CONTROLLER_PARTNER);
           while (true) {
-            if (partner.is_connected) {
+            if (partner.is_connected()) {
               // Use a two controller control scheme
             }
             else {
               // Just use a single controller control scheme
             }
 
-            delay(2);
+            pros::delay(2);
           }
         }
 
@@ -303,10 +304,11 @@ Analogous to `controller_get_analog <../c/misc.html#controller-get-analog>`_.
       ::
 
         void opcontrol() {
-          Controller master (E_CONTROLLER_MASTER);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          pros::Motor motor (1);
           while (true) {
-            1_m = master.get_analog(E_CONTROLLER_ANALOG_LEFT_X);
-            delay(2);
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_X));
+            pros::delay(2);
           }
         }
 
@@ -340,16 +342,17 @@ Analogous to `controller_get_digital <../c/misc.html#controller-get-digital>`_.
       ::
 
         void opcontrol() {
-          Controller master (E_CONTROLLER_MASTER);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          pros::Motor motor (1);
           while (true) {
             if (master.get_digital(E_CONTROLLER_DIGITAL_A)) {
-              motor_set(1, 100);
+              motor.move(100);
             }
             else {
-              motor_set(1, 0);
+              motor.move(0);
             }
 
-            delay(2);
+            pros::delay(2);
           }
         }
 
@@ -390,13 +393,13 @@ Analogous to `controller_get_digital_new_press <../c/misc.html#controller-get-di
       ::
 
         void opcontrol() {
-          Controller master (E_CONTROLLER_MASTER);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             if (master.get_digital_new_press(E_CONTROLLER_DIGITAL_A)) {
               // Toggle pneumatics or other similar actions
             }
 
-            delay(2);
+            pros::delay(2);
           }
         }
 

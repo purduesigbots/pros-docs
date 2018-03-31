@@ -234,7 +234,7 @@ Analogous to `pros::Controller::get_analog <../cpp/misc.html#get-analog>`_.
 
         void opcontrol() {
           while (true) {
-            motor_set(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
             delay(2);
           }
         }
@@ -348,7 +348,7 @@ controller_is_connected
 
 Returns 0 or 1 if the controller is connected.
 
-Analogous to `pros::Controller::is_connected <../cpp/misc.html#is-connected>`_.
+Analogous to `pros::Controller::is_connected <../cpp/misc.html#id1>`_.
 
 .. tabs ::
    .. tab :: Prototype
