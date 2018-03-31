@@ -22,7 +22,7 @@ Do not use this function when the sensor value might be unstable
 (gyro rotation, accelerometer movement).
 
 .. note::
-   The ADI currently returns data at 50ms intervals, despite the calibrate function's
+   The ADI currently returns data at 50msintervals, despite the calibrate function's
    1ms sample rate. This sample rate was kept for the sake of being similar to PROS
    2, and increasing the sample rate would not have a tangible difference in the
    function's performance.
@@ -34,7 +34,7 @@ Analogous to `pros::ADIAnalogIn::calibrate <../cpp/adi.html#calibrate>`_.
       .. highlight:: c
       ::
 
-         int32_t adi_analog_calibrate ( uint8_t port )
+        int32_t adi_analog_calibrate (uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -71,7 +71,7 @@ Analogous to `pros::ADIAnalogIn::get_value <../cpp/adi.html#get-value>`_.
       .. highlight:: c
       ::
 
-         int32_t adi_analog_read ( uint8_t port )
+        int32_t adi_analog_read (uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -101,7 +101,7 @@ adi_analog_read_calibrated
 Reads the calibrated value of an analog input channel.
 
 The `adi_analog_calibrate`_ function must be run first on that channel. This function is
-inappropriate for sensor values intended for integration, as round-off error can accumulate
+inappropriate for sensor valuesintended forintegration, as round-off error can accumulate
 causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 
 Analogous to `pros::ADIAnalogIn::get_value_calibrated <../cpp/adi.html#get-value-calibrated>`_.
@@ -111,7 +111,7 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated <../cpp/adi.html#get-value
       .. highlight:: c
       ::
 
-         int32_t adi_analog_read_calibrated ( uint8_t port )
+        int32_t adi_analog_read_calibrated (uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -139,13 +139,13 @@ adi_analog_read_calibrated_HR
 
 Reads the calibrated value of an analog input channel 1-8 with enhanced precision.
 
-The `adi_analog_calibrate`_ function must be run first. This is intended for integrated sensor
+The `adi_analog_calibrate`_ function must be run first. This isintended forintegrated sensor
 values such as gyros and accelerometers to reduce drift due to round-off, and should not be
 used on a sensor such as a line tracker or potentiometer.
 
 The value returned actually has 16 bits of "precision", even though the ADC only reads
 12 bits, so that errors induced by the average value being between two values come out
-in the wash when integrated over time. Think of the value as the true value times 16.
+in the wash whenintegrated over time. Think of the value as the true value times 16.
 
 Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-value-calibrated-HR>`_.
 
@@ -154,7 +154,7 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-va
       .. highlight:: c
       ::
 
-         int32_t adi_analog_read_calibrated_HR ( uint8_t port )
+        int32_t adi_analog_read_calibrated_HR (uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -198,7 +198,7 @@ Analogous to `pros::ADIDigitalIn::get_new_press <../cpp/adi.html#get-new-press>`
       .. highlight:: c
       ::
 
-         int32_t adi_digital_get_new_press ( uint8_t port )
+        int32_t adi_digital_get_new_press (uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -232,7 +232,7 @@ Gets the digital value (1 or 0) of a pin configured as a digital input.
 If the pin is configured as some other mode, the digital value which reflects the current
 state of the pin is returned, which may or may not differ from the currently set value. The
 return value is undefined for pins configured as Analog inputs, or for ports in use by a
-Communications interface.
+Communicationsinterface.
 
 Analogous to `pros::ADIDigitalIn::get_value <../cpp/adi.html#id5>`_.
 
@@ -241,7 +241,7 @@ Analogous to `pros::ADIDigitalIn::get_value <../cpp/adi.html#id5>`_.
       .. highlight:: c
       ::
 
-         int32_t adi_digital_read ( uint8_t port )
+        int32_t adi_digital_read (uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -278,7 +278,7 @@ Analogous to `pros::ADIDigitalOut::set_value <../cpp/adi.html#id8>`_.
       .. highlight:: c
       ::
 
-        int32_t adi_digital_write ( uint8_t port,
+       int32_t adi_digital_write (uint8_t port,
                                     const bool value )
 
    .. tab :: Example
@@ -320,7 +320,7 @@ Analogous to `pros::ADIEncoder::get_value <../cpp/adi.html#id11>`_.
       .. highlight:: c
       ::
 
-        int32_t adi_encoder_get ( adi_encoder_t enc )
+       int32_t adi_encoder_get ( adi_encoder_t enc )
 
    .. tab :: Example
       .. highlight:: c
@@ -357,8 +357,8 @@ Analogous to `pros::ADIEncoder::ADIEncoder <../cpp/adi.html#id9>`_.
       .. highlight:: c
       ::
 
-        adi_encoder_t adi_encoder_init ( uint8_t port_top,
-                                         uint8_t port_bottom,
+        adi_encoder_t adi_encoder_init (uint8_t port_top,
+                                        uint8_t port_bottom,
                                          const bool reverse )
 
    .. tab :: Example
@@ -401,7 +401,7 @@ Analogous to `pros::ADIEncoder::reset <../cpp/adi.html#reset>`_.
       .. highlight:: c
       ::
 
-        int32_t adi_encoder_reset ( adi_encoder_t enc )
+       int32_t adi_encoder_reset ( adi_encoder_t enc )
 
    .. tab :: Example
       .. highlight:: c
@@ -434,7 +434,7 @@ Stops and disables the encoder.
       .. highlight:: c
       ::
 
-        int32_t adi_encoder_shutdown ( adi_encoder_t enc )
+       int32_t adi_encoder_shutdown ( adi_encoder_t enc )
 
    .. tab :: Example
       .. highlight:: c
@@ -469,7 +469,7 @@ Analogous to `pros::ADIPort::get_value <../cpp/adi.html#id18>`_.
       .. highlight:: c
       ::
 
-        int32_t adi_get_value ( uint8_t port )
+       int32_t adi_get_value (uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -502,7 +502,7 @@ Analogous to `pros::ADIMotor::get_value <../cpp/adi.html#id14>`_.
       .. highlight:: c
       ::
 
-        int32_t adi_motor_get ( uint8_t port )
+       int32_t adi_motor_get (uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -537,8 +537,8 @@ Analogous to `pros::ADIMotor::set_value <../cpp/adi.html#id15>`_.
       .. highlight:: c
       ::
 
-        int32_t adi_motor_set ( uint8_t port,
-                                const int8_t speed )
+       int32_t adi_motor_set (uint8_t port,
+                                constint8_t speed )
 
    .. tab :: Example
       .. highlight:: c
@@ -573,7 +573,7 @@ Analogous to `pros::ADIMotor::stop <../cpp/adi.html#id16>`_.
       .. highlight:: c
       ::
 
-        int32_t adi_motor_stop ( uint8_t port )
+       int32_t adi_motor_stop (uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -606,7 +606,7 @@ Configures the pin as an input or output with a variety of settings.
       .. highlight:: c
       ::
 
-        int32_t adi_pin_mode ( uint8_t port,
+       int32_t adi_pin_mode (uint8_t port,
                                const unsigned char mode )
 
    .. tab :: Example
@@ -640,7 +640,7 @@ Analogous to `pros::ADIPort::get_config <../cpp/adi.html#get-config>`_.
       .. highlight:: c
       ::
 
-        adi_port_config_e_t adi_port_get_config ( uint8_t port )
+        adi_port_config_e_t adi_port_get_config (uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -674,7 +674,7 @@ Analogous to `pros::ADIPort::set_config <../cpp/adi.html#set-config>`_.
       .. highlight:: c
       ::
 
-        int32_t adi_port_set_config ( uint8_t port,
+       int32_t adi_port_set_config (uint8_t port,
                                       adi_port_config_e_t type )
 
    .. tab :: Example
@@ -711,8 +711,8 @@ Analogous to `pros::ADIPort::set_value <../cpp/adi.html#id20>`_.
       .. highlight:: c
       ::
 
-        int32_t adi_set_value ( uint8_t port,
-                                int32_t value )
+       int32_t adi_set_value (uint8_t port,
+                               int32_t value )
 
    .. tab :: Example
       .. highlight:: c
@@ -750,7 +750,7 @@ Analogous to `pros::ADIUltrasonic::get_value <../cpp/adi.html#id24>`_.
       .. highlight:: c
       ::
 
-        int32_t adi_ultrasonic_get ( adi_ultrasonic_t ult )
+       int32_t adi_ultrasonic_get ( adi_ultrasonic_t ult )
 
    .. tab :: Example
       .. highlight:: c
@@ -788,8 +788,8 @@ Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
       .. highlight:: c
       ::
 
-        adi_ultrasonic_t adi_ultrasonic_init ( uint8_t port_echo,
-                                               uint8_t port_ping )
+        adi_ultrasonic_t adi_ultrasonic_init (uint8_t port_echo,
+                                              uint8_t port_ping )
 
    .. tab :: Example
       .. highlight:: c
@@ -826,7 +826,7 @@ Stops and disables the ultrasonic sensor.
       .. highlight:: c
       ::
 
-        int32_t adi_ultrasonic_shutdown ( adi_ultrasonic_t ult )
+       int32_t adi_ultrasonic_shutdown ( adi_ultrasonic_t ult )
 
    .. tab :: Example
       .. highlight:: c
@@ -978,7 +978,7 @@ object to store encoder data in PROS 2.
 
 ::
 
-	typedef int32_t adi_encoder_t;
+	typedefint32_t adi_encoder_t;
 
 adi_ultrasonic_t
 ----------------
@@ -990,4 +990,4 @@ object to store encoder data in PROS 2.
 
 ::
 
-	typedef int32_t adi_ultrasonic_t;
+	typedefint32_t adi_ultrasonic_t;

@@ -175,7 +175,7 @@ read_buttons
 
 Reads the button status from the emulated three-button LCD.
 
-The value returned is a 3-bit integer where ``1 0 0`` indicates the left button
+The value returned is a 3-bit std::integer where ``1 0 0`` indicates the left button
 is pressed, ``0 1 0`` indicates the center button is pressed, and ``0 0 1``
 indicates the right button is pressed. ``0`` is returned if no buttons are
 currently being pressed.
@@ -191,7 +191,7 @@ Analogous to `lcd_read_buttons <../c/llemu.html#lcd-read-buttons>`_.
       .. highlight:: cpp
       ::
 
-         uint8_t pros::lcd::read_buttons ( )
+         std::uint8_t pros::lcd::read_buttons ( )
 
    .. tab :: Example
       .. highlight:: cpp

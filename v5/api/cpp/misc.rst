@@ -148,7 +148,7 @@ Analogous to `controller_is_connected <../c/misc.html#controller-is-connected>`_
       .. highlight:: c
       ::
 
-        int32_t pros::Controller::is_connected ( )
+        std::int32_t pros::Controller::is_connected ( )
 
    .. tab :: Example
       .. highlight:: c
@@ -182,7 +182,7 @@ Analogous to `controller_get_analog <../c/misc.html#controller-get-analog>`_.
       .. highlight:: c
       ::
 
-         int32_t pros::Controller::get_analog ( controller_analog_e_t channel )
+         std::int32_t pros::Controller::get_analog ( controller_analog_e_t channel )
 
    .. tab :: Example
       .. highlight:: c
@@ -219,7 +219,7 @@ Analogous to `controller_get_digital <../c/misc.html#controller-get-digital>`_.
       .. highlight:: c
       ::
 
-        int32_t pros::Controller::get_digital ( controller_digital_e_t button )
+        std::int32_t pros::Controller::get_digital ( controller_digital_e_t button )
 
    .. tab :: Example
       .. highlight:: c
@@ -269,7 +269,7 @@ Analogous to `controller_get_digital_new_press <../c/misc.html#controller-get-di
       .. highlight:: c
       ::
 
-        int32_t pros::Controller::get_digital_new_press ( controller_digital_e_t button )
+        std::int32_t pros::Controller::get_digital_new_press ( controller_digital_e_t button )
 
    .. tab :: Example
       .. highlight:: c

@@ -15,14 +15,14 @@ Analogous to `millis <../c/rtos.html#millis>`_.
       .. highlight:: cpp
       ::
 
-        uint32_t pros::millis ( )
+        std::uint32_t pros::millis ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = pros::millis();
+          std::uint32_t now = pros::millis();
           while (true) {
             // Do opcontrol things
             pros::Task::delay_until(&now, 2);
@@ -46,8 +46,8 @@ Analogous to `task_create <../c/rtos.html#task-create>`_.
 
         pros::Task::Task ( task_fn_t function,
                            void* parameters = NULL,
-                           uint32_t prio = TASK_PRIORITY_DEFAULT,
-                           uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT,
+                           std::uint32_t prio = TASK_PRIORITY_DEFAULT,
+                           std::uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT,
                            const char* name = "")
 
    .. tab :: Example
@@ -153,7 +153,7 @@ To delay cyclically, use `delay_until`_.
       .. highlight:: cpp
       ::
 
-         static void pros::Task::delay ( const uint32_t milliseconds )
+         static void pros::Task::delay ( const std::uint32_t milliseconds )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -188,15 +188,15 @@ Analogous to `task_delay_until <../c/rtos.html#delay-until>`_.
       .. highlight:: cpp
       ::
 
-        void pros::Task::delay_until ( uint32_t* const prev_time,
-                                       const uint32_t delta )
+        void pros::Task::delay_until ( std::uint32_t* const prev_time,
+                                       const std::uint32_t delta )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = pros::millis();
+          std::uint32_t now = pros::millis();
           while (true) {
             // Do opcontrol things
             pros::Task::delay_until(&now, 2);
@@ -225,7 +225,7 @@ Analogous to `Task_get_count <../c/rtos.html#task-get-count>`_.
       .. highlight:: cpp
       ::
 
-          uint32_t pros::Task::get_count ( )
+          std::uint32_t pros::Task::get_count ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -285,7 +285,7 @@ Analogous to `task_get_priority <../c/rtos.html#task-get-priority>`_.
       .. highlight:: cpp
       ::
 
-        uint32_t pros::Task::get_priority ( )
+        std::uint32_t pros::Task::get_priority ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -350,7 +350,7 @@ Analogous to `task_notify <../c/rtos.html#task-notify>`_.
       .. highlight:: cpp
       ::
 
-        uint32_t pros::Task::notify ( )
+        std::uint32_t pros::Task::notify ( )
 
      .. tab :: Example
         .. highlight:: cpp
@@ -414,9 +414,9 @@ Analogous to `task_notify_ext <../c/rtos.html#task-notify-ext>`_.
       .. highlight:: cpp
       ::
 
-        uint32_t pros::Task::notify_ext ( uint32_t value,
+        std::uint32_t pros::Task::notify_ext ( std::uint32_t value,
                                           notify_action_e_t action,
-                                          uint32_t* prev_value )
+                                          std::uint32_t* prev_value )
 
      .. tab :: Example
         .. highlight:: cpp
@@ -450,8 +450,8 @@ Analogous to `task_notify_take <../c/rtos.html#task-notify-take>`_.
       .. highlight:: cpp
       ::
 
-        uint32_t pros::Task::notify_take ( bool clear_on_exit,
-                                           uint32_t timeout )
+        std::uint32_t pros::Task::notify_take ( bool clear_on_exit,
+                                           std::uint32_t timeout )
 
      .. tab :: Example
         .. highlight:: cpp
@@ -528,7 +528,7 @@ Analogous to `task_set_priority <../c/rtos.html#task-set-priority>`_.
       .. highlight:: cpp
       ::
 
-        void pros::Task::set_priority ( uint32_t prio )
+        void pros::Task::set_priority ( std::uint32_t prio )
 
      .. tab :: Example
         .. highlight:: cpp
@@ -664,7 +664,7 @@ Analogous to `mutex_take <../c/rtos.html#mutex-take>`_.
       .. highlight:: c
       ::
 
-         bool pros::Mutex::take ( uint32_t timeout )
+         bool pros::Mutex::take ( std::uint32_t timeout )
 
    .. tab :: Example
       .. highlight:: c

@@ -53,7 +53,7 @@ Analogous to `pros::lcd::clear_line <../cpp/llemu.html#clear-line>`_.
       .. highlight:: c
       ::
 
-         bool lcd_clear_line ( int16_t line )
+         bool lcd_clear_line (int16_t line )
 
    .. tab :: Example
       .. highlight:: c
@@ -173,7 +173,7 @@ lcd_read_buttons
 
 Reads the button status from the emulated three-button LCD.
 
-The value returned is a 3-bit integer where ``1 0 0`` indicates the left button
+The value returned is a 3-bitinteger where ``1 0 0`` indicates the left button
 is pressed, ``0 1 0`` indicates the center button is pressed, and ``0 0 1``
 indicates the right button is pressed. ``0`` is returned if no buttons are
 currently being pressed.
@@ -189,7 +189,7 @@ Analogous to `pros::lcd::read_buttons <../cpp/llemu.html#read-buttons>`_.
       .. highlight:: c
       ::
 
-         uint8_t lcd_read_buttons ( )
+        uint8_t lcd_read_buttons ( )
 
    .. tab :: Example
       .. highlight:: c
@@ -348,7 +348,7 @@ Analogous to `pros::lcd::set_text <../cpp/llemu.html#set-text>`_.
       .. highlight:: c
       ::
 
-         bool lcd_set_text ( int16_t line,
+         bool lcd_set_text (int16_t line,
                              const char* text )
 
    .. tab :: Example

@@ -111,7 +111,7 @@ competition_get_status
       .. highlight:: c
       ::
 
-        uint8_t competition_get_status ( )
+       uint8_t competition_get_status ( )
 
    .. tab :: Example
       .. highlight:: c
@@ -224,7 +224,7 @@ Analogous to `pros::Controller::get_analog <../cpp/misc.html#get-analog>`_.
       .. highlight:: c
       ::
 
-        int32_t controller_get_analog ( controller_id_e_t id,
+       int32_t controller_get_analog ( controller_id_e_t id,
                                         controller_analog_e_t channel )
 
    .. tab :: Example
@@ -263,7 +263,7 @@ Analogous to `pros::Controller::get_digital <../cpp/misc.html#get-digital>`_.
       .. highlight:: c
       ::
 
-        int32_t controller_get_digital ( controller_id_e_t id,
+       int32_t controller_get_digital ( controller_id_e_t id,
                                          controller_digital_e_t button )
 
    .. tab :: Example
@@ -314,7 +314,7 @@ Analogous to `pros::Controller::get_digital_new_press <../cpp/misc.html#get-digi
       .. highlight:: c
       ::
 
-        int32_t controller_get_digital_new_press ( controller_id_e_t id,
+       int32_t controller_get_digital_new_press ( controller_id_e_t id,
                                                    controller_digital_e_t button )
 
    .. tab :: Example
@@ -354,7 +354,7 @@ Analogous to `pros::Controller::is_connected <../cpp/misc.html#is-connected>`_.
       .. highlight:: c
       ::
 
-        int32_t controller_is_connected ( controller_id_e_t id )
+       int32_t controller_is_connected ( controller_id_e_t id )
 
    .. tab :: Example
       .. highlight:: c

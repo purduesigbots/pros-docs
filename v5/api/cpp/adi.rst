@@ -19,7 +19,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        pros::ADIAnalogIn::ADIAnalogIn ( uint8_t port )
+        pros::ADIAnalogIn::ADIAnalogIn ( std::uint8_t port )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -58,7 +58,7 @@ Do not use this function when the sensor value might be unstable
 (gyro rotation, accelerometer movement).
 
 .. note::
-   The ADI currently returns data at 50ms intervals, despite the calibrate function's
+   The ADI currently returns data at 50ms std::intervals, despite the calibrate function's
    1ms sample rate. This sample rate was kept for the sake of being similar to PROS
    2, and increasing the sample rate would not have a tangible difference in the
    function's performance.
@@ -70,7 +70,7 @@ Analogous to `adi_analog_calibrate <../c/adi.html#adi-analog-calibrate>`_.
       .. highlight:: cpp
       ::
 
-         int32_t pros::ADIAnalogIn::calibrate ( ) const
+         std::int32_t pros::ADIAnalogIn::calibrate ( ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -104,7 +104,7 @@ Analogous to `adi_analog_read <../c/adi.html#adi-analog-read>`_.
       .. highlight:: cpp
       ::
 
-         int32_t pros::ADIAnalogIn::get_value ( ) const
+         std::int32_t pros::ADIAnalogIn::get_value ( ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -126,7 +126,7 @@ get_value_calibrated
 Reads the calibrated value of an analog input channel.
 
 The `adi_analog_calibrate`_ function must be run first on that channel. This function is
-inappropriate for sensor values intended for integration, as round-off error can accumulate
+inappropriate for sensor values std::intended for std::integration, as round-off error can accumulate
 causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 
 Analogous to `adi_analog_read_calibrated <../c/adi.html#adi_analog_read_calibrated>`_.
@@ -136,7 +136,7 @@ Analogous to `adi_analog_read_calibrated <../c/adi.html#adi_analog_read_calibrat
       .. highlight:: cpp
       ::
 
-         int32_t pros::ADIAnalogIn::get_value_calibrated ( ) const
+         std::int32_t pros::ADIAnalogIn::get_value_calibrated ( ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -158,13 +158,13 @@ get_value_calibrated_HR
 
 Reads the calibrated value of an analog input channel 1-8 with enhanced precision.
 
-The `adi_analog_calibrate`_ function must be run first. This is intended for integrated sensor
+The `adi_analog_calibrate`_ function must be run first. This is std::intended for std::integrated sensor
 values such as gyros and accelerometers to reduce drift due to round-off, and should not be
 used on a sensor such as a line tracker or potentiometer.
 
 The value returned actually has 16 bits of "precision", even though the ADC only reads
 12 bits, so that errors induced by the average value being between two values come out
-in the wash when integrated over time. Think of the value as the true value times 16.
+in the wash when std::integrated over time. Think of the value as the true value times 16.
 
 Analogous to `adi_analog_read_calibrated_HR <../c/adi.html#adi_analog_read_calibrated_HR>`_.
 
@@ -173,7 +173,7 @@ Analogous to `adi_analog_read_calibrated_HR <../c/adi.html#adi_analog_read_calib
       .. highlight:: cpp
       ::
 
-         int32_t pros::ADIAnalogIn::get_value_calibrated_HR ( ) const
+         std::int32_t pros::ADIAnalogIn::get_value_calibrated_HR ( ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -201,7 +201,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-         pros::ADIAnalogOut::ADIAnalogOut ( uint8_t port )
+         pros::ADIAnalogOut::ADIAnalogOut ( std::uint8_t port )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -235,7 +235,7 @@ Inherited from `ADIPort::set_value <set_value_>`_.
       .. highlight:: cpp
       ::
 
-         pros::ADIAnalogOut::set_value ( int32_t value ) const
+         pros::ADIAnalogOut::set_value ( std::int32_t value ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -267,7 +267,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-         pros::ADIDigitalIn::ADIDigitalIn ( uint8_t port )
+         pros::ADIDigitalIn::ADIDigitalIn ( std::uint8_t port )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -309,7 +309,7 @@ Analogous to `adi_digital_get_new_press <../c/adi.html#adi-digital-get-new-press
       .. highlight:: c
       ::
 
-         int32_t pros::ADIDigitalIn::get_new_press ( ) const
+         std::int32_t pros::ADIDigitalIn::get_new_press ( ) const
 
    .. tab :: Example
       .. highlight:: c
@@ -344,7 +344,7 @@ Analogous to `adi_digital_read <../c/adi.html#adi-digital-read>`_.
       .. highlight:: c
       ::
 
-         int32_t pros::ADIDigitalIn::get_value ( ) const
+         std::int32_t pros::ADIDigitalIn::get_value ( ) const
 
    .. tab :: Example
       .. highlight:: c
@@ -370,7 +370,7 @@ Constructor(s)
 
 ::
 
-  pros::ADIDigitalOut::ADIDigitalOut ( uint8_t port
+  pros::ADIDigitalOut::ADIDigitalOut ( std::uint8_t port
                                        bool init_state = false )
 
 ============ =================================================================================================================
@@ -397,7 +397,7 @@ Analogous to `adi_digital_write <../c/adi.html#adi-digital-write>`_.
       .. highlight:: c
       ::
 
-        pros::ADIDigitalOut::set_value ( int32_t value ) const
+        pros::ADIDigitalOut::set_value ( std::int32_t value ) const
 
    .. tab :: Example
       .. highlight:: c
@@ -435,8 +435,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ADIEncoder::ADIEncoder ( uint8_t port_top,
-                                 uint8_t port_bottom,
+        ADIEncoder::ADIEncoder ( std::uint8_t port_top,
+                                 std::uint8_t port_bottom,
                                  const bool reverse = false )
 
    .. tab :: Example
@@ -478,7 +478,7 @@ Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::ADIEncoder::get_value ( ) const
+        std::int32_t pros::ADIEncoder::get_value ( ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -511,7 +511,7 @@ Analogous to `adi_encoder_reset <../c/adi.html#adi-encoder-reset>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::ADIEncoder::reset ( ) const
+        std::int32_t pros::ADIEncoder::reset ( ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -539,7 +539,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        pros::ADIMotor::ADIMotor ( uint8_t port )
+        pros::ADIMotor::ADIMotor ( std::uint8_t port )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -578,7 +578,7 @@ Analogous to `adi_motor_get <../c/adi.html#adi-motor-get>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::ADIMotor::get_value ( ) const
+        std::int32_t pros::ADIMotor::get_value ( ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -610,7 +610,7 @@ Analogous to `adi_motor_set <../c/adi.html#adi-motor-set>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::ADIMotor::set_value ( int32_t value ) const
+        std::int32_t pros::ADIMotor::set_value ( std::int32_t value ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -646,7 +646,7 @@ Analogous to `adi_motor_stop <../c/adi.html#adi-motor-stop>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::ADIMotor::stop ( ) const
+        std::int32_t pros::ADIMotor::stop ( ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -675,7 +675,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        pros::ADIPort::ADIPort ( uint8_t port,
+        pros::ADIPort::ADIPort ( std::uint8_t port,
                                  adi_port_config_e_t type = E_ADI_TYPE_UNDEFINED )
 
    .. tab :: Example
@@ -712,7 +712,7 @@ Analogous to `adi_port_get_config <../c/adi.html#adi-port-config-get>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::ADIPort::get_config ( ) const;
+        std::int32_t pros::ADIPort::get_config ( ) const;
 
    .. tab :: Example
       .. highlight:: cpp
@@ -740,7 +740,7 @@ Analogous to `adi_port_get_value <../c/adi.html#adi-port-value-get>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::ADIPort::get_value ( ) const
+        std::int32_t pros::ADIPort::get_value ( ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -767,7 +767,7 @@ Analogous to `adi_port_set_config <../c/adi.html#adi-port-config-set>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::ADIPort::set_config ( adi_port_config_e_t type ) const
+        std::int32_t pros::ADIPort::set_config ( adi_port_config_e_t type ) const
 
    .. tab :: Example
       .. highlight:: cpp
@@ -807,7 +807,7 @@ Analogous to `adi_port_set_value <../c/adi.html#adi-port-value-set>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::ADIPort::set_value ( ) const;
+        std::int32_t pros::ADIPort::set_value ( ) const;
 
    .. tab :: Example
       .. highlight:: cpp
@@ -839,8 +839,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        pros::ADIUltrasonic::ADIUltrasonic ( uint8_t port_echo,
-                                             uint8_t port_ping )
+        pros::ADIUltrasonic::ADIUltrasonic ( std::uint8_t port_echo,
+                                             std::uint8_t port_ping )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -886,7 +886,7 @@ Analogous to `adi_ultrasonic_get <../c/adi.html#adi-ultrasonic-get>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::ADIUltrasonic::get_value ( ) const
+        std::int32_t pros::ADIUltrasonic::get_value ( ) const
 
    .. tab :: Example
       .. highlight:: cpp
