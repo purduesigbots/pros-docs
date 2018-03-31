@@ -104,7 +104,7 @@ Analogous to `pros::battery::get_voltage <../cpp/misc.html#get-voltage>`_.
 competition_get_status
 ----------------------
 
-.. warning:: needs a link
+Analogous to `pros::competition::get_status <../cpp/misc.html#get-status>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -127,25 +127,30 @@ competition_get_status
 **Returns:** The competition control status as a mask of bits with
 COMPETITION_{ENABLED,AUTONOMOUS,CONNECTED}.
 
-competition_is_disabled
------------------------
 
-.. warning:: needs a link
+competition_is_autonomous
+-------------------------
+
+Analogous to `pros::competition::is_autonomous <../cpp/misc.html#is-autonomous>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-        bool competition_is_disabled ( )
+        bool competition_is_autonomous ( )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
         void my_task_fn(void* ignore) {
-          while (!competition_is_disabled) {
-            // Run competition tasks (like Lift Control or similar)
+          while (!competition_is_autonomous()) {
+            // Wait to do anything until autonomous starts
+            delay(2);
+          }
+          while (competition_is_autonomous()) {
+            // Run whatever code is desired to just execute in autonomous
           }
         }
 
@@ -153,12 +158,12 @@ competition_is_disabled
           task_t my_task = task_create(my_task_fn, NULL, TASK_PRIO_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
         }
 
-**Returns:** True if the V5 Brain is disabled, false otherwise.
+**Returns:** True if the V5 Brain is in autonomous mode, false otherwise.
 
 competition_is_connected
 ------------------------
 
-.. warning:: needs a link
+Analogous to `pros::competition::is_connected <../cpp/misc.html#is-connected>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -180,29 +185,25 @@ competition_is_connected
 
 **Returns:** True if the V5 Brain is connected to competition control, false otherwise.
 
-competition_is_autonomous
--------------------------
+competition_is_disabled
+-----------------------
 
-.. warning:: needs a link
+Analogous to `pros::competition::is_disabled <../cpp/misc.html#is-disabled>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-        bool competition_is_autonomous ( )
+        bool competition_is_disabled ( )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
         void my_task_fn(void* ignore) {
-          while (!competition_is_autonomous) {
-            // Wait to do anything until autonomous starts
-            delay(2);
-          }
-          while (competition_is_autonomous) {
-            // Run whatever code is desired to just execute in autonomous
+          while (!competition_is_disabled()) {
+            // Run competition tasks (like Lift Control or similar)
           }
         }
 
@@ -210,7 +211,7 @@ competition_is_autonomous
           task_t my_task = task_create(my_task_fn, NULL, TASK_PRIO_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
         }
 
-**Returns:** True if the V5 Brain is in autonomous mode, false otherwise.
+**Returns:** True if the V5 Brain is disabled, false otherwise.
 
 controller_get_analog
 ---------------------

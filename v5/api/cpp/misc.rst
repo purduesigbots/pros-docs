@@ -14,13 +14,13 @@ Analogous to `pros::battery::get_capacity <../c/misc.html#get-capacity>`_.
 
 .. tabs ::
    .. tab :: Prototype
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
          double pros::battery::get_capacity ( )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void initialize() {
@@ -38,13 +38,13 @@ Analogous to `pros::battery::get_current <../c/misc.html#get-current>`_.
 
 .. tabs ::
    .. tab :: Prototype
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
          double pros::battery::get_current ( )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void initialize() {
@@ -62,13 +62,13 @@ Analogous to `pros::battery::get_temperature <../c/misc.html#get-temperature>`_.
 
 .. tabs ::
    .. tab :: Prototype
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
          double pros::battery::get_temperature ( )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void initialize() {
@@ -86,13 +86,13 @@ Analogous to `pros::battery::get_voltage <../c/misc.html#get-voltage>`_.
 
 .. tabs ::
    .. tab :: Prototype
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
          double pros::battery::get_voltage ( )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void initialize() {
@@ -100,6 +100,120 @@ Analogous to `pros::battery::get_voltage <../c/misc.html#get-voltage>`_.
         }
 
 **Returns:** The current voltage of the battery.
+
+pros::competition
+=================
+
+get_status
+----------
+
+Analogous to `competition_get_status <../c/misc.html#competition-get-status>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+       uint8_t pros::competition::get_status ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          if (pros::competition::get_status() & COMPETITION_CONNECTED == true) {
+            // Field Control is Connected
+            // Run LCD Selector code or similar
+          }
+        }
+
+**Returns:** The competition control status as a mask of bits with
+COMPETITION_{ENABLED,AUTONOMOUS,CONNECTED}.
+
+is_autonomous
+-------------
+
+Analogous to `competition_is_autonomous <../c/misc.html#competition-is-autonomous>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        bool pros::competition::is_autonomous ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* ignore) {
+          while (!pros::competition::is_autonomous()) {
+            // Wait to do anything until autonomous starts
+            pros::delay(2);
+          }
+          while (pros::competition::is_autonomous()) {
+            // Run whatever code is desired to just execute in autonomous
+          }
+        }
+
+        void initialize() {
+          pros::Task my_task (my_task_fn, NULL, TASK_PRIO_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
+        }
+
+**Returns:** True if the V5 Brain is in autonomous mode, false otherwise.
+
+is_connected
+------------
+
+Analogous to `competition_is_connected <../c/misc.html#competition-is-connected>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        bool pros::competition::is_connected ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          if (pros::competition::is_connected()) {
+            // Field Control is Connected
+            // Run LCD Selector code or similar
+          }
+        }
+
+**Returns:** True if the V5 Brain is connected to competition control, false otherwise.
+
+is_disabled
+-----------
+
+Analogous to `competition_is_disabled <../c/misc.html#competition-is-disabled>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        bool pros::competition::is_disabled ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* ignore) {
+          while (!pros::competition::is_disabled()) {
+            // Run competition tasks (like Lift Control or similar)
+          }
+        }
+
+        void initialize() {
+          pros::Task my_task (my_task_fn, NULL, TASK_PRIO_DEFAULT, TASK_STACK_DEPTH_DEFAULT, "My Task");
+        }
+
+**Returns:** True if the V5 Brain is disabled, false otherwise.
 
 pros::Controller
 ================
@@ -109,13 +223,13 @@ Constructor(s)
 
 .. tabs ::
    .. tab :: Prototype
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
          pros::Controller::Controller ( controller_id_e_t id )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void opcontrol() {
@@ -145,13 +259,13 @@ Analogous to `controller_is_connected <../c/misc.html#controller-is-connected>`_
 
 .. tabs ::
    .. tab :: Prototype
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         std::int32_t pros::Controller::is_connected ( )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void opcontrol() {
@@ -179,13 +293,13 @@ Analogous to `controller_get_analog <../c/misc.html#controller-get-analog>`_.
 
 .. tabs ::
    .. tab :: Prototype
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
          std::int32_t pros::Controller::get_analog ( controller_analog_e_t channel )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void opcontrol() {
@@ -216,13 +330,13 @@ Analogous to `controller_get_digital <../c/misc.html#controller-get-digital>`_.
 
 .. tabs ::
    .. tab :: Prototype
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         std::int32_t pros::Controller::get_digital ( controller_digital_e_t button )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void opcontrol() {
@@ -266,13 +380,13 @@ Analogous to `controller_get_digital_new_press <../c/misc.html#controller-get-di
 
 .. tabs ::
    .. tab :: Prototype
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         std::int32_t pros::Controller::get_digital_new_press ( controller_digital_e_t button )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void opcontrol() {
