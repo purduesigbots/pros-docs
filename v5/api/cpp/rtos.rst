@@ -59,7 +59,7 @@ Analogous to `task_create <../c/rtos.html#task-create>`_.
           // ...
         }
         void initialize() {
-          Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          pros::Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
                         TASK_STACK_DEPTH_DEFAULT, "My Task");
         }
 
@@ -93,7 +93,7 @@ Create a new task and add it to the list of tasks that are ready to run.
         void initialize() {
           task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
                                        TASK_STACK_DEPTH_DEFAULT, "My Task");
-          Task my_cpp_task (my_task);
+          pros::Task my_cpp_task (my_task);
         }
 
 Creates a Task object from a task already created with the C API.
