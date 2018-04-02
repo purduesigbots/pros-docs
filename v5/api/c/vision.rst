@@ -1,6 +1,11 @@
+.. highlight:: c
+   :linenothreshold: 5
+   
 ===================
 Vision Sensor C API
 ===================
+
+.. contents:: :local:
 
 Functions
 =========
@@ -37,6 +42,8 @@ Returns the number of objects currently detected by the Vision Sensor.
 **Returns:** The number of objects detected on the specified vision sensor.
 Returns PROS_ERR if the port was invalid or an error occurred.
 
+----
+
 vision_read_object
 ------------------
 
@@ -54,7 +61,7 @@ Copies the specified object descriptor into object_ptr.
    .. tab :: Example
       .. highlight:: c
       ::
-      
+
         #define VISION_PORT 1
         #define OBJECT_ID 1
 
@@ -80,6 +87,8 @@ Copies the specified object descriptor into object_ptr.
 **Returns:** 1 if the data was successfuly copied
 Returns PROS_ERR if the port was invalid, the object_id was out of range, or an error occurred.
 
+----
+
 vision_read_objects
 -------------------
 
@@ -102,6 +111,8 @@ Reads up to object_count object descriptors into object_arr.
 **Returns:** The number of object signatures copied. This number will be less than object_count if there are fewer
 objects detected by the vision sensor.
 Returns PROS_ERR if the port was invalid or an error occurred.
+
+----
 
 vision_get_object
 -----------------
@@ -128,6 +139,8 @@ Returns the object descriptor at ``object_id``.
 **Returns:** An object descriptor. If the ``object_id`` was invalid or an error otherwise occurred, then the object
 signature will be set to 255.
 
+----
+
 vision_read_signature
 ---------------------
 
@@ -148,6 +161,8 @@ Loads the object detection signature into the supplied pointer to memory.
 =============== ========================================================
 
 **Returns:** 0 if no errors occurred, PROS_ERR otherwise
+
+----
 
 vision_save_signature
 ---------------------
@@ -170,6 +185,8 @@ Stores the supplied object detection signature onto the vision sensor.
 
 **Returns:** 0 if no errors occurred, PROS_ERR otherwise
 
+----
+
 vision_clear_led
 ----------------
 
@@ -187,6 +204,8 @@ displaying the most prominent object signature color.
 ============ ==============================
 
 **Returns:** 0 if no errors occurred, PROS_ERR otherwise
+
+----
 
 vision_set_led
 --------------
@@ -207,6 +226,8 @@ Sets the vision sensor LED color, overriding the automatic behavior.
 
 **Returns:** 0 if no errors occured, PROS_ERR otherwise
 
+----
+
 vision_get_exposure
 -------------------
 
@@ -224,6 +245,8 @@ Gets the exposure parameter of the Vision Sensor.
 
 **Returns:** the current exposure percentage parameter from [0,100],
 PROS_ERR if an error occurred
+
+----
 
 vision_set_exposure
 -------------------
@@ -245,6 +268,8 @@ Sets the exposure parameter of the Vision Sensor.
 
 **Returns:** 0 if no errors occurred, PROS_ERR otherwise
 
+----
+
 vision_set_auto_white_balance
 -----------------------------
 
@@ -263,6 +288,8 @@ Enable/disable auto white-balancing on the Vision Sensor.
 ============ ===============================
 
 **Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
+
+----
 
 vision_set_white_balance
 ------------------------
@@ -285,6 +312,8 @@ This function will disable auto white-balancing.
 
 **Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
 
+----
+
 vision_get_white_balance
 ------------------------
 
@@ -301,6 +330,8 @@ Gets the white balance parameter of the Vision Sensor.
 ============ ==============================
 
 **Returns:** Returns the current RGB white balance setting of the sensor
+
+----
 
 Macros
 ======

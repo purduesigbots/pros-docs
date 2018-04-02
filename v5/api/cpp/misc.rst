@@ -1,6 +1,11 @@
+.. highlight:: cpp
+   :linenothreshold: 5
+
 =====================
 Miscellaneous C++ API
 =====================
+
+.. contents:: :local:
 
 pros::battery
 =============
@@ -29,6 +34,8 @@ Analogous to `battery_get_capacity <../c/misc.html#battery-get-capacity>`_.
 
 **Returns:** The current capacity of the battery.
 
+----
+
 get_current
 -----------
 
@@ -52,6 +59,8 @@ Analogous to `battery_get_current <../c/misc.html#battery-get-current>`_.
         }
 
 **Returns:** The current current of the battery.
+
+----
 
 get_temperature
 ---------------
@@ -77,6 +86,8 @@ Analogous to `battery_get_temperature <../c/misc.html#battery-get-temperature>`_
 
 **Returns:** The current temperature of the battery.
 
+----
+
 get_voltage
 -----------
 
@@ -100,6 +111,8 @@ Analogous to `battery_get_voltage <../c/misc.html#battery-get-voltage>`_.
         }
 
 **Returns:** The current voltage of the battery.
+
+----
 
 pros::competition
 =================
@@ -129,6 +142,8 @@ Analogous to `competition_get_status <../c/misc.html#competition-get-status>`_.
 
 **Returns:** The competition control status as a mask of bits with
 COMPETITION_{ENABLED,AUTONOMOUS,CONNECTED}.
+
+----
 
 is_autonomous
 -------------
@@ -162,6 +177,8 @@ Analogous to `competition_is_autonomous <../c/misc.html#competition-is-autonomou
 
 **Returns:** True if the V5 Brain is in autonomous mode, false otherwise.
 
+----
+
 is_connected
 ------------
 
@@ -186,6 +203,8 @@ Analogous to `competition_is_connected <../c/misc.html#competition-is-connected>
         }
 
 **Returns:** True if the V5 Brain is connected to competition control, false otherwise.
+
+----
 
 is_disabled
 -----------
@@ -214,6 +233,8 @@ Analogous to `competition_is_disabled <../c/misc.html#competition-is-disabled>`_
         }
 
 **Returns:** True if the V5 Brain is disabled, false otherwise.
+
+----
 
 pros::Controller
 ================
@@ -247,6 +268,8 @@ Constructor(s)
  id           The ID of the controller (e.g. the master or partner controller).
               Must be one of `CONTROLLER_MASTER <controller_id_e_t_>`_ or `CONTROLLER_PARTNER <controller_id_e_t_>`_
 ============ ======================================================================================================
+
+----
 
 Methods
 -------
@@ -285,6 +308,8 @@ Analogous to `controller_is_connected <../c/misc.html#controller-is-connected>`_
 
 **Returns:** True if the V5 Brain is connected to competition control, false otherwise.
 
+----
+
 get_analog
 ~~~~~~~~~~
 
@@ -322,6 +347,8 @@ Analogous to `controller_get_analog <../c/misc.html#controller-get-analog>`_.
 
 **Returns:** The current reading of the analog channel: [-127, 127].
 If the controller was not connected, then 0 is returned
+
+----
 
 get_digital
 ~~~~~~~~~~~
@@ -365,6 +392,8 @@ Analogous to `controller_get_digital <../c/misc.html#controller-get-digital>`_.
 
 **Returns:** 1 if the button on the controller is pressed.
 If the controller was not connected, then 0 is returned
+
+----
 
 get_digital_new_press
 ~~~~~~~~~~~~~~~~~~~~~

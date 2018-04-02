@@ -1,6 +1,11 @@
+.. highlight:: c
+   :linenothreshold: 5
+   
 ============
 Motors C API
 ============
+
+.. contents:: :local:
 
 Functions
 =========
@@ -40,6 +45,8 @@ Analogous to `pros::Motor::get_actual_velocity <../cpp/motors.html#get-actual-ve
 **Returns:** The motor's actual velocity in `motor_encoder_units_e_t`_ per second
 or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
+----
+
 motor_get_brake_mode
 --------------------
 
@@ -71,6 +78,8 @@ Analogous to `pros::Motor::get_brake_mode <../cpp/motors.html#get-brake-mode>`_.
 
 **Returns:** One of `motor_brake_mode_e_t`_, according to what was set for the motor,
 or ``E_MOTOR_BRAKE_INVALID`` if the operation failed, setting ``errno``.
+
+----
 
 motor_get_current
 -----------------
@@ -107,6 +116,8 @@ Analogous to `pros::Motor::get_current <../cpp/motors.html#get-current>`_.
 **Returns:** The motor's current in mA or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 motor_get_current_limit
 -----------------------
 
@@ -138,6 +149,8 @@ Analogous to `pros::Motor::get_current_limit <../cpp/motors.html#get-current-lim
 
 **Returns:** The motor's current limit in mA or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_get_direction
 -------------------
@@ -174,6 +187,8 @@ Analogous to `pros::Motor::get_direction <../cpp/motors.html#get-direction>`_.
 **Returns:** 1 for moving in the positive direction, -1 for moving in the
 negative direction, and ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_get_efficiency
 --------------------
@@ -214,6 +229,8 @@ Analogous to `pros::Motor::get_efficiency <../cpp/motors.html#get-efficiency>`_.
 **Returns:** The motor's efficiency in percent or ``PROS_ERR_F`` if the operation
 failed, setting ``errno``.
 
+----
+
 motor_get_encoder_units
 -----------------------
 
@@ -245,6 +262,8 @@ Analogous to `pros::Motor::get_encoder_units <../cpp/motors.html#get-encoder-uni
 
 **Returns:** One of `motor_encoder_units_e_t`_ according to what is set for the motor
 or ``E_MOTOR_ENCODER_INVALID`` if the operation failed.
+
+----
 
 motor_get_faults
 ----------------
@@ -280,6 +299,8 @@ Analogous to `pros::Motor::get_faults <../cpp/motors.html#get-faults>`_.
 
 **Returns:** Currently unknown bitfield.
 
+----
+
 motor_get_flags
 ---------------
 
@@ -314,6 +335,8 @@ Analogous to `pros::Motor::get_flags <../cpp/motors.html#get-flags>`_.
 
 **Returns:** A currently unknown bitfield
 
+----
+
 motor_get_gearing
 -----------------
 
@@ -345,6 +368,8 @@ Analogous to `pros::Motor::get_gearing <../cpp/motors.html#get-gearing>`_.
 
 **Returns:** One of `motor_gearset_e_t`_ according to what is set for the motor,
 or ``E_GEARSET_INVALID`` if the operation failed.
+
+----
 
 motor_get_position
 ------------------
@@ -381,6 +406,8 @@ Analogous to `pros::Motor::get_position <../cpp/motors.html#get-position>`_.
 **Returns:** The motor's absolute position in its encoder units or ``PROS_ERR_F``
 if the operation failed, setting ``errno``.
 
+----
+
 motor_get_power
 ---------------
 
@@ -416,6 +443,8 @@ Analogous to `pros::Motor::get_power <../cpp/motors.html#get-power>`_.
 
 **Returns:** The motor's power draw in Watts or ``PROS_ERR_F`` if the operation
 failed, setting ``errno``.
+
+----
 
 motor_get_raw_position
 ----------------------
@@ -456,6 +485,8 @@ Analogous to `pros::Motor::get_raw_position <../cpp/motors.html#get-raw-position
 **Returns:** The raw encoder count at the given timestamp or ``PROS_ERR`` if the
 operation failed, setting ``errno``.
 
+----
+
 motor_get_target
 ----------------
 
@@ -488,6 +519,8 @@ Analogous to `pros::Motor::get_target <../cpp/motors.html#get-target>`_.
 
 **Returns:** The target position in its encoder units or ``PROS_ERR_F`` if the
 operation failed, setting ``errno``.
+
+----
 
 motor_get_temperature
 ---------------------
@@ -526,6 +559,8 @@ Analogous to `pros::Motor::get_temperature <../cpp/motors.html#get-temperature>`
 **Returns:** The motor's temperature in degrees Celsius or ``PROS_ERR_F`` if the
 operation failed, setting ``errno``.
 
+----
+
 motor_get_torque
 ----------------
 
@@ -560,6 +595,8 @@ Analogous to `pros::Motor::get_torque <../cpp/motors.html#get-torque>`_.
 
 **Returns:** The motor's torque in NM or ``PROS_ERR_F`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_get_velocity
 ------------------
@@ -596,6 +633,8 @@ Analogous to `pros::Motor::get_velocity <../cpp/motors.html#get-velocity>`_.
 **Returns:** The commanded motor velocity from +-100, +-200, +-600, or ``PROS_ERR`` if the
 operation failed, setting ``errno``.
 
+----
+
 motor_get_voltage
 -----------------
 
@@ -631,6 +670,8 @@ Analogous to `pros::Motor::get_voltage <../cpp/motors.html#get-voltage>`_.
 **Returns:** The motor's voltage in mV or ``PROS_ERR_F`` if the operation failed,
 setting ``errno``.
 
+----
+
 motor_get_voltage_limit
 -----------------------
 
@@ -662,6 +703,8 @@ Analogous to `pros::Motor::get_voltage_limit <../cpp/motors.html#get-voltage-lim
 
 **Returns:** The motor's voltage limit in V or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_get_zero_position_flag
 ----------------------------
@@ -699,6 +742,8 @@ Analogous to `pros::Motor::get_zero_position_flag <../cpp/motors.html#get-zero-p
 moved from its absolute zero, or ``PROS_ERR`` if the operation failed
 setting ``errno``.
 
+----
+
 motor_is_stopped
 ----------------
 
@@ -733,6 +778,8 @@ Analogous to `pros::Motor::is_stopped <../cpp/motors.html#is-stopped>`_.
 
 **Returns:** ``1`` if the motor is not moving and ``0`` if the motor is moving,
 or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+----
 
 motor_is_over_current
 ---------------------
@@ -770,6 +817,8 @@ Analogous to `pros::Motor::is_over_current <../cpp/motors.html#is-over-current>`
 limit is not exceeded, or ``PROS_ERR`` if the operation failed, setting
 ``errno``.
 
+----
+
 motor_is_reversed
 -----------------
 
@@ -801,6 +850,8 @@ Analogous to `pros::Motor::is_reversed <../cpp/motors.html#is-reversed>`_.
 
 **Returns:** 1 if the motor has been reversed and 0 if the motor was not reversed,
 or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+----
 
 motor_is_over_temp
 ------------------
@@ -837,6 +888,8 @@ Analogous to `pros::Motor::is_over_temp <../cpp/motors.html#is-over-temp>`_.
 **Returns:** 1 if the temperature limit is exceeded and 0 if the the
 temperature is below the limit, or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_move
 ----------
@@ -878,6 +931,8 @@ Analogous to `pros::Motor::move <../cpp/motors.html#move>`_.
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_move_absolute
 -------------------
@@ -921,6 +976,8 @@ Analogous to `pros::Motor::move_absolute <../cpp/motors.html#move-absolute>`_.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 motor_move_relative
 -------------------
 
@@ -959,6 +1016,8 @@ Analogous to `pros::Motor::move_relative <../cpp/motors.html#move-relative>`_.
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_move_velocity
 -------------------
@@ -1004,6 +1063,8 @@ Analogous to `pros::Motor::move_velocity <../cpp/motors.html#move-velocity>`_.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 motor_move_voltage
 ------------------
 
@@ -1039,6 +1100,8 @@ Analogous to `pros::Motor::move_voltage <../cpp/motors.html#move-voltage>`_.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 motor_set_brake_mode
 --------------------
 
@@ -1072,6 +1135,8 @@ Analogous to `pros::Motor::set_brake_mode <../cpp/motors.html#set-brake-mode>`_.
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_set_current_limit
 -----------------------
@@ -1113,6 +1178,8 @@ Analogous to `pros::Motor::set_current_limit <../cpp/motors.html#set-current-lim
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 motor_set_encoder_units
 -----------------------
 
@@ -1147,6 +1214,8 @@ Analogous to `pros::Motor::set_encoder_units <../cpp/motors.html#set-encoder-uni
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 motor_set_gearing
 -----------------
 
@@ -1180,6 +1249,8 @@ Analogous to `pros::Motor::set_gearing <../cpp/motors.html#set-gearing>`_.
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_set_reversed
 ------------------
@@ -1216,6 +1287,8 @@ Analogous to `pros::Motor::set_reversed <../cpp/motors.html#set-reversed>`_.
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_set_voltage_limit
 -----------------------
@@ -1254,6 +1327,8 @@ Analogous to `pros::Motor::set_voltage_limit <../cpp/motors.html#set-voltage-lim
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 motor_set_zero_position
 -----------------------
@@ -1294,6 +1369,7 @@ Analogous to `pros::Motor::set_zero_position <../cpp/motors.html#set-zero-positi
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
 
 motor_tare_position
 -------------------
@@ -1329,6 +1405,8 @@ Analogous to `pros::Motor::tare_position <../cpp/motors.html#tare-position>`_.
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
 
 Macros
 ======

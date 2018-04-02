@@ -1,3 +1,6 @@
+.. highlight:: cpp
+   :linenothreshold: 5
+
 ======================
 ADI (TriPort) C++ API
 ======================
@@ -39,6 +42,8 @@ Constructor(s)
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
 ============ =================================================================================================================
+
+----
 
 Methods
 -------
@@ -87,6 +92,8 @@ Analogous to `adi_analog_calibrate <../c/adi.html#adi-analog-calibrate>`_.
 
 **Returns:** The average sensor value computed by this function.
 
+----
+
 get_value
 ~~~~~~~~~
 
@@ -120,6 +127,8 @@ Analogous to `adi_analog_read <../c/adi.html#adi-analog-read>`_.
 **Returns:** The analog sensor value, where a value of 0 reflects an input voltage of nearly 0 V
 and a value of 4095 reflects an input voltage of nearly 5 V
 
+----
+
 get_value_calibrated
 ~~~~~~~~~~~~~~~~~~~~
 
@@ -152,6 +161,8 @@ Analogous to `adi_analog_read_calibrated <../c/adi.html#adi_analog_read_calibrat
         }
 
 **Returns:** The difference of the sensor value from its calibrated default from -4095 to 4095.
+
+----
 
 get_value_calibrated_HR
 ~~~~~~~~~~~~~~~~~~~~~~~
@@ -190,6 +201,8 @@ Analogous to `adi_analog_read_calibrated_HR <../c/adi.html#adi_analog_read_calib
 
 **Returns:** The difference of the sensor value from its calibrated default from -16384 to 16384.
 
+----
+
 pros::ADIAnalogOut
 ==================
 
@@ -219,6 +232,8 @@ Constructor(s)
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
 ============ =================================================================================================================
+
+----
 
 Methods
 -------
@@ -256,6 +271,8 @@ Inherited from `ADIPort::set_value <set_value_>`_.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+----
+
 pros::ADIDigitalIn
 ==================
 
@@ -285,6 +302,8 @@ Constructor(s)
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
 ============ =================================================================================================================
+
+----
 
 Methods
 -------
@@ -330,6 +349,8 @@ Analogous to `adi_digital_get_new_press <../c/adi.html#adi-digital-get-new-press
 **Returns:** 1 if the button on the controller is pressed and had not been pressed
 the last time this function was called, 0 otherwise.
 
+----
+
 get_value
 ~~~~~~~~~
 
@@ -362,6 +383,8 @@ Analogous to `adi_digital_read <../c/adi.html#adi-digital-read>`_.
 
 **Returns:** True if the pin is `HIGH <HIGH_>`_, or false if it is `LOW <LOW_>`_.
 
+----
+
 pros::ADIDigitalOut
 ===================
 
@@ -379,6 +402,8 @@ Constructor(s)
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
  init_state   The initial state for the digital output. The default value is false.
 ============ =================================================================================================================
+
+----
 
 Methods
 -------
@@ -424,6 +449,8 @@ Analogous to `adi_digital_write <../c/adi.html#adi-digital-write>`_.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+----
+
 pros::ADIEncoder
 ================
 
@@ -458,6 +485,8 @@ Constructor(s)
  port_bottom  the "bottom" wire from the encoder sensor
  reverse      if "true", the sensor will count in the opposite direction. The default value is "false".
 ============ ====================================================================================================================================
+
+----
 
 Methods
 -------
@@ -495,6 +524,7 @@ Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
           }
         }
 
+----
 
 reset
 ~~~~~
@@ -528,6 +558,8 @@ Analogous to `adi_encoder_reset <../c/adi.html#adi-encoder-reset>`_.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+----
+
 pros::ADIMotor
 ==============
 
@@ -560,6 +592,8 @@ Constructor(s)
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
 ============ =================================================================================================================
+
+----
 
 Methods
 -------
@@ -595,6 +629,8 @@ Analogous to `adi_motor_get <../c/adi.html#adi-motor-get>`_.
         }
 
 **Returns:** The last set speed of the motor on the given port.
+
+----
 
 set_value
 ~~~~~~~~~
@@ -634,6 +670,8 @@ Analogous to `adi_motor_set <../c/adi.html#adi-motor-set>`_.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise
 
+----
+
 stop
 ~~~~
 
@@ -663,6 +701,8 @@ Analogous to `adi_motor_stop <../c/adi.html#adi-motor-stop>`_.
         }
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
+
+----
 
 pros::ADIPort
 =============
@@ -697,6 +737,8 @@ Constructor(s)
  type         The `configuration <adi_port_config_e_t>`_ type for the port
 ============ =================================================================================================================
 
+----
+
 Methods
 -------
 
@@ -726,6 +768,9 @@ Analogous to `adi_port_get_config <../c/adi.html#adi-port-config-get>`_.
           printf("Port Type: %d\n", adi_port_get_config(ANALOG_SENSOR_PORT));
         }
 
+
+----
+
 .. _get_value:
 
 get_value
@@ -754,6 +799,8 @@ Analogous to `adi_port_get_value <../c/adi.html#adi-port-value-get>`_.
         }
 
 **Returns:** The value for the given ADI port.
+
+----
 
 set_config
 ~~~~~~~~~~
@@ -789,6 +836,8 @@ Analogous to `adi_port_set_config <../c/adi.html#adi-port-config-set>`_.
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
+
+----
 
 .. _set_value:
 
@@ -828,6 +877,8 @@ Analogous to `adi_port_set_value <../c/adi.html#adi-port-value-set>`_.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+----
+
 pros::ADIUltrasonic
 ===================
 
@@ -864,6 +915,8 @@ Constructor(s)
  port_echo    the port connected to the yellow INPUT cable. This should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G').
  port_ping    the port connected to the orange OUTPUT cable. This should be in the next highest port following port_echo.
 ============ =============================================================================================================
+
+----
 
 Methods
 -------

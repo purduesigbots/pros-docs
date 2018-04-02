@@ -1,6 +1,11 @@
+.. highlight:: cpp
+   :linenothreshold: 5
+
 =======================
 RTOS Facilities C++ API
 =======================
+
+.. contents:: :local:
 
 pros
 ====
@@ -30,6 +35,8 @@ Analogous to `millis <../c/rtos.html#millis>`_.
         }
 
 **Returns:** Returns the number of milliseconds since PROS initialized.
+
+----
 
 pros::Task
 ==========
@@ -75,6 +82,8 @@ Create a new task and add it to the list of tasks that are ready to run.
  name               A descriptive name for the task.  This is mainly used to facilitate debugging. The name may be up to 32 characters long.
 ================= ===============================================================================================================================================================================================================
 
+----
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -103,6 +112,8 @@ Creates a Task object from a task already created with the C API.
 =============== ===================================================================
  task            The task for which to create an object
 =============== ===================================================================
+
+----
 
 Operator Overloads
 ------------------
@@ -135,6 +146,8 @@ Creates a Task object from a task already created with the C API.
 =============== ===================================================================
  task            The task for which to create an object
 =============== ===================================================================
+
+----
 
 Methods
 -------
@@ -171,6 +184,8 @@ To delay cyclically, use `delay_until`_.
 =============== ===================================================================
  milliseconds    The number of milliseconds to wait (1000 milliseconds per second)
 =============== ===================================================================
+
+----
 
 delay_until
 ~~~~~~~~~~~
@@ -210,6 +225,8 @@ Analogous to `task_delay_until <../c/rtos.html#delay-until>`_.
  delta        The number of milliseconds to wait (1000 milliseconds per second)
 ============ ===================================================================
 
+----
+
 get_count
 ~~~~~~~~~
 
@@ -243,6 +260,8 @@ Analogous to `Task_get_count <../c/rtos.html#task-get-count>`_.
 
 **Returns:** The number of tasks that are currently being managed by the kernel
 
+----
+
 get_name
 ~~~~~~~~
 
@@ -273,6 +292,8 @@ Analogous to `task_get_name <../c/rtos.html#task-get-name>`_.
 
 **Returns:** A pointer to the name of the task
 
+----
+
 get_priority
 ~~~~~~~~~~~~
 
@@ -302,6 +323,8 @@ Analogous to `task_get_priority <../c/rtos.html#task-get-priority>`_.
 
 **Returns:** The priority of the task.
 
+----
+
 get_state
 ~~~~~~~~~
 
@@ -330,9 +353,9 @@ Analogous to `task_get_state <../c/rtos.html#task-get-state>`_.
           std::cout << "Task's State:" << my_task.get_state();
         }
 
-
-
 **Returns:** The state of the task. (see `task_state_e_t <task_state_e_t_>`_).
+
+----
 
 notify
 ~~~~~~
@@ -374,6 +397,8 @@ Analogous to `task_notify <../c/rtos.html#task-notify>`_.
 
 **Returns:** Always true.
 
+----
+
 notify_clear
 ~~~~~~~~~~~~
 
@@ -397,6 +422,8 @@ Analogous to `task_notify_clear <../c/rtos.html#task-notify-clear>`_.
           TO BE ADDED
 
 **Returns:** False if there was not a notification waiting, true if there was
+
+----
 
 notify_ext
 ~~~~~~~~~~
@@ -435,6 +462,8 @@ Analogous to `task_notify_ext <../c/rtos.html#task-notify-ext>`_.
 **Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <notify_action_e_t_>`_:
 return 0 if the value could be written without needing to overwrite, 1 otherwise.
 For all other `NOTIFY_ACTION <notify_action_e_t_>`_ values: always return 0
+
+----
 
 notify_take
 ~~~~~~~~~~~
@@ -482,6 +511,8 @@ Analogous to `task_notify_take <../c/rtos.html#task-notify-take>`_.
 
 **Returns:** The value of the task's notification value before it is decremented or cleared.
 
+----
+
 resume
 ~~~~~~
 
@@ -511,6 +542,8 @@ Analogous to `task_resume <../c/rtos.html#task-resume>`_.
             // Do other things
             my_task.resume(); // The task will resume execution
           }
+
+----
 
 set_priority
 ~~~~~~~~~~~~
@@ -549,6 +582,8 @@ Analogous to `task_set_priority <../c/rtos.html#task-set-priority>`_.
  prio         The new priority of the task
 ============ ===============================
 
+----
+
 suspend
 ~~~~~~~
 
@@ -578,6 +613,8 @@ Analogous to `task_get_state <../c/rtos.html#task-get-state>`_.
             // Do other things
             my_task.resume(); // The task will resume execution
           }
+
+----
 
 pros::Mutex
 ===========
@@ -611,6 +648,8 @@ Analogous to `mutex_create <../c/rtos.html#mutex-create>`_.
         // do some work
         // Release the mutex for other tasks
         mutex.give();
+
+----
 
 Methods
 -------
@@ -648,6 +687,8 @@ Analogous to `mutex_give <../c/rtos.html#mutex-give>`_.
 **Returns:** True if the mutex was successfully returned, false otherwise. If false
 is returned, then ``errno`` is set with a hint about why the mutex couldn't
 be returned.
+
+----
 
 take
 ~~~~

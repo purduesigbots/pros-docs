@@ -1,6 +1,11 @@
+.. highlight:: c
+   :linenothreshold: 5
+   
 =====================
 RTOS Facilities C API
 =====================
+
+.. contents:: :local:
 
 Functions
 =========
@@ -40,6 +45,8 @@ Analogous to `pros::delay <../cpp/rtos.html#delay>`_.
  milliseconds    The number of milliseconds to wait (1000 milliseconds per second)
 =============== ===================================================================
 
+----
+
 millis
 ------
 
@@ -65,6 +72,8 @@ Analogous to `pros::millis <../cpp/rtos.html#millis>`_.
         }
 
 **Returns:** Returns the number of milliseconds since PROS initialized.
+
+----
 
 mutex_create
 ------------
@@ -98,6 +107,8 @@ Analogous to `pros::Mutex::Mutex <../cpp/rtos.html#mutex>`_.
 
 **Returns:**  A handle to a newly created mutex. If an error occurred, NULL will be
 returned and ``errno`` can be checked for hints as to why `mutex_create`_ failed.
+
+----
 
 mutex_give
 ----------
@@ -138,6 +149,8 @@ Analogous to `pros::Mutex::give <../cpp/rtos.html#give>`_.
 **Returns:** True if the mutex was successfully returned, false otherwise. If false
 is returned, then ``errno`` is set with a hint about why the mutex couldn't
 be returned.
+
+----
 
 mutex_take
 ----------
@@ -184,6 +197,8 @@ Analogous to `pros::Mutex::take <../cpp/rtos.html#take>`_.
 is returned, then ``errno`` is set with a hint about why the the mutex
 couldn't be taken.
 
+----
+
 task_create
 -----------
 
@@ -229,6 +244,8 @@ Analogous to `pros::Task::Task <../cpp/rtos.html#task>`_.
 If an error occurred, NULL will be returned and ``errno`` can be checked for hints
 as to why `task_create`_ failed.
 
+----
+
 task_delay
 ----------
 
@@ -238,7 +255,7 @@ This is not the best method to have a task execute code at predefined
 intervals, as the delay time is measured from when the delay is requested.
 To delay cyclically, use `task_delay_until`_.
 
-.. warning:: needs a link
+Analogous to `pros::Task::delay <../cpp/rtos.html#delay>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -263,6 +280,8 @@ To delay cyclically, use `task_delay_until`_.
 ============== ===================================================================
  milliseconds  The number of milliseconds to wait (1000 milliseconds per second)
 ============== ===================================================================
+
+----
 
 task_delay_until
 ----------------
@@ -302,6 +321,8 @@ Analogous to `pros::Task::delay_until <../cpp/rtos.html#delay_until>`_.
  delta        The number of milliseconds to wait (1000 milliseconds per second)
 ============ ===================================================================
 
+----
+
 task_delete
 -----------
 
@@ -338,6 +359,8 @@ should be freed before the task is deleted.
 ============ ================================================================================================
  task         The handle of the task to be deleted.  Passing NULL will cause the calling task to be deleted.
 ============ ================================================================================================
+
+----
 
 task_get_by_name
 ----------------
@@ -376,6 +399,8 @@ The operation takes a relatively long time and should be used sparingly.
 
 **Returns:** A task handle with a matching name, or NULL if none were found.
 
+----
+
 task_get_count
 --------------
 
@@ -408,6 +433,8 @@ Analogous to `pros::Task::get_count <../cpp/rtos.html#get-count>`_.
         }
 
 **Returns:** The number of tasks that are currently being managed by the kernel
+
+----
 
 task_get_name
 -------------
@@ -445,6 +472,8 @@ Analogous to `pros::Task::get_name <../cpp/rtos.html#get-name>`_.
 
 **Returns:** A pointer to the name of the task
 
+----
+
 task_get_priority
 -----------------
 
@@ -481,6 +510,8 @@ Analogous to `pros::Task::get_priority <../cpp/rtos.html#get-priority>`_.
 
 **Returns:** The priority of the task.
 
+----
+
 task_get_state
 --------------
 
@@ -516,6 +547,8 @@ Analogous to `pros::Task::get_state <../cpp/rtos.html#get-state>`_.
 ============ ==================================
 
 **Returns:** The state of the task. (see `task_state_e_t`_).
+
+----
 
 task_notify
 -----------
@@ -560,6 +593,8 @@ Analogous to `pros::Task::notify <../cpp/rtos.html#notify>`_.
 
 **Returns:** Always true.
 
+----
+
 task_notify_clear
 -----------------
 
@@ -589,6 +624,8 @@ Analogous to `pros::Task::notify_clear <../cpp/rtos.html#notify-clear>`_.
 ============ ==================================
 
 **Returns:** False if there was not a notification waiting, true if there was
+
+----
 
 task_notify_ext
 ---------------
@@ -629,6 +666,8 @@ Analogous to `pros::Task::notify_ext <../cpp/rtos.html#notify-ext>`_.
 **Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <notify_action_e_t>`_:
 return 0 if the value could be written without needing to overwrite, 1 otherwise.
 For all other `NOTIFY_ACTION <notify_action_e_t>`_ values: always return 0
+
+----
 
 task_notify_take
 ----------------
@@ -675,6 +714,8 @@ Analogous to `pros::Task::notify_take <../cpp/rtos.html#notify-take>`_.
 
 **Returns:** The value of the task's notification value before it is decremented or cleared.
 
+----
+
 task_resume
 -----------
 
@@ -710,6 +751,8 @@ Analogous to `pros::Task::resume <../cpp/rtos.html#resume>`_.
 ============ ==================================
  task        The handle of the task to resume
 ============ ==================================
+
+----
 
 task_set_priority
 -----------------
@@ -750,6 +793,8 @@ Analogous to `pros::Task::set_priority <../cpp/rtos.html#set-priority>`_.
  prio         The new priority of the task
 ============ ===============================
 
+----
+
 task_suspend
 ------------
 
@@ -785,6 +830,8 @@ Analogous to `pros::Task::suspend <../cpp/rtos.html#suspend>`_.
 ============ ==================================
  task        The handle of the task to suspend
 ============ ==================================
+
+----
 
 Macros
 ======

@@ -1,6 +1,11 @@
+.. highlight:: c
+   :linenothreshold: 5
+   
 ===================
 Miscellaneous C API
 ===================
+
+.. contents:: :local:
 
 Functions
 =========
@@ -29,6 +34,8 @@ Analogous to `pros::battery::get_capacity <../cpp/misc.html#get-capacity>`_.
 
 **Returns:** The current capacity of the battery.
 
+----
+
 battery_get_current
 -------------------
 
@@ -52,6 +59,8 @@ Analogous to `pros::battery::get_current <../cpp/misc.html#get-current>`_.
         }
 
 **Returns:** The current current of the battery.
+
+----
 
 battery_get_temperature
 -----------------------
@@ -77,6 +86,8 @@ Analogous to `pros::battery::get_temperature <../cpp/misc.html#get-temperature>`
 
 **Returns:** The current temperature of the battery.
 
+----
+
 battery_get_voltage
 -------------------
 
@@ -100,6 +111,8 @@ Analogous to `pros::battery::get_voltage <../cpp/misc.html#get-voltage>`_.
         }
 
 **Returns:** The current voltage of the battery.
+
+----
 
 competition_get_status
 ----------------------
@@ -127,6 +140,7 @@ Analogous to `pros::competition::get_status <../cpp/misc.html#get-status>`_.
 **Returns:** The competition control status as a mask of bits with
 COMPETITION_{ENABLED,AUTONOMOUS,CONNECTED}.
 
+----
 
 competition_is_autonomous
 -------------------------
@@ -160,6 +174,8 @@ Analogous to `pros::competition::is_autonomous <../cpp/misc.html#is-autonomous>`
 
 **Returns:** True if the V5 Brain is in autonomous mode, false otherwise.
 
+----
+
 competition_is_connected
 ------------------------
 
@@ -184,6 +200,8 @@ Analogous to `pros::competition::is_connected <../cpp/misc.html#is-connected>`_.
         }
 
 **Returns:** True if the V5 Brain is connected to competition control, false otherwise.
+
+----
 
 competition_is_disabled
 -----------------------
@@ -212,6 +230,8 @@ Analogous to `pros::competition::is_disabled <../cpp/misc.html#is-disabled>`_.
         }
 
 **Returns:** True if the V5 Brain is disabled, false otherwise.
+
+----
 
 controller_get_analog
 ---------------------
@@ -251,6 +271,8 @@ Analogous to `pros::Controller::get_analog <../cpp/misc.html#get-analog>`_.
 
 **Returns:** The current reading of the analog channel: [-127, 127].
 If the controller was not connected, then 0 is returned
+
+----
 
 controller_get_digital
 ----------------------
@@ -294,6 +316,8 @@ Analogous to `pros::Controller::get_digital <../cpp/misc.html#get-digital>`_.
 
 **Returns:** 1 if the button on the controller is pressed.
 If the controller was not connected, then 0 is returned
+
+----
 
 controller_get_digital_new_press
 --------------------------------
@@ -343,6 +367,8 @@ Analogous to `pros::Controller::get_digital_new_press <../cpp/misc.html#get-digi
 **Returns:** 1 if the button on the controller is pressed and had not been pressed
 the last time this function was called, 0 otherwise.
 
+----
+
 controller_is_connected
 -----------------------
 
@@ -382,6 +408,8 @@ Analogous to `pros::Controller::is_connected <../cpp/misc.html#id1>`_.
 ============ ======================================================================================================
 
 **Returns:** 1 if the controller is connected, 0 otherwise
+
+----
 
 Macros
 ======

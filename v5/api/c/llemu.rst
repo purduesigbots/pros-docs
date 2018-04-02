@@ -1,6 +1,11 @@
+.. highlight:: c
+   :linenothreshold: 5
+   
 =================================
 LLEMU (Legacy LCD Emulator) C API
 =================================
+
+.. contents:: :local:
 
 Functions
 =========
@@ -35,6 +40,8 @@ Analogous to `pros::lcd::clear <../cpp/llemu.html#clear>`_.
 
 **Returns:** ``true`` if the operation was successful, or ``false`` otherwise, setting
 ``errno`` values as specified above.
+
+----
 
 lcd_clear_line
 --------------
@@ -74,6 +81,8 @@ Analogous to `pros::lcd::clear_line <../cpp/llemu.html#clear-line>`_.
 **Returns:** ``true`` if the operation was successful, or ``false`` otherwise, setting
 ``errno`` values as specified above.
 
+----
+
 lcd_initialize
 --------------
 
@@ -98,6 +107,8 @@ Analogous to `pros::lcd::intitialize <../cpp/llemu.html#intitialize>`_.
         }
 
 **Returns:** ``true`` if the LCD was successfully initialized, or ``false`` if it has already been initialized.
+
+----
 
 lcd_is_initialized
 ------------------
@@ -124,6 +135,8 @@ Analogous to `pros::lcd::is_initialized <../cpp/llemu.html#is-initialized>`_.
         }
 
 **Returns:** True if the LCD has been initialized or false if not.
+
+----
 
 lcd_print
 ---------
@@ -168,6 +181,8 @@ Analogous to `pros::lcd::print <../cpp/llemu.html#print>`_.
 **Returns:** ``true`` if the operation was successful, or ``false`` otherwise, setting
 ``errno`` values as specified above.
 
+----
+
 lcd_read_buttons
 ----------------
 
@@ -204,6 +219,8 @@ Analogous to `pros::lcd::read_buttons <../cpp/llemu.html#read-buttons>`_.
         }
 
 **Returns:** The buttons pressed as a bit mask.
+
+----
 
 lcd_register_btn0_cb
 --------------------
@@ -247,6 +264,8 @@ Analogous to `pros::lcd::register_btn0_cb <../cpp/llemu.html#register-btn0-cb>`_
  cb           An `LCD callback function <lcd_btn_cb_fn_t>`_ to be executed by this button press
 ============ ===================================================================================
 
+----
+
 lcd_register_btn1_cb
 --------------------
 
@@ -288,6 +307,8 @@ Analogous to `pros::lcd::register_btn1_cb <../cpp/llemu.html#register-btn1-cb>`_
 ============ ===================================================================================
  cb           An `LCD callback function <lcd_btn_cb_fn_t>`_ to be executed by this button press
 ============ ===================================================================================
+
+----
 
 lcd_register_btn2_cb
 --------------------
@@ -331,6 +352,8 @@ Analogous to `pros::lcd::register_btn2_cb <../cpp/llemu.html#register-btn2-cb>`_
  cb           An `LCD callback function <lcd_btn_cb_fn_t>`_ to be executed by this button press
 ============ ===================================================================================
 
+----
+
 lcd_set_text
 ------------
 
@@ -370,6 +393,8 @@ Analogous to `pros::lcd::set_text <../cpp/llemu.html#set-text>`_.
 **Returns:** ``true`` if the operation was successful, or ``false`` otherwise, setting
 ``errno`` values as specified above.
 
+----
+
 lcd_shutdown
 ------------
 
@@ -403,6 +428,8 @@ Analogous to `pros::lcd::shutdown <../cpp/llemu.html#shutdown>`_.
 
 **Returns:** ``true`` if the operation was successful, or ``false`` otherwise, setting
 ``errno`` values as specified above.
+
+----
 
 Macros
 ======

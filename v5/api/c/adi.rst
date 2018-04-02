@@ -1,3 +1,6 @@
+.. highlight:: c
+   :linenothreshold: 5
+
 ====================
 ADI (TriPort) C API
 ====================
@@ -56,6 +59,8 @@ Analogous to `pros::ADIAnalogIn::calibrate <../cpp/adi.html#calibrate>`_.
 
 **Returns:** The average sensor value computed by this function.
 
+----
+
 adi_analog_read
 ---------------
 
@@ -95,6 +100,8 @@ Analogous to `pros::ADIAnalogIn::get_value <../cpp/adi.html#get-value>`_.
 **Returns:** The analog sensor value, where a value of 0 reflects an input voltage of nearly 0 V
 and a value of 4095 reflects an input voltage of nearly 5 V
 
+----
+
 adi_analog_read_calibrated
 --------------------------
 
@@ -133,6 +140,8 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated <../cpp/adi.html#get-value
 ============ =================================================================================================================
 
 **Returns:** The difference of the sensor value from its calibrated default from -4095 to 4095.
+
+----
 
 adi_analog_read_calibrated_HR
 -----------------------------
@@ -177,6 +186,8 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-va
 ============ =================================================================================================================
 
 **Returns:** The difference of the sensor value from its calibrated default from -16384 to 16384.
+
+----
 
 adi_digital_get_new_press
 -------------------------
@@ -224,6 +235,8 @@ Analogous to `pros::ADIDigitalIn::get_new_press <../cpp/adi.html#get-new-press>`
 **Returns:** 1 if the button on the controller is pressed and had not been pressed
 the last time this function was called, 0 otherwise.
 
+----
+
 adi_digital_read
 ----------------
 
@@ -263,6 +276,8 @@ Analogous to `pros::ADIDigitalIn::get_value <../cpp/adi.html#id5>`_.
 ============ =================================================================================================================
 
 **Returns:** True if the pin is `HIGH`_, or false if it is `LOW`_.
+
+----
 
 adi_digital_write
 -----------------
@@ -306,6 +321,8 @@ Analogous to `pros::ADIDigitalOut::set_value <../cpp/adi.html#id8>`_.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+----
+
 adi_encoder_get
 ---------------
 
@@ -344,6 +361,8 @@ Analogous to `pros::ADIEncoder::get_value <../cpp/adi.html#id11>`_.
 ============ =================================================================================================================
 
 **Returns:** The signed and cumulative number of counts since the last start or reset.
+
+----
 
 adi_encoder_init
 ----------------
@@ -386,6 +405,8 @@ Analogous to `pros::ADIEncoder::ADIEncoder <../cpp/adi.html#id9>`_.
 
 **Returns:** An `adi_encoder_t`_ object to be stored and used for later calls to encoder functions.
 
+----
+
 adi_encoder_reset
 -----------------
 
@@ -424,6 +445,8 @@ Analogous to `pros::ADIEncoder::reset <../cpp/adi.html#reset>`_.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+----
+
 adi_encoder_shutdown
 --------------------
 
@@ -457,6 +480,8 @@ Stops and disables the encoder.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+----
+
 adi_get_value
 -------------
 
@@ -489,6 +514,8 @@ Analogous to `pros::ADIPort::get_value <../cpp/adi.html#id18>`_.
 ============ =================================================================================================================
 
 **Returns:** The value for the given ADI port.
+
+----
 
 adi_motor_get
 -------------
@@ -524,6 +551,8 @@ Analogous to `pros::ADIMotor::get_value <../cpp/adi.html#id14>`_.
 ============ =================================================================================================================
 
 **Returns:** The last set speed of the motor on the given port.
+
+----
 
 adi_motor_set
 -------------
@@ -561,6 +590,8 @@ Analogous to `pros::ADIMotor::set_value <../cpp/adi.html#id15>`_.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise
 
+----
+
 adi_motor_stop
 --------------
 
@@ -596,6 +627,8 @@ Analogous to `pros::ADIMotor::stop <../cpp/adi.html#id16>`_.
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+----
+
 adi_pin_mode
 ------------
 
@@ -627,6 +660,8 @@ Configures the pin as an input or output with a variety of settings.
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
+
+----
 
 adi_port_get_config
 -------------------
@@ -662,6 +697,8 @@ Analogous to `pros::ADIPort::get_config <../cpp/adi.html#get-config>`_.
 
 **Returns:** The `adi_port_config_e_t` set for the port.
 
+----
+
 adi_port_set_config
 -------------------
 
@@ -695,6 +732,8 @@ Analogous to `pros::ADIPort::set_config <../cpp/adi.html#set-config>`_.
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
+
+----
 
 adi_set_value
 -------------
@@ -733,6 +772,8 @@ Analogous to `pros::ADIPort::set_value <../cpp/adi.html#id20>`_.
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
+
+----
 
 adi_ultrasonic_get
 ------------------
@@ -776,6 +817,8 @@ Analogous to `pros::ADIUltrasonic::get_value <../cpp/adi.html#id24>`_.
 
 **Returns:** The distance to the nearest object in centimeters.
 
+----
+
 adi_ultrasonic_init
 -------------------
 
@@ -816,6 +859,8 @@ Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
 
 **Returns:** An `adi_ultrasonic_t`_ object to be stored and used for later calls to ultrasonic functions.
 
+----
+
 adi_ultrasonic_shutdown
 -----------------------
 
@@ -852,6 +897,8 @@ Stops and disables the ultrasonic sensor.
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
+
+----
 
 Macros
 ======
