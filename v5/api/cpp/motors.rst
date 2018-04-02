@@ -43,7 +43,7 @@ Constructor(s)
 Operator Overloads
 ------------------
 
-Sets the voltage for the motor from -128 to 127.
+Sets the voltage for the motor from -127 to 127.
 
 This is designed to map easily to the input from the controller's analog
 stick for simple opcontrol use. The actual behavior of the motor is analogous
@@ -564,7 +564,7 @@ Gets the velocity commanded to the motor by the user.
           }
         }
 
-**Returns:** The commanded motor velocity from -128 to 127 or ``PROS_ERR`` if the
+**Returns:** The commanded motor velocity from +-100, +-200, +-600, or ``PROS_ERR`` if the
 operation failed, setting ``errno``.
 
 get_voltage
@@ -593,7 +593,7 @@ Gets the voltage delivered to the motor in mV.
           }
         }
 
-**Returns:** The motor's voltage in V or ``PROS_ERR_F`` if the operation failed,
+**Returns:** The motor's voltage in mV or ``PROS_ERR_F`` if the operation failed,
 setting ``errno``.
 
 get_voltage_limit
@@ -831,11 +831,11 @@ the position when it was most recently reset with `tare_position`_.
 
         void autonomous() {
           pros::Motor motor (1);
-          motor.move_absolute(100, 100); // Move 100 units forward
-          motor.move_absolute(100, 100); // This will not cause a movement
+          motor.move_absolute(100, 100); // Moves 100 units forward
+          motor.move_absolute(100, 100); // This does not cause a movement
 
           motor.tare_position();
-          motor.move_absolute(100, 100); // This will move 100 units forward
+          motor.move_absolute(100, 100); // Moves 100 units forward
         }
 
 ============ ===============================================================
@@ -870,8 +870,8 @@ This movement is relative to the current position of the motor as given in
 
         void autonomous() {
           pros::Motor motor (1);
-          motor.move_relative(100, 100); // Move 100 units forward
-          motor.move_relative(100, 100); // Also move 100 units forward
+          motor.move_relative(100, 100); // Moves 100 units forward
+          motor.move_relative(100, 100); // Also moves 100 units forward
         }
 
 ============ ===============================================================
@@ -951,7 +951,7 @@ Sets the voltage for the motor from -12000 mV to 12000 mV.
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- voltage      The new PWM value from -128 to 127
+ voltage      The new voltage for the motor from -12000 mV to 12000 mV
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -1179,11 +1179,11 @@ This will be the future reference point for the motor's "absolute" position.
 
         void autonomous() {
           pros::Motor motor (1);
-          motor.move_absolute(100, 100); // Move 100 units forward
-          motor.move_absolute(100, 100); // This will not cause a movement
+          motor.move_absolute(100, 100); // Moves 100 units forward
+          motor.move_absolute(100, 100); // This does not cause a movement
 
           motor.set_zero_position(80);
-          motor.move_absolute(100, 100); // This will move 120 units forward
+          motor.move_absolute(100, 100); // Moves 120 units forward
         }
 
 ============ ===============================================================
@@ -1214,11 +1214,11 @@ Sets the "absolute" zero position of the motor to its current position.
 
         void autonomous() {
           pros::Motor motor (1);
-          motor.move_absolute(100, 100); // Move 100 units forward
-          motor.move_absolute(100, 100); // This will not cause a movement
+          motor.move_absolute(100, 100); // Moves 100 units forward
+          motor.move_absolute(100, 100); // This does not cause a movement
 
           motor.tare_position();
-          motor.move_absolute(100, 100); // This will move 100 units forward
+          motor.move_absolute(100, 100); // Moves 100 units forward
         }
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,

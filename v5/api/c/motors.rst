@@ -119,12 +119,9 @@ The default limit is 2500 mA.
       .. highlight:: c
       ::
 
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Current Limit: %d\n", motor_get_current_limit(1));
-            delay(2);
-          }
+        void initialize() {
+          printf("Motor Current Limit: %d\n", motor_get_current_limit(1));
+          // Prints "Motor Current Limit: 2500"
         }
 
 ============ ==============================
@@ -223,11 +220,9 @@ Gets the encoder units set for the motor.
       .. highlight:: c
       ::
 
-        void opcontrol() {
-          while (true) {
-            printf("Motor Encoder Units: %d\n", motor_get_encoder_units(1));
-            delay(2);
-          }
+        void initialize() {
+          printf("Motor Encoder Units: %d\n", motor_get_encoder_units(1));
+          // Prints E_MOTOR_ENCODER_DEGREES by default
         }
 
 ============ ==============================
@@ -319,11 +314,9 @@ Gets the `gearset <motor_gearset_e_t>`_` that was set for the motor.
       .. highlight:: c
       ::
 
-        void opcontrol() {
-          while (true) {
-            printf("Motor Gearing Number: %d\n", motor_get_gearing(1));
-            delay(2);
-          }
+        void initialize() {
+          printf("Motor Gearing Number: %d\n", motor_get_gearing(1));
+          // Prints E_MOTOR_GEARSET_36 by default
         }
 
 ============ ==============================
@@ -566,13 +559,13 @@ Gets the velocity commanded to the motor by the user.
  port         The V5 port number from 1-21
 ============ ==============================
 
-**Returns:** The commanded motor velocity from -128 to 127 or ``PROS_ERR`` if the
+**Returns:** The commanded motor velocity from +-100, +-200, +-600, or ``PROS_ERR`` if the
 operation failed, setting ``errno``.
 
 motor_get_voltage
 -----------------
 
-Gets the voltage delivered to the motor in V.
+Gets the voltage delivered to the motor in mV.
 
 .. tabs ::
    .. tab :: Prototype
@@ -599,7 +592,7 @@ Gets the voltage delivered to the motor in V.
  port         The V5 port number from 1-21
 ============ ==============================
 
-**Returns:** The motor's voltage in V or ``PROS_ERR_F`` if the operation failed,
+**Returns:** The motor's voltage in mV or ``PROS_ERR_F`` if the operation failed,
 setting ``errno``.
 
 motor_get_voltage_limit
@@ -620,6 +613,7 @@ Gets the voltage limit set by the user.
 
         void initialize() {
           printf("Motor Voltage Limit: %d\n", motor_get_voltage_limit(1));
+          // Prints 0 by default, indicating no limit
         }
 
 ============ ==============================
@@ -648,7 +642,6 @@ Gets the zero position flag for the motor.
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
           while (true) {
             motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
             printf("Is the motor at its zero position? %d\n", motor_get_zero_position_flag(1));
@@ -683,7 +676,6 @@ Gets the zero velocity flag for the motor.
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
           while (true) {
             motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
             printf("Is the motor stopped? %d\n", motor_is_stopped(1));
@@ -750,9 +742,9 @@ Gets the operation direction of the motor as set by the user.
       .. highlight:: c
       ::
 
-        void opcontrol() {
-          std::cout << "Is the motor reversed? " << motor.is_reversed(1);
-          // Provided this is the only code in initialize, this prints "0"
+        void initialize() {
+          printf("Is the motor reversed? %d\n", motor_is_reversed(1));
+          // Prints "Is the motor reversed? 0"
         }
 
 ============ ==============================
@@ -859,11 +851,11 @@ the position when it was most recently reset with `motor_tare_position`_.
       ::
 
         void autonomous() {
-          motor_move_absolute(1, 100, 100); // Move 100 units forward
-          motor_move_absolute(1, 100, 100); // This will not cause a movement
+          motor_move_absolute(1, 100, 100); // Moves 100 units forward
+          motor_move_absolute(1, 100, 100); // This does not cause a movement
 
           motor_tare_position(1);
-          motor_move_absolute(1, 100, 100); // This will move 100 units forward
+          motor_move_absolute(1, 100, 100); // Moves 100 units forward
         }
 
 ============ ===============================================================
@@ -899,8 +891,8 @@ This movement is relative to the current position of the motor as given in
       ::
 
         void autonomous() {
-          motor_move_relative(1, 100, 100); // Move 100 units forward
-          motor_move_relative(1, 100, 100); // Also move 100 units forward
+          motor_move_relative(1, 100, 100); // Moves 100 units forward
+          motor_move_relative(1, 100, 100); // Also moves 100 units forward
         }
 
 ============ ===============================================================
@@ -983,7 +975,7 @@ Sets the voltage for the motor from -12000 mV to 12000 mV.
  Parameters
 ============ ===============================================================
  port         The V5 port number from 1-21
- voltage      The new PWM value from -128 to 127
+ voltage      The new voltage for the motor from -12000 mV to 12000 mV
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -1187,7 +1179,7 @@ Sets the voltage limit for the motor in mV.
  Parameters
 ============ ===============================================================
  port         The V5 port number from 1-21
- limit        The new voltage limit in Volts
+ limit        The new voltage limit in mV
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -1213,11 +1205,11 @@ This will be the future reference point for the motor's "absolute" position.
       ::
 
         void autonomous() {
-          motor_move_absolute(1, 100, 100); // Move 100 units forward
-          motor_move_absolute(1, 100, 100); // This will not cause a movement
+          motor_move_absolute(1, 100, 100); // Moves 100 units forward
+          motor_move_absolute(1, 100, 100); // This does not cause a movement
 
           motor_set_zero_position(1, 80);
-          motor_move_absolute(1, 100, 100); // This will move 120 units forward
+          motor_move_absolute(1, 100, 100); // Moves 120 units forward
         }
 
 ============ ===============================================================
@@ -1248,11 +1240,11 @@ Sets the "absolute" zero position of the motor to its current position.
       ::
 
         void autonomous() {
-          motor_move_absolute(1, 100, 100); // Move 100 units forward
-          motor_move_absolute(1, 100, 100); // This will not cause a movement
+          motor_move_absolute(1, 100, 100); // Moves 100 units forward
+          motor_move_absolute(1, 100, 100); // This does not cause a movement
 
           motor_tare_position(1);
-          motor_move_absolute(1, 100, 100); // This will move 100 units forward
+          motor_move_absolute(1, 100, 100); // Moves 100 units forward
         }
 
 ============ ==============================
