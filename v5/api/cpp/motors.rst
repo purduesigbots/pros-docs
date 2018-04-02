@@ -1,3 +1,6 @@
+.. highlight:: cpp
+   :linenothreshold: 5
+
 ==============
 Motors C++ API
 ==============
@@ -40,6 +43,8 @@ Constructor(s)
  encoder_units   The new `motor encoder units <motor_encoder_units_e_t_>`_
 =============== ===================================================================
 
+----
+
 Operator Overloads
 ------------------
 
@@ -76,6 +81,8 @@ from the PROS 2 API.
  voltage      The new motor voltage from -127 to 127
 ============ ===============================================================
 
+----
+
 Methods
 -------
 
@@ -83,6 +90,8 @@ get_actual_velocity
 ~~~~~~~~~~~~~~~~~~~
 
 Gets the actual velocity of the motor.
+
+Analogous to `motor_get_actual_velocity <../c/motors.html#motor-get-actual-velocity>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -108,10 +117,14 @@ Gets the actual velocity of the motor.
 `motor_encoder_units_e_t <motor_encoder_units_e_t_>`_ per second
 or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
+----
+
 get_brake_mode
 ~~~~~~~~~~~~~~
 
 Gets the brake mode of the motor.
+
+Analogous to `motor_get_brake_mode <../c/motors.html#motor-get-brake-mode>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -133,10 +146,14 @@ Gets the brake mode of the motor.
 **Returns:** One of `motor_brake_mode_e_t <motor_brake_mode_e_t_>`_, according to what was set for the motor,
 or ``E_MOTOR_BRAKE_INVALID`` if the operation failed, setting ``errno``.
 
+----
+
 get_current
 ~~~~~~~~~~~
 
 Gets the current drawn by the motor in mA.
+
+Analogous to `motor_get_current <../c/motors.html#motor-get-current>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -162,12 +179,16 @@ Gets the current drawn by the motor in mA.
 **Returns:** The motor's current in mA or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 get_current_limit
 ~~~~~~~~~~~~~~~~~
 
 Gets the current limit for the motor in mA.
 
 The default limit is 2500 mA.
+
+Analogous to `motor_get_current_limit <../c/motors.html#motor-get-current-limit>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -191,10 +212,14 @@ The default limit is 2500 mA.
 **Returns:** The motor's current limit in mA or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 get_direction
 ~~~~~~~~~~~~~
 
 Gets the direction of movement for the motor.
+
+Analogous to `motor_get_direction <../c/motors.html#motor-get-direction>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -221,6 +246,8 @@ Gets the direction of movement for the motor.
 negative direction, and ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 get_efficiency
 ~~~~~~~~~~~~~~
 
@@ -229,6 +256,8 @@ Gets the efficiency of the motor in percent.
 An efficiency of 100% means that the motor is moving electrically while
 drawing no electrical power, and an efficiency of 0% means that the motor
 is drawing power but not moving.
+
+Analogous to `motor_get_efficiency <../c/motors.html#motor-get-efficiency>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -254,10 +283,14 @@ is drawing power but not moving.
 **Returns:** The motor's efficiency in percent or ``PROS_ERR_F`` if the operation
 failed, setting ``errno``.
 
+----
+
 get_encoder_units
 ~~~~~~~~~~~~~~~~~
 
 Gets the encoder units set for the motor.
+
+Analogous to `motor_get_encoder_units <../c/motors.html#motor-get-encoder-units>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -278,10 +311,14 @@ Gets the encoder units set for the motor.
 **Returns:** One of `motor_encoder_units_e_t`_ according to what is set for the motor
 or ``E_MOTOR_ENCODER_INVALID`` if the operation failed.
 
+----
+
 get_faults
 ~~~~~~~~~~
 
 Gets the faults experienced by the motor.
+
+Analogous to `motor_get_faults <../c/motors.html#motor-get-faults>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -306,10 +343,14 @@ Gets the faults experienced by the motor.
 
 **Returns:** Currently unknown bitfield.
 
+----
+
 get_flags
 ~~~~~~~~~
 
 Gets the flags set by the motor's operation.
+
+Analogous to `motor_get_flags <../c/motors.html#motor-get-flags>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -334,10 +375,14 @@ Gets the flags set by the motor's operation.
 
 **Returns:** A currently unknown bitfield
 
+----
+
 get_gearing
 ~~~~~~~~~~~
 
 Gets the `gearset <motor_gearset_e_t_>`_` that was set for the motor.
+
+Analogous to `motor_get_gearing <../c/motors.html#motor-get-gearing>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -358,10 +403,14 @@ Gets the `gearset <motor_gearset_e_t_>`_` that was set for the motor.
 **Returns:** One of `motor_gearset_e_t <motor_gearset_e_t_>`_ according to what is set for the motor,
 or ``E_GEARSET_INVALID`` if the operation failed.
 
+----
+
 get_position
 ~~~~~~~~~~~~
 
 Gets the absolute position of the motor in its encoder units.
+
+Analogous to `motor_get_position <../c/motors.html#motor-get-position>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -387,10 +436,14 @@ Gets the absolute position of the motor in its encoder units.
 **Returns:** The motor's absolute position in its encoder units or ``PROS_ERR_F``
 if the operation failed, setting ``errno``.
 
+----
+
 get_power
 ~~~~~~~~~
 
 Gets the power drawn by the motor in Watts.
+
+Analogous to `motor_get_power <../c/motors.html#motor-get-power>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -416,10 +469,14 @@ Gets the power drawn by the motor in Watts.
 **Returns:** The motor's power draw in Watts or ``PROS_ERR_F`` if the operation
 failed, setting ``errno``.
 
+----
+
 get_raw_position
 ~~~~~~~~~~~~~~~~
 
 Gets the raw encoder count of the motor at a given timestamp.
+
+Analogous to `motor_get_raw_position <../c/motors.html#motor-get-raw-position>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -453,10 +510,14 @@ Gets the raw encoder count of the motor at a given timestamp.
 **Returns:** The raw encoder count at the given timestamp or ``PROS_ERR`` if the
 operation failed, setting ``errno``.
 
+----
+
 get_target
 ~~~~~~~~~~
 
 Gets the target position set for the motor by the user.
+
+Analogous to `motor_get_target <../c/motors.html#motor-get-target>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -479,10 +540,16 @@ Gets the target position set for the motor by the user.
 **Returns:** The target position in its encoder units or ``PROS_ERR_F`` if the
 operation failed, setting ``errno``.
 
+----
+
 get_temperature
 ~~~~~~~~~~~~~~~
 
 Gets the temperature of the motor in degrees Celsius.
+
+The resolution of this reading is 5 degrees Celsius.
+
+Analogous to `motor_get_temperature <../c/motors.html#motor-get-temperature>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -508,10 +575,14 @@ Gets the temperature of the motor in degrees Celsius.
 **Returns:** The motor's temperature in degrees Celsius or ``PROS_ERR_F`` if the
 operation failed, setting ``errno``.
 
+----
+
 get_torque
 ~~~~~~~~~~
 
 Gets the torque generated by the motor in Nm.
+
+Analogous to `motor_get_torque <../c/motors.html#motor-get-torque>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -537,10 +608,14 @@ Gets the torque generated by the motor in Nm.
 **Returns:** The motor's torque in NM or ``PROS_ERR_F`` if the operation failed,
 setting ``errno``.
 
+----
+
 get_velocity
 ~~~~~~~~~~~~
 
 Gets the velocity commanded to the motor by the user.
+
+Analogous to `motor_get_velocity <../c/motors.html#motor-get-velocity>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -567,10 +642,14 @@ Gets the velocity commanded to the motor by the user.
 **Returns:** The commanded motor velocity from +-100, +-200, +-600, or ``PROS_ERR`` if the
 operation failed, setting ``errno``.
 
+----
+
 get_voltage
 ~~~~~~~~~~~
 
 Gets the voltage delivered to the motor in mV.
+
+Analogous to `motor_get_voltage <../c/motors.html#motor-get-voltage>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -596,10 +675,14 @@ Gets the voltage delivered to the motor in mV.
 **Returns:** The motor's voltage in mV or ``PROS_ERR_F`` if the operation failed,
 setting ``errno``.
 
+----
+
 get_voltage_limit
 ~~~~~~~~~~~~~~~~~
 
 Gets the voltage limit set by the user.
+
+Analogous to `motor_get_voltage_limit <../c/motors.html#motor-get-voltage-limit>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -620,10 +703,14 @@ Gets the voltage limit set by the user.
 **Returns:** The motor's voltage limit in V or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 get_zero_position_flag
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Gets the zero position flag for the motor.
+
+Analogous to `motor_get_zero_position_flag <../c/motors.html#motor-get-zero-position-flag>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -650,10 +737,14 @@ Gets the zero position flag for the motor.
 moved from its absolute zero, or ``PROS_ERR`` if the operation failed
 setting ``errno``.
 
+----
+
 is_stopped
 ~~~~~~~~~~
 
 Gets the zero velocity flag for the motor.
+
+Analogous to `motor_is_stopped <../c/motors.html#motor-is-stopped>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -679,10 +770,14 @@ Gets the zero velocity flag for the motor.
 **Returns:** ``1`` if the motor is not moving and ``0`` if the motor is moving,
 or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
+----
+
 is_over_current
 ~~~~~~~~~~~~~~~
 
 Detects if the motor is drawing over its current limit.
+
+Analogous to `motor_is_over_current <../c/motors.html#motor-is-over-current>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -709,10 +804,14 @@ Detects if the motor is drawing over its current limit.
 limit is not exceeded, or ``PROS_ERR`` if the operation failed, setting
 ``errno``.
 
+----
+
 is_reversed
 ~~~~~~~~~~~
 
 Gets the operation direction of the motor as set by the user.
+
+Analogous to `motor_is_reversed <../c/motors.html#motor-is-reversed>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -734,10 +833,14 @@ Gets the operation direction of the motor as set by the user.
 **Returns:** 1 if the motor has been reversed and 0 if the motor was not reversed,
 or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
+----
+
 is_over_temp
 ~~~~~~~~~~~~
 
 Gets the temperature limit flag for the motor.
+
+Analogous to `motor_is_over_temp <../c/motors.html#motor-is-over-temp>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -770,6 +873,8 @@ Gets the temperature limit flag for the motor.
 temperature is below the limit, or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 move
 ~~~~
 
@@ -779,6 +884,8 @@ This is designed to map easily to the input from the controller's analog
 stick for simple opcontrol use. The actual behavior of the motor is analogous
 to use of `move_voltage`_, or `motorSet <../../../cortex/api/index.html#motorSet>`_
 from the PROS 2 API.
+
+Analogous to `motor_move <../c/motors.html#motor-move>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -809,6 +916,8 @@ from the PROS 2 API.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 motor_move_absolute
 -------------------
 
@@ -816,6 +925,8 @@ Sets the target absolute position for the motor to move to.
 
 This movement is relative to the position of the motor when initialized or
 the position when it was most recently reset with `tare_position`_.
+
+Analogous to `motor_move_absolute <../c/motors.html#motor-move-absolute>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -848,6 +959,8 @@ the position when it was most recently reset with `tare_position`_.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 move_relative
 ~~~~~~~~~~~~~
 
@@ -855,6 +968,8 @@ Sets the relative target position for the motor to move to.
 
 This movement is relative to the current position of the motor as given in
 `get_position`_.
+
+Analogous to `motor_move_relative <../c/motors.html#motor-move-relative>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -884,6 +999,8 @@ This movement is relative to the current position of the motor as given in
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 move_velocity
 ~~~~~~~~~~~~~
 
@@ -896,6 +1013,8 @@ used for the motor. This results in a range of +-100 for
 `E_MOTOR_GEARSET_6 <motor_gearset_e_t_>`_. The velocity
 is held with PID to ensure consistent speed, as opposed to setting the motor's
 voltage.
+
+Analogous to `motor_move_velocity <../c/motors.html#motor-move-velocity>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -926,10 +1045,14 @@ voltage.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 move_voltage
 ~~~~~~~~~~~~
 
 Sets the voltage for the motor from -12000 mV to 12000 mV.
+
+Analogous to `motor_move_voltage <../c/motors.html#motor-move-voltage>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -957,10 +1080,14 @@ Sets the voltage for the motor from -12000 mV to 12000 mV.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 set_brake_mode
 ~~~~~~~~~~~~~~
 
 Sets one of `motor_brake_mode_e_t`_ to the motor.
+
+Analogous to `motor_set_brake_mode <../c/motors.html#motor-set-brake-mode>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -988,12 +1115,16 @@ Sets one of `motor_brake_mode_e_t`_ to the motor.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 set_current_limit
 ~~~~~~~~~~~~~~~~~
 
 Sets the current limit for the motor in mA.
 
 The default limit is 2500 mA.
+
+Analogous to `motor_set_current_limit <../c/motors.html#motor-set-current-limit>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -1027,10 +1158,14 @@ The default limit is 2500 mA.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 set_encoder_units
 ~~~~~~~~~~~~~~~~~
 
 Sets one of `motor_encoder_units_e_t`_ for the motor encoder.
+
+Analogous to `motor_set_encoder_units <../c/motors.html#motor-set-encoder-units>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -1058,10 +1193,14 @@ Sets one of `motor_encoder_units_e_t`_ for the motor encoder.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 set_gearing
 ~~~~~~~~~~~
 
 Sets one of `motor_gearset_e_t <motor_gearset_e_t_>`_ for the motor.
+
+Analogous to `motor_set_gearing <../c/motors.html#motor-set-gearing>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -1089,12 +1228,16 @@ Sets one of `motor_gearset_e_t <motor_gearset_e_t_>`_ for the motor.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 set_reversed
 ~~~~~~~~~~~~
 
 Sets the reverse flag for the motor.
 
 This will invert its movements and the values returned for its position.
+
+Analogous to `motor_set_reversed <../c/motors.html#motor-set-reversed>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -1122,10 +1265,14 @@ This will invert its movements and the values returned for its position.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 set_voltage_limit
 ~~~~~~~~~~~~~~~~~
 
 Sets the voltage limit for the motor in mV.
+
+Analogous to `motor_set_voltage_limit <../c/motors.html#motor-set-voltage-limit>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -1159,12 +1306,16 @@ Sets the voltage limit for the motor in mV.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
 set_zero_position
 ~~~~~~~~~~~~~~~~~
 
 Sets the zero position for the motor in its encoder units.
 
 This will be the future reference point for the motor's "absolute" position.
+
+Analogous to `motor_set_zero_position <../c/motors.html#motor-set-zero-position>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -1195,11 +1346,14 @@ This will be the future reference point for the motor's "absolute" position.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
 
 tare_position
 ~~~~~~~~~~~~~
 
 Sets the "absolute" zero position of the motor to its current position.
+
+Analogous to `motor_tare_position <../c/motors.html#motor-tare-position>`_.
 
 .. tabs ::
    .. tab :: Prototype
