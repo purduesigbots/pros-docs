@@ -130,7 +130,7 @@ Gets the brake mode of the motor.
           std::cout << "Brake Mode: " << motor.get_brake_mode();
         }
 
-**Returns:** One of `motor_brake_mode_e_t`_, according to what was set for the motor,
+**Returns:** One of `motor_brake_mode_e_t <motor_brake_mode_e_t_>`_, according to what was set for the motor,
 or ``E_MOTOR_BRAKE_INVALID`` if the operation failed, setting ``errno``.
 
 get_current
@@ -271,15 +271,15 @@ Gets the encoder units set for the motor.
       ::
 
         void initialize() {
-          pros::Motor motor(1, E_MOTOR_GEARSET_06, false, E_MOTOR_ENCODER_COUNTS)
+          pros::Motor motor (1, E_MOTOR_GEARSET_06, false, E_MOTOR_ENCODER_COUNTS);
           std::cout << "Motor Encoder Units: " << motor.get_encoder_units();
         }
 
 **Returns:** One of `motor_encoder_units_e_t`_ according to what is set for the motor
 or ``E_MOTOR_ENCODER_INVALID`` if the operation failed.
 
-motor_get_faults
-----------------
+get_faults
+~~~~~~~~~~
 
 Gets the faults experienced by the motor.
 
@@ -288,30 +288,26 @@ Gets the faults experienced by the motor.
       .. highlight:: cpp
       ::
 
-         uint32_t motor_get_faults ( uint8_t port )
+         std::uint32_t pros::Motor::get_faults ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Faults: %d\n", motor_get_faults(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Motor Faults: " << motor.get_faults();
+            pros::delay(2);
           }
         }
 
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
 **Returns:** Currently unknown bitfield.
 
-motor_get_flags
----------------
+get_flags
+~~~~~~~~~
 
 Gets the flags set by the motor's operation.
 
@@ -320,30 +316,26 @@ Gets the flags set by the motor's operation.
       .. highlight:: cpp
       ::
 
-         uint32_t motor_get_flags ( uint8_t port )
+         std::uint32_t pros::Motor::get_flags ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Flags: %d\n", motor_get_flags(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Motor Flags: " << motor.get_flags();
+            pros::delay(2);
           }
         }
 
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
 **Returns:** A currently unknown bitfield
 
-motor_get_gearing
------------------
+get_gearing
+~~~~~~~~~~~
 
 Gets the `gearset <motor_gearset_e_t_>`_` that was set for the motor.
 
@@ -352,30 +344,22 @@ Gets the `gearset <motor_gearset_e_t_>`_` that was set for the motor.
       .. highlight:: cpp
       ::
 
-         motor_gearset_e_t_ motor_get_gearing ( uint8_t port )
+         motor_gearset_e_t pros::Motor::get_gearing ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          while (true) {
-            printf("Motor Gearing Number: %d\n", motor_get_gearing(1));
-            delay(2);
-          }
+        void initialize() {
+          pros::Motor motor (1, E_MOTOR_GEARSET_06, false, E_MOTOR_ENCODER_COUNTS);
+          std::cout << "Motor Gearing: " << motor.get_gearing();
         }
 
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** One of `motor_gearset_e_t_`_ according to what is set for the motor,
+**Returns:** One of `motor_gearset_e_t <motor_gearset_e_t_>`_ according to what is set for the motor,
 or ``E_GEARSET_INVALID`` if the operation failed.
 
-motor_get_position
-------------------
+get_position
+~~~~~~~~~~~~
 
 Gets the absolute position of the motor in its encoder units.
 
@@ -384,32 +368,27 @@ Gets the absolute position of the motor in its encoder units.
       .. highlight:: cpp
       ::
 
-        double motor_get_position ( uint8_t port )
+        double pros::Motor::get_position ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Position: %lf\n", motor_get_position(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Motor Position: " << motor.get_position();
+            pros::delay(2);
           }
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** The motor's absolute position in its encoder units or ``PROS_ERR_F``
 if the operation failed, setting ``errno``.
 
-motor_get_power
----------------
+get_power
+~~~~~~~~~
 
 Gets the power drawn by the motor in Watts.
 
@@ -418,32 +397,27 @@ Gets the power drawn by the motor in Watts.
       .. highlight:: cpp
       ::
 
-        double motor_get_power ( uint8_t port )
+        double pros::Motor::get_power ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Power: %lf\n", motor_get_power(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Motor Power: " << motor.get_power();
+            pros::delay(2);
           }
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** The motor's power draw in Watts or ``PROS_ERR_F`` if the operation
 failed, setting ``errno``.
 
-motor_get_raw_position
-----------------------
+get_raw_position
+~~~~~~~~~~~~~~~~
 
 Gets the raw encoder count of the motor at a given timestamp.
 
@@ -452,35 +426,35 @@ Gets the raw encoder count of the motor at a given timestamp.
       .. highlight:: cpp
       ::
 
-        int32_t motor_get_raw_position ( uint8_t port,
-                                         uint32_t* timestamp )
+        std::int32_t pros::Motor::get_raw_position ( std::uint32_t* timestamp )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
+          std::uint32_t now = pros::millis();
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Encoder Count: %d\n", motor_get_raw_position(1, &now));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Motor Position: " << motor.get_raw_position(&now);
+            pros::delay(2);
           }
         }
 
 ============ =======================================================
  Parameters
 ============ =======================================================
- port         The V5 port number from 1-21
- timestamp    A pointer to a time in milliseconds (?) for which the
+ timestamp    A pointer to a time in milliseconds for which the
               encoder count will be returned
 ============ =======================================================
 
 **Returns:** The raw encoder count at the given timestamp or ``PROS_ERR`` if the
 operation failed, setting ``errno``.
 
-motor_get_target
-----------------
+get_target
+~~~~~~~~~~
 
 Gets the target position set for the motor by the user.
 
@@ -489,33 +463,24 @@ Gets the target position set for the motor by the user.
       .. highlight:: cpp
       ::
 
-        double motor_get_target ( uint8_t port )
+        double pros::Motor::get_target ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          uint32_t now = millis();
-          while (true) {
-            motor_move_absolute(1, 100);
-            printf("Motor Target: %d\n", motor_get_target(1));
-            // Will print 100
-            delay(2);
-          }
+        void autonomous() {
+          pros::Motor motor (1);
+          motor.move_absolute(100, 100);
+          std::cout << "Motor Target: " << motor.get_target();
+          // Prints 100
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** The target position in its encoder units or ``PROS_ERR_F`` if the
 operation failed, setting ``errno``.
 
-motor_get_temperature
----------------------
+get_temperature
+~~~~~~~~~~~~~~~
 
 Gets the temperature of the motor in degrees Celsius.
 
@@ -524,32 +489,27 @@ Gets the temperature of the motor in degrees Celsius.
       .. highlight:: cpp
       ::
 
-        double motor_get_temperature ( uint8_t port )
+        double pros::Motor::get_temperature ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Temperature: %lf\n", motor_get_temperature(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Motor Temperature: " << motor.get_temperature();
+            pros::delay(2);
           }
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** The motor's temperature in degrees Celsius or ``PROS_ERR_F`` if the
 operation failed, setting ``errno``.
 
-motor_get_torque
-----------------
+get_torque
+~~~~~~~~~~
 
 Gets the torque generated by the motor in Nm.
 
@@ -558,32 +518,27 @@ Gets the torque generated by the motor in Nm.
       .. highlight:: cpp
       ::
 
-        double motor_get_torque ( uint8_t port )
+        double pros::Motor::get_torque ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Torque: %lf\n", motor_get_torque(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Motor Torque: " << motor.get_torque();
+            pros::delay(2);
           }
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** The motor's torque in NM or ``PROS_ERR_F`` if the operation failed,
 setting ``errno``.
 
-motor_get_velocity
-------------------
+get_velocity
+~~~~~~~~~~~~
 
 Gets the velocity commanded to the motor by the user.
 
@@ -592,66 +547,57 @@ Gets the velocity commanded to the motor by the user.
       .. highlight:: cpp
       ::
 
-        int32_t motor_get_velocity ( uint8_t port )
+        int32_t pros::Motor::get_velocity ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Commanded Velocity: %d\n", motor_get_velocity(1));
-            delay(2);
+            motor.move_velocity(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            std::cout << "Motor Velocity: " << motor.get_velocity();
+            // Prints the value of E_CONTROLLER_ANALOG_LEFT_Y
+            pros::delay(2);
           }
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** The commanded motor velocity from -128 to 127 or ``PROS_ERR`` if the
 operation failed, setting ``errno``.
 
-motor_get_voltage
------------------
+get_voltage
+~~~~~~~~~~~
 
-Gets the voltage delivered to the motor in V.
+Gets the voltage delivered to the motor in mV.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        double motor_get_voltage ( uint8_t port )
+        double pros::Motor::get_voltage ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Voltage: %lf\n", motor_get_voltage(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Motor Voltage: " << motor.get_voltage();
+            pros::delay(2);
           }
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** The motor's voltage in V or ``PROS_ERR_F`` if the operation failed,
 setting ``errno``.
 
-motor_get_voltage_limit
------------------------
+get_voltage_limit
+~~~~~~~~~~~~~~~~~
 
 Gets the voltage limit set by the user.
 
@@ -660,31 +606,22 @@ Gets the voltage limit set by the user.
       .. highlight:: cpp
       ::
 
-        int32_t motor_get_voltage_limit ( uint8_t port )
+        int32_t pros::Motor::get_voltage_limit ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          uint32_t now = millis();
-          while (true) {
-            printf("Motor Voltage Limit: %d\n", motor_get_voltage_limit(1));
-            delay(2);
-          }
+        void initialize() {
+          pros::Motor motor (1);
+          std::cout << "Motor Voltage Limit: " << motor.get_voltage_limit();
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** The motor's voltage limit in V or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_get_zero_position_flag
-----------------------------
+get_zero_position_flag
+~~~~~~~~~~~~~~~~~~~~~~
 
 Gets the zero position flag for the motor.
 
@@ -693,33 +630,28 @@ Gets the zero position flag for the motor.
       .. highlight:: cpp
       ::
 
-        int32_t motor_get_zero_position_flag ( uint8_t port )
+        int32_t pros::Motor::get_zero_position_flag ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Is the motor at its zero position? %d\n", motor_get_zero_position_flag(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Is the motor at zero position?: " << motor.get_zero_position_flag();
+            pros::delay(2);
           }
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** ``1`` if the motor is at zero absolute position and ``0`` if the motor has
 moved from its absolute zero, or ``PROS_ERR`` if the operation failed
 setting ``errno``.
 
-motor_get_zero_velocity_flag
-----------------------------
+is_stopped
+~~~~~~~~~~
 
 Gets the zero velocity flag for the motor.
 
@@ -728,32 +660,27 @@ Gets the zero velocity flag for the motor.
       .. highlight:: cpp
       ::
 
-        int32_t motor_is_stopped ( uint8_t port )
+        int32_t motor_is_stopped ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Is the motor stopped? %d\n", motor_is_stopped(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Is the motor stopped?: " << motor.is_stopped();
+            pros::delay(2);
           }
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** ``1`` if the motor is not moving and ``0`` if the motor is moving,
 or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
-motor_is_over_current
----------------------
+is_over_current
+~~~~~~~~~~~~~~~
 
 Detects if the motor is drawing over its current limit.
 
@@ -762,32 +689,28 @@ Detects if the motor is drawing over its current limit.
       .. highlight:: cpp
       ::
 
-         int32_t motor_is_over_current ( uint8_t port )
+         int32_t pros::Motor::is_over_current ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Current Limit Hit?: %d\n", motor_is_over_current(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Is the motor over its current limit?: " << motor.is_over_current();
+            pros::delay(2);
           }
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** 1 if the motor's current limit is being exceeded and 0 if the current
 limit is not exceeded, or ``PROS_ERR`` if the operation failed, setting
 ``errno``.
 
-motor_is_reversed
------------------
+is_reversed
+~~~~~~~~~~~
 
 Gets the operation direction of the motor as set by the user.
 
@@ -796,31 +719,23 @@ Gets the operation direction of the motor as set by the user.
       .. highlight:: cpp
       ::
 
-        int32_t motor_is_reversed ( uint8_t port )
+        int32_t pros::Motor::is_reversed ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          uint32_t now = millis();
-          while (true) {
-            printf("Is the Motor reversed?: %lf\n", motor_is_reversed(1));
-            delay(2);
-          }
+        void initialize() {
+          pros::Motor motor (1);
+          std::cout << "Is the motor reversed? " << motor.is_reversed();
+          // Prints "0"
         }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
 
 **Returns:** 1 if the motor has been reversed and 0 if the motor was not reversed,
 or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
-motor_is_over_temp
-------------------
+is_over_temp
+~~~~~~~~~~~~
 
 Gets the temperature limit flag for the motor.
 
@@ -829,18 +744,19 @@ Gets the temperature limit flag for the motor.
       .. highlight:: cpp
       ::
 
-        int32_t motor_is_over_temp ( uint8_t port )
+        int32_t pros::Motor::is_over_temp ( )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          uint32_t now = millis();
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Temp Limit: %d\n", motor_is_over_temp(1));
-            delay(2);
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::cout << "Is the motor over its temperature limit?: " << motor.is_over_temp();
+            pros::delay(2);
           }
         }
 
@@ -854,14 +770,14 @@ Gets the temperature limit flag for the motor.
 temperature is below the limit, or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_move
-----------
+move
+~~~~
 
 Sets the voltage for the motor from -127 to 127.
 
 This is designed to map easily to the input from the controller's analog
 stick for simple opcontrol use. The actual behavior of the motor is analogous
-to use of `motor_move_voltage`_, or `motorSet <../../../cortex/api/index.html#motorSet>`_
+to use of `move_voltage`_, or `motorSet <../../../cortex/api/index.html#motorSet>`_
 from the PROS 2 API.
 
 .. tabs ::
@@ -869,24 +785,24 @@ from the PROS 2 API.
       .. highlight:: cpp
       ::
 
-         int32_t motor_move ( uint8_t port,
-                              const int8_t voltage )
+         int32_t motor_move ( const int8_t voltage )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            delay(2);
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            pros::delay(2);
           }
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  voltage      The new motor voltage from -127 to 127
 ============ ===============================================================
 
@@ -899,33 +815,32 @@ motor_move_absolute
 Sets the target absolute position for the motor to move to.
 
 This movement is relative to the position of the motor when initialized or
-the position when it was most recently reset with `motor_tare_position`_.
+the position when it was most recently reset with `tare_position`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        int32_t motor_move_absolute ( uint8_t port,
-                                      double position,
-                                      int32_t velocity )
+        int32_t pros::Motor::move_absolute ( double position,
+                                             int32_t velocity )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void autonomous() {
-          motor_move_absolute(1, 100, 100); // Move 100 units forward
-          motor_move_absolute(1, 100, 100); // This will not cause a movement
+          pros::Motor motor (1);
+          motor.move_absolute(100, 100); // Move 100 units forward
+          motor.move_absolute(100, 100); // This will not cause a movement
 
-          motor_tare_position(1);
-          motor_move_absolute(1, 100, 100); // This will move 100 units forward
+          motor.tare_position();
+          motor.move_absolute(100, 100); // This will move 100 units forward
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  position     The absolute position to move to in the motor's encoder units
  velocity     The maximum allowable velocity for the movement
 ============ ===============================================================
@@ -933,36 +848,35 @@ the position when it was most recently reset with `motor_tare_position`_.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_move_relative
--------------------
+move_relative
+~~~~~~~~~~~~~
 
 Sets the relative target position for the motor to move to.
 
 This movement is relative to the current position of the motor as given in
-`motor_get_position`_.
+`get_position`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        int32_t motor_move_relative ( uint8_t port,
-                                      double position,
-                                      int32_t velocity )
+        int32_t pros::Motor::move_relative ( double position,
+                                             int32_t velocity )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void autonomous() {
-          motor_move_relative(1, 100, 100); // Move 100 units forward
-          motor_move_relative(1, 100, 100); // Also move 100 units forward
+          pros::Motor motor (1);
+          motor.move_relative(100, 100); // Move 100 units forward
+          motor.move_relative(100, 100); // Also move 100 units forward
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  position     The relative position to move to in the motor's encoder units
  velocity     The maximum allowable velocity for the movement
 ============ ===============================================================
@@ -970,8 +884,8 @@ This movement is relative to the current position of the motor as given in
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_move_velocity
--------------------
+move_velocity
+~~~~~~~~~~~~~
 
 Sets the velocity for the motor.
 
@@ -988,23 +902,23 @@ voltage.
       .. highlight:: cpp
       ::
 
-        int32_t motor_move_velocity ( uint8_t port,
-                                      int16_t velocity )
+        int32_t pros::Motor::move_velocity ( uint8_t port,
+                                             int16_t velocity )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void autonomous() {
-          motor_move_velocity(1, 100);
-          delay(1000); // Move at 100 RPM for 1 second
-          motor_move_velocity(1,0);
+          pros::Motor motor (1);
+          motor.move_velocity(100);
+          pros::delay(1000); // Move at 100 RPM for 1 second
+          motor.move_velocity(0);
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  velocity     The new motor velocity from +-100, +-200, or +-600 depending
               on the motor's `gearset <motor_gearset_e_t_>`_
 ============ ===============================================================
@@ -1012,8 +926,8 @@ voltage.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_move_voltage
-------------------
+move_voltage
+~~~~~~~~~~~~
 
 Sets the voltage for the motor from -12000 mV to 12000 mV.
 
@@ -1022,64 +936,29 @@ Sets the voltage for the motor from -12000 mV to 12000 mV.
       .. highlight:: cpp
       ::
 
-        int32_t motor_move_voltage ( uint8_t port,
-                                     int16_t voltage )
+        int32_t pros::Motor::move_voltage ( int16_t voltage )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void autonomous() {
-          motor_move_voltage(1, 12000);
-          delay(1000); // Move at max voltage for 1 second
-          motor_move_voltage(1,0);
+          motor.move_voltage(12000);
+          pros::delay(1000); // Move at max voltage for 1 second
+          motor.move_voltage(0);
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  voltage      The new PWM value from -128 to 127
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_tare_position
--------------------
-
-Sets the "absolute" zero position of the motor to its current position.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-         int32_t motor_tare_position ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void autonomous() {
-          motor_move_absolute(1, 100, 100); // Move 100 units forward
-          motor_move_absolute(1, 100, 100); // This will not cause a movement
-
-          motor_tare_position(1);
-          motor_move_absolute(1, 100, 100); // This will move 100 units forward
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
-setting ``errno``.
-
-motor_set_brake_mode
---------------------
+set_brake_mode
+~~~~~~~~~~~~~~
 
 Sets one of `motor_brake_mode_e_t`_ to the motor.
 
@@ -1088,30 +967,29 @@ Sets one of `motor_brake_mode_e_t`_ to the motor.
       .. highlight:: cpp
       ::
 
-        int32_t motor_set_brake_mode ( uint8_t port,
-                                       motor_brake_mode_e_t mode )
+        int32_t pros::Motor::set_brake_mode ( motor_brake_mode_e_t mode )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void initialize() {
-          motor_set_brake_mode(1, E_MOTOR_BRAKE_HOLD);
-          printf("Brake Mode: %d\n", motor_get_brake_mode(1));
+          pros::Motor motor (1);
+          motor.set_brake_mode(E_MOTOR_BRAKE_HOLD);
+          std::cout << "Brake Mode: " << motor.get_brake_mode();
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  mode         The `motor_brake_mode_e_t`_ to set for the motor
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_set_current_limit
------------------------
+set_current_limit
+~~~~~~~~~~~~~~~~~
 
 Sets the current limit for the motor in mA.
 
@@ -1122,34 +1000,35 @@ The default limit is 2500 mA.
       .. highlight:: cpp
       ::
 
-        int32_t motor_set_current_limit ( uint8_t port,
-                                          int32_t limit )
+        int32_t pros::Motor::set_current_limit ( int32_t limit )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          motor_set_current_limit(1, 1000);
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
+
+          motor.set_current_limit(1000);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            motor = controller_get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
             // The motor will reduce its output at 1000 mA instead of the default 2500 mA
-            delay(2);
+            pros::delay(2);
           }
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  limit        The new current limit in mA
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_set_encoder_units
------------------------
+set_encoder_units
+~~~~~~~~~~~~~~~~~
 
 Sets one of `motor_encoder_units_e_t`_ for the motor encoder.
 
@@ -1158,30 +1037,29 @@ Sets one of `motor_encoder_units_e_t`_ for the motor encoder.
       .. highlight:: cpp
       ::
 
-        int32_t motor_set_encoder_units ( uint8_t port,
-                                          motor_encoder_units_e_t units )
+        int32_t pros::Motor::set_encoder_units ( motor_encoder_units_e_t units )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void initialize() {
-          motor_set_encoder_units(1, E_MOTOR_ENCODER_DEGREES);
-          printf("Encoder Units: %d\n", motor_get_encoder_units(1));
+          pros::Motor motor (1);
+          motor.set_encoder_units(E_MOTOR_ENCODER_DEGREES);
+          std::cout << "Encoder Units: " << motor.get_encoder_units();
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  units        The new `motor encoder units <motor_encoder_units_e_t_>`_
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_set_gearing
------------------
+set_gearing
+~~~~~~~~~~~
 
 Sets one of `motor_gearset_e_t <motor_gearset_e_t_>`_ for the motor.
 
@@ -1190,30 +1068,29 @@ Sets one of `motor_gearset_e_t <motor_gearset_e_t_>`_ for the motor.
       .. highlight:: cpp
       ::
 
-        int32_t motor_set_gearing ( uint8_t port,
-                                    motor_gearset_e_t_ gearset )
+        int32_t pros::Motor::set_gearing ( motor_gearset_e_t_ gearset )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void initialize() {
-          motor_set_gearing(1, E_MOTOR_GEARSET_06);
-          printf("Brake Mode: %d\n", motor_get_gearing(1));
+          pros::Motor motor (1);
+          motor.set_gearing(E_MOTOR_GEARSET_06);
+          std::cout << "Brake Mode: " << motor.get_gearing();
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  gearset      The new motor gearset
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_set_reversed
-------------------
+set_reversed
+~~~~~~~~~~~~
 
 Sets the reverse flag for the motor.
 
@@ -1224,30 +1101,29 @@ This will invert its movements and the values returned for its position.
       .. highlight:: cpp
       ::
 
-        int32_t motor_set_reversed ( uint8_t port,
-                                     bool reverse )
+        int32_t pros::Motor::set_reversed ( bool reverse )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        void autonomous() {
-          motor_set_reversed(1, true);
-          printf("Is this motor reversed? %d\n", motor_is_reversed(1));
+        void initialize() {
+          pros::Motor motor (1);
+          motor.set_reversed(true);
+          std::cout << "Is this motor reversed? " << motor.is_reversed();
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  reverse      ``1`` reverses the motor, ``0`` is default
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_set_voltage_limit
------------------------
+set_voltage_limit
+~~~~~~~~~~~~~~~~~
 
 Sets the voltage limit for the motor in mV.
 
@@ -1256,34 +1132,35 @@ Sets the voltage limit for the motor in mV.
       .. highlight:: cpp
       ::
 
-        int32_t motor_set_voltage_limit ( uint8_t port,
-                                          int32_t limit )
+        int32_t pros::Motor::set_voltage_limit ( int32_t limit )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void autonomous() {
-          motor_set_voltage_limit(1,10000);
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
+
+          motor.set_voltage_limit(10000);
           while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
             // The motor will not output more than 10 V
-            delay(2);
+            pros::delay(2);
           }
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  limit        The new voltage limit in Volts
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
-motor_set_zero_position
------------------------
+set_zero_position
+~~~~~~~~~~~~~~~~~
 
 Sets the zero position for the motor in its encoder units.
 
@@ -1294,30 +1171,59 @@ This will be the future reference point for the motor's "absolute" position.
       .. highlight:: cpp
       ::
 
-        int32_t motor_set_zero_position ( uint8_t port,
-                                          double position )
+        int32_t pros::Motor::set_zero_position ( double position )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void autonomous() {
-          motor_move_absolute(1, 100, 100); // Move 100 units forward
-          motor_move_absolute(1, 100, 100); // This will not cause a movement
+          pros::Motor motor (1);
+          motor.move_absolute(100, 100); // Move 100 units forward
+          motor.move_absolute(100, 100); // This will not cause a movement
 
-          motor_set_zero_position(1, 80);
-          motor_move_absolute(1, 100, 100); // This will move 120 units forward
+          motor.set_zero_position(80);
+          motor.move_absolute(100, 100); // This will move 120 units forward
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- port         The V5 port number from 1-21
  position     The new reference position in its encoder units
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+
+tare_position
+~~~~~~~~~~~~~
+
+Sets the "absolute" zero position of the motor to its current position.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         int32_t pros::Motor::tare_position ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+          pros::Motor motor (1);
+          motor.move_absolute(100, 100); // Move 100 units forward
+          motor.move_absolute(100, 100); // This will not cause a movement
+
+          motor.tare_position();
+          motor.move_absolute(100, 100); // This will move 100 units forward
+        }
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
 .. _motor_gearset_e_t: ../c/motors.html#motor-gearset-e-t
 .. _motor_encoder_units_e_t: ../c/motors.html#motor-encoder-units-e-t
+.. _motor_brake_mode_e_t: ../c/motors.html#motor-brake-mode-e-t
