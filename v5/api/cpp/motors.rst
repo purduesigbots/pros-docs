@@ -547,9 +547,9 @@ operation failed, setting ``errno``.
 get_temperature
 ~~~~~~~~~~~~~~~
 
-Gets the temperature of the motor in degrees Celsius.
-
-The resolution of this reading is 5 degrees Celsius.
+Gets the temperature of the motor in degrees Celsius. The resolution of this
+eading is 5 degrees Celsius. The motor will start to reduce its power when the
+temperature reading is greater than or equal to 55 C.
 
 Analogous to `motor_get_temperature <../c/motors.html#motor-get-temperature>`_.
 

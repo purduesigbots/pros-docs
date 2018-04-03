@@ -1,6 +1,6 @@
 .. highlight:: c
    :linenothreshold: 5
-   
+
 ============
 Motors C API
 ============
@@ -525,9 +525,9 @@ operation failed, setting ``errno``.
 motor_get_temperature
 ---------------------
 
-Gets the temperature of the motor in degrees Celsius.
-
-The resolution of this reading is 5 degrees Celsius.
+Gets the temperature of the motor in degrees Celsius. The resolution of this
+eading is 5 degrees Celsius. The motor will start to reduce its power when the
+temperature reading is greater than or equal to 55 C.
 
 Analogous to `pros::Motor::get_temperature <../cpp/motors.html#get-temperature>`_.
 
