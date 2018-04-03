@@ -1,6 +1,6 @@
 [submodule "sphinx_rtd_theme"]
 	path = sphinx_rtd_theme
-	url = git@github.com:purduesigbots/sphinx_rtd_theme.git
+	url = https://github.com/purduesigbots/sphinx_rtd_theme.git
 [submodule "sphinx-tabs"]
 	path = sphinx-tabs
 	url = https://github.com/purduesigbots/sphinx-tabs.git
