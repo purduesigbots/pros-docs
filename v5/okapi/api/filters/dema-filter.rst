@@ -7,7 +7,7 @@ DEMA Filter
 okapi::DemaFilter
 =================
 
-A filter that computes a double exponential moving average. This filter will follow trends (like the rate of change of the signal) on top of being an exponential moving average.
+A filter that computes a double exponential moving average. This filter will follow trends (like the rate of change of the signal) in addition to being an exponential moving average.
 
 Constructor(s)
 --------------
@@ -34,7 +34,7 @@ Constructor(s)
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- ialpha          The alpha gain (like in a single exponential moving average).
+ ialpha          The alpha gain (how much to consider the current measurement vs. the previous output).
  ibeta           The beta gain (how aggressively the filter should follow trends).
 =============== ===================================================================
 
@@ -96,6 +96,6 @@ Sets new filter gains.
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ialpha          The alpha gain (like in a single exponential moving average).
+ ialpha          The alpha gain (how much to consider the current measurement vs. the previous output).
  ibeta           The beta gain (how aggressively the filter should follow trends).
 =============== ===================================================================
