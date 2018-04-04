@@ -7,3 +7,4 @@ Devices API
    :glob:
 
    */index
+   ./adi-ultrasonic
