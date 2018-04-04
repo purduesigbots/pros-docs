@@ -4,8 +4,7 @@ OkapiLib Documentation Home
 
 .. toctree::
    :caption: Content
+   :glob:
+   :maxdepth: 1
 
-   ./api/index
-   ./getting-started/index
-   ./tutorials/index
-  
+   ./*/index
