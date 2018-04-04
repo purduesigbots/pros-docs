@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        template <std::size_t n> AverageFilter() = default
+        template <std::size_t n> AverageFilter()
 
    .. tab :: Example
       .. highlight:: cpp
