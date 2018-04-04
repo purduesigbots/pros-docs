@@ -33,7 +33,7 @@ Filters a value, like a sensor reading.
 ----
 
 getOutput
-~~~~~~
+~~~~~~~~~
 
 Returns the previous output from the filter.
 
