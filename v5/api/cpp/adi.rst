@@ -17,6 +17,10 @@ pros::ADIAnalogIn
 Constructor(s)
 --------------
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -209,6 +213,10 @@ pros::ADIAnalogOut
 Constructor(s)
 --------------
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -278,6 +286,10 @@ pros::ADIDigitalIn
 
 Constructor(s)
 --------------
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
 
 .. tabs ::
    .. tab :: Prototype
@@ -391,10 +403,33 @@ pros::ADIDigitalOut
 Constructor(s)
 --------------
 
-::
+This function uses the following values of ``errno`` when an error state is reached:
 
-  pros::ADIDigitalOut::ADIDigitalOut ( std::uint8_t port
-                                       bool init_state = false )
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        pros::ADIDigitalOut::ADIDigitalOut ( std::uint8_t port
+                                             bool init_state = false )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define DIGITAL_SENSOR_PORT 1
+
+        void opcontrol() {
+          bool state = LOW;
+          pros::ADIDigitalOut sensor (DIGITAL_SENSOR_PORT, state);
+          while (true) {
+            state != state;
+            sensor.set_value(state);
+            delay(50); // toggle the sensor value every 50ms
+          }
+        }
 
 ============ =================================================================================================================
  Parameters
@@ -456,6 +491,10 @@ pros::ADIEncoder
 
 Constructor(s)
 --------------
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
 
 .. tabs ::
    .. tab :: Prototype
@@ -565,6 +604,10 @@ pros::ADIMotor
 
 Constructor(s)
 --------------
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
 
 .. tabs ::
    .. tab :: Prototype
@@ -709,6 +752,10 @@ pros::ADIPort
 
 Constructor(s)
 --------------
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
 
 .. tabs ::
    .. tab :: Prototype
@@ -884,6 +931,10 @@ pros::ADIUltrasonic
 
 Constructor(s)
 --------------
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
 
 .. tabs ::
    .. tab :: Prototype
