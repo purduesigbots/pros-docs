@@ -124,3 +124,4 @@ html_additional_pages = {
 
 html_show_sphinx = False
 highlight_language = "c"
+nitpicky = True

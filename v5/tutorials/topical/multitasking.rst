@@ -1,9 +1,3 @@
-.. highlight:: c
-   :linenothreshold: 0
-
-.. highlight:: cpp
-   :linenothreshold: 0
-
 ============
 Multitasking
 ============
@@ -48,7 +42,9 @@ Tasks in PROS are simple to create:
 .. tabs ::
     .. tab :: C
         .. highlight:: c
-        ::
+        .. code-block:: c
+           :caption: initialize.c
+           :linenos:
 
             void my_task_fn(void* param) {
                 printf("Hello %s\n", (char*)param);
@@ -61,7 +57,9 @@ Tasks in PROS are simple to create:
 
     .. tab :: C++
         .. highlight:: cpp
-        ::
+        .. code-block:: cpp
+           :caption: initialize.cpp
+           :linenos:
 
             void my_task_fn(void* param) {
                 std::cout << Hello << (char*)param << std::endl;
@@ -73,7 +71,9 @@ Tasks in PROS are simple to create:
             }
     .. tab :: API2
         .. highlight:: c
-        ::
+        .. code-block:: c
+           :caption: initialize.c
+           :linenos:
 
             void my_task_fn(void* param) {
                 printf("Hello %s\n", (char*)param);
@@ -82,7 +82,7 @@ Tasks in PROS are simple to create:
                 TaskHandle my_task = taskCreate(my_task_fn, TASK_DEFAULT_STACK_SIZE, "PROS", TASK_PRIORITY_DEFAULT);
             }
 
-The `task_create <../api/c/rtos.html#task_create>`_ function takes in a function where the task starts, an argument to the function,
+The `task_create <../../api/c/rtos.html#task_create>`_ function takes in a function where the task starts, an argument to the function,
 a priority for the task, and two new fields not yet discussed: stack size and name.
 
 Stack size describes the amount of stack space that is allocated for the task. The stack is an area for your
@@ -96,7 +96,7 @@ may be able to use ``TASK_STACK_DEPTH_MIN``.
 The last parameter is the task name. The task name allows you to give a task a human-friendly name for the task. It
 is primarily for debugging purposes and allows you (the human) to easily identify tasks if performing advanced task
 management. Task names may be up to 32 characters long, and you may pass NULL or an empty string into the function.
-In API2, `taskCreate <../../cortex/api/index.html#taskCreate>`_ will automatically make the task name an empty string.
+In API2, `taskCreate <../../../cortex/api/index.html#taskCreate>`_ will automatically make the task name an empty string.
 
 Synchronization
 ===============
@@ -115,7 +115,8 @@ the same variables or data. You may design your code to have each subsystem of y
 robot in its own task. Ensuring that tasks never write to the same variables is called
 division of responsibility or separation of domain.
 
-::
+.. code-block:: c
+   :linenos:
 
     int task1_variable = 0;
     void Task1(void * ignore) {
@@ -144,30 +145,32 @@ the mutex) before they may continue.
 .. tabs::
    .. tab:: C
       .. highlight:: c
-      ::
+      .. code-block:: c
+         :linenos:
 
-        mutex_t mutex = mutex_create();
+         mutex_t mutex = mutex_create();
 
-        // Acquire the mutex; other tasks using this command will wait until the mutex is released
-        // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
-        // If the timeout expires, "false" will be returned, otherwise "true"
-        mutex_take(mutex, timeout);
-        // do some work
-        // Release the mutex for other tasks
-        mutex_give(mutex);
+         // Acquire the mutex; other tasks using this command will wait until the mutex is released
+         // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
+         // If the timeout expires, "false" will be returned, otherwise "true"
+         mutex_take(mutex, timeout);
+         // do some work
+         // Release the mutex for other tasks
+         mutex_give(mutex);
 
    .. tab:: C++
       .. highlight:: cpp
-      ::
+      .. code-block:: cpp
+         :linenos:
 
-        Mutex mutex;
-        // Acquire the mutex; other tasks using this command will wait until the mutex is released
-        // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
-        // If the timeout expires, "false" will be returned, otherwise "true"
-        mutex_take(mutex, timeout);
-        // do some work
-        // Release the mutex for other tasks
-        mutex_give(mutex);
+         Mutex mutex;
+         // Acquire the mutex; other tasks using this command will wait until the mutex is released
+         // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
+         // If the timeout expires, "false" will be returned, otherwise "true"
+         mutex.take(timeout);
+         // do some work
+         // Release the mutex for other tasks
+         mutex.give();
 
 Mutexes do not magically prevent concurrent writing, but provide the ability for tasks to
 create "contracts" with each other. You can write your code such that a variable is never
@@ -175,5 +178,6 @@ written to unless the task owns a mutex designated for that variable.
 
 Notifications
 -------------
+
 Task notifications are a powerful new feature in PROS 3 which allows direct-to-task
 synchronization. A full tutorial on task notifications can be found `here <./notifications.html>`_.

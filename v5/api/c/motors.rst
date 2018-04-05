@@ -5,6 +5,9 @@
 Motors C API
 ============
 
+.. note:: Additional example code for this module can be found in
+          `its Tutorial <../../tutorials/topical/motors.html>`_.
+
 .. contents:: :local:
 
 Functions
@@ -14,6 +17,11 @@ motor_get_actual_velocity
 -------------------------
 
 Gets the actual velocity of the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::get_actual_velocity <../cpp/motors.html#get-actual-velocity>`_.
 
@@ -52,6 +60,11 @@ motor_get_brake_mode
 
 Gets the brake mode of the motor.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_brake_mode <../cpp/motors.html#get-brake-mode>`_.
 
 .. tabs ::
@@ -85,6 +98,11 @@ motor_get_current
 -----------------
 
 Gets the current drawn by the motor in mA.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::get_current <../cpp/motors.html#get-current>`_.
 
@@ -123,6 +141,11 @@ motor_get_current_limit
 
 Gets the current limit for the motor in mA. The default limit is 2500 mA.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_current_limit <../cpp/motors.html#get-current-limit>`_.
 
 .. tabs ::
@@ -156,6 +179,11 @@ motor_get_direction
 -------------------
 
 Gets the direction of movement for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::get_direction <../cpp/motors.html#get-direction>`_.
 
@@ -199,6 +227,11 @@ An efficiency of 100% means that the motor is moving electrically while
 drawing no electrical power, and an efficiency of 0% means that the motor
 is drawing power but not moving.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_efficiency <../cpp/motors.html#get-efficiency>`_.
 
 .. tabs ::
@@ -236,6 +269,11 @@ motor_get_encoder_units
 
 Gets the `encoder units <motor_encoder_units_e_t>`_ set for the motor.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_encoder_units <../cpp/motors.html#get-encoder-units>`_.
 
 .. tabs ::
@@ -269,6 +307,11 @@ motor_get_faults
 ----------------
 
 Gets the faults experienced by the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::get_faults <../cpp/motors.html#get-faults>`_.
 
@@ -306,6 +349,11 @@ motor_get_flags
 
 Gets the flags set by the motor's operation.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_flags <../cpp/motors.html#get-flags>`_.
 
 .. tabs ::
@@ -342,6 +390,11 @@ motor_get_gearing
 
 Gets the `gearset <motor_gearset_e_t>`_` that was set for the motor.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_gearing <../cpp/motors.html#get-gearing>`_.
 
 .. tabs ::
@@ -375,6 +428,11 @@ motor_get_position
 ------------------
 
 Gets the absolute position of the motor in its encoder units.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::get_position <../cpp/motors.html#get-position>`_.
 
@@ -413,6 +471,11 @@ motor_get_power
 
 Gets the power drawn by the motor in Watts.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_power <../cpp/motors.html#get-power>`_.
 
 .. tabs ::
@@ -450,6 +513,11 @@ motor_get_raw_position
 ----------------------
 
 Gets the raw encoder count of the motor at a given timestamp.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::get_raw_position <../cpp/motors.html#get-raw-position>`_.
 
@@ -492,6 +560,11 @@ motor_get_target
 
 Gets the target position set for the motor by the user.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_target <../cpp/motors.html#get-target>`_.
 
 .. tabs ::
@@ -528,6 +601,11 @@ motor_get_temperature
 Gets the temperature of the motor in degrees Celsius. The resolution of this
 eading is 5 degrees Celsius. The motor will start to reduce its power when the
 temperature reading is greater than or equal to 55 C.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::get_temperature <../cpp/motors.html#get-temperature>`_.
 
@@ -566,6 +644,11 @@ motor_get_torque
 
 Gets the torque generated by the motor in Nm.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_torque <../cpp/motors.html#get-torque>`_.
 
 .. tabs ::
@@ -602,6 +685,11 @@ motor_get_velocity
 ------------------
 
 Gets the velocity commanded to the motor by the user.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::get_velocity <../cpp/motors.html#get-velocity>`_.
 
@@ -640,6 +728,11 @@ motor_get_voltage
 
 Gets the voltage delivered to the motor in mV.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_voltage <../cpp/motors.html#get-voltage>`_.
 
 .. tabs ::
@@ -677,6 +770,11 @@ motor_get_voltage_limit
 
 Gets the voltage limit set by the user.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::get_voltage_limit <../cpp/motors.html#get-voltage-limit>`_.
 
 .. tabs ::
@@ -710,6 +808,11 @@ motor_get_zero_position_flag
 ----------------------------
 
 Gets the zero position flag for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::get_zero_position_flag <../cpp/motors.html#get-zero-position-flag>`_.
 
@@ -749,6 +852,11 @@ motor_is_stopped
 
 Gets the zero velocity flag for the motor.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::is_stopped <../cpp/motors.html#is-stopped>`_.
 
 .. tabs ::
@@ -785,6 +893,11 @@ motor_is_over_current
 ---------------------
 
 Detects if the motor is drawing over its current limit.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::is_over_current <../cpp/motors.html#is-over-current>`_.
 
@@ -824,6 +937,11 @@ motor_is_reversed
 
 Gets the operation direction of the motor as set by the user.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::is_reversed <../cpp/motors.html#is-reversed>`_.
 
 .. tabs ::
@@ -857,6 +975,11 @@ motor_is_over_temp
 ------------------
 
 Gets the temperature limit flag for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::is_over_temp <../cpp/motors.html#is-over-temp>`_.
 
@@ -901,6 +1024,11 @@ stick for simple opcontrol use. The actual behavior of the motor is analogous
 to use of `motor_move_voltage`_, or `motorSet <../../../cortex/api/index.html#motorSet>`_
 from the PROS 2 API.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::move <../cpp/motors.html#move>`_.
 
 .. tabs ::
@@ -941,6 +1069,11 @@ Sets the target absolute position for the motor to move to.
 
 This movement is relative to the position of the motor when initialized or
 the position when it was most recently reset with `motor_tare_position`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::move_absolute <../cpp/motors.html#move-absolute>`_.
 
@@ -985,6 +1118,11 @@ Sets the relative target position for the motor to move to.
 
 This movement is relative to the current position of the motor as given in
 `motor_get_position`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::move_relative <../cpp/motors.html#move-relative>`_.
 
@@ -1032,6 +1170,11 @@ used for the motor. This results in a range of +-100 for
 is held with PID to ensure consistent speed, as opposed to setting the motor's
 voltage.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::move_velocity <../cpp/motors.html#move-velocity>`_.
 
 .. tabs ::
@@ -1070,6 +1213,11 @@ motor_move_voltage
 
 Sets the voltage for the motor from -12000 mV to 12000 mV.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::move_voltage <../cpp/motors.html#move-voltage>`_.
 
 .. tabs ::
@@ -1106,6 +1254,11 @@ motor_set_brake_mode
 --------------------
 
 Sets one of `motor_brake_mode_e_t`_ to the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::set_brake_mode <../cpp/motors.html#set-brake-mode>`_.
 
@@ -1144,6 +1297,11 @@ motor_set_current_limit
 Sets the current limit for the motor in mA.
 
 The default limit is 2500 mA.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::set_current_limit <../cpp/motors.html#set-current-limit>`_.
 
@@ -1185,6 +1343,11 @@ motor_set_encoder_units
 
 Sets one of `motor_encoder_units_e_t`_ for the motor encoder.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::set_encoder_units <../cpp/motors.html#set-encoder-units>`_.
 
 .. tabs ::
@@ -1220,6 +1383,11 @@ motor_set_gearing
 -----------------
 
 Sets one of `motor_gearset_e_t`_ for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::set_gearing <../cpp/motors.html#set-gearing>`_.
 
@@ -1259,6 +1427,11 @@ Sets the reverse flag for the motor.
 
 This will invert its movements and the values returned for its position.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::set_reversed <../cpp/motors.html#set-reversed>`_.
 
 .. tabs ::
@@ -1294,6 +1467,11 @@ motor_set_voltage_limit
 -----------------------
 
 Sets the voltage limit for the motor in mV.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::set_voltage_limit <../cpp/motors.html#set-voltage-limit>`_.
 
@@ -1337,6 +1515,11 @@ Sets the zero position for the motor in its encoder units.
 
 This will be the future reference point for the motor's "absolute" position.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::set_zero_position <../cpp/motors.html#set-zero-position>`_.
 
 .. tabs ::
@@ -1375,6 +1558,11 @@ motor_tare_position
 -------------------
 
 Sets the "absolute" zero position of the motor to its current position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::tare_position <../cpp/motors.html#tare-position>`_.
 

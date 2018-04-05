@@ -1,9 +1,12 @@
 .. highlight:: c
    :linenothreshold: 5
-   
+
 ===================
 Miscellaneous C API
 ===================
+
+.. note:: Additional example code for this module can be found in
+          `its Tutorial <../../tutorials/topical/controller.html>`_.
 
 .. contents:: :local:
 
@@ -14,6 +17,10 @@ battery_get_capacity
 --------------------
 
 Gets the current capacity of the battery, as reported by VEXos.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the battery port.
 
 Analogous to `pros::battery::get_capacity <../cpp/misc.html#get-capacity>`_.
 
@@ -41,6 +48,10 @@ battery_get_current
 
 Gets the current current of the battery, as reported by VEXos.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the battery port.
+
 Analogous to `pros::battery::get_current <../cpp/misc.html#get-current>`_.
 
 .. tabs ::
@@ -67,6 +78,10 @@ battery_get_temperature
 
 Gets the current temperature of the battery, as reported by VEXos.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the battery port.
+
 Analogous to `pros::battery::get_temperature <../cpp/misc.html#get-temperature>`_.
 
 .. tabs ::
@@ -91,7 +106,11 @@ Analogous to `pros::battery::get_temperature <../cpp/misc.html#get-temperature>`
 battery_get_voltage
 -------------------
 
-Gets the current voltage of the battery, as reported by VEXos
+Gets the current voltage of the battery, as reported by VEXos.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the battery port.
 
 Analogous to `pros::battery::get_voltage <../cpp/misc.html#get-voltage>`_.
 
@@ -238,6 +257,11 @@ controller_get_analog
 
 Gets the value of an analog channel (joystick) on a controller.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
+- ``EACCES``  - Another resource is currently trying to access the controller port.
+
 Analogous to `pros::Controller::get_analog <../cpp/misc.html#get-analog>`_.
 
 .. tabs ::
@@ -278,6 +302,11 @@ controller_get_digital
 ----------------------
 
 Gets the value of an digital channel (button) on a controller.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
+- ``EACCES``  - Another resource is currently trying to access the controller port.
 
 Analogous to `pros::Controller::get_digital <../cpp/misc.html#get-digital>`_.
 
@@ -332,6 +361,11 @@ this function for button 3, but should not for buttons 1 or 2. A typical
 use-case for this function is to call inside opcontrol to detect new button
 presses, and not in any other tasks.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
+- ``EACCES``  - Another resource is currently trying to access the controller port.
+
 Analogous to `pros::Controller::get_digital_new_press <../cpp/misc.html#get-digital-new-press>`_.
 
 .. tabs ::
@@ -373,6 +407,11 @@ controller_is_connected
 -----------------------
 
 Returns 0 or 1 if the controller is connected.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
+- ``EACCES``  - Another resource is currently trying to access the controller port.
 
 Analogous to `pros::Controller::is_connected <../cpp/misc.html#id1>`_.
 

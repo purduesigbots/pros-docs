@@ -1,9 +1,3 @@
-.. highlight:: c
-   :linenothreshold: 0
-
-.. highlight:: cpp
-   :linenothreshold: 0
-
 =========
 Uploading
 =========

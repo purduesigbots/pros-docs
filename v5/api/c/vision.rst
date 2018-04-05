@@ -1,9 +1,12 @@
 .. highlight:: c
    :linenothreshold: 5
-   
+
 ===================
 Vision Sensor C API
 ===================
+
+.. note:: Additional example code for this module can be found in
+          `its Tutorial <../../tutorials/topical/vision.html>`_.
 
 .. contents:: :local:
 

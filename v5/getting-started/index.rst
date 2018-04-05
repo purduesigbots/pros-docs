@@ -13,7 +13,6 @@ For more advanced, topical guides, visit the :doc:`../tutorials/index` section.
    :titlesonly:
 
    new-users
-   clawbot
 
 .. toctree::
    :caption: Installation Guides

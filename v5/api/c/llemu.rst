@@ -1,9 +1,12 @@
 .. highlight:: c
    :linenothreshold: 5
-   
+
 =================================
 LLEMU (Legacy LCD Emulator) C API
 =================================
+
+.. note:: Additional example code for this module can be found in
+          `its Tutorial <../../tutorials/topical/llemu.html>`_.
 
 .. contents:: :local:
 

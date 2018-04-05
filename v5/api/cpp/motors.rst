@@ -5,6 +5,9 @@
 Motors C++ API
 ==============
 
+.. note:: Additional example code for this module can be found in
+          `its Tutorial <../../tutorials/topical/motors.html>`_.
+
 .. contents:: :local:
 
 pros::Motor
@@ -12,6 +15,11 @@ pros::Motor
 
 Constructor(s)
 --------------
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 .. tabs ::
    .. tab :: Prototype
@@ -57,6 +65,10 @@ stick for simple opcontrol use. The actual behavior of the motor is analogous
 to use of `move_voltage`_, or `motorSet <../../../cortex/api/index.html#motorSet>`_
 from the PROS 2 API.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -85,6 +97,29 @@ from the PROS 2 API.
 
 ----
 
+Literal(s)
+----------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        okapi::Motor operator"" _m(const unsigned long long iport)
+        okapi::Motor operator"" _rm(const unsigned long long iport)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          using namespace pros::literals;
+          auto motor1 = 1_m; // Motor in port 1
+          auto motor1_reversed = 1_rm; // Reversed motor in port 1
+        }
+
+----
+
 Methods
 -------
 
@@ -92,6 +127,10 @@ get_actual_velocity
 ~~~~~~~~~~~~~~~~~~~
 
 Gets the actual velocity of the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_get_actual_velocity <../c/motors.html#motor-get-actual-velocity>`_.
 
@@ -126,6 +165,10 @@ get_brake_mode
 
 Gets the brake mode of the motor.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_brake_mode <../c/motors.html#motor-get-brake-mode>`_.
 
 .. tabs ::
@@ -154,6 +197,10 @@ get_current
 ~~~~~~~~~~~
 
 Gets the current drawn by the motor in mA.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_get_current <../c/motors.html#motor-get-current>`_.
 
@@ -190,6 +237,10 @@ Gets the current limit for the motor in mA.
 
 The default limit is 2500 mA.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_current_limit <../c/motors.html#motor-get-current-limit>`_.
 
 .. tabs ::
@@ -220,6 +271,10 @@ get_direction
 ~~~~~~~~~~~~~
 
 Gets the direction of movement for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_get_direction <../c/motors.html#motor-get-direction>`_.
 
@@ -259,6 +314,10 @@ An efficiency of 100% means that the motor is moving electrically while
 drawing no electrical power, and an efficiency of 0% means that the motor
 is drawing power but not moving.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_efficiency <../c/motors.html#motor-get-efficiency>`_.
 
 .. tabs ::
@@ -292,6 +351,10 @@ get_encoder_units
 
 Gets the encoder units set for the motor.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_encoder_units <../c/motors.html#motor-get-encoder-units>`_.
 
 .. tabs ::
@@ -319,6 +382,10 @@ get_faults
 ~~~~~~~~~~
 
 Gets the faults experienced by the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_get_faults <../c/motors.html#motor-get-faults>`_.
 
@@ -352,6 +419,10 @@ get_flags
 
 Gets the flags set by the motor's operation.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_flags <../c/motors.html#motor-get-flags>`_.
 
 .. tabs ::
@@ -384,6 +455,10 @@ get_gearing
 
 Gets the `gearset <motor_gearset_e_t_>`_` that was set for the motor.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_gearing <../c/motors.html#motor-get-gearing>`_.
 
 .. tabs ::
@@ -411,6 +486,10 @@ get_position
 ~~~~~~~~~~~~
 
 Gets the absolute position of the motor in its encoder units.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_get_position <../c/motors.html#motor-get-position>`_.
 
@@ -445,6 +524,10 @@ get_power
 
 Gets the power drawn by the motor in Watts.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_power <../c/motors.html#motor-get-power>`_.
 
 .. tabs ::
@@ -477,6 +560,10 @@ get_raw_position
 ~~~~~~~~~~~~~~~~
 
 Gets the raw encoder count of the motor at a given timestamp.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_get_raw_position <../c/motors.html#motor-get-raw-position>`_.
 
@@ -519,6 +606,10 @@ get_target
 
 Gets the target position set for the motor by the user.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_target <../c/motors.html#motor-get-target>`_.
 
 .. tabs ::
@@ -550,6 +641,10 @@ get_temperature
 Gets the temperature of the motor in degrees Celsius. The resolution of this
 eading is 5 degrees Celsius. The motor will start to reduce its power when the
 temperature reading is greater than or equal to 55 C.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_get_temperature <../c/motors.html#motor-get-temperature>`_.
 
@@ -584,6 +679,10 @@ get_torque
 
 Gets the torque generated by the motor in Nm.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_torque <../c/motors.html#motor-get-torque>`_.
 
 .. tabs ::
@@ -616,6 +715,10 @@ get_velocity
 ~~~~~~~~~~~~
 
 Gets the velocity commanded to the motor by the user.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_get_velocity <../c/motors.html#motor-get-velocity>`_.
 
@@ -651,6 +754,10 @@ get_voltage
 
 Gets the voltage delivered to the motor in mV.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_voltage <../c/motors.html#motor-get-voltage>`_.
 
 .. tabs ::
@@ -684,6 +791,10 @@ get_voltage_limit
 
 Gets the voltage limit set by the user.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_get_voltage_limit <../c/motors.html#motor-get-voltage-limit>`_.
 
 .. tabs ::
@@ -711,6 +822,10 @@ get_zero_position_flag
 ~~~~~~~~~~~~~~~~~~~~~~
 
 Gets the zero position flag for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_get_zero_position_flag <../c/motors.html#motor-get-zero-position-flag>`_.
 
@@ -746,6 +861,10 @@ is_stopped
 
 Gets the zero velocity flag for the motor.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_is_stopped <../c/motors.html#motor-is-stopped>`_.
 
 .. tabs ::
@@ -778,6 +897,10 @@ is_over_current
 ~~~~~~~~~~~~~~~
 
 Detects if the motor is drawing over its current limit.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_is_over_current <../c/motors.html#motor-is-over-current>`_.
 
@@ -813,6 +936,10 @@ is_reversed
 
 Gets the operation direction of the motor as set by the user.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_is_reversed <../c/motors.html#motor-is-reversed>`_.
 
 .. tabs ::
@@ -841,6 +968,10 @@ is_over_temp
 ~~~~~~~~~~~~
 
 Gets the temperature limit flag for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_is_over_temp <../c/motors.html#motor-is-over-temp>`_.
 
@@ -887,6 +1018,10 @@ stick for simple opcontrol use. The actual behavior of the motor is analogous
 to use of `move_voltage`_, or `motorSet <../../../cortex/api/index.html#motorSet>`_
 from the PROS 2 API.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_move <../c/motors.html#motor-move>`_.
 
 .. tabs ::
@@ -927,6 +1062,10 @@ Sets the target absolute position for the motor to move to.
 
 This movement is relative to the position of the motor when initialized or
 the position when it was most recently reset with `tare_position`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_move_absolute <../c/motors.html#motor-move-absolute>`_.
 
@@ -970,6 +1109,10 @@ Sets the relative target position for the motor to move to.
 
 This movement is relative to the current position of the motor as given in
 `get_position`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_move_relative <../c/motors.html#motor-move-relative>`_.
 
@@ -1016,6 +1159,10 @@ used for the motor. This results in a range of +-100 for
 is held with PID to ensure consistent speed, as opposed to setting the motor's
 voltage.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_move_velocity <../c/motors.html#motor-move-velocity>`_.
 
 .. tabs ::
@@ -1054,6 +1201,10 @@ move_voltage
 
 Sets the voltage for the motor from -12000 mV to 12000 mV.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_move_voltage <../c/motors.html#motor-move-voltage>`_.
 
 .. tabs ::
@@ -1088,6 +1239,10 @@ set_brake_mode
 ~~~~~~~~~~~~~~
 
 Sets one of `motor_brake_mode_e_t`_ to the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_set_brake_mode <../c/motors.html#motor-set-brake-mode>`_.
 
@@ -1125,6 +1280,10 @@ set_current_limit
 Sets the current limit for the motor in mA.
 
 The default limit is 2500 mA.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_set_current_limit <../c/motors.html#motor-set-current-limit>`_.
 
@@ -1167,6 +1326,10 @@ set_encoder_units
 
 Sets one of `motor_encoder_units_e_t`_ for the motor encoder.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_set_encoder_units <../c/motors.html#motor-set-encoder-units>`_.
 
 .. tabs ::
@@ -1201,6 +1364,10 @@ set_gearing
 ~~~~~~~~~~~
 
 Sets one of `motor_gearset_e_t <motor_gearset_e_t_>`_ for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_set_gearing <../c/motors.html#motor-set-gearing>`_.
 
@@ -1239,6 +1406,10 @@ Sets the reverse flag for the motor.
 
 This will invert its movements and the values returned for its position.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_set_reversed <../c/motors.html#motor-set-reversed>`_.
 
 .. tabs ::
@@ -1273,6 +1444,10 @@ set_voltage_limit
 ~~~~~~~~~~~~~~~~~
 
 Sets the voltage limit for the motor in mV.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_set_voltage_limit <../c/motors.html#motor-set-voltage-limit>`_.
 
@@ -1317,6 +1492,10 @@ Sets the zero position for the motor in its encoder units.
 
 This will be the future reference point for the motor's "absolute" position.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_set_zero_position <../c/motors.html#motor-set-zero-position>`_.
 
 .. tabs ::
@@ -1354,6 +1533,10 @@ tare_position
 ~~~~~~~~~~~~~
 
 Sets the "absolute" zero position of the motor to its current position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_tare_position <../c/motors.html#motor-tare-position>`_.
 

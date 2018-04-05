@@ -1,9 +1,3 @@
-.. highlight:: c
-   :linenothreshold: 0
-
-.. highlight:: cpp
-   :linenothreshold: 0
-
 =================
 Project Structure
 =================
@@ -24,11 +18,11 @@ include
 =======
 
 The **header** files are all found in the ``include`` directory. One
-header file, `api.h <../api/index.html>`_, is required to declare
+header file, `api.h <../../api/index.html>`_, is required to declare
 the PROS library functions. This file exists merely to include the individual
 PROS API headers, all of which can be found in ``include/pros``. Each header file
 in this directory covers a specific aspect of interacting with the V5 hardware,
-and correlates to the files found in the `API documentation <../api/index.html>`_.
+and correlates to the files found in the `API documentation <../../api/index.html>`_.
 
 The other file, ``main.h``, is intended for declaring functions and
 variables shared between the user code files.  ``main.h`` also

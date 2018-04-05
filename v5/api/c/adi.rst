@@ -5,6 +5,9 @@
 ADI (TriPort) C API
 ====================
 
+.. note:: Additional example code for this module can be found in
+          `its Tutorial <../../tutorials/topical/adi.html>`_.
+
 .. contents:: :local:
 
 Functions
@@ -29,6 +32,10 @@ Do not use this function when the sensor value might be unstable
    1ms sample rate. This sample rate was kept for the sake of being similar to PROS
    2, and increasing the sample rate would not have a tangible difference in the
    function's performance.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range or the port is not configured to be an analog input.
 
 Analogous to `pros::ADIAnalogIn::calibrate <../cpp/adi.html#calibrate>`_.
 
@@ -68,6 +75,10 @@ Reads an analog input channel and returns the 12-bit value.
 
 The value returned is undefined if the analog pin has been switched to a different mode.
 The meaning of the returned value varies depending on the sensor attached.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range or the port is not configured to be an analog input.
 
 Analogous to `pros::ADIAnalogIn::get_value <../cpp/adi.html#get-value>`_.
 
@@ -110,6 +121,10 @@ Reads the calibrated value of an analog input channel.
 The `adi_analog_calibrate`_ function must be run first on that channel. This function is
 inappropriate for sensor valuesintended forintegration, as round-off error can accumulate
 causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range or the port is not configured to be an analog input.
 
 Analogous to `pros::ADIAnalogIn::get_value_calibrated <../cpp/adi.html#get-value-calibrated>`_.
 
@@ -155,6 +170,10 @@ used on a sensor such as a line tracker or potentiometer.
 The value returned actually has 16 bits of "precision", even though the ADC only reads
 12 bits, so that errors induced by the average value being between two values come out
 in the wash whenintegrated over time. Think of the value as the true value times 16.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range or the port is not configured to be an analog input.
 
 Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-value-calibrated-HR>`_.
 
@@ -202,6 +221,10 @@ this function for button 3, but should not for buttons 1 or 2. A typical
 use-case for this function is to call inside opcontrol to detect new button
 presses, and not in any other tasks.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range or the port is not configured to be a digital input.
+
 Analogous to `pros::ADIDigitalIn::get_new_press <../cpp/adi.html#get-new-press>`_.
 
 .. tabs ::
@@ -244,8 +267,11 @@ Gets the digital value (1 or 0) of a pin configured as a digital input.
 
 If the pin is configured as some other mode, the digital value which reflects the current
 state of the pin is returned, which may or may not differ from the currently set value. The
-return value is undefined for pins configured as Analog inputs, or for ports in use by a
-Communicationsinterface.
+return value is undefined for pins configured as Analog inputs.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range or the port is not configured to be a digital input.
 
 Analogous to `pros::ADIDigitalIn::get_value <../cpp/adi.html#id5>`_.
 
@@ -284,7 +310,9 @@ adi_digital_write
 
 Sets the digital value (1 or 0) of a pin configured as a digital output.
 
-If the pin is configured as some other mode, behavior is undefined.
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range or the port is not configured to be a digital output.
 
 Analogous to `pros::ADIDigitalOut::set_value <../cpp/adi.html#id8>`_.
 
@@ -330,6 +358,10 @@ Gets the number of ticks recorded by the encoder.
 
 There are 360 ticks in one revolution.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The encoder port number is out of range or the port is not configured to be an encoder.
+
 Analogous to `pros::ADIEncoder::get_value <../cpp/adi.html#id11>`_.
 
 .. tabs ::
@@ -368,6 +400,10 @@ adi_encoder_init
 ----------------
 
 Initializes and enables a quadrature encoder on two ADI ports.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the criteria in the parameter list below.
 
 Analogous to `pros::ADIEncoder::ADIEncoder <../cpp/adi.html#id9>`_.
 
@@ -415,6 +451,10 @@ Resets the encoder to zero.
 It is safe to use this method while an encoder is enabled. It is not necessary to call this
 method before stopping or starting an encoder.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The encoder port number is out of range or the port is not configured to be an encoder.
+
 Analogous to `pros::ADIEncoder::reset <../cpp/adi.html#reset>`_.
 
 .. tabs ::
@@ -452,6 +492,10 @@ adi_encoder_shutdown
 
 Stops and disables the encoder.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The encoder port number is out of range or the port is not configured to be an encoder.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -482,45 +526,14 @@ Stops and disables the encoder.
 
 ----
 
-adi_get_value
--------------
-
-Returns the value for the given ADI port.
-
-Analogous to `pros::ADIPort::get_value <../cpp/adi.html#id18>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-       int32_t adi_get_value (uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        #define ANALOG_SENSOR_PORT 1
-
-        void opcontrol() {
-          adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
-          printf("Port Value: %d\n", adi_get_value(ANALOG_SENSOR_PORT));
-        }
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
-============ =================================================================================================================
-
-**Returns:** The value for the given ADI port.
-
-----
-
 adi_motor_get
 -------------
 
 Returns the last set speed of the motor on the given port.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range or the port is not configured as a motor.
 
 Analogous to `pros::ADIMotor::get_value <../cpp/adi.html#id14>`_.
 
@@ -558,6 +571,10 @@ adi_motor_set
 -------------
 
 Sets the speed of the motor on the given port.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range or the port is not configured as a motor.
 
 Analogous to `pros::ADIMotor::set_value <../cpp/adi.html#id15>`_.
 
@@ -597,6 +614,10 @@ adi_motor_stop
 
 Stops the motor on the given port.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range or the port is not configured as a motor.
+
 Analogous to `pros::ADIMotor::stop <../cpp/adi.html#id16>`_.
 
 .. tabs ::
@@ -634,6 +655,10 @@ adi_pin_mode
 
 Configures the pin as an input or output with a variety of settings.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -668,6 +693,10 @@ adi_port_get_config
 
 Returns the configuration for the given ADI port.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range.
+
 Analogous to `pros::ADIPort::get_config <../cpp/adi.html#get-config>`_.
 
 .. tabs ::
@@ -699,10 +728,53 @@ Analogous to `pros::ADIPort::get_config <../cpp/adi.html#get-config>`_.
 
 ----
 
+adi_port_get_value
+------------------
+
+Returns the value for the given ADI port.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range.
+
+Analogous to `pros::ADIPort::get_value <../cpp/adi.html#id18>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       int32_t adi_get_value (uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ANALOG_SENSOR_PORT 1
+
+        void opcontrol() {
+          adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+          printf("Port Value: %d\n", adi_get_value(ANALOG_SENSOR_PORT));
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
+============ =================================================================================================================
+
+**Returns:** The value for the given ADI port.
+
+----
+
 adi_port_set_config
 -------------------
 
 Configures an ADI port to act as a given sensor type.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range.
 
 Analogous to `pros::ADIPort::set_config <../cpp/adi.html#set-config>`_.
 
@@ -735,13 +807,17 @@ Analogous to `pros::ADIPort::set_config <../cpp/adi.html#set-config>`_.
 
 ----
 
-adi_set_value
--------------
+adi_port_set_value
+------------------
 
 Sets the value for the given ADI port
 
 This only works on ports configured as outputs, and the behavior will change
 depending on the configuration of the port.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The port number is out of range.
 
 Analogous to `pros::ADIPort::set_value <../cpp/adi.html#id20>`_.
 
@@ -784,6 +860,10 @@ If no object was found, zero is returned. If the ultrasonic sensor was never sta
 return value is PROS_ERR. Round and fluffy objects can cause inaccurate values to be
 returned.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The ultrasonic port number is out of range or the ultrasonic port is not properly configured.
+
 Analogous to `pros::ADIUltrasonic::get_value <../cpp/adi.html#id24>`_.
 
 .. tabs ::
@@ -823,6 +903,10 @@ adi_ultrasonic_init
 -------------------
 
 Initializes an ultrasonic sensor on the specified ADI ports.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
 
 Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
 
@@ -865,6 +949,10 @@ adi_ultrasonic_shutdown
 -----------------------
 
 Stops and disables the ultrasonic sensor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The ultrasonic port number is out of range or the ultrasonic port is not properly configured.
 
 .. tabs ::
    .. tab :: Prototype

@@ -5,6 +5,9 @@
 RTOS Facilities C++ API
 =======================
 
+.. note:: Additional example code for this module can be found in
+          `its Tutorial <../../tutorials/topical/multitasking.html>`_.
+
 .. contents:: :local:
 
 pros
@@ -362,7 +365,7 @@ notify
 
 Sends a simple notification to task and increments the notification counter.
 
-See :doc:`../../tutorials/notifications` for details.
+See :doc:`../../tutorials/topical/notifications` for details.
 
 Analogous to `task_notify <../c/rtos.html#task-notify>`_.
 
@@ -404,7 +407,7 @@ notify_clear
 
 Clears the notification for a task.
 
-See :doc:`../../tutorials/notifications` for details.
+See :doc:`../../tutorials/topical/notifications` for details.
 
 Analogous to `task_notify_clear <../c/rtos.html#task-notify-clear>`_.
 
@@ -432,7 +435,7 @@ Sends a notification to a task, optionally performing some action. Will also
 retrieve the value of the notification in the target task before modifying
 the notification value.
 
-See :doc:`../../tutorials/notifications` for details.
+See :doc:`../../tutorials/topical/notifications` for details.
 
 Analogous to `task_notify_ext <../c/rtos.html#task-notify-ext>`_.
 
@@ -470,7 +473,7 @@ notify_take
 
 Wait for a notification to be nonzero.
 
-See :doc:`../../tutorials/notifications` for details.
+See :doc:`../../tutorials/topical/notifications` for details.
 
 Analogous to `task_notify_take <../c/rtos.html#task-notify-take>`_.
 
@@ -624,7 +627,7 @@ Constructor(s)
 
 Creates a mutex.
 
-See :doc:`../../tutorials/multitasking` for details.
+See :doc:`../../tutorials/topical/multitasking` for details.
 
 Analogous to `mutex_create <../c/rtos.html#mutex-create>`_.
 
@@ -659,7 +662,7 @@ give
 
 Unlocks a mutex.
 
-See :doc:`../../tutorials/multitasking` for details.
+See :doc:`../../tutorials/topical/multitasking` for details.
 
 Analogous to `mutex_give <../c/rtos.html#mutex-give>`_.
 
@@ -696,7 +699,7 @@ take
 Takes and locks a mutex, waiting for up to a certain number of milliseconds
 before timing out.
 
-See :doc:`../../tutorials/multitasking` for details.
+See :doc:`../../tutorials/topical/multitasking` for details.
 
 Analogous to `mutex_take <../c/rtos.html#mutex-take>`_.
 
