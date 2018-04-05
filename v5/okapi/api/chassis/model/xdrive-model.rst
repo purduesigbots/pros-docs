@@ -38,7 +38,7 @@ Constructor(s)
 okapi::XDriveModel
 ==================
 
-The model for a skid-steer chassis.
+The model for an x-drive chassis.
 
 Constructor(s)
 --------------
