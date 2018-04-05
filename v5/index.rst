@@ -8,8 +8,7 @@ PROS: Documentation Home
    :caption: Home
 
    self
-   ./kernel-releases/index
-   ./cli-releases/index
+   ./releases/index
 
 .. toctree::
    :hidden:
