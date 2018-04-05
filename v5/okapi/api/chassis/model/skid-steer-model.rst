@@ -110,7 +110,8 @@ This constructor does not infer the encoders from the motors, and instead takes 
           okapi::SkidSteerModel model(1_m, 2_m, okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4));
 
           // You can also use MotorGroups for more motors
-          okapi::SkidSteerModel model(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}), okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4));
+          okapi::SkidSteerModel model(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}),
+                                      okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4));
         }
 
 =================   ===================================================================

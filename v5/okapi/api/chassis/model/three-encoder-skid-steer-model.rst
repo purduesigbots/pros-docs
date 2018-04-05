@@ -54,11 +54,14 @@ Constructor(s)
       ::
 
         void opcontrol() {
-          okapi::EmaFilter emaFilter(0.2);
-          while (true) {
-            emaFilter.filter(1);
-            pros::delay(10);
-          }
+          using namespace okapi::literals;
+
+          // Two motors
+          okapi::SkidSteerModel model(1_m, 2_m, okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4), okapi::ADIEncoder(5, 6));
+
+          // You can also use MotorGroups for more motors
+          okapi::SkidSteerModel model(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}),
+                                      okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4), okapi::ADIEncoder(5, 6));
         }
 
 =================   ===================================================================
@@ -78,18 +81,6 @@ Constructor(s)
       ::
 
         ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          okapi::EmaFilter emaFilter(0.2);
-          while (true) {
-            emaFilter.filter(1);
-            pros::delay(10);
-          }
-        }
 
 =================   ===================================================================
  Parameters
