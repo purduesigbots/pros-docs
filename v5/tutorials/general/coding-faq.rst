@@ -1,9 +1,3 @@
-.. highlight:: c
-   :linenothreshold: 0
-
-.. highlight:: cpp
-   :linenothreshold: 0
-
 ==========
 Coding FAQ
 ==========
@@ -18,7 +12,7 @@ Compile-Time Issues
 
  * ``format ... expects argument of type ..., but argument has type ...``:
     The value provided to a function like `printf <http://www.cplusplus.com/reference/cstdio/printf/>`_
-    or `lcd_print <../api/c/llemu.html#lcd-print>`_ does not match the expected
+    or `lcd_print <../../api/c/llemu.html#lcd-print>`_ does not match the expected
     type inferred from the format string. Some instances of this warning can be
     safely ignored, but crashes can occur if types ``double`` or ``long long`` are
     mixed with other types.
@@ -32,8 +26,8 @@ Run-Time Issues
 ===============
 
  * **Some tasks are running, others are not:**
-    A task is not waiting using `delay <../api/c/rtos.html#delay>`_ or
-    `task_delay_until <../api/c/rtos.html#task-delay-until>`_. Due to the fact that
+    A task is not waiting using `delay <../../api/c/rtos.html#delay>`_ or
+    `task_delay_until <../../api/c/rtos.html#task-delay-until>`_. Due to the fact that
     PROS utilizes a priority based non-preemptive scheduler, tasks of higher or
     equal priority to the blocking task will still run while lower priority tasks
     will not. This scenario is also known as
@@ -41,8 +35,8 @@ Run-Time Issues
     See `Tasks/Multithreading </tutorials/multitasking>`_ for more information.
 
  * **VEX LCD updates very slowly or is "frozen":**
-    A task is not waiting using `delay <../api/c/rtos.html#delay>`_ or
-    `task_delay_until <../api/c/rtos.html#task-delay-until>`_. From the kernel's
+    A task is not waiting using `delay <../../api/c/rtos.html#delay>`_ or
+    `task_delay_until <../../api/c/rtos.html#task-delay-until>`_. From the kernel's
     perspective, updating the LCD is usually less important than how well the
     robot is running, so PROS prioritizes user tasks over the LCD.
 
@@ -50,14 +44,14 @@ Run-Time Issues
 
  * **Neither autonomous nor driver control code starts:**
     The ``initialize()`` function may still be running. Some tasks such as
-    `analog_calibrate <../api/c/adi.html#analog-calibrate>`_ take time.
+    `analog_calibrate <../../api/c/adi.html#analog-calibrate>`_ take time.
 
     If the ``initialize()`` function implements some type of loop or autonomous
     selection routine, verify that it actually has a means of ending.
 
  * **Code restarts unexpectedly:**
     A run-time error has caused the program to crash.
-    `Debugging <../tutorials/debugging>`_ may reveal the cause of the error.
+    `Debugging <./debugging>`_ may reveal the cause of the error.
     Examine any newly added code for possible logical errors. Some common error
     messages include:
 
@@ -72,7 +66,7 @@ Run-Time Issues
       variables can require large amounts of space on the stack. If this error
       occurs in a default task like ``autonomous()``, consider changing code to
       reduce the stack requirements, or creating a new task with a larger stack
-      size using `task_create <../api/c/rtos.html#task_create>`_ to handle large jobs.
+      size using `task_create <../../api/c/rtos.html#task_create>`_ to handle large jobs.
       Large arrays declared inside functions can usually be declared globally to
       alleviate pressure on stack space.
 
@@ -89,7 +83,7 @@ Run-Time Issues
  * `printf <printf_>`_ **doesn't work**:
     `printf <http://www.cplusplus.com/reference/cstdio/printf/>`_ prints
     information over a serial connection (`Debugging <../tutorials/debugging>`_),
-    not to the VEX LCD. To print to the LCD, use `lcd_print <../api/c/llemu.html#lcd-print>`_
+    not to the VEX LCD. To print to the LCD, use `lcd_print <../../api/c/llemu.html#lcd-print>`_
     instead.
 
 .. _printf: http://www.cplusplus.com/reference/cstdio/printf/

@@ -1,9 +1,3 @@
-.. highlight:: c
-   :linenothreshold: 0
-
-.. highlight:: cpp
-   :linenothreshold: 0
-
 ==================
 Task Notifications
 ==================
@@ -20,7 +14,9 @@ The simplest application of task notifications does not care about the task noti
 .. tabs ::
     .. tab :: C
         .. highlight:: c
-        ::
+        .. code-block:: c
+           :caption: initialize.c
+           :linenos:
 
             void my_task_fn(void* ign) {
                 while(task_notify_take(true, TIMEOUT_MAX)) {

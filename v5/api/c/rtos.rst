@@ -1,9 +1,12 @@
 .. highlight:: c
    :linenothreshold: 5
-   
+
 =====================
 RTOS Facilities C API
 =====================
+
+.. note:: Additional example code for this module can be found in
+          `its Tutorial <../../tutorials/topical/multitasking.html>`_.
 
 .. contents:: :local:
 
@@ -80,7 +83,7 @@ mutex_create
 
 Creates a mutex.
 
-See :doc:`../../tutorials/multitasking` for details.
+See :doc:`../../tutorials/topical/multitasking` for details.
 
 Analogous to `pros::Mutex::Mutex <../cpp/rtos.html#mutex>`_.
 
@@ -115,7 +118,7 @@ mutex_give
 
 Unlocks a mutex.
 
-See :doc:`../../tutorials/multitasking` for details.
+See :doc:`../../tutorials/topical/multitasking` for details.
 
 Analogous to `pros::Mutex::give <../cpp/rtos.html#give>`_.
 
@@ -158,7 +161,7 @@ mutex_take
 Takes and locks a mutex, waiting for up to a certain number of milliseconds
 before timing out.
 
-See :doc:`../../tutorials/multitasking` for details.
+See :doc:`../../tutorials/topical/multitasking` for details.
 
 Analogous to `pros::Mutex::take <../cpp/rtos.html#take>`_.
 
@@ -555,7 +558,7 @@ task_notify
 
 Sends a simple notification to task and increments the notification counter.
 
-See :doc:`../../tutorials/notifications` for details.
+See :doc:`../../tutorials/topical/notifications` for details.
 
 Analogous to `pros::Task::notify <../cpp/rtos.html#notify>`_.
 
@@ -600,7 +603,7 @@ task_notify_clear
 
 Clears the notification for a task.
 
-See :doc:`../../tutorials/notifications` for details.
+See :doc:`../../tutorials/topical/notifications` for details.
 
 Analogous to `pros::Task::notify_clear <../cpp/rtos.html#notify-clear>`_.
 
@@ -634,7 +637,7 @@ Sends a notification to a task, optionally performing some action. Will also
 retrieve the value of the notification in the target task before modifying
 the notification value.
 
-See :doc:`../../tutorials/notifications` for details.
+See :doc:`../../tutorials/topical/notifications` for details.
 
 Analogous to `pros::Task::notify_ext <../cpp/rtos.html#notify-ext>`_.
 
@@ -674,7 +677,7 @@ task_notify_take
 
 Wait for a notification to be nonzero.
 
-See :doc:`../../tutorials/notifications` for details.
+See :doc:`../../tutorials/topical/notifications` for details.
 
 Analogous to `pros::Task::notify_take <../cpp/rtos.html#notify-take>`_.
 
@@ -981,4 +984,4 @@ mutex_t
 
   typedef void* mutex_t;
 
-A `mutex <../../tutorials/multitasking>`_.
+A `mutex <../../tutorials/topical/multitasking>`_.

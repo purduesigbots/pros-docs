@@ -5,6 +5,9 @@
 Miscellaneous C API
 ===================
 
+.. note:: Additional example code for this module can be found in
+          `its Tutorial <../../tutorials/topical/controller.html>`_.
+
 .. contents:: :local:
 
 Functions
