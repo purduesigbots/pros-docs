@@ -94,6 +94,29 @@ This function uses the following values of ``errno`` when an error state is reac
 
 ----
 
+Literal(s)
+----------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        okapi::Motor operator"" _m(const unsigned long long iport)
+        okapi::Motor operator"" _rm(const unsigned long long iport)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          using namespace pros::literals;
+          auto motor1 = 1_m; // Motor in port 1
+          auto motor1_reversed = 1_rm; // Reversed motor in port 1
+        }
+
+----
+
 Methods
 -------
 
