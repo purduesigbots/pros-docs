@@ -36,10 +36,10 @@ driveVector
 Drives the robot in an arc (using open-loop control).
 
 The algorithm is (approximately):
-``
-leftPower = ySpeed + zRotation
-rightPower = ySpeed - zRotation
-``
+::
+
+  leftPower = ySpeed + zRotation
+  rightPower = ySpeed - zRotation
 
 .. tabs ::
    .. tab :: Prototype
