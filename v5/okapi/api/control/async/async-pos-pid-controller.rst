@@ -42,7 +42,6 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const PosPIDControllerArgs &iparams)
         AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const double ikP, const double ikI, const double ikD, const double ikBias = 0)
 
 =============== ===================================================================
@@ -50,11 +49,25 @@ Constructor(s)
 =============== ===================================================================
  iinput          The controller input.
  ioutput         The controller output.
- iparams         The ``PosPIDController`` arguments.
  ikp             The P term gain.
  ikI             The I term gain.
  ikD             The D term gain.
  ikBias          The controller bias.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const PosPIDControllerArgs &iparams)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ iinput          The controller input.
+ ioutput         The controller output.
+ iparams         The ``PosPIDController`` arguments.
 =============== ===================================================================
 
 Methods

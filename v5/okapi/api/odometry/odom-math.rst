@@ -18,6 +18,13 @@ Constructor(s)
       ::
 
         DistanceAndAngle()
+
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
         DistanceAndAngle(const double ilength, const double itheta)
 
 =============== ===================================================================

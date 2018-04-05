@@ -1,6 +1,6 @@
-========
-Odometry
-========
+======================
+Three Encoder Odometry
+======================
 
 .. contents:: :local:
 
@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ThreeEncoderOdometryArgs(const SkidSteerModel &iparams, const double iscale, const double iturnScale, const double imiddleScale)
+        ThreeEncoderOdometryArgs(const SkidSteerModel &imodel, const double iscale, const double iturnScale, const double imiddleScale)
 
 =============== ===================================================================
  Parameters

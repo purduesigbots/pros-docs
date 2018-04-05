@@ -7,6 +7,8 @@ MotorController
 okapi::MotorController
 ======================
 
+A simple ``IterativeVelocityController`` that associates an ``AbstractMotor`` with an ``IterativeVelocityController``.
+
 Constructor(s)
 --------------
 
@@ -15,13 +17,13 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        MotorController(const AbstractMotor &imotor, IterativeController &icontroller)
+        MotorController(const AbstractMotor &imotor, IterativeVelocityController &icontroller)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
- icontroller     The ``IterativeController`` to use.
+ icontroller     The ``IterativeVelocityController`` to use.
 =============== ===================================================================
 
 Methods

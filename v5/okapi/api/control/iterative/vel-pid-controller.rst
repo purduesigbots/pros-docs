@@ -18,6 +18,19 @@ Constructor(s)
       ::
 
         VelPIDControllerArgs(const double ikP, const double ikD)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ ikp             The P term gain.
+ ikD             The D term gain.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
         VelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams)
 
 =============== ===================================================================
@@ -33,6 +46,8 @@ Constructor(s)
 okapi::VelPIDController
 =======================
 
+An ``IterativeVelocityController`` that uses the velocity PD algorithm.
+
 Constructor(s)
 --------------
 
@@ -42,8 +57,20 @@ Constructor(s)
       ::
 
         VelPIDController(const double ikP, const double ikD)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ ikp             The P term gain.
+ ikD             The D term gain.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
         VelPIDController(const double ikP, const double ikD, const VelMathArgs &iparams)
-        VelPIDController(const VelPIDControllerArgs &params)
 
 =============== ===================================================================
  Parameters
@@ -51,6 +78,18 @@ Constructor(s)
  ikp             The P term gain.
  ikD             The D term gain.
  iparams         The ``VelMath`` arguments.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        VelPIDController(const VelPIDControllerArgs &params)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
  params          The ``VelPIDController`` arguments.
 =============== ===================================================================
 

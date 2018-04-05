@@ -57,7 +57,7 @@ Cut out a range from the number. The new range of the input number will be ``(-i
       ::
 
         void opcontrol() {
-          okapi::ipow(0.5, 2); // Equals 0.25
+          okapi::cut_range(1, -2, 2); // Equals 0
         }
 
 ============ ===============================================================
@@ -89,10 +89,10 @@ Remap a value in the range ``[oldMin, oldMax]`` to the range ``[newMin, newMax]`
       ::
 
         void opcontrol() {
-              okapi::remapRange(0, -1, 1, -2, 2); // Equals 0
-              okapi::remapRange(0.1, -1, 1, -2, 2); // Equals 0.2
+              okapi::remapRange(0, -1, 1, -2, 2);    // Equals 0
+              okapi::remapRange(0.1, -1, 1, -2, 2);  // Equals 0.2
               okapi::remapRange(-0.1, -1, 1, 2, -2); // Equals 0.2
-              okapi::remapRange(0, -1, 1, -5, 2); // Equals -1.5
+              okapi::remapRange(0, -1, 1, -5, 2);    // Equals -1.5
         }
 
 ============ ===============================================================

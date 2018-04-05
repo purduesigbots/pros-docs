@@ -41,12 +41,23 @@ Constructor(s)
       ::
 
         VelIntegratedController(const AbstractMotor &imotor)
-        VelIntegratedController(const VelIntegratedControllerArgs &iparams)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        VelIntegratedController(const VelIntegratedControllerArgs &iparams)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
  iparams         The ``VelIntegratedController`` arguments.
 =============== ===================================================================
 

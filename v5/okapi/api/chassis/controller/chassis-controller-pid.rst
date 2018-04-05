@@ -29,10 +29,11 @@ This constructor infers a skid-steer layout.
           using namespace okapi::literals;
 
           // Skid-Steer controller
-          okapi::ChassisControllerPID controller(1_m, 2_m);
+          okapi::ChassisControllerPID controller(1_m, 2_m, PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
 
           // Could also use MotorGroups to use more motors
-          okapi::ChassisControllerPID controller(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}));
+          okapi::ChassisControllerPID controller(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}),
+                                                 PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
         }
 
 ======================   =======================================================================================
@@ -63,7 +64,7 @@ This constructor infers an x-drive layout.
           using namespace okapi::literals;
 
           // X-Drive controller
-          okapi::ChassisControllerPID controller(1_m, 2_m, 3_m, 4_m);
+          okapi::ChassisControllerPID controller(1_m, 2_m, 3_m, 4_m, PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
         }
 
 ======================   =======================================================================================

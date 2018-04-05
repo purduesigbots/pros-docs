@@ -18,6 +18,12 @@ Constructor(s)
       ::
 
         OdomState()
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
         OdomState(const double ix, const double iy, const double itheta)
 
 =============== ===================================================================
@@ -43,7 +49,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        OdometryArgs(const SkidSteerModel &iparams, const double iscale, const double iturnScale)
+        OdometryArgs(const SkidSteerModel &imodel, const double iscale, const double iturnScale)
 
 =============== ===================================================================
  Parameters
@@ -69,7 +75,6 @@ Constructor(s)
       ::
 
         Odometry(const SkidSteerModel &imodel, const double iscale, const double iturnScale)
-        Odometry(const OdometryArgs &iparams)
 
 =============== ===================================================================
  Parameters
@@ -77,6 +82,19 @@ Constructor(s)
  imodel          A model to read sensors from.
  iscale          The straight scale (encoder ticks to mm).
  iturnScale      The turn scale (encoder ticks to radians).
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        Odometry(const OdometryArgs &iparams)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ iparams         The ``Odometry`` arguments.
 =============== ===================================================================
 
 ----

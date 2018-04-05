@@ -41,12 +41,23 @@ Constructor(s)
       ::
 
         PosIntegratedController(const AbstractMotor &imotor)
-        PosIntegratedController(const PosIntegratedControllerArgs &iparams)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        PosIntegratedController(const PosIntegratedControllerArgs &iparams)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
  iparams         The ``PosIntegratedController`` arguments.
 =============== ===================================================================
 

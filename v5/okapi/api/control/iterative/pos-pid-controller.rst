@@ -33,6 +33,8 @@ Constructor(s)
 okapi::PosPIDController
 =======================
 
+An ``IterativePositionController`` that uses the position PID algorithm.
+
 Constructor(s)
 --------------
 
@@ -42,7 +44,6 @@ Constructor(s)
       ::
 
         PosPIDController(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
-        PosPIDController(const PosPIDControllerArgs &params)
 
 =============== ===================================================================
  Parameters
@@ -51,6 +52,18 @@ Constructor(s)
  ikI             The I term gain.
  ikD             The D term gain.
  ikBias          The controller bias.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        PosPIDController(const PosPIDControllerArgs &params)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
  params          The ``PosPIDController`` arguments.
 =============== ===================================================================
 
