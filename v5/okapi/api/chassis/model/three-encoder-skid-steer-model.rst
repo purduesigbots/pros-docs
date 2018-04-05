@@ -48,7 +48,6 @@ Constructor(s)
       ::
 
         ThreeEncoderSkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc, const RotarySensor &imiddleEnc, const RotarySensor &irightEnc, const double imaxOutput = 100)
-        ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -71,6 +70,30 @@ Constructor(s)
  imiddleEnc          The middle encoder.
  irightEnc           The right side encoder.
  imaxOutput          The maximum output value to the motors.
+=================   ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          okapi::EmaFilter emaFilter(0.2);
+          while (true) {
+            emaFilter.filter(1);
+            pros::delay(10);
+          }
+        }
+
+=================   ===================================================================
+ Parameters
+=================   ===================================================================
  iparams             The ``ThreeEncoderSkidSteerModel`` arguments.
 =================   ===================================================================
 

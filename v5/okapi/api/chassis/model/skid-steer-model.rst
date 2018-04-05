@@ -13,13 +13,31 @@ Data class for the arguments to ``SkidSteerModel``.
 Constructor(s)
 --------------
 
+This constructor infers the encoders from the motors.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double imaxOutput = 100)
+
+=================   ===================================================================
+ Parameters
+=================   ===================================================================
+ ileftSideMotor      The left side motor.
+ irightSideMotor     The right side motor.
+ imaxOutput          The maximum output value to the motors.
+=================   ===================================================================
+
+This constructor does not infer the encoders from the motors, and instead takes explicitly specified encoders.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
         SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 100)
-        SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double imaxOutput = 100)
 
 =================   ===================================================================
  Parameters
@@ -41,26 +59,58 @@ The model for a skid-steer chassis.
 Constructor(s)
 --------------
 
+This constructor infers the encoders from the motors.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 100)
         SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double imaxOutput = 100)
-        SkidSteerModel(const SkidSteerModelArgs &iparams)
-        SkidSteerModel(const SkidSteerModel &other)
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         void opcontrol() {
-          okapi::EmaFilter emaFilter(0.2);
-          while (true) {
-            emaFilter.filter(1);
-            pros::delay(10);
-          }
+          using namespace okapi::literals;
+
+          // Two motors
+          okapi::SkidSteerModel model(1_m, 2_m);
+
+          // You can also use MotorGroups for more motors
+          okapi::SkidSteerModel model(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}));
+        }
+
+=================   ===================================================================
+ Parameters
+=================   ===================================================================
+ ileftSideMotor      The left side motor.
+ irightSideMotor     The right side motor.
+ imaxOutput          The maximum output value to the motors.
+=================   ===================================================================
+
+This constructor does not infer the encoders from the motors, and instead takes explicitly specified encoders.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 100)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          using namespace okapi::literals;
+
+          // Two motors
+          okapi::SkidSteerModel model(1_m, 2_m, okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4));
+
+          // You can also use MotorGroups for more motors
+          okapi::SkidSteerModel model(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}), okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4));
         }
 
 =================   ===================================================================
@@ -71,7 +121,31 @@ Constructor(s)
  ileftEnc            The left side encoder.
  irightEnc           The right side encoder.
  imaxOutput          The maximum output value to the motors.
+=================   ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        SkidSteerModel(const SkidSteerModelArgs &iparams)
+
+=================   ===================================================================
+ Parameters
+=================   ===================================================================
  iparams             The ``SkidSteerModel`` arguments.
+=================   ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        SkidSteerModel(const SkidSteerModel &other)
+
+=================   ===================================================================
+ Parameters
+=================   ===================================================================
  other               Copy constructor.
 =================   ===================================================================
 
