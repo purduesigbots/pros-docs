@@ -1,13 +1,13 @@
-================
-VelPIDController
-================
+=========================
+IterativeVelPIDController
+=========================
 
 .. contents:: :local:
 
-okapi::VelPIDControllerArgs
-===========================
+okapi::IterativeVelPIDControllerArgs
+====================================
 
-Data class for the arguments to ``VelPIDController``.
+Data class for the arguments to ``IterativeVelPIDController``.
 
 Constructor(s)
 --------------
@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelPIDControllerArgs(const double ikP, const double ikD)
+        IterativeVelPIDControllerArgs(const double ikP, const double ikD)
 
 =============== ===================================================================
  Parameters
@@ -31,7 +31,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams)
+        IterativeVelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams)
 
 =============== ===================================================================
  Parameters
@@ -43,8 +43,8 @@ Constructor(s)
 
 ----
 
-okapi::VelPIDController
-=======================
+okapi::IterativeVelPIDController
+================================
 
 An ``IterativeVelocityController`` that uses the velocity PD algorithm.
 
@@ -56,7 +56,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelPIDController(const double ikP, const double ikD)
+        IterativeVelPIDController(const double ikP, const double ikD)
 
 =============== ===================================================================
  Parameters
@@ -70,7 +70,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelPIDController(const double ikP, const double ikD, const VelMathArgs &iparams)
+        IterativeVelPIDController(const double ikP, const double ikD, const VelMathArgs &iparams)
 
 =============== ===================================================================
  Parameters
@@ -85,12 +85,12 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelPIDController(const VelPIDControllerArgs &params)
+        IterativeVelPIDController(const IterativeVelPIDControllerArgs &params)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- params          The ``VelPIDController`` arguments.
+ params          The ``IterativeVelPIDController`` arguments.
 =============== ===================================================================
 
 Methods
