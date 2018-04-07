@@ -1,6 +1,6 @@
-================
-Async Controller
-================
+===========================
+(Abstract) Async Controller
+===========================
 
 .. contents:: :local:
 

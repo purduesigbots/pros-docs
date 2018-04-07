@@ -12,7 +12,7 @@ Data class for the arguments to ``MedianFilter``.
 okapi::MedianFilter
 ===================
 
-A filter that computes the median value.
+A `Filter <abstract-filter.html>`_ that computes the median value.
 
 Constructor(s)
 --------------

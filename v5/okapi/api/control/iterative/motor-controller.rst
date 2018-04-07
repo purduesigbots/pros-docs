@@ -7,8 +7,9 @@ Motor Controller
 okapi::MotorController
 ======================
 
-A simple ``IterativeVelocityController`` that associates an
-`AbstractMotor <../../device/motor/abstract-motor.html>`_ with an ``IterativeVelocityController``.
+A simple `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ that
+associates an `AbstractMotor <../../device/motor/abstract-motor.html>`_ with an
+`IterativeVelocityController <abstract-iterative-velocity-controller.html>`_.
 
 Constructor(s)
 --------------

@@ -7,6 +7,9 @@ Motor
 okapi::Motor
 ============
 
+An `AbstractMotor <abstract-abstract-motor.html>`_ which is also a ``pros::Motor``. This is a V5
+motor, not an ADI (or 3-wire) motor.
+
 Constructor(s)
 --------------
 

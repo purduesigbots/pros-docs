@@ -1,6 +1,6 @@
-================
-Controller Input
-================
+===========================
+(Abstract) Controller Input
+===========================
 
 .. contents:: :local:
 

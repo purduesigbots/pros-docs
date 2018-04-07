@@ -1,6 +1,6 @@
-=============
-Rotary Sensor
-=============
+========================
+(Abstract) Rotary Sensor
+========================
 
 .. contents:: :local:
 

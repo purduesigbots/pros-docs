@@ -12,7 +12,7 @@ Data class for the arguments to ``AverageFilter``.
 okapi::AverageFilter
 ====================
 
-A filter that computes a moving average.
+A `Filter <abstract-filter.html>`_ that computes a moving average.
 
 Constructor(s)
 --------------

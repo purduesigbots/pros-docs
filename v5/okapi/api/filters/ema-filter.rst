@@ -28,7 +28,7 @@ Constructor(s)
 okapi::EmaFilter
 ================
 
-A filter that computes an exponential moving average.
+A `Filter <abstract-filter.html>`_ that computes an exponential moving average.
 
 Constructor(s)
 --------------

@@ -7,7 +7,8 @@ Integrated Encoder
 okapi::IntegratedEncoder
 ========================
 
-The encoder inside the V5 motors (not an IME).
+A `RotarySensor <abstract-rotary-sensor.html>`_ representing the encoder inside the V5 motors (not
+an IME).
 
 Constructor(s)
 --------------

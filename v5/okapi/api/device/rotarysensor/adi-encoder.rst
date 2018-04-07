@@ -7,7 +7,7 @@ ADI Encoder
 okapi::ADIEncoder
 ========================
 
-An encoder on the ADI ports.
+A `RotarySensor <abstract-rotary-sensor.html>`_ on the ADI ports.
 
 Constructor(s)
 --------------

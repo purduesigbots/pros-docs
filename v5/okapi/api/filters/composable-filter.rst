@@ -28,8 +28,9 @@ Constructor(s)
 okapi::ComposableFilter
 =======================
 
-A composable filter is a filter that consists of other filters. The input signal is passed through
-each filter in sequence. The final output of this filter is the output of the last filter.
+A composable filter is a `Filter <abstract-filter.html>`_ that consists of other filters. The input
+signal is passed through each filter in sequence. The final output of this filter is the output of
+the last filter.
 
 Constructor(s)
 --------------

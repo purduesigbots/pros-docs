@@ -1,6 +1,6 @@
-=========================
-Async Velocity Controller
-=========================
+====================================
+(Abstract) Async Velocity Controller
+====================================
 
 .. contents:: :local:
 
@@ -12,5 +12,5 @@ Data class for the arguments to ``AsyncVelocityController``.
 okapi::AsyncVelocityController
 ==============================
 
-An ``AsyncVelocityController`` is a type of `AsyncController <async-controller.html>`_ that
+An ``AsyncVelocityController`` is a type of `AsyncController <abstract-async-controller.html>`_ that
 operates in the velocity domain.

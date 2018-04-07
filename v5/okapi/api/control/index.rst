@@ -21,5 +21,5 @@ Control API
    :maxdepth: 1
    :glob:
 
-   ./controller-input
-   ./controller-output
+   ./abstract-controller-input
+   ./abstract-controller-output

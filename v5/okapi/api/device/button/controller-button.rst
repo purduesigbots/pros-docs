@@ -7,7 +7,7 @@ Controller Button
 okapi::ControllerButton
 =======================
 
-A button on a controller.
+A `Button <abstract-button.html>`_ on a controller.
 
 Constructor(s)
 --------------

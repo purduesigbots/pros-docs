@@ -1,6 +1,6 @@
-=========================
-Async Position Controller
-=========================
+====================================
+(Abstract) Async Position Controller
+====================================
 
 .. contents:: :local:
 
@@ -12,5 +12,5 @@ Data class for the arguments to ``AsyncPositionController``.
 okapi::AsyncPositionController
 ==============================
 
-An ``AsyncPositionController`` is a type of `AsyncController <async-controller.html>`_ that
+An ``AsyncPositionController`` is a type of `AsyncController <abstract-async-controller.html>`_ that
 operates in the position domain.

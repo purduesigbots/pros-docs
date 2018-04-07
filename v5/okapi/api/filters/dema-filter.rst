@@ -29,7 +29,9 @@ Constructor(s)
 okapi::DemaFilter
 =================
 
-A filter that computes a double exponential moving average. This filter will follow trends (like the rate of change of the signal) in addition to being an exponential moving average.
+A `Filter <abstract-filter.html>`_ that computes a double exponential moving average. This filter
+will follow trends (like the rate of change of the signal) in addition to being an exponential
+moving average.
 
 Constructor(s)
 --------------

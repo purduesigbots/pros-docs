@@ -1,6 +1,6 @@
-=================
-Controller Output
-=================
+============================
+(Abstract) Controller Output
+============================
 
 .. contents:: :local:
 

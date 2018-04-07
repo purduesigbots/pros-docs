@@ -7,7 +7,7 @@ ADI Button
 okapi::ADIButton
 ================
 
-A button in an ADI port.
+A `Button <abstract-button.html>`_ in an ADI port.
 
 Constructor(s)
 --------------

@@ -1,6 +1,6 @@
-==============
-Abstract Motor
-==============
+=========================
+(Abstract) Abstract Motor
+=========================
 
 .. contents:: :local:
 
