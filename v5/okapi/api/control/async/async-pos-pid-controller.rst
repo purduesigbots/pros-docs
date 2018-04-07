@@ -17,14 +17,14 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosPIDControllerArgs(ControllerInput &iinput, ControllerOutput &ioutput, const PosPIDControllerArgs &iparams)
+        AsyncPosPIDControllerArgs(ControllerInput &iinput, ControllerOutput &ioutput, const IterativePosPIDControllerArgs &iparams)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  iinput          The controller input.
  ioutput         The controller output.
- iparams         The ``PosPIDController`` arguments.
+ iparams         The ``IterativePosPIDController`` arguments.
 =============== ===================================================================
 
 ----
@@ -60,14 +60,14 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const PosPIDControllerArgs &iparams)
+        AsyncPosPIDController(ControllerInput &iinput, ControllerOutput &ioutput, const IterativePosPIDControllerArgs &iparams)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  iinput          The controller input.
  ioutput         The controller output.
- iparams         The ``PosPIDController`` arguments.
+ iparams         The ``IterativePosPIDController`` arguments.
 =============== ===================================================================
 
 Methods

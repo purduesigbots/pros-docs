@@ -20,7 +20,8 @@ This constructor infers the encoders from the motors.
       .. highlight:: cpp
       ::
 
-        XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor, const double imaxOutput = 100)
+        XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                        const double imaxOutput = 100)
 
 ==================   ===================================================================
  Parameters
@@ -39,7 +40,9 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 100)
+        XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                        const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                        const double imaxOutput = 100)
 
 ==================   ===================================================================
  Parameters
@@ -70,7 +73,8 @@ This constructor infers the encoders from the motors.
       .. highlight:: cpp
       ::
 
-        XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor, const double imaxOutput = 100)
+        XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                    const double imaxOutput = 100)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -99,7 +103,9 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 100)
+        XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                    const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+                    const double imaxOutput = 100)
 
    .. tab :: Example
       .. highlight:: cpp

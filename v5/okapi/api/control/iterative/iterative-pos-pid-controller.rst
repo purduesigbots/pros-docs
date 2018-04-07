@@ -1,13 +1,13 @@
-================
-PosPIDController
-================
+=========================
+IterativePosPIDController
+=========================
 
 .. contents:: :local:
 
-okapi::PosPIDControllerArgs
-===========================
+okapi::IterativePosPIDControllerArgs
+====================================
 
-Data class for the arguments to ``PosPIDController``.
+Data class for the arguments to ``IterativePosPIDController``.
 
 Constructor(s)
 --------------
@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        PosPIDControllerArgs(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
+        IterativePosPIDControllerArgs(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
 
 =============== ===================================================================
  Parameters
@@ -30,8 +30,8 @@ Constructor(s)
 
 ----
 
-okapi::PosPIDController
-=======================
+okapi::IterativePosPIDController
+================================
 
 An ``IterativePositionController`` that uses the position PID algorithm.
 
@@ -43,7 +43,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        PosPIDController(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
+        IterativePosPIDController(const double ikP, const double ikI, const double ikD, const double ikBias = 0)
 
 =============== ===================================================================
  Parameters
@@ -59,12 +59,12 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        PosPIDController(const PosPIDControllerArgs &params)
+        IterativePosPIDController(const IterativePosPIDControllerArgs &params)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- params          The ``PosPIDController`` arguments.
+ params          The ``IterativePosPIDController`` arguments.
 =============== ===================================================================
 
 Methods

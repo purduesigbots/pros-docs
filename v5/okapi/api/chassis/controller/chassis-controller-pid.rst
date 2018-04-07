@@ -19,7 +19,9 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const PosPIDControllerArgs &idistanceArgs, const PosPIDControllerArgs &iangleArgs, const double istraightScale = 1, const double iturnScale = 1)
+        ChassisControllerPID(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
+                             const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs,
+                             const double istraightScale = 1, const double iturnScale = 1)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -29,11 +31,11 @@ This constructor infers a skid-steer layout.
           using namespace okapi::literals;
 
           // Skid-Steer controller
-          okapi::ChassisControllerPID controller(1_m, 2_m, PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
+          okapi::ChassisControllerPID controller(1_m, 2_m, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
           // Could also use MotorGroups to use more motors
           okapi::ChassisControllerPID controller(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}),
-                                                 PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
+                                                 IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
         }
 
 ======================   =======================================================================================
@@ -41,8 +43,8 @@ This constructor infers a skid-steer layout.
 ======================   =======================================================================================
  ileftSideMotor           The left side motor in a skid-steer model.
  irightSideMotor          The right side motor in a skid-steer model.
- idistanceArgs            The ``PosPIDControllerArgs`` for the distance PID controller.
- iangleArgs               The ``PosPIDControllerArgs`` for the angle PID controller.
+ idistanceArgs            The ``IterativePosPIDControllerArgs`` for the distance PID controller.
+ iangleArgs               The ``IterativePosPIDControllerArgs`` for the angle PID controller.
  istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
  iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
 ======================   =======================================================================================
@@ -54,7 +56,9 @@ This constructor infers an x-drive layout.
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor, const PosPIDControllerArgs &idistanceArgs, const PosPIDControllerArgs &iangleArgs, const double istraightScale = 1, const double iturnScale = 1)
+        ChassisControllerPID(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                             const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs,
+                             const double istraightScale = 1, const double iturnScale = 1)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -64,7 +68,7 @@ This constructor infers an x-drive layout.
           using namespace okapi::literals;
 
           // X-Drive controller
-          okapi::ChassisControllerPID controller(1_m, 2_m, 3_m, 4_m, PosPIDControllerArgs(0, 0, 0), PosPIDControllerArgs(0, 0, 0));
+          okapi::ChassisControllerPID controller(1_m, 2_m, 3_m, 4_m, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
         }
 
 ======================   =======================================================================================
@@ -74,8 +78,8 @@ This constructor infers an x-drive layout.
  itopRightMotor           The top right motor in an x-drive model.
  ibottomRightMotor        The bottom right motor in an x-drive model.
  ibottomLeftMotor         The bottom left motor in an x-drive model.
- idistanceArgs            The ``PosPIDControllerArgs`` for the distance PID controller.
- iangleArgs               The ``PosPIDControllerArgs`` for the angle PID controller.
+ idistanceArgs            The ``IterativePosPIDControllerArgs`` for the distance PID controller.
+ iangleArgs               The ``IterativePosPIDControllerArgs`` for the angle PID controller.
  istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
  iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
 ======================   =======================================================================================
@@ -87,14 +91,16 @@ This constructor is not recommended, there are less verbose options above.
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(const ChassisModel &imodel, const PosPIDControllerArgs &idistanceArgs, const PosPIDControllerArgs &iangleArgs, const double istraightScale = 1, const double iturnScale = 1)
+        ChassisControllerPID(const ChassisModel &imodel,
+                             const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs,
+                             const double istraightScale = 1, const double iturnScale = 1)
 
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
  imodel                   The underlying ``ChassisModel`` to control.
- idistanceArgs            The ``PosPIDControllerArgs`` for the distance PID controller.
- iangleArgs               The ``PosPIDControllerArgs`` for the angle PID controller.
+ idistanceArgs            The ``IterativePosPIDControllerArgs`` for the distance PID controller.
+ iangleArgs               The ``IterativePosPIDControllerArgs`` for the angle PID controller.
  istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
  iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
 ======================   =======================================================================================

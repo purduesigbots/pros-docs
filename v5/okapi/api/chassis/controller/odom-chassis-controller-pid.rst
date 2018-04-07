@@ -20,14 +20,14 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        OdomChassisControllerPID(const OdometryArgs &iparams, const PosPIDControllerArgs &idistanceArgs, const PosPIDControllerArgs &iangleArgs, const float imoveThreshold = 10)
+        OdomChassisControllerPID(const OdometryArgs &iparams, const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs, const float imoveThreshold = 10)
 
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
  iparams                  Arguments for the internal ``Odometry``.
- idistanceArgs            The ``PosPIDControllerArgs`` for the distance PID controller.
- iangleArgs               The ``PosPIDControllerArgs`` for the angle PID controller.
+ idistanceArgs            The ``IterativePosPIDControllerArgs`` for the distance PID controller.
+ iangleArgs               The ``IterativePosPIDControllerArgs`` for the angle PID controller.
  imoveThreshold           The minimum length movement. Any movements below this threshold will not be performed.
 ======================   =======================================================================================
 
