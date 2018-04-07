@@ -314,27 +314,6 @@ Parameters
 
 ----
 
-setFilterGains
-~~~~~~~~~~~~~~
-
-Sets controller gains.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void setFilterGains(const double alpha, const double beta)
-
-=============== ===================================================================
-Parameters
-=============== ===================================================================
- alpha           The filter's alpha gain.
- beta            The filter's beta gain.
-=============== ===================================================================
-
-----
-
 setTicksPerRev
 ~~~~~~~~~~~~~~
 
