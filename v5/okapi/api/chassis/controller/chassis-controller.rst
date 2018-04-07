@@ -20,7 +20,7 @@ Constructor(s)
 =================   ===================================================================
  Parameters
 =================   ===================================================================
- imodel              The underlying ``ChassisModel`` to control.
+ imodel              The underlying `ChassisModel <../model/chassis-model.html>`_ to control.
 =================   ===================================================================
 
 Methods
