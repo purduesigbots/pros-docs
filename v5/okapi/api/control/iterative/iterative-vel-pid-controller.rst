@@ -1,6 +1,6 @@
-=========================
-IterativeVelPIDController
-=========================
+============================
+Iterative Vel PID Controller
+============================
 
 .. contents:: :local:
 

@@ -1,6 +1,6 @@
-=====================
-AsyncPosPIDController
-=====================
+========================
+Async Pos PID Controller
+========================
 
 .. contents:: :local:
 

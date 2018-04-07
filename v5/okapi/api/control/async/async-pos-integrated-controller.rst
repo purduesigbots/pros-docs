@@ -1,6 +1,6 @@
-============================
-AsyncPosIntegratedController
-============================
+===============================
+Async Pos Integrated Controller
+===============================
 
 .. contents:: :local:
 

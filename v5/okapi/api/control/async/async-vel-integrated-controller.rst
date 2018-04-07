@@ -1,6 +1,6 @@
-============================
-AsyncVelIntegratedController
-============================
+===============================
+Async Vel Integrated Controller
+===============================
 
 .. contents:: :local:
 

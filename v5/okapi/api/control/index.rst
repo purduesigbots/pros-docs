@@ -3,14 +3,14 @@ Control API
 ===========
 
 .. toctree::
-   :caption: AsyncController API
+   :caption: Async Controller API
    :maxdepth: 1
    :glob:
 
    ./async/*
 
 .. toctree::
-   :caption: IterativeController API
+   :caption: Iterative Controller API
    :maxdepth: 1
    :glob:
 

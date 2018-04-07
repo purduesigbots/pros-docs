@@ -1,6 +1,6 @@
-===================
-IterativeController
-===================
+====================
+Iterative Controller
+====================
 
 .. contents:: :local:
 

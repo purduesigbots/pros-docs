@@ -1,6 +1,6 @@
-=========================
-IterativePosPIDController
-=========================
+============================
+Iterative Pos PID Controller
+============================
 
 .. contents:: :local:
 

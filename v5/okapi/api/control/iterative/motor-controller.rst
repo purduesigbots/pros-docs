@@ -1,6 +1,6 @@
-===============
-MotorController
-===============
+================
+Motor Controller
+================
 
 .. contents:: :local:
 
