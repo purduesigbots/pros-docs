@@ -4,6 +4,11 @@ Median Filter
 
 .. contents:: :local:
 
+okapi::MedianFilterArgs
+=======================
+
+Data class for the arguments to ``MedianFilter``.
+
 okapi::MedianFilter
 ===================
 

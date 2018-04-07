@@ -40,7 +40,7 @@ Integer power function. Computes ``base^expo``.
 
 ----
 
-cut_range
+cutRange
 ~~~~~~~~~
 
 Cut out a range from the number. The new range of the input number will be ``(-inf, min]U[max, +inf)``.
@@ -58,6 +58,7 @@ Cut out a range from the number. The new range of the input number will be ``(-i
 
         void opcontrol() {
           okapi::cut_range(1, -2, 2); // Equals 0
+          okapi::cut_range(3, -2, 2); // Equals 3
         }
 
 ============ ===============================================================

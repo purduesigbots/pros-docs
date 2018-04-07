@@ -4,6 +4,11 @@ Average Filter
 
 .. contents:: :local:
 
+okapi::AverageFilterArgs
+========================
+
+Data class for the arguments to ``AverageFilter``.
+
 okapi::AverageFilter
 ====================
 

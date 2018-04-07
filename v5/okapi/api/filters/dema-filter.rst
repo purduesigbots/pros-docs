@@ -4,6 +4,28 @@ DEMA Filter
 
 .. contents:: :local:
 
+okapi::DemaFilterArgs
+=====================
+
+Data class for the arguments to ``DemaFilter``.
+
+Constructor(s)
+--------------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        DemaFilterArgs(const double ialpha, const double ibeta)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ ialpha          The alpha gain (how much to consider the current measurement vs. the previous output).
+ ibeta           The beta gain (how aggressively the filter should follow trends).
+=============== ===================================================================
+
 okapi::DemaFilter
 =================
 

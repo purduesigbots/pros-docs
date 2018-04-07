@@ -4,6 +4,27 @@ EMA Filter
 
 .. contents:: :local:
 
+okapi::EmaFilterArgs
+====================
+
+Data class for the arguments to ``EmaFilter``.
+
+Constructor(s)
+--------------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        EmaFilterArgs(const double ialpha)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ ialpha          The alpha gain (how much to consider the current measurement vs. the previous output).
+=============== ===================================================================
+
 okapi::EmaFilter
 ================
 
