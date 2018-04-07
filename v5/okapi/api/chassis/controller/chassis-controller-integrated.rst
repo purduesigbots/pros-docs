@@ -82,7 +82,7 @@ This constructor is not recommended, there are less verbose options above.
       .. highlight:: cpp
       ::
 
-        ChassisControllerIntegrated(const ChassisModel &imodel, const PosIntegratedControllerArgs &ileftControllerArgs, const PosIntegratedControllerArgs &irightControllerArgs, const double istraightScale = 1, const double iturnScale = 1)
+        ChassisControllerIntegrated(const ChassisModel &imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs, const AsyncPosIntegratedControllerArgs &irightControllerArgs, const double istraightScale = 1, const double iturnScale = 1)
 
 ======================   =======================================================================================
  Parameters

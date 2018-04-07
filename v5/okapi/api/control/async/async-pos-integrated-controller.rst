@@ -1,13 +1,13 @@
-=======================
-PosIntegratedController
-=======================
+============================
+AsyncPosIntegratedController
+============================
 
 .. contents:: :local:
 
-okapi::PosIntegratedControllerArgs
-==================================
+okapi::AsyncPosIntegratedControllerArgs
+=======================================
 
-Data class for the arguments to ``PosIntegratedController``.
+Data class for the arguments to ``AsyncPosIntegratedController``.
 
 Constructor(s)
 --------------
@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        PosIntegratedControllerArgs(const AbstractMotor &imotor)
+        AsyncPosIntegratedControllerArgs(const AbstractMotor &imotor)
 
 =============== ===================================================================
  Parameters
@@ -27,8 +27,8 @@ Constructor(s)
 
 ----
 
-okapi::PosIntegratedController
-==============================
+okapi::AsyncPosIntegratedController
+===================================
 
 An async position controller that uses the V5 motor's onboard control.
 
@@ -40,7 +40,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        PosIntegratedController(const AbstractMotor &imotor)
+        AsyncPosIntegratedController(const AbstractMotor &imotor)
 
 =============== ===================================================================
  Parameters
@@ -53,12 +53,12 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        PosIntegratedController(const PosIntegratedControllerArgs &iparams)
+        AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- iparams         The ``PosIntegratedController`` arguments.
+ iparams         The ``AsyncPosIntegratedController`` arguments.
 =============== ===================================================================
 
 Methods
