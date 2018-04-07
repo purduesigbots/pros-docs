@@ -7,7 +7,7 @@ Chassis Controller PID
 okapi::ChassisControllerPID
 ===========================
 
-A ``ChassisController`` using PID control. Does not use the V5 motor's integrated control.
+A `ChassisController <chassis-controller.html>`_ using PID control. Does not use the V5 motor's integrated control.
 
 Constructor(s)
 --------------
@@ -43,8 +43,8 @@ This constructor infers a skid-steer layout.
 ======================   =======================================================================================
  ileftSideMotor           The left side motor in a skid-steer model.
  irightSideMotor          The right side motor in a skid-steer model.
- idistanceArgs            The ``IterativePosPIDControllerArgs`` for the distance PID controller.
- iangleArgs               The ``IterativePosPIDControllerArgs`` for the angle PID controller.
+ idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
+ iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
  istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
  iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
 ======================   =======================================================================================
@@ -78,8 +78,8 @@ This constructor infers an x-drive layout.
  itopRightMotor           The top right motor in an x-drive model.
  ibottomRightMotor        The bottom right motor in an x-drive model.
  ibottomLeftMotor         The bottom left motor in an x-drive model.
- idistanceArgs            The ``IterativePosPIDControllerArgs`` for the distance PID controller.
- iangleArgs               The ``IterativePosPIDControllerArgs`` for the angle PID controller.
+ idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
+ iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
  istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
  iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
 ======================   =======================================================================================
@@ -98,9 +98,9 @@ This constructor is not recommended, there are less verbose options above.
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
- imodel                   The underlying ``ChassisModel`` to control.
- idistanceArgs            The ``IterativePosPIDControllerArgs`` for the distance PID controller.
- iangleArgs               The ``IterativePosPIDControllerArgs`` for the angle PID controller.
+ imodel                   The underlying `ChassisModel <../model/chassis-model.html>`_ to control.
+ idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
+ iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
  istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
  iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
 ======================   =======================================================================================

@@ -46,8 +46,8 @@ Constructor(s)
 okapi::VelMath
 ==============
 
-Velocity math helper. Calculates filtered velocity. Filters using a 3-tap median filter and a 5-tap
-averaging filter by default, unless a different filter is given in the constructor.
+Velocity math helper. Calculates filtered velocity. Filters using a 3-tap `median filter <median-filter.html>`_ and a 5-tap
+`averaging filter <average-filter.html>`_ by default, unless a different filter is given in the constructor.
 
 Constructor(s)
 --------------

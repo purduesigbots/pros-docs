@@ -13,7 +13,7 @@ Data class for the arguments to ``XDriveModel``.
 Constructor(s)
 --------------
 
-This constructor infers the encoders from the motors.
+This constructor infers the encoders from the top left and top right motors.
 
 .. tabs ::
    .. tab :: Prototype

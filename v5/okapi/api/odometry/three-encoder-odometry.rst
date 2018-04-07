@@ -34,7 +34,7 @@ okapi::ThreeEncoderOdometry
 
 Tracks the movement of the robot and estimates its position in coordinates relative to the robot's
 starting position (assumed to be ``(0, 0)``). If you want to use this class to help write an
-autonomous program, take a look at ``OdomChassisController`` instead.
+autonomous program, take a look at `OdomChassisController <../chassis/controller/odom-chassis-controller.html>`_ instead.
 
 This class uses a third encoder, mounted between the normal two encoders and perpendicular to them.
 This third encoder lets the robot track sideways drifting that the two encoder model misses.

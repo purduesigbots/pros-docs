@@ -7,10 +7,10 @@ Odom Chassis Controller PID
 okapi::OdomChassisControllerPID
 ===============================
 
-Odometry based chassis controller. Starts task at the default priority plus 1 for odometry when
-constructed. Moves the robot around in the odom frame. Instead of telling the robot to drive
-forward or turn some amount, you instead tell it to drive to a specific point on the field or turn
-to a specific angle relative to its starting position.
+`Odometry <../../odometry/odometry.html>`_ based chassis controller. Starts task at the default
+priority plus 1 for odometry when constructed. Moves the robot around in the odom frame. Instead of
+telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific
+point on the field or turn to a specific angle relative to its starting position.
 
 Constructor(s)
 --------------
@@ -25,9 +25,9 @@ Constructor(s)
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
- iparams                  Arguments for the internal ``Odometry``.
- idistanceArgs            The ``IterativePosPIDControllerArgs`` for the distance PID controller.
- iangleArgs               The ``IterativePosPIDControllerArgs`` for the angle PID controller.
+ iparams                  Arguments for the internal `Odometry <../../odometry/odometry.html>`_.
+ idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
+ iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
  imoveThreshold           The minimum length movement. Any movements below this threshold will not be performed.
 ======================   =======================================================================================
 

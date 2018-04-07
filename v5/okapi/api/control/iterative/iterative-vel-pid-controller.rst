@@ -77,7 +77,7 @@ Constructor(s)
 =============== ===================================================================
  ikp             The P term gain.
  ikD             The D term gain.
- iparams         The ``VelMath`` arguments.
+ iparams         The `VelMath <../../filters/vel-math.html>`_ arguments.
 =============== ===================================================================
 
 .. tabs ::

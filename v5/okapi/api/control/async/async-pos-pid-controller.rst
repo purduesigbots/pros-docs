@@ -24,7 +24,7 @@ Constructor(s)
 =============== ===================================================================
  iinput          The controller input.
  ioutput         The controller output.
- iparams         The ``IterativePosPIDController`` arguments.
+ iparams         The `IterativePosPIDController <../iterative/iterative-pos-pid-controller.html>`_ arguments.
 =============== ===================================================================
 
 ----
@@ -67,7 +67,7 @@ Constructor(s)
 =============== ===================================================================
  iinput          The controller input.
  ioutput         The controller output.
- iparams         The ``IterativePosPIDController`` arguments.
+ iparams         The `IterativePosPIDController <../iterative/iterative-pos-pid-controller.html>`_ arguments.
 =============== ===================================================================
 
 Methods

@@ -7,7 +7,7 @@ Chassis Controller Integrated
 okapi::ChassisControllerIntegrated
 ==================================
 
-A ``ChassisController`` using the V5 motor's integrated control.
+A `ChassisController <chassis-controller.html>`_ using the V5 motor's integrated control.
 
 Constructor(s)
 --------------
@@ -19,7 +19,8 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double istraightScale = 1, const double iturnScale = 1)
+        ChassisControllerIntegrated(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
+                                    const double istraightScale = 1, const double iturnScale = 1)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -51,7 +52,8 @@ This constructor infers an x-drive layout.
       .. highlight:: cpp
       ::
 
-        ChassisControllerIntegrated(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor, const double istraightScale = 1, const double iturnScale = 1)
+        ChassisControllerIntegrated(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+                                    const double istraightScale = 1, const double iturnScale = 1)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -82,14 +84,16 @@ This constructor is not recommended, there are less verbose options above.
       .. highlight:: cpp
       ::
 
-        ChassisControllerIntegrated(const ChassisModel &imodel, const AsyncPosIntegratedControllerArgs &ileftControllerArgs, const AsyncPosIntegratedControllerArgs &irightControllerArgs, const double istraightScale = 1, const double iturnScale = 1)
+        ChassisControllerIntegrated(const ChassisModel &imodel,
+                                    const AsyncPosIntegratedControllerArgs &ileftControllerArgs, const AsyncPosIntegratedControllerArgs &irightControllerArgs,
+                                    const double istraightScale = 1, const double iturnScale = 1)
 
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
- imodel                   The underlying ``ChassisModel`` to control.
- ileftControllerArgs      The ``PosIntegratedControllerArgs`` for the left side PID controller.
- irightControllerArgs     The ``PosIntegratedControllerArgs`` for the right side PID controller.
+ imodel                   The underlying `ChassisModel <../model/chassis-model.html>`_ to control.
+ ileftControllerArgs      The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the left side PID controller.
+ irightControllerArgs     The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the right side PID controller.
  istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
  iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
 ======================   =======================================================================================

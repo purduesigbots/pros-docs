@@ -64,7 +64,10 @@ Constructor(s)
 okapi::Odometry
 ================
 
-Tracks the movement of the robot and estimates its position in coordinates relative to the robot's starting position (assumed to be ``(0, 0)``). If you want to use this class to help write an autonomous program, take a look at ``OdomChassisController`` instead.
+Tracks the movement of the robot and estimates its position in coordinates relative to the robot's
+starting position (assumed to be ``(0, 0)``). If you want to use this class to help write an
+autonomous program, take a look at
+`OdomChassisController <../chassis/controller/odom-chassis-controller.html>`_ instead.
 
 Constructor(s)
 --------------

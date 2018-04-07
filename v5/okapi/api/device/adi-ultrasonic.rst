@@ -7,8 +7,8 @@ ADI Ultrasonic
 okapi::ADIUltrasonic
 ====================
 
-An ultrasonic sensor on the ADI ports. Uses a 5-tap ``MedianFilter`` to filter out spikes and
-errors in the signal.
+An ultrasonic sensor on the ADI ports. Uses a 5-tap
+`median filter <../filters/median-filter.html>`_ to filter out spikes and errors in the signal.
 
 Constructor(s)
 --------------
