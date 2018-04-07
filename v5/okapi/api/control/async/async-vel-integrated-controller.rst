@@ -1,13 +1,13 @@
-=======================
-VelIntegratedController
-=======================
+============================
+AsyncVelIntegratedController
+============================
 
 .. contents:: :local:
 
-okapi::VelIntegratedControllerArgs
-==================================
+okapi::AsyncVelIntegratedControllerArgs
+=======================================
 
-Data class for the arguments to ``VelIntegratedController``.
+Data class for the arguments to ``AsyncVelIntegratedController``.
 
 Constructor(s)
 --------------
@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelIntegratedControllerArgs(const AbstractMotor &imotor)
+        AsyncVelIntegratedControllerArgs(const AbstractMotor &imotor)
 
 =============== ===================================================================
  Parameters
@@ -27,8 +27,8 @@ Constructor(s)
 
 ----
 
-okapi::VelIntegratedController
-==============================
+okapi::AsyncVelIntegratedController
+===================================
 
 An async velocity controller that uses the V5 motor's onboard control.
 
@@ -40,7 +40,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelIntegratedController(const AbstractMotor &imotor)
+        AsyncVelIntegratedController(const AbstractMotor &imotor)
 
 =============== ===================================================================
  Parameters
@@ -53,12 +53,12 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelIntegratedController(const VelIntegratedControllerArgs &iparams)
+        AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- iparams         The ``VelIntegratedController`` arguments.
+ iparams         The ``AsyncVelIntegratedController`` arguments.
 =============== ===================================================================
 
 Methods
