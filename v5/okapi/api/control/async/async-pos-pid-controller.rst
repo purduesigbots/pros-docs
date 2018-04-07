@@ -32,7 +32,7 @@ Constructor(s)
 okapi::AsyncPosPIDController
 ============================
 
-An async position controller that uses PID.
+An `AsyncPositionController <async-position-controller.html>`_ that uses PID.
 
 Constructor(s)
 --------------

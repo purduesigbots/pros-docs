@@ -30,7 +30,7 @@ Constructor(s)
 okapi::AsyncVelIntegratedController
 ===================================
 
-An async velocity controller that uses the V5 motor's onboard control.
+An `AsyncVelocityController <async-velocity-controller.html>`_ that uses the V5 motor's onboard control.
 
 Constructor(s)
 --------------

@@ -33,7 +33,7 @@ Constructor(s)
 okapi::IterativePosPIDController
 ================================
 
-An ``IterativePositionController`` that uses the position PID algorithm.
+An `IterativePositionController <iterative-position-controller.html>`_ that uses the position PID algorithm.
 
 Constructor(s)
 --------------

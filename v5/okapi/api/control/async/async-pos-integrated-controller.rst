@@ -30,7 +30,7 @@ Constructor(s)
 okapi::AsyncPosIntegratedController
 ===================================
 
-An async position controller that uses the V5 motor's onboard control.
+An `AsyncPositionController <async-position-controller.html>`_ that uses the V5 motor's onboard control.
 
 Constructor(s)
 --------------

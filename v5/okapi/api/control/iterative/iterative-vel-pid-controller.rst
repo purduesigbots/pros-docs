@@ -46,7 +46,7 @@ Constructor(s)
 okapi::IterativeVelPIDController
 ================================
 
-An ``IterativeVelocityController`` that uses the velocity PD algorithm.
+An `IterativeVelocityController <iterative-velocity-controller.html>`_ that uses the velocity PD algorithm.
 
 Constructor(s)
 --------------
