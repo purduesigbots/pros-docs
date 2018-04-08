@@ -1,11 +1,33 @@
-================
-Motor Controller
-================
+==========================
+Iterative Motor Controller
+==========================
 
 .. contents:: :local:
 
-okapi::MotorController
-======================
+okapi::IterativeMotorControllerArgs
+===================================
+
+Data class for the to arguments to ``IterativeMotorController``.
+
+Constructor(s)
+--------------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        IterativeMotorControllerArgs(const AbstractMotor &imotor, IterativeVelocityController &icontroller)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ imotor          The motor to control.
+ icontroller     The ``IterativeVelocityController`` to use.
+=============== ===================================================================
+
+okapi::IterativeMotorController
+===============================
 
 A simple `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ that
 associates an `AbstractMotor <../../device/motor/abstract-motor.html>`_ with an
@@ -19,13 +41,26 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        MotorController(const AbstractMotor &imotor, IterativeVelocityController &icontroller)
+        IterativeMotorController(const AbstractMotor &imotor, IterativeVelocityController &icontroller)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
  icontroller     The ``IterativeVelocityController`` to use.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        IterativeMotorController(const IterativeMotorControllerArgs &iparams)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ iparams         The ``IterativeMotorController`` arguments.
 =============== ===================================================================
 
 Methods
