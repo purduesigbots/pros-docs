@@ -45,13 +45,6 @@ PROS: Documentation Home
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :caption: OkapiLib
-
-   ./okapi/index
-
-.. toctree::
-   :hidden:
-   :maxdepth: -1
    :caption: Extended (Advanced Users)
 
    ./extended/index
