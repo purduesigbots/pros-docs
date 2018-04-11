@@ -21,7 +21,7 @@ This constructor infers the encoders from the top left and top right motors.
       ::
 
         XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                        const double imaxOutput = 100)
+                        const double imaxOutput = 127)
 
 ==================   ===================================================================
  Parameters
@@ -42,7 +42,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
 
         XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
                         const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                        const double imaxOutput = 100)
+                        const double imaxOutput = 127)
 
 ==================   ===================================================================
  Parameters
@@ -74,7 +74,7 @@ This constructor infers the encoders from the motors.
       ::
 
         XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                    const double imaxOutput = 100)
+                    const double imaxOutput = 127)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -105,7 +105,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
 
         XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
                     const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
-                    const double imaxOutput = 100)
+                    const double imaxOutput = 127)
 
    .. tab :: Example
       .. highlight:: cpp

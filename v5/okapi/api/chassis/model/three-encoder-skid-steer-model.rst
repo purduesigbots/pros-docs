@@ -20,7 +20,7 @@ Constructor(s)
 
         ThreeEncoderSkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                                        const RotarySensor &ileftEnc, const RotarySensor &imiddleEnc, const RotarySensor &irightEnc,
-                                       const double imaxOutput = 100)
+                                       const double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -51,7 +51,7 @@ Constructor(s)
 
         ThreeEncoderSkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
                                    const RotarySensor &ileftEnc, const RotarySensor &imiddleEnc, const RotarySensor &irightEnc,
-                                   const double imaxOutput = 100)
+                                   const double imaxOutput = 127)
 
    .. tab :: Example
       .. highlight:: cpp

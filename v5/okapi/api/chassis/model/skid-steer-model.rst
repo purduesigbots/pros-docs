@@ -20,7 +20,7 @@ This constructor infers the encoders from the left side and right side motors.
       .. highlight:: cpp
       ::
 
-        SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double imaxOutput = 100)
+        SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -37,7 +37,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 100)
+        SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -66,7 +66,7 @@ This constructor infers the encoders from the motors.
       .. highlight:: cpp
       ::
 
-        SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double imaxOutput = 100)
+        SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double imaxOutput = 127)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -97,7 +97,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 100)
+        SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 127)
 
    .. tab :: Example
       .. highlight:: cpp
