@@ -142,9 +142,10 @@ Next, let's setup tank or arcade control.
 to use, we just need to pass in joystick values which have been scaled to be in the range
 ``[-1, 1]``. Whenever you interact with a
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ or a
-`ChassisModel <../../api/chassis/model/chassis-model.html>`_, remember that your inputs need to be
-scaled to the range ``[-1, 1]``. OkapiLib requires this because it lends itself to better chassis
-control.
+`ChassisModel <../../api/chassis/model/chassis-model.html>`_ (with the exception of the closed-loop
+methods `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ has), remember
+that your inputs need to be scaled to the range ``[-1, 1]``. OkapiLib requires this because it
+lends itself to better chassis control.
 
 .. tabs ::
    .. tab :: Tank drive
@@ -164,6 +165,73 @@ control.
         // as OkapiLib expects.
         robotChassisController.arcade(controller.get_analog(ANALOG_LEFT_X) / 127.0,
                                       controller.get_analog(ANALOG_LEFT_Y) / 127.0);
+
+Arm Control
+-----------
+
+This section will focus on controlling the clawbot's arm. There are two parts to this: first, the
+arm has a limit switch at the bottom of its travel range, so we should use that button to tell when
+we've hit a hard stop; second, the arm should be user-controlled with two buttons on the
+controller.
+
+First, let's focus on the limit switch at the bottom of the arm's travel range. When the arm hits
+this button, the arm motor should stop trying to make the arm move down. We can accomplish this
+using an if-statement that checks whether the button is pressed.
+
+We can define our button as an `ADIButton <../../api/device/button/adi-button.html>`_:
+
+.. highlight:: cpp
+::
+
+  okapi::ADIButton armLimitButton('H');
+
+And the arm motor:
+
+.. highlight:: cpp
+::
+
+  okapi::Motor armMotor = 8_m;
+
+Then we can check if it's pressed and stop powering the arm motor:
+
+.. highlight:: cpp
+::
+
+  // Don't power the arm if it is all the way down
+  if (armLimitButton.isPressed()) {
+    armMotor.move_voltage(0);
+  } else {
+    // Normal arm control
+  }
+
+Next, let's add the logic to make the arm user-controller with two buttons on the controller.
+First, we need to define our two controller buttons as
+`ControllerButton <../../api/device/button/controller-button.html>`_ instances:
+
+.. highlight:: cpp
+::
+
+  okapi::ControllerButton armUpButton(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A);
+  okapi::ControllerButton armDownButton(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_B);
+
+Then we can use them along with our limit switch logic from above to control the arm:
+
+.. highlight:: cpp
+::
+
+  // Don't power the arm if it is all the way down
+  if (armLimitButton.isPressed()) {
+    armMotor.move_voltage(0);
+  } else {
+    // Else, the arm isn't all the way down
+    if (armUpButton.isPressed()) {
+      armMotor.move_voltage(127);
+    } else if (armDownButton.isPressed()) {
+      armMotor.move_voltage(-127);
+    } else {
+      armMotor.move_voltage(0);
+    }
+  }
 
 Wrap Up
 -------
@@ -210,8 +278,21 @@ This is the final product from this tutorial.
                 armMotor.move_voltage(127);
               } else if (armDownButton.isPressed()) {
                 armMotor.move_voltage(-127);
+              } else {
+                armMotor.move_voltage(0);
               }
             }
+
+            // Run the test autonomous routine if we press the button
+            if (runAutoButton.changedToPressed()) {
+              // Drive the robot forwards using closed-loop control.
+              // 1800 ticks corresponds to one wheel rotation.
+              robotChassisController.moveDistance(1800);
+            }
+
+            // Wait and give up the time we don't need to other tasks.
+            // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
+            task_delay(10);
           }
         }
 
@@ -254,7 +335,20 @@ This is the final product from this tutorial.
                 armMotor.move_voltage(127);
               } else if (armDownButton.isPressed()) {
                 armMotor.move_voltage(-127);
+              } else {
+                armMotor.move_voltage(0);
               }
             }
+
+            // Run the test autonomous routine if we press the button
+            if (runAutoButton.changedToPressed()) {
+              // Drive the robot forwards using closed-loop control.
+              // 1800 ticks corresponds to one wheel rotation.
+              robotChassisController.moveDistance(1800);
+            }
+
+            // Wait and give up the time we don't need to other tasks.
+            // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
+            task_delay(10);
           }
         }
