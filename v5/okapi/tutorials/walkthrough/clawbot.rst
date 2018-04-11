@@ -233,6 +233,56 @@ Then we can use them along with our limit switch logic from above to control the
     }
   }
 
+Autonomous Routine
+------------------
+
+To illustrate the closed-loop control method that
+`ChassisController <../../api/chassis/controller/chassis-controller.html>`_ has, let's make a
+simple autonomous routine to drive in a square.
+
+First we need to calculate the number of ticks equivalent to a 90 degree turn. The formula for this
+is:
+
+.. tabs ::
+   .. tab :: Formula
+      .. highlight:: cpp
+      ::
+
+        ((ticks per wheel rotation) / ((wheel diameter) * pi)) * ((center-to-center wheel distance) * (pi) * (1/4))
+
+   .. tab :: Result
+     .. highlight:: cpp
+     ::
+
+       (1800 ticks / (3.25 in * pi)) * (12 in * pi * (1/4)) = 1662 ticks
+
+Let's follow the same procedure for calculate the ticks equivalent to driving forward 12 inches:
+
+.. tabs ::
+   .. tab :: Formula
+      .. highlight:: cpp
+      ::
+
+        ((ticks per wheel rotation) / ((wheel diameter) * pi)) * 12
+
+   .. tab :: Result
+     .. highlight:: cpp
+     ::
+
+       (1800 ticks / (3.25 in * pi)) * 12 in = 2116 ticks
+
+Now that we know how far we need to drive, we can program the routine. We will use
+`ChassisController <../../api/chassis/controller/chassis-controller.html>`_'s ``moveDistance``
+method to drive along a straight line and ``turnAngle`` method to turn in place.
+
+.. highlight:: cpp
+::
+
+    for (int i = 0; i < 4; i++) {
+      robotChassisController.moveDistance(2116); // Drive forward 12 inches
+      robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+    }
+
 Wrap Up
 -------
 
@@ -285,9 +335,11 @@ This is the final product from this tutorial.
 
             // Run the test autonomous routine if we press the button
             if (runAutoButton.changedToPressed()) {
-              // Drive the robot forwards using closed-loop control.
-              // 1800 ticks corresponds to one wheel rotation.
-              robotChassisController.moveDistance(1800);
+              // Drive the robot in a square pattern using closed-loop control
+              for (int i = 0; i < 4; i++) {
+                robotChassisController.moveDistance(2116); // Drive forward 12 inches
+                robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+              }
             }
 
             // Wait and give up the time we don't need to other tasks.
@@ -342,9 +394,11 @@ This is the final product from this tutorial.
 
             // Run the test autonomous routine if we press the button
             if (runAutoButton.changedToPressed()) {
-              // Drive the robot forwards using closed-loop control.
-              // 1800 ticks corresponds to one wheel rotation.
-              robotChassisController.moveDistance(1800);
+              // Drive the robot in a square pattern using closed-loop control
+              for (int i = 0; i < 4; i++) {
+                robotChassisController.moveDistance(2116); // Drive forward 12 inches
+                robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+              }
             }
 
             // Wait and give up the time we don't need to other tasks.
