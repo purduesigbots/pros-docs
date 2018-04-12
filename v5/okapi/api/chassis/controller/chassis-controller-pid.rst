@@ -91,14 +91,14 @@ This constructor is not recommended, there are less verbose options above.
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(const ChassisModel &imodel,
+        ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                              const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs,
                              const double istraightScale = 1, const double iturnScale = 1)
 
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
- imodel                   The underlying `ChassisModel <../model/chassis-model.html>`_ to control.
+ imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
  iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
  istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.

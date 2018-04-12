@@ -84,14 +84,14 @@ This constructor is not recommended, there are less verbose options above.
       .. highlight:: cpp
       ::
 
-        ChassisControllerIntegrated(const ChassisModel &imodel,
+        ChassisControllerIntegrated(std::shared_ptr<ChassisModel> imodel,
                                     const AsyncPosIntegratedControllerArgs &ileftControllerArgs, const AsyncPosIntegratedControllerArgs &irightControllerArgs,
                                     const double istraightScale = 1, const double iturnScale = 1)
 
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
- imodel                   The underlying `ChassisModel <../model/chassis-model.html>`_ to control.
+ imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
  ileftControllerArgs      The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the left side PID controller.
  irightControllerArgs     The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the right side PID controller.
  istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.

@@ -1,6 +1,6 @@
-=======================
-Odom Chassis Controller
-=======================
+==================================
+(Abstract) Odom Chassis Controller
+==================================
 
 .. contents:: :local:
 

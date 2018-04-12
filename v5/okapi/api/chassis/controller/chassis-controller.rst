@@ -15,12 +15,12 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ChassisController(const ChassisModel &imodel)
+        ChassisController(std::shared_ptr<ChassisModel> imodel)
 
 =================   ===================================================================
  Parameters
 =================   ===================================================================
- imodel              The underlying `ChassisModel <../model/chassis-model.html>`_ to control.
+ imodel              The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
 =================   ===================================================================
 
 Methods

@@ -1,6 +1,6 @@
-=============
-Chassis Model
-=============
+========================
+(Abstract) Chassis Model
+========================
 
 .. contents:: :local:
 

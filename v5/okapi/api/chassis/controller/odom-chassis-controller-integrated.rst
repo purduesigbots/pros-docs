@@ -1,16 +1,20 @@
-===========================
-Odom Chassis Controller PID
-===========================
+==================================
+Odom Chassis Controller Integrated
+==================================
 
 .. contents:: :local:
 
-okapi::OdomChassisControllerPID
-===============================
+okapi::OdomChassisControllerIntegrated
+======================================
 
-`Odometry <../../odometry/odometry.html>`_ based chassis controller. Starts task at the default
-priority plus 1 for odometry when constructed. Moves the robot around in the odom frame. Instead of
-telling the robot to drive forward or turn some amount, you instead tell it to drive to a specific
-point on the field or turn to a specific angle relative to its starting position.
+`Odometry <../../odometry/odometry.html>`_ based chassis controller that moves using the V5 motor's
+integrated control. Spins up a task at the default priority plus 1 for odometry when constructed.
+
+This class uses the V5 motor's integrated encoders.
+
+Moves the robot around in the odom frame. Instead of telling the robot to drive forward or turn
+some amount, you instead tell it to drive to a specific point on the field or turn to a specific
+angle, relative to its starting position.
 
 Constructor(s)
 --------------
@@ -26,8 +30,6 @@ This constructor infers a skid-steer layout.
                                  const AbstractMotor &irightSideMotor,
                                  const double iscale,
                                  const double iturnScale,
-                                 const IterativePosPIDControllerArgs &idistanceArgs,
-                                 const IterativePosPIDControllerArgs &iangleArgs,
                                  const float imoveThreshold = 10)
 
 ======================   =======================================================================================
@@ -37,10 +39,24 @@ This constructor infers a skid-steer layout.
  irightSideMotor          The right side motor in a skid-steer model.
  iscale                   A scale converting your units of choice to encoder ticks, used for measuring distance.
  iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
- idistanceArgs            The distance `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
- iangleArgs               The angle `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
  imoveThreshold           The minimum length movement. Movements shorted than this will not be performed.
 ======================   =======================================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        OdomChassisControllerIntegrated(std::shared_ptr<SkidSteerModel> imodel, const double iscale, const double iturnScale, const float imoveThreshold = 10)
+
+========================   =======================================================================================
+ Parameters
+========================   =======================================================================================
+ imodel                     The `SkidSteerModel <../model/skid-steer-model.html>`_ to use.
+ iscale                     A scale converting your units of choice to encoder ticks, used for measuring distance.
+ iturnScale                 A scale converting your units of choice to encoder ticks, used for measure angle.
+ imoveThreshold             The minimum length movement. Movements shorted than this will not be performed.
+========================   =======================================================================================
 
 .. tabs ::
    .. tab :: Prototype
@@ -50,20 +66,20 @@ This constructor infers a skid-steer layout.
         OdomChassisControllerPID(std::shared_ptr<SkidSteerModel> imodel,
                                  const double iscale,
                                  const double iturnScale,
-                                 const IterativePosPIDControllerArgs &idistanceArgs,
-                                 const IterativePosPIDControllerArgs &iangleArgs,
+                                 const AsyncPosIntegratedControllerArgs &ileftControllerParams,
+                                 const AsyncPosIntegratedControllerArgs &irightControllerParams,
                                  const float imoveThreshold = 10)
 
-======================   =======================================================================================
+========================   =======================================================================================
  Parameters
-======================   =======================================================================================
- imodel                   The `SkidSteerModel <../model/skid-steer-model.html>`_ to use.
- iscale                   A scale converting your units of choice to encoder ticks, used for measuring distance.
- iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
- idistanceArgs            The distance `PID controller <../../control/iterative/iterative-pos-pid-controller.html>`_ params
- iangleArgs               The angle `PID controller <../../control/iterative/iterative-pos-pid-controller.html>`_ params (keeps the robot straight)
- imoveThreshold           The minimum length movement. Movements shorted than this will not be performed.
-======================   =======================================================================================
+========================   =======================================================================================
+ imodel                     The `SkidSteerModel <../model/skid-steer-model.html>`_ to use.
+ iscale                     A scale converting your units of choice to encoder ticks, used for measuring distance.
+ iturnScale                 A scale converting your units of choice to encoder ticks, used for measure angle.
+ ileftControllerParams      The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the left side PID controller.
+ irightControllerParams     The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the right side PID controller.
+ imoveThreshold             The minimum length movement. Movements shorted than this will not be performed.
+========================   =======================================================================================
 
 Methods
 -------
