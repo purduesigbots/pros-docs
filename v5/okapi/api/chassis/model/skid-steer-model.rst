@@ -405,3 +405,31 @@ Parameters
 =============== ===================================================================
  gearset         The new gearset.
 =============== ===================================================================
+
+----
+
+getLeftSideMotor
+~~~~~~~~~~~~~~~~
+
+Returns the left side motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        const AbstractMotor &getLeftSideMotor() const
+
+----
+
+getRightSideMotor
+~~~~~~~~~~~~~~~~~
+
+Returns the right side motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        const AbstractMotor &getRightSideMotor() const
