@@ -10,1009 +10,8 @@ Motors C API
 
 .. contents:: :local:
 
-Functions
-=========
-
-motor_get_actual_velocity
--------------------------
-
-Gets the actual velocity of the motor.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_actual_velocity <../cpp/motors.html#get-actual-velocity>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-         double motor_get_actual_velocity ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Actual velocity: %lf\n", motor_get_actual_velocity(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The motor's actual velocity in `motor_encoder_units_e_t`_ per second
-or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
-
-----
-
-motor_get_brake_mode
---------------------
-
-Gets the brake mode of the motor.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_brake_mode <../cpp/motors.html#get-brake-mode>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        motor_brake_mode_e_t motor_get_brake_mode ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void initialize() {
-          motor_set_brake_mode(1, E_MOTOR_BRAKE_HOLD);
-          printf("Brake Mode: %d\n", motor_get_brake_mode(1));
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** One of `motor_brake_mode_e_t`_, according to what was set for the motor,
-or ``E_MOTOR_BRAKE_INVALID`` if the operation failed, setting ``errno``.
-
-----
-
-motor_get_current
------------------
-
-Gets the current drawn by the motor in mA.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_current <../cpp/motors.html#get-current>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-         int32_t motor_get_current_draw ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Current Draw: %d\n", motor_get_current_draw(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The motor's current in mA or ``PROS_ERR`` if the operation failed,
-setting ``errno``.
-
-----
-
-motor_get_current_limit
------------------------
-
-Gets the current limit for the motor in mA. The default limit is 2500 mA.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_current_limit <../cpp/motors.html#get-current-limit>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-         int32_t motor_get_current_limit ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void initialize() {
-          printf("Motor Current Limit: %d\n", motor_get_current_limit(1));
-          // Prints "Motor Current Limit: 2500"
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The motor's current limit in mA or ``PROS_ERR`` if the operation failed,
-setting ``errno``.
-
-----
-
-motor_get_direction
--------------------
-
-Gets the direction of movement for the motor.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_direction <../cpp/motors.html#get-direction>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-         int32_t motor_get_direction ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Direction: %d\n", motor_get_direction(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** 1 for moving in the positive direction, -1 for moving in the
-negative direction, and ``PROS_ERR`` if the operation failed,
-setting ``errno``.
-
-----
-
-motor_get_efficiency
---------------------
-
-Gets the efficiency of the motor in percent.
-
-An efficiency of 100% means that the motor is moving electrically while
-drawing no electrical power, and an efficiency of 0% means that the motor
-is drawing power but not moving.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_efficiency <../cpp/motors.html#get-efficiency>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-         int32_t motor_get_efficiency ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Efficiency: %d\n", motor_get_efficiency(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The motor's efficiency in percent or ``PROS_ERR_F`` if the operation
-failed, setting ``errno``.
-
-----
-
-motor_get_encoder_units
------------------------
-
-Gets the `encoder units <motor_encoder_units_e_t>`_ set for the motor.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_encoder_units <../cpp/motors.html#get-encoder-units>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-         motor_encoder_units_e_t motor_get_encoder_units ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void initialize() {
-          printf("Motor Encoder Units: %d\n", motor_get_encoder_units(1));
-          // Prints E_MOTOR_ENCODER_DEGREES by default
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** One of `motor_encoder_units_e_t`_ according to what is set for the motor
-or ``E_MOTOR_ENCODER_INVALID`` if the operation failed.
-
-----
-
-motor_get_faults
-----------------
-
-Gets the faults experienced by the motor.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_faults <../cpp/motors.html#get-faults>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-         uint32_t motor_get_faults ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Faults: %d\n", motor_get_faults(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** Currently unknown bitfield.
-
-----
-
-motor_get_flags
----------------
-
-Gets the flags set by the motor's operation.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_flags <../cpp/motors.html#get-flags>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-         uint32_t motor_get_flags ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Flags: %d\n", motor_get_flags(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** A currently unknown bitfield
-
-----
-
-motor_get_gearing
------------------
-
-Gets the `gearset <motor_gearset_e_t>`_` that was set for the motor.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_gearing <../cpp/motors.html#get-gearing>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-         motor_gearset_e_t motor_get_gearing ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void initialize() {
-          printf("Motor Gearing Number: %d\n", motor_get_gearing(1));
-          // Prints E_MOTOR_GEARSET_36 by default
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** One of `motor_gearset_e_t`_ according to what is set for the motor,
-or ``E_GEARSET_INVALID`` if the operation failed.
-
-----
-
-motor_get_position
-------------------
-
-Gets the absolute position of the motor in its encoder units.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_position <../cpp/motors.html#get-position>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        double motor_get_position ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Position: %lf\n", motor_get_position(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The motor's absolute position in its encoder units or ``PROS_ERR_F``
-if the operation failed, setting ``errno``.
-
-----
-
-motor_get_power
----------------
-
-Gets the power drawn by the motor in Watts.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_power <../cpp/motors.html#get-power>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        double motor_get_power ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          uint32_t now = millis();
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Power: %lf\n", motor_get_power(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The motor's power draw in Watts or ``PROS_ERR_F`` if the operation
-failed, setting ``errno``.
-
-----
-
-motor_get_raw_position
-----------------------
-
-Gets the raw encoder count of the motor at a given timestamp.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_raw_position <../cpp/motors.html#get-raw-position>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        int32_t motor_get_raw_position ( uint8_t port,
-                                         uint32_t* timestamp )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          uint32_t now = millis();
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Encoder Count: %d\n", motor_get_raw_position(1, &now));
-            delay(2);
-          }
-        }
-
-============ =======================================================
- Parameters
-============ =======================================================
- port         The V5 port number from 1-21
- timestamp    A pointer to a time in milliseconds for which the
-              encoder count will be returned
-============ =======================================================
-
-**Returns:** The raw encoder count at the given timestamp or ``PROS_ERR`` if the
-operation failed, setting ``errno``.
-
-----
-
-motor_get_target
-----------------
-
-Gets the target position set for the motor by the user.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_target <../cpp/motors.html#get-target>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        double motor_get_target ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void autonomous() {
-          motor_move_absolute(1, 100, 100);
-          printf("Motor Target: %d\n", motor_get_target(1));
-          // Prints 100
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The target position in its encoder units or ``PROS_ERR_F`` if the
-operation failed, setting ``errno``.
-
-----
-
-motor_get_temperature
----------------------
-
-Gets the temperature of the motor in degrees Celsius. The resolution of this
-eading is 5 degrees Celsius. The motor will start to reduce its power when the
-temperature reading is greater than or equal to 55 C.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_temperature <../cpp/motors.html#get-temperature>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        double motor_get_temperature ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Temperature: %lf\n", motor_get_temperature(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The motor's temperature in degrees Celsius or ``PROS_ERR_F`` if the
-operation failed, setting ``errno``.
-
-----
-
-motor_get_torque
-----------------
-
-Gets the torque generated by the motor in Nm.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_torque <../cpp/motors.html#get-torque>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        double motor_get_torque ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Torque: %lf\n", motor_get_torque(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The motor's torque in NM or ``PROS_ERR_F`` if the operation failed,
-setting ``errno``.
-
-----
-
-motor_get_velocity
-------------------
-
-Gets the velocity commanded to the motor by the user.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_velocity <../cpp/motors.html#get-velocity>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        int32_t motor_get_velocity ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move_velocity(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Commanded Velocity: %d\n", motor_get_velocity(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The commanded motor velocity from +-100, +-200, +-600, or ``PROS_ERR`` if the
-operation failed, setting ``errno``.
-
-----
-
-motor_get_voltage
------------------
-
-Gets the voltage delivered to the motor in mV.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_voltage <../cpp/motors.html#get-voltage>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        double motor_get_voltage ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Voltage: %lf\n", motor_get_voltage(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The motor's voltage in mV or ``PROS_ERR_F`` if the operation failed,
-setting ``errno``.
-
-----
-
-motor_get_voltage_limit
------------------------
-
-Gets the voltage limit set by the user.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_voltage_limit <../cpp/motors.html#get-voltage-limit>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        int32_t motor_get_voltage_limit ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void initialize() {
-          printf("Motor Voltage Limit: %d\n", motor_get_voltage_limit(1));
-          // Prints 0 by default, indicating no limit
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** The motor's voltage limit in V or ``PROS_ERR`` if the operation failed,
-setting ``errno``.
-
-----
-
-motor_get_zero_position_flag
-----------------------------
-
-Gets the zero position flag for the motor.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::get_zero_position_flag <../cpp/motors.html#get-zero-position-flag>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        int32_t motor_get_zero_position_flag ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Is the motor at its zero position? %d\n", motor_get_zero_position_flag(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** ``1`` if the motor is at zero absolute position and ``0`` if the motor has
-moved from its absolute zero, or ``PROS_ERR`` if the operation failed
-setting ``errno``.
-
-----
-
-motor_is_stopped
-----------------
-
-Gets the zero velocity flag for the motor.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::is_stopped <../cpp/motors.html#is-stopped>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        int32_t motor_is_stopped ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Is the motor stopped? %d\n", motor_is_stopped(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** ``1`` if the motor is not moving and ``0`` if the motor is moving,
-or ``PROS_ERR`` if the operation failed, setting ``errno``.
-
-----
-
-motor_is_over_current
----------------------
-
-Detects if the motor is drawing over its current limit.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::is_over_current <../cpp/motors.html#is-over-current>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-         int32_t motor_is_over_current ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Current Limit Hit?: %d\n", motor_is_over_current(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** 1 if the motor's current limit is being exceeded and 0 if the current
-limit is not exceeded, or ``PROS_ERR`` if the operation failed, setting
-``errno``.
-
-----
-
-motor_is_reversed
------------------
-
-Gets the operation direction of the motor as set by the user.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::is_reversed <../cpp/motors.html#is-reversed>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        int32_t motor_is_reversed ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void initialize() {
-          printf("Is the motor reversed? %d\n", motor_is_reversed(1));
-          // Prints "Is the motor reversed? 0"
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** 1 if the motor has been reversed and 0 if the motor was not reversed,
-or ``PROS_ERR`` if the operation failed, setting ``errno``.
-
-----
-
-motor_is_over_temp
-------------------
-
-Gets the temperature limit flag for the motor.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
-Analogous to `pros::Motor::is_over_temp <../cpp/motors.html#is-over-temp>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        int32_t motor_is_over_temp ( uint8_t port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void opcontrol() {
-          while (true) {
-            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Temp Limit: %d\n", motor_is_over_temp(1));
-            delay(2);
-          }
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- port         The V5 port number from 1-21
-============ ==============================
-
-**Returns:** 1 if the temperature limit is exceeded and 0 if the the
-temperature is below the limit, or ``PROS_ERR`` if the operation failed,
-setting ``errno``.
-
-----
+Movement Functions
+==================
 
 motor_move
 ----------
@@ -1247,6 +246,1013 @@ Analogous to `pros::Motor::move_voltage <../cpp/motors.html#move-voltage>`_.
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
+
+motor_get_target_position
+-------------------------
+
+Gets the target position set for the motor by the user.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_target <../cpp/motors.html#get-target>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        double motor_get_target_position ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void autonomous() {
+          motor_move_absolute(1, 100, 100);
+          printf("Motor Target: %d\n", motor_get_target_position(1));
+          // Prints 100
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The target position in its encoder units or ``PROS_ERR_F`` if the
+operation failed, setting ``errno``.
+
+----
+
+motor_get_target_velocity
+------------------
+
+Gets the velocity commanded to the motor by the user.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_velocity <../cpp/motors.html#get-velocity>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_get_target_velocity ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move_velocity(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Commanded Velocity: %d\n", motor_get_target_velocity(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The commanded motor velocity from +-100, +-200, +-600, or ``PROS_ERR`` if the
+operation failed, setting ``errno``.
+
+----
+
+Telemetry Functions
+===================
+
+motor_get_actual_velocity
+-------------------------
+
+Gets the actual velocity of the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_actual_velocity <../cpp/motors.html#get-actual-velocity>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         double motor_get_actual_velocity ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Actual velocity: %lf\n", motor_get_actual_velocity(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's actual velocity in `motor_encoder_units_e_t`_ per second
+or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
+
+----
+
+motor_get_current
+-----------------
+
+Gets the current drawn by the motor in mA.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_current <../cpp/motors.html#get-current>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         int32_t motor_get_current_draw ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Current Draw: %d\n", motor_get_current_draw(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's current in mA or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+motor_get_direction
+-------------------
+
+Gets the direction of movement for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_direction <../cpp/motors.html#get-direction>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         int32_t motor_get_direction ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Direction: %d\n", motor_get_direction(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** 1 for moving in the positive direction, -1 for moving in the
+negative direction, and ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+motor_get_efficiency
+--------------------
+
+Gets the efficiency of the motor in percent.
+
+An efficiency of 100% means that the motor is moving electrically while
+drawing no electrical power, and an efficiency of 0% means that the motor
+is drawing power but not moving.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_efficiency <../cpp/motors.html#get-efficiency>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         int32_t motor_get_efficiency ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Efficiency: %d\n", motor_get_efficiency(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's efficiency in percent or ``PROS_ERR_F`` if the operation
+failed, setting ``errno``.
+
+----
+
+motor_get_faults
+----------------
+
+Gets the faults experienced by the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_faults <../cpp/motors.html#get-faults>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         uint32_t motor_get_faults ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Faults: %d\n", motor_get_faults(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** Currently unknown bitfield.
+
+----
+
+motor_get_flags
+---------------
+
+Gets the flags set by the motor's operation.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_flags <../cpp/motors.html#get-flags>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         uint32_t motor_get_flags ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Flags: %d\n", motor_get_flags(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** A currently unknown bitfield
+
+----
+
+motor_get_position
+------------------
+
+Gets the absolute position of the motor in its encoder units.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_position <../cpp/motors.html#get-position>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        double motor_get_position ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Position: %lf\n", motor_get_position(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's absolute position in its encoder units or ``PROS_ERR_F``
+if the operation failed, setting ``errno``.
+
+----
+
+motor_get_power
+---------------
+
+Gets the power drawn by the motor in Watts.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_power <../cpp/motors.html#get-power>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        double motor_get_power ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          uint32_t now = millis();
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Power: %lf\n", motor_get_power(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's power draw in Watts or ``PROS_ERR_F`` if the operation
+failed, setting ``errno``.
+
+----
+
+motor_get_raw_position
+----------------------
+
+Gets the raw encoder count of the motor at a given timestamp.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_raw_position <../cpp/motors.html#get-raw-position>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_get_raw_position ( uint8_t port,
+                                         uint32_t* timestamp )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          uint32_t now = millis();
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Encoder Count: %d\n", motor_get_raw_position(1, &now));
+            delay(2);
+          }
+        }
+
+============ =======================================================
+ Parameters
+============ =======================================================
+ port         The V5 port number from 1-21
+ timestamp    A pointer to a time in milliseconds for which the
+              encoder count will be returned
+============ =======================================================
+
+**Returns:** The raw encoder count at the given timestamp or ``PROS_ERR`` if the
+operation failed, setting ``errno``.
+
+----
+
+motor_get_temperature
+---------------------
+
+Gets the temperature of the motor in degrees Celsius. The resolution of this
+eading is 5 degrees Celsius. The motor will start to reduce its power when the
+temperature reading is greater than or equal to 55 C.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_temperature <../cpp/motors.html#get-temperature>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        double motor_get_temperature ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Temperature: %lf\n", motor_get_temperature(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's temperature in degrees Celsius or ``PROS_ERR_F`` if the
+operation failed, setting ``errno``.
+
+----
+
+motor_get_torque
+----------------
+
+Gets the torque generated by the motor in Nm.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_torque <../cpp/motors.html#get-torque>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        double motor_get_torque ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Torque: %lf\n", motor_get_torque(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's torque in NM or ``PROS_ERR_F`` if the operation failed,
+setting ``errno``.
+
+----
+
+motor_get_voltage
+-----------------
+
+Gets the voltage delivered to the motor in mV.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_voltage <../cpp/motors.html#get-voltage>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        double motor_get_voltage ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Voltage: %lf\n", motor_get_voltage(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's voltage in mV or ``PROS_ERR_F`` if the operation failed,
+setting ``errno``.
+
+----
+
+motor_get_zero_position_flag
+----------------------------
+
+Gets the zero position flag for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_zero_position_flag <../cpp/motors.html#get-zero-position-flag>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_get_zero_position_flag ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Is the motor at its zero position? %d\n", motor_get_zero_position_flag(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** ``1`` if the motor is at zero absolute position and ``0`` if the motor has
+moved from its absolute zero, or ``PROS_ERR`` if the operation failed
+setting ``errno``.
+
+----
+
+motor_is_stopped
+----------------
+
+Gets the zero velocity flag for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::is_stopped <../cpp/motors.html#is-stopped>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_is_stopped ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Is the motor stopped? %d\n", motor_is_stopped(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** ``1`` if the motor is not moving and ``0`` if the motor is moving,
+or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+----
+
+motor_is_over_current
+---------------------
+
+Detects if the motor is drawing over its current limit.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::is_over_current <../cpp/motors.html#is-over-current>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         int32_t motor_is_over_current ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Current Limit Hit?: %d\n", motor_is_over_current(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** 1 if the motor's current limit is being exceeded and 0 if the current
+limit is not exceeded, or ``PROS_ERR`` if the operation failed, setting
+``errno``.
+
+----
+
+motor_is_over_temp
+------------------
+
+Gets the temperature limit flag for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::is_over_temp <../cpp/motors.html#is-over-temp>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_is_over_temp ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Temp Limit: %d\n", motor_is_over_temp(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** 1 if the temperature limit is exceeded and 0 if the the
+temperature is below the limit, or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+Configuration Functions
+=======================
+
+motor_get_brake_mode
+--------------------
+
+Gets the brake mode of the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_brake_mode <../cpp/motors.html#get-brake-mode>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        motor_brake_mode_e_t motor_get_brake_mode ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          motor_set_brake_mode(1, E_MOTOR_BRAKE_HOLD);
+          printf("Brake Mode: %d\n", motor_get_brake_mode(1));
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** One of `motor_brake_mode_e_t`_, according to what was set for the motor,
+or ``E_MOTOR_BRAKE_INVALID`` if the operation failed, setting ``errno``.
+
+----
+
+motor_get_current_limit
+-----------------------
+
+Gets the current limit for the motor in mA. The default limit is 2500 mA.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_current_limit <../cpp/motors.html#get-current-limit>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         int32_t motor_get_current_limit ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Motor Current Limit: %d\n", motor_get_current_limit(1));
+          // Prints "Motor Current Limit: 2500"
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's current limit in mA or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+motor_get_encoder_units
+-----------------------
+
+Gets the `encoder units <motor_encoder_units_e_t>`_ set for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_encoder_units <../cpp/motors.html#get-encoder-units>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         motor_encoder_units_e_t motor_get_encoder_units ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Motor Encoder Units: %d\n", motor_get_encoder_units(1));
+          // Prints E_MOTOR_ENCODER_DEGREES by default
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** One of `motor_encoder_units_e_t`_ according to what is set for the motor
+or ``E_MOTOR_ENCODER_INVALID`` if the operation failed.
+
+----
+
+motor_get_gearing
+-----------------
+
+Gets the `gearset <motor_gearset_e_t>`_` that was set for the motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_gearing <../cpp/motors.html#get-gearing>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         motor_gearset_e_t motor_get_gearing ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Motor Gearing Number: %d\n", motor_get_gearing(1));
+          // Prints E_MOTOR_GEARSET_36 by default
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** One of `motor_gearset_e_t`_ according to what is set for the motor,
+or ``E_GEARSET_INVALID`` if the operation failed.
+
+----
+
+motor_get_voltage_limit
+-----------------------
+
+Gets the voltage limit set by the user.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::get_voltage_limit <../cpp/motors.html#get-voltage-limit>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_get_voltage_limit ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Motor Voltage Limit: %d\n", motor_get_voltage_limit(1));
+          // Prints 0 by default, indicating no limit
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's voltage limit in V or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+motor_is_reversed
+-----------------
+
+Gets the operation direction of the motor as set by the user.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::is_reversed <../cpp/motors.html#is-reversed>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_is_reversed ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Is the motor reversed? %d\n", motor_is_reversed(1));
+          // Prints "Is the motor reversed? 0"
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** 1 if the motor has been reversed and 0 if the motor was not reversed,
+or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
