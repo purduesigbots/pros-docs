@@ -290,7 +290,7 @@ operation failed, setting ``errno``.
 ----
 
 motor_get_target_velocity
-------------------
+-------------------------
 
 Gets the velocity commanded to the motor by the user.
 
