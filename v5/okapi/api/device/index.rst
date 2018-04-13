@@ -28,4 +28,5 @@ Devices API
    :maxdepth: 1
    :glob:
 
+   ./controller
    ./adi-ultrasonic
