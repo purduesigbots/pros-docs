@@ -125,6 +125,23 @@ Returns the last error of the controller.
 
 ----
 
+isSettled
+~~~~~~~~~
+
+Returns whether the controller has settled at the target. Setting is when the error or derivative
+of error has been small enough for a long enough period.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual bool isSettled() override
+
+**Returns:** Whether the controller is settled.
+
+----
+
 setSampleTime
 ~~~~~~~~~~~~~
 

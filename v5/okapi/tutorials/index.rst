@@ -27,10 +27,10 @@ structure.
 Walkthrough Tutorials
 =====================
 
-If you want to write full sample programs to learn to use PROS through practical
-applications, or teach students to use PROS in a classroom environment, the
+If you want to write full sample programs to learn to use OkapiLib through practical
+applications, or teach students to use OkapiLib in a classroom environment, the
 **Walkthrough Tutorials** are a great resource to go step by step through the
-process of writing a PROS program.
+process of writing an OkapiLib program.
 
 .. toctree::
    :glob:
@@ -41,9 +41,9 @@ process of writing a PROS program.
 Topical Tutorials
 =================
 
-If you want more information about using a particular part of the PROS API after
+If you want more information about using a particular part of the OkapiLib API after
 reading through the `API reference <../api/index.html>`_ , the **Topical Tutorials**
-offer longer examples and more detail about using the PROS API.
+offer longer examples and more detail about using the OkapiLib API.
 
 .. toctree::
    :glob:

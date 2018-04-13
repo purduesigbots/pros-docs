@@ -107,6 +107,23 @@ Returns the last derivative (change in error) of the controller.
 
 ----
 
+isSettled
+~~~~~~~~~
+
+Returns whether the controller has settled at the target. Determining what settling means is
+implementation-dependent.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual bool isSettled() = 0
+
+**Returns:** Whether the controller is settled.
+
+----
+
 setSampleTime
 ~~~~~~~~~~~~~
 
