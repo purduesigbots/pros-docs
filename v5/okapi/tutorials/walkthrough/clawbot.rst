@@ -152,19 +152,37 @@ lends itself to better chassis control.
       .. highlight:: cpp
       ::
 
-        // Tank drive. We divide the joystick values by 127.0 to scale them down to range of [-1, 1] as
-        // OkapiLib expects.
-        robotChassisController.tank(controller.get_analog(ANALOG_LEFT_X) / 127.0,
-                                    controller.get_analog(ANALOG_RIGHT_X) / 127.0);
+        // Joystick to read analog values for tank or arcade control.
+        // Master controller by default.
+        okapi::Controller controller;
+
+        while (true) {
+          // Tank drive with left and right sticks.
+          robotChassisController.tank(controller.getAnalog(ANALOG_LEFT_X),
+                                      controller.getAnalog(ANALOG_RIGHT_X));
+
+          // Wait and give up the time we don't need to other tasks.
+          // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
+          task_delay(10);
+        }
 
    .. tab :: Arcade drive
       .. highlight:: cpp
       ::
 
-        // Arcade drive. We divide the joystick values by 127.0 to scale them down to range of [-1, 1]
-        // as OkapiLib expects.
-        robotChassisController.arcade(controller.get_analog(ANALOG_LEFT_X) / 127.0,
-                                      controller.get_analog(ANALOG_LEFT_Y) / 127.0);
+        // Joystick to read analog values for tank or arcade control.
+        // Master controller by default.
+        okapi::Controller controller;
+
+        while (true)
+          // Arcade drive with the left stick.
+          robotChassisController.arcade(controller.getAnalog(ANALOG_LEFT_X),
+                                        controller.getAnalog(ANALOG_LEFT_Y));
+
+          // Wait and give up the time we don't need to other tasks.
+          // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
+          task_delay(10);
+        }
 
 Arm Control
 -----------
@@ -301,8 +319,9 @@ This is the final product from this tutorial.
           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
           okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
 
-          // Joystick to read analog values for tank or arcade control
-          pros::Controller controller(CONTROLLER_MASTER);
+          // Joystick to read analog values for tank or arcade control.
+          // Master controller by default.
+          okapi::Controller controller;
 
           // Arm related objects
           okapi::ADIButton armLimitButton('H');
@@ -314,10 +333,9 @@ This is the final product from this tutorial.
           okapi::ControllerButton runAutoButton(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X);
 
           while (true) {
-            // Tank drive. We divide the joystick values by 127.0 to scale them down to range of [-1, 1] as
-            // OkapiLib expects.
-            robotChassisController.tank(controller.get_analog(ANALOG_LEFT_X) / 127.0,
-                                        controller.get_analog(ANALOG_RIGHT_X) / 127.0);
+            // Tank drive with left and right sticks.
+            robotChassisController.tank(controller.getAnalog(ANALOG_LEFT_X),
+                                        controller.getAnalog(ANALOG_RIGHT_X));
 
             // Don't power the arm if it is all the way down
             if (armLimitButton.isPressed()) {
@@ -360,8 +378,9 @@ This is the final product from this tutorial.
           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
           okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
 
-          // Joystick to read analog values for tank or arcade control
-          pros::Controller controller(CONTROLLER_MASTER);
+          // Joystick to read analog values for tank or arcade control.
+          // Master controller by default.
+          okapi::Controller controller;
 
           // Arm related objects
           okapi::ADIButton armLimitButton('H');
@@ -373,10 +392,9 @@ This is the final product from this tutorial.
           okapi::ControllerButton runAutoButton(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X);
 
           while (true) {
-            // Arcade drive. We divide the joystick values by 127.0 to scale them down to range of [-1, 1]
-            // as OkapiLib expects.
-            robotChassisController.arcade(controller.get_analog(ANALOG_LEFT_X) / 127.0,
-                                          controller.get_analog(ANALOG_LEFT_Y) / 127.0);
+            // Arcade drive with the left stick.
+            robotChassisController.arcade(controller.getAnalog(ANALOG_LEFT_X),
+                                          controller.getAnalog(ANALOG_LEFT_Y));
 
             // Don't power the arm if it is all the way down
             if (armLimitButton.isPressed()) {
