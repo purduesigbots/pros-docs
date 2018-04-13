@@ -272,7 +272,7 @@ is:
      .. highlight:: cpp
      ::
 
-       (1800 ticks / (3.25 in * pi)) * (12 in * pi * (1/4)) = 1662 ticks
+       (1800 ticks / (4 in * pi)) * (11.498 in * pi * (1/4)) = 1294 ticks
 
 Let's follow the same procedure for calculate the ticks equivalent to driving forward 12 inches:
 
@@ -287,7 +287,7 @@ Let's follow the same procedure for calculate the ticks equivalent to driving fo
      .. highlight:: cpp
      ::
 
-       (1800 ticks / (3.25 in * pi)) * 12 in = 2116 ticks
+       (1800 ticks / (4 in * pi)) * 12 in = 1719 ticks
 
 Now that we know how far we need to drive, we can program the routine. We will use
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_'s ``moveDistance``
@@ -297,8 +297,8 @@ method to drive along a straight line and ``turnAngle`` method to turn in place.
 ::
 
     for (int i = 0; i < 4; i++) {
-      robotChassisController.moveDistance(2116); // Drive forward 12 inches
-      robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+      robotChassisController.moveDistance(1719); // Drive forward 12 inches
+      robotChassisController.turnAngle(1294);    // Turn in place 90 degrees
     }
 
 Wrap Up
@@ -355,8 +355,8 @@ This is the final product from this tutorial.
             if (runAutoButton.changedToPressed()) {
               // Drive the robot in a square pattern using closed-loop control
               for (int i = 0; i < 4; i++) {
-                robotChassisController.moveDistance(2116); // Drive forward 12 inches
-                robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+                robotChassisController.moveDistance(1719); // Drive forward 12 inches
+                robotChassisController.turnAngle(1294);    // Turn in place 90 degrees
               }
             }
 
@@ -414,8 +414,8 @@ This is the final product from this tutorial.
             if (runAutoButton.changedToPressed()) {
               // Drive the robot in a square pattern using closed-loop control
               for (int i = 0; i < 4; i++) {
-                robotChassisController.moveDistance(2116); // Drive forward 12 inches
-                robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+                robotChassisController.moveDistance(1719); // Drive forward 12 inches
+                robotChassisController.turnAngle(1294);    // Turn in place 90 degrees
               }
             }
 
