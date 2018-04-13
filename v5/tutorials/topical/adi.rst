@@ -10,9 +10,9 @@ Analog Sensors
 While computers, microcontrollers, and other devices that interface with
 VEX robots are digital systems, most of the real world operates as
 analog components, where a range of possible values exist instead of
-simply an arrangement of 1s and 0s. To communicate with these analog
-real-world systems, analog sensors like potentiometers and line trackers
-are used. These sensors return a number within a preset range of values
+simply an arrangement of 1s and 0s. Analog sensors like potentiometers and line
+trackers are used to communicate with these analog real-world systems.
+These sensors return a number within a preset range of values
 in accordance with their input, as opposed to a digit sensor which
 simply returns an on or off state.
 

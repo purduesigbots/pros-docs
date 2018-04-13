@@ -4,13 +4,15 @@ Debugging
 
 .. warning:: This content is subject to change as the PROS CLI for V5 is created.
 
-The `PROS API <../api/index.html>`_ provides various functions, like
-`printf <http://www.cplusplus.com/reference/cstdio/printf/>`_, that
+The `PROS API <../../api/index.html>`_ provides functions like
+`printf <http://www.cplusplus.com/reference/cstdio/printf/>`_ that
 allow your robot to output information to a connected serial console
 during operation.
 
+Viewing printf output
+=====================
+
 To view a robot's output, there are two officially supported methods:
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Through the PROS CLI:
 
@@ -29,19 +31,8 @@ output of a connected robot.
 
 .. image:: /images/atom/terminal-platformio.png
 
-Alternate method:
-~~~~~~~~~~~~~~~~~~
+JINX Graphical Debugger
+=======================
 
-Use the serial communication monitor of your choice (such as
-`PuTTY <http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html>`_,
-`CoolTerm <http://freeware.the-meiers.org/>`_ or `this plugin for
-Visual
-Studio <https://marketplace.visualstudio.com/items?itemName=EgorGrushko.SerialMonitor>`_
-if using Visual Studio) with the following settings:
-
--  **Serial Port:** May vary; unplugging and replugging the VEXnet
-   device from the computer should allow you to determine the correct
-   port.
--  **Baud Rate:** *115200*
--  **Encoding:** *28591 - ISO-8859-1 - Western European (ISO)* or
-   equivalent
+JINX offers further debugging functionality over traditional debugging through print statements.
+For a full explanation of JINX's abilities and its use, see :doc:`../topical/jinx`.
