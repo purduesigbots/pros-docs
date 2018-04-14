@@ -1,13 +1,13 @@
-==========================
-Iterative Motor Controller
-==========================
+===================================
+Iterative Motor Velocity Controller
+===================================
 
 .. contents:: :local:
 
-okapi::IterativeMotorControllerArgs
-===================================
+okapi::IterativeMotorVelocityControllerArgs
+===========================================
 
-Data class for the to arguments to ``IterativeMotorController``.
+Data class for the to arguments to ``IterativeMotorVelocityController``.
 
 Constructor(s)
 --------------
@@ -17,17 +17,17 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeMotorControllerArgs(const AbstractMotor &imotor, IterativeVelocityController &icontroller)
+        IterativeMotorVelocityControllerArgs(const AbstractMotor &imotor, std::shared_ptr<IterativeVelocityController> icontroller)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
- icontroller     The ``IterativeVelocityController`` to use.
+ icontroller     The `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ to use.
 =============== ===================================================================
 
-okapi::IterativeMotorController
-===============================
+okapi::IterativeMotorVelocityController
+=======================================
 
 A simple `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ that
 associates an `AbstractMotor <../../device/motor/abstract-motor.html>`_ with an
@@ -41,13 +41,13 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeMotorController(const AbstractMotor &imotor, IterativeVelocityController &icontroller)
+        IterativeMotorVelocityController(const AbstractMotor &imotor, std::shared_ptr<IterativeVelocityController> icontroller)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
- icontroller     The ``IterativeVelocityController`` to use.
+ icontroller     The `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ to use.
 =============== ===================================================================
 
 .. tabs ::
@@ -55,7 +55,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeMotorController(const IterativeMotorControllerArgs &iparams)
+        IterativeMotorVelocityController(const IterativeMotorControllerArgs &iparams)
 
 =============== ===================================================================
  Parameters
