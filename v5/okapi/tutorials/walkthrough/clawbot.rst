@@ -158,12 +158,12 @@ lends itself to better chassis control.
 
         while (true) {
           // Tank drive with left and right sticks.
-          robotChassisController.tank(controller.getAnalog(ANALOG_LEFT_X),
-                                      controller.getAnalog(ANALOG_RIGHT_X));
+          robotChassisController.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                      controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
 
           // Wait and give up the time we don't need to other tasks.
           // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-          task_delay(10);
+          pros::c::task_delay(10);
         }
 
    .. tab :: Arcade drive
@@ -176,12 +176,12 @@ lends itself to better chassis control.
 
         while (true) {
           // Arcade drive with the left stick.
-          robotChassisController.arcade(controller.getAnalog(ANALOG_LEFT_X),
-                                        controller.getAnalog(ANALOG_LEFT_Y));
+          robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                        controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
           // Wait and give up the time we don't need to other tasks.
           // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-          task_delay(10);
+          pros::c::task_delay(10);
         }
 
 Arm Control
@@ -314,13 +314,13 @@ This is the final product from this tutorial.
         using namespace okapi::literals;
 
         void opcontrol() {
-          task_delay(100);
+          pros::c::task_delay(100);
 
           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
           okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
 
-          // Joystick to read analog values for tank or arcade control.
-          // Master controller by default.
+          // Joystick to read analog values for tank or arcade control
+          // Master controller by default
           okapi::Controller controller;
 
           // Arm related objects
@@ -333,9 +333,9 @@ This is the final product from this tutorial.
           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
 
           while (true) {
-            // Tank drive with left and right sticks.
-            robotChassisController.tank(controller.getAnalog(ANALOG_LEFT_X),
-                                        controller.getAnalog(ANALOG_RIGHT_X));
+            // Tank drive with left and right sticks
+            robotChassisController.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                        controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
 
             // Don't power the arm if it is all the way down
             if (armLimitButton.isPressed()) {
@@ -355,14 +355,14 @@ This is the final product from this tutorial.
             if (runAutoButton.changedToPressed()) {
               // Drive the robot in a square pattern using closed-loop control
               for (int i = 0; i < 4; i++) {
-                robotChassisController.moveDistance(1719); // Drive forward 12 inches
-                robotChassisController.turnAngle(1294);    // Turn in place 90 degrees
+                robotChassisController.moveDistance(2116); // Drive forward 12 inches
+                robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
               }
             }
 
             // Wait and give up the time we don't need to other tasks.
             // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-            task_delay(10);
+            pros::c::task_delay(10);
           }
         }
 
@@ -373,13 +373,13 @@ This is the final product from this tutorial.
         using namespace okapi::literals;
 
         void opcontrol() {
-          task_delay(100);
+          pros::c::task_delay(100);
 
           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
           okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
 
-          // Joystick to read analog values for tank or arcade control.
-          // Master controller by default.
+          // Joystick to read analog values for tank or arcade control
+          // Master controller by default
           okapi::Controller controller;
 
           // Arm related objects
@@ -392,9 +392,9 @@ This is the final product from this tutorial.
           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
 
           while (true) {
-            // Arcade drive with the left stick.
-            robotChassisController.arcade(controller.getAnalog(ANALOG_LEFT_X),
-                                          controller.getAnalog(ANALOG_LEFT_Y));
+            // Arcade drive with the left stick
+            robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                          controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
             // Don't power the arm if it is all the way down
             if (armLimitButton.isPressed()) {
@@ -414,13 +414,13 @@ This is the final product from this tutorial.
             if (runAutoButton.changedToPressed()) {
               // Drive the robot in a square pattern using closed-loop control
               for (int i = 0; i < 4; i++) {
-                robotChassisController.moveDistance(1719); // Drive forward 12 inches
-                robotChassisController.turnAngle(1294);    // Turn in place 90 degrees
+                robotChassisController.moveDistance(2116); // Drive forward 12 inches
+                robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
               }
             }
 
             // Wait and give up the time we don't need to other tasks.
             // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-            task_delay(10);
+            pros::c::task_delay(10);
           }
         }
