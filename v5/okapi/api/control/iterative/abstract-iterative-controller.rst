@@ -14,6 +14,9 @@ Data class for the arguments to ``IterativeController``.
 okapi::IterativeController
 ==========================
 
+A type of `ClosedLoopController <../abstract-closed-loop-controller.html>`_ that must be stepped
+by the user.
+
 Methods
 -------
 
@@ -39,26 +42,6 @@ Do one iteration of the controller. Outputs in the range ``[-1, 1]``.
 
 ----
 
-setTarget
-~~~~~~~~~
-
-Sets the target for the controller.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void setTarget(const double itarget) = 0
-
-============ ===============================================================
- Parameters
-============ ===============================================================
- itarget      The new target.
-============ ===============================================================
-
-----
-
 getOutput
 ~~~~~~~~~
 
@@ -75,22 +58,6 @@ Returns the last calculated output of the controller. Default is ``0``.
 
 ----
 
-getError
-~~~~~~~~
-
-Returns the last error of the controller.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual double getError() const = 0
-
-**Returns:** The last error of the controller.
-
-----
-
 getDerivative
 ~~~~~~~~~~~~~
 
@@ -104,23 +71,6 @@ Returns the last derivative (change in error) of the controller.
         virtual double getDerivative() const = 0
 
 **Returns:** The last derivative (change in error) of the controller.
-
-----
-
-isSettled
-~~~~~~~~~
-
-Returns whether the controller has settled at the target. Determining what settling means is
-implementation-dependent.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual bool isSettled() = 0
-
-**Returns:** Whether the controller is settled.
 
 ----
 

@@ -14,28 +14,11 @@ Data class for the arguments to ``AsyncController``.
 okapi::AsyncController
 ======================
 
+A type of `ClosedLoopController <../abstract-closed-loop-controller.html>`_ that runs on its own and
+automatically writes its output.
+
 Methods
 -------
-
-setTarget
-~~~~~~~~~
-
-Sets the target for the controller.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void setTarget(const double itarget) = 0
-
-============ ===============================================================
- Parameters
-============ ===============================================================
- itarget      The new target.
-============ ===============================================================
-
-----
 
 getOutput
 ~~~~~~~~~
@@ -50,39 +33,6 @@ Returns the last calculated output of the controller. Default is 0.
         virtual double getOutput() const
 
 **Returns:** The previous output from the filter.
-
-----
-
-getError
-~~~~~~~~
-
-Returns the last error of the controller.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual double getError() const = 0
-
-**Returns:** The last error of the controller.
-
-----
-
-isSettled
-~~~~~~~~~
-
-Returns whether the controller has settled at the target. Determining what settling means is
-implementation-dependent.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual bool isSettled() = 0
-
-**Returns:** Whether the controller is settled.
 
 ----
 
