@@ -17,6 +17,13 @@ Control API
    ./iterative/*
 
 .. toctree::
+   :caption: Controller Utilities API
+   :maxdepth: 1
+   :glob:
+
+   ./util/*
+
+.. toctree::
    :caption: Controller Interfaces
    :maxdepth: 1
    :glob:
