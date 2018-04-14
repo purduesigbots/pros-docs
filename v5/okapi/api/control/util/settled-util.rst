@@ -28,33 +28,6 @@ Constructor(s)
  iatTargetTime         Minimum time within ``atTargetError`` to be considered settled.
 ===================== ===============================================================
 
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        SettledUtil(const uint32_t iatTargetTime)
-
-===================== ===============================================================
- Parameters
-===================== ===============================================================
- iatTargetTime         Minimum time within ``atTargetError`` to be considered settled.
-===================== ===============================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        SettledUtil(const double iatTargetError = 50, const double iatTargetDerivative = 5)
-
-===================== ===============================================================
- Parameters
-===================== ===============================================================
- iatTargetError        Minimum error to be considered settled.
- iatTargetDerivative   Minimum error derivative to be considered settled.
-===================== ===============================================================
-
 ----
 
 Methods
