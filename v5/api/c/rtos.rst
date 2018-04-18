@@ -14,7 +14,7 @@ Functions
 =========
 
 delay
-----------
+-----
 
 Delay a task for a given number of milliseconds.
 
