@@ -496,3 +496,67 @@ Parameters
 =============== ===================================================================
  gearset         The new gearset.
 =============== ===================================================================
+
+----
+
+getTopLeftMotor
+~~~~~~~~~~~~~~~
+
+Returns the top left motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::shared_ptr<AbstractMotor> getTopLeftMotor() const
+
+**Returns:** The top left motor.
+
+----
+
+getTopRightMotor
+~~~~~~~~~~~~~~~~
+
+Returns the top right motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::shared_ptr<AbstractMotor> getTopRightMotor() const
+
+**Returns:** The top right motor.
+
+----
+
+getBottomRightMotor
+~~~~~~~~~~~~~~~~~~~
+
+Returns the bottom right motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::shared_ptr<AbstractMotor> getBottomRightMotor() const
+
+**Returns:** The bottom right motor.
+
+----
+
+getBottomLeftMotor
+~~~~~~~~~~~~~~~~~~
+
+Returns the bottom left motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::shared_ptr<AbstractMotor> getBottomLeftMotor() const
+
+**Returns:** The bottom left motor.
