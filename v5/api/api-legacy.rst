@@ -244,7 +244,7 @@ Analogous to `adi_digital_read <./c/adi.html#adi-digital-read>`_.
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
 ============ =================================================================================================================
 
-**Returns:** True if the pin is `HIGH`_, or false if it is `LOW`_.
+**Returns:** True if the pin is `HIGH <./c/adi.html#high>`_, or false if it is `LOW <./c/adi.html#low>`_.
 
 ----
 
@@ -405,7 +405,7 @@ Analogous to `adi_encoder_reset <./c/adi.html#adi-encoder-reset>`_.
       .. highlight:: c
       ::
 
-       int32_t encoderReset ( adi_encoder_t enc )
+       int32_t encoderReset ( Encoder enc )
 
    .. tab :: Example
       .. highlight:: c
@@ -444,7 +444,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-       int32_t encoderShutdown ( adi_encoder_t enc )
+       int32_t encoderShutdown ( Encoder enc )
 
    .. tab :: Example
       .. highlight:: c
@@ -462,7 +462,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- enc          the `adi_encoder_t`_ object from `adi_encoder_init`_ to shut down, or simply the ADI port number
+ enc          the `Encoder`_ object from `adi_encoder_init`_ to shut down, or simply the ADI port number
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
@@ -470,7 +470,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ----
 
 adiMotorGet
---------
+-----------
 
 Returns the last set speed of the motor on the given port.
 
@@ -626,7 +626,8 @@ Analogous to `adi_pin_mode <./c/adi.html#adi-pin-mode>`_.
  Parameters
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
- mode         one of `INPUT`_, `INPUT_ANALOG`_, `OUTPUT`_, or `OUTPUT_ANALOG`_
+ mode         one of `INPUT <./c/adi.html#input>`_, `INPUT_ANALOG <./c/adi.html#input-analog>`_,
+              `OUTPUT <./c/adi.html#output>`_, or `OUTPUT_ANALOG <./c/adi.html#output-analog>`_
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
@@ -832,7 +833,7 @@ Analogous to `lcd_clear_line <./c/llemu.html#lcd-clear-line>`_.
       ::
 
         void initialize() {
-          lcdInitialize();
+          lcdInit();
           lcdSetText(1, "Hello World!");
           lcdClearLine(1); // No more text will be displayed
         }
@@ -848,7 +849,7 @@ Analogous to `lcd_clear_line <./c/llemu.html#lcd-clear-line>`_.
 
 ----
 
-lcdInitialize
+lcdInit
 -------------
 
 Initialize the display to be an emulation of the three-button, UART-based VEX LCD.
@@ -860,14 +861,14 @@ Analogous to `lcd_initialize <./c/llemu.html#lcd-initialize>`_.
       .. highlight:: c
       ::
 
-         bool lcdInitialize ( )
+         bool lcdInit ( )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
         void initialize() {
-          lcdInitialize();
+          lcdInit();
           lcdSetText(1, "Hello World!");
         }
 
@@ -894,7 +895,7 @@ Analogous to `lcd_is_initialized <./c/llemu.html#lcd-is-initialized>`_.
       ::
 
         void initialize() {
-          lcdInitialize();
+          lcdInit();
           printf("Is the LCD initialized? %d\n", lcdIsInitialized());
           // Will Display True
         }
@@ -911,7 +912,7 @@ Displays a formatted string on the emulated three-button LCD screen
 This function uses the following values of ``errno`` when an error state is
 reached:
 
-- ``ENXIO``  - The LCD has not been initialized. Call `lcdInitialize`_ first.
+- ``ENXIO``  - The LCD has not been initialized. Call `lcdInit`_ first.
 - ``EINVAL`` - The line number specified is not in the range [0-7]
 
 Analogous to `lcd_print <./c/llemu.html#lcd-print>`_.
@@ -930,7 +931,7 @@ Analogous to `lcd_print <./c/llemu.html#lcd-print>`_.
       ::
 
         void initialize() {
-          lcdInitialize();
+          lcdInit();
           while (true) {
             lcdPrint(0, "Buttons Bitmap: %d\n", lcd_read_buttons());
             delay(20);
@@ -978,7 +979,7 @@ Analogous to `lcd_read_buttons <./c/llemu.html#lcd-read-buttons>`_.
       ::
 
         void initialize() {
-          lcdInitialize();
+          lcdInit();
           while (true) {
             printf("Buttons Bitmap: %d\n", lcdReadButtons());
             delay(20);
@@ -996,7 +997,7 @@ Displays a string on the emulated three-button LCD screen
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``ENXIO``  - The LCD has not been initialized. Call `lcdInitialize`_ first.
+- ``ENXIO``  - The LCD has not been initialized. Call `lcdInit`_ first.
 - ``EINVAL`` - The line number specified is not in the range [0-7]
 
 Analogous to `lcd_set_text <./c/llemu.html#lcd-set-text>`_.
@@ -1036,11 +1037,11 @@ lcdShutdown
 Turn off the Legacy LCD Emulator.
 
 Calling this function will clear the entire display, and you will not be able
-to call any further LLEMU functions until another call to `lcdInitialize`_.
+to call any further LLEMU functions until another call to `lcdInit`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``ENXIO`` - The LCD has not been initialized. Call `lcdIinitialize`_ first.
+- ``ENXIO`` - The LCD has not been initialized. Call `lcdInit`_ first.
 
 Analogous to `lcd_print <./c/llemu.html#lcd-print>`_.
 
@@ -1056,7 +1057,7 @@ Analogous to `lcd_print <./c/llemu.html#lcd-print>`_.
       ::
 
         void initialize() {
-          lcdInitialize();
+          lcdInit();
           lcdSetText(1, "Hello World!");
           lcdShutdown(); // All done with the LCD
         }
@@ -1568,7 +1569,7 @@ Analogous to task_delete <./c/rtos.html#task-delete>`_.
       .. highlight:: c
       ::
 
-        void task_delete ( task_t task )
+        void taskDelete ( TaskHandle task )
 
    .. tab :: Example
       .. highlight:: c
@@ -1579,10 +1580,9 @@ Analogous to task_delete <./c/rtos.html#task-delete>`_.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
-                                      TASK_STACK_DEPTH_DEFAULT, "My Task");
+          TaskHandle my_task = taskCreate(my_task_fn, TASK_STACK_DEPTH_DEFAULT, "PROS", TASK_PRIORITY_DEFAULT);
           // Do other things
-          task_delete(my_task);
+          taskDelete(my_task);
         }
 
 ============ ================================================================================================
@@ -1593,61 +1593,22 @@ Analogous to task_delete <./c/rtos.html#task-delete>`_.
 
 ----
 
-task_get_by_name
-----------------
-
-Obtains a task handle from the specified name.
-
-The operation takes a relatively long time and should be used sparingly.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        task_t task_get_by_name ( char* name )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void my_task_fn(void* param) {
-          printf("Hello %s\n", (char*)param);
-          // ...
-        }
-        void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
-                                      TASK_STACK_DEPTH_DEFAULT, "My Task");
-          // Do other things
-          task_delete(task_get_by_name("My Task"));
-        }
-
-============ ==================================
- Parameters
-============ ==================================
- name        The name to query
-============ ==================================
-
-**Returns:** A task handle with a matching name, or NULL if none were found.
-
-----
-
-task_get_count
---------------
+taskGetCount
+------------
 
 Returns the number of tasks the kernel is currently managing, including all
 ready, blocked, or suspended tasks. A task that has been deleted, but not yet
 reaped by the idle task will also be included in the count. Tasks recently
 created may take one context switch to be counted.
 
-Analogous to `pros::Task::get_count <../cpp/rtos.html#get-count>`_.
+Analogous to task_get_count <./c/rtos.html#task-get-count>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-          uint32_t task_get_count ( )
+          uint32_t taskGetCount ( )
 
    .. tab :: Example
       .. highlight:: c
@@ -1658,66 +1619,27 @@ Analogous to `pros::Task::get_count <../cpp/rtos.html#get-count>`_.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
-                                      TASK_STACK_DEPTH_DEFAULT, "My Task");
-          printf("Number of Running Tasks: %d\n", task_get_count());
+          TaskHandle my_task = taskCreate(my_task_fn, TASK_STACK_DEPTH_DEFAULT, "PROS", TASK_PRIORITY_DEFAULT);
+          printf("Number of Running Tasks: %d\n", taskGetCount());
         }
 
 **Returns:** The number of tasks that are currently being managed by the kernel
 
 ----
 
-task_get_name
--------------
-
-Obtains the name of the specified task.
-
-Analogous to `pros::Task::get_name <../cpp/rtos.html#get-name>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-          char const* task_get_name ( task_t task )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void my_task_fn(void* param) {
-          printf("Hello %s\n", (char*)param);
-          // ...
-        }
-        void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
-                                      TASK_STACK_DEPTH_DEFAULT, "My Task");
-          printf("Task Name: %d\n", task_get_name(my_task));
-        }
-
-============ ==================================
- Parameters
-============ ==================================
- task        The handle of the task to check
-============ ==================================
-
-**Returns:** A pointer to the name of the task
-
-----
-
-task_get_priority
------------------
+taskGetPriority
+---------------
 
 Obtains the priority of the specified task.
 
-Analogous to `pros::Task::get_priority <../cpp/rtos.html#get-priority>`_.
+Analogous to task_get_priority <./c/rtos.html#task-get-priority>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-          uint32_t task_get_priority ( task_t task )
+          uint32_t taskGetPriority ( TaskHandle task )
 
    .. tab :: Example
       .. highlight:: c
@@ -1728,9 +1650,8 @@ Analogous to `pros::Task::get_priority <../cpp/rtos.html#get-priority>`_.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
-                                      TASK_STACK_DEPTH_DEFAULT, "My Task");
-          printf("Task Priority: %d\n", task_get_priority(my_task));
+          TaskHandle my_task = taskCreate(my_task_fn, TASK_STACK_DEPTH_DEFAULT, "PROS", TASK_PRIORITY_DEFAULT);
+          printf("Task Priority: %d\n", taskGetPriority(my_task));
         }
 
 ============ ==================================
@@ -1743,19 +1664,19 @@ Analogous to `pros::Task::get_priority <../cpp/rtos.html#get-priority>`_.
 
 ----
 
-task_get_state
---------------
+taskGetState
+------------
 
 Returns the state of the specified task.
 
-Analogous to `pros::Task::get_state <../cpp/rtos.html#get-state>`_.
+Analogous to task_get_state <./c/rtos.html#task-get-state>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-          task_state_e_t task_get_state ( task_t task )
+          task_state_e_t taskGetState ( TaskHandle task )
 
    .. tab :: Example
       .. highlight:: c
@@ -1766,9 +1687,8 @@ Analogous to `pros::Task::get_state <../cpp/rtos.html#get-state>`_.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
-                                      TASK_STACK_DEPTH_DEFAULT, "My Task");
-          printf("Task's State: %d\n", task_get_state(my_task));
+          TaskHandle my_task = taskCreate(my_task_fn, TASK_STACK_DEPTH_DEFAULT, "PROS", TASK_PRIORITY_DEFAULT);
+          printf("Task's State: %d\n", taskGetState(my_task));
         }
 
 ============ ==================================
@@ -1777,189 +1697,23 @@ Analogous to `pros::Task::get_state <../cpp/rtos.html#get-state>`_.
  task        The handle of the task to check
 ============ ==================================
 
-**Returns:** The state of the task. (see `task_state_e_t`_).
+**Returns:** The state of the task. (see `task_state_e_t <./c/rtos.html#task-state-e-t>`_).
 
 ----
 
-task_notify
------------
-
-Sends a simple notification to task and increments the notification counter.
-
-See :doc:`../../tutorials/topical/notifications` for details.
-
-Analogous to `pros::Task::notify <../cpp/rtos.html#notify>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        uint32_t task_notify ( task_t task )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        void my_task_fn(void* ign) {
-          while(task_notify_take(true, TIMEOUT_MAX)) {
-            puts("I was unblocked!");
-          }
-        }
-        void opcontrol() {
-          task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
-                                       TASK_STACK_DEPTH_DEFAULT, "Notify me! Task");
-          while(true) {
-            if(controller_get_digital(CONTROLLER_MASTER, DIGITAL_L1)) {
-              task_notify(my_task);
-            }
-          }
-        }
-
-============ ==================================
- Parameters
-============ ==================================
- task        The handle of the task to notify
-============ ==================================
-
-**Returns:** Always true.
-
-----
-
-task_notify_clear
------------------
-
-Clears the notification for a task.
-
-See :doc:`../../tutorials/topical/notifications` for details.
-
-Analogous to `pros::Task::notify_clear <../cpp/rtos.html#notify-clear>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        bool task_notify_clear ( task_t task )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        TO BE ADDED
-
-============ ==================================
- Parameters
-============ ==================================
- task        The handle of the task to clear
-============ ==================================
-
-**Returns:** False if there was not a notification waiting, true if there was
-
-----
-
-task_notify_ext
----------------
-
-Sends a notification to a task, optionally performing some action. Will also
-retrieve the value of the notification in the target task before modifying
-the notification value.
-
-See :doc:`../../tutorials/topical/notifications` for details.
-
-Analogous to `pros::Task::notify_ext <../cpp/rtos.html#notify-ext>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        uint32_t task_notify_ext ( task_t task,
-                                   uint32_t value,
-                                   notify_action_e_t action,
-                                   uint32_t* prev_value )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        TO BE ADDED
-
-============ ======================================================================================
- Parameters
-============ ======================================================================================
- task         The handle of the task to notify
- value        The value used in performing the action
- action       An action to optionally perform on the task's notification
- prev_value   A pointer to store the previous value of the target task's notification, may be NULL
-============ ======================================================================================
-
-**Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <notify_action_e_t>`_:
-return 0 if the value could be written without needing to overwrite, 1 otherwise.
-For all other `NOTIFY_ACTION <notify_action_e_t>`_ values: always return 0
-
-----
-
-task_notify_take
-----------------
-
-Wait for a notification to be nonzero.
-
-See :doc:`../../tutorials/topical/notifications` for details.
-
-Analogous to `pros::Task::notify_take <../cpp/rtos.html#notify-take>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        uint32_t task_notify_take ( bool clear_on_exit,
-                                    uint32_t timeout )
-
-     .. tab :: Example
-        .. highlight:: c
-        ::
-
-          void my_task_fn(void* ign) {
-            while(task_notify_take(true, TIMEOUT_MAX)) {
-              puts("I was unblocked!");
-            }
-          }
-          void opcontrol() {
-            task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
-                                         TASK_STACK_DEPTH_DEFAULT, "Notify me! Task");
-            while(true) {
-              if(controller_get_digital(CONTROLLER_MASTER, DIGITAL_L1)) {
-                task_notify(my_task);
-              }
-            }
-          }
-
-=============== ================================================================================================================
- Parameters
-=============== ================================================================================================================
- clear_on_exit   If true (1), then the notification value is cleared. If false (0), then the notification value is decremented.
- timeout         Specifies the amount of time to be spent waiting for a notification to occur.
-=============== ================================================================================================================
-
-**Returns:** The value of the task's notification value before it is decremented or cleared.
-
-----
-
-task_resume
+taskResume
 -----------
 
 Resumes the specified task, making it eligible to be scheduled.
 
-Analogous to `pros::Task::resume <../cpp/rtos.html#resume>`_.
+Analogous to task_resume <./c/rtos.html#task-resume>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-        void task_resume ( task_t task )
+        void taskResume ( TaskHandle task )
 
      .. tab :: Example
         .. highlight:: c
@@ -1969,12 +1723,11 @@ Analogous to `pros::Task::resume <../cpp/rtos.html#resume>`_.
             // Do things
           }
           void opcontrol() {
-            task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
-                                         TASK_STACK_DEPTH_DEFAULT, "Example Task");
+            TaskHandle my_task = taskCreate(my_task_fn, TASK_STACK_DEPTH_DEFAULT, "PROS", TASK_PRIORITY_DEFAULT);
             // Do things
-            task_suspend(my_task); // The task will no longer execute
+            taskSuspend(my_task); // The task will no longer execute
             // Do other things
-            task_resume(my_task); // The task will resume execution
+            taskResume(my_task); // The task will resume execution
           }
 
 ============ ==================================
@@ -1985,8 +1738,8 @@ Analogous to `pros::Task::resume <../cpp/rtos.html#resume>`_.
 
 ----
 
-task_set_priority
------------------
+taskSetPriority
+---------------
 
 Sets the priority of the specified task.
 
@@ -1994,15 +1747,15 @@ If the specified task's state is available to be scheduled (e.g. not blocked)
 and new priority is higher than the currently running task, a context switch
 may occur.
 
-Analogous to `pros::Task::set_priority <../cpp/rtos.html#set-priority>`_.
+Analogous to task_set_priority <./c/rtos.html#task-set-priority>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-        void task_set_priority ( task_t task,
-                                 uint32_t prio )
+        void taskSetPriority ( TaskHandle task,
+                               uint32_t prio )
 
      .. tab :: Example
         .. highlight:: c
@@ -2012,9 +1765,8 @@ Analogous to `pros::Task::set_priority <../cpp/rtos.html#set-priority>`_.
             // Do things
           }
           void opcontrol() {
-            task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
-                                         TASK_STACK_DEPTH_DEFAULT, "Example Task");
-            task_set_priority(my_task, TASK_PRIORITY_DEFAULT + 1);
+            TaskHandle my_task = taskCreate(my_task_fn, TASK_STACK_DEPTH_DEFAULT, "PROS", TASK_PRIORITY_DEFAULT);
+            taskSetPriority(my_task, TASK_PRIORITY_DEFAULT + 1);
           }
 
 ============ ===============================
@@ -2026,19 +1778,19 @@ Analogous to `pros::Task::set_priority <../cpp/rtos.html#set-priority>`_.
 
 ----
 
-task_suspend
+taskSuspend
 ------------
 
 Suspends the current task, making it ineligible to be scheduled.
 
-Analogous to `pros::Task::suspend <../cpp/rtos.html#suspend>`_.
+Analogous to task_suspend <./c/rtos.html#task-suspend>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-        void task_suspend ( task_t task )
+        void taskSuspend ( TaskHandle task )
 
      .. tab :: Example
         .. highlight:: c
@@ -2048,12 +1800,11 @@ Analogous to `pros::Task::suspend <../cpp/rtos.html#suspend>`_.
             // Do things
           }
           void opcontrol() {
-            task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
-                                         TASK_STACK_DEPTH_DEFAULT, "Notify me! Task");
+            TaskHandle my_task = taskCreate(my_task_fn, TASK_STACK_DEPTH_DEFAULT, "PROS", TASK_PRIORITY_DEFAULT);
             // Do things
-            task_suspend(my_task); // The task will no longer execute
+            taskSuspend(my_task); // The task will no longer execute
             // Do other things
-            task_resume(my_task); // The task will resume execution
+            taskResume(my_task); // The task will resume execution
           }
 
 ============ ==================================
@@ -2061,6 +1812,133 @@ Analogous to `pros::Task::suspend <../cpp/rtos.html#suspend>`_.
 ============ ==================================
  task        The handle of the task to suspend
 ============ ==================================
+
+----
+
+motorSet
+--------
+
+Sets the voltage for the motor from -127 to 127.
+
+This is designed to map easily to the input from the controller's analog
+stick for simple opcontrol use.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `motor_move <./c/motors.html#motor-move>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         int32_t motorSet ( uint8_t port,
+                            const int8_t voltage )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motorSet(1, joystickGetAnalog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            delay(2);
+          }
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ voltage      The new motor voltage from -127 to 127
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+motorGet
+--------
+
+Gets the voltage delivered to the motor in mV.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `motor_get_voltage <./c/motors.html#motor-get-voltage>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        double motorGet ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          while (true) {
+            motorSet(1, joystickGetAnalog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+            printf("Motor Voltage: %lf\n", motorGet(1));
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** The motor's voltage in mV or ``PROS_ERR_F`` if the operation failed,
+setting ``errno``.
+
+----
+
+motorStop
+---------
+
+Sets the motor's output to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         int32_t motorStop ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void autonomous() {
+          motorSet(1, 127);
+          delay(1000); // Move for 1 second
+          motorStop(1);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ voltage      The new motor voltage from -127 to 127
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
 
 ----
 
@@ -2078,6 +1956,16 @@ object to store encoder data in PROS 2.
 ::
 
 	typedef int32_t Encoder;
+
+TaskHandle
+----------
+
+Points to a task handle. Used for referencing a task.
+
+::
+
+  typedef void* TaskHandle;
+
 
 Ultrasonic
 ----------
