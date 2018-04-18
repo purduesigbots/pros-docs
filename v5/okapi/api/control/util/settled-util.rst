@@ -52,3 +52,17 @@ Returns whether the controller is settled.
 ============ ===============================================================
 
 **Returns:** Whether the controller is settled.
+
+----
+
+reset
+~~~~~
+
+Resets the "at target" timer.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void reset()
