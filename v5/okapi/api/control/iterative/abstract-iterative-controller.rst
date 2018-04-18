@@ -84,7 +84,7 @@ Sets time between loops in ms. Default does nothing.
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const uint32_t isampleTime)
+        virtual void setSampleTime(const std::uint32_t isampleTime)
 
 =============== ===================================================================
 Parameters
@@ -153,6 +153,6 @@ Get the last set sample time. Default is ``10``.
       .. highlight:: cpp
       ::
 
-        virtual uint32_t getSampleTime() const
+        virtual std::uint32_t getSampleTime() const
 
 **Returns:** The last set sample time.

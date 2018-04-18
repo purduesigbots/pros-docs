@@ -20,7 +20,10 @@ This constructor infers the encoders from the top left and top right motors.
       .. highlight:: cpp
       ::
 
-        XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+        XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                        std::shared_ptr<AbstractMotor> itopRightMotor,
+                        std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                        std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                         const double imaxOutput = 127)
 
 ==================   ===================================================================
@@ -40,8 +43,12 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        XDriveModelArgs(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                        const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+        XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                        std::shared_ptr<AbstractMotor> itopRightMotor,
+                        std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                        std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+                        std::shared_ptr<RotarySensor> ileftEnc,
+                        std::shared_ptr<RotarySensor> irightEnc,
                         const double imaxOutput = 127)
 
 ==================   ===================================================================
@@ -73,7 +80,10 @@ This constructor infers the encoders from the motors.
       .. highlight:: cpp
       ::
 
-        XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
+        XDriveModel(Motor itopLeftMotor,
+                    Motor itopRightMotor,
+                    Motor ibottomRightMotor,
+                    Motor ibottomLeftMotor,
                     const double imaxOutput = 127)
 
    .. tab :: Example
@@ -82,7 +92,6 @@ This constructor infers the encoders from the motors.
 
         void opcontrol() {
           using namespace okapi::literals;
-
           okapi::XDriveModel model(1_m, 2_m, 3_m, 4_m);
         }
 
@@ -103,8 +112,12 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        XDriveModel(const AbstractMotor &itopLeftMotor, const AbstractMotor &itopRightMotor, const AbstractMotor &ibottomRightMotor, const AbstractMotor &ibottomLeftMotor,
-                    const RotarySensor &ileftEnc, const RotarySensor &irightEnc,
+        XDriveModel(Motor itopLeftMotor,
+                    Motor itopRightMotor,
+                    Motor ibottomRightMotor,
+                    Motor ibottomLeftMotor,
+                    ADIEncoder ileftEnc,
+                    ADIEncoder irightEnc,
                     const double imaxOutput = 127)
 
    .. tab :: Example
@@ -113,9 +126,59 @@ This constructor does not infer the encoders from the motors, and instead takes 
 
         void opcontrol() {
           using namespace okapi::literals;
-
-          okapi::XDriveModel model(1_m, 2_m, 3_m, 4_m, okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4));
+          okapi::XDriveModel model(1_m, 2_m, 3_m, 4_m,
+                                   okapi::ADIEncoder(1, 2), okapi::ADIEncoder(3, 4, true));
         }
+
+==================   ===================================================================
+ Parameters
+==================   ===================================================================
+ itopLeftMotor        The top left motor.
+ itopRightMotor       The top right motor.
+ ibottomRightMotor    The bottom right motor.
+ ibottomLeftMotor     The bottom left motor.
+ ileftEnc             The left side encoder.
+ irightEnc            The right side encoder.
+ imaxOutput           The maximum output value to the motors.
+==================   ===================================================================
+
+This constructor infers the encoders from the motors.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                    std::shared_ptr<AbstractMotor> itopRightMotor,
+                    std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                    std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+                    const double imaxOutput = 127)
+
+==================   ===================================================================
+ Parameters
+==================   ===================================================================
+ itopLeftMotor        The top left motor.
+ itopRightMotor       The top right motor.
+ ibottomRightMotor    The bottom right motor.
+ ibottomLeftMotor     The bottom left motor.
+ imaxOutput           The maximum output value to the motors.
+==================   ===================================================================
+
+This constructor does not infer the encoders from the motors, and instead takes explicitly specified encoders.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
+                    std::shared_ptr<AbstractMotor> itopRightMotor,
+                    std::shared_ptr<AbstractMotor> ibottomRightMotor,
+                    std::shared_ptr<AbstractMotor> ibottomLeftMotor,
+                    std::shared_ptr<RotarySensor> ileftEnc,
+                    std::shared_ptr<RotarySensor> irightEnc,
+                    const double imaxOutput = 127)
 
 ==================   ===================================================================
  Parameters
@@ -356,7 +419,7 @@ Returns the current sensor values. Ideally, return the values in the format ``{l
       .. highlight:: cpp
       ::
 
-        virtual std::valarray<int> getSensorVals() const override
+        virtual std::valarray<std::int32_t> getSensorVals() const override
 
 **Returns:** The current sensor values (the formatting is implementation dependent).
 

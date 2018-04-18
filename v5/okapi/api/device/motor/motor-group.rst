@@ -23,7 +23,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        MotorGroup(const std::array<okapi::Motor, motorNum> &imotors)
+        MotorGroup(const std::initializer_list<Motor> &imotors)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -31,13 +31,13 @@ Constructor(s)
 
         void opcontrol() {
           using namespace okapi::literals;
-          okapi::MotorGroup group({1_m, 2_m}); //Two motors in ports 1 and 2 grouped together
+          okapi::MotorGroup group({1_m, 2_m}); // Two motors in ports 1 and 2 grouped together
         }
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imotors         The array of motors to use. A ``std::initializer_list`` also works here.
+ imotors         The motors to use.
 =============== ===================================================================
 
 Methods
@@ -49,7 +49,7 @@ moveAbsolute
 Sets the target absolute position for the motor to move to.
 
 This movement is relative to the position of the motor when initialized or the position when it was
-most recently reset with ``setZeroPosition()``.
+most recently reset with ``set_zero_position()``.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -241,12 +241,10 @@ This function uses the following values of errno when an error state is reached:
 
 ----
 
-setZeroPosition
-~~~~~~~~~~~~~~~
+tarePosition
+~~~~~~~~~~~~
 
-Sets the position for the motor in its encoder units.
-
-This will be the future reference point for the motor's "absolute" position.
+Sets the "absolute" zero position of the motor to its current position.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -256,7 +254,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setZeroPosition(const double iposition) const override
+        virtual std::int32_t tarePosition() const override
 
 =============== ===================================================================
  Parameters
@@ -427,22 +425,6 @@ setting errno.
 
 ----
 
-getEncoder
-~~~~~~~~~~
-
-Returns the encoder associated with this motor.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual IntegratedEncoder getEncoder() const override
-
-**Returns:** The encoder associated with this motor.
-
-----
-
 controllerSet
 ~~~~~~~~~~~~~
 
@@ -461,3 +443,19 @@ Parameters
 =============== ===================================================================
  ivalue          The controller's output.
 =============== ===================================================================
+
+----
+
+getEncoder
+~~~~~~~~~~
+
+Returns the encoder associated with this motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual IntegratedEncoder getEncoder() const override
+
+**Returns:** The encoder associated with this motor.

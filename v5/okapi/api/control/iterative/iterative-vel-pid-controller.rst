@@ -213,7 +213,7 @@ Sets time between loops in ms. Default does nothing.
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const uint32_t isampleTime) override
+        virtual void setSampleTime(const std::uint32_t isampleTime) override
 
 =============== ===================================================================
 Parameters
@@ -261,7 +261,8 @@ Resets the controller so it can start from 0 again properly. Keeps configuration
 flipDisable
 ~~~~~~~~~~~
 
-Changes whether the controll is off or on. Default does nothing.
+Changes whether the controller is off or on. Turning the controller on after it was off will cause
+the controller to move to its last set target, unless it was reset in that time.
 
 .. tabs ::
    .. tab :: Prototype
@@ -269,6 +270,43 @@ Changes whether the controll is off or on. Default does nothing.
       ::
 
         virtual void flipDisable() override
+
+----
+
+flipDisable
+~~~~~~~~~~~
+
+Sets whether the controller is off or on. Turning the controller on after it was off will cause the
+controller to move to its last set target, unless it was reset in that time.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void flipDisable(const bool iisDisabled) override
+
+============= ===============================================================
+ Parameters
+============= ===============================================================
+ iisDisabled   Whether the controller should be disabled.
+============= ===============================================================
+
+----
+
+isDisabled
+~~~~~~~~~~
+
+Returns whether the controller is currently disabled.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual bool isDisabled() const override
+
+**Returns:** Whether the controller is currently disabled.
 
 ----
 
@@ -282,7 +320,7 @@ Returns the last set sample time. Default is ``10``.
       .. highlight:: cpp
       ::
 
-        virtual uint32_t getSampleTime() const override
+        virtual std::uint32_t getSampleTime() const override
 
 **Returns:** The last set sample time.
 

@@ -20,7 +20,9 @@ This constructor infers the encoders from the left side and right side motors.
       .. highlight:: cpp
       ::
 
-        SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double imaxOutput = 127)
+        SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                           std::shared_ptr<AbstractMotor> irightSideMotor,
+                           const double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -37,7 +39,11 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        SkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 127)
+        SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                           std::shared_ptr<AbstractMotor> irightSideMotor,
+                           std::shared_ptr<RotarySensor> ileftEnc,
+                           std::shared_ptr<RotarySensor> irightEnc,
+                           const double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -59,14 +65,16 @@ The model for a skid-steer chassis.
 Constructor(s)
 --------------
 
-This constructor infers the encoders from the motors.
+This constructor infers the encoders from the left side and right side motors.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const double imaxOutput = 127)
+        SkidSteerModelArgs(Motor ileftSideMotor,
+                           Motor irightSideMotor,
+                           const double imaxOutput = 127)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -74,12 +82,36 @@ This constructor infers the encoders from the motors.
 
         void opcontrol() {
           using namespace okapi::literals;
-
-          // Two motors
           okapi::SkidSteerModel model(1_m, 2_m);
+        }
 
-          // You can also use MotorGroups for more motors
-          okapi::SkidSteerModel model(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}));
+=================   ===================================================================
+ Parameters
+=================   ===================================================================
+ ileftSideMotor      The left side motor.
+ irightSideMotor     The right side motor.
+ imaxOutput          The maximum output value to the motors.
+=================   ===================================================================
+
+This constructor infers the encoders from the left side and right side motors.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        SkidSteerModelArgs(MotorGroup ileftSideMotor,
+                           MotorGroup irightSideMotor,
+                           const double imaxOutput = 127)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          using namespace okapi::literals;
+          okapi::SkidSteerModel model(okapi::MotorGroup({1_m, 2_m}),
+                                      okapi::MotorGroup({3_m, 4_m}));
         }
 
 =================   ===================================================================
@@ -97,7 +129,11 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        SkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor, const RotarySensor &ileftEnc, const RotarySensor &irightEnc, const double imaxOutput = 127)
+        SkidSteerModelArgs(MotorGroup ileftSideMotor,
+                           MotorGroup irightSideMotor,
+                           ADIEncoder ileftEnc,
+                           ADIEncoder irightEnc,
+                           const double imaxOutput = 127)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -105,14 +141,53 @@ This constructor does not infer the encoders from the motors, and instead takes 
 
         void opcontrol() {
           using namespace okapi::literals;
-
-          // Two motors
-          okapi::SkidSteerModel model(1_m, 2_m, okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4));
-
-          // You can also use MotorGroups for more motors
-          okapi::SkidSteerModel model(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}),
-                                      okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4));
+          okapi::SkidSteerModel model(okapi::MotorGroup({1_m, 2_m}),
+                                      okapi::MotorGroup({3_m, 4_m}),
+                                      okapi::ADIEncoder(1, 2),
+                                      okapi::ADIEncoder(3, 4, true));
         }
+
+=================   ===================================================================
+ Parameters
+=================   ===================================================================
+ ileftSideMotor      The left side motor.
+ irightSideMotor     The right side motor.
+ ileftEnc            The left side encoder.
+ irightEnc           The right side encoder.
+ imaxOutput          The maximum output value to the motors.
+=================   ===================================================================
+
+This constructor infers the encoders from the motors.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                       std::shared_ptr<AbstractMotor> irightSideMotor,
+                       const double imaxOutput = 127)
+
+=================   ===================================================================
+ Parameters
+=================   ===================================================================
+ ileftSideMotor      The left side motor.
+ irightSideMotor     The right side motor.
+ imaxOutput          The maximum output value to the motors.
+=================   ===================================================================
+
+This constructor does not infer the encoders from the motors, and instead takes explicitly specified encoders.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                       std::shared_ptr<AbstractMotor> irightSideMotor,
+                       std::shared_ptr<RotarySensor> ileftEnc,
+                       std::shared_ptr<RotarySensor> irightEnc,
+                       const double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -328,7 +403,7 @@ Returns the current sensor values. Ideally, return the values in the format ``{l
       .. highlight:: cpp
       ::
 
-        virtual std::valarray<int> getSensorVals() const override
+        virtual std::valarray<std::int32_t> getSensorVals() const override
 
 **Returns:** The current sensor values (the formatting is implementation dependent).
 
@@ -418,7 +493,7 @@ Returns the left side motor.
       .. highlight:: cpp
       ::
 
-        const AbstractMotor &getLeftSideMotor() const
+        std::shared_ptr<AbstractMotor> getLeftSideMotor() const
 
 ----
 
@@ -432,4 +507,4 @@ Returns the right side motor.
       .. highlight:: cpp
       ::
 
-        const AbstractMotor &getRightSideMotor() const
+        std::shared_ptr<AbstractMotor> getRightSideMotor() const

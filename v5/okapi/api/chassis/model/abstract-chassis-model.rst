@@ -185,7 +185,7 @@ Returns the current sensor values. Ideally, return the values in the format ``{l
       .. highlight:: cpp
       ::
 
-        virtual std::valarray<int> getSensorVals() const = 0
+        virtual std::valarray<std::int32_t> getSensorVals() const = 0
 
 **Returns:** The current sensor values (the formatting is implementation dependent).
 

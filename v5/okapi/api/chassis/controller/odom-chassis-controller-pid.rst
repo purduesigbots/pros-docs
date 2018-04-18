@@ -22,10 +22,61 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        OdomChassisControllerPID(const AbstractMotor &ileftSideMotor,
-                                 const AbstractMotor &irightSideMotor,
-                                 const double iscale,
-                                 const double iturnScale,
+        OdomChassisControllerPID(Motor ileftSideMotor,
+                                 Motor irightSideMotor,
+                                 const double iscale, const double iturnScale,
+                                 const IterativePosPIDControllerArgs &idistanceArgs,
+                                 const IterativePosPIDControllerArgs &iangleArgs,
+                                 const float imoveThreshold = 10)
+
+======================   =======================================================================================
+ Parameters
+======================   =======================================================================================
+ ileftSideMotor           The left side motor in a skid-steer model.
+ irightSideMotor          The right side motor in a skid-steer model.
+ iscale                   A scale converting your units of choice to encoder ticks, used for measuring distance.
+ iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
+ idistanceArgs            The distance `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
+ iangleArgs               The angle `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
+ imoveThreshold           The minimum length movement. Movements shorted than this will not be performed.
+======================   =======================================================================================
+
+This constructor infers a skid-steer layout.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        OdomChassisControllerPID(MotorGroup ileftSideMotor,
+                                 MotorGroup irightSideMotor,
+                                 const double iscale, const double iturnScale,
+                                 const IterativePosPIDControllerArgs &idistanceArgs,
+                                 const IterativePosPIDControllerArgs &iangleArgs,
+                                 const float imoveThreshold = 10)
+
+======================   =======================================================================================
+ Parameters
+======================   =======================================================================================
+ ileftSideMotor           The left side motor in a skid-steer model.
+ irightSideMotor          The right side motor in a skid-steer model.
+ iscale                   A scale converting your units of choice to encoder ticks, used for measuring distance.
+ iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
+ idistanceArgs            The distance `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
+ iangleArgs               The angle `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
+ imoveThreshold           The minimum length movement. Movements shorted than this will not be performed.
+======================   =======================================================================================
+
+This constructor infers a skid-steer layout.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        OdomChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                                 std::shared_ptr<AbstractMotor> irightSideMotor,
+                                 const double iscale, const double iturnScale,
                                  const IterativePosPIDControllerArgs &idistanceArgs,
                                  const IterativePosPIDControllerArgs &iangleArgs,
                                  const float imoveThreshold = 10)
@@ -48,8 +99,7 @@ This constructor infers a skid-steer layout.
       ::
 
         OdomChassisControllerPID(std::shared_ptr<SkidSteerModel> imodel,
-                                 const double iscale,
-                                 const double iturnScale,
+                                 const double iscale, const double iturnScale,
                                  const IterativePosPIDControllerArgs &idistanceArgs,
                                  const IterativePosPIDControllerArgs &iangleArgs,
                                  const float imoveThreshold = 10)

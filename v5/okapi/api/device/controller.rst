@@ -56,7 +56,7 @@ Returns the full connection state of the controller.
       .. highlight:: cpp
       ::
 
-        virtual int32_t getConnectionState()
+        virtual std::int32_t getConnectionState()
 
 **Returns:** The connection state of the controller.
 

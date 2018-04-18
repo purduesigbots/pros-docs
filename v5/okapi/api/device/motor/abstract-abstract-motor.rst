@@ -208,10 +208,10 @@ This function uses the following values of errno when an error state is reached:
 
 ----
 
-setZeroPosition
-~~~~~~~~~~~~~~~
+tarePosition
+~~~~~~~~~~~~
 
-Sets the position for the motor in its encoder units.
+Sets the "absolute" zero position of the motor to its current position.
 
 This will be the future reference point for the motor's "absolute" position.
 
@@ -223,13 +223,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setZeroPosition(const double iposition) const = 0
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iposition       The new reference position in its encoder units.
-=============== ===================================================================
+        virtual std::int32_t tarePosition() const = 0
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting errno.

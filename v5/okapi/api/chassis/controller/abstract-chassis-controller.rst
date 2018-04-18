@@ -1,6 +1,6 @@
-==================
-Chassis Controller
-==================
+=============================
+(Abstract) Chassis Controller
+=============================
 
 .. contents:: :local:
 
@@ -242,7 +242,7 @@ Returns the current sensor values. Ideally, return the values in the format ``{l
       .. highlight:: cpp
       ::
 
-        virtual std::valarray<int> getSensorVals() const
+        virtual std::valarray<std::int32_t> getSensorVals() const
 
 **Returns:** The current sensor values (the formatting is implementation dependent).
 

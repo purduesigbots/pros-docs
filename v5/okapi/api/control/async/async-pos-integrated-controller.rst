@@ -17,7 +17,33 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedControllerArgs(const AbstractMotor &imotor)
+        AsyncPosIntegratedControllerArgs(Motor imotor)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ imotor          The motor to control.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        AsyncPosIntegratedControllerArgs(MotorGroup imotor)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ imotor          The motor to control.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor)
 
 =============== ===================================================================
  Parameters
@@ -128,3 +154,55 @@ Resets the controller so it can start from 0 again properly. Keeps configuration
       ::
 
         virtual void reset() override
+
+----
+
+flipDisable
+~~~~~~~~~~~
+
+Changes whether the controller is off or on. Turning the controller on after it was off will cause
+the controller to move to its last set target, unless it was reset in that time.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void flipDisable() override
+
+----
+
+flipDisable
+~~~~~~~~~~~
+
+Sets whether the controller is off or on. Turning the controller on after it was off will cause the
+controller to move to its last set target, unless it was reset in that time.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void flipDisable(const bool iisDisabled) override
+
+============= ===============================================================
+ Parameters
+============= ===============================================================
+ iisDisabled   Whether the controller should be disabled.
+============= ===============================================================
+
+----
+
+isDisabled
+~~~~~~~~~~
+
+Returns whether the controller is currently disabled.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual bool isDisabled() const override
+
+**Returns:** Whether the controller is currently disabled.

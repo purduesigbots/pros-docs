@@ -18,7 +18,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ADIUltrasonic(const uint8_t iportTop, const uint8_t iportBottom)
+        ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom)
 
 =============== ===================================================================
  Parameters
@@ -40,7 +40,7 @@ Get the current sensor value. Uses a median filter to remove outliers.
       .. highlight:: cpp
       ::
 
-        virtual int32_t get()
+        virtual std::int32_t get()
 
 **Returns:** The current filtered sensor value, or ``PROS_ERR`` on a failure.
 

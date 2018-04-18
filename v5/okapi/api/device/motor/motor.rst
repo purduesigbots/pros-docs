@@ -18,7 +18,10 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        Motor(const uint8_t port, const bool reverse = false, const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES, const motor_gearset_e_t gearset = E_MOTOR_GEARSET_36)
+        Motor(const std::uint8_t port,
+              const bool reverse = false,
+              const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES,
+              const motor_gearset_e_t gearset = E_MOTOR_GEARSET_36)
 
 =============== ===================================================================
  Parameters
@@ -65,7 +68,7 @@ moveAbsolute
 Sets the target absolute position for the motor to move to.
 
 This movement is relative to the position of the motor when initialized or the position when it was
-most recently reset with ``setZeroPosition()``.
+most recently reset with ``set_zero_position()``.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -257,12 +260,10 @@ This function uses the following values of errno when an error state is reached:
 
 ----
 
-setZeroPosition
-~~~~~~~~~~~~~~~
+tarePosition
+~~~~~~~~~~~~
 
-Sets the position for the motor in its encoder units.
-
-This will be the future reference point for the motor's "absolute" position.
+Sets the "absolute" zero position of the motor to its current position.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -272,7 +273,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setZeroPosition(const double iposition) const override
+        virtual std::int32_t tarePosition() const override
 
 =============== ===================================================================
  Parameters

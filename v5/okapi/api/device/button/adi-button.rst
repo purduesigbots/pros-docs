@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ADIButton(const uint8_t iport, const bool iinverted = false)
+        ADIButton(const std::uint8_t iport, const bool iinverted = false)
 
 =============== ===================================================================
  Parameters

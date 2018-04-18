@@ -18,7 +18,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IntegratedEncoder(const pros::Motor &imotor)
+        IntegratedEncoder(pros::Motor imotor)
 
 =============== ===================================================================
  Parameters
@@ -39,7 +39,7 @@ Returns the current sensor value.
       .. highlight:: cpp
       ::
 
-        virtual int32_t get() const override
+        virtual std::int32_t get() const override
 
 **Returns:** The current sensor value, or ``PROS_ERR`` on a failure.
 
@@ -55,7 +55,7 @@ Resets the sensor to ``0``.
       .. highlight:: cpp
       ::
 
-        virtual int32_t reset() const override
+        virtual std::int32_t reset() const override
 
 **Returns:** ``1`` on success, or ``PROS_ERR`` on a failure.
 

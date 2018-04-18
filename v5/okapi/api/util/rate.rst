@@ -34,7 +34,7 @@ Delay the current task such that it runs at the given rate in Hertz. The first d
       .. highlight:: cpp
       ::
 
-        virtual void delayHz(const uint32_t ihz)
+        virtual void delayHz(const std::uint32_t ihz)
 
    .. tab :: Example
       .. highlight:: cpp

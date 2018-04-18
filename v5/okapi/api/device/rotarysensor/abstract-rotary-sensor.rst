@@ -20,7 +20,7 @@ Returns the current sensor value.
       .. highlight:: cpp
       ::
 
-        virtual int32_t get() const = 0
+        virtual std::int32_t get() const = 0
 
 **Returns:** The current sensor value, or ``PROS_ERR`` on a failure.
 
@@ -36,6 +36,6 @@ Resets the sensor to ``0``.
       .. highlight:: cpp
       ::
 
-        virtual int32_t reset() const = 0
+        virtual std::int32_t reset() const = 0
 
 **Returns:** ``1`` on success, or ``PROS_ERR`` on a failure.

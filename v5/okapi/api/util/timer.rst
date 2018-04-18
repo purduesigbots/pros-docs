@@ -34,7 +34,7 @@ Returns the time passed in ms since the previous call of this function.
       .. highlight:: cpp
       ::
 
-        virtual uint32_t getDt()
+        virtual std::uint32_t getDt()
 
 **Returns:** The time passed in ms since the previous call of this function.
 
@@ -50,7 +50,7 @@ Returns the time the timer was first constructed.
       .. highlight:: cpp
       ::
 
-        virtual uint32_t getStartingTime() const
+        virtual std::uint32_t getStartingTime() const
 
 **Returns:** The time the timer was first constructed.
 
@@ -66,7 +66,7 @@ Returns the time since the timer was first constructed.
       .. highlight:: cpp
       ::
 
-        virtual uint32_t getDtFromStart() const
+        virtual std::uint32_t getDtFromStart() const
 
 **Returns:** The time since the timer was first constructed.
 
@@ -110,7 +110,7 @@ Clears the hard marker.
       .. highlight:: cpp
       ::
 
-        virtual uint32_t clearHardMark()
+        virtual std::uint32_t clearHardMark()
 
 **Returns:** The old hard marker.
 
@@ -126,7 +126,7 @@ Returns the time since the time marker.
       .. highlight:: cpp
       ::
 
-        virtual uint32_t getDtFromMark() const
+        virtual std::uint32_t getDtFromMark() const
 
 **Returns:** The time since the time marker.
 
@@ -142,7 +142,7 @@ Returns the time since the hard time marker.
       .. highlight:: cpp
       ::
 
-        virtual uint32_t getDtFromHardMark() const
+        virtual std::uint32_t getDtFromHardMark() const
 
 **Returns:** The time since the hard time marker.
 
@@ -158,7 +158,7 @@ Returns ``true`` when the input time period has passed, then resets. Meant to be
       .. highlight:: cpp
       ::
 
-        virtual bool repeat(const uint32_t ms)
+        virtual bool repeat(const std::uint32_t ms)
 
    .. tab :: Example
       .. highlight:: cpp

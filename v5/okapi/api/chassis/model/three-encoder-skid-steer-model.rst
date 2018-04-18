@@ -18,8 +18,11 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ThreeEncoderSkidSteerModelArgs(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                                       const RotarySensor &ileftEnc, const RotarySensor &imiddleEnc, const RotarySensor &irightEnc,
+        ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                                       std::shared_ptr<AbstractMotor> irightSideMotor,
+                                       std::shared_ptr<RotarySensor> ileftEnc,
+                                       std::shared_ptr<RotarySensor> imiddleEnc,
+                                       std::shared_ptr<RotarySensor> irightEnc,
                                        const double imaxOutput = 127)
 
 =================   ===================================================================
@@ -49,24 +52,12 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ThreeEncoderSkidSteerModel(const AbstractMotor &ileftSideMotor, const AbstractMotor &irightSideMotor,
-                                   const RotarySensor &ileftEnc, const RotarySensor &imiddleEnc, const RotarySensor &irightEnc,
-                                   const double imaxOutput = 127)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          using namespace okapi::literals;
-
-          // Two motors
-          okapi::SkidSteerModel model(1_m, 2_m, okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4), okapi::ADIEncoder(5, 6));
-
-          // You can also use MotorGroups for more motors
-          okapi::SkidSteerModel model(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}),
-                                      okapi::ADIEncoder(1, 2, true), okapi::ADIEncoder(3, 4), okapi::ADIEncoder(5, 6));
-        }
+        ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
+                                       std::shared_ptr<AbstractMotor> irightSideMotor,
+                                       std::shared_ptr<RotarySensor> ileftEnc,
+                                       std::shared_ptr<RotarySensor> imiddleEnc,
+                                       std::shared_ptr<RotarySensor> irightEnc,
+                                       const double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -105,6 +96,6 @@ Returns the current sensor values in the format ``{left, right, middle}``.
       .. highlight:: cpp
       ::
 
-        virtual std::valarray<int> getSensorVals() const override
+        virtual std::valarray<std::int32_t> getSensorVals() const override
 
 **Returns:** The current sensor values.
