@@ -27,10 +27,8 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::ChassisControllerIntegrated controller(1_m, 2_m);
-        }
+        using namespace okapi::literals;
+        okapi::ChassisControllerIntegrated controller(1_m, 2_m);
 
 ======================   =======================================================================================
  Parameters
@@ -56,11 +54,9 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::ChassisControllerIntegrated controller(okapi::MotorGroup({1_m, 2_m}),
-                                                        okapi::MotorGroup({3_rm, 4_rm}));
-        }
+        using namespace okapi::literals;
+        okapi::ChassisControllerIntegrated controller(okapi::MotorGroup({1_m, 2_m}),
+                                                      okapi::MotorGroup({3_rm, 4_rm}));
 
 ======================   =======================================================================================
  Parameters
@@ -88,10 +84,8 @@ This constructor infers an x-drive layout.
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::ChassisControllerIntegrated controller(1_m, 2_rm, 3_rm, 4_m);
-        }
+        using namespace okapi::literals;
+        okapi::ChassisControllerIntegrated controller(1_m, 2_rm, 3_rm, 4_m);
 
 ======================   =======================================================================================
  Parameters
@@ -119,11 +113,9 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::ChassisControllerIntegrated controller(std::make_shared<okapi::MotorGroup>({1_m, 2_m}),
-                                                        std::make_shared<okapi::MotorGroup>({3_m, 4_m}));
-        }
+        using namespace okapi::literals;
+        okapi::ChassisControllerIntegrated controller(std::make_shared<okapi::MotorGroup>({1_m, 2_m}),
+                                                      std::make_shared<okapi::MotorGroup>({3_m, 4_m}));
 
 ======================   =======================================================================================
  Parameters
@@ -151,12 +143,10 @@ This constructor infers an x-drive layout.
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          using namespace okapi::literals;
+        using namespace okapi::literals;
 
-          // X-Drive controller
-          okapi::ChassisControllerIntegrated controller(1_m, 2_m, 3_m, 4_m);
-        }
+        // X-Drive controller
+        okapi::ChassisControllerIntegrated controller(1_m, 2_m, 3_m, 4_m);
 
 ======================   =======================================================================================
  Parameters

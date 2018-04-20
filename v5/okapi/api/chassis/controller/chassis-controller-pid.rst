@@ -30,12 +30,10 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::ChassisControllerPID controller(1_m, 2_m,
-                                                 okapi::IterativePosPIDControllerArgs(0, 0, 0),
-                                                 okapi::IterativePosPIDControllerArgs(0, 0, 0));
-        }
+        using namespace okapi::literals;
+        okapi::ChassisControllerPID controller(1_m, 2_m,
+                                               okapi::IterativePosPIDControllerArgs(0, 0, 0),
+                                               okapi::IterativePosPIDControllerArgs(0, 0, 0));
 
 ======================   =======================================================================================
  Parameters
@@ -65,13 +63,11 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::ChassisControllerPID controller(okapi::MotorGroup({1_m, 2_m}),
-                                                 okapi::MotorGroup({3_m, 4_m}),
-                                                 okapi::IterativePosPIDControllerArgs(0, 0, 0),
-                                                 okapi::IterativePosPIDControllerArgs(0, 0, 0));
-        }
+        using namespace okapi::literals;
+        okapi::ChassisControllerPID controller(okapi::MotorGroup({1_m, 2_m}),
+                                               okapi::MotorGroup({3_m, 4_m}),
+                                               okapi::IterativePosPIDControllerArgs(0, 0, 0),
+                                               okapi::IterativePosPIDControllerArgs(0, 0, 0));
 
 ======================   =======================================================================================
  Parameters
@@ -103,14 +99,12 @@ This constructor infers an x-drive layout.
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          using namespace okapi::literals;
+        using namespace okapi::literals;
 
-          // X-Drive controller
-          okapi::ChassisControllerPID controller(1_m, 2_m, 3_m, 4_m,
-                                                 IterativePosPIDControllerArgs(0, 0, 0),
-                                                 IterativePosPIDControllerArgs(0, 0, 0));
-        }
+        // X-Drive controller
+        okapi::ChassisControllerPID controller(1_m, 2_m, 3_m, 4_m,
+                                               IterativePosPIDControllerArgs(0, 0, 0),
+                                               IterativePosPIDControllerArgs(0, 0, 0));
 
 ======================   =======================================================================================
  Parameters
@@ -142,16 +136,14 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          using namespace okapi::literals;
+        using namespace okapi::literals;
 
-          // Skid-Steer controller
-          okapi::ChassisControllerPID controller(1_m, 2_m, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
+        // Skid-Steer controller
+        okapi::ChassisControllerPID controller(1_m, 2_m, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
-          // Could also use MotorGroups to use more motors
-          okapi::ChassisControllerPID controller(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}),
-                                                 IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-        }
+        // Could also use MotorGroups to use more motors
+        okapi::ChassisControllerPID controller(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}),
+                                               IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
 ======================   =======================================================================================
  Parameters
@@ -183,12 +175,10 @@ This constructor infers an x-drive layout.
       .. highlight:: cpp
       ::
 
-        void opcontrol() {
-          using namespace okapi::literals;
+        using namespace okapi::literals;
 
-          // X-Drive controller
-          okapi::ChassisControllerPID controller(1_m, 2_m, 3_m, 4_m, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-        }
+        // X-Drive controller
+        okapi::ChassisControllerPID controller(1_m, 2_m, 3_m, 4_m, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
 ======================   =======================================================================================
  Parameters

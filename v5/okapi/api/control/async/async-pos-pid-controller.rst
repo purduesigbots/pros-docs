@@ -47,6 +47,15 @@ Constructor(s)
         AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
                               std::shared_ptr<ControllerOutput> ioutput,
                               const double ikP, const double ikI, const double ikD, const double ikBias = 0)
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        using namespace okapi::literals;
+        auto myInput = std::make_shared<okapi::ADIEncoder>('A', 'B');
+        auto myOutput = std::make_shared<okapi::Motor>(1);
+
+        okapi::AsyncPosPIDController controller(myInput, myOutput, 0.5, 0, 0); // P controller
 
 =============== ===================================================================
  Parameters

@@ -40,7 +40,14 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedControllerArgs(Motor imotor)
+        AsyncPosIntegratedController(Motor imotor)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        using namespace okapi::literals;
+        okapi::AsyncPosIntegratedController controller(1_m);
 
 =============== ===================================================================
  Parameters
@@ -53,7 +60,14 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedControllerArgs(MotorGroup imotor)
+        AsyncPosIntegratedController(MotorGroup imotor)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        using namespace okapi::literals;
+        okapi::AsyncPosIntegratedController controller(okapi::MotorGroup({1_m, 2_m}));
 
 =============== ===================================================================
  Parameters
@@ -66,7 +80,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor)
+        AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor)
 
 =============== ===================================================================
  Parameters
