@@ -27,8 +27,17 @@ A collection of ``static constexpr double`` constants that help with math.
  quadEncoderTPR   360.0
  pi               3.1415926535897932
  pi2              1.5707963267948966
- gravity          9.80665
+ gravity          9.80665 (m/s^2)
 ================ ================
+
+"V5 Brain"-specific constants.
+
+================= ================
+ Name              Value
+================= ================
+ motorUpdateRate   10 (ms)
+ adiUpdateRate     50 (ms)
+================= ================
 
 Methods
 -------

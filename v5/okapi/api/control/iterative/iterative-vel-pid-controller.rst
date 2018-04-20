@@ -93,6 +93,26 @@ Constructor(s)
  params          The ``IterativeVelPIDController`` arguments.
 =============== ===================================================================
 
+This constructor is used for testing.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        IterativePosPIDController(const double ikP, const double ikD, const double ikBias, std::unique_ptr<VelMath> ivelMath, std::unique_ptr<Timer> iloopDtTimer, std::unique_ptr<SettledUtil> isettledUtil)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ ikp             The P term gain.
+ ikD             The D term gain.
+ ikBias          The controller bias.
+ ivelMath        The `VelMath <../../filters/vel-math.html>`_ used for calculating plant velocity.
+ iloopDtTimer    The timer used for calculating loop dt's.
+ isettledUtil    The `SettledUtil <../util/settled-util.html>`_ for calculating if the controller is settled.
+=============== ===================================================================
+
 Methods
 -------
 

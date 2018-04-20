@@ -78,7 +78,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelMath(const double iticksPerRev, const ComposableFilterArgs &ifilterParams)
+        VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -94,7 +94,7 @@ Constructor(s)
  Parameters
 =============== ===================================================================
  iticksPerRev    The number of ticks per revolution (or whatever units you are using).
- ifilterParams   The filter to use for filtering the velocity.
+ ifilter         The filter used for filtering the calculated velocity.
 =============== ===================================================================
 
 .. tabs ::
@@ -108,6 +108,23 @@ Constructor(s)
  Parameters
 =============== ===================================================================
  iparams         The ``VelMath`` arguments.
+=============== ===================================================================
+
+This constructor is used for testing.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter, std::unique_ptr<Timer> iloopDtTimer)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ iticksPerRev    The number of ticks per revolution (or whatever units you are using).
+ ifilter         The filter used for filtering the calculated velocity.
+ iloopDtTimer    The timer used for calculating loop dt's.
 =============== ===================================================================
 
 ----
