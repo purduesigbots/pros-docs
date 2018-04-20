@@ -42,6 +42,13 @@ Constructor(s)
 
         AsyncVelIntegratedController(Motor imotor)
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        using namespace okapi::literals;
+        okapi::AsyncVelIntegratedController controller(1_m);
+
 =============== ===================================================================
  Parameters
 =============== ===================================================================
@@ -54,6 +61,13 @@ Constructor(s)
       ::
 
         AsyncVelIntegratedController(MotorGroup imotor)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        using namespace okapi::literals;
+        okapi::AsyncVelIntegratedController controller(okapi::MotorGroup({1_m, 2_m}));
 
 =============== ===================================================================
  Parameters
