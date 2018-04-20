@@ -17,6 +17,29 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
+        AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ imotor          The motor to control.
+=============== ===================================================================
+
+----
+
+okapi::AsyncPosIntegratedController
+===================================
+
+An `AsyncPositionController <abstract-async-position-controller.html>`_ that uses the V5 motor's onboard control.
+
+Constructor(s)
+--------------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
         AsyncPosIntegratedControllerArgs(Motor imotor)
 
 =============== ===================================================================
@@ -44,29 +67,6 @@ Constructor(s)
       ::
 
         AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
-=============== ===================================================================
-
-----
-
-okapi::AsyncPosIntegratedController
-===================================
-
-An `AsyncPositionController <abstract-async-position-controller.html>`_ that uses the V5 motor's onboard control.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncPosIntegratedController(const AbstractMotor &imotor)
 
 =============== ===================================================================
  Parameters
