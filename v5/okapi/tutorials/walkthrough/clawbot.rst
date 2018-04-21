@@ -163,7 +163,7 @@ lends itself to better chassis control.
 
           // Wait and give up the time we don't need to other tasks.
           // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-          pros::c::task_delay(10);
+          pros::Task::delay(10);
         }
 
    .. tab :: Arcade drive
@@ -181,7 +181,7 @@ lends itself to better chassis control.
 
           // Wait and give up the time we don't need to other tasks.
           // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-          pros::c::task_delay(10);
+          pros::Task::delay(10);
         }
 
 Arm Control
@@ -201,7 +201,7 @@ We can define our button as an `ADIButton <../../api/device/button/adi-button.ht
 .. highlight:: cpp
 ::
 
-  okapi::ADIButton armLimitButton('H');
+  okapi::ADIButton armLimitSwitch('H');
 
 And the arm motor:
 
@@ -216,7 +216,7 @@ Then we can check if it's pressed and stop powering the arm motor:
 ::
 
   // Don't power the arm if it is all the way down
-  if (armLimitButton.isPressed()) {
+  if (armLimitSwitch.isPressed()) {
     armMotor.move_voltage(0);
   } else {
     // Normal arm control
@@ -238,7 +238,7 @@ Then we can use them along with our limit switch logic from above to control the
 ::
 
   // Don't power the arm if it is all the way down
-  if (armLimitButton.isPressed()) {
+  if (armLimitSwitch.isPressed()) {
     armMotor.move_voltage(0);
   } else {
     // Else, the arm isn't all the way down
@@ -324,7 +324,7 @@ This is the final product from this tutorial.
           okapi::Controller controller;
 
           // Arm related objects
-          okapi::ADIButton armLimitButton('H');
+          okapi::ADIButton armLimitSwitch('H');
           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
           okapi::Motor armMotor = 8_m;
@@ -338,7 +338,7 @@ This is the final product from this tutorial.
                                         controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
 
             // Don't power the arm if it is all the way down
-            if (armLimitButton.isPressed()) {
+            if (armLimitSwitch.isPressed()) {
               armMotor.move_voltage(0);
             } else {
               // Else, the arm isn't all the way down
@@ -362,7 +362,7 @@ This is the final product from this tutorial.
 
             // Wait and give up the time we don't need to other tasks.
             // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-            pros::c::task_delay(10);
+            pros::Task::delay(10);
           }
         }
 
@@ -383,7 +383,7 @@ This is the final product from this tutorial.
           okapi::Controller controller;
 
           // Arm related objects
-          okapi::ADIButton armLimitButton('H');
+          okapi::ADIButton armLimitSwitch('H');
           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
           okapi::Motor armMotor = 8_m;
@@ -397,7 +397,7 @@ This is the final product from this tutorial.
                                           controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
             // Don't power the arm if it is all the way down
-            if (armLimitButton.isPressed()) {
+            if (armLimitSwitch.isPressed()) {
               armMotor.move_voltage(0);
             } else {
               // Else, the arm isn't all the way down
@@ -421,6 +421,6 @@ This is the final product from this tutorial.
 
             // Wait and give up the time we don't need to other tasks.
             // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-            pros::c::task_delay(10);
+            pros::Task::delay(10);
           }
         }
