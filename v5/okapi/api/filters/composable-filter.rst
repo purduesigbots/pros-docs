@@ -17,12 +17,12 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ComposableFilterArgs(const std::initializer_list<std::function<Filter *()>> &ilist)
+        ComposableFilterArgs(const std::initializer_list<std::shared_ptr<Filter>> ilist)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- ilist            The lambdas used to allocate filters.
+ ilist           The filters to use in sequence.
 =============== ===================================================================
 
 okapi::ComposableFilter
@@ -57,7 +57,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ComposableFilter(const std::initializer_list<std::function<Filter *()>> &ilist)
+        ComposableFilter(const std::initializer_list<std::shared_ptr<Filter>> ilist)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -142,12 +142,12 @@ Adds a filter to the end of the sequence.
       .. highlight:: cpp
       ::
 
-        virtual void addFilter(const std::function<Filter *()> &ifilterAllocator)
+        virtual void addFilter(std::shared_ptr<Filter> ifilter)
 
 ================= ===============================================================
  Parameters
 ================= ===============================================================
- ifilterAllocator  A lambda called once to allocate a new filter.
+ ifilter           The filter to add.
 ================= ===============================================================
 
 **Returns:** The filtered result.

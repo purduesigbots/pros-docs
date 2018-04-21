@@ -19,7 +19,7 @@ Constructor(s)
 
         AsyncPosPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
                                   std::shared_ptr<ControllerOutput> ioutput,
-                                  const IterativePosPIDControllerArgs &iparams)
+                                  const IterativePosPIDControllerArgs iparams)
 
 =============== ===================================================================
  Parameters
