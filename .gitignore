@@ -3,3 +3,4 @@ build/
 .*.sw*
 .buildignore
 .vscode
+myenv/
