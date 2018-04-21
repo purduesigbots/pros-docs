@@ -258,23 +258,8 @@ To illustrate the closed-loop control method that
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ has, let's make a
 simple autonomous routine to drive in a square.
 
-First we need to calculate the number of ticks equivalent to a 90 degree turn. The formula for this
+First we need to calculate the number of ticks equivalent to driving forward 12 inches. The formula for this
 is:
-
-.. tabs ::
-   .. tab :: Formula
-      .. highlight:: cpp
-      ::
-
-        ((ticks per wheel rotation) / ((wheel diameter) * pi)) * ((center-to-center wheel distance) * (pi) * (1/4))
-
-   .. tab :: Result
-     .. highlight:: cpp
-     ::
-
-       (1800 ticks / (4 in * pi)) * (11.498 in * pi * (1/4)) = 1294 ticks
-
-Let's follow the same procedure for calculate the ticks equivalent to driving forward 12 inches:
 
 .. tabs ::
    .. tab :: Formula
@@ -288,6 +273,21 @@ Let's follow the same procedure for calculate the ticks equivalent to driving fo
      ::
 
        (1800 ticks / (4 in * pi)) * 12 in = 1719 ticks
+
+Let's follow the same procedure for calculate the ticks equivalent to a 90 degree turn:
+
+.. tabs ::
+   .. tab :: Formula
+      .. highlight:: cpp
+      ::
+
+        ((ticks per wheel rotation) / ((wheel diameter) * pi)) * ((center-to-center wheel distance) * (pi) * (1/4))
+
+   .. tab :: Result
+     .. highlight:: cpp
+     ::
+
+       (1800 ticks / (4 in * pi)) * (11.498 in * pi * (1/4)) = 1294 ticks
 
 Now that we know how far we need to drive, we can program the routine. We will use
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_'s ``moveDistance``
