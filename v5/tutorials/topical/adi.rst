@@ -76,6 +76,7 @@ line trackers.
            adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
            adi_analog_calibrate(ANALOG_SENSOR_PORT);
          }
+         
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
