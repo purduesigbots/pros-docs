@@ -63,7 +63,7 @@ Analogous to `pros::lcd::clear_line <../cpp/llemu.html#clear-line>`_.
       .. highlight:: c
       ::
 
-         bool lcd_clear_line (int16_t line )
+         bool lcd_clear_line ( int16_t line )
 
    .. tab :: Example
       .. highlight:: c
@@ -159,7 +159,9 @@ Analogous to `pros::lcd::print <../cpp/llemu.html#print>`_.
       .. highlight:: c
       ::
 
-         bool lcd_print(int16_t line, const char* fmt, ...)
+         bool lcd_print ( int16_t line,
+                          const char* fmt,
+                          ... )
 
    .. tab :: Example
       .. highlight:: c
@@ -374,7 +376,7 @@ Analogous to `pros::lcd::set_text <../cpp/llemu.html#set-text>`_.
       .. highlight:: c
       ::
 
-         bool lcd_set_text (int16_t line,
+         bool lcd_set_text ( int16_t line,
                              const char* text )
 
    .. tab :: Example
