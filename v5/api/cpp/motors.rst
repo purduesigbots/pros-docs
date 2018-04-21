@@ -462,8 +462,8 @@ or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
 ----
 
-get_current
-~~~~~~~~~~~
+get_current_draw
+~~~~~~~~~~~~~~~~
 
 Gets the current drawn by the motor in mA.
 
@@ -471,7 +471,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``EACCES``  - Another resource is currently trying to access the port.
 
-Analogous to `motor_get_current <../c/motors.html#motor-get-current>`_.
+Analogous to `motor_get_current_draw <../c/motors.html#motor-get-current-draw>`_.
 
 .. tabs ::
    .. tab :: Prototype

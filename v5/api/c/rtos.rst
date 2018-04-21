@@ -962,26 +962,26 @@ Typedefs
 task_t
 ------
 
+Points to a task handle. Used for referencing a task.
+
 ::
 
   typedef void* task_t;
 
-Points to a task handle. Used for referencing a task.
-
 task_fn_t
 ---------
+
+Points to the function associated with a task.
 
 ::
 
   typedef void (*task_fn_t)(void*);
 
-Points to the function associated with a task.
-
 mutex_t
 -------
+
+A `mutex <../../tutorials/topical/multitasking>`_.
 
 ::
 
   typedef void* mutex_t;
-
-A `mutex <../../tutorials/topical/multitasking>`_.

@@ -376,8 +376,8 @@ or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
 ----
 
-motor_get_current
------------------
+motor_get_current_draw
+-----------------------
 
 Gets the current drawn by the motor in mA.
 
@@ -386,7 +386,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
 - ``EACCES``  - Another resource is currently trying to access the port.
 
-Analogous to `pros::Motor::get_current <../cpp/motors.html#get-current>`_.
+Analogous to `pros::Motor::get_current_draw <../cpp/motors.html#get-current-draw>`_.
 
 .. tabs ::
    .. tab :: Prototype
