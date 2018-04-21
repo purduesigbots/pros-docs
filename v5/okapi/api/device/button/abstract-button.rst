@@ -20,7 +20,7 @@ Returns whether the button is currently pressed.
       .. highlight:: cpp
       ::
 
-        virtual bool isPressed() = 0
+        virtual bool isPressed()
 
 **Returns:** Whether the button is currently pressed.
 
@@ -36,7 +36,7 @@ Returns whether the state of the button changed since the last time this method 
       .. highlight:: cpp
       ::
 
-        virtual bool changed() = 0
+        virtual bool changed()
 
 **Returns:** Whether the state of the button changed since the last time this method was called.
 
@@ -53,7 +53,7 @@ was called.
       .. highlight:: cpp
       ::
 
-        virtual bool changedToPressed() = 0
+        virtual bool changedToPressed()
 
 **Returns:** Whether the state of the button changed to being pressed since the last time this
 method was called.
@@ -71,7 +71,7 @@ method was called.
       .. highlight:: cpp
       ::
 
-        virtual bool changedToReleased() = 0
+        virtual bool changedToReleased()
 
 **Returns:** Whether the state of the button to being not pressed changed since the last time this
 method was called.
