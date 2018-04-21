@@ -1,37 +1,16 @@
-===================================
-Iterative Motor Velocity Controller
-===================================
+=============
+Async Wrapper
+=============
 
 .. contents:: :local:
 
-okapi::IterativeMotorVelocityControllerArgs
-===========================================
+okapi::AsyncWrapper
+===================
 
-Data class for the to arguments to ``IterativeMotorVelocityController``.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        IterativeMotorVelocityControllerArgs(std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
- icontroller     The `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ to use.
-=============== ===================================================================
-
-okapi::IterativeMotorVelocityController
-=======================================
-
-A simple `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ that
-associates an `AbstractMotor <../../device/motor/abstract-motor.html>`_ with an
-`IterativeVelocityController <abstract-iterative-velocity-controller.html>`_.
+An `AsyncController <abstract-async-controller.html>`_ that transforms an
+`IterativeController <../iterative/abstract-iterative-controller.html>`_ into an
+`AsyncController <abstract-async-controller.html>`_ by running it in another task. In other words,
+the input controller will act like an `AsyncController <abstract-async-controller.html>`_.
 
 Constructor(s)
 --------------
@@ -41,80 +20,29 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeMotorVelocityController(Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+        AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<IterativeController> icontroller)
 
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
- icontroller     The `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ to use.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
+   .. tab :: Example
       .. highlight:: cpp
       ::
 
-        IterativeMotorVelocityController(MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+        using namespace okapi::literals;
+        Motor myMotor = 1_m;
+
+        okapi::AsyncWrapper controller(std::make_shared<okapi::IntegratedEncoder>(myMotor), // Use the encoder in the motor as input
+                                       std::make_shared<okapi::Motor>(myMotor),             // Write the controller output to the motor
+                                       std::make_unique<okapi::IterativePosPIDController>(0.5, 0, 0)); // Use a simple P controller
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imotor          The motor to control.
- icontroller     The `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ to use.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        IterativeMotorVelocityController(std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
- icontroller     The `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ to use.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        IterativeMotorVelocityController(const IterativeMotorControllerArgs &iparams)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iparams         The ``IterativeMotorController`` arguments.
+ iinput          The controller input.
+ ioutput         The controller output.
+ icontroller     The controller to use.
 =============== ===================================================================
 
 Methods
 -------
-
-step
-~~~~
-
-Do one iteration of the controller. Outputs in the range ``[-1, 1]``.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual double step(const double ireading) override
-
-============ ===============================================================
- Parameters
-============ ===============================================================
- ireading     The new sensor reading.
-============ ===============================================================
-
-**Returns:** The controller output.
-
-----
 
 setTarget
 ~~~~~~~~~
@@ -165,22 +93,6 @@ Returns the last error of the controller.
         virtual double getError() const override
 
 **Returns:** The last error of the controller.
-
-----
-
-getDerivative
-~~~~~~~~~~~~~
-
-Returns the last derivative (change in error) of the controller.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual double getDerivative() const override
-
-**Returns:** The last derivative (change in error) of the controller.
 
 ----
 
@@ -305,19 +217,3 @@ Returns whether the controller is currently disabled.
         virtual bool isDisabled() const override
 
 **Returns:** Whether the controller is currently disabled.
-
-----
-
-getSampleTime
-~~~~~~~~~~~~~
-
-Returns the last set sample time. Default is ``10``.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual std::uint32_t getSampleTime() const override
-
-**Returns:** The last set sample time.

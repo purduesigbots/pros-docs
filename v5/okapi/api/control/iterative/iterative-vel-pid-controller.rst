@@ -226,7 +226,7 @@ of error has been small enough for a long enough period.
 setSampleTime
 ~~~~~~~~~~~~~
 
-Sets time between loops in ms. Default does nothing.
+Sets time between loops in ms.
 
 .. tabs ::
    .. tab :: Prototype
@@ -246,7 +246,7 @@ Parameters
 setOutputLimits
 ~~~~~~~~~~~~~~~
 
-Sets controller output bounds. Default does nothing.
+Sets controller output bounds.
 
 .. tabs ::
    .. tab :: Prototype
