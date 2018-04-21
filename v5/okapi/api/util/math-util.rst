@@ -74,9 +74,11 @@ Integer power function. Computes ``base^expo``.
 ----
 
 cutRange
-~~~~~~~~~
+~~~~~~~~
 
-Cut out a range from the number. The new range of the input number will be ``(-inf, min]U[max, +inf)``.
+Cut out a range from the number. The new range of the input number will be
+``(-inf, min]U[max, +inf)``. If value sits equally between ``min`` and ``max``, ``max`` will be
+returned.
 
 .. tabs ::
    .. tab :: Prototype
@@ -90,8 +92,46 @@ Cut out a range from the number. The new range of the input number will be ``(-i
       ::
 
         void opcontrol() {
-          okapi::cut_range(1, -2, 2); // Equals 0
-          okapi::cut_range(3, -2, 2); // Equals 3
+          okapi::cut_range(0, -2, 2);  // Equals 2
+          okapi::cut_range(1, -2, 2);  // Equals 2
+          okapi::cut_range(-1, -2, 2); // Equals -2
+          okapi::cut_range(3, -2, 2);  // Equals 3
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ value        The number to bound.
+ min          The lower bound of the range.
+ max          The upper bound of the range.
+============ ===============================================================
+
+**Returns:** The remapped value.
+
+----
+
+deadband
+~~~~~~~~
+
+Deadbands a range of the number. Returns the input value, or ``0`` if it is in the range
+``[min, max]``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        constexpr double deadband(const double value, const double min, const double max)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          okapi::deadband(1, -2, 2);   // Equals 0
+          okapi::deadband(2, -2, 2);   // Equals 0
+          okapi::deadband(3, -2, 2);  // Equals 3
+          okapi::deadband(-3, -2, 2); // Equals -3
         }
 
 ============ ===============================================================
@@ -102,7 +142,7 @@ Cut out a range from the number. The new range of the input number will be ``(-i
  max          The upper bound of the deadband.
 ============ ===============================================================
 
-**Returns:** ``value``, or ``0`` if ``value`` was within ``[min, max]``.
+**Returns:** The remapped value.
 
 ----
 

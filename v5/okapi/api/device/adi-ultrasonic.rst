@@ -8,7 +8,7 @@ okapi::ADIUltrasonic
 ====================
 
 An ultrasonic sensor on the ADI ports. Uses a 5-tap
-`median filter <../filters/median-filter.html>`_ to filter out spikes and errors in the signal.
+`median filter <../filters/median-filter.html>`_ by default to filter out spikes and errors in the signal.
 
 Constructor(s)
 --------------
@@ -27,13 +27,28 @@ Constructor(s)
  iportBottom     The port the bottom wire is in.
 =============== ===================================================================
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom, std::unique_ptr<Filter> ifilter)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ iportTop        The port the top wire is in.
+ iportBottom     The port the bottom wire is in.
+ ifilter         The filter to use for filtering the ultrasonic measurements.
+=============== ===================================================================
+
 Methods
 -------
 
 get
 ~~~
 
-Get the current sensor value. Uses a median filter to remove outliers.
+Returns the current sensor value.
 
 .. tabs ::
    .. tab :: Prototype
@@ -42,7 +57,7 @@ Get the current sensor value. Uses a median filter to remove outliers.
 
         virtual std::int32_t get()
 
-**Returns:** The current filtered sensor value, or ``PROS_ERR`` on a failure.
+**Returns:** The current filtered sensor value.
 
 ----
 

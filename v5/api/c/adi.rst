@@ -119,7 +119,7 @@ adi_analog_read_calibrated
 Reads the calibrated value of an analog input channel.
 
 The `adi_analog_calibrate`_ function must be run first on that channel. This function is
-inappropriate for sensor valuesintended forintegration, as round-off error can accumulate
+inappropriate for sensor values intended for integration, as round-off error can accumulate
 causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 
 This function uses the following values of ``errno`` when an error state is reached:
@@ -163,13 +163,13 @@ adi_analog_read_calibrated_HR
 
 Reads the calibrated value of an analog input channel 1-8 with enhanced precision.
 
-The `adi_analog_calibrate`_ function must be run first. This isintended forintegrated sensor
+The `adi_analog_calibrate`_ function must be run first. This is intended for integrated sensor
 values such as gyros and accelerometers to reduce drift due to round-off, and should not be
 used on a sensor such as a line tracker or potentiometer.
 
 The value returned actually has 16 bits of "precision", even though the ADC only reads
 12 bits, so that errors induced by the average value being between two values come out
-in the wash whenintegrated over time. Think of the value as the true value times 16.
+in the wash when integrated over time. Think of the value as the true value times 16.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -414,7 +414,7 @@ Analogous to `pros::ADIEncoder::ADIEncoder <../cpp/adi.html#id9>`_.
 
         adi_encoder_t adi_encoder_init (uint8_t port_top,
                                         uint8_t port_bottom,
-                                         const bool reverse )
+                                        const bool reverse )
 
    .. tab :: Example
       .. highlight:: c
@@ -542,7 +542,7 @@ Analogous to `pros::ADIMotor::get_value <../cpp/adi.html#id14>`_.
       .. highlight:: c
       ::
 
-       int32_t adi_motor_get (uint8_t port )
+       int32_t adi_motor_get ( uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -583,8 +583,8 @@ Analogous to `pros::ADIMotor::set_value <../cpp/adi.html#id15>`_.
       .. highlight:: c
       ::
 
-       int32_t adi_motor_set (uint8_t port,
-                                constint8_t speed )
+       int32_t adi_motor_set ( uint8_t port,
+                               const int8_t speed )
 
    .. tab :: Example
       .. highlight:: c
@@ -664,8 +664,8 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-       int32_t adi_pin_mode (uint8_t port,
-                               const unsigned char mode )
+       int32_t adi_pin_mode ( uint8_t port,
+                              const unsigned char mode )
 
    .. tab :: Example
       .. highlight:: c
@@ -1113,7 +1113,7 @@ object to store encoder data in PROS 2.
 
 ::
 
-	typedefint32_t adi_encoder_t;
+	typedef int32_t adi_encoder_t;
 
 adi_ultrasonic_t
 ----------------
@@ -1125,4 +1125,4 @@ object to store encoder data in PROS 2.
 
 ::
 
-	typedefint32_t adi_ultrasonic_t;
+	typedef int32_t adi_ultrasonic_t;
