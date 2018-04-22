@@ -140,12 +140,8 @@ and is equivalent to calling the normal constructor. For example,
 Next, let's setup tank or arcade control.
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ provides methods for us
 to use, we just need to pass in joystick values which have been scaled to be in the range
-``[-1, 1]``. Whenever you interact with a
-`ChassisController <../../api/chassis/controller/chassis-controller.html>`_ or a
-`ChassisModel <../../api/chassis/model/chassis-model.html>`_ (with the exception of the closed-loop
-methods `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ has), remember
-that your inputs need to be scaled to the range ``[-1, 1]``. OkapiLib requires this because it
-lends itself to better chassis control.
+``[-1, 1]``. Okapi's `Controller <../../api/device/controller.html>`_ returns analog values in the
+range ``[-1, 1]``, so we don't need to do any division ourselves.
 
 .. tabs ::
    .. tab :: Tank drive
