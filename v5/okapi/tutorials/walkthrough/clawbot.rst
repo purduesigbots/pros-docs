@@ -107,11 +107,11 @@ also provides closed-loop control methods to drive a specific distance or turn a
 
 There are two main subclasses we can use:
 `ChassisControllerIntegrated <../../api/chassis/controller/chassis-controller-integrated.html>`_
-and `ChassisControllerPID <../../api/chassis/controller/chassis-controller-PID.html>`_.
+and `ChassisControllerPID <../../api/chassis/controller/chassis-controller-pid.html>`_.
 `ChassisControllerIntegrated <../../api/chassis/controller/chassis-controller-integrated.html>`_
 uses the V5 motor's built-in position and velocity control to move the robot around. **This class
 is the easiest to use**, and should be used by default. The other class,
-`ChassisControllerPID <../../api/chassis/controller/chassis-controller-PID.html>`_, uses two PID
+`ChassisControllerPID <../../api/chassis/controller/chassis-controller-pid.html>`_, uses two PID
 controllers running on the V5 brain and sends velocity commands to the motors.
 
 We will be using
@@ -122,7 +122,7 @@ for this tutorial. Let's initialize it now with our two motors in ports ``1`` an
 ::
 
   // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-  okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
+  okapi::ChassisControllerIntegrated robotChassisController(1_rm, 10_m);
 
 The ``_m`` syntax is called a used-defined literal. It's a succinct way of initializing a motor,
 and is equivalent to calling the normal constructor. For example,
@@ -208,7 +208,7 @@ And the arm motor:
 .. highlight:: cpp
 ::
 
-  okapi::Motor armMotor = 8_m;
+  okapi::Motor armMotor = 8_rm;
 
 Then we can check if it's pressed and stop powering the arm motor:
 
@@ -317,7 +317,7 @@ This is the final product from this tutorial.
           pros::c::task_delay(100);
 
           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-          okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
+          okapi::ChassisControllerIntegrated robotChassisController(1_rm, 10_m);
 
           // Joystick to read analog values for tank or arcade control
           // Master controller by default
@@ -327,7 +327,7 @@ This is the final product from this tutorial.
           okapi::ADIButton armLimitSwitch('H');
           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-          okapi::Motor armMotor = 8_m;
+          okapi::Motor armMotor = 8_rm;
 
           // Button to run our sample autonomous routine
           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
@@ -376,7 +376,7 @@ This is the final product from this tutorial.
           pros::c::task_delay(100);
 
           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-          okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
+          okapi::ChassisControllerIntegrated robotChassisController(1_rm, 10_m);
 
           // Joystick to read analog values for tank or arcade control
           // Master controller by default
@@ -386,7 +386,7 @@ This is the final product from this tutorial.
           okapi::ADIButton armLimitSwitch('H');
           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-          okapi::Motor armMotor = 8_m;
+          okapi::Motor armMotor = 8_rm;
 
           // Button to run our sample autonomous routine
           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
