@@ -2,9 +2,6 @@
 Multitasking
 ============
 
-Introduction
-==============
-
 Tasks are a great tool to do multiple things at once, but they can be difficult
 to use properly. The PROS task scheduler is a preemptive, priority-based, round-robin scheduler.
 This means that tasks are preempted (interrupted) every millisecond to determine if another task

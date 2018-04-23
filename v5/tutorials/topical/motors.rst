@@ -2,8 +2,6 @@
 Motors
 ======
 
-.. contents:: :local:
-
 Initialization
 ==============
 
