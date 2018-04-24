@@ -2,6 +2,9 @@
 Motors
 ======
 
+.. note:: For a full list of functions for interacting with the V5 Motors, see its
+          `C API <../../api/c/motors.html>`_ and `C++ API <../../api/cpp/motors.html>`_.
+
 Initialization
 ==============
 

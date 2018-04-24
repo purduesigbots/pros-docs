@@ -2,6 +2,9 @@
 LLEMU (Legacy LCD Emulator)
 ===========================
 
+.. note:: For a full list of functions for interacting with the LLEMU, see its
+          `C API <../../api/c/llemu.html>`_ and `C++ API <../../api/cpp/llemu.html>`_.
+
 Initialization
 ==============
 
