@@ -8,6 +8,7 @@ PROS: Documentation Home
    :caption: Home
 
    self
+   ./blog/index
    ./releases/index
 
 .. toctree::
@@ -48,6 +49,8 @@ PROS: Documentation Home
    :caption: OkapiLib
 
    ./okapi/index
+   ./okapi/tutorials/index
+   ./okapi/api/index
 
 .. toctree::
    :hidden:
