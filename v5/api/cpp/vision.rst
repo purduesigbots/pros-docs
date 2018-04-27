@@ -1,6 +1,3 @@
-.. highlight:: cpp
-   :linenothreshold: 5
-
 =====================
 Vision Sensor C++ API
 =====================
@@ -34,160 +31,131 @@ Functions
 clear_led
 ~~~~~~~~~
 
-Clears the vision sensor LED color, reseting it back to its default behavior,
+Clears the vision sensor LED color, resetting it back to its default behavior,
 displaying the most prominent object signature color.
 
-::
+This function uses the following values of errno when an error state is
+reached:
 
-  int32_t pros::Vision::clear_led ( )
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Vision::clear_led ( )
+
+   .. tab :: Example
+      .. highlight:: cpppp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_sensor.clear_led();
+        }
 
 **Returns:** 0 if no errors occurred, PROS_ERR otherwise
 
 ----
 
-get_object_count
-~~~~~~~~~~~~~~~~
-
-Returns the number of objects currently detected by the Vision Sensor.
-
-::
-
-  int32_t pros::Vision::get_object_count ( )
-
-**Returns:** The number of objects detected on the specified vision sensor.
-Returns PROS_ERR if the port was invalid or an error occurred.
-
-----
-
-read_object
-~~~~~~~~~~~
-
-Copies the specified object descriptor into object_ptr.
-
-::
-
-  int32_t pros::Vision::read_object ( const uint32_t object_id,
-                               vision_object_s_t* object_ptr )
-
-============ ========================================================
- Parameters
-============ ========================================================
- object_id    Which object to read, approximately which largest item
-              (0 is the largest item, 1 is the second largest, etc.)
- object_ptr   A pointer to copy the data into
-============ ========================================================
-
-**Returns:** 1 if the data was successfuly copied
-Returns PROS_ERR if the port was invalid, the object_id was out of range, or an error occurred.
-
-----
-
-read_objects
-~~~~~~~~~~~~
-
-Reads up to object_count object descriptors into object_arr.
-
-::
-
-  int32_t pros::Vision::read_objects ( const uint32_t object_count,
-                                       vision_object_s_t* object_arr )
-
-============== ========================================================
- Parameters
-============== ========================================================
- object_count   How many objects to read
- object_arr     A pointer to copy the data into
-============== ========================================================
-
-**Returns:** The number of object signatures copied. This number will be less than object_count if there are fewer
-objects detected by the vision sensor.
-Returns PROS_ERR if the port was invalid or an error occurred.
-
-----
-
-get_object
+get_by_sig
 ~~~~~~~~~~
 
-Returns the object descriptor at ``object_id``.
+Gets the nth largest object of the given signature according to size_id.
 
-.. note::
-   This function is slightly less performant than `read_object`_ since the object descriptor
-   must be copied at the end of the function call. This may not be an issue for most users.
+This function uses the following values of errno when an error state is
+reached:
 
-::
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+- ``EAGAIN`` - Reading the Vision Sensor failed for an unknown reason.
 
-  vision_object_s_t pros::Vision::get_object ( const uint32_t object_id )
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-============ ========================================================
+        vision_object_s_t pros::Vision::get_by_sig ( const uint32_t size_id,
+                                                     const uint8_t sig_id )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+
+        void opcontrol() {
+          pros::Vision vision_sensor (VISION_PORT);
+          while (true) {
+            vision_object_s_t rtn = vision_sensor.get_by_sig(0, EXAMPLE_SIG);
+            // Gets the largest object of the EXAMPLE_SIG signature
+            std::cout << "sig: " << rtn.signature;
+            // Prints "sig: 1"
+            pros::delay(2);
+          }
+        }
+
+============ ===============================================================
  Parameters
-============ ========================================================
- object_id    Which object to read, approximately which largest item
+============ ===============================================================
+ size_id      The object to read from a list roughly ordered by object size
               (0 is the largest item, 1 is the second largest, etc.)
-============ ========================================================
+ sig_id       The signature number for which an object will be returned
+============ ===============================================================
 
-**Returns:** An object descriptor. If the ``object_id`` was invalid or an error otherwise occurred, then the object
-signature will be set to 255.
-
-----
-
-read_signature
-~~~~~~~~~~~~~~
-
-Loads the object detection signature into the supplied pointer to memory.
-
-::
-
-  int32_t pros::Vision::read_signature ( const uint8_t signature_id,
-                                         vision_signature_s_t* signature_ptr )
-
-=============== ========================================================
- Parameters
-=============== ========================================================
- signature_id    The signature id to read
- signature_ptr   A pointer to load the signature into
-=============== ========================================================
-
-**Returns:** 0 if no errors occurred, PROS_ERR otherwise
+**Returns:** The vision_object_s_t object corresponding to the given signature and
+size_id, or PROS_ERR if an error occurred.
 
 ----
 
-save_signature
-~~~~~~~~~~~~~~
+get_by_size
+~~~~~~~~~~~
 
-Stores the supplied object detection signature onto the vision sensor.
+Gets the nth largest object according to size_id.
 
-::
+This function uses the following values of errno when an error state is
+reached:
 
-  int32_t pros::Vision::save_signature ( const uint8_t signature_id,
-                                         vision_signature_s_t* signature_ptr )
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
 
-=============== ========================================================
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         vision_object_s_t pros::Vision::get_by_size ( const uint32_t size_id )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void opcontrol() {
+          pros::Vision vision_sensor (VISION_PORT);
+          while (true) {
+            vision_object_s_t rtn = vision_sensor.get_by_size(0);
+            // Gets the largest object
+            std::cout << "sig: " << rtn.signature;
+            delay(2);
+          }
+        }
+
+============ ===============================================================
  Parameters
-=============== ========================================================
- signature_id    The signature id to store into
- signature_ptr   A pointer to the signature to save
-=============== ========================================================
+============ ===============================================================
+ size_id      The object to read from a list roughly ordered by object size
+              (0 is the largest item, 1 is the second largest, etc.)
+============ ===============================================================
 
-**Returns:** 0 if no errors occurred, PROS_ERR otherwise
-
-----
-
-set_led
-~~~~~~~
-
-Sets the vision sensor LED color, overriding the automatic behavior.
-
-::
-
-  int32_t pros::Vision::set_led ( const int32_t rgb )
-
-============ ==============================
- Parameters
-============ ==============================
- rgb          An RGB code to set the LED to
-============ ==============================
-
-**Returns:** 0 if no errors occurred, PROS_ERR otherwise
+**Returns:** The vision_object_s_t object corresponding to the given size id, or
+PROS_ERR if an error occurred.
 
 ----
 
@@ -196,12 +164,250 @@ get_exposure
 
 Gets the exposure parameter of the Vision Sensor.
 
-::
+This function uses the following values of errno when an error state is
+reached:
 
-  int32_t pros::Vision::get_exposure ( )
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Vision::get_exposure ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          if (vision_sensor.get_exposure() < 50)
+            vision_sensor.set_exposure(50);
+        }
 
 **Returns:** the current exposure percentage parameter from [0,100],
 PROS_ERR if an error occurred
+
+----
+
+get_object_count
+~~~~~~~~~~~~~~~~
+
+Returns the number of objects currently detected by the Vision Sensor.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         int32_t pros::Vision::get_object_count ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Vision vision_sensor (VISION_PORT);
+          while (true) {
+            std::cout << "Number of Objects Detected: " << vision_sensor.get_object_count());
+            pros::delay(2);
+          }
+        }
+
+**Returns:** The number of objects detected on the specified vision sensor.
+Returns PROS_ERR if the port was invalid or an error occurred.
+
+----
+
+get_white_balance
+~~~~~~~~~~~~~~~~~
+
+Gets the white balance parameter of the Vision Sensor.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Vision::get_white_balance ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+        #define VISION_WHITE 0xff
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          if (vision_sensor.get_white_balance() != VISION_WHITE)
+            vision_sensor.set_white_balance(VISION_WHITE);
+        }
+
+**Returns:** Returns the current RGB white balance setting of the sensor
+
+----
+
+read_by_sig
+~~~~~~~~~~~
+
+Reads up to object_count object descriptors into object_arr.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Vision::read_by_sig ( uint8_t port,
+                                            const uint32_t size_id,
+                                            const uint32_t sig_id,
+                                            const uint32_t object_count,
+                                            vision_object_s_t *const object_arr )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+        #define NUM_VISION_OBJECTS 4
+
+        void opcontrol() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_object_s_t object_arr[NUM_VISION_OBJECTS];
+          while (true) {
+            vision_sensor.read_by_sig(0, EXAMPLE_SIG, NUM_VISION_OBJECTS, object_arr);
+            std::cout << "sig: " << object_arr[0].signature;
+            // Prints "sig: 1"
+            pros::delay(2);
+          }
+        }
+
+============== ========================================================
+ Parameters
+============== ========================================================
+ size_id        The first object to read from a list roughly ordered
+                by object size (0 is the largest item, 1 is the second
+                largest, etc.)
+ sig_id         The signature number for which objects will be returned
+ object_count   How many objects to read
+ object_arr     A pointer to copy the data into
+============== ========================================================
+
+**Returns:** Returns PROS_ERR if the port was invalid or an error occurred.
+
+----
+
+read_by_size
+~~~~~~~~~~~~
+
+Reads up to object_count object descriptors into object_arr.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Vision::read_by_size ( const uint32_t size_id,
+                                             const uint32_t object_count,
+                                             vision_object_s_t *const object_arr )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+        #define NUM_VISION_OBJECTS 4
+
+        void opcontrol() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_object_s_t object_arr[NUM_VISION_OBJECTS];
+          while (true) {
+            vision_sensor.read_by_size(0, NUM_VISION_OBJECTS, object_arr);
+            std::cout << "sig: " << object_arr[0].signature;
+            // Prints the signature of the largest object found
+            pros::delay(2);
+          }
+        }
+
+============== ========================================================
+ Parameters
+============== ========================================================
+ size_id        The first object to read from a list roughly ordered
+                by object size (0 is the largest item, 1 is the second
+                largest, etc.)
+ object_count   How many objects to read
+ object_arr     A pointer to copy the data into
+============== ========================================================
+
+**Returns:** Returns PROS_ERR if the port was invalid or an error occurred.
+
+----
+
+set_auto_white_balance
+~~~~~~~~~~~~~~~~~~~~~~
+
+Enable/disable auto white-balancing on the Vision Sensor.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Vision::set_auto_white_balance ( const uint8_t enable )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_sensor.set_auto_white_balance(true);
+        }
+
+============ ===============================
+ Parameters
+============ ===============================
+ enable       Pass 0 to disable, 1 to enable
+============ ===============================
+
+**Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
 
 ----
 
@@ -210,9 +416,30 @@ set_exposure
 
 Sets the exposure parameter of the Vision Sensor.
 
-::
+This function uses the following values of errno when an error state is
+reached:
 
-  int32_t pros::Vision::set_exposure ( const uint8_t percent )
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Vision::set_exposure ( const uint8_t percent )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          if (vision_sensor.get_exposure() < 50)
+            vision_sensor.set_exposure(50);
+        }
 
 ============ ==============================
  Parameters
@@ -225,22 +452,42 @@ Sets the exposure parameter of the Vision Sensor.
 
 ----
 
-set_auto_white_balance
-~~~~~~~~~~~~~~~~~~~~~~
+set_led
+~~~~~~~
 
-Enable/disable auto white-balancing on the Vision Sensor.
+Sets the vision sensor LED color, overriding the automatic behavior.
 
-::
+This function uses the following values of errno when an error state is
+reached:
 
-  int32_t pros::Vision::set_auto_white_balance ( const uint8_t enable )
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
 
-============ ===============================
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Vision::set_led ( const int32_t rgb )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_sensor.set_led(COLOR_BLANCHED_ALMOND);
+        }
+
+============ ==============================
  Parameters
-============ ===============================
- enable       Pass 0 to disable, 1 to enable
-============ ===============================
+============ ==============================
+ rgb          An RGB code to set the LED to
+============ ==============================
 
-**Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
+**Returns:** 0 if no errors occurred, PROS_ERR otherwise
 
 ----
 
@@ -251,9 +498,30 @@ Set the white balance parameter manually on the Vision Sensor.
 
 This function will disable auto white-balancing.
 
-::
+This function uses the following values of errno when an error state is
+reached:
 
-  int32_t pros::Vision::set_white_balance ( const int32_t rgb )
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Vision::set_white_balance ( const int32_t rgb )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+        #define VISION_WHITE 0xff
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_sensor.set_white_balance(VISION_WHITE);
+        }
 
 ============ ===============================
  Parameters
@@ -262,16 +530,3 @@ This function will disable auto white-balancing.
 ============ ===============================
 
 **Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
-
-----
-
-get_white_balance
-~~~~~~~~~~~~~~~~~
-
-Gets the white balance parameter of the Vision Sensor.
-
-::
-
-  int32_t pros::Vision::get_white_balance ( )
-
-**Returns:** Returns the current RGB white balance setting of the sensor
