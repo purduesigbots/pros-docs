@@ -107,11 +107,11 @@ also provides closed-loop control methods to drive a specific distance or turn a
 
 There are two main subclasses we can use:
 `ChassisControllerIntegrated <../../api/chassis/controller/chassis-controller-integrated.html>`_
-and `ChassisControllerPID <../../api/chassis/controller/chassis-controller-PID.html>`_.
+and `ChassisControllerPID <../../api/chassis/controller/chassis-controller-pid.html>`_.
 `ChassisControllerIntegrated <../../api/chassis/controller/chassis-controller-integrated.html>`_
 uses the V5 motor's built-in position and velocity control to move the robot around. **This class
 is the easiest to use**, and should be used by default. The other class,
-`ChassisControllerPID <../../api/chassis/controller/chassis-controller-PID.html>`_, uses two PID
+`ChassisControllerPID <../../api/chassis/controller/chassis-controller-pid.html>`_, uses two PID
 controllers running on the V5 brain and sends velocity commands to the motors.
 
 We will be using
@@ -122,7 +122,7 @@ for this tutorial. Let's initialize it now with our two motors in ports ``1`` an
 ::
 
   // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-  okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
+  okapi::ChassisControllerIntegrated robotChassisController(1_rm, 10_m);
 
 The ``_m`` syntax is called a used-defined literal. It's a succinct way of initializing a motor,
 and is equivalent to calling the normal constructor. For example,
@@ -140,12 +140,8 @@ and is equivalent to calling the normal constructor. For example,
 Next, let's setup tank or arcade control.
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ provides methods for us
 to use, we just need to pass in joystick values which have been scaled to be in the range
-``[-1, 1]``. Whenever you interact with a
-`ChassisController <../../api/chassis/controller/chassis-controller.html>`_ or a
-`ChassisModel <../../api/chassis/model/chassis-model.html>`_ (with the exception of the closed-loop
-methods `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ has), remember
-that your inputs need to be scaled to the range ``[-1, 1]``. OkapiLib requires this because it
-lends itself to better chassis control.
+``[-1, 1]``. Okapi's `Controller <../../api/device/controller.html>`_ returns analog values in the
+range ``[-1, 1]``, so we don't need to do any division ourselves.
 
 .. tabs ::
    .. tab :: Tank drive
@@ -208,7 +204,7 @@ And the arm motor:
 .. highlight:: cpp
 ::
 
-  okapi::Motor armMotor = 8_m;
+  okapi::Motor armMotor = 8_rm;
 
 Then we can check if it's pressed and stop powering the arm motor:
 
@@ -258,23 +254,8 @@ To illustrate the closed-loop control method that
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ has, let's make a
 simple autonomous routine to drive in a square.
 
-First we need to calculate the number of ticks equivalent to a 90 degree turn. The formula for this
+First we need to calculate the number of ticks equivalent to driving forward 12 inches. The formula for this
 is:
-
-.. tabs ::
-   .. tab :: Formula
-      .. highlight:: cpp
-      ::
-
-        ((ticks per wheel rotation) / ((wheel diameter) * pi)) * ((center-to-center wheel distance) * (pi) * (1/4))
-
-   .. tab :: Result
-     .. highlight:: cpp
-     ::
-
-       (1800 ticks / (4 in * pi)) * (11.498 in * pi * (1/4)) = 1294 ticks
-
-Let's follow the same procedure for calculate the ticks equivalent to driving forward 12 inches:
 
 .. tabs ::
    .. tab :: Formula
@@ -288,6 +269,21 @@ Let's follow the same procedure for calculate the ticks equivalent to driving fo
      ::
 
        (1800 ticks / (4 in * pi)) * 12 in = 1719 ticks
+
+Let's follow the same procedure for calculate the ticks equivalent to a 90 degree turn:
+
+.. tabs ::
+   .. tab :: Formula
+      .. highlight:: cpp
+      ::
+
+        ((ticks per wheel rotation) / ((wheel diameter) * pi)) * ((center-to-center wheel distance) * (pi) * (1/4))
+
+   .. tab :: Result
+     .. highlight:: cpp
+     ::
+
+       (1800 ticks / (4 in * pi)) * (11.498 in * pi * (1/4)) = 1294 ticks
 
 Now that we know how far we need to drive, we can program the routine. We will use
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_'s ``moveDistance``
@@ -317,7 +313,7 @@ This is the final product from this tutorial.
           pros::c::task_delay(100);
 
           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-          okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
+          okapi::ChassisControllerIntegrated robotChassisController(1_rm, 10_m);
 
           // Joystick to read analog values for tank or arcade control
           // Master controller by default
@@ -327,7 +323,7 @@ This is the final product from this tutorial.
           okapi::ADIButton armLimitSwitch('H');
           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-          okapi::Motor armMotor = 8_m;
+          okapi::Motor armMotor = 8_rm;
 
           // Button to run our sample autonomous routine
           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
@@ -376,7 +372,7 @@ This is the final product from this tutorial.
           pros::c::task_delay(100);
 
           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-          okapi::ChassisControllerIntegrated robotChassisController(1_m, 10_m);
+          okapi::ChassisControllerIntegrated robotChassisController(1_rm, 10_m);
 
           // Joystick to read analog values for tank or arcade control
           // Master controller by default
@@ -386,7 +382,7 @@ This is the final product from this tutorial.
           okapi::ADIButton armLimitSwitch('H');
           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-          okapi::Motor armMotor = 8_m;
+          okapi::Motor armMotor = 8_rm;
 
           // Button to run our sample autonomous routine
           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
