@@ -99,7 +99,7 @@ html_context = {
     'display_github': True,
     'github_user': 'purduesigbots',
     'github_repo': 'pros-docs',
-    'github_version': 'master/'
+    'github_version': 'master/cortex/'
 }
 html_theme_options = {
     #'analytics_id': INSERT GOOGLE ANALYTICS CODE

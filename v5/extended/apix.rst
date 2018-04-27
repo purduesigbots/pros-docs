@@ -289,7 +289,7 @@ sem_create
 
 Creates a counting semaphore.
 
-See :doc:`../tutorials/multitasking` for details.
+See :doc:`../tutorials/topical/multitasking` for details.
 
 +------------+-------------------------------------------------------+
 | Parameters |                                                       |
@@ -328,7 +328,7 @@ sem_post
 
 Increments a semaphore's value.
 
-See :doc:`../tutorials/multitasking` for details.
+See :doc:`../tutorials/topical/multitasking` for details.
 
 +------------+---------------------------------+
 | Parameters |                                 |
@@ -351,7 +351,7 @@ sem_wait
 Waits for the semaphore's value to be greater than 0. If the value is already
 greater than 0, this function immediately returns.
 
-See :doc:`../tutorials/multitasking` for details.
+See :doc:`../tutorials/topical/multitasking` for details.
 
 ============= =========================================================================================================================================================
  Parameters

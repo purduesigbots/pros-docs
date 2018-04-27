@@ -10,5 +10,5 @@ Installation Guides
    them out to you.
 
 * :doc:`debian-linux`
-* :doc:`os-x`
+* :doc:`macos`
 * :doc:`windows`

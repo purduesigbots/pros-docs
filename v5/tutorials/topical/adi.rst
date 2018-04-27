@@ -2,7 +2,8 @@
 ADI (3 Wire Ports)
 ==================
 
-.. contents:: :local:
+.. note:: For a full list of functions for interacting with the ADI, see its
+          `C API <../../api/c/adi.html>`_ and `C++ API <../../api/cpp/adi.html>`_.
 
 Analog Sensors
 ==============
@@ -57,7 +58,7 @@ for its ADI port.
 
 Additionally, it is often worthwhile to calibrate analog sensors before using them
 in the ``initialize()`` function. The
-`analog_calibrate <../../api/c/adi.htmladi-#analog-calibrate>`_ function collects
+`analog_calibrate <../../api/c/adi.html#adi-analog-calibrate>`_ function collects
 approximately 500 data samples over a period of half a
 second and returns the average value received over the sampling period.
 This average value can be used to account for variations like ambient light for
@@ -76,7 +77,7 @@ line trackers.
            adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
            adi_analog_calibrate(ANALOG_SENSOR_PORT);
          }
-         
+
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp

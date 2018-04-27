@@ -2,8 +2,8 @@
 Multitasking
 ============
 
-Introduction
-==============
+.. note:: For a full list of functions for interacting with Tasks, see its
+          `C API <../../api/c/rtos.html>`_ and `C++ API <../../api/cpp/rtos.html>`_.
 
 Tasks are a great tool to do multiple things at once, but they can be difficult
 to use properly. The PROS task scheduler is a preemptive, priority-based, round-robin scheduler.

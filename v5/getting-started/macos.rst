@@ -1,5 +1,5 @@
 ==================
-Installing on OS-X
+Installing on macOS
 ==================
 
 .. warning::
