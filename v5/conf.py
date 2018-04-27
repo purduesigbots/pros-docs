@@ -31,7 +31,7 @@ sys.path.append(os.path.abspath('../sphinx-tabs/sphinx_tabs/'))
 extensions = ['tabs', 'ablog']
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = [ablog.get_html_templates_path()]
+templates_path = [ablog.get_html_templates_path(), '_templates']
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
