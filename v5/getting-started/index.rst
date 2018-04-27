@@ -19,7 +19,7 @@ For more advanced, topical guides, visit the :doc:`../tutorials/index` section.
    :titlesonly:
 
    windows
-   os-x
+   macos
    debian-linux
 
 .. toctree::
