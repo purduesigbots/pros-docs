@@ -104,7 +104,7 @@ html_context = {
     'github_version': 'master/'
 }
 html_theme_options = {
-    #'analytics_id': INSERT GOOGLE ANALYTICS CODE
+    'analytics_id': 'UA-84548828-3',
     'versions': {
         'V5': 'index',
         'Cortex': '../cortex/index',
