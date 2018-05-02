@@ -116,19 +116,19 @@ of error has been small enough for a long enough period.
 setSampleTime
 ~~~~~~~~~~~~~
 
-Sets time between loops in ms.
+Sets time between loops.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const std::uint32_t isampleTime) override
+        virtual void setSampleTime(const QTime isampleTime) override
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- isampleTime     The sample time in ms.
+ isampleTime     The sample time.
 =============== ===================================================================
 
 ----

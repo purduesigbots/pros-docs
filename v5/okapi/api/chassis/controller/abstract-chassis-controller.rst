@@ -37,12 +37,50 @@ driving.
       .. highlight:: cpp
       ::
 
-        virtual void moveDistance(const int itarget) = 0
+        virtual void moveDistance(const QLength itarget) = 0
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
  itarget         The distance to travel.
+=============== ===================================================================
+
+----
+
+Drives the robot straight for a distance (using closed-loop control). Blocks while the robot is
+driving.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void moveDistance(const int itarget) = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ itarget         The distance to travel in meters.
+=============== ===================================================================
+
+----
+
+turnAngle
+~~~~~~~~~
+
+Turns the robot clockwise in place (using closed-loop control). Blocks while the robot is turning.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void turnAngle(const QAngle idegTarget) = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ idegTarget      The angle to turn.
 =============== ===================================================================
 
 ----
@@ -62,7 +100,7 @@ Turns the robot clockwise in place (using closed-loop control). Blocks while the
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- idegTarget      The angle to turn.
+ idegTarget      The angle to turn in degrees.
 =============== ===================================================================
 
 ----
@@ -272,7 +310,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setBrakeMode(const motor_brake_mode_e_t mode) const
+        virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const
 
 =============== ===================================================================
 Parameters
@@ -292,7 +330,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setEncoderUnits(const motor_encoder_units_e_t units) const
+        virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const
 
 =============== ===================================================================
 Parameters
@@ -312,7 +350,7 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setGearing(const motor_gearset_e_t gearset) const
+        virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const
 
 =============== ===================================================================
 Parameters

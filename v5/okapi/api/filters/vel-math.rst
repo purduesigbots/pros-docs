@@ -142,7 +142,7 @@ Calculates the current velocity and acceleration. Returns the (filtered) velocit
       .. highlight:: cpp
       ::
 
-        virtual double step(const double inewPos)
+        virtual QAngularSpeed step(const double inewPos)
 
 ============ ===============================================================
  Parameters
@@ -184,7 +184,7 @@ Returns the last calculated velocity.
       .. highlight:: cpp
       ::
 
-        virtual double getVelocity() const
+        virtual QAngularSpeed getVelocity() const
 
 **Returns:** The last calculated velocity.
 
@@ -200,6 +200,6 @@ Returns the last calculated acceleration.
       .. highlight:: cpp
       ::
 
-        virtual double getAccel() const
+        virtual QAngularAcceleration getAccel() const
 
 **Returns:** The last calculated acceleration.

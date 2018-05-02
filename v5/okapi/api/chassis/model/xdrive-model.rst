@@ -449,7 +449,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setBrakeMode(const motor_brake_mode_e_t mode) const override
+        virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const override
 
 =============== ===================================================================
 Parameters
@@ -469,7 +469,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setEncoderUnits(const motor_encoder_units_e_t units) const override
+        virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const override
 
 =============== ===================================================================
 Parameters
@@ -489,7 +489,7 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setGearing(const motor_gearset_e_t gearset) const override
+        virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const override
 
 =============== ===================================================================
 Parameters

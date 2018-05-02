@@ -27,14 +27,15 @@ Methods
 delayHz
 ~~~~~~~
 
-Delay the current task such that it runs at the given rate in Hertz. The first delay will run for ``1000/(ihz)``. Subsequent delays will adjust according to the previous runtime of the task.
+Delay the current task such that it runs at the given frequency. The first delay will run for
+``1000/(ihz)``. Subsequent delays will adjust according to the previous runtime of the task.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual void delayHz(const std::uint32_t ihz)
+        virtual void delayHz(const QFrequency ihz)
 
    .. tab :: Example
       .. highlight:: cpp
