@@ -8,7 +8,7 @@ okapi::ChassisControllerPID
 ===========================
 
 A `ChassisController <abstract-chassis-controller.html>`_ using PID control. Does not use the V5
-motor's integrated control.
+motor's integrated control. The motors passed in will be put into degree units.
 
 Constructor(s)
 --------------
@@ -20,11 +20,11 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(Motor ileftSideMotor,
-                             Motor irightSideMotor,
+        ChassisControllerPID(Motor ileftSideMotor, Motor irightSideMotor,
                              const IterativePosPIDControllerArgs &idistanceArgs,
                              const IterativePosPIDControllerArgs &iangleArgs,
-                             const double istraightScale = 1, const double iturnScale = 1)
+                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+                             const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
       .. highlight:: cpp
@@ -42,8 +42,8 @@ This constructor infers a skid-steer layout.
  irightSideMotor          The right side motor in a skid-steer model.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
  iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
- iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
+ igearset                 The motor's internal planetary gearset.
+ iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
 
 This constructor infers a skid-steer layout.
@@ -53,11 +53,11 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(MotorGroup ileftSideMotor,
-                             MotorGroup irightSideMotor,
+        ChassisControllerPID(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                              const IterativePosPIDControllerArgs &idistanceArgs,
                              const IterativePosPIDControllerArgs &iangleArgs,
-                             const double istraightScale = 1, const double iturnScale = 1)
+                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+                             const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
       .. highlight:: cpp
@@ -76,8 +76,8 @@ This constructor infers a skid-steer layout.
  irightSideMotor          The right side motor in a skid-steer model.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
  iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
- iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
+ igearset                 The motor's internal planetary gearset.
+ iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
 
 This constructor infers an x-drive layout.
@@ -93,7 +93,8 @@ This constructor infers an x-drive layout.
                              Motor ibottomLeftMotor,
                              const IterativePosPIDControllerArgs &idistanceArgs,
                              const IterativePosPIDControllerArgs &iangleArgs,
-                             const double istraightScale = 1, const double iturnScale = 1)
+                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+                             const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
       .. highlight:: cpp
@@ -115,8 +116,8 @@ This constructor infers an x-drive layout.
  ibottomLeftMotor         The bottom left motor in an x-drive model.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
  iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
- iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
+ igearset                 The motor's internal planetary gearset.
+ iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
 
 This constructor infers a skid-steer layout.
@@ -130,7 +131,8 @@ This constructor infers a skid-steer layout.
                              std::shared_ptr<AbstractMotor> irightSideMotor,
                              const IterativePosPIDControllerArgs &idistanceArgs,
                              const IterativePosPIDControllerArgs &iangleArgs,
-                             const double istraightScale = 1, const double iturnScale = 1)
+                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+                             const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
       .. highlight:: cpp
@@ -152,8 +154,8 @@ This constructor infers a skid-steer layout.
  irightSideMotor          The right side motor in a skid-steer model.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
  iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
- iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
+ igearset                 The motor's internal planetary gearset.
+ iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
 
 This constructor infers an x-drive layout.
@@ -169,7 +171,8 @@ This constructor infers an x-drive layout.
                              std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                              const IterativePosPIDControllerArgs &idistanceArgs,
                              const IterativePosPIDControllerArgs &iangleArgs,
-                             const double istraightScale = 1, const double iturnScale = 1)
+                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+                             const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
       .. highlight:: cpp
@@ -189,8 +192,8 @@ This constructor infers an x-drive layout.
  ibottomLeftMotor         The bottom left motor in an x-drive model.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
  iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
- iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
+ igearset                 The motor's internal planetary gearset.
+ iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
 
 This constructor is not recommended, there are less verbose options above.
@@ -202,7 +205,8 @@ This constructor is not recommended, there are less verbose options above.
 
         ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                              const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs,
-                             const double istraightScale = 1, const double iturnScale = 1)
+                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+                             const ChassisScales &iscales = ChassisScales({1, 1}))
 
 ======================   =======================================================================================
  Parameters
@@ -210,8 +214,8 @@ This constructor is not recommended, there are less verbose options above.
  imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
  iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- istraightScale           A scale converting your units of choice to encoder ticks, used for measuring distance.
- iturnScale               A scale converting your units of choice to encoder ticks, used for measure angle.
+ igearset                 The motor's internal planetary gearset.
+ iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
 
 Methods
@@ -228,12 +232,50 @@ driving.
       .. highlight:: cpp
       ::
 
-        virtual void moveDistance(const int itarget) override
+        virtual void moveDistance(const QLength itarget) override
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
  itarget         The distance to travel.
+=============== ===================================================================
+
+----
+
+Drives the robot straight for a distance (using closed-loop control). Blocks while the robot is
+driving.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void moveDistance(const int itarget) override
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ itarget         The distance to travel in meters.
+=============== ===================================================================
+
+----
+
+turnAngle
+~~~~~~~~~
+
+Turns the robot clockwise in place (using closed-loop control). Blocks while the robot is turning.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void turnAngle(const QAngle idegTarget) override
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ idegTarget      The angle to turn.
 =============== ===================================================================
 
 ----
@@ -253,5 +295,5 @@ Turns the robot clockwise in place (using closed-loop control). Blocks while the
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- idegTarget      The angle to turn.
+ idegTarget      The angle to turn in degrees.
 =============== ===================================================================

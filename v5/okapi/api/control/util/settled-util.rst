@@ -18,7 +18,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        SettledUtil(const double iatTargetError = 50, const double iatTargetDerivative = 5, const std::uint32_t iatTargetTime = 250)
+        SettledUtil(const double iatTargetError = 50, const double iatTargetDerivative = 5, const QTime iatTargetTime = 250_ms)
 
 ===================== ===============================================================
  Parameters

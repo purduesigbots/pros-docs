@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ComposableFilterArgs(const std::initializer_list<std::shared_ptr<Filter>> ilist)
+        ComposableFilterArgs(const std::initializer_list<std::shared_ptr<Filter>> &ilist)
 
 =============== ===================================================================
  Parameters
