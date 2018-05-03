@@ -183,3 +183,41 @@ run an action every time period without blocking.
 
 **Returns:** ``true`` when the input time period has passed, ``false`` after reading ``true`` until
 the period has passed again
+
+----
+
+repeat
+~~~~~~
+
+Returns ``true`` when the input time period has passed, then resets. Meant to be used in loops to
+run an action every time period without blocking.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual bool repeat(const QFrequency time)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          okapi::Timer timer;
+          while (true) {
+            if (timer.repeat(10_Hz)) {
+              // Do something 10 times per second
+            }
+            pros::delay(10);
+          }
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ frequency    The repeat frequency.
+============ ===============================================================
+
+**Returns:** ``true`` when the input time period has passed, ``false`` after reading ``true`` until
+the period has passed again
