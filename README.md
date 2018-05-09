@@ -51,7 +51,7 @@ you need to initialize these submodules and pull them separately when updating t
 ```
 # Repeat this in both the sphinx_rtd_theme and sphinx-tabs directories
 > git submodule init
-> git pull
+> git submodule update
 ```
 
 ### Modifying the tabs theming
