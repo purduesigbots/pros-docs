@@ -266,7 +266,7 @@ Analogous to `pros::lcd::register_btn0_cb <../cpp/llemu.html#register-btn0-cb>`_
 ============ ===================================================================================
  Parameters
 ============ ===================================================================================
- cb           An `LCD callback function <lcd_btn_cb_fn_t>`_ to be executed by this button press
+ cb           An `LCD callback function <llemu.html#lcd-btn-cb-fn-t>`_ to be executed by this button press
 ============ ===================================================================================
 
 ----
@@ -310,7 +310,7 @@ Analogous to `pros::lcd::register_btn1_cb <../cpp/llemu.html#register-btn1-cb>`_
 ============ ===================================================================================
  Parameters
 ============ ===================================================================================
- cb           An `LCD callback function <lcd_btn_cb_fn_t>`_ to be executed by this button press
+ cb           An `LCD callback function <llemu.html#lcd-btn-cb-fn-t>`_ to be executed by this button press
 ============ ===================================================================================
 
 ----
@@ -354,7 +354,7 @@ Analogous to `pros::lcd::register_btn2_cb <../cpp/llemu.html#register-btn2-cb>`_
 ============ ===================================================================================
  Parameters
 ============ ===================================================================================
- cb           An `LCD callback function <lcd_btn_cb_fn_t>`_ to be executed by this button press
+ cb           An `LCD callback function <llemu.html#lcd-btn-cb-fn-t>`_ to be executed by this button press
 ============ ===================================================================================
 
 ----

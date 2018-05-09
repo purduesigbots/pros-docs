@@ -784,7 +784,7 @@ This function uses the following values of ``errno`` when an error state is reac
  Parameters
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
- type         The `configuration <adi_port_config_e_t>`_ type for the port
+ type         The `configuration <../c/adi.html#adi-port-config-e-t>`_ type for the port
 ============ =================================================================================================================
 
 ----
@@ -882,7 +882,7 @@ Analogous to `adi_port_set_config <../c/adi.html#adi-port-config-set>`_.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- type         The `configuration <adi_port_config_e_t_>`_ type for the port
+ type         The `configuration <../c/adi.html#adi-port-config-e-t>`_ type for the port
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.

@@ -163,9 +163,9 @@ Sets the velocity for the motor.
 
 This velocity corresponds to different actual speeds depending on the gearset
 used for the motor. This results in a range of +-100 for
-`E_MOTOR_GEARSET_36 <motor_gearset_e_t>`_,
-+-200 for `E_MOTOR_GEARSET_18 <motor_gearset_e_t>`_, and +-600 for
-`E_MOTOR_GEARSET_6 <motor_gearset_e_t>`_. The velocity
+`E_MOTOR_GEARSET_36 <motors.html#motor-gearset-e-t>`_,
++-200 for `E_MOTOR_GEARSET_18 <motors.html#motor-gearset-e-t>`_, and +-600 for
+`E_MOTOR_GEARSET_6 <motors.html#motor-gearset-e-t>`_. The velocity
 is held with PID to ensure consistent speed, as opposed to setting the motor's
 voltage.
 
@@ -199,7 +199,7 @@ Analogous to `pros::Motor::move_velocity <../cpp/motors.html#move-velocity>`_.
 ============ ===============================================================
  port         The V5 port number from 1-21
  velocity     The new motor velocity from +-100, +-200, or +-600 depending
-              on the motor's `gearset <motor_gearset_e_t>`_
+              on the motor's `gearset <motors.html#motor-gearset-e-t>`_
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -1103,7 +1103,7 @@ setting ``errno``.
 motor_get_encoder_units
 -----------------------
 
-Gets the `encoder units <motor_encoder_units_e_t>`_ set for the motor.
+Gets the `encoder units <motors.html#motor-encoder-units-e-t>`_ set for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -1142,7 +1142,7 @@ or ``E_MOTOR_ENCODER_INVALID`` if the operation failed.
 motor_get_gearing
 -----------------
 
-Gets the `gearset <motor_gearset_e_t>`_` that was set for the motor.
+Gets the `gearset <motors.html#motor-gearset-e-t>`_` that was set for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 

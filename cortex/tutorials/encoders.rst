@@ -64,5 +64,5 @@ Integrated Motor Encoders (IMEs)
 --------------------------------
 
 See the `I2C
-Communication </tutorials/i2c.md/#vex-integrated-motor-encoder-ime>`__
+Communication <./i2c.html#vex-integrated-motor-encoder-ime>`__
 page.

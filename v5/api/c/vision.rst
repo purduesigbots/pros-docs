@@ -607,7 +607,7 @@ by the Vision Sensor
  Value
 ================ ==========================================================================
  signature        Object signature
- type             `Object type <vision_object_e_t>`_,
+ type             `Object type <vision.html#vision-object-e-t>`_,
                   e.g. normal, color code, or line detection
  left_coord       left boundary coordinate of the object
  top_coord        top boundary coordinate of the object

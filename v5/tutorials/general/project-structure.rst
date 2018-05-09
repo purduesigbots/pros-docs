@@ -12,7 +12,7 @@ firmware
 The **PROS library** is a single file containing the core PROS routines.
 This file does not need to be changed. If there appears to be an issue
 with a core PROS function, please file an issue on
-`GitHub <https://github.com/purduesigbots/pros3/issues>`_.
+`GitHub <https://github.com/purduesigbots/pros/issues>`_.
 
 include
 =======

@@ -35,7 +35,7 @@ is provided. This header provides PROS 2 functionality in its original syntax.
 
    ./api-legacy
 
-For additional RTOS-related features, check out the `Extended API <../extended/api.html>`_. Be warned, these features
+For additional RTOS-related features, check out the `Extended API <../extended/apix.html>`_. Be warned, these features
 are intended for advanced users only and may be very complex to use.
 
 - :doc:`../extended/apix`

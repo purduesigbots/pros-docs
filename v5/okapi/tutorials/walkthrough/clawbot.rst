@@ -99,7 +99,7 @@ The last 3 commands can be simplified to :code:`prosv5 mut`.
 Tank/Arcade Control
 -------------------
 
-Okapi uses something called a `ChassisController <../../api/chassis/controller/chassis-controller.html>`_
+Okapi uses something called a `ChassisController <../../api/chassis/controller/abstract-chassis-controller.html>`_
 to interact with a robot's chassis. This interface lets you use open-loop control methods to drive
 the robot around with a joystick, like tank and arcade control. It also provides methods to move
 the robot programmatically, like driving in an arc or only powering one side of the chassis. It
