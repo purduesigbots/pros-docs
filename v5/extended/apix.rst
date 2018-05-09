@@ -406,4 +406,4 @@ sem_t
 
   typedef void* sem_t;
 
-A `semaphore <../tutorials/multitasking>`_.
+A `semaphore <../tutorials/topical/multitasking>`_.
