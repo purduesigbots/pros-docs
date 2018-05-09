@@ -13,7 +13,8 @@ home:
 	mv ./build/_static/pros-tux-fc-b.png ./build
 	mv ./build/_static/pros-tux-fc.png ./build
 	mv ./build/_static/pros-tux-w-w.png ./build
-
+	mv ./build/_static/windows-updates.txt ./build
+	
 v5:
 	sphinx-build ./v5/ ./build/v5/
 
