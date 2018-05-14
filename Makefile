@@ -7,14 +7,14 @@ cortex:
 
 home:
 	sphinx-build ./home/ ./build/
-	mv ./build/_static/githubupdate.php ./build
-	mv ./build/_static/pros-tux-b-b.png ./build
-	mv ./build/_static/pros-tux-b.png ./build
-	mv ./build/_static/pros-tux-fc-b.png ./build
-	mv ./build/_static/pros-tux-fc.png ./build
-	mv ./build/_static/pros-tux-w-w.png ./build
-	mv ./build/_static/windows-updates.txt ./build
-	
+	mv ./build/_static/githubupdate.php ./build || true
+	mv ./build/_static/pros-tux-b-b.png ./build || true
+	mv ./build/_static/pros-tux-b.png ./build || true
+	mv ./build/_static/pros-tux-fc-b.png ./build || true
+	mv ./build/_static/pros-tux-fc.png ./build || true
+	mv ./build/_static/pros-tux-w-w.png ./build || true
+	mv ./build/_static/windows-updates.txt ./build || true
+
 v5:
 	sphinx-build ./v5/ ./build/v5/
 
