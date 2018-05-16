@@ -124,7 +124,7 @@ for this tutorial. Let's initialize it now with our two motors in ports ``1`` an
   // Chassis Controller - lets us drive the robot around with open- or closed-loop control
   okapi::ChassisControllerIntegrated robotChassisController(1_rm, 10_m);
 
-The ``_m`` syntax is called a used-defined literal. It's a succinct way of initializing a motor,
+The ``_m`` syntax is called a user-defined literal. It's a succinct way of initializing a motor,
 and is equivalent to calling the normal constructor. For example,
 
 .. highlight:: cpp
