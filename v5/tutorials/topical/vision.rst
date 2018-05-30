@@ -108,3 +108,40 @@ implements this functionality.
              pros::delay(2);
            }
          }
+
+Changing the Object Coordinates
+===============================
+
+Each returned object from the vision sensor comes with a set of coordinates telling
+where the object was found in the vision sensor's field of view. The default behavior
+is to return the coordinates as a function of distance from the top left corner
+of the field of view - so positive y is downward and positive x is right. With the
+PROS API, you can change this behavior so that the center of the Field Of View is
+the (0,0) point for object coordinates. Positive y is still downward and positive
+x is still right, but negative y is upward of center and negative x is left of center
+in this configuration.
+
+.. tabs::
+   .. group-tab :: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: initialize.c
+         :linenos:
+
+         #define VISION_PORT 1
+
+         void initialize() {
+           vision_set_zero_point(VISION_PORT, E_VISION_ZERO_CENTER);
+         }
+
+   .. group-tab :: C++
+      .. highlight:: cpp
+      .. code-block:: cpp
+         :caption: initialize.cpp
+         :linenos:
+
+         #define VISION_PORT 1
+
+         void initialize() {
+           pros::Vision vision_sensor (VISION_PORT, pros::c::E_VISION_ZERO_CENTER);
+         }

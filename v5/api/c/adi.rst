@@ -724,7 +724,7 @@ Analogous to `pros::ADIPort::get_config <../cpp/adi.html#get-config>`_.
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to get
 ============ =================================================================================================================
 
-**Returns:** The `adi_port_config_e_t` set for the port.
+**Returns:** The `adi_port_config_e_t`_ set for the port.
 
 ----
 
@@ -1046,6 +1046,9 @@ OUTPUT_ANALOG
 
 Enumerated Values
 =================
+
+adi_port_config_e_t
+-------------------
 
 ::
 

@@ -22,7 +22,6 @@ import ablog
 
 sys.path.append(os.path.abspath('../sphinx-tabs/sphinx_tabs/'))
 
-
 # -- General configuration ------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -74,13 +73,15 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
+nitpicky = True
+
 
 # -- Options for HTML output ----------------------------------------------
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
-html_static_path = ['_static']
+html_static_path = []
 
 # Custom sidebar templates, must be a dictionary that maps document names
 # to template names.
