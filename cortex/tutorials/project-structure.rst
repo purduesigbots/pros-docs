@@ -14,7 +14,7 @@ with a core PROS function, please file an issue on
 `GitHub <https://github.com/purduesigbots/pros/issues>`__.
 
 The *header* files are all found in the ``include`` directory. One
-header file, `API.h <../api/index>`_, is required to declare
+header file, `API.h <../api/index.html>`_, is required to declare
 the PROS library functions, and also serves as a quick reference. The
 other file, ``main.h``, is intended for declaring functions and
 variables shared between the user code files. New header files can be

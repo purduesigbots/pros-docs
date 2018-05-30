@@ -39,7 +39,7 @@ Advance User Warning
 When utilizing IMEs and 3rd party sensors on your I2C bus it is
 recommended that you write your own task to handle all the I2C
 communication to prevent resource thrashing. See the `I2C Polling
-Task <./tutorials/i2c.html#pollingTask>`__ for more details.
+Task <i2c.html#pollingTask>`__ for more details.
 
 PROS provides a simple library for interacting with your IMEs. A sample
 usage would be as follows:
@@ -451,7 +451,7 @@ with these two options being the opposite of one another. A big-endian
 device will arrange bytes with the most significant (highest order) byte
 first, and little-endian arranges bytes with the least significant byte
 first. An example of reading a big-endian device can be found in
-`Reading from an I2C Slave <./tutorials/i2c.html#readingI2CSlave>`_. If an
+`Reading from an I2C Slave <i2c.html#readingI2CSlave>`_. If an
 I2C reading is an unexpected value, try reading in the opposite
 endianness.
 
@@ -460,7 +460,7 @@ Union/Struct method
 
 One solution to reading a collection of bits from a device is to use a
 struct wrapped in a union as seen in the ``LIDAR_REG_CFG`` union in
-`Third-Party I2C Devices <./tutorials/i2c.html#thirdPartyI2CDevices>`__. The
+`Third-Party I2C Devices <i2c.html#thirdPartyI2CDevices>`__. The
 union contains a value that contains the reading from the sensor, and
 the struct contains each significant bit as an individual value. Write
 to the union's value, and then read individual bits from the struct. If

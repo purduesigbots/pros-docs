@@ -81,7 +81,7 @@ Analogous to `pros::millis <../cpp/rtos.html#millis>`_.
 mutex_create
 ------------
 
-Creates a mutex.
+Creates a `mutex_t`_.
 
 See :doc:`../../tutorials/topical/multitasking` for details.
 
@@ -108,7 +108,7 @@ Analogous to `pros::Mutex::Mutex <../cpp/rtos.html#mutex>`_.
         // Release the mutex for other tasks
         mutex_give(mutex);
 
-**Returns:**  A handle to a newly created mutex. If an error occurred, NULL will be
+**Returns:**  A handle to a newly created `mutex_t`_. If an error occurred, NULL will be
 returned and ``errno`` can be checked for hints as to why `mutex_create`_ failed.
 
 ----
@@ -116,7 +116,7 @@ returned and ``errno`` can be checked for hints as to why `mutex_create`_ failed
 mutex_give
 ----------
 
-Unlocks a mutex.
+Unlocks a `mutex_t`_.
 
 See :doc:`../../tutorials/topical/multitasking` for details.
 
@@ -158,7 +158,7 @@ be returned.
 mutex_take
 ----------
 
-Takes and locks a mutex, waiting for up to a certain number of milliseconds
+Takes and locks a `mutex_t`_, waiting for up to a certain number of milliseconds
 before timing out.
 
 See :doc:`../../tutorials/topical/multitasking` for details.
@@ -193,7 +193,7 @@ Analogous to `pros::Mutex::take <../cpp/rtos.html#take>`_.
  mutex        The mutex to take.
  timeout      Time to wait before the mutex becomes available.
 
-              A timeout of 0 can be used to poll the mutex. TIMEOUT_MAX can be used to block indefinitely.
+              A timeout of 0 can be used to poll the `mutex_t`_. TIMEOUT_MAX can be used to block indefinitely.
 ============ ==============================================================================================
 
 **Returns:** True if the mutex was successfully taken, false otherwise. If false
@@ -666,9 +666,9 @@ Analogous to `pros::Task::notify_ext <../cpp/rtos.html#notify-ext>`_.
  prev_value   A pointer to store the previous value of the target task's notification, may be NULL
 ============ ======================================================================================
 
-**Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <notify_action_e_t>`_:
+**Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <rtos.html#notify-action-e-t>`_:
 return 0 if the value could be written without needing to overwrite, 1 otherwise.
-For all other `NOTIFY_ACTION <notify_action_e_t>`_ values: always return 0
+For all other `NOTIFY_ACTION <rtos.html#notify-action-e-t>`_ values: always return 0
 
 ----
 
@@ -900,7 +900,7 @@ default stack size for a task in PROS 2.
 TIMEOUT_MAX
 -----------
 
-The maximum timeout value that can be given to, for instance, a `mutex grab <mutex_take>`_.
+The maximum timeout value that can be given to, for instance, a `mutex grab <rtos.html#mutex-take>`_.
 
 **Value:** ``((uint32_t)0xffffffffUL)``
 
@@ -980,7 +980,7 @@ Points to the function associated with a task.
 mutex_t
 -------
 
-A `mutex <../../tutorials/topical/multitasking>`_.
+A `mutex <../../tutorials/topical/multitasking.html#mutexes>`_.
 
 ::
 

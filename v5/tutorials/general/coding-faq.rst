@@ -32,7 +32,7 @@ Run-Time Issues
     equal priority to the blocking task will still run while lower priority tasks
     will not. This scenario is also known as
     `starvation <https://en.wikipedia.org/wiki/Starvation_(computer_science)>`_.
-    See `Tasks/Multithreading </tutorials/multitasking>`_ for more information.
+    See `Tasks/Multithreading </tutorials/topical/multitasking>`_ for more information.
 
  * **VEX LCD updates very slowly or is "frozen":**
     A task is not waiting using `delay <../../api/c/rtos.html#delay>`_ or
@@ -82,7 +82,7 @@ Run-Time Issues
 
  * `printf <printf_>`_ **doesn't work**:
     `printf <http://www.cplusplus.com/reference/cstdio/printf/>`_ prints
-    information over a serial connection (`Debugging <../tutorials/debugging>`_),
+    information over a serial connection (`Debugging <../tutorials/general/debugging>`_),
     not to the VEX LCD. To print to the LCD, use `lcd_print <../../api/c/llemu.html#lcd-print>`_
     instead.
 

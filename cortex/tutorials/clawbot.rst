@@ -1,3 +1,5 @@
+.. highlight: c
+
 ================
 Clawbot Tutorial
 ================
@@ -124,7 +126,8 @@ programming robotics. To program basic arcade functionality, we need to
 be aware of two functions: one to get the joystick input and one to set
 the motors to a speed.
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
     int joystickGetAnalog ( unsigned char joystick,   // the joystick slot to check (1 for master, 2 for partner)
                             unsigned char axis        // One of the joystick channels on a VEX Joystick: 1, 2, 3, 4, ACCEL_X, or ACCEL_Y
@@ -134,7 +137,8 @@ Gets the value of a control axis on the VEX joystick. ***Returns** the
 value from -127 to 127, or 0 if no joystick is connected to the
 requested slot.s
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
     void motorSet ( unsigned char channel,  // motor channel to set from 1-10
                     int speed               // new signed speed. -127 is full reverse, 127 full forward, 0 off
@@ -144,7 +148,8 @@ Sets the speed of the specified motor channel.
 
 Armed with knowledge of these functions, let's modify ``opcontrol()``:
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
     void operatorControl() {
       int power;
@@ -283,7 +288,8 @@ needed in several different source files, it is a good idea to
 create a header file for them.
 *(`GNU <https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html>`__)*
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
     #ifndef _CHASSIS_H_
     #define _CHASSIS_H_
@@ -293,7 +299,8 @@ create a header file for them.
 
     #endif // _CHASSIS_H_
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
     #include "main.h"    // includes API.h and other headers
     #include "chassis.h" // redundant, but ensures that the corresponding header file (chassis.h) is included
@@ -306,7 +313,8 @@ create a header file for them.
 Using this methodology, we can rewrite our operator control to something
 much more concise:
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
     #include "main.h"
     #include "chassis.h"
@@ -332,7 +340,8 @@ organizes your code.
    include your own header files. In our example, we could modify our
    ``main.h`` to look like the following:
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
     // top of main.h omitted
     #ifndef MAIN_H_
@@ -358,7 +367,8 @@ of the claw. We'll continue using the modular methodology:
 
 ``include/claw.h``:
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
    #ifndef *CLAW_H*
    #define *CLAW_H*
@@ -369,7 +379,8 @@ of the claw. We'll continue using the modular methodology:
 
 ``src/claw.c``:
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
    #include "main.h"
    #include "claw.h"
@@ -378,7 +389,8 @@ of the claw. We'll continue using the modular methodology:
 
 ``src/opcontrol.c``:
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
    #include "main.h"
 
@@ -407,7 +419,8 @@ page.
 
 ``src/opcontrol.c``:
 
-.. code:: c
+.. highlight:: c
+.. code-block:: c
 
    #include "main.h"
 
