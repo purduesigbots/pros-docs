@@ -38,7 +38,7 @@ tutorial for more information behind the meaning of these two numbers.
 
 The two scales a Chassis Controller needs to do all of its closed-loop control. First index is the
 wheel diameter, second index is the wheelbase width. Read the
-`clawbot programming tutorial <../../tutorials/walkthrough/clawbot.html>`_ for more information
+`clawbot programming tutorial <../../../tutorials/walkthrough/clawbot.html>`_ for more information
 behind the meaning of these two numbers.
 
 The wheelbase diameter is the center-to-center distance between the wheels (center-to-center
