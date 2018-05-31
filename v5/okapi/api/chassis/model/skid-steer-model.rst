@@ -41,8 +41,8 @@ This constructor does not infer the encoders from the motors, and instead takes 
 
         SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                            std::shared_ptr<AbstractMotor> irightSideMotor,
-                           std::shared_ptr<RotarySensor> ileftEnc,
-                           std::shared_ptr<RotarySensor> irightEnc,
+                           std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                           std::shared_ptr<ContinuousRotarySensor> irightEnc,
                            const double imaxOutput = 127)
 
 =================   ===================================================================
@@ -185,8 +185,8 @@ This constructor does not infer the encoders from the motors, and instead takes 
 
         SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                        std::shared_ptr<AbstractMotor> irightSideMotor,
-                       std::shared_ptr<RotarySensor> ileftEnc,
-                       std::shared_ptr<RotarySensor> irightEnc,
+                       std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                       std::shared_ptr<ContinuousRotarySensor> irightEnc,
                        const double imaxOutput = 127)
 
 =================   ===================================================================
