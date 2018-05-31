@@ -82,7 +82,7 @@ This constructor infers the encoders from the left side and right side motors.
 
         void opcontrol() {
           using namespace okapi::literals;
-          okapi::SkidSteerModel model(1_m, 2_m);
+          okapi::SkidSteerModel model(1_mtr, 2_mtr);
         }
 
 =================   ===================================================================
@@ -110,8 +110,8 @@ This constructor infers the encoders from the left side and right side motors.
 
         void opcontrol() {
           using namespace okapi::literals;
-          okapi::SkidSteerModel model(okapi::MotorGroup({1_m, 2_m}),
-                                      okapi::MotorGroup({3_m, 4_m}));
+          okapi::SkidSteerModel model(okapi::MotorGroup({1_mtr, 2_mtr}),
+                                      okapi::MotorGroup({3_mtr, 4_mtr}));
         }
 
 =================   ===================================================================
@@ -141,8 +141,8 @@ This constructor does not infer the encoders from the motors, and instead takes 
 
         void opcontrol() {
           using namespace okapi::literals;
-          okapi::SkidSteerModel model(okapi::MotorGroup({1_m, 2_m}),
-                                      okapi::MotorGroup({3_m, 4_m}),
+          okapi::SkidSteerModel model(okapi::MotorGroup({1_mtr, 2_mtr}),
+                                      okapi::MotorGroup({3_mtr, 4_mtr}),
                                       okapi::ADIEncoder(1, 2),
                                       okapi::ADIEncoder(3, 4, true));
         }

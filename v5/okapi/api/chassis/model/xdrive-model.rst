@@ -92,7 +92,7 @@ This constructor infers the encoders from the motors.
 
         void opcontrol() {
           using namespace okapi::literals;
-          okapi::XDriveModel model(1_m, 2_m, 3_m, 4_m);
+          okapi::XDriveModel model(1_mtr, 2_mtr, 3_mtr, 4_mtr);
         }
 
 ==================   ===================================================================
@@ -126,7 +126,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
 
         void opcontrol() {
           using namespace okapi::literals;
-          okapi::XDriveModel model(1_m, 2_m, 3_m, 4_m,
+          okapi::XDriveModel model(1_mtr, 2_mtr, 3_mtr, 4_mtr,
                                    okapi::ADIEncoder(1, 2), okapi::ADIEncoder(3, 4, true));
         }
 
