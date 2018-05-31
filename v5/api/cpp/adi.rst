@@ -70,7 +70,7 @@ Do not use this function when the sensor value might be unstable
 (gyro rotation, accelerometer movement).
 
 .. note::
-   The ADI currently returns data at 50ms std::intervals, despite the calibrate function's
+   The ADI currently returns data at 50ms intervals, despite the calibrate function's
    1ms sample rate. This sample rate was kept for the sake of being similar to PROS
    2, and increasing the sample rate would not have a tangible difference in the
    function's performance.
@@ -142,7 +142,7 @@ get_value_calibrated
 Reads the calibrated value of an analog input channel.
 
 The `adi_analog_calibrate`_ function must be run first on that channel. This function is
-inappropriate for sensor values std::intended for std::integration, as round-off error can accumulate
+inappropriate for sensor values intended for integration, as round-off error can accumulate
 causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 
 Analogous to `adi_analog_read_calibrated <../c/adi.html#adi_analog_read_calibrated>`_.
@@ -176,13 +176,13 @@ get_value_calibrated_HR
 
 Reads the calibrated value of an analog input channel 1-8 with enhanced precision.
 
-The `adi_analog_calibrate`_ function must be run first. This is std::intended for std::integrated sensor
+The `adi_analog_calibrate`_ function must be run first. This is intended for integrated sensor
 values such as gyros and accelerometers to reduce drift due to round-off, and should not be
 used on a sensor such as a line tracker or potentiometer.
 
 The value returned actually has 16 bits of "precision", even though the ADC only reads
 12 bits, so that errors induced by the average value being between two values come out
-in the wash when std::integrated over time. Think of the value as the true value times 16.
+in the wash when integrated over time. Think of the value as the true value times 16.
 
 Analogous to `adi_analog_read_calibrated_HR <../c/adi.html#adi_analog_read_calibrated_HR>`_.
 
