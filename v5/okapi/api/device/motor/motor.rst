@@ -8,7 +8,7 @@ okapi::Motor
 ============
 
 An `AbstractMotor <abstract-abstract-motor.html>`_ which is also a ``pros::Motor``. This is a V5
-motor, not an ADI (or 3-wire) motor.
+motor, not an ADI (or 3-wire) motor. A negative port number is shorthand for reversing the motor.
 
 Constructor(s)
 --------------
@@ -18,7 +18,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        Motor(const std::uint8_t port)
+        Motor(const std::int8_t port)
 
 =============== ===================================================================
  Parameters
@@ -31,7 +31,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        explicit Motor(const std::uint8_t port,
+        explicit Motor(const std::int8_t port,
                        const bool reverse = false,
                        const pros::c::motor_gearset_e_t gearset,
                        const pros::c::motor_encoder_units_e_t encoder_units = pros::c::E_MOTOR_ENCODER_DEGREES)
@@ -62,8 +62,8 @@ Literal(s)
 
         void opcontrol() {
           using namespace okapi::literals;
-          1_m; // Motor in port 1
-          1_rm; // Reversed motor in port 1
+          1_mtr;  // Motor in port 1
+          1_rmtr; // Reversed motor in port 1
         }
 
 =============== ===================================================================

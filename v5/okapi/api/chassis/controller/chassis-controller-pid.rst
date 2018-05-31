@@ -30,8 +30,7 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        using namespace okapi::literals;
-        okapi::ChassisControllerPID controller(1_m, 2_m,
+        okapi::ChassisControllerPID controller(1, -2,
                                                okapi::IterativePosPIDControllerArgs(0, 0, 0),
                                                okapi::IterativePosPIDControllerArgs(0, 0, 0));
 
@@ -63,9 +62,8 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        using namespace okapi::literals;
-        okapi::ChassisControllerPID controller(okapi::MotorGroup({1_m, 2_m}),
-                                               okapi::MotorGroup({3_m, 4_m}),
+        okapi::ChassisControllerPID controller(okapi::MotorGroup({1, 2}),
+                                               okapi::MotorGroup({-3, -4}),
                                                okapi::IterativePosPIDControllerArgs(0, 0, 0),
                                                okapi::IterativePosPIDControllerArgs(0, 0, 0));
 
@@ -100,10 +98,8 @@ This constructor infers an x-drive layout.
       .. highlight:: cpp
       ::
 
-        using namespace okapi::literals;
-
         // X-Drive controller
-        okapi::ChassisControllerPID controller(1_m, 2_m, 3_m, 4_m,
+        okapi::ChassisControllerPID controller(1, -2, -3, 4,
                                                IterativePosPIDControllerArgs(0, 0, 0),
                                                IterativePosPIDControllerArgs(0, 0, 0));
 
@@ -138,13 +134,11 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        using namespace okapi::literals;
-
         // Skid-Steer controller
-        okapi::ChassisControllerPID controller(1_m, 2_m, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
+        okapi::ChassisControllerPID controller(1, -2, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
         // Could also use MotorGroups to use more motors
-        okapi::ChassisControllerPID controller(okapi::MotorGroup<2>({1_m, 2_m}), okapi::MotorGroup<2>({3_m, 4_m}),
+        okapi::ChassisControllerPID controller(okapi::MotorGroup<2>({1, 2}), okapi::MotorGroup<2>({-3, -4}),
                                                IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
 ======================   =======================================================================================
@@ -178,10 +172,8 @@ This constructor infers an x-drive layout.
       .. highlight:: cpp
       ::
 
-        using namespace okapi::literals;
-
         // X-Drive controller
-        okapi::ChassisControllerPID controller(1_m, 2_m, 3_m, 4_m, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
+        okapi::ChassisControllerPID controller(1, 2, 3, 4, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
 
 ======================   =======================================================================================
  Parameters

@@ -11,6 +11,9 @@ An `AbstractMotor <abstract-abstract-motor.html>`_ which is group of multiple
 `Motor <motor.html>`_. This class can be used to pass a group of motors that mechanically act as
 one motor, such as one side of a drivetrain or the motors on a lift.
 
+The `Motor <motor.html>`_ class is implicitly constructable, which means that you can just pass
+port numbers to a `MotorGroup` instead of using the literals or full constructors.
+
 This class implements methods such as ``getTargetPosition()`` by only calling the method on the
 first motor. The rest of the methods, such as ``moveVelocity()`` work as expected and are called on
 all the motors.
@@ -31,7 +34,11 @@ Constructor(s)
 
         void opcontrol() {
           using namespace okapi::literals;
-          okapi::MotorGroup group({1_m, 2_m}); // Two motors in ports 1 and 2 grouped together
+
+          // Two motors in ports 1 and 2 grouped together
+          okapi::MotorGroup group1({1, 2});
+          okapi::MotorGroup group2({1_mtr, 2_mtr});
+          okapi::MotorGroup group3({Motor(1), Motor(2)});
         }
 
 =============== ===================================================================
