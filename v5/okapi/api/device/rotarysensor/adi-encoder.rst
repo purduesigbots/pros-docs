@@ -5,9 +5,9 @@ ADI Encoder
 .. contents:: :local:
 
 okapi::ADIEncoder
-========================
+=================
 
-A `RotarySensor <abstract-rotary-sensor.html>`_ on the ADI ports.
+A `ContinuousRotarySensor <abstract-continuous-rotary-sensor.html>`_ on the ADI ports.
 
 Constructor(s)
 --------------

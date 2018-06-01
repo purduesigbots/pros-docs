@@ -39,19 +39,19 @@ Returns the last calculated output of the controller. Default is 0.
 setSampleTime
 ~~~~~~~~~~~~~
 
-Sets time between loops in ms. Default does nothing.
+Sets time between loops. Default does nothing.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const uint32_t isampleTime)
+        virtual void setSampleTime(const QTime isampleTime)
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- isampleTime     The sample time in ms.
+ isampleTime     The sample time.
 =============== ===================================================================
 
 ----

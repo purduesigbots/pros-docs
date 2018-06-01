@@ -43,9 +43,9 @@ Constructor(s)
 
         ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                        std::shared_ptr<AbstractMotor> irightSideMotor,
-                                       std::shared_ptr<RotarySensor> ileftEnc,
-                                       std::shared_ptr<RotarySensor> imiddleEnc,
-                                       std::shared_ptr<RotarySensor> irightEnc,
+                                       std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                                       std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
+                                       std::shared_ptr<ContinuousRotarySensor> irightEnc,
                                        const double imaxOutput = 127)
 
 =================   ===================================================================
@@ -77,9 +77,9 @@ Constructor(s)
 
         ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                        std::shared_ptr<AbstractMotor> irightSideMotor,
-                                       std::shared_ptr<RotarySensor> ileftEnc,
-                                       std::shared_ptr<RotarySensor> imiddleEnc,
-                                       std::shared_ptr<RotarySensor> irightEnc,
+                                       std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                                       std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
+                                       std::shared_ptr<ContinuousRotarySensor> irightEnc,
                                        const double imaxOutput = 127)
 
 =================   ===================================================================

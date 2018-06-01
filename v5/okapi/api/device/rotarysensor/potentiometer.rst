@@ -1,14 +1,13 @@
-==================
-Integrated Encoder
-==================
+=============
+Potentiometer
+=============
 
 .. contents:: :local:
 
-okapi::IntegratedEncoder
-========================
+okapi::Potentiometer
+====================
 
-A `ContinuousRotarySensor <abstract-continuous-rotary-sensor.html>`_ representing the encoder
-inside the V5 motors (not an IME).
+A `RotarySensor <abstract-rotary-sensor.html>`_ on the ADI ports.
 
 Constructor(s)
 --------------
@@ -18,12 +17,12 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IntegratedEncoder(pros::Motor imotor)
+        Potentiometer(const std::uint8_t iport)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imotor          The V5 motor to use the encoder from.
+ iport            The port the potentiometer's wire is in.
 =============== ===================================================================
 
 Methods
@@ -42,22 +41,6 @@ Returns the current sensor value.
         virtual std::int32_t get() const override
 
 **Returns:** The current sensor value, or ``PROS_ERR`` on a failure.
-
-----
-
-reset
-~~~~~
-
-Resets the sensor to ``0``.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual std::int32_t reset() const override
-
-**Returns:** ``1`` on success, or ``PROS_ERR`` on a failure.
 
 ----
 

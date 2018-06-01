@@ -47,8 +47,8 @@ This constructor does not infer the encoders from the motors, and instead takes 
                         std::shared_ptr<AbstractMotor> itopRightMotor,
                         std::shared_ptr<AbstractMotor> ibottomRightMotor,
                         std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                        std::shared_ptr<RotarySensor> ileftEnc,
-                        std::shared_ptr<RotarySensor> irightEnc,
+                        std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                        std::shared_ptr<ContinuousRotarySensor> irightEnc,
                         const double imaxOutput = 127)
 
 ==================   ===================================================================
@@ -92,7 +92,7 @@ This constructor infers the encoders from the motors.
 
         void opcontrol() {
           using namespace okapi::literals;
-          okapi::XDriveModel model(1_m, 2_m, 3_m, 4_m);
+          okapi::XDriveModel model(1_mtr, 2_mtr, 3_mtr, 4_mtr);
         }
 
 ==================   ===================================================================
@@ -126,7 +126,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
 
         void opcontrol() {
           using namespace okapi::literals;
-          okapi::XDriveModel model(1_m, 2_m, 3_m, 4_m,
+          okapi::XDriveModel model(1_mtr, 2_mtr, 3_mtr, 4_mtr,
                                    okapi::ADIEncoder(1, 2), okapi::ADIEncoder(3, 4, true));
         }
 
@@ -176,8 +176,8 @@ This constructor does not infer the encoders from the motors, and instead takes 
                     std::shared_ptr<AbstractMotor> itopRightMotor,
                     std::shared_ptr<AbstractMotor> ibottomRightMotor,
                     std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                    std::shared_ptr<RotarySensor> ileftEnc,
-                    std::shared_ptr<RotarySensor> irightEnc,
+                    std::shared_ptr<ContinuousRotarySensor> ileftEnc,
+                    std::shared_ptr<ContinuousRotarySensor> irightEnc,
                     const double imaxOutput = 127)
 
 ==================   ===================================================================
@@ -449,7 +449,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setBrakeMode(const motor_brake_mode_e_t mode) const override
+        virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const override
 
 =============== ===================================================================
 Parameters
@@ -469,7 +469,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setEncoderUnits(const motor_encoder_units_e_t units) const override
+        virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const override
 
 =============== ===================================================================
 Parameters
@@ -489,7 +489,7 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setGearing(const motor_gearset_e_t gearset) const override
+        virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const override
 
 =============== ===================================================================
 Parameters
