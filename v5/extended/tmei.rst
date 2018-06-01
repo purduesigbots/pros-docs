@@ -2,6 +2,9 @@
 Touch Management Engine Interface (TMEI) API
 ============================================
 
+.. warning:: TMEI is going to be deprecated pending further work on incorporating
+            `LVGL <https://littlevgl.com/>`_. It is recommended to start using LVGL.
+
 Functions
 =========
 
@@ -177,7 +180,7 @@ Fill a rectangular region of the screen using the current foreground color.
  y0           The y coordinate of the first corner of the rectangular region
  x1           The x coordinate of the second corner of the rectangular region
  y1           The y coordinate of the second corner of the rectangular region
-============ =================================================================                       
+============ =================================================================
 
 display_scroll
 --------------
