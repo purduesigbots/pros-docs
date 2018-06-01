@@ -74,6 +74,11 @@ And for documentation on using the PROS **API**, see the **API** section:
 
 :doc:`/api/index`
 
+We're proud to support **OkapiLib**, a library designed to make it easier to incorporate complex functionality
+in your PROS project. For documentation on OkapiLib, see its Docs section:
+
+:doc:`okapi/index`
+
 Additional features of FreeRTOS that are intended for **advanced users** can be found in the `Extended API <./extended/apix.html>`_.
 Tutorials on these features can be found in the **Extended** section:
 
