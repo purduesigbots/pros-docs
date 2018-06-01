@@ -32,7 +32,7 @@ Run-Time Issues
     equal priority to the blocking task will still run while lower priority tasks
     will not. This scenario is also known as
     `starvation <https://en.wikipedia.org/wiki/Starvation_(computer_science)>`_.
-    See `Tasks/Multithreading <../tutorials/multitasking>`_ for more information.
+    See `Tasks/Multithreading <./tasks.html>`_ for more information.
 
  * **VEX LCD updates very slowly or is "frozen":**
     A task is not waiting using `delay <../api/index.html#delay>`_ or
@@ -51,7 +51,7 @@ Run-Time Issues
 
  * **Code restarts unexpectedly:**
     A run-time error has caused the program to crash.
-    `Debugging <../tutorials/debugging>`_ may reveal the cause of the error.
+    `Debugging <./debugging.html>`_ may reveal the cause of the error.
     Examine any newly added code for possible logical errors. Some common error
     messages include:
 
@@ -82,7 +82,7 @@ Run-Time Issues
 
  * `printf <printf_>`_ **doesn't work**:
     `printf <http://www.cplusplus.com/reference/cstdio/printf/>`_ prints
-    information over a serial connection (`Debugging <../tutorials/debugging>`_),
+    information over a serial connection (`Debugging <./debugging.html>`_),
     not to the VEX LCD. To print to the LCD, use `lcdPrint <../api/index.html#lcdPrint>`_
     instead.
 

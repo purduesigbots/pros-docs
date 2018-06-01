@@ -18,7 +18,7 @@ To view a robot's output, there are two officially supported methods:
 
    Running ``pros terminal`` on the command line will open an output
    stream from a robot connected over direct USB connection, VEXnet, or
-   `JINX <./tutorials/jinx.html>`_.
+   `JINX <./tutorials/topical/jinx.html>`_.
 
 2. From within Atom:
 

@@ -287,10 +287,10 @@ Analogous to `pros::Controller::get_analog <../cpp/misc.html#get-analog>`_.
  Parameters
 ============ ======================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
-              Must be one of `CONTROLLER_MASTER <controller_id_e_t>`_ or `CONTROLLER_PARTNER <controller_id_e_t>`_
+              Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
  channel      The analog channel to get.
-              Must be one of `ANALOG_LEFT_X <controller_analog_e_t>`_, `ANALOG_LEFT_Y <controller_analog_e_t>`_,
-              `ANALOG_RIGHT_X <controller_analog_e_t>`_, `ANALOG_RIGHT_Y <controller_analog_e_t>`_
+              Must be one of `ANALOG_LEFT_X <misc.html#controller-analog-e-t>`_, `ANALOG_LEFT_Y <misc.html#controller-analog-e-t>`_,
+              `ANALOG_RIGHT_X <misc.html#controller-analog-e-t>`_, `ANALOG_RIGHT_Y <misc.html#controller-analog-e-t>`_
 ============ ======================================================================================================
 
 **Returns:** The current reading of the analog channel: [-127, 127].
@@ -339,8 +339,8 @@ Analogous to `pros::Controller::get_digital <../cpp/misc.html#get-digital>`_.
  Parameters
 ============ =================================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
-              Must be one of `CONTROLLER_MASTER <controller_id_e_t>`_ or `CONTROLLER_PARTNER <controller_id_e_t>`_
- button       The button to read. Must be one of `DIGITAL_{RIGHT,DOWN,LEFT,UP,A,B,Y,X,R1,R2,L1,L2} <controller_digital_e_t>`_
+              Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
+ button       The button to read. Must be one of `DIGITAL_{RIGHT,DOWN,LEFT,UP,A,B,Y,X,R1,R2,L1,L2} <misc.html#controller-digital-e-t>`_
 ============ =================================================================================================================
 
 **Returns:** 1 if the button on the controller is pressed.
@@ -394,8 +394,8 @@ Analogous to `pros::Controller::get_digital_new_press <../cpp/misc.html#get-digi
  Parameters
 ============ =================================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
-              Must be one of `CONTROLLER_MASTER <controller_id_e_t>`_ or `CONTROLLER_PARTNER <controller_id_e_t>`_
- button       The button to read. Must be one of `DIGITAL_{RIGHT,DOWN,LEFT,UP,A,B,Y,X,R1,R2,L1,L2} <controller_digital_e_t>`_
+              Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
+ button       The button to read. Must be one of `DIGITAL_{RIGHT,DOWN,LEFT,UP,A,B,Y,X,R1,R2,L1,L2} <misc.html#controller-digital-e-t>`_
 ============ =================================================================================================================
 
 **Returns:** 1 if the button on the controller is pressed and had not been pressed
@@ -443,7 +443,7 @@ Analogous to `pros::Controller::is_connected <../cpp/misc.html#id1>`_.
  Parameters
 ============ ======================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
-              Must be one of `CONTROLLER_MASTER <controller_id_e_t>`_ or `CONTROLLER_PARTNER <controller_id_e_t>`_
+              Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
 ============ ======================================================================================================
 
 **Returns:** 1 if the controller is connected, 0 otherwise

@@ -47,7 +47,7 @@ Constructor(s)
       ::
 
         using namespace okapi::literals;
-        okapi::AsyncPosIntegratedController controller(1_m);
+        okapi::AsyncPosIntegratedController controller(1_mtr);
 
 =============== ===================================================================
  Parameters
@@ -67,7 +67,7 @@ Constructor(s)
       ::
 
         using namespace okapi::literals;
-        okapi::AsyncPosIntegratedController controller(okapi::MotorGroup({1_m, 2_m}));
+        okapi::AsyncPosIntegratedController controller(okapi::MotorGroup({1_mtr, 2_mtr}));
 
 =============== ===================================================================
  Parameters

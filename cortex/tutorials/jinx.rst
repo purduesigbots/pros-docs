@@ -58,7 +58,7 @@ around a single machine to observe the data feed. If you are on the same
 local network you can navigate to the IP address of the JINX host
 machine to get access to the dashboard as well. For example, if the IP
 address of the JINX host machine is ``192.168.1.105`` you would navigate
-to http://192.168.1.105:9001/views/combined.html.
+to ``http://192.168.1.105:9001/views/combined.html``.
 
 Sending data from the Cortex
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~

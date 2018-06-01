@@ -1196,10 +1196,10 @@ Analogous to controller_get_analog <./c/misc.html#controller-get-analog>`_.
  Parameters
 ============ ======================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
-              Must be one of `CONTROLLER_MASTER <controller_id_e_t>`_ or `CONTROLLER_PARTNER <controller_id_e_t>`_
+              Must be one of `CONTROLLER_MASTER <controller_id_e_t_>`_ or `CONTROLLER_PARTNER <controller_id_e_t_>`_
  channel      The analog channel to get.
-              Must be one of `ANALOG_LEFT_X <controller_analog_e_t>`_, `ANALOG_LEFT_Y <controller_analog_e_t>`_,
-              `ANALOG_RIGHT_X <controller_analog_e_t>`_, `ANALOG_RIGHT_Y <controller_analog_e_t>`_
+              Must be one of `ANALOG_LEFT_X <controller_analog_e_t_>`_, `ANALOG_LEFT_Y <controller_analog_e_t_>`_,
+              `ANALOG_RIGHT_X <controller_analog_e_t_>`_, `ANALOG_RIGHT_Y <controller_analog_e_t_>`_
 ============ ======================================================================================================
 
 **Returns:** The current reading of the analog channel: [-127, 127].
@@ -1248,8 +1248,8 @@ Analogous to joystickGetDigital <./c/misc.html#joystickGetDigital>`_.
  Parameters
 ============ =================================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
-              Must be one of `CONTROLLER_MASTER <controller_id_e_t>`_ or `CONTROLLER_PARTNER <controller_id_e_t>`_
- button       The button to read. Must be one of `DIGITAL_{RIGHT,DOWN,LEFT,UP,A,B,Y,X,R1,R2,L1,L2} <controller_digital_e_t>`_
+              Must be one of `CONTROLLER_MASTER <controller_id_e_t_>`_ or `CONTROLLER_PARTNER <controller_id_e_t_>`_
+ button       The button to read. Must be one of `DIGITAL_{RIGHT,DOWN,LEFT,UP,A,B,Y,X,R1,R2,L1,L2} <controller_digital_e_t_>`_
 ============ =================================================================================================================
 
 **Returns:** 1 if the button on the controller is pressed.
@@ -1297,7 +1297,7 @@ Analogous to `controller_is_connected <./c/misc.html#controller-is-connected>`_.
  Parameters
 ============ ======================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
-              Must be one of `CONTROLLER_MASTER <controller_id_e_t>`_ or `CONTROLLER_PARTNER <controller_id_e_t>`_
+              Must be one of `CONTROLLER_MASTER <controller_id_e_t_>`_ or `CONTROLLER_PARTNER <controller_id_e_t_>`_
 ============ ======================================================================================================
 
 **Returns:** 1 if the controller is connected, 0 otherwise
@@ -1978,3 +1978,7 @@ object to store encoder data in PROS 2.
 ::
 
 	typedef int32_t Ultrasonic;
+
+.. _controller_analog_e_t: ./c/misc.html#controller-analog-e-t
+.. _controller_id_e_t: ./c/misc.html#controller-id-e-t
+.. _controller_digital_e_t: ./c/misc.html#controller-digital-e-t

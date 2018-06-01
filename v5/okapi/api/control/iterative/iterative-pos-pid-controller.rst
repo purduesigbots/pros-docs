@@ -223,19 +223,19 @@ Parameters
 setSampleTime
 ~~~~~~~~~~~~~
 
-Sets time between loops in ms.
+Sets time between loops.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const std::uint32_t isampleTime) override
+        virtual void setSampleTime(const QTime isampleTime) override
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- isampleTime     The sample time in ms.
+ isampleTime     The sample time.
 =============== ===================================================================
 
 ----
@@ -393,13 +393,13 @@ Returns whether the controller is currently disabled.
 getSampleTime
 ~~~~~~~~~~~~~
 
-Returns the last set sample time. Default is ``10``.
+Returns the last set sample time. Default is ``10_ms``.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual std::uint32_t getSampleTime() const override
+        virtual QTime getSampleTime() const override
 
 **Returns:** The last set sample time.

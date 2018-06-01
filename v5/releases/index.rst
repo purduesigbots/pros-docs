@@ -12,7 +12,7 @@ Kernel Releases
    :list-style: circle
    :tags: kernel-release
 
-These notes are pulled from `Github Releases <https://github.com/purduesigbots/pros3/releases>`_.
+These notes are pulled from `Github Releases <https://github.com/purduesigbots/pros/releases>`_.
 
 CLI Releases
 ============
@@ -24,4 +24,4 @@ CLI Releases
    :list-style: circle
    :tags: cli-release
 
-These notes are pulled from `Github Releases <https://github.com/purduesigbots/pros-cli3/releases>`_.
+These notes are pulled from `Github Releases <https://github.com/purduesigbots/pros-cli/releases>`_.

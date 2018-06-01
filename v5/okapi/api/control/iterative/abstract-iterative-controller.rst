@@ -77,19 +77,19 @@ Returns the last derivative (change in error) of the controller.
 setSampleTime
 ~~~~~~~~~~~~~
 
-Sets time between loops in ms. Default does nothing.
+Sets time between loops. Default does nothing.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const std::uint32_t isampleTime)
+        virtual void setSampleTime(const QTime isampleTime)
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- isampleTime     The sample time in ms.
+ isampleTime     The sample time.
 =============== ===================================================================
 
 ----
@@ -146,13 +146,13 @@ Changes whether the controll is off or on. Default does nothing.
 getSampleTime
 ~~~~~~~~~~~~~
 
-Get the last set sample time. Default is ``10``.
+Get the last set sample time. Default is ``10_ms``.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual std::uint32_t getSampleTime() const
+        virtual QTime getSampleTime() const
 
 **Returns:** The last set sample time.

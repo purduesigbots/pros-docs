@@ -99,7 +99,7 @@ The last 3 commands can be simplified to :code:`prosv5 mut`.
 Tank/Arcade Control
 -------------------
 
-Okapi uses something called a `ChassisController <../../api/chassis/controller/chassis-controller.html>`_
+Okapi uses something called a `ChassisController <../../api/chassis/controller/abstract-chassis-controller.html>`_
 to interact with a robot's chassis. This interface lets you use open-loop control methods to drive
 the robot around with a joystick, like tank and arcade control. It also provides methods to move
 the robot programmatically, like driving in an arc or only powering one side of the chassis. It
@@ -122,20 +122,7 @@ for this tutorial. Let's initialize it now with our two motors in ports ``1`` an
 ::
 
   // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-  okapi::ChassisControllerIntegrated robotChassisController(1_rm, 10_m);
-
-The ``_m`` syntax is called a used-defined literal. It's a succinct way of initializing a motor,
-and is equivalent to calling the normal constructor. For example,
-
-.. highlight:: cpp
-::
-
-  using namespace okapi::literals;
-  okapi::Motor foo = 1_m; // Motor in port 1
-  okapi::Motor foo(1);    // Motor in port 1
-
-  okapi::Motor bar = 1_rm;   // Reversed motor in port 1
-  okapi::Motor bar(1, true); // Reversed motor in port 1
+  okapi::ChassisControllerIntegrated robotChassisController(1, 10);
 
 Next, let's setup tank or arcade control.
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ provides methods for us
@@ -204,7 +191,20 @@ And the arm motor:
 .. highlight:: cpp
 ::
 
-  okapi::Motor armMotor = 8_rm;
+  okapi::Motor armMotor = 8_rmtr;
+
+The ``_mtr`` syntax is called a user-defined literal. It's a succinct way of initializing a motor,
+and is equivalent to calling the normal constructor. For example,
+
+.. highlight:: cpp
+::
+
+  using namespace okapi::literals;
+  okapi::Motor foo = 1_mtr; // Motor in port 1
+  okapi::Motor foo(1);      // Motor in port 1
+
+  okapi::Motor bar = 1_rmtr; // Reversed motor in port 1
+  okapi::Motor bar(1, true); // Reversed motor in port 1
 
 Then we can check if it's pressed and stop powering the arm motor:
 
@@ -307,13 +307,14 @@ This is the final product from this tutorial.
       .. highlight:: cpp
       ::
 
+        #include "okapi/api.hpp"
         using namespace okapi::literals;
 
         void opcontrol() {
-          pros::c::task_delay(100);
+          pros::Task::delay(100);
 
           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-          okapi::ChassisControllerIntegrated robotChassisController(1_rm, 10_m);
+          okapi::ChassisControllerIntegrated robotChassisController(1, 10);
 
           // Joystick to read analog values for tank or arcade control
           // Master controller by default
@@ -323,7 +324,7 @@ This is the final product from this tutorial.
           okapi::ADIButton armLimitSwitch('H');
           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-          okapi::Motor armMotor = 8_rm;
+          okapi::Motor armMotor = 8_rmtr;
 
           // Button to run our sample autonomous routine
           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
@@ -366,13 +367,14 @@ This is the final product from this tutorial.
       .. highlight:: cpp
       ::
 
+        #include "okapi/api.hpp"
         using namespace okapi::literals;
 
         void opcontrol() {
-          pros::c::task_delay(100);
+          pros::Task::delay(100);
 
           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-          okapi::ChassisControllerIntegrated robotChassisController(1_rm, 10_m);
+          okapi::ChassisControllerIntegrated robotChassisController(1, 10);
 
           // Joystick to read analog values for tank or arcade control
           // Master controller by default
@@ -382,7 +384,7 @@ This is the final product from this tutorial.
           okapi::ADIButton armLimitSwitch('H');
           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-          okapi::Motor armMotor = 8_rm;
+          okapi::Motor armMotor = 8_rmtr;
 
           // Button to run our sample autonomous routine
           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);

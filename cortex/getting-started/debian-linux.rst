@@ -15,7 +15,7 @@ users will install both, although the PROS Core package is always
 required.
 
 **Note** When using PROS for linux you cannot program or interact with a
-cortex directly tethered via A-A. This is a `known issue <tutorials/known-issues#linuxAA>`_ with a simple solution.
+cortex directly tethered via A-A. This is a `known issue <../tutorials/known-issues#linuxAA>`_ with a simple solution.
 
 Other Distro Installation Requirements
 --------------------------------------

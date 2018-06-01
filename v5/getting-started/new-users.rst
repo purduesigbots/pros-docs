@@ -51,19 +51,19 @@ I know C/C++, now how do I use PROS?
 ------------------------------------
 
 The PROS tutorials are designed to show the application of C/C++ programming
-to a PROS project. The `Programming the Clawbot <../tutorials/clawbot.html>`_
+to a PROS project. The `Programming the Clawbot <../tutorials/walkthrough/clawbot.html>`_
 tutorial is a great place to start, as it
 goes through every step of putting together a sample PROS project. Once
 you are ready to branch out and create your own custom project, looking
 through the following tutorials is recommended:
 
--  `PROS Project Structure <../tutorials/project-structure.html>`_
+-  `PROS Project Structure <../tutorials/general/project-structure.html>`_
 
--  `Uploading Code <../tutorials/uploading.html>`_
+-  `Uploading Code <../tutorials/walkthrough/uploading.html>`_
 
--  `Debugging <../tutorials/debugging.html>`_
+-  `Debugging <../tutorials/general/debugging.html>`_
 
 -  `Coding FAQs <./faq.html>`_
 
-And then you can find tutorials for specific subjects from `the ADI <../tutorials/adi.html>`_
-to `tasks and multithreading <../tutorials/multitasking.html>`_ as well.
+And then you can find tutorials for specific subjects from `the ADI <../tutorials/topical/adi.html>`_
+to `tasks and multithreading <../tutorials/topical/multitasking.html>`_ as well.
