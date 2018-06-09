@@ -47,7 +47,7 @@ Constructor(s)
       ::
 
         using namespace okapi::literals;
-        okapi::AsyncVelIntegratedController controller(1_m);
+        okapi::AsyncVelIntegratedController controller(1_mtr);
 
 =============== ===================================================================
  Parameters
@@ -67,7 +67,7 @@ Constructor(s)
       ::
 
         using namespace okapi::literals;
-        okapi::AsyncVelIntegratedController controller(okapi::MotorGroup({1_m, 2_m}));
+        okapi::AsyncVelIntegratedController controller(okapi::MotorGroup({1_mtr, 2_mtr}));
 
 =============== ===================================================================
  Parameters

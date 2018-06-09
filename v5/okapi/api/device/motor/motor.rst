@@ -8,7 +8,7 @@ okapi::Motor
 ============
 
 An `AbstractMotor <abstract-abstract-motor.html>`_ which is also a ``pros::Motor``. This is a V5
-motor, not an ADI (or 3-wire) motor.
+motor, not an ADI (or 3-wire) motor. A negative port number is shorthand for reversing the motor.
 
 Constructor(s)
 --------------
@@ -18,18 +18,31 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        Motor(const std::uint8_t port,
-              const bool reverse = false,
-              const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES,
-              const motor_gearset_e_t gearset = E_MOTOR_GEARSET_36)
+        Motor(const std::int8_t port)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ port            The V5 port number the motor is in. A negative port number reverses the motor.
+=============== ===================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        explicit Motor(const std::int8_t port,
+                       const bool reverse = false,
+                       const pros::c::motor_gearset_e_t gearset,
+                       const pros::c::motor_encoder_units_e_t encoder_units = pros::c::E_MOTOR_ENCODER_DEGREES)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  port            The V5 port number the motor is in.
  reverse         Whether the motor's direction is reversed.
- encoder_units   The motor's encoder units.
  gearset         The motor's gearset.
+ encoder_units   The motor's encoder units.
 =============== ===================================================================
 
 Literal(s)
@@ -40,8 +53,8 @@ Literal(s)
       .. highlight:: cpp
       ::
 
-        okapi::Motor operator"" _m(const unsigned long long iport)
-        okapi::Motor operator"" _rm(const unsigned long long iport)
+        okapi::Motor operator"" _mtr(const unsigned long long iport)
+        okapi::Motor operator"" _rmtr(const unsigned long long iport)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -49,8 +62,8 @@ Literal(s)
 
         void opcontrol() {
           using namespace okapi::literals;
-          1_m; // Motor in port 1
-          1_rm; // Reversed motor in port 1
+          1_mtr;  // Motor in port 1
+          1_rmtr; // Reversed motor in port 1
         }
 
 =============== ===================================================================
@@ -289,7 +302,7 @@ setting errno.
 setBrakeMode
 ~~~~~~~~~~~~
 
-Sets one of ``motor_brake_mode_e_t`` to the motor.
+Sets one of ``pros::c::motor_brake_mode_e_t`` to the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -299,12 +312,12 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(const motor_brake_mode_e_t imode) const override
+        virtual std::int32_t setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const override
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imode           The ``motor_brake_mode_e_t`` to set for the motor.
+ imode           The ``pros::c::motor_brake_mode_e_t`` to set for the motor.
 =============== ===================================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -341,7 +354,7 @@ setting errno.
 setEncoderUnits
 ~~~~~~~~~~~~~~~
 
-Sets one of ``motor_encoder_units_e_t`` for the motor encoder.
+Sets one of ``pros::c::motor_encoder_units_e_t`` for the motor encoder.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -351,7 +364,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(const motor_encoder_units_e_t iunits) const override
+        virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const override
 
 =============== ===================================================================
  Parameters
@@ -367,7 +380,7 @@ setting errno.
 setGearing
 ~~~~~~~~~~
 
-Sets one of ``motor_gearset_e_t`` for the motor.
+Sets one of ``pros::c::motor_gearset_e_t`` for the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -377,7 +390,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(const motor_gearset_e_t igearset) const override
+        virtual std::int32_t setGearing(const pros::c::motor_gearset_e_t igearset) const override
 
 =============== ===================================================================
  Parameters

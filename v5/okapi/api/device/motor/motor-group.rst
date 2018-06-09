@@ -11,6 +11,9 @@ An `AbstractMotor <abstract-abstract-motor.html>`_ which is group of multiple
 `Motor <motor.html>`_. This class can be used to pass a group of motors that mechanically act as
 one motor, such as one side of a drivetrain or the motors on a lift.
 
+The `Motor <motor.html>`_ class is implicitly constructable, which means that you can just pass
+port numbers to a `MotorGroup` instead of using the literals or full constructors.
+
 This class implements methods such as ``getTargetPosition()`` by only calling the method on the
 first motor. The rest of the methods, such as ``moveVelocity()`` work as expected and are called on
 all the motors.
@@ -31,7 +34,11 @@ Constructor(s)
 
         void opcontrol() {
           using namespace okapi::literals;
-          okapi::MotorGroup group({1_m, 2_m}); // Two motors in ports 1 and 2 grouped together
+
+          // Two motors in ports 1 and 2 grouped together
+          okapi::MotorGroup group1({1, 2});
+          okapi::MotorGroup group2({1_mtr, 2_mtr});
+          okapi::MotorGroup group3({Motor(1), Motor(2)});
         }
 
 =============== ===================================================================
@@ -161,6 +168,32 @@ setting errno.
 
 ----
 
+move
+~~~~
+
+Sets the voltage for the motor from ``-127`` to ``127``.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t move(const std::int8_t ivoltage) const override
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ ivoltage        The new voltage value from ``-127`` to ``127``.
+=============== ===================================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting errno.
+
+----
+
 getTargetPosition
 ~~~~~~~~~~~~~~~~~
 
@@ -270,7 +303,7 @@ setting errno.
 setBrakeMode
 ~~~~~~~~~~~~
 
-Sets one of ``motor_brake_mode_e_t`` to the motor.
+Sets one of ``pros::c::motor_brake_mode_e_t`` to the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -280,12 +313,12 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(const motor_brake_mode_e_t imode) const override
+        virtual std::int32_t setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const override
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imode           The ``motor_brake_mode_e_t`` to set for the motor.
+ imode           The ``pros::c::motor_brake_mode_e_t`` to set for the motor.
 =============== ===================================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -322,7 +355,7 @@ setting errno.
 setEncoderUnits
 ~~~~~~~~~~~~~~~
 
-Sets one of ``motor_encoder_units_e_t`` for the motor encoder.
+Sets one of ``pros::c::motor_encoder_units_e_t`` for the motor encoder.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -332,7 +365,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(const motor_encoder_units_e_t iunits) const override
+        virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const override
 
 =============== ===================================================================
  Parameters
@@ -348,7 +381,7 @@ setting errno.
 setGearing
 ~~~~~~~~~~
 
-Sets one of ``motor_gearset_e_t`` for the motor.
+Sets one of ``pros::c::motor_gearset_e_t`` for the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -358,7 +391,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(const motor_gearset_e_t igearset) const override
+        virtual std::int32_t setGearing(const pros::c::motor_gearset_e_t igearset) const override
 
 =============== ===================================================================
  Parameters

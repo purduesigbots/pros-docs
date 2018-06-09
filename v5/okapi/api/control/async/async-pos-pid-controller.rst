@@ -51,7 +51,6 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        using namespace okapi::literals;
         auto myInput = std::make_shared<okapi::ADIEncoder>('A', 'B');
         auto myOutput = std::make_shared<okapi::Motor>(1);
 

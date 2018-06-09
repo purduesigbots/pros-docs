@@ -34,7 +34,7 @@ Returns the time passed in ms since the previous call of this function.
       .. highlight:: cpp
       ::
 
-        virtual std::uint32_t getDt()
+        virtual QTime getDt()
 
 **Returns:** The time passed in ms since the previous call of this function.
 
@@ -50,7 +50,7 @@ Returns the time the timer was first constructed.
       .. highlight:: cpp
       ::
 
-        virtual std::uint32_t getStartingTime() const
+        virtual QTime getStartingTime() const
 
 **Returns:** The time the timer was first constructed.
 
@@ -66,7 +66,7 @@ Returns the time since the timer was first constructed.
       .. highlight:: cpp
       ::
 
-        virtual std::uint32_t getDtFromStart() const
+        virtual QTime getDtFromStart() const
 
 **Returns:** The time since the timer was first constructed.
 
@@ -110,7 +110,7 @@ Clears the hard marker.
       .. highlight:: cpp
       ::
 
-        virtual std::uint32_t clearHardMark()
+        virtual QTime clearHardMark()
 
 **Returns:** The old hard marker.
 
@@ -126,7 +126,7 @@ Returns the time since the time marker.
       .. highlight:: cpp
       ::
 
-        virtual std::uint32_t getDtFromMark() const
+        virtual QTime getDtFromMark() const
 
 **Returns:** The time since the time marker.
 
@@ -142,7 +142,7 @@ Returns the time since the hard time marker.
       .. highlight:: cpp
       ::
 
-        virtual std::uint32_t getDtFromHardMark() const
+        virtual QTime getDtFromHardMark() const
 
 **Returns:** The time since the hard time marker.
 
@@ -151,14 +151,15 @@ Returns the time since the hard time marker.
 repeat
 ~~~~~~
 
-Returns ``true`` when the input time period has passed, then resets. Meant to be used in loops to run an action every so many ms without blocking.
+Returns ``true`` when the input time period has passed, then resets. Meant to be used in loops to
+run an action every time period without blocking.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual bool repeat(const std::uint32_t ms)
+        virtual bool repeat(const QTime time)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -167,7 +168,7 @@ Returns ``true`` when the input time period has passed, then resets. Meant to be
         void opcontrol() {
           okapi::Timer timer;
           while (true) {
-            if (timer.repeat(100)) {
+            if (timer.repeat(100_ms)) {
               // Do something every 100 ms
             }
             pros::delay(10);
@@ -177,7 +178,46 @@ Returns ``true`` when the input time period has passed, then resets. Meant to be
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- ms           The time period in ms.
+ time           The time period.
 ============ ===============================================================
 
-**Returns:** ``true`` when the input time period has passed, ``false`` after reading ``true`` until the period has passed again
+**Returns:** ``true`` when the input time period has passed, ``false`` after reading ``true`` until
+the period has passed again
+
+----
+
+repeat
+~~~~~~
+
+Returns ``true`` when the input time period has passed, then resets. Meant to be used in loops to
+run an action every time period without blocking.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual bool repeat(const QFrequency time)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          okapi::Timer timer;
+          while (true) {
+            if (timer.repeat(10_Hz)) {
+              // Do something 10 times per second
+            }
+            pros::delay(10);
+          }
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ frequency    The repeat frequency.
+============ ===============================================================
+
+**Returns:** ``true`` when the input time period has passed, ``false`` after reading ``true`` until
+the period has passed again

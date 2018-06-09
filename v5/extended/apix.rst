@@ -2,6 +2,9 @@
 Extended API
 ============
 
+.. note:: Also included in the Extended API is `LVGL <https://littlevgl.com/>`_.
+          LVGL will be replacing TMEI for the display functionality.
+
 Functions
 =========
 

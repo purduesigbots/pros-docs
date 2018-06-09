@@ -39,7 +39,7 @@ Runs the controller until it has settled.
       ::
 
         using namespace okapi::literals;
-        okapi::AsyncPosIntegratedController controller(1_m); // Using motor 1
+        okapi::AsyncPosIntegratedController controller(1_mtr); // Using motor 1
         okapi::ControllerRunner runner;
 
         runner.runUntilSettled(1800, controller);
@@ -72,7 +72,7 @@ Runs the controller until it has settled.
         using namespace okapi::literals;
         okapi::IterativePosPIDController controller(0.5, 0, 0); // P controller
         okapi::ControllerRunner runner;
-        okapi::Motor myMotor = 1_m;
+        okapi::Motor myMotor = 1_mtr;
 
         runner.runUntilSettled(1800, controller, myMotor);
 
@@ -103,7 +103,7 @@ Runs the controller until it has reached its target, but not necessarily settled
       ::
 
         using namespace okapi::literals;
-        okapi::AsyncPosIntegratedController controller(1_m); // Using motor 1
+        okapi::AsyncPosIntegratedController controller(1_mtr); // Using motor 1
         okapi::ControllerRunner runner;
 
         runner.runUntilAtTarget(1800, controller);
@@ -136,7 +136,7 @@ Runs the controller until it has reached its target, but not necessarily settled
         using namespace okapi::literals;
         okapi::IterativePosPIDController controller(0.5, 0, 0); // P controller
         okapi::ControllerRunner runner;
-        okapi::Motor myMotor = 1_m;
+        okapi::Motor myMotor = 1_mtr;
 
         runner.runUntilSettled(1800, controller, myMotor);
 
