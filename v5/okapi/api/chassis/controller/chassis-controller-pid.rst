@@ -234,6 +234,9 @@ Parameters
 
 ----
 
+moveDistance
+~~~~~~~~~~~~
+
 Drives the robot straight for a distance (using closed-loop control). Blocks while the robot is
 driving.
 
