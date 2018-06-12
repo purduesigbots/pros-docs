@@ -17,13 +17,14 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeVelPIDControllerArgs(const double ikP, const double ikD)
+        IterativeVelPIDControllerArgs(const double ikP, const double ikD, const double ikF)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  ikp             The P term gain.
  ikD             The D term gain.
+ ikF             The Feed-Forward gain.
 =============== ===================================================================
 
 .. tabs ::
@@ -31,13 +32,15 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeVelPIDControllerArgs(const double ikP, const double ikD, const VelMathArgs &iparams)
+        IterativeVelPIDControllerArgs(const double ikP, const double ikD, const double ikF,
+                                      const VelMathArgs &iparams)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  ikp             The P term gain.
  ikD             The D term gain.
+ ikF             The Feed-Forward gain.
  iparams         The ``VelMath`` arguments.
 =============== ===================================================================
 
@@ -56,13 +59,14 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeVelPIDController(const double ikP, const double ikD)
+        IterativeVelPIDController(const double ikP, const double ikD, const double ikF)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  ikp             The P term gain.
  ikD             The D term gain.
+ ikF             The Feed-Forward gain.
 =============== ===================================================================
 
 .. tabs ::
@@ -70,13 +74,15 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeVelPIDController(const double ikP, const double ikD, const VelMathArgs &iparams)
+        IterativeVelPIDController(const double ikP, const double ikD, const double ikF,
+                                  const VelMathArgs &iparams)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  ikp             The P term gain.
  ikD             The D term gain.
+ ikF             The Feed-Forward gain.
  iparams         The `VelMath <../../filters/vel-math.html>`_ arguments.
 =============== ===================================================================
 
@@ -100,14 +106,15 @@ This constructor is used for testing.
       .. highlight:: cpp
       ::
 
-        IterativePosPIDController(const double ikP, const double ikD, const double ikBias, std::unique_ptr<VelMath> ivelMath, std::unique_ptr<Timer> iloopDtTimer, std::unique_ptr<SettledUtil> isettledUtil)
+        IterativeVelPIDController(const double ikP, const double ikD, const double ikF,
+                                  std::unique_ptr<VelMath> ivelMath, std::unique_ptr<Timer> iloopDtTimer, std::unique_ptr<SettledUtil> isettledUtil)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  ikp             The P term gain.
  ikD             The D term gain.
- ikBias          The controller bias.
+ ikF             The Feed-Forward gain.
  ivelMath        The `VelMath <../../filters/vel-math.html>`_ used for calculating plant velocity.
  iloopDtTimer    The timer used for calculating loop dt's.
  isettledUtil    The `SettledUtil <../util/settled-util.html>`_ for calculating if the controller is settled.
@@ -378,13 +385,14 @@ Sets controller gains.
       .. highlight:: cpp
       ::
 
-        virtual void setGains(const double ikP, const double ikD)
+        virtual void setGains(const double ikP, const double ikD, const double ikF)
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
  ikp             The P term gain.
  ikD             The D term gain.
+ ikF             The Feed-Forward gain.
 =============== ===================================================================
 
 ----

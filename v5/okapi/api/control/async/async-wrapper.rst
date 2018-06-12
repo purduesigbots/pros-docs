@@ -10,7 +10,9 @@ okapi::AsyncWrapper
 An `AsyncController <abstract-async-controller.html>`_ that transforms an
 `IterativeController <../iterative/abstract-iterative-controller.html>`_ into an
 `AsyncController <abstract-async-controller.html>`_ by running it in another task. In other words,
-the input controller will act like an `AsyncController <abstract-async-controller.html>`_.
+the input controller will act like an `AsyncController <abstract-async-controller.html>`_. The
+output of the `IterativeController <../iterative/abstract-iterative-controller.html>`_ will be
+scaled by the given scale (``127`` by default).
 
 Constructor(s)
 --------------
@@ -20,7 +22,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<IterativeController> icontroller)
+        AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<IterativeController> icontroller, const double iscale = 127)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -39,6 +41,7 @@ Constructor(s)
  iinput          The controller input.
  ioutput         The controller output.
  icontroller     The controller to use.
+ iscale          The scale applied to the controller output.
 =============== ===================================================================
 
 Methods
