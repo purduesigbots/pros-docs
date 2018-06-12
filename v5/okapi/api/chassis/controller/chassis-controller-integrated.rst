@@ -207,8 +207,8 @@ Parameters
 moveDistance
 ~~~~~~~~~~~~
 
-Drives the robot straight for a distance (using closed-loop control). Blocks while the robot is
-driving.
+Drives the robot straight for a distance with units of motor degrees (using closed-loop control).
+Blocks while the robot is driving.
 
 .. tabs ::
    .. tab :: Prototype
@@ -220,7 +220,7 @@ driving.
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- itarget         The distance to travel in meters.
+ itarget         The distance to travel in motor degrees.
 =============== ===================================================================
 
 ----
@@ -248,7 +248,8 @@ Parameters
 turnAngle
 ~~~~~~~~~
 
-Turns the robot clockwise in place (using closed-loop control). Blocks while the robot is turning.
+Turns the robot clockwise in place with units of motor degrees (using closed-loop control). Blocks
+while the robot is turning.
 
 .. tabs ::
    .. tab :: Prototype
@@ -260,5 +261,5 @@ Turns the robot clockwise in place (using closed-loop control). Blocks while the
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- idegTarget      The angle to turn in degrees.
+ idegTarget      The angle to turn in motor degrees.
 =============== ===================================================================
