@@ -170,8 +170,8 @@ setting ``errno``.
 
 ----
 
-motor_move_absolute
--------------------
+move_absolute
+~~~~~~~~~~~~~
 
 Sets the target absolute position for the motor to move to.
 
