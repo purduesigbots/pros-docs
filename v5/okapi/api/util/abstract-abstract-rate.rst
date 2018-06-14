@@ -1,26 +1,13 @@
-====
-Rate
-====
+========================
+(Abstract) Abstract Rate
+========================
 
 .. contents:: :local:
 
-okapi::Rate
-===========
+okapi::AbstractRate
+===================
 
-An `AbstractRate <abstract-abstract-rate.html>`_ which uses the PROS kernel for its
-implementation.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        Rate()
-
-----
+A timing-related utility class.
 
 Methods
 -------
@@ -36,7 +23,7 @@ Delay the current task such that it runs at the given frequency. The first delay
       .. highlight:: cpp
       ::
 
-        virtual void delay(const QFrequency ihz) override
+        virtual void delay(const QFrequency ihz) = 0
 
    .. tab :: Example
       .. highlight:: cpp
@@ -67,7 +54,7 @@ Delay the current task such that it runs every ``ims`` ms. The first delay will 
       .. highlight:: cpp
       ::
 
-        virtual void delay(const int ims) override
+        virtual void delay(const int ims) = 0
 
    .. tab :: Example
       .. highlight:: cpp
