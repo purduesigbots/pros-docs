@@ -105,3 +105,34 @@ connected.
 ============ ======================================================================================================
 
 **Returns:** ``true`` if the button is pressed, ``false`` if the controller is not connected
+
+----
+
+operator[]
+~~~~~~~~~~
+
+Returns a `ControllerButton <button/controller-button.html>`_ for the given button on this
+controller.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual ControllerButton operator[](const controller_digital_e_t ibtn)
+  
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        okapi::Controller myController;
+        okapi::ControllerButton myButton = myController[E_CONTROLLER_DIGITAL_A]
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ ibutton      The button on this controller.
+============ ======================================================================================================
+
+**Returns:** A `ControllerButton <button/controller-button.html>`_ that matches the given button on
+this controller.
