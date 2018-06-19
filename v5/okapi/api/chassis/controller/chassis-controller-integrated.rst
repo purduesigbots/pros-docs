@@ -8,7 +8,10 @@ okapi::ChassisControllerIntegrated
 ==================================
 
 A `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-The motors passed in will be put into degree units.
+The motors passed in will be put into degree units. If you are trying to make an instance of this
+class, you should most likely be using the
+`ChassisControllerFactory <chassis-controller-factory.html>`_ instead of a constructor from this
+class.
 
 Constructor(s)
 --------------

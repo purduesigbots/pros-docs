@@ -60,7 +60,12 @@ This constructor does not infer the encoders from the motors, and instead takes 
 okapi::SkidSteerModel
 =====================
 
-The model for a skid-steer chassis.
+The model for a skid-steer chassis. If you are trying to make an instance of this class, you should
+most likely be creating a type of
+`ChassisController <../controller/abstract-chassis-controller.html>`_ instead. If you really do
+mean to make an instance of a
+`ChassisModel <abstract-chassis-model.html>`_, then you should probably be using the
+`ChassisModelFactory <chassis-model-factory.html>`_ instead of a constructor from this class.
 
 Constructor(s)
 --------------

@@ -42,7 +42,12 @@ okapi::ThreeEncoderSkidSteerModel
 =================================
 
 The model for a skid-steer chassis. Uses a third encoder mounted perpendicular and between the two
-normal encoders.
+normal encoders. If you are trying to make an instance of this class, you should
+most likely be creating a type of
+`ChassisController <../controller/abstract-chassis-controller.html>`_ instead. If you really do
+mean to make an instance of a
+`ChassisModel <abstract-chassis-model.html>`_, then you should probably be using the
+`ChassisModelFactory <chassis-model-factory.html>`_ instead of a constructor from this class.
 
 Constructor(s)
 --------------
