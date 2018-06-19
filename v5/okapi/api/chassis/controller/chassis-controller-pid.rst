@@ -20,109 +20,6 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(Motor ileftSideMotor, Motor irightSideMotor,
-                             const IterativePosPIDControllerArgs &idistanceArgs,
-                             const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                             const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        okapi::ChassisControllerPID controller(1, -2,
-                                               okapi::IterativePosPIDControllerArgs(0, 0, 0),
-                                               okapi::IterativePosPIDControllerArgs(0, 0, 0));
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- ileftSideMotor           The left side motor in a skid-steer model.
- irightSideMotor          The right side motor in a skid-steer model.
- idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
- iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers a skid-steer layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerPID(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                             const IterativePosPIDControllerArgs &idistanceArgs,
-                             const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                             const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        okapi::ChassisControllerPID controller(okapi::MotorGroup({1, 2}),
-                                               okapi::MotorGroup({-3, -4}),
-                                               okapi::IterativePosPIDControllerArgs(0, 0, 0),
-                                               okapi::IterativePosPIDControllerArgs(0, 0, 0));
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- ileftSideMotor           The left side motor in a skid-steer model.
- irightSideMotor          The right side motor in a skid-steer model.
- idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
- iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers an x-drive layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerPID(Motor itopLeftMotor,
-                             Motor itopRightMotor,
-                             Motor ibottomRightMotor,
-                             Motor ibottomLeftMotor,
-                             const IterativePosPIDControllerArgs &idistanceArgs,
-                             const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                             const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // X-Drive controller
-        okapi::ChassisControllerPID controller(1, -2, -3, 4,
-                                               IterativePosPIDControllerArgs(0, 0, 0),
-                                               IterativePosPIDControllerArgs(0, 0, 0));
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- itopLeftMotor            The top left motor in an x-drive model.
- itopRightMotor           The top right motor in an x-drive model.
- ibottomRightMotor        The bottom right motor in an x-drive model.
- ibottomLeftMotor         The bottom left motor in an x-drive model.
- idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
- iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers a skid-steer layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
         ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
                              std::shared_ptr<AbstractMotor> irightSideMotor,
                              const IterativePosPIDControllerArgs &idistanceArgs,
@@ -188,7 +85,7 @@ This constructor infers an x-drive layout.
  iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
 
-This constructor is not recommended, there are less verbose options above.
+This constructor does not infer a layout.
 
 .. tabs ::
    .. tab :: Prototype

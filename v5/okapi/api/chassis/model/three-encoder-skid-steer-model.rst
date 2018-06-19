@@ -18,29 +18,6 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ThreeEncoderSkidSteerModelArgs(MotorGroup ileftSideMotor,
-                                       MotorGroup irightSideMotor,
-                                       ADIEncoder ileftEnc,
-                                       ADIEncoder imiddleEnc,
-                                       ADIEncoder irightEnc,
-                                       const double imaxOutput = 127)
-
-=================   ===================================================================
- Parameters
-=================   ===================================================================
- ileftSideMotor      The left side motor.
- irightSideMotor     The right side motor.
- ileftEnc            The left side encoder.
- imiddleEnc          The middle encoder.
- irightEnc           The right side encoder.
- imaxOutput          The maximum output value to the motors.
-=================   ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
         ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                        std::shared_ptr<AbstractMotor> irightSideMotor,
                                        std::shared_ptr<ContinuousRotarySensor> ileftEnc,

@@ -80,75 +80,6 @@ This constructor infers the encoders from the motors.
       .. highlight:: cpp
       ::
 
-        XDriveModel(Motor itopLeftMotor,
-                    Motor itopRightMotor,
-                    Motor ibottomRightMotor,
-                    Motor ibottomLeftMotor,
-                    const double imaxOutput = 127)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::XDriveModel model(1_mtr, 2_mtr, 3_mtr, 4_mtr);
-        }
-
-==================   ===================================================================
- Parameters
-==================   ===================================================================
- itopLeftMotor        The top left motor.
- itopRightMotor       The top right motor.
- ibottomRightMotor    The bottom right motor.
- ibottomLeftMotor     The bottom left motor.
- imaxOutput           The maximum output value to the motors.
-==================   ===================================================================
-
-This constructor does not infer the encoders from the motors, and instead takes explicitly specified encoders.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        XDriveModel(Motor itopLeftMotor,
-                    Motor itopRightMotor,
-                    Motor ibottomRightMotor,
-                    Motor ibottomLeftMotor,
-                    ADIEncoder ileftEnc,
-                    ADIEncoder irightEnc,
-                    const double imaxOutput = 127)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::XDriveModel model(1_mtr, 2_mtr, 3_mtr, 4_mtr,
-                                   okapi::ADIEncoder(1, 2), okapi::ADIEncoder(3, 4, true));
-        }
-
-==================   ===================================================================
- Parameters
-==================   ===================================================================
- itopLeftMotor        The top left motor.
- itopRightMotor       The top right motor.
- ibottomRightMotor    The bottom right motor.
- ibottomLeftMotor     The bottom left motor.
- ileftEnc             The left side encoder.
- irightEnc            The right side encoder.
- imaxOutput           The maximum output value to the motors.
-==================   ===================================================================
-
-This constructor infers the encoders from the motors.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
         XDriveModel(std::shared_ptr<AbstractMotor> itopLeftMotor,
                     std::shared_ptr<AbstractMotor> itopRightMotor,
                     std::shared_ptr<AbstractMotor> ibottomRightMotor,
@@ -449,7 +380,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const override
+        virtual void setBrakeMode(const AbstractMotor::motorBrakeMode mode) const override
 
 =============== ===================================================================
 Parameters
@@ -469,7 +400,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const override
+        virtual void setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const override
 
 =============== ===================================================================
 Parameters
@@ -489,7 +420,7 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const override
+        virtual void setGearing(const AbstractMotor::motorGearset gearset) const override
 
 =============== ===================================================================
 Parameters

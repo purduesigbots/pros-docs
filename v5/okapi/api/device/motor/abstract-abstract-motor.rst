@@ -233,7 +233,7 @@ setting errno.
 setBrakeMode
 ~~~~~~~~~~~~
 
-Sets one of ``pros::c::motor_brake_mode_e_t`` to the motor.
+Sets one of ``motorBrakeMode`` to the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -243,12 +243,12 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const = 0
+        virtual std::int32_t setBrakeMode(const motorBrakeMode imode) const = 0
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imode           The ``pros::c::motor_brake_mode_e_t`` to set for the motor.
+ imode           The new motor brake mode.
 =============== ===================================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -285,7 +285,7 @@ setting errno.
 setEncoderUnits
 ~~~~~~~~~~~~~~~
 
-Sets one of ``pros::c::motor_encoder_units_e_t`` for the motor encoder.
+Sets one of ``motorEncoderUnits`` for the motor encoder.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -295,7 +295,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const = 0
+        virtual std::int32_t setEncoderUnits(const motorEncoderUnits iunits) const = 0
 
 =============== ===================================================================
  Parameters
@@ -311,7 +311,7 @@ setting errno.
 setGearing
 ~~~~~~~~~~
 
-Sets one of ``pros::c::motor_gearset_e_t`` for the motor.
+Sets one of ``motorGearset`` for the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -321,7 +321,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(const pros::c::motor_gearset_e_t igearset) const = 0
+        virtual std::int32_t setGearing(const motorGearset igearset) const = 0
 
 =============== ===================================================================
  Parameters
@@ -401,3 +401,48 @@ Returns the encoder associated with this motor.
         virtual IntegratedEncoder getEncoder() const = 0
 
 **Returns:** The encoder associated with this motor.
+
+Enumerated Values
+=================
+
+motorBrakeMode
+--------------
+
+Indicates the current 'brake mode' of the motor.
+
+::
+
+  typedef enum {
+    E_MOTOR_BRAKE_COAST = 0, // Motor coasts when stopped, traditional behavior
+    E_MOTOR_BRAKE_BRAKE = 1, // Motor brakes when stopped
+    E_MOTOR_BRAKE_HOLD = 2, // Motor actively holds position when stopped
+    E_MOTOR_BRAKE_INVALID = INT32_MAX
+  } motorBrakeMode;
+
+motorEncoderUnits
+-----------------
+
+Indicates the units used by the motor's encoder.
+
+::
+
+  typedef enum {
+    E_MOTOR_ENCODER_DEGREES = 0,
+    E_MOTOR_ENCODER_ROTATIONS = 1,
+    E_MOTOR_ENCODER_COUNTS = 2,
+    E_MOTOR_ENCODER_INVALID = INT32_MAX
+  } motorEncoderUnits;
+
+motorGearset
+------------
+
+Indicates the internal gearing used by the motor.
+
+::
+
+  typedef enum {
+  	E_MOTOR_GEARSET_36 = 0, // 36:1, 100 RPM, Red gear set
+  	E_MOTOR_GEARSET_18 = 1, // 18:1, 200 RPM, Green gear set
+  	E_MOTOR_GEARSET_06 = 2, // 6:1, 600 RPM, Blue gear set
+  	E_MOTOR_GEARSET_INVALID = INT32_MAX
+  } motorGearset;

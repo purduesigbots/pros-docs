@@ -20,90 +20,6 @@ This constructor infers a skid-steer layout.
       .. highlight:: cpp
       ::
 
-        ChassisControllerIntegrated(Motor ileftSideMotor, Motor irightSideMotor,
-                                    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                                    const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        okapi::ChassisControllerIntegrated controller(1, -2);
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- ileftSideMotor           The left side motor in a skid-steer model.
- irightSideMotor          The right side motor in a skid-steer model.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers a skid-steer layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerIntegrated(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                                    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                                    const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        okapi::ChassisControllerIntegrated controller(okapi::MotorGroup({1, 2}),
-                                                      okapi::MotorGroup({-3, -4}));
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- ileftSideMotor           The left side motor in a skid-steer model.
- irightSideMotor          The right side motor in a skid-steer model.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers an x-drive layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerIntegrated(Motor itopLeftMotor,
-                                    Motor itopRightMotor,
-                                    Motor ibottomRightMotor,
-                                    Motor ibottomLeftMotor,
-                                    const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                                    const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        okapi::ChassisControllerIntegrated controller(1, -2, -3, 4);
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- itopLeftMotor            The top left motor in an x-drive model.
- itopRightMotor           The top right motor in an x-drive model.
- ibottomRightMotor        The bottom right motor in an x-drive model.
- ibottomLeftMotor         The bottom left motor in an x-drive model.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers a skid-steer layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
         ChassisControllerIntegrated(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                     std::shared_ptr<AbstractMotor> irightSideMotor,
                                     const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
@@ -157,7 +73,7 @@ This constructor infers an x-drive layout.
  iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
 
-This constructor is not recommended, there are less verbose options above.
+This constructor does not infer a layout.
 
 .. tabs ::
    .. tab :: Prototype

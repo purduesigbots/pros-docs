@@ -302,7 +302,7 @@ setting errno.
 setBrakeMode
 ~~~~~~~~~~~~
 
-Sets one of ``pros::c::motor_brake_mode_e_t`` to the motor.
+Sets one of ``AbstractMotor::motorBrakeMode`` to the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -312,12 +312,12 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const override
+        virtual std::int32_t setBrakeMode(const AbstractMotor::motorBrakeMode imode) const override
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imode           The ``pros::c::motor_brake_mode_e_t`` to set for the motor.
+ imode           The new motor brake mode.
 =============== ===================================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -354,7 +354,7 @@ setting errno.
 setEncoderUnits
 ~~~~~~~~~~~~~~~
 
-Sets one of ``pros::c::motor_encoder_units_e_t`` for the motor encoder.
+Sets one of ``AbstractMotor::motorEncoderUnits`` for the motor encoder.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -364,7 +364,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const override
+        virtual std::int32_t setEncoderUnits(const AbstractMotor::motorEncoderUnits iunits) const override
 
 =============== ===================================================================
  Parameters
@@ -380,7 +380,7 @@ setting errno.
 setGearing
 ~~~~~~~~~~
 
-Sets one of ``pros::c::motor_gearset_e_t`` for the motor.
+Sets one of ``AbstractMotor::motorGearset`` for the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -390,7 +390,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(const pros::c::motor_gearset_e_t igearset) const override
+        virtual std::int32_t setGearing(const AbstractMotor::motorGearset igearset) const override
 
 =============== ===================================================================
  Parameters
