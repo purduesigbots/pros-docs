@@ -45,4 +45,14 @@ If you want more information about using a particular part of the OkapiLib API a
 reading through the `API reference <../api/index.html>`_ , the **Topical Tutorials**
 offer longer examples and more detail about using the OkapiLib API.
 
-Coming soon :)
+Concepts
+--------
+
+This section is focused on covering specific OkapiLib (and sometimes general software engineering)
+concepts in detail.
+
+.. toctree::
+   :glob:
+   :titlesonly:
+
+   ./concepts/*
