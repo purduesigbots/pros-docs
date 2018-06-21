@@ -4,6 +4,8 @@ ADI (3 Wire Ports)
 
 .. note:: For a full list of functions for interacting with the ADI, see its
           `C API <../../api/c/adi.html>`_ and `C++ API <../../api/cpp/adi.html>`_.
+          
+.. contents:: :local: 
 
 Analog Sensors
 ==============
