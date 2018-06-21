@@ -17,7 +17,7 @@ checking out these following C tutorials is highly recommended.
 
 -  `Functions <http://www.studytonight.com/c/user-defined-functions-in-c.php>`__.
    C is a language that heavily emphasizes functions, and knowing how
-   they work is essential to using PROS. The `PROS API <../api/index.html>`_` is a set of functions,
+   they work is essential to using PROS. The `PROS API <../api/index.html>`_ is a set of functions,
    so any time that you want to interact with a sensor or motor, you're using functions.
 
 -  `Header
