@@ -41,8 +41,7 @@ process of writing a PROS program.
 Topical Tutorials
 =================
 
-If you want more information about using a particular part of the PROS API after
-reading through the `API reference <../api/index.html>`_ , the **Topical Tutorials**
+If you want more information about using a particular part of the `PROS API <../api/index.html>`_, the **Topical Tutorials**
 offer longer examples and more detail about using the PROS API.
 
 .. toctree::
