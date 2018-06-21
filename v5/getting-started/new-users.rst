@@ -9,11 +9,11 @@ part of a PROS project, and similarly the errors given for code that
 doesn't work will match errors given for any similar C/C++ code. Learning C/C++
 is essential for using PROS.
 
-If you are already familiar with C/C++ development outside of VEX, skip
-ahead to `Using PROS <#using-PROS>`__.
+I've never used PROS or written C/C++ code before, how do I start?
+------------------------------------------------------------------
 
 If you have not used PROS or done non-VEX C/C++ code development before,
-checking out these following C tutorials is highly recommended.
+we recommend that you check out C tutorials on the following topics:
 
 -  `Functions <http://www.studytonight.com/c/user-defined-functions-in-c.php>`__.
    C is a language that heavily emphasizes functions, and knowing how
@@ -27,7 +27,7 @@ checking out these following C tutorials is highly recommended.
    recommended that you make additional header files as you develop your
    code. Header files contain the declarations for functions and global
    variables (among other things), which is why the `PROS API <../api/index.html>`_
-   can be found in ``API.h``. Knowing what
+   can be found in ``include/pros/api.h``. Knowing what
    code should go in a header file (``.h``, ``.hpp``) or a source file (``.c``, ``.cpp``)
    can be difficult to determine at first, but it is a very useful skill
    to learn.
