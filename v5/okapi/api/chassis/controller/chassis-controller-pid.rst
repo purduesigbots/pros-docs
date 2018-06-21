@@ -27,7 +27,7 @@ This constructor infers a skid-steer layout.
                              std::shared_ptr<AbstractMotor> irightSideMotor,
                              const IterativePosPIDControllerArgs &idistanceArgs,
                              const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+                             const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
                              const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -65,7 +65,7 @@ This constructor infers an x-drive layout.
                              std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                              const IterativePosPIDControllerArgs &idistanceArgs,
                              const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+                             const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
                              const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -97,7 +97,7 @@ This constructor does not infer a layout.
 
         ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
                              const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+                             const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
                              const ChassisScales &iscales = ChassisScales({1, 1}))
 
 ======================   =======================================================================================
