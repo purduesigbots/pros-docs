@@ -26,7 +26,7 @@ checking out these following C tutorials is highly recommended.
    start a PROS project) contains a couple of header files, and it's
    recommended that you make additional header files as you develop your
    code. Header files contain the declarations for functions and global
-   variables (among other things), which is why the `PROS API <api/index>`_
+   variables (among other things), which is why the `PROS API <../api/index.html>`_
    can be found in ``API.h``. Knowing what
    code should go in a header file (``.h``, ``.hpp``) or a source file (``.c``, ``.cpp``)
    can be difficult to determine at first, but it is a very useful skill
