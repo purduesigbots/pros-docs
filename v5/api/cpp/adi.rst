@@ -540,8 +540,6 @@ Gets the number of ticks recorded by the encoder.
 
 There are 360 ticks in one revolution.
 
-Inherited from `ADIPort::get_value <get_value_>`_.
-
 Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
 
 .. tabs ::
