@@ -311,7 +311,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setBrakeMode(const AbstractMotor::motorBrakeMode mode) const
+        virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const
 
 =============== ===================================================================
 Parameters
@@ -331,7 +331,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setEncoderUnits(const AbstractMotor::motorEncoderUnits units) const
+        virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const
 
 =============== ===================================================================
 Parameters
@@ -351,7 +351,7 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setGearing(const AbstractMotor::motorGearset gearset) const
+        virtual void setGearing(const AbstractMotor::gearset gearset) const
 
 =============== ===================================================================
 Parameters

@@ -45,7 +45,7 @@ First, let's look at the code:
   auto myChassis = okapi::ChassisControllerIntegrated::create(
     {-1, -2}, // Left motors
     {3, 4}, // Right motors
-    AbstractMotor::motorGearset::E_MOTOR_GEARSET_36, // Torque gearset
+    AbstractMotor::gearset::red, // Torque gearset
     {4_in, 12.5_in} //4 inch wheels, 12.5 inch wheelbase width
   );
 

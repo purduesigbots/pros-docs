@@ -77,8 +77,8 @@ moveVelocity
 Sets the velocity for the motor.
 
 This velocity corresponds to different actual speeds depending on the gearset used for the motor.
-This results in a range of ``+-100`` for ``E_MOTOR_GEARSET_36``, ``+-200`` for
-``E_MOTOR_GEARSET_18``, and ``+-600`` for ``E_MOTOR_GEARSET_6``. The velocity is held with PID to
+This results in a range of ``+-100`` for ``red``, ``+-200`` for
+``green``, and ``+-600`` for ``blue``. The velocity is held with PID to
 ensure consistent speed, as opposed to setting the motor's voltage.
 
 This function uses the following values of errno when an error state is reached:
@@ -233,7 +233,7 @@ setting errno.
 setBrakeMode
 ~~~~~~~~~~~~
 
-Sets one of ``motorBrakeMode`` to the motor.
+Sets one of ``brakeMode`` to the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -243,7 +243,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(const motorBrakeMode imode) const = 0
+        virtual std::int32_t setBrakeMode(const brakeMode imode) const = 0
 
 =============== ===================================================================
  Parameters
@@ -285,7 +285,7 @@ setting errno.
 setEncoderUnits
 ~~~~~~~~~~~~~~~
 
-Sets one of ``motorEncoderUnits`` for the motor encoder.
+Sets one of ``encoderUnits`` for the motor encoder.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -295,7 +295,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(const motorEncoderUnits iunits) const = 0
+        virtual std::int32_t setEncoderUnits(const encoderUnits iunits) const = 0
 
 =============== ===================================================================
  Parameters
@@ -311,7 +311,7 @@ setting errno.
 setGearing
 ~~~~~~~~~~
 
-Sets one of ``motorGearset`` for the motor.
+Sets one of ``gearset`` for the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -321,7 +321,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(const motorGearset igearset) const = 0
+        virtual std::int32_t setGearing(const gearset igearset) const = 0
 
 =============== ===================================================================
  Parameters
@@ -403,46 +403,82 @@ Returns the encoder associated with this motor.
 **Returns:** The encoder associated with this motor.
 
 Enumerated Values
-=================
+-----------------
 
-motorBrakeMode
---------------
+brakeMode
+~~~~~~~~~
 
 Indicates the current 'brake mode' of the motor.
 
 ::
 
-  typedef enum {
-    E_MOTOR_BRAKE_COAST = 0, // Motor coasts when stopped, traditional behavior
-    E_MOTOR_BRAKE_BRAKE = 1, // Motor brakes when stopped
-    E_MOTOR_BRAKE_HOLD = 2, // Motor actively holds position when stopped
-    E_MOTOR_BRAKE_INVALID = INT32_MAX
-  } motorBrakeMode;
+  enum class brakeMode {
+    coast = 0, // Motor coasts when stopped, traditional behavior
+    brake = 1, // Motor brakes when stopped
+    hold = 2,  // Motor actively holds position when stopped
+    invalid = INT32_MAX
+  };
 
-motorEncoderUnits
------------------
+encoderUnits
+~~~~~~~~~~~~
 
 Indicates the units used by the motor's encoder.
 
 ::
 
-  typedef enum {
-    E_MOTOR_ENCODER_DEGREES = 0,
-    E_MOTOR_ENCODER_ROTATIONS = 1,
-    E_MOTOR_ENCODER_COUNTS = 2,
-    E_MOTOR_ENCODER_INVALID = INT32_MAX
-  } motorEncoderUnits;
+  enum class encoderUnits {
+    degrees = 0,
+    rotations = 1,
+    counts = 2,
+    invalid = INT32_MAX
+  };
 
-motorGearset
-------------
+gearset
+~~~~~~~
 
 Indicates the internal gearing used by the motor.
 
 ::
 
-  typedef enum {
-  	E_MOTOR_GEARSET_36 = 0, // 36:1, 100 RPM, Red gear set
-  	E_MOTOR_GEARSET_18 = 1, // 18:1, 200 RPM, Green gear set
-  	E_MOTOR_GEARSET_06 = 2, // 6:1, 600 RPM, Blue gear set
-  	E_MOTOR_GEARSET_INVALID = INT32_MAX
-  } motorGearset;
+  enum class gearset {
+    red = 0,   // 36:1, 100 RPM, Red gear set
+    green = 1, // 18:1, 200 RPM, Green gear set
+    blue = 2,  // 6:1, 600 RPM, Blue gear set
+    invalid = INT32_MAX
+  };
+
+Helper Structs
+--------------
+
+GearsetRatioPair
+~~~~~~~~~~~~~~~~
+
+This is a simple data class to hold an internal gearset and an external gear ratio.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        struct GearsetRatioPair {
+          GearsetRatioPair(const gearset igearset, const double iratio = 1)
+            : internalGearset(igearset), ratio(iratio) {
+          }
+
+          ~GearsetRatioPair() = default;
+
+          const gearset internalGearset;
+          const double ratio = 1;
+        };
+
+        AbstractMotor::GearsetRatioPair operator*(const AbstractMotor::gearset gearset, const double ratio);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // GearsetRatioPair is implicitly constructable from a gearset
+        okapi::AbstractMotor::GearsetRatioPair foo = okapi::AbstractMotor::gearset::green;
+
+        // You can also multiple a gearset by an external gear ratio
+        okapi::AbstractMotor::GearsetRatioPair foo = okapi::AbstractMotor::gearset::green * (2/3);

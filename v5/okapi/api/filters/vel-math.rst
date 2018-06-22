@@ -46,11 +46,14 @@ Constructor(s)
 okapi::VelMath
 ==============
 
-Velocity math helper. Calculates filtered velocity. Filters using a 3-tap `median filter <median-filter.html>`_ and a 5-tap
-`averaging filter <average-filter.html>`_ by default, unless a different filter is given in the constructor.
+Velocity math helper. Calculates filtered velocity. Filters using a 3-tap
+`median filter <median-filter.html>`_ and a 5-tap `averaging filter <average-filter.html>`_ by
+default, unless a different filter is given in the constructor.
 
 Constructor(s)
 --------------
+
+Throws a ````std::invalid_argument```` exception if `iticksPerRev` is zero.
 
 .. tabs ::
    .. tab :: Prototype
@@ -73,6 +76,8 @@ Constructor(s)
  iticksPerRev    The number of ticks per revolution (or whatever units you are using).
 =============== ===================================================================
 
+Throws a ````std::invalid_argument```` exception if `iticksPerRev` is zero.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -89,6 +94,8 @@ Constructor(s)
             ComposableFilterArgs({[] { return new MedianFilter<3>(); },
                                   [] { return new AverageFilter<5>(); }}));
         }
+
+Throws a ````std::invalid_argument```` exception if `iticksPerRev` is zero.
 
 =============== ===================================================================
  Parameters
@@ -110,7 +117,8 @@ Constructor(s)
  iparams         The ``VelMath`` arguments.
 =============== ===================================================================
 
-This constructor is used for testing.
+This constructor is used for testing. Throws a ````std::invalid_argument```` exception if `iticksPerRev` is
+zero.
 
 .. tabs ::
    .. tab :: Prototype

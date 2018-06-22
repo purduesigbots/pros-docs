@@ -165,7 +165,7 @@ This velocity corresponds to different actual speeds depending on the gearset
 used for the motor. This results in a range of +-100 for
 `E_MOTOR_GEARSET_36 <motors.html#motor-gearset-e-t>`_,
 +-200 for `E_MOTOR_GEARSET_18 <motors.html#motor-gearset-e-t>`_, and +-600 for
-`E_MOTOR_GEARSET_6 <motors.html#motor-gearset-e-t>`_. The velocity
+`blue <motors.html#motor-gearset-e-t>`_. The velocity
 is held with PID to ensure consistent speed, as opposed to setting the motor's
 voltage.
 

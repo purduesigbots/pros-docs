@@ -11,72 +11,10 @@ A `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's i
 The motors passed in will be put into degree units. If you are trying to make an instance of this
 class, you should most likely be using the
 `ChassisControllerFactory <chassis-controller-factory.html>`_ instead of a constructor from this
-class.
+class. Throws a ````std::invalid_argument```` exception if the gear ratio is zero.
 
 Constructor(s)
 --------------
-
-This constructor infers a skid-steer layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerIntegrated(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                                    std::shared_ptr<AbstractMotor> irightSideMotor,
-                                    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-                                    const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        okapi::ChassisControllerIntegrated controller(std::make_shared<okapi::MotorGroup>({1, 2}),
-                                                      std::make_shared<okapi::MotorGroup>({-3, -4}));
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- ileftSideMotor           The left side motor in a skid-steer model.
- irightSideMotor          The right side motor in a skid-steer model.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers an x-drive layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerIntegrated(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                                    std::shared_ptr<AbstractMotor> itopRightMotor,
-                                    std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                                    std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                                    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
-                                    const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // X-Drive controller
-        okapi::ChassisControllerIntegrated controller(1, -2, -3, 4);
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- itopLeftMotor            The top left motor in an x-drive model.
- itopRightMotor           The top right motor in an x-drive model.
- ibottomRightMotor        The bottom right motor in an x-drive model.
- ibottomLeftMotor         The bottom left motor in an x-drive model.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor does not infer a layout.
 
 .. tabs ::
    .. tab :: Prototype
@@ -86,7 +24,7 @@ This constructor does not infer a layout.
         ChassisControllerIntegrated(std::shared_ptr<ChassisModel> imodel,
                                     const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
                                     const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-                                    const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+                                    const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                                     const ChassisScales &iscales = ChassisScales({1, 1}))
 
 ======================   =======================================================================================
@@ -95,7 +33,7 @@ This constructor does not infer a layout.
  imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
  ileftControllerArgs      The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the left side PID controller.
  irightControllerArgs     The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the right side PID controller.
- igearset                 The motor's internal planetary gearset.
+ igearset                 The motor's internal planetary gearset and external gear ratio.
  iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
 

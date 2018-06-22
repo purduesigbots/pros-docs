@@ -21,7 +21,8 @@ create
 ~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units.
+This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
    .. tab :: Prototype
@@ -30,7 +31,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
 
         static ChassisControllerIntegrated create(
           Motor ileftSideMotor, Motor irightSideMotor,
-          const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}));
 
    .. tab :: Example
@@ -45,7 +46,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           -11, 1,
-          AbstractMotor::motorGearset::E_MOTOR_GEARSET_18,
+          AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
 
@@ -54,7 +55,7 @@ Parameters
 ================= ===================================================================
  ileftSideMotor    The left side motor.
  irightSideMotor   The right side motor.
- igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ used in all the drive motors.
+ igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
  iscales           See `ChassisScales <chassis-scales.html>`_ docs.
 ================= ===================================================================
 
@@ -62,7 +63,8 @@ create
 ~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units.
+This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
    .. tab :: Prototype
@@ -71,7 +73,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
 
         static ChassisControllerIntegrated create(
           MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-          const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}));
 
    .. tab :: Example
@@ -86,7 +88,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           {1, 2}, {-3, -4},
-          AbstractMotor::motorGearset::E_MOTOR_GEARSET_18,
+          AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
 
@@ -95,7 +97,7 @@ Parameters
 ================= ===================================================================
  ileftSideMotor    The left side motor.
  irightSideMotor   The right side motor.
- igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ used in all the drive motors.
+ igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
  iscales           See `ChassisScales <chassis-scales.html>`_ docs.
 ================= ===================================================================
 
@@ -103,7 +105,8 @@ create
 ~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units.
+This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
    .. tab :: Prototype
@@ -112,7 +115,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
 
         static ChassisControllerIntegrated create(
           Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-          const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}));
 
    .. tab :: Example
@@ -127,7 +130,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           1, -2, -3, 4,
-          AbstractMotor::motorGearset::E_MOTOR_GEARSET_18,
+          AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
 
@@ -138,7 +141,7 @@ Parameters
  itopRightMotor      The top right motor.
  ibottomRightMotor   The bottom right motor.
  ibottomLeftMotor    The bottom left motor.
- igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ used in all the drive motors.
+ igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
  iscales             See `ChassisScales <chassis-scales.html>`_ docs.
 =================== ===================================================================
 
@@ -149,7 +152,8 @@ create
 ~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units.
+This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
    .. tab :: Prototype
@@ -160,7 +164,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           Motor ileftSideMotor, Motor irightSideMotor,
           const IterativePosPIDControllerArgs &idistanceArgs,
           const IterativePosPIDControllerArgs &iangleArgs,
-          const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}));
 
    .. tab :: Example
@@ -179,7 +183,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           -11, 1,
           okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
           okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0),
-          AbstractMotor::motorGearset::E_MOTOR_GEARSET_18,
+          AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
 
@@ -190,7 +194,7 @@ Parameters
  irightSideMotor   The right side motor.
  idistanceArgs     The distance PID controller params.
  iangleArgs        The angle PID controller params (keeps the robot straight).
- igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ used in all the drive motors.
+ igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
  iscales           See `ChassisScales <chassis-scales.html>`_ docs.
 ================= ===================================================================
 
@@ -198,7 +202,8 @@ create
 ~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units.
+This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
    .. tab :: Prototype
@@ -209,7 +214,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
           const IterativePosPIDControllerArgs &idistanceArgs,
           const IterativePosPIDControllerArgs &iangleArgs,
-          const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}));
 
    .. tab :: Example
@@ -228,7 +233,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           {1, 2}, {-3, -4},
           okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
           okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0),
-          AbstractMotor::motorGearset::E_MOTOR_GEARSET_18,
+          AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
 
@@ -239,7 +244,7 @@ Parameters
  irightSideMotor   The right side motor.
  idistanceArgs     The distance PID controller params.
  iangleArgs        The angle PID controller params (keeps the robot straight).
- igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ used in all the drive motors.
+ igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
  iscales           See `ChassisScales <chassis-scales.html>`_ docs.
 ================= ===================================================================
 
@@ -247,7 +252,8 @@ create
 ~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units.
+This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
    .. tab :: Prototype
@@ -258,7 +264,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
           const IterativePosPIDControllerArgs &idistanceArgs,
           const IterativePosPIDControllerArgs &iangleArgs,
-          const AbstractMotor::motorGearset igearset = AbstractMotor::motorGearset::E_MOTOR_GEARSET_36,
+          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}));
 
    .. tab :: Example
@@ -277,7 +283,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           1, -2, -3, 4,
           okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
           okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0),
-          AbstractMotor::motorGearset::E_MOTOR_GEARSET_18,
+          AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
 
@@ -290,6 +296,6 @@ Parameters
  ibottomLeftMotor    The bottom left motor.
  idistanceArgs       The distance PID controller params.
  iangleArgs          The angle PID controller params (keeps the robot straight).
- igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ used in all the drive motors.
+ igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
  iscales             See `ChassisScales <chassis-scales.html>`_ docs.
 =================== ===================================================================
