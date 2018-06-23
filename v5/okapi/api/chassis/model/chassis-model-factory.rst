@@ -32,7 +32,7 @@ encoders).
       ::
 
         static SkidSteerModel create(Motor ileftSideMotor, Motor irightSideMotor,
-                                     const double imaxOutput = 127);
+                                     const double imaxOutput = 127)
 
 ================= ===================================================================
 Parameters
@@ -57,7 +57,7 @@ encoders).
       ::
 
         static SkidSteerModel create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                                     const double imaxOutput = 127);
+                                     const double imaxOutput = 127)
 
 ================= ===================================================================
 Parameters
@@ -80,7 +80,7 @@ motors are powered ``+127``, the robot should move forward in a straight line.
 
         static SkidSteerModel create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                                      ADIEncoder ileftEnc, ADIEncoder irightEnc,
-                                     const double imaxOutput = 127);
+                                     const double imaxOutput = 127)
 
 ================= ===================================================================
 Parameters
@@ -110,7 +110,7 @@ integrated encoders).
       ::
 
         static XDriveModel create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-                                  const double imaxOutput = 127);
+                                  const double imaxOutput = 127)
 
 =================== ===================================================================
 Parameters
@@ -138,7 +138,7 @@ integrated encoders).
 
         static XDriveModel create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
                                   ADIEncoder ileftEnc, ADIEncoder irightEnc,
-                                  const double imaxOutput = 127);
+                                  const double imaxOutput = 127)
 
 =================== ===================================================================
 Parameters
@@ -168,7 +168,7 @@ motors are powered ``+127``, the robot should move forward in a straight line.
 
         static ThreeEncoderSkidSteerModel create(Motor ileftSideMotor, Motor irightSideMotor,
                                                  ADIEncoder ileftEnc, ADIEncoder imiddleEnc, ADIEncoder irightEnc,
-                                                 const double imaxOutput = 127);
+                                                 const double imaxOutput = 127)
 
 ================= ===================================================================
 Parameters
@@ -194,7 +194,7 @@ motors are powered ``+127``, the robot should move forward in a straight line.
 
         static ThreeEncoderSkidSteerModel create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                                                  ADIEncoder ileftEnc, ADIEncoder imiddleEnc, ADIEncoder irightEnc,
-                                                 const double imaxOutput = 127);
+                                                 const double imaxOutput = 127)
 
 ================= ===================================================================
 Parameters

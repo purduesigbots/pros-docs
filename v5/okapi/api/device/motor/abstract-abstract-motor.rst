@@ -398,7 +398,7 @@ Returns the encoder associated with this motor.
       .. highlight:: cpp
       ::
 
-        virtual IntegratedEncoder getEncoder() const = 0
+        virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() const = 0
 
 **Returns:** The encoder associated with this motor.
 
