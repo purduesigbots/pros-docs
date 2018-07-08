@@ -359,14 +359,14 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``EACCES``  - Another resource is currently trying to access the port.
 
-Analogous to `motor_get_target <../c/motors.html#motor-get-target>`_.
+Analogous to `motor_get_target_position <../c/motors.html#motor-get-target-position>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        double pros::Motor::get_target ( )
+        double pros::Motor::get_target_position ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -375,7 +375,7 @@ Analogous to `motor_get_target <../c/motors.html#motor-get-target>`_.
         void autonomous() {
           pros::Motor motor (1);
           motor.move_absolute(100, 100);
-          std::cout << "Motor Target: " << motor.get_target();
+          std::cout << "Motor Target: " << motor.get_target_position();
           // Prints 100
         }
 
@@ -393,14 +393,14 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``EACCES``  - Another resource is currently trying to access the port.
 
-Analogous to `motor_get_velocity <../c/motors.html#motor-get-velocity>`_.
+Analogous to `motor_get_target_velocity <../c/motors.html#motor-get-target-velocity>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::get_velocity ( )
+        int32_t pros::Motor::get_target_velocity ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -411,7 +411,7 @@ Analogous to `motor_get_velocity <../c/motors.html#motor-get-velocity>`_.
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             motor.move_velocity(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
-            std::cout << "Motor Velocity: " << motor.get_velocity();
+            std::cout << "Motor Velocity: " << motor.get_target_velocity();
             // Prints the value of E_CONTROLLER_ANALOG_LEFT_Y
             pros::delay(2);
           }
