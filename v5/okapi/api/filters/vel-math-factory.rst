@@ -68,3 +68,64 @@ Parameters
  iticksPerRev      The number of ticks per revolution (or whatever units you are using).
  ifilter           The filter used for filtering the calculated velocity.
 ================= ===================================================================
+
+createPtr
+~~~~~~~~~
+
+Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
+`averaging filter <average-filter.html>`_ by default, unless a different filter is given. Throws a
+``std::invalid_argument`` exception if ``iticksPerRev`` is zero.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        static std::unique_ptr<VelMath> createPtr(double iticksPerRev)
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ iticksPerRev      The number of ticks per revolution (or whatever units you are using).
+================= ===================================================================
+
+createPtr
+~~~~~~~~~
+
+Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
+`averaging filter <average-filter.html>`_ by default, unless a different filter is given. Throws a
+``std::invalid_argument`` exception if ``iticksPerRev`` is zero.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        static std::unique_ptr<VelMath> createPtr(double iticksPerRev, std::shared_ptr<Filter> ifilter)
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ iticksPerRev      The number of ticks per revolution (or whatever units you are using).
+ ifilter           The filter used for filtering the calculated velocity.
+================= ===================================================================
+
+createPtr
+~~~~~~~~~
+
+Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
+`averaging filter <average-filter.html>`_ by default, unless a different filter is given. Throws a
+``std::invalid_argument`` exception if ``iticksPerRev`` is zero.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        static std::unique_ptr<VelMath> createPtr(const VelMathArgs &ivelMathArgs)
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ ivelMathArgs      The ``VelMathArgs`` to use.
+================= ===================================================================
