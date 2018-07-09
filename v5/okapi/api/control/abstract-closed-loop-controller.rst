@@ -20,7 +20,7 @@ Sets the target for the controller.
       .. highlight:: cpp
       ::
 
-        virtual void setTarget(const double itarget) = 0
+        virtual void setTarget(double itarget) = 0
 
 ============ ===============================================================
  Parameters
@@ -89,7 +89,7 @@ controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable(const bool iisDisabled) = 0
+        virtual void flipDisable(bool iisDisabled) = 0
 
 ============= ===============================================================
  Parameters

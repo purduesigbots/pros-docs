@@ -20,7 +20,7 @@ Drives the robot forwards (using open-loop control).
       .. highlight:: cpp
       ::
 
-        virtual void forward(const double ispeed) const = 0
+        virtual void forward(double ispeed) const = 0
 
 =============== ===================================================================
 Parameters
@@ -46,7 +46,7 @@ The algorithm is (approximately):
       .. highlight:: cpp
       ::
 
-        virtual void driveVector(const double iySpeed, const double izRotation) const = 0
+        virtual void driveVector(double iySpeed, double izRotation) const = 0
 
 =============== ===================================================================
 Parameters
@@ -67,7 +67,7 @@ Turns the robot clockwise (using open-loop control).
       .. highlight:: cpp
       ::
 
-        virtual void rotate(const double ispeed) const = 0
+        virtual void rotate(double ispeed) const = 0
 
 =============== ===================================================================
 Parameters
@@ -101,7 +101,7 @@ Drives the robot with a tank drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void tank(const double ileftSpeed, const double irightSpeed, const double ithreshold = 0) const = 0
+        virtual void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const = 0
 
 =============== ===================================================================
 Parameters
@@ -123,7 +123,7 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void arcade(const double iySpeed, const double izRotation, const double ithreshold = 0) const = 0
+        virtual void arcade(double iySpeed, double izRotation, double ithreshold = 0) const = 0
 
 =============== ===================================================================
 Parameters
@@ -145,7 +145,7 @@ Powers the left side motors.
       .. highlight:: cpp
       ::
 
-        virtual void left(const double ispeed) const = 0
+        virtual void left(double ispeed) const = 0
 
 =============== ===================================================================
 Parameters
@@ -165,7 +165,7 @@ Powers the right side motors.
       .. highlight:: cpp
       ::
 
-        virtual void right(const double ispeed) const = 0
+        virtual void right(double ispeed) const = 0
 
 =============== ===================================================================
 Parameters
@@ -215,7 +215,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setBrakeMode(const AbstractMotor::brakeMode mode) const = 0
+        virtual void setBrakeMode(AbstractMotor::brakeMode mode) const = 0
 
 =============== ===================================================================
 Parameters
@@ -235,7 +235,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setEncoderUnits(const AbstractMotor::encoderUnits units) const = 0
+        virtual void setEncoderUnits(AbstractMotor::encoderUnits units) const = 0
 
 =============== ===================================================================
 Parameters
@@ -255,7 +255,7 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setGearing(const AbstractMotor::gearset gearset) const = 0
+        virtual void setGearing(AbstractMotor::gearset gearset) const = 0
 
 =============== ===================================================================
 Parameters

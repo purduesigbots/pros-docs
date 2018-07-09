@@ -26,7 +26,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveAbsolute(const double iposition, const std::int32_t ivelocity) const = 0
+        virtual std::int32_t moveAbsolute(double iposition, std::int32_t ivelocity) const = 0
 
 =============== ===================================================================
  Parameters
@@ -57,7 +57,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveRelative(const double iposition, const std::int32_t ivelocity) const = 0
+        virtual std::int32_t moveRelative(double iposition, std::int32_t ivelocity) const = 0
 
 =============== ===================================================================
  Parameters
@@ -89,7 +89,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const = 0
+        virtual std::int32_t moveVelocity(std::int16_t ivelocity) const = 0
 
 =============== ===================================================================
  Parameters
@@ -115,7 +115,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const = 0
+        virtual std::int32_t moveVoltage(std::int16_t ivoltage) const = 0
 
 =============== ===================================================================
  Parameters
@@ -243,7 +243,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(const brakeMode imode) const = 0
+        virtual std::int32_t setBrakeMode(brakeMode imode) const = 0
 
 =============== ===================================================================
  Parameters
@@ -269,7 +269,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const = 0
+        virtual std::int32_t setCurrentLimit(std::int32_t ilimit) const = 0
 
 =============== ===================================================================
  Parameters
@@ -295,7 +295,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(const encoderUnits iunits) const = 0
+        virtual std::int32_t setEncoderUnits(encoderUnits iunits) const = 0
 
 =============== ===================================================================
  Parameters
@@ -321,7 +321,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(const gearset igearset) const = 0
+        virtual std::int32_t setGearing(gearset igearset) const = 0
 
 =============== ===================================================================
  Parameters
@@ -349,7 +349,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setReversed(const bool ireverse) const = 0
+        virtual std::int32_t setReversed(bool ireverse) const = 0
 
 =============== ===================================================================
  Parameters
@@ -375,7 +375,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setVoltageLimit(const std::int32_t ilimit) const = 0
+        virtual std::int32_t setVoltageLimit(std::int32_t ilimit) const = 0
 
 =============== ===================================================================
  Parameters
@@ -471,7 +471,7 @@ This is a simple data class to hold an internal gearset and an external gear rat
           const double ratio = 1;
         };
 
-        AbstractMotor::GearsetRatioPair operator*(const AbstractMotor::gearset gearset, const double ratio);
+        AbstractMotor::GearsetRatioPair operator*(AbstractMotor::gearset gearset, double ratio);
 
    .. tab :: Example
       .. highlight:: cpp

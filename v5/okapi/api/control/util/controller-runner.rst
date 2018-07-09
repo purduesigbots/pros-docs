@@ -7,19 +7,13 @@ Controller Runner
 okapi::ControllerRunner
 =======================
 
+A utility class to run a controller until it has settled or reached its target. If you are trying
+to create an instance of this class, you should most likely be using the
+`ControllerRunnerFactory <controller-runner-factory.html>`_ instead of a constructor from this
+class.
+
 Constructor(s)
 --------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ControllerRunner()
-
-----
-
-This constructor is used for testing.
 
 .. tabs ::
    .. tab :: Prototype

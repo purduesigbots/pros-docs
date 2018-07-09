@@ -62,7 +62,7 @@ Constructor(s)
                                        std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                                        std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                                        std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                                       const double imaxOutput = 127)
+                                       double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -80,7 +80,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams)
+        explicit ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams)
 
 =================   ===================================================================
  Parameters
@@ -101,6 +101,6 @@ Returns the current sensor values in the format ``{left, right, middle}``.
       .. highlight:: cpp
       ::
 
-        virtual std::valarray<std::int32_t> getSensorVals() const override
+        std::valarray<std::int32_t> getSensorVals() const override
 
 **Returns:** The current sensor values.

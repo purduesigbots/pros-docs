@@ -161,7 +161,7 @@ run an action every time period without blocking.
       .. highlight:: cpp
       ::
 
-        virtual bool repeat(const QTime time) = 0
+        virtual bool repeat(QTime time) = 0
 
    .. tab :: Example
       .. highlight:: cpp
@@ -199,7 +199,7 @@ run an action every time period without blocking.
       .. highlight:: cpp
       ::
 
-        virtual bool repeat(const QFrequency time) = 0
+        virtual bool repeat(QFrequency time) = 0
 
    .. tab :: Example
       .. highlight:: cpp

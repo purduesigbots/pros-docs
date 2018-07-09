@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor)
+        explicit AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor)
 
 =============== ===================================================================
  Parameters
@@ -30,7 +30,10 @@ Constructor(s)
 okapi::AsyncPosIntegratedController
 ===================================
 
-An `AsyncPositionController <abstract-async-position-controller.html>`_ that uses the V5 motor's onboard control.
+An `AsyncPositionController <abstract-async-position-controller.html>`_ that uses the V5 motor's
+onboard control. If you are trying to create an instance of this class, you should most likely be
+using the `AsyncControllerFactory <async-controller-factory.html>`_ instead of a constructor from
+this class.
 
 Constructor(s)
 --------------
@@ -40,19 +43,13 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedController(Motor imotor)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        using namespace okapi::literals;
-        okapi::AsyncPosIntegratedController controller(1_mtr);
+        AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor, std::unique_ptr<SettledUtil> isettledUtil)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
+ isettledUtil    The ``SettledUtil`` to use.
 =============== ===================================================================
 
 .. tabs ::
@@ -60,45 +57,13 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedController(MotorGroup imotor)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        using namespace okapi::literals;
-        okapi::AsyncPosIntegratedController controller(okapi::MotorGroup({1_mtr, 2_mtr}));
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams)
+        AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams, std::unique_ptr<SettledUtil> isettledUtil)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  iparams         The ``AsyncPosIntegratedController`` arguments.
+ isettledUtil    The ``SettledUtil`` to use.
 =============== ===================================================================
 
 Methods
@@ -114,7 +79,7 @@ Sets the target for the controller.
       .. highlight:: cpp
       ::
 
-        virtual void setTarget(const double itarget) override
+        void setTarget(double itarget) override
 
 ============ ===============================================================
  Parameters
@@ -134,7 +99,7 @@ Returns the last error of the controller.
       .. highlight:: cpp
       ::
 
-        virtual double getError() const override
+        double getError() const override
 
 **Returns:** The last error of the controller.
 
@@ -151,7 +116,7 @@ of error has been small enough for a long enough period.
       .. highlight:: cpp
       ::
 
-        virtual bool isSettled() override
+        bool isSettled() override
 
 **Returns:** Whether the controller is settled.
 
@@ -167,7 +132,7 @@ Resets the controller so it can start from 0 again properly. Keeps configuration
       .. highlight:: cpp
       ::
 
-        virtual void reset() override
+        void reset() override
 
 ----
 
@@ -182,7 +147,7 @@ the controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable() override
+        void flipDisable() override
 
 ----
 
@@ -197,7 +162,7 @@ controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable(const bool iisDisabled) override
+        void flipDisable(bool iisDisabled) override
 
 ============= ===============================================================
  Parameters
@@ -217,6 +182,6 @@ Returns whether the controller is currently disabled.
       .. highlight:: cpp
       ::
 
-        virtual bool isDisabled() const override
+        bool isDisabled() override
 
 **Returns:** Whether the controller is currently disabled.

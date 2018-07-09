@@ -46,7 +46,7 @@ Sets time between loops. Default does nothing.
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const QTime isampleTime)
+        virtual void setSampleTime(QTime isampleTime)
 
 =============== ===================================================================
 Parameters
