@@ -7,7 +7,9 @@ Async Pos PID Controller
 okapi::AsyncPosPIDController
 ============================
 
-An `AsyncPositionController <abstract-async-position-controller.html>`_ that uses PID.
+An `AsyncPositionController <abstract-async-position-controller.html>`_ that uses PID. If you are
+trying to create an instance of this class, you should most likely be using the
+`AsyncControllerFactory <async-controller-factory.html>`_ instead of a constructor from this class.
 
 Constructor(s)
 --------------

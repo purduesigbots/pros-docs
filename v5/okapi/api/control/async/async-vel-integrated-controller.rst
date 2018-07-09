@@ -30,7 +30,10 @@ Constructor(s)
 okapi::AsyncVelIntegratedController
 ===================================
 
-An `AsyncVelocityController <abstract-async-velocity-controller.html>`_ that uses the V5 motor's onboard control.
+An `AsyncVelocityController <abstract-async-velocity-controller.html>`_ that uses the V5 motor's
+onboard control. If you are trying to create an instance of this class, you should most likely be
+using the `AsyncControllerFactory <async-controller-factory.html>`_ instead of a constructor from
+this class.
 
 Constructor(s)
 --------------

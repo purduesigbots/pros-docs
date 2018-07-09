@@ -31,7 +31,10 @@ okapi::IterativeMotorVelocityController
 
 A simple `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ that
 associates an `AbstractMotor <../../device/motor/abstract-abstract-motor.html>`_ with an
-`IterativeVelocityController <abstract-iterative-velocity-controller.html>`_.
+`IterativeVelocityController <abstract-iterative-velocity-controller.html>`_. If you are trying to
+create an instance of this class, you should most likely be using the
+`IterativeControllerFactory <iterative-controller-factory.html>`_ instead of a constructor from
+this class.
 
 Constructor(s)
 --------------

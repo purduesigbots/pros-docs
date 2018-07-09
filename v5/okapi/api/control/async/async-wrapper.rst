@@ -14,6 +14,10 @@ the input controller will act like an `AsyncController <abstract-async-controlle
 output of the `IterativeController <../iterative/abstract-iterative-controller.html>`_ will be
 scaled by the given scale (``127`` by default).
 
+This class is normally not used directly. If you are trying to create an instance of this class,
+you should most likely be using the `AsyncControllerFactory <async-controller-factory.html>`_
+instead of a constructor from this class.
+
 Constructor(s)
 --------------
 

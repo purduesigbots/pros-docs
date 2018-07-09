@@ -7,7 +7,10 @@ Iterative Vel PID Controller
 okapi::IterativeVelPIDController
 ================================
 
-An `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ that uses the velocity PD algorithm.
+An `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ that uses the
+velocity PD algorithm. If you are trying to create an instance of this class, you should most
+likely be using the `IterativeControllerFactory <iterative-controller-factory.html>`_ instead of a
+constructor from this class.
 
 Constructor(s)
 --------------
