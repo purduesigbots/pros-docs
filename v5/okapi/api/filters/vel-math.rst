@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelMathArgs(const double iticksPerRev)
+        explicit VelMathArgs(double iticksPerRev)
 
 =============== ===================================================================
  Parameters
@@ -34,7 +34,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelMathArgs(const double iticksPerRev, std::shared_ptr<Filter> ifilter)
+        VelMathArgs(double iticksPerRev, std::shared_ptr<Filter> ifilter)
 
 =============== ===================================================================
  Parameters
@@ -61,7 +61,7 @@ Throws a ````std::invalid_argument```` exception if `iticksPerRev` is zero.
       .. highlight:: cpp
       ::
 
-        VelMath(const double iticksPerRev, std::shared_ptr<Filter> ifilter, std::unique_ptr<Timer> iloopDtTimer)
+        VelMath(double iticksPerRev, std::shared_ptr<Filter> ifilter, std::unique_ptr<Timer> iloopDtTimer)
 
 =============== ===================================================================
  Parameters
@@ -86,7 +86,7 @@ Calculates the current velocity and acceleration. Returns the (filtered) velocit
       .. highlight:: cpp
       ::
 
-        virtual QAngularSpeed step(const double inewPos)
+        virtual QAngularSpeed step(double inewPos)
 
 ============ ===============================================================
  Parameters
@@ -108,7 +108,7 @@ Sets ticks per revolution (or whatever units you are using).
       .. highlight:: cpp
       ::
 
-        virtual void setTicksPerRev(const double iTPR)
+        virtual void setTicksPerRev(double iTPR)
 
 ============ ===============================================================
  Parameters

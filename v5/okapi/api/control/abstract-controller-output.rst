@@ -18,7 +18,7 @@ thread by the controller.
       .. highlight:: cpp
       ::
 
-        virtual void controllerSet(const double ivalue) = 0
+        virtual void controllerSet(double ivalue) = 0
 
 =============== ===================================================================
 Parameters

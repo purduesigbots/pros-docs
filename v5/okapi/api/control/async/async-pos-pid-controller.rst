@@ -4,33 +4,6 @@ Async Pos PID Controller
 
 .. contents:: :local:
 
-okapi::AsyncPosPIDControllerArgs
-================================
-
-Data class for the arguments to ``AsyncPosPIDController``.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncPosPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
-                                  std::shared_ptr<ControllerOutput> ioutput,
-                                  const IterativePosPIDControllerArgs iparams)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iinput          The controller input.
- ioutput         The controller output.
- iparams         The `IterativePosPIDController <../iterative/iterative-pos-pid-controller.html>`_ arguments.
-=============== ===================================================================
-
-----
-
 okapi::AsyncPosPIDController
 ============================
 
@@ -44,42 +17,20 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                              std::shared_ptr<ControllerOutput> ioutput,
+        AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
+                              std::unique_ptr<AbstractRate> irate, std::unique_ptr<AbstractTimer> itimer, std::unique_ptr<SettledUtil> isettledUtil,
                               const double ikP, const double ikI, const double ikD, const double ikBias = 0)
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        auto myInput = std::make_shared<okapi::ADIEncoder>('A', 'B');
-        auto myOutput = std::make_shared<okapi::Motor>(1);
-
-        okapi::AsyncPosPIDController controller(myInput, myOutput, 0.5, 0, 0); // P controller
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  iinput          The controller input.
  ioutput         The controller output.
+ irate           The ``AbstractRate`` to use.
+ itimer          The ``AbstractTimer`` to use.
+ isettledUtil    The ``SettledUtil`` to use.
  ikp             The P term gain.
  ikI             The I term gain.
  ikD             The D term gain.
  ikBias          The controller bias.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                              std::shared_ptr<ControllerOutput> ioutput,
-                              const IterativePosPIDControllerArgs &iparams)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iinput          The controller input.
- ioutput         The controller output.
- iparams         The `IterativePosPIDController <../iterative/iterative-pos-pid-controller.html>`_ arguments.
 =============== ===================================================================

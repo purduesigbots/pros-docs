@@ -15,17 +15,6 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ControllerRunner()
-
-----
-
-This constructor is used for testing.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
         ControllerRunner(std::unique_ptr<AbstractRate> irate)
 
 ----

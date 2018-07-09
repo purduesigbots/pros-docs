@@ -18,11 +18,13 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        SettledUtil(const double iatTargetError = 50, const double iatTargetDerivative = 5, const QTime iatTargetTime = 250_ms)
+        explicit SettledUtil(std::unique_ptr<AbstractTimer> iatTargetTimer,
+                             const double iatTargetError = 50, const double iatTargetDerivative = 5, const QTime iatTargetTime = 250_ms)
 
 ===================== ===============================================================
  Parameters
 ===================== ===============================================================
+ iatTargetTimer        The ``AbstractTimer`` to use.
  iatTargetError        Minimum error to be considered settled.
  iatTargetDerivative   Minimum error derivative to be considered settled.
  iatTargetTime         Minimum time within ``atTargetError`` to be considered settled.
@@ -43,7 +45,7 @@ Returns whether the controller is settled.
       .. highlight:: cpp
       ::
 
-        virtual bool isSettled(const double ierror)
+        virtual bool isSettled(double ierror)
 
 ============ ===============================================================
  Parameters

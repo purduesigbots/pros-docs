@@ -30,7 +30,7 @@ Do one iteration of the controller. Outputs in the range ``[-1, 1]``.
       .. highlight:: cpp
       ::
 
-        virtual double step(const double ireading) = 0
+        virtual double step(double ireading) = 0
 
 ============ ===============================================================
  Parameters
@@ -84,7 +84,7 @@ Sets time between loops. Default does nothing.
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const QTime isampleTime)
+        virtual void setSampleTime(QTime isampleTime)
 
 =============== ===================================================================
 Parameters

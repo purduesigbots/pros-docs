@@ -36,7 +36,38 @@ Delay the current task such that it runs at the given frequency. The first delay
       .. highlight:: cpp
       ::
 
-        virtual void delay(const QFrequency ihz) override
+        void delay(QFrequency ihz) override
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          okapi::Rate rate;
+          while (true) {
+            // Do something 10 times per second
+            rate.delay(10_Hz);
+          }
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ ihz          The frequency to run the current task at.
+============ ===============================================================
+
+delay
+~~~~~
+
+Delay the current task such that it runs at the given frequency. The first delay will wait for
+``1000/(ihz)``. Subsequent delays will adjust according to the previous runtime of the task.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void delay(int ihz) override
 
    .. tab :: Example
       .. highlight:: cpp
@@ -53,21 +84,21 @@ Delay the current task such that it runs at the given frequency. The first delay
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- ihz          The frequency to run the current task at.
+ ihz          The frequency in Hertz to run the current task at.
 ============ ===============================================================
 
-delay
-~~~~~
+delayUntil
+----------
 
-Delay the current task such that it runs every ``ims`` ms. The first delay will wait for
-``ims``. Subsequent delays will adjust according to the previous runtime of the task.
+Delay the current task until ``itime`` has passed. This method can be used by periodic tasks to
+ensure a consistent execution frequency.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual void delay(const int ims) override
+        void delayUntil(QTime itime) override
 
    .. tab :: Example
       .. highlight:: cpp
@@ -77,12 +108,43 @@ Delay the current task such that it runs every ``ims`` ms. The first delay will 
           okapi::Rate rate;
           while (true) {
             // Do something every 100 ms
-            rate.delay(100);
+            rate.delayUntil(100_ms);
           }
         }
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- ims          The time in ms to wait for.
+ itime        The time period.
+============ ===============================================================
+
+delayUntil
+----------
+
+Delay the current task until ``itime`` has passed. This method can be used by periodic tasks to
+ensure a consistent execution frequency.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void delayUntil(uint32_t itime) override
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          okapi::Rate rate;
+          while (true) {
+            // Do something every 100 ms
+            rate.delayUntil(100);
+          }
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ itime        The time period in milliseconds.
 ============ ===============================================================

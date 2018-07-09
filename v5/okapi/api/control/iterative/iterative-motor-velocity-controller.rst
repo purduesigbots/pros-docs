@@ -41,34 +41,6 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeMotorVelocityController(Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
- icontroller     The `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ to use.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        IterativeMotorVelocityController(MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
- icontroller     The `IterativeVelocityController <abstract-iterative-velocity-controller.html>`_ to use.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
         IterativeMotorVelocityController(std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
 
 =============== ===================================================================
@@ -104,7 +76,7 @@ Do one iteration of the controller. Outputs in the range ``[-1, 1]``.
       .. highlight:: cpp
       ::
 
-        virtual double step(const double ireading) override
+        double step(double ireading) override
 
 ============ ===============================================================
  Parameters
@@ -126,7 +98,7 @@ Sets the target for the controller.
       .. highlight:: cpp
       ::
 
-        virtual void setTarget(const double itarget) override
+        void setTarget(double itarget) override
 
 ============ ===============================================================
  Parameters
@@ -146,7 +118,7 @@ Returns the last calculated output of the controller.
       .. highlight:: cpp
       ::
 
-        virtual double getOutput() const override
+        double getOutput() const override
 
 **Returns:** The previous output from the filter.
 
@@ -162,7 +134,7 @@ Returns the last error of the controller.
       .. highlight:: cpp
       ::
 
-        virtual double getError() const override
+        double getError() const override
 
 **Returns:** The last error of the controller.
 
@@ -178,7 +150,7 @@ Returns the last derivative (change in error) of the controller.
       .. highlight:: cpp
       ::
 
-        virtual double getDerivative() const override
+        double getDerivative() const override
 
 **Returns:** The last derivative (change in error) of the controller.
 
@@ -195,7 +167,7 @@ of error has been small enough for a long enough period.
       .. highlight:: cpp
       ::
 
-        virtual bool isSettled() override
+        bool isSettled() override
 
 **Returns:** Whether the controller is settled.
 
@@ -211,7 +183,7 @@ Sets time between loops in ms.
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const std::uint32_t isampleTime) override
+        void setSampleTime(std::uint32_t isampleTime) override
 
 =============== ===================================================================
 Parameters
@@ -231,7 +203,7 @@ Sets controller output bounds.
       .. highlight:: cpp
       ::
 
-        virtual void setOutputLimits(double imax, double imin) override
+        void setOutputLimits(double imax, double imin) override
 
 =============== ===================================================================
 Parameters
@@ -252,7 +224,7 @@ Resets the controller so it can start from 0 again properly. Keeps configuration
       .. highlight:: cpp
       ::
 
-        virtual void reset() override
+        void reset() override
 
 ----
 
@@ -267,7 +239,7 @@ the controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable() override
+        void flipDisable() override
 
 ----
 
@@ -282,7 +254,7 @@ controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable(const bool iisDisabled) override
+        void flipDisable(bool iisDisabled) override
 
 ============= ===============================================================
  Parameters
@@ -302,7 +274,7 @@ Returns whether the controller is currently disabled.
       .. highlight:: cpp
       ::
 
-        virtual bool isDisabled() const override
+        bool isDisabled() const override
 
 **Returns:** Whether the controller is currently disabled.
 
@@ -318,6 +290,6 @@ Returns the last set sample time. Default is ``10``.
       .. highlight:: cpp
       ::
 
-        virtual std::uint32_t getSampleTime() const override
+        std::uint32_t getSampleTime() const override
 
 **Returns:** The last set sample time.
