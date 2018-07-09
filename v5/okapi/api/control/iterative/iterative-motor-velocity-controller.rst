@@ -58,7 +58,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeMotorVelocityController(const IterativeMotorControllerArgs &iparams)
+        explicit IterativeMotorVelocityController(const IterativeMotorControllerArgs &iparams)
 
 =============== ===================================================================
  Parameters
