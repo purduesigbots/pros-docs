@@ -28,7 +28,7 @@ Constructor(s)
 
         AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
                      std::unique_ptr<IterativeController> icontroller,
-                     std::unique_ptr<AbstractRate> irate,
+                     const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier, std::unique_ptr<SettledUtil> isettledUtil,
                      double iscale = 127)
 
    .. tab :: Example
@@ -48,7 +48,8 @@ Constructor(s)
  iinput          The controller input.
  ioutput         The controller output.
  icontroller     The controller to use.
- irate           The ``AbstractRate`` to use.
+ irateSupplier   The a ``Supplier`` of ``AbstractRate``.
+ isettledUtil    The ``SettledUtil`` to use.
  iscale          The scale applied to the controller output.
 =============== ===================================================================
 
@@ -228,3 +229,18 @@ Returns whether the controller is currently disabled.
         bool isDisabled() const override
 
 **Returns:** Whether the controller is currently disabled.
+
+----
+
+waitUntilSettled
+~~~~~~~~~~~~~~~~
+
+Blocks the current task until the controller has settled. Determining what settling means is
+implementation-dependent.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void waitUntilSettled() override

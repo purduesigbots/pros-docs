@@ -8,8 +8,8 @@ okapi::SettledUtil
 ==================
 
 A utility class to determine if a control loop has settled based on error. A control loop is
-settled if the error is within ``atTargetError`` for ``atTargetTime``. If you are trying to create
-an instance of this class, you should most likely be using the
+settled if the error is within ``atTargetError`` and ``atTargetDerivative`` for ``atTargetTime``.
+If you are trying to create an instance of this class, you should most likely be using the
 `SettledUtilFactory <settled-util-factory.html>`_ instead of a constructor from this class.
 
 Constructor(s)

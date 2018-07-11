@@ -43,7 +43,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor, std::unique_ptr<SettledUtil> isettledUtil)
+        AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+                                     std::unique_ptr<SettledUtil> isettledUtil, std::unique_ptr<AbstractRate> irate)
 
 =============== ===================================================================
  Parameters
@@ -57,7 +58,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams, std::unique_ptr<SettledUtil> isettledUtil)
+        AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams,
+                                     std::unique_ptr<SettledUtil> isettledUtil, std::unique_ptr<AbstractRate> irate)
 
 =============== ===================================================================
  Parameters
@@ -185,3 +187,18 @@ Returns whether the controller is currently disabled.
         bool isDisabled() override
 
 **Returns:** Whether the controller is currently disabled.
+
+----
+
+waitUntilSettled
+~~~~~~~~~~~~~~~~
+
+Blocks the current task until the controller has settled. Determining what settling means is
+implementation-dependent.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void waitUntilSettled() override
