@@ -21,14 +21,20 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
+        ChassisControllerPID(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+                             const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier,
+                             std::unique_ptr<AbstractRate> irate,
+                             std::unique_ptr<ChassisModel> imodel,
                              const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs,
-                             const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+                             AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                              const ChassisScales &iscales = ChassisScales({1, 1}))
 
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
+ isettledUtilSupplier     A ``Supplier`` of ``SettledUtil``.
+ itimerSupplier           A ``Supplier`` of ``AbstractTimer``.
+ irate                    An ``AbstractRate``.
  imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
  iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
@@ -50,7 +56,7 @@ driving.
       .. highlight:: cpp
       ::
 
-        virtual void moveDistance(const QLength itarget) override
+        void moveDistance(QLength itarget) override
 
 =============== ===================================================================
 Parameters
@@ -71,7 +77,7 @@ Blocks while the robot is driving.
       .. highlight:: cpp
       ::
 
-        virtual void moveDistance(const int itarget) override
+        void moveDistance(int itarget) override
 
 =============== ===================================================================
 Parameters
@@ -91,7 +97,7 @@ Turns the robot clockwise in place (using closed-loop control). Blocks while the
       .. highlight:: cpp
       ::
 
-        virtual void turnAngle(const QAngle idegTarget) override
+        void turnAngle(QAngle idegTarget) override
 
 =============== ===================================================================
 Parameters
@@ -112,7 +118,7 @@ while the robot is turning.
       .. highlight:: cpp
       ::
 
-        virtual void turnAngle(const float idegTarget) override
+        void turnAngle(float idegTarget) override
 
 =============== ===================================================================
 Parameters

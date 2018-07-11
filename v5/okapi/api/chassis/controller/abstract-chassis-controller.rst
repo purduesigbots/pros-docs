@@ -15,7 +15,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        explicit ChassisController(std::shared_ptr<ChassisModel> imodel)
+        explicit ChassisController(std::unique_ptr<ChassisModel> imodel)
 
 =================   ===================================================================
  Parameters
