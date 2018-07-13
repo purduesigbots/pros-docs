@@ -44,13 +44,13 @@ Constructor(s)
       ::
 
         AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
-                                     std::unique_ptr<SettledUtil> isettledUtil, std::unique_ptr<AbstractRate> irate)
+                                     const TimeUtil &itimeUtil)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
- isettledUtil    The ``SettledUtil`` to use.
+ itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
 .. tabs ::
@@ -59,13 +59,13 @@ Constructor(s)
       ::
 
         AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams,
-                                     std::unique_ptr<SettledUtil> isettledUtil, std::unique_ptr<AbstractRate> irate)
+                                     const TimeUtil &itimeUtil)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  iparams         The ``AsyncPosIntegratedController`` arguments.
- isettledUtil    The ``SettledUtil`` to use.
+ itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
 Methods

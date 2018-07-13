@@ -21,8 +21,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ChassisControllerIntegrated(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
-                                    const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+        ChassisControllerIntegrated(const TimeUtil &itimeUtil,
                                     std::unique_ptr<ChassisModel> imodel,
                                     const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
                                     const AsyncPosIntegratedControllerArgs &irightControllerArgs,
@@ -32,8 +31,7 @@ Constructor(s)
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
- isettledUtilSupplier     A ``Supplier`` of ``SettledUtil``.
- irateSupplier            A ``Supplier`` of ``AbstractRate``.
+ itimeUtil                See ``TimeUtil`` docs.
  imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
  ileftControllerArgs      The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the left side PID controller.
  irightControllerArgs     The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the right side PID controller.

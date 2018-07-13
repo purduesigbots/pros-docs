@@ -21,8 +21,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
-                             const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier,
+        ChassisControllerPID(const TimeUtil &itimeUtil,
                              std::unique_ptr<AbstractRate> irate,
                              std::unique_ptr<ChassisModel> imodel,
                              const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs,
@@ -32,8 +31,7 @@ Constructor(s)
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
- isettledUtilSupplier     A ``Supplier`` of ``SettledUtil``.
- itimerSupplier           A ``Supplier`` of ``AbstractTimer``.
+ itimeUtil                See ``TimeUtil`` docs.
  irate                    An ``AbstractRate``.
  imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.

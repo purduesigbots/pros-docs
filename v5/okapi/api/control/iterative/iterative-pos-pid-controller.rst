@@ -47,7 +47,7 @@ Constructor(s)
       ::
 
         IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias,
-                                  std::unique_ptr<AbstractTimer> iloopDtTimer, std::unique_ptr<SettledUtil> isettledUtil)
+                                  const TimeUtil &itimeUtil)
 
 =============== ===================================================================
  Parameters
@@ -56,8 +56,7 @@ Constructor(s)
  ikI             The I term gain.
  ikD             The D term gain.
  ikBias          The controller bias.
- iloopDtTimer    The ``AbstractTimer`` to use.
- isettledUtil    The ``SettledUtil`` to use.
+ itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
 .. tabs ::
@@ -66,14 +65,13 @@ Constructor(s)
       ::
 
         IterativePosPIDController(const IterativePosPIDControllerArgs &params,
-                                  std::unique_ptr<AbstractTimer> iloopDtTimer, std::unique_ptr<SettledUtil> isettledUtil)
+                                  const TimeUtil &itimeUtil)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  params          The ``IterativePosPIDController`` arguments.
- iloopDtTimer    The ``AbstractTimer`` to use.
- isettledUtil    The ``SettledUtil`` to use.
+ itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
 This constructor is used for testing.

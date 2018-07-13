@@ -20,7 +20,7 @@ Constructor(s)
       ::
 
         AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
-                              const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier, std::unique_ptr<AbstractTimer> itimer, const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier,
+                              const TimeUtil &itimeUtil,
                               const double ikP, const double ikD, const double ikF,
                               std::unique_ptr<VelMath> ivelMath)
 
@@ -29,9 +29,7 @@ Constructor(s)
 =============== ===================================================================
  iinput          The controller input.
  ioutput         The controller output.
- irateSupplier   The a ``Supplier`` of ``AbstractRate``.
- itimer          The ``AbstractTimer`` to use.
- isettledUtil    The a ``Supplier`` of ``SettledUtil``.
+ itimeUtil       See ``TimeUtil`` docs.
  ikp             The P term gain.
  ikD             The D term gain.
  ikF             The Feed-Forward gain.
