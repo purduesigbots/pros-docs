@@ -10,9 +10,7 @@ okapi::AsyncWrapper
 An `AsyncController <abstract-async-controller.html>`_ that transforms an
 `IterativeController <../iterative/abstract-iterative-controller.html>`_ into an
 `AsyncController <abstract-async-controller.html>`_ by running it in another task. In other words,
-the input controller will act like an `AsyncController <abstract-async-controller.html>`_. The
-output of the `IterativeController <../iterative/abstract-iterative-controller.html>`_ will be
-scaled by the given scale (``127`` by default).
+the input controller will act like an `AsyncController <abstract-async-controller.html>`_.
 
 This class is normally not used directly. If you are trying to create an instance of this class,
 you should most likely be using the `AsyncControllerFactory <async-controller-factory.html>`_
@@ -28,8 +26,7 @@ Constructor(s)
 
         AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
                      std::unique_ptr<IterativeController> icontroller,
-                     const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier, std::unique_ptr<SettledUtil> isettledUtil,
-                     double iscale = 127)
+                     const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier, std::unique_ptr<SettledUtil> isettledUtil)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -50,7 +47,6 @@ Constructor(s)
  icontroller     The controller to use.
  irateSupplier   The a ``Supplier`` of ``AbstractRate``.
  isettledUtil    The ``SettledUtil`` to use.
- iscale          The scale applied to the controller output.
 =============== ===================================================================
 
 Methods
