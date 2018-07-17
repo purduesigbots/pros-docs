@@ -6,7 +6,7 @@ Introduction
 ============
 
 Conductor is PROS's templating and project management facility. It is
-responsible for resolving versions of the PROS kernel, user libraries. It also
+responsible for resolving versions of the PROS kernel and user libraries. It also
 provides information about a PROS project to other PROS facilities, like
 providing the target platform (e.g. V5 or Cortex) to the upload utility.
 
@@ -22,12 +22,12 @@ There are a few concepts central to Conductor's functionality:
   require any particular access method to these remote templates, but they are
   typically available from a download link via HTTP. It is possible to implement
   an SCP, FTP, or other sorts of file transfer depots. The default depot is called
-  pros-mainline and always points to the official repository of templates.
+  pros-mainline and is the official repository of templates.
 - Projects: A project is a set of user files and template files. They don't
-  contain much information on their own (just a target platform) and a list of
+  contain much information on their own - just a target platform and a list of
   installed templates. PROS Conductor maintains two lists of files originating
   from templates: user files and system files. User files are never replaced when
-  upgrading a project and system files are replaced when upgrading a project.
+  upgrading a project and system files are akways replaced when upgrading a project.
 
 Common Tasks
 ============
