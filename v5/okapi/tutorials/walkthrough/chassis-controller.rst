@@ -42,7 +42,7 @@ First, let's look at the code:
 .. highlight:: cpp
 ::
 
-  auto myChassis = okapi::ChassisControllerIntegrated::create(
+  auto myChassis = okapi::ChassisControllerFactory::create(
     {-1, -2}, // Left motors
     {3, 4}, // Right motors
     AbstractMotor::gearset::red, // Torque gearset
