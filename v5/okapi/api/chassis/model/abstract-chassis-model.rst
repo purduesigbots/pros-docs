@@ -7,6 +7,10 @@
 okapi::ChassisModel
 ===================
 
+A version of the `ReadOnlyChassisModel <abstract-chassis-model.html>`_ that also supports write
+methods, such as setting motor speed. Because this class can write to motors, there can only be one
+owner and as such copying is disabled.
+
 Methods
 -------
 
@@ -172,22 +176,6 @@ Parameters
 =============== ===================================================================
  ispeed          The new speed.
 =============== ===================================================================
-
-----
-
-getSensorVals
-~~~~~~~~~~~~~
-
-Returns the current sensor values. Ideally, return the values in the format ``{left, right, ...}``.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual std::valarray<std::int32_t> getSensorVals() const = 0
-
-**Returns:** The current sensor values (the formatting is implementation dependent).
 
 ----
 
