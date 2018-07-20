@@ -18,7 +18,7 @@ Creating an object with a factory is quite simple, as shown in the below example
   const int MOTOR_PORT = 1;
   
   okapi::Motor exampleMotor (MOTOR_PORT);
-  auto exampleController = okapi::AsyncPosPIDController(exampleMotor, kP, kI, kD);
+  auto exampleController = okapi::AsyncControllerFactory::posPID(exampleMotor, kP, kI, kD);
   
 As opposed to creating the same object without factories:
 
