@@ -7,6 +7,24 @@
 okapi::ClosedLoopController
 ===========================
 
+Template Parameter(s)
+---------------------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        template <typename INPUT, typename ERROR>
+        class ClosedLoopController
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ INPUT        The target/input type.
+ ERROR        The error type.
+============ ===============================================================
+
 Methods
 -------
 
@@ -20,7 +38,7 @@ Sets the target for the controller.
       .. highlight:: cpp
       ::
 
-        virtual void setTarget(const double itarget) = 0
+        virtual void setTarget(INPUT itarget) = 0
 
 ============ ===============================================================
  Parameters
@@ -40,7 +58,7 @@ Returns the last error of the controller.
       .. highlight:: cpp
       ::
 
-        virtual double getError() const = 0
+        virtual ERROR getError() const = 0
 
 **Returns:** The last error of the controller.
 
@@ -89,7 +107,7 @@ controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable(const bool iisDisabled) = 0
+        virtual void flipDisable(bool iisDisabled) = 0
 
 ============= ===============================================================
  Parameters

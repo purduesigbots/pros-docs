@@ -10,9 +10,11 @@ okapi::AsyncWrapper
 An `AsyncController <abstract-async-controller.html>`_ that transforms an
 `IterativeController <../iterative/abstract-iterative-controller.html>`_ into an
 `AsyncController <abstract-async-controller.html>`_ by running it in another task. In other words,
-the input controller will act like an `AsyncController <abstract-async-controller.html>`_. The
-output of the `IterativeController <../iterative/abstract-iterative-controller.html>`_ will be
-scaled by the given scale (``127`` by default).
+the input controller will act like an `AsyncController <abstract-async-controller.html>`_.
+
+This class is normally not used directly. If you are trying to create an instance of this class,
+you should most likely be using the `AsyncControllerFactory <async-controller-factory.html>`_
+instead of a constructor from this class.
 
 Constructor(s)
 --------------
@@ -22,7 +24,9 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput, std::unique_ptr<IterativeController> icontroller, const double iscale = 127)
+        AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
+                     std::unique_ptr<IterativeController> icontroller,
+                     const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier, std::unique_ptr<SettledUtil> isettledUtil)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -41,7 +45,8 @@ Constructor(s)
  iinput          The controller input.
  ioutput         The controller output.
  icontroller     The controller to use.
- iscale          The scale applied to the controller output.
+ irateSupplier   The a ``Supplier`` of ``AbstractRate``.
+ isettledUtil    The ``SettledUtil`` to use.
 =============== ===================================================================
 
 Methods
@@ -57,7 +62,7 @@ Sets the target for the controller.
       .. highlight:: cpp
       ::
 
-        virtual void setTarget(const double itarget) override
+        void setTarget(double itarget) override
 
 ============ ===============================================================
  Parameters
@@ -77,7 +82,7 @@ Returns the last calculated output of the controller.
       .. highlight:: cpp
       ::
 
-        virtual double getOutput() const override
+        double getOutput() const override
 
 **Returns:** The previous output from the filter.
 
@@ -93,7 +98,7 @@ Returns the last error of the controller.
       .. highlight:: cpp
       ::
 
-        virtual double getError() const override
+        double getError() const override
 
 **Returns:** The last error of the controller.
 
@@ -110,7 +115,7 @@ of error has been small enough for a long enough period.
       .. highlight:: cpp
       ::
 
-        virtual bool isSettled() override
+        bool isSettled() override
 
 **Returns:** Whether the controller is settled.
 
@@ -126,7 +131,7 @@ Sets time between loops.
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const QTime isampleTime) override
+        void setSampleTime(QTime isampleTime) override
 
 =============== ===================================================================
 Parameters
@@ -146,7 +151,7 @@ Sets controller output bounds.
       .. highlight:: cpp
       ::
 
-        virtual void setOutputLimits(double imax, double imin) override
+        void setOutputLimits(double imax, double imin) override
 
 =============== ===================================================================
 Parameters
@@ -167,7 +172,7 @@ Resets the controller so it can start from 0 again properly. Keeps configuration
       .. highlight:: cpp
       ::
 
-        virtual void reset() override
+        void reset() override
 
 ----
 
@@ -182,7 +187,7 @@ the controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable() override
+        void flipDisable() override
 
 ----
 
@@ -197,7 +202,7 @@ controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable(const bool iisDisabled) override
+        void flipDisable(bool iisDisabled) override
 
 ============= ===============================================================
  Parameters
@@ -217,6 +222,21 @@ Returns whether the controller is currently disabled.
       .. highlight:: cpp
       ::
 
-        virtual bool isDisabled() const override
+        bool isDisabled() const override
 
 **Returns:** Whether the controller is currently disabled.
+
+----
+
+waitUntilSettled
+~~~~~~~~~~~~~~~~
+
+Blocks the current task until the controller has settled. Determining what settling means is
+implementation-dependent.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void waitUntilSettled() override

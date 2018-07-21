@@ -18,29 +18,6 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ThreeEncoderSkidSteerModelArgs(MotorGroup ileftSideMotor,
-                                       MotorGroup irightSideMotor,
-                                       ADIEncoder ileftEnc,
-                                       ADIEncoder imiddleEnc,
-                                       ADIEncoder irightEnc,
-                                       const double imaxOutput = 127)
-
-=================   ===================================================================
- Parameters
-=================   ===================================================================
- ileftSideMotor      The left side motor.
- irightSideMotor     The right side motor.
- ileftEnc            The left side encoder.
- imiddleEnc          The middle encoder.
- irightEnc           The right side encoder.
- imaxOutput          The maximum output value to the motors.
-=================   ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
         ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                                        std::shared_ptr<AbstractMotor> irightSideMotor,
                                        std::shared_ptr<ContinuousRotarySensor> ileftEnc,
@@ -65,7 +42,12 @@ okapi::ThreeEncoderSkidSteerModel
 =================================
 
 The model for a skid-steer chassis. Uses a third encoder mounted perpendicular and between the two
-normal encoders.
+normal encoders. If you are trying to make an instance of this class, you should
+most likely be creating a type of
+`ChassisController <../controller/abstract-chassis-controller.html>`_ instead. If you really do
+mean to make an instance of a
+`ChassisModel <abstract-chassis-model.html>`_, then you should probably be using the
+`ChassisModelFactory <chassis-model-factory.html>`_ instead of a constructor from this class.
 
 Constructor(s)
 --------------
@@ -80,7 +62,7 @@ Constructor(s)
                                        std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                                        std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                                        std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                                       const double imaxOutput = 127)
+                                       double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -98,7 +80,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams)
+        explicit ThreeEncoderSkidSteerModel(const ThreeEncoderSkidSteerModelArgs &iparams)
 
 =================   ===================================================================
  Parameters
@@ -119,6 +101,6 @@ Returns the current sensor values in the format ``{left, right, middle}``.
       .. highlight:: cpp
       ::
 
-        virtual std::valarray<std::int32_t> getSensorVals() const override
+        std::valarray<std::int32_t> getSensorVals() const override
 
 **Returns:** The current sensor values.

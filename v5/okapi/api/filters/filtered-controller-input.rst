@@ -54,6 +54,6 @@ another thread by the controller.
       .. highlight:: cpp
       ::
 
-        virtual double controllerGet() override
+        double controllerGet() override
 
 **Returns:** The current filtered sensor value.

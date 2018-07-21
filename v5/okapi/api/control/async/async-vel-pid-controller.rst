@@ -4,37 +4,12 @@ Async Vel PID Controller
 
 .. contents:: :local:
 
-okapi::AsyncVelPIDControllerArgs
-================================
-
-Data class for the arguments to ``AsyncVelPIDController``.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncVelPIDControllerArgs(std::shared_ptr<ControllerInput> iinput,
-                                  std::shared_ptr<ControllerOutput> ioutput,
-                                  const IterativeVelPIDControllerArgs iparams)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iinput          The controller input.
- ioutput         The controller output.
- iparams         The `IterativeVelPIDController <../iterative/iterative-vel-pid-controller.html>`_ arguments.
-=============== ===================================================================
-
-----
-
 okapi::AsyncVelPIDController
 ============================
 
-An `AsyncVelPIDController <abstract-async-velocity-controller.html>`_ that uses PID.
+An `AsyncVelPIDController <abstract-async-velocity-controller.html>`_ that uses PID. If you are
+trying to create an instance of this class, you should most likely be using the
+`AsyncControllerFactory <async-controller-factory.html>`_ instead of a constructor from this class.
 
 Constructor(s)
 --------------
@@ -44,41 +19,19 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                              std::shared_ptr<ControllerOutput> ioutput,
-                              const double ikP, const double ikD, const double ikF)
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        auto myInput = std::make_shared<okapi::ADIEncoder>('A', 'B');
-        auto myOutput = std::make_shared<okapi::Motor>(1);
-
-        okapi::AsyncVelPIDController controller(myInput, myOutput, 0.5, 0, 0); // P controller
+        AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
+                              const TimeUtil &itimeUtil,
+                              const double ikP, const double ikD, const double ikF,
+                              std::unique_ptr<VelMath> ivelMath)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  iinput          The controller input.
  ioutput         The controller output.
+ itimeUtil       See ``TimeUtil`` docs.
  ikp             The P term gain.
  ikD             The D term gain.
  ikF             The Feed-Forward gain.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput,
-                              std::shared_ptr<ControllerOutput> ioutput,
-                              const IterativeVelPIDControllerArgs &iparams)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iinput          The controller input.
- ioutput         The controller output.
- iparams         The `IterativeVelPIDController <../iterative/iterative-vel-pid-controller.html>`_ arguments.
+ ivelMath        The ``VelMath`` to use.
 =============== ===================================================================

@@ -46,7 +46,7 @@ Sets time between loops. Default does nothing.
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(const QTime isampleTime)
+        virtual void setSampleTime(QTime isampleTime)
 
 =============== ===================================================================
 Parameters
@@ -77,28 +77,15 @@ Parameters
 
 ----
 
-reset
-~~~~~
+waitUntilSettled
+~~~~~~~~~~~~~~~~
 
-Resets the controller so it can start from 0 again properly. Keeps configuration from before.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void reset() = 0
-
-----
-
-flipDisable
-~~~~~~~~~~~
-
-Changes whether the controll is off or on. Default does nothing.
+Blocks the current task until the controller has settled. Determining what settling means is
+implementation-dependent.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable()
+        virtual void waitUntilSettled() = 0

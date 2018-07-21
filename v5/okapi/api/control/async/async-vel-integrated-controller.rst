@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor)
+        explicit AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor)
 
 =============== ===================================================================
  Parameters
@@ -30,7 +30,10 @@ Constructor(s)
 okapi::AsyncVelIntegratedController
 ===================================
 
-An `AsyncVelocityController <abstract-async-velocity-controller.html>`_ that uses the V5 motor's onboard control.
+An `AsyncVelocityController <abstract-async-velocity-controller.html>`_ that uses the V5 motor's
+onboard control. If you are trying to create an instance of this class, you should most likely be
+using the `AsyncControllerFactory <async-controller-factory.html>`_ instead of a constructor from
+this class.
 
 Constructor(s)
 --------------
@@ -40,19 +43,14 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncVelIntegratedController(Motor imotor)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        using namespace okapi::literals;
-        okapi::AsyncVelIntegratedController controller(1_mtr);
+        AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+                                     const TimeUtil &itimeUtil)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
+ itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
 .. tabs ::
@@ -60,45 +58,14 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncVelIntegratedController(MotorGroup imotor)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        using namespace okapi::literals;
-        okapi::AsyncVelIntegratedController controller(okapi::MotorGroup({1_mtr, 2_mtr}));
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams)
+        AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams,
+                                     const TimeUtil &itimeUtil)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  iparams         The ``AsyncVelIntegratedController`` arguments.
+ itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
 Methods
@@ -114,7 +81,7 @@ Sets the target for the controller.
       .. highlight:: cpp
       ::
 
-        virtual void setTarget(const double itarget) override
+        void setTarget(double itarget) override
 
 ============ ===============================================================
  Parameters
@@ -134,7 +101,7 @@ Returns the last error of the controller.
       .. highlight:: cpp
       ::
 
-        virtual double getError() const override
+        double getError() const override
 
 **Returns:** The last error of the controller.
 
@@ -151,7 +118,7 @@ of error has been small enough for a long enough period.
       .. highlight:: cpp
       ::
 
-        virtual bool isSettled() override
+        bool isSettled() override
 
 **Returns:** Whether the controller is settled.
 
@@ -167,7 +134,7 @@ Resets the controller so it can start from 0 again properly. Keeps configuration
       .. highlight:: cpp
       ::
 
-        virtual void reset() override
+        void reset() override
 
 ----
 
@@ -182,7 +149,7 @@ the controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable() override
+        void flipDisable() override
 
 ----
 
@@ -197,7 +164,7 @@ controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        virtual void flipDisable(const bool iisDisabled) override
+        void flipDisable(bool iisDisabled) override
 
 ============= ===============================================================
  Parameters
@@ -217,6 +184,21 @@ Returns whether the controller is currently disabled.
       .. highlight:: cpp
       ::
 
-        virtual bool isDisabled() const override
+        bool isDisabled() const override
 
 **Returns:** Whether the controller is currently disabled.
+
+----
+
+waitUntilSettled
+~~~~~~~~~~~~~~~~
+
+Blocks the current task until the controller has settled. Determining what settling means is
+implementation-dependent.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void waitUntilSettled() override

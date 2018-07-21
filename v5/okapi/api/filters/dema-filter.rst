@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        DemaFilterArgs(const double ialpha, const double ibeta)
+        DemaFilterArgs(double ialpha, double ibeta)
 
 =============== ===================================================================
  Parameters
@@ -41,7 +41,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        DemaFilter(const double ialpha, const double ibeta)
+        DemaFilter(double ialpha, double ibeta)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -62,6 +62,19 @@ Constructor(s)
  ibeta           The beta gain (how aggressively the filter should follow trends).
 =============== ===================================================================
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        explicit DemaFilter(const DemaFilterArgs &iargs)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ iargs           The ``DemaFilterArgs`` to use.
+=============== ===================================================================
+
 ----
 
 Methods
@@ -77,7 +90,7 @@ Filters a value, like a sensor reading.
       .. highlight:: cpp
       ::
 
-        virtual double filter(const double ireading) override
+        double filter(double ireading) override
 
 ============ ===============================================================
  Parameters
@@ -99,7 +112,7 @@ Returns the previous output from the filter.
       .. highlight:: cpp
       ::
 
-        virtual double getOutput() const override
+        double getOutput() const override
 
 **Returns:** The previous output from the filter.
 
@@ -115,7 +128,7 @@ Sets new filter gains.
       .. highlight:: cpp
       ::
 
-        virtual void setGains(const double ialpha, const double ibeta)
+        virtual void setGains(double ialpha, double ibeta)
 
 =============== ===================================================================
 Parameters

@@ -8,205 +8,60 @@ okapi::ChassisControllerPID
 ===========================
 
 A `ChassisController <abstract-chassis-controller.html>`_ using PID control. Does not use the V5
-motor's integrated control. The motors passed in will be put into degree units.
+motor's integrated control. The motors passed in will be put into degree units. If you are trying
+to make an instance of this class, you should most likely be using the
+`ChassisControllerFactory <chassis-controller-factory.html>`_ instead of a constructor from this
+class. Throws a ``std::invalid_argument`` exception if the gear ratio is zero.
 
 Constructor(s)
 --------------
 
-This constructor infers a skid-steer layout.
-
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(Motor ileftSideMotor, Motor irightSideMotor,
-                             const IterativePosPIDControllerArgs &idistanceArgs,
-                             const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                             const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        okapi::ChassisControllerPID controller(1, -2,
-                                               okapi::IterativePosPIDControllerArgs(0, 0, 0),
-                                               okapi::IterativePosPIDControllerArgs(0, 0, 0));
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- ileftSideMotor           The left side motor in a skid-steer model.
- irightSideMotor          The right side motor in a skid-steer model.
- idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
- iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers a skid-steer layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerPID(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                             const IterativePosPIDControllerArgs &idistanceArgs,
-                             const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                             const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        okapi::ChassisControllerPID controller(okapi::MotorGroup({1, 2}),
-                                               okapi::MotorGroup({-3, -4}),
-                                               okapi::IterativePosPIDControllerArgs(0, 0, 0),
-                                               okapi::IterativePosPIDControllerArgs(0, 0, 0));
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- ileftSideMotor           The left side motor in a skid-steer model.
- irightSideMotor          The right side motor in a skid-steer model.
- idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
- iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers an x-drive layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerPID(Motor itopLeftMotor,
-                             Motor itopRightMotor,
-                             Motor ibottomRightMotor,
-                             Motor ibottomLeftMotor,
-                             const IterativePosPIDControllerArgs &idistanceArgs,
-                             const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                             const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // X-Drive controller
-        okapi::ChassisControllerPID controller(1, -2, -3, 4,
-                                               IterativePosPIDControllerArgs(0, 0, 0),
-                                               IterativePosPIDControllerArgs(0, 0, 0));
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- itopLeftMotor            The top left motor in an x-drive model.
- itopRightMotor           The top right motor in an x-drive model.
- ibottomRightMotor        The bottom right motor in an x-drive model.
- ibottomLeftMotor         The bottom left motor in an x-drive model.
- idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
- iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers a skid-steer layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerPID(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                             std::shared_ptr<AbstractMotor> irightSideMotor,
-                             const IterativePosPIDControllerArgs &idistanceArgs,
-                             const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                             const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // Skid-Steer controller
-        okapi::ChassisControllerPID controller(1, -2, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-
-        // Could also use MotorGroups to use more motors
-        okapi::ChassisControllerPID controller(okapi::MotorGroup<2>({1, 2}), okapi::MotorGroup<2>({-3, -4}),
-                                               IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- ileftSideMotor           The left side motor in a skid-steer model.
- irightSideMotor          The right side motor in a skid-steer model.
- idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
- iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor infers an x-drive layout.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerPID(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                             std::shared_ptr<AbstractMotor> itopRightMotor,
-                             std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                             std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                             const IterativePosPIDControllerArgs &idistanceArgs,
-                             const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
-                             const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // X-Drive controller
-        okapi::ChassisControllerPID controller(1, 2, 3, 4, IterativePosPIDControllerArgs(0, 0, 0), IterativePosPIDControllerArgs(0, 0, 0));
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- itopLeftMotor            The top left motor in an x-drive model.
- itopRightMotor           The top right motor in an x-drive model.
- ibottomRightMotor        The bottom right motor in an x-drive model.
- ibottomLeftMotor         The bottom left motor in an x-drive model.
- idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
- iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- igearset                 The motor's internal planetary gearset.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-This constructor is not recommended, there are less verbose options above.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerPID(std::shared_ptr<ChassisModel> imodel,
+        ChassisControllerPID(const TimeUtil &itimeUtil,
+                             std::unique_ptr<AbstractRate> irate,
+                             std::unique_ptr<ChassisModel> imodel,
                              const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs,
-                             const pros::c::motor_gearset_e_t igearset = pros::c::E_MOTOR_GEARSET_36,
+                             AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                              const ChassisScales &iscales = ChassisScales({1, 1}))
 
 ======================   =======================================================================================
  Parameters
 ======================   =======================================================================================
+ itimeUtil                See ``TimeUtil`` docs.
+ irate                    An ``AbstractRate``.
  imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
  iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- igearset                 The motor's internal planetary gearset.
+ igearset                 The motor's internal planetary gearset and external gear ratio.
+ iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
+======================   =======================================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisControllerPID(const TimeUtil &itimeUtil,
+                             std::unique_ptr<AbstractRate> irate,
+                             std::unique_ptr<ChassisModel> imodel,
+                             std::unique_ptr<IterativePosPIDController> idistanceController,
+                             std::unique_ptr<IterativePosPIDController> iangleController,
+                             AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+                             const ChassisScales &iscales = ChassisScales({1, 1}))
+
+======================   =======================================================================================
+ Parameters
+======================   =======================================================================================
+ itimeUtil                See ``TimeUtil`` docs.
+ irate                    An ``AbstractRate``.
+ imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
+ idistanceController      The `IterativePosPIDController <../../control/iterative/iterative-pos-pid-controller.html>`_ for distance control.
+ iangleController         The `IterativePosPIDController <../../control/iterative/iterative-pos-pid-controller.html>`_ for angle control.
+ igearset                 The motor's internal planetary gearset and external gear ratio.
  iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
 
@@ -224,7 +79,7 @@ driving.
       .. highlight:: cpp
       ::
 
-        virtual void moveDistance(const QLength itarget) override
+        void moveDistance(QLength itarget) override
 
 =============== ===================================================================
 Parameters
@@ -245,7 +100,7 @@ Blocks while the robot is driving.
       .. highlight:: cpp
       ::
 
-        virtual void moveDistance(const int itarget) override
+        void moveDistance(int itarget) override
 
 =============== ===================================================================
 Parameters
@@ -265,7 +120,7 @@ Turns the robot clockwise in place (using closed-loop control). Blocks while the
       .. highlight:: cpp
       ::
 
-        virtual void turnAngle(const QAngle idegTarget) override
+        void turnAngle(QAngle idegTarget) override
 
 =============== ===================================================================
 Parameters
@@ -286,7 +141,7 @@ while the robot is turning.
       .. highlight:: cpp
       ::
 
-        virtual void turnAngle(const float idegTarget) override
+        void turnAngle(float idegTarget) override
 
 =============== ===================================================================
 Parameters

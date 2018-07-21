@@ -25,7 +25,7 @@ Filters a value, like a sensor reading.
       .. highlight:: cpp
       ::
 
-        virtual double filter(const double ireading) = 0
+        virtual double filter(double ireading) = 0
 
 ============ ===============================================================
  Parameters

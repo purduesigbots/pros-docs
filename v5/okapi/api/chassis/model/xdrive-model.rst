@@ -24,7 +24,7 @@ This constructor infers the encoders from the top left and top right motors.
                         std::shared_ptr<AbstractMotor> itopRightMotor,
                         std::shared_ptr<AbstractMotor> ibottomRightMotor,
                         std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                        const double imaxOutput = 127)
+                        double imaxOutput = 127)
 
 ==================   ===================================================================
  Parameters
@@ -49,7 +49,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
                         std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                         std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                         std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                        const double imaxOutput = 127)
+                        double imaxOutput = 127)
 
 ==================   ===================================================================
  Parameters
@@ -68,79 +68,15 @@ This constructor does not infer the encoders from the motors, and instead takes 
 okapi::XDriveModel
 ==================
 
-The model for an x-drive chassis.
+The model for an x-drive chassis. If you are trying to make an instance of this class, you should
+most likely be creating a type of
+`ChassisController <../controller/abstract-chassis-controller.html>`_ instead. If you really do
+mean to make an instance of a
+`ChassisModel <abstract-chassis-model.html>`_, then you should probably be using the
+`ChassisModelFactory <chassis-model-factory.html>`_ instead of a constructor from this class.
 
 Constructor(s)
 --------------
-
-This constructor infers the encoders from the motors.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        XDriveModel(Motor itopLeftMotor,
-                    Motor itopRightMotor,
-                    Motor ibottomRightMotor,
-                    Motor ibottomLeftMotor,
-                    const double imaxOutput = 127)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::XDriveModel model(1_mtr, 2_mtr, 3_mtr, 4_mtr);
-        }
-
-==================   ===================================================================
- Parameters
-==================   ===================================================================
- itopLeftMotor        The top left motor.
- itopRightMotor       The top right motor.
- ibottomRightMotor    The bottom right motor.
- ibottomLeftMotor     The bottom left motor.
- imaxOutput           The maximum output value to the motors.
-==================   ===================================================================
-
-This constructor does not infer the encoders from the motors, and instead takes explicitly specified encoders.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        XDriveModel(Motor itopLeftMotor,
-                    Motor itopRightMotor,
-                    Motor ibottomRightMotor,
-                    Motor ibottomLeftMotor,
-                    ADIEncoder ileftEnc,
-                    ADIEncoder irightEnc,
-                    const double imaxOutput = 127)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::XDriveModel model(1_mtr, 2_mtr, 3_mtr, 4_mtr,
-                                   okapi::ADIEncoder(1, 2), okapi::ADIEncoder(3, 4, true));
-        }
-
-==================   ===================================================================
- Parameters
-==================   ===================================================================
- itopLeftMotor        The top left motor.
- itopRightMotor       The top right motor.
- ibottomRightMotor    The bottom right motor.
- ibottomLeftMotor     The bottom left motor.
- ileftEnc             The left side encoder.
- irightEnc            The right side encoder.
- imaxOutput           The maximum output value to the motors.
-==================   ===================================================================
 
 This constructor infers the encoders from the motors.
 
@@ -153,7 +89,7 @@ This constructor infers the encoders from the motors.
                     std::shared_ptr<AbstractMotor> itopRightMotor,
                     std::shared_ptr<AbstractMotor> ibottomRightMotor,
                     std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                    const double imaxOutput = 127)
+                    double imaxOutput = 127)
 
 ==================   ===================================================================
  Parameters
@@ -178,7 +114,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
                     std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                     std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                     std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                    const double imaxOutput = 127)
+                    double imaxOutput = 127)
 
 ==================   ===================================================================
  Parameters
@@ -197,7 +133,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        XDriveModel(const XDriveModelArgs &iparams)
+        explicit XDriveModel(const XDriveModelArgs &iparams)
 
 ==================   ===================================================================
  Parameters
@@ -231,7 +167,7 @@ Drives the robot forwards (using open-loop control).
       .. highlight:: cpp
       ::
 
-        virtual void forward(const double ispeed) const override
+        void forward(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -257,7 +193,7 @@ The algorithm is (approximately):
       .. highlight:: cpp
       ::
 
-        virtual void driveVector(const double iySpeed, const double izRotation) const override
+        void driveVector(double iySpeed, double izRotation) const override
 
 =============== ===================================================================
 Parameters
@@ -278,7 +214,7 @@ Turns the robot clockwise (using open-loop control).
       .. highlight:: cpp
       ::
 
-        virtual void rotate(const double ispeed) const override
+        void rotate(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -298,7 +234,7 @@ Stops the robot (set all the motors to ``0``).
       .. highlight:: cpp
       ::
 
-        virtual void stop() const override
+        void stop() const override
 
 ----
 
@@ -312,7 +248,7 @@ Drives the robot with a tank drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void tank(const double ileftSpeed, const double irightSpeed, const double ithreshold = 0) const
+        void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const override
 
 =============== ===================================================================
 Parameters
@@ -334,7 +270,7 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void arcade(const double iySpeed, const double izRotation, const double ithreshold = 0) const override
+        void arcade(double iySpeed, double izRotation, double ithreshold = 0) const override
 
 =============== ===================================================================
 Parameters
@@ -356,7 +292,7 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void xArcade(const double ixSpeed, const double iySpeed, const double izRotation, const double ithreshold = 0) const
+        virtual void xArcade(double ixSpeed, double iySpeed, double izRotation, double ithreshold = 0) const
 
 =============== ===================================================================
 Parameters
@@ -379,7 +315,7 @@ Powers the left side motors.
       .. highlight:: cpp
       ::
 
-        virtual void left(const double ispeed) const override
+        void left(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -399,7 +335,7 @@ Powers the right side motors.
       .. highlight:: cpp
       ::
 
-        virtual void right(const double ispeed) const override
+        void right(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -419,7 +355,7 @@ Returns the current sensor values. Ideally, return the values in the format ``{l
       .. highlight:: cpp
       ::
 
-        virtual std::valarray<std::int32_t> getSensorVals() const override
+        std::valarray<std::int32_t> getSensorVals() const override
 
 **Returns:** The current sensor values (the formatting is implementation dependent).
 
@@ -435,7 +371,7 @@ Resets the sensors to their zero point.
       .. highlight:: cpp
       ::
 
-        virtual void resetSensors() const override
+        void resetSensors() const override
 
 ----
 
@@ -449,7 +385,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const override
+        void setBrakeMode(AbstractMotor::brakeMode mode) const override
 
 =============== ===================================================================
 Parameters
@@ -469,7 +405,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const override
+        void setEncoderUnits(AbstractMotor::encoderUnits units) const override
 
 =============== ===================================================================
 Parameters
@@ -489,7 +425,7 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const override
+        void setGearing(AbstractMotor::gearset gearset) const override
 
 =============== ===================================================================
 Parameters
