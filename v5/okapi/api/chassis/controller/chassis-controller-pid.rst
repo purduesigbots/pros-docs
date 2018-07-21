@@ -11,7 +11,7 @@ A `ChassisController <abstract-chassis-controller.html>`_ using PID control. Doe
 motor's integrated control. The motors passed in will be put into degree units. If you are trying
 to make an instance of this class, you should most likely be using the
 `ChassisControllerFactory <chassis-controller-factory.html>`_ instead of a constructor from this
-class. Throws a ````std::invalid_argument```` exception if the gear ratio is zero.
+class. Throws a ``std::invalid_argument`` exception if the gear ratio is zero.
 
 Constructor(s)
 --------------
@@ -36,6 +36,31 @@ Constructor(s)
  imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
  idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
  iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
+ igearset                 The motor's internal planetary gearset and external gear ratio.
+ iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
+======================   =======================================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisControllerPID(const TimeUtil &itimeUtil,
+                             std::unique_ptr<AbstractRate> irate,
+                             std::unique_ptr<ChassisModel> imodel,
+                             std::unique_ptr<IterativePosPIDController> idistanceController,
+                             std::unique_ptr<IterativePosPIDController> iangleController,
+                             AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+                             const ChassisScales &iscales = ChassisScales({1, 1}))
+
+======================   =======================================================================================
+ Parameters
+======================   =======================================================================================
+ itimeUtil                See ``TimeUtil`` docs.
+ irate                    An ``AbstractRate``.
+ imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
+ idistanceController      The `IterativePosPIDController <../../control/iterative/iterative-pos-pid-controller.html>`_ for distance control.
+ iangleController         The `IterativePosPIDController <../../control/iterative/iterative-pos-pid-controller.html>`_ for angle control.
  igearset                 The motor's internal planetary gearset and external gear ratio.
  iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================
