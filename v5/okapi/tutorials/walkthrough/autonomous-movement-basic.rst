@@ -2,6 +2,9 @@
 Moving Autonomously
 ===================
 
+.. note:: This tutorial covers only sequential movement (only one subsystem operating at a time).
+          For a tutorial on asynchronous movements, see `Asynchronous Autonomous Movement <./autonomous-movement-async.html>`_.
+
 Arguably the most fundamental task with regard to creating a good autonomous routine 
 is ensuring consistent and accurate movement of the chassis. Robotic autonomous movement
 is an unsolved problem even among professional engineers, so it is obviously a difficult 
