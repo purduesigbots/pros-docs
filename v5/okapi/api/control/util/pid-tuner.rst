@@ -11,7 +11,7 @@ A class for automatically tuning a PID controller. If you are trying to create a
 class, you should most likely be using the `PIDTunerFactory <pid-tuner-factory.html>`_ instead of
 a constructor from this class.
 
-This utility is an implementation of the algorith described in the paper by
+This utility is an implementation of the algorithm described in the paper by
 M. H. T. Omar, W. M. Ali, and M. Z. Mostafa at the following location:
 `<https://www.researchgate.net/publication/257016802_Auto_Tuning_of_PID_Controller_Using_Swarm_Intelligence>`_.
 
