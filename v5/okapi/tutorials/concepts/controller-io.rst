@@ -27,6 +27,7 @@ What Classes are of Each Type?
 
 * ``RotarySensor``s
 * ``ContinuousRotarySensor``s
+* ``ADIUltrasonic``s
 
 **Controller Outputs:**
 
