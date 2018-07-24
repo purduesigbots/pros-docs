@@ -32,3 +32,5 @@ What Classes are of Each Type?
 **Controller Outputs:**
 
 * ``Motor``s
+* ``MotorGroup``s
+* ``ADIMotor``s
