@@ -101,6 +101,22 @@ Place a time marker. Placing another marker will overwrite the previous one.
 
 ----
 
+clearMark
+~~~~~~~~~
+
+Clears the marker.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual QTime clearMark() override
+
+**Returns:** The old marker.
+
+----
+
 placeHardMark
 ~~~~~~~~~~~~~
 

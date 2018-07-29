@@ -88,10 +88,27 @@ Place a time marker. Placing another marker will overwrite the previous one.
 
 ----
 
+clearMark
+~~~~~~~~~
+
+Clears the marker.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual QTime clearMark() = 0
+
+**Returns:** The old marker.
+
+----
+
 placeHardMark
 ~~~~~~~~~~~~~
 
-Place a hard time marker. Placing another hard marker will not overwrite the previous one; instead, call ``clearHardMark()`` and then place another.
+Place a hard time marker. Placing another hard marker will not overwrite the previous one; instead,
+call ``clearHardMark()`` and then place another.
 
 .. tabs ::
    .. tab :: Prototype
@@ -121,7 +138,7 @@ Clears the hard marker.
 getDtFromMark
 ~~~~~~~~~~~~~
 
-Returns the time since the time marker.
+Returns the time since the time marker. Returns ``0_ms`` if there is no marker.
 
 .. tabs ::
    .. tab :: Prototype
@@ -137,7 +154,7 @@ Returns the time since the time marker.
 getDtFromHardMark
 ~~~~~~~~~~~~~~~~~
 
-Returns the time since the hard time marker.
+Returns the time since the hard time marker. Returns ``0_ms`` if there is no hard marker.
 
 .. tabs ::
    .. tab :: Prototype
