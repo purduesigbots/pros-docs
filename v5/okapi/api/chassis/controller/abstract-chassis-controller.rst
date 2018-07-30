@@ -47,6 +47,9 @@ Parameters
 
 ----
 
+moveDistance
+~~~~~~~~~~~~
+
 Drives the robot straight for a distance with units of motor degrees (using closed-loop control).
 Blocks while the robot is driving.
 
@@ -55,7 +58,49 @@ Blocks while the robot is driving.
       .. highlight:: cpp
       ::
 
-        virtual void moveDistance(int itarget) = 0
+        virtual void moveDistance(double itarget) = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ itarget         The distance to travel in motor degrees.
+=============== ===================================================================
+
+----
+
+moveDistanceAsync
+~~~~~~~~~~~~~~~~~
+
+Drives the robot straight for a distance (using closed-loop control). Returns immediately (does not
+block while the robot is driving).
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void moveDistanceAsync(QLength itarget) = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ itarget         The distance to travel.
+=============== ===================================================================
+
+----
+
+moveDistanceAsync
+~~~~~~~~~~~~~~~~~
+
+Drives the robot straight for a distance with units of motor degrees (using closed-loop control). 
+Returns immediately (does not block while the robot is driving).
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void moveDistanceAsync(double itarget) = 0
 
 =============== ===================================================================
 Parameters
@@ -96,13 +141,69 @@ while the robot is turning.
       .. highlight:: cpp
       ::
 
-        virtual void turnAngle(float idegTarget) = 0
+        virtual void turnAngle(double idegTarget) = 0
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
  idegTarget      The angle to turn in motor degrees.
 =============== ===================================================================
+
+----
+
+turnAngleAsync
+~~~~~~~~~~~~~~
+
+Turns the robot clockwise in place (using closed-loop control). Returns immediately (does not block
+while the robot is driving).
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void turnAngleAsync(QAngle idegTarget) = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ idegTarget      The angle to turn.
+=============== ===================================================================
+
+----
+
+turnAngleAsync
+~~~~~~~~~~~~~~
+
+Turns the robot clockwise in place with units of motor degrees (using closed-loop control). Returns
+immediately (does not block while the robot is driving).
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void turnAngleAsync(double idegTarget) = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ idegTarget      The angle to turn in motor degrees.
+=============== ===================================================================
+
+----
+
+waitUntilSettled
+~~~~~~~~~~~~~~~~
+
+Delays until the currently executing movement completes.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void waitUntilSettled() = 0
 
 ----
 
