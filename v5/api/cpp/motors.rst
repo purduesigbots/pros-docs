@@ -1111,6 +1111,7 @@ Analogous to `motor_get_current_limit <../c/motors.html#motor-get-current-limit>
 setting ``errno``.
 
 ----
+
 get_encoder_units
 ~~~~~~~~~~~~~~~~~
 
@@ -1142,6 +1143,7 @@ Analogous to `motor_get_encoder_units <../c/motors.html#motor-get-encoder-units>
 or ``E_MOTOR_ENCODER_INVALID`` if the operation failed.
 
 ----
+
 get_gearing
 ~~~~~~~~~~~
 
@@ -1173,6 +1175,7 @@ Analogous to `motor_get_gearing <../c/motors.html#motor-get-gearing>`_.
 or ``E_GEARSET_INVALID`` if the operation failed.
 
 ----
+
 get_voltage_limit
 ~~~~~~~~~~~~~~~~~
 
@@ -1204,6 +1207,7 @@ Analogous to `motor_get_voltage_limit <../c/motors.html#motor-get-voltage-limit>
 setting ``errno``.
 
 ----
+
 is_reversed
 ~~~~~~~~~~~
 
@@ -1236,6 +1240,7 @@ Analogous to `motor_is_reversed <../c/motors.html#motor-is-reversed>`_.
 or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
+
 set_brake_mode
 ~~~~~~~~~~~~~~
 
