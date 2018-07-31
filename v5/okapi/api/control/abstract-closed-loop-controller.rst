@@ -70,6 +70,8 @@ isSettled
 Returns whether the controller has settled at the target. Determining what settling means is
 implementation-dependent.
 
+If the controller is disabled, this method must return true.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp

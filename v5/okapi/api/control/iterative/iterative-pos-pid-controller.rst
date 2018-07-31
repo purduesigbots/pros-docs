@@ -194,6 +194,8 @@ isSettled
 Returns whether the controller has settled at the target. Setting is when the error or derivative
 of error has been small enough for a long enough period.
 
+If the controller is disabled, this method must return true.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
