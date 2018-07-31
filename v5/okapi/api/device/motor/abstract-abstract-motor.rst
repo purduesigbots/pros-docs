@@ -26,7 +26,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveAbsolute(const double iposition, const std::int32_t ivelocity) const = 0
+        virtual std::int32_t moveAbsolute(double iposition, std::int32_t ivelocity) const = 0
 
 =============== ===================================================================
  Parameters
@@ -57,7 +57,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveRelative(const double iposition, const std::int32_t ivelocity) const = 0
+        virtual std::int32_t moveRelative(double iposition, std::int32_t ivelocity) const = 0
 
 =============== ===================================================================
  Parameters
@@ -77,8 +77,8 @@ moveVelocity
 Sets the velocity for the motor.
 
 This velocity corresponds to different actual speeds depending on the gearset used for the motor.
-This results in a range of ``+-100`` for ``E_MOTOR_GEARSET_36``, ``+-200`` for
-``E_MOTOR_GEARSET_18``, and ``+-600`` for ``E_MOTOR_GEARSET_6``. The velocity is held with PID to
+This results in a range of ``+-100`` for ``red``, ``+-200`` for
+``green``, and ``+-600`` for ``blue``. The velocity is held with PID to
 ensure consistent speed, as opposed to setting the motor's voltage.
 
 This function uses the following values of errno when an error state is reached:
@@ -89,7 +89,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const = 0
+        virtual std::int32_t moveVelocity(std::int16_t ivelocity) const = 0
 
 =============== ===================================================================
  Parameters
@@ -115,7 +115,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const = 0
+        virtual std::int32_t moveVoltage(std::int16_t ivoltage) const = 0
 
 =============== ===================================================================
  Parameters
@@ -233,7 +233,7 @@ setting errno.
 setBrakeMode
 ~~~~~~~~~~~~
 
-Sets one of ``pros::c::motor_brake_mode_e_t`` to the motor.
+Sets one of ``brakeMode`` to the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -243,12 +243,12 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const = 0
+        virtual std::int32_t setBrakeMode(brakeMode imode) const = 0
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imode           The ``pros::c::motor_brake_mode_e_t`` to set for the motor.
+ imode           The new motor brake mode.
 =============== ===================================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -269,7 +269,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const = 0
+        virtual std::int32_t setCurrentLimit(std::int32_t ilimit) const = 0
 
 =============== ===================================================================
  Parameters
@@ -285,7 +285,7 @@ setting errno.
 setEncoderUnits
 ~~~~~~~~~~~~~~~
 
-Sets one of ``pros::c::motor_encoder_units_e_t`` for the motor encoder.
+Sets one of ``encoderUnits`` for the motor encoder.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -295,7 +295,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const = 0
+        virtual std::int32_t setEncoderUnits(encoderUnits iunits) const = 0
 
 =============== ===================================================================
  Parameters
@@ -311,7 +311,7 @@ setting errno.
 setGearing
 ~~~~~~~~~~
 
-Sets one of ``pros::c::motor_gearset_e_t`` for the motor.
+Sets one of ``gearset`` for the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -321,7 +321,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(const pros::c::motor_gearset_e_t igearset) const = 0
+        virtual std::int32_t setGearing(gearset igearset) const = 0
 
 =============== ===================================================================
  Parameters
@@ -349,7 +349,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setReversed(const bool ireverse) const = 0
+        virtual std::int32_t setReversed(bool ireverse) const = 0
 
 =============== ===================================================================
  Parameters
@@ -375,7 +375,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setVoltageLimit(const std::int32_t ilimit) const = 0
+        virtual std::int32_t setVoltageLimit(std::int32_t ilimit) const = 0
 
 =============== ===================================================================
  Parameters
@@ -398,6 +398,87 @@ Returns the encoder associated with this motor.
       .. highlight:: cpp
       ::
 
-        virtual IntegratedEncoder getEncoder() const = 0
+        virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() const = 0
 
 **Returns:** The encoder associated with this motor.
+
+Enumerated Values
+-----------------
+
+brakeMode
+~~~~~~~~~
+
+Indicates the current 'brake mode' of the motor.
+
+::
+
+  enum class brakeMode {
+    coast = 0, // Motor coasts when stopped, traditional behavior
+    brake = 1, // Motor brakes when stopped
+    hold = 2,  // Motor actively holds position when stopped
+    invalid = INT32_MAX
+  };
+
+encoderUnits
+~~~~~~~~~~~~
+
+Indicates the units used by the motor's encoder.
+
+::
+
+  enum class encoderUnits {
+    degrees = 0,
+    rotations = 1,
+    counts = 2,
+    invalid = INT32_MAX
+  };
+
+gearset
+~~~~~~~
+
+Indicates the internal gearing used by the motor.
+
+::
+
+  enum class gearset {
+    red = 1000,  // 36:1, 100 RPM, Red gear set
+    green = 200, // 18:1, 200 RPM, Green gear set
+    blue = 600,  // 6:1,  600 RPM, Blue gear set
+    invalid = INT32_MAX
+  };
+
+Helper Structs
+--------------
+
+GearsetRatioPair
+~~~~~~~~~~~~~~~~
+
+This is a simple data class to hold an internal gearset and an external gear ratio.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        struct GearsetRatioPair {
+          GearsetRatioPair(const gearset igearset, const double iratio = 1)
+            : internalGearset(igearset), ratio(iratio) {
+          }
+
+          ~GearsetRatioPair() = default;
+
+          const gearset internalGearset;
+          const double ratio = 1;
+        };
+
+        AbstractMotor::GearsetRatioPair operator*(AbstractMotor::gearset gearset, double ratio);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // GearsetRatioPair is implicitly constructable from a gearset
+        okapi::AbstractMotor::GearsetRatioPair foo = okapi::AbstractMotor::gearset::green;
+
+        // You can also multiple a gearset by an external gear ratio
+        okapi::AbstractMotor::GearsetRatioPair foo = okapi::AbstractMotor::gearset::green * (2/3);

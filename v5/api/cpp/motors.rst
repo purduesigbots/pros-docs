@@ -170,8 +170,8 @@ setting ``errno``.
 
 ----
 
-motor_move_absolute
--------------------
+move_absolute
+~~~~~~~~~~~~~
 
 Sets the target absolute position for the motor to move to.
 
@@ -270,7 +270,7 @@ This velocity corresponds to different actual speeds depending on the gearset
 used for the motor. This results in a range of +-100 for
 `E_MOTOR_GEARSET_36 <motor_gearset_e_t_>`_,
 +-200 for `E_MOTOR_GEARSET_18 <motor_gearset_e_t_>`_, and +-600 for
-`E_MOTOR_GEARSET_6 <motor_gearset_e_t_>`_. The velocity
+`blue <motor_gearset_e_t_>`_. The velocity
 is held with PID to ensure consistent speed, as opposed to setting the motor's
 voltage.
 
@@ -359,14 +359,14 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``EACCES``  - Another resource is currently trying to access the port.
 
-Analogous to `motor_get_target <../c/motors.html#motor-get-target>`_.
+Analogous to `motor_get_target_position <../c/motors.html#motor-get-target-position>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        double pros::Motor::get_target ( )
+        double pros::Motor::get_target_position ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -375,7 +375,7 @@ Analogous to `motor_get_target <../c/motors.html#motor-get-target>`_.
         void autonomous() {
           pros::Motor motor (1);
           motor.move_absolute(100, 100);
-          std::cout << "Motor Target: " << motor.get_target();
+          std::cout << "Motor Target: " << motor.get_target_position();
           // Prints 100
         }
 
@@ -393,14 +393,14 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``EACCES``  - Another resource is currently trying to access the port.
 
-Analogous to `motor_get_velocity <../c/motors.html#motor-get-velocity>`_.
+Analogous to `motor_get_target_velocity <../c/motors.html#motor-get-target-velocity>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::get_velocity ( )
+        int32_t pros::Motor::get_target_velocity ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -411,7 +411,7 @@ Analogous to `motor_get_velocity <../c/motors.html#motor-get-velocity>`_.
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             motor.move_velocity(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
-            std::cout << "Motor Velocity: " << motor.get_velocity();
+            std::cout << "Motor Velocity: " << motor.get_target_velocity();
             // Prints the value of E_CONTROLLER_ANALOG_LEFT_Y
             pros::delay(2);
           }
@@ -1111,6 +1111,7 @@ Analogous to `motor_get_current_limit <../c/motors.html#motor-get-current-limit>
 setting ``errno``.
 
 ----
+
 get_encoder_units
 ~~~~~~~~~~~~~~~~~
 
@@ -1142,6 +1143,7 @@ Analogous to `motor_get_encoder_units <../c/motors.html#motor-get-encoder-units>
 or ``E_MOTOR_ENCODER_INVALID`` if the operation failed.
 
 ----
+
 get_gearing
 ~~~~~~~~~~~
 
@@ -1173,6 +1175,7 @@ Analogous to `motor_get_gearing <../c/motors.html#motor-get-gearing>`_.
 or ``E_GEARSET_INVALID`` if the operation failed.
 
 ----
+
 get_voltage_limit
 ~~~~~~~~~~~~~~~~~
 
@@ -1204,6 +1207,7 @@ Analogous to `motor_get_voltage_limit <../c/motors.html#motor-get-voltage-limit>
 setting ``errno``.
 
 ----
+
 is_reversed
 ~~~~~~~~~~~
 
@@ -1236,6 +1240,7 @@ Analogous to `motor_is_reversed <../c/motors.html#motor-is-reversed>`_.
 or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
+
 set_brake_mode
 ~~~~~~~~~~~~~~
 

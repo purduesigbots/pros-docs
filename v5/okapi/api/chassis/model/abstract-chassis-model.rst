@@ -7,6 +7,10 @@
 okapi::ChassisModel
 ===================
 
+A version of the `ReadOnlyChassisModel <abstract-chassis-model.html>`_ that also supports write
+methods, such as setting motor speed. Because this class can write to motors, there can only be one
+owner and as such copying is disabled.
+
 Methods
 -------
 
@@ -20,7 +24,7 @@ Drives the robot forwards (using open-loop control).
       .. highlight:: cpp
       ::
 
-        virtual void forward(const double ispeed) const = 0
+        virtual void forward(double ispeed) const = 0
 
 =============== ===================================================================
 Parameters
@@ -46,7 +50,7 @@ The algorithm is (approximately):
       .. highlight:: cpp
       ::
 
-        virtual void driveVector(const double iySpeed, const double izRotation) const = 0
+        virtual void driveVector(double iySpeed, double izRotation) const = 0
 
 =============== ===================================================================
 Parameters
@@ -67,7 +71,7 @@ Turns the robot clockwise (using open-loop control).
       .. highlight:: cpp
       ::
 
-        virtual void rotate(const double ispeed) const = 0
+        virtual void rotate(double ispeed) const = 0
 
 =============== ===================================================================
 Parameters
@@ -101,7 +105,7 @@ Drives the robot with a tank drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void tank(const double ileftSpeed, const double irightSpeed, const double ithreshold = 0) const = 0
+        virtual void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const = 0
 
 =============== ===================================================================
 Parameters
@@ -123,7 +127,7 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void arcade(const double iySpeed, const double izRotation, const double ithreshold = 0) const = 0
+        virtual void arcade(double iySpeed, double izRotation, double ithreshold = 0) const = 0
 
 =============== ===================================================================
 Parameters
@@ -145,7 +149,7 @@ Powers the left side motors.
       .. highlight:: cpp
       ::
 
-        virtual void left(const double ispeed) const = 0
+        virtual void left(double ispeed) const = 0
 
 =============== ===================================================================
 Parameters
@@ -165,29 +169,13 @@ Powers the right side motors.
       .. highlight:: cpp
       ::
 
-        virtual void right(const double ispeed) const = 0
+        virtual void right(double ispeed) const = 0
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
  ispeed          The new speed.
 =============== ===================================================================
-
-----
-
-getSensorVals
-~~~~~~~~~~~~~
-
-Returns the current sensor values. Ideally, return the values in the format ``{left, right, ...}``.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual std::valarray<std::int32_t> getSensorVals() const = 0
-
-**Returns:** The current sensor values (the formatting is implementation dependent).
 
 ----
 
@@ -215,7 +203,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const = 0
+        virtual void setBrakeMode(AbstractMotor::brakeMode mode) const = 0
 
 =============== ===================================================================
 Parameters
@@ -235,7 +223,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const = 0
+        virtual void setEncoderUnits(AbstractMotor::encoderUnits units) const = 0
 
 =============== ===================================================================
 Parameters
@@ -255,7 +243,7 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const = 0
+        virtual void setGearing(AbstractMotor::gearset gearset) const = 0
 
 =============== ===================================================================
 Parameters

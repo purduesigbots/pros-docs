@@ -58,7 +58,7 @@ you need to initialize these submodules and pull them separately when updating t
 
 Modification of the tabs theming should be done within the [SIGBots fork of the tabs extension](https://github.com/purduesigbots/sphinx-tabs). Testing modifications to the
 theming is often easier done from within the main docs repo; since the theming is just CSS
-no compilation is required outside of the typical build process outside of the normal make process.
+no compilation is required outside of the typical build process.
 
 ### Modifying the general theming
 

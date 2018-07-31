@@ -11,17 +11,17 @@ controllerSet
 ~~~~~~~~~~~~~
 
 Writes the value of the controller output. This method might be automatically called in another
-thread by the controller.
+thread by the controller. The range of input values is expected to be [-1, 1].
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual void controllerSet(const double ivalue) = 0
+        virtual void controllerSet(double ivalue) = 0
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ivalue          The controller's output.
+ ivalue          The controller's output in the range [-1, 1].
 =============== ===================================================================

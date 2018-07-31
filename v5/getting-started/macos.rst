@@ -1,6 +1,6 @@
-==================
+===================
 Installing on macOS
-==================
+===================
 
 .. warning::
    During the initial beta phase of PROS 3, we want to focus on developing the

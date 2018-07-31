@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        EmaFilterArgs(const double ialpha)
+        explicit EmaFilterArgs(double ialpha)
 
 =============== ===================================================================
  Parameters
@@ -38,7 +38,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        EmaFilter(const double ialpha)
+        explicit EmaFilter(double ialpha)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -58,6 +58,19 @@ Constructor(s)
  ialpha          The alpha gain (how much to consider the current measurement vs. the previous output).
 =============== ===================================================================
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        explicit EmaFilter(const EmaFilterArgs &iargs)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ iargs           The ``EmaFilterArgs`` to use.
+=============== ===================================================================
+
 ----
 
 Methods
@@ -73,7 +86,7 @@ Filters a value, like a sensor reading.
       .. highlight:: cpp
       ::
 
-        virtual double filter(const double ireading) override
+        double filter(double ireading) override
 
 ============ ===============================================================
  Parameters
@@ -95,7 +108,7 @@ Returns the previous output from the filter.
       .. highlight:: cpp
       ::
 
-        virtual double getOutput() const override
+        double getOutput() const override
 
 **Returns:** The previous output from the filter.
 
@@ -111,7 +124,7 @@ Sets new filter gains.
       .. highlight:: cpp
       ::
 
-        virtual void setGains(const double ialpha)
+        virtual void setGains(double ialpha)
 
 =============== ===================================================================
 Parameters

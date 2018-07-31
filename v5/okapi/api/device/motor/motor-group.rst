@@ -117,8 +117,8 @@ moveVelocity
 Sets the velocity for the motor.
 
 This velocity corresponds to different actual speeds depending on the gearset used for the motor.
-This results in a range of ``+-100`` for ``E_MOTOR_GEARSET_36``, ``+-200`` for
-``E_MOTOR_GEARSET_18``, and ``+-600`` for ``E_MOTOR_GEARSET_6``. The velocity is held with PID to
+This results in a range of ``+-100`` for ``red``, ``+-200`` for
+``green``, and ``+-600`` for ``blue``. The velocity is held with PID to
 ensure consistent speed, as opposed to setting the motor's voltage.
 
 This function uses the following values of errno when an error state is reached:
@@ -303,7 +303,7 @@ setting errno.
 setBrakeMode
 ~~~~~~~~~~~~
 
-Sets one of ``pros::c::motor_brake_mode_e_t`` to the motor.
+Sets one of ``AbstractMotor::brakeMode`` to the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -313,12 +313,12 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(const pros::c::motor_brake_mode_e_t imode) const override
+        virtual std::int32_t setBrakeMode(const AbstractMotor::brakeMode imode) const override
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imode           The ``pros::c::motor_brake_mode_e_t`` to set for the motor.
+ imode           The new motor brake mode.
 =============== ===================================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -355,7 +355,7 @@ setting errno.
 setEncoderUnits
 ~~~~~~~~~~~~~~~
 
-Sets one of ``pros::c::motor_encoder_units_e_t`` for the motor encoder.
+Sets one of ``AbstractMotor::encoderUnits`` for the motor encoder.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -365,7 +365,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(const pros::c::motor_encoder_units_e_t iunits) const override
+        virtual std::int32_t setEncoderUnits(const AbstractMotor::encoderUnits iunits) const override
 
 =============== ===================================================================
  Parameters
@@ -381,7 +381,7 @@ setting errno.
 setGearing
 ~~~~~~~~~~
 
-Sets one of ``pros::c::motor_gearset_e_t`` for the motor.
+Sets one of ``AbstractMotor::gearset`` for the motor.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -391,7 +391,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(const pros::c::motor_gearset_e_t igearset) const override
+        virtual std::int32_t setGearing(const AbstractMotor::gearset igearset) const override
 
 =============== ===================================================================
  Parameters
@@ -462,7 +462,7 @@ controllerSet
 ~~~~~~~~~~~~~
 
 Writes the value of the controller output. This method might be automatically called in another
-thread by the controller.
+thread by the controller. The range of input values is expected to be [-1, 1].
 
 .. tabs ::
    .. tab :: Prototype
@@ -474,7 +474,7 @@ thread by the controller.
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ivalue          The controller's output.
+ ivalue          The controller's output in the range [-1, 1].
 =============== ===================================================================
 
 ----
@@ -489,6 +489,6 @@ Returns the encoder associated with this motor.
       .. highlight:: cpp
       ::
 
-        virtual IntegratedEncoder getEncoder() const override
+        virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() const override
 
 **Returns:** The encoder associated with this motor.

@@ -57,7 +57,7 @@ Filters a value, like a sensor reading.
       .. highlight:: cpp
       ::
 
-        virtual double filter(const double ireading) override
+        double filter(const double ireading) override
 
 ============ ===============================================================
  Parameters
@@ -79,6 +79,6 @@ Returns the previous output from the filter.
       .. highlight:: cpp
       ::
 
-        virtual double getOutput() const override
+        double getOutput() const override
 
 **Returns:** The previous output from the filter.

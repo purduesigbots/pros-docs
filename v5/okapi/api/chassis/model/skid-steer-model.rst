@@ -22,7 +22,7 @@ This constructor infers the encoders from the left side and right side motors.
 
         SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
                            std::shared_ptr<AbstractMotor> irightSideMotor,
-                           const double imaxOutput = 127)
+                           double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -43,7 +43,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
                            std::shared_ptr<AbstractMotor> irightSideMotor,
                            std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                            std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                           const double imaxOutput = 127)
+                           double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -60,102 +60,15 @@ This constructor does not infer the encoders from the motors, and instead takes 
 okapi::SkidSteerModel
 =====================
 
-The model for a skid-steer chassis.
+The model for a skid-steer chassis. If you are trying to make an instance of this class, you should
+most likely be creating a type of
+`ChassisController <../controller/abstract-chassis-controller.html>`_ instead. If you really do
+mean to make an instance of a
+`ChassisModel <abstract-chassis-model.html>`_, then you should probably be using the
+`ChassisModelFactory <chassis-model-factory.html>`_ instead of a constructor from this class.
 
 Constructor(s)
 --------------
-
-This constructor infers the encoders from the left side and right side motors.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        SkidSteerModelArgs(Motor ileftSideMotor,
-                           Motor irightSideMotor,
-                           const double imaxOutput = 127)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::SkidSteerModel model(1_mtr, 2_mtr);
-        }
-
-=================   ===================================================================
- Parameters
-=================   ===================================================================
- ileftSideMotor      The left side motor.
- irightSideMotor     The right side motor.
- imaxOutput          The maximum output value to the motors.
-=================   ===================================================================
-
-This constructor infers the encoders from the left side and right side motors.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        SkidSteerModelArgs(MotorGroup ileftSideMotor,
-                           MotorGroup irightSideMotor,
-                           const double imaxOutput = 127)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::SkidSteerModel model(okapi::MotorGroup({1_mtr, 2_mtr}),
-                                      okapi::MotorGroup({3_mtr, 4_mtr}));
-        }
-
-=================   ===================================================================
- Parameters
-=================   ===================================================================
- ileftSideMotor      The left side motor.
- irightSideMotor     The right side motor.
- imaxOutput          The maximum output value to the motors.
-=================   ===================================================================
-
-This constructor does not infer the encoders from the motors, and instead takes explicitly specified encoders.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        SkidSteerModelArgs(MotorGroup ileftSideMotor,
-                           MotorGroup irightSideMotor,
-                           ADIEncoder ileftEnc,
-                           ADIEncoder irightEnc,
-                           const double imaxOutput = 127)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          using namespace okapi::literals;
-          okapi::SkidSteerModel model(okapi::MotorGroup({1_mtr, 2_mtr}),
-                                      okapi::MotorGroup({3_mtr, 4_mtr}),
-                                      okapi::ADIEncoder(1, 2),
-                                      okapi::ADIEncoder(3, 4, true));
-        }
-
-=================   ===================================================================
- Parameters
-=================   ===================================================================
- ileftSideMotor      The left side motor.
- irightSideMotor     The right side motor.
- ileftEnc            The left side encoder.
- irightEnc           The right side encoder.
- imaxOutput          The maximum output value to the motors.
-=================   ===================================================================
 
 This constructor infers the encoders from the motors.
 
@@ -166,7 +79,7 @@ This constructor infers the encoders from the motors.
 
         SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                        std::shared_ptr<AbstractMotor> irightSideMotor,
-                       const double imaxOutput = 127)
+                       double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -187,7 +100,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
                        std::shared_ptr<AbstractMotor> irightSideMotor,
                        std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                        std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                       const double imaxOutput = 127)
+                       double imaxOutput = 127)
 
 =================   ===================================================================
  Parameters
@@ -204,7 +117,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        SkidSteerModel(const SkidSteerModelArgs &iparams)
+        explicit SkidSteerModel(const SkidSteerModelArgs &iparams)
 
 =================   ===================================================================
  Parameters
@@ -238,7 +151,7 @@ Drives the robot forwards (using open-loop control).
       .. highlight:: cpp
       ::
 
-        virtual void forward(const double ispeed) const override
+        void forward(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -264,7 +177,7 @@ The algorithm is (approximately):
       .. highlight:: cpp
       ::
 
-        virtual void driveVector(const double iySpeed, const double izRotation) const override
+        void driveVector(double iySpeed, double izRotation) const override
 
 =============== ===================================================================
 Parameters
@@ -285,7 +198,7 @@ Turns the robot clockwise (using open-loop control).
       .. highlight:: cpp
       ::
 
-        virtual void rotate(const double ispeed) const override
+        void rotate(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -305,7 +218,7 @@ Stops the robot (set all the motors to ``0``).
       .. highlight:: cpp
       ::
 
-        virtual void stop() const override
+        void stop() const override
 
 ----
 
@@ -319,7 +232,7 @@ Drives the robot with a tank drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void tank(const double ileftSpeed, const double irightSpeed, const double ithreshold = 0) const
+        void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const
 
 =============== ===================================================================
 Parameters
@@ -341,7 +254,7 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void arcade(const double iySpeed, const double izRotation, const double ithreshold = 0) const override
+        void arcade(double iySpeed, double izRotation, double ithreshold = 0) const override
 
 =============== ===================================================================
 Parameters
@@ -363,7 +276,7 @@ Powers the left side motors.
       .. highlight:: cpp
       ::
 
-        virtual void left(const double ispeed) const override
+        void left(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -383,7 +296,7 @@ Powers the right side motors.
       .. highlight:: cpp
       ::
 
-        virtual void right(const double ispeed) const override
+        void right(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -403,7 +316,7 @@ Returns the current sensor values. Ideally, return the values in the format ``{l
       .. highlight:: cpp
       ::
 
-        virtual std::valarray<std::int32_t> getSensorVals() const override
+        std::valarray<std::int32_t> getSensorVals() const override
 
 **Returns:** The current sensor values (the formatting is implementation dependent).
 
@@ -419,7 +332,7 @@ Resets the sensors to their zero point.
       .. highlight:: cpp
       ::
 
-        virtual void resetSensors() const override
+        void resetSensors() const override
 
 ----
 
@@ -433,7 +346,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setBrakeMode(const pros::c::motor_brake_mode_e_t mode) const override
+        void setBrakeMode(const AbstractMotor::brakeMode mode) const override
 
 =============== ===================================================================
 Parameters
@@ -453,7 +366,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setEncoderUnits(const pros::c::motor_encoder_units_e_t units) const override
+        void setEncoderUnits(AbstractMotor::encoderUnits units) const override
 
 =============== ===================================================================
 Parameters
@@ -473,7 +386,7 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setGearing(const pros::c::motor_gearset_e_t gearset) const override
+        void setGearing(AbstractMotor::gearset gearset) const override
 
 =============== ===================================================================
 Parameters

@@ -1,26 +1,13 @@
-=====
-Timer
-=====
+=========================
+(Abstract) Abstract Timer
+=========================
 
 .. contents:: :local:
 
-okapi::Timer
-============
+okapi::AbstractTimer
+====================
 
-An `AbstractTimer <abstract-abstract-timer.html>`_ which uses the PROS kernel for its
-implementation.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        Timer()
-
-----
+A time- and timing-related utility class.
 
 Methods
 -------
@@ -35,7 +22,7 @@ Returns the current time in units of ``QTime``.
       .. highlight:: cpp
       ::
 
-        virtual QTime millis() const override
+        virtual QTime millis() const = 0
 
 **Returns:** The current time in units of ``QTime``.
 
@@ -49,7 +36,7 @@ Returns the time passed in ms since the previous call of this function.
       .. highlight:: cpp
       ::
 
-        virtual QTime getDt() override
+        virtual QTime getDt() = 0
 
 **Returns:** The time passed in ms since the previous call of this function.
 
@@ -65,7 +52,7 @@ Returns the time the timer was first constructed.
       .. highlight:: cpp
       ::
 
-        virtual QTime getStartingTime() const override
+        virtual QTime getStartingTime() const = 0
 
 **Returns:** The time the timer was first constructed.
 
@@ -81,7 +68,7 @@ Returns the time since the timer was first constructed.
       .. highlight:: cpp
       ::
 
-        virtual QTime getDtFromStart() const override
+        virtual QTime getDtFromStart() const = 0
 
 **Returns:** The time since the timer was first constructed.
 
@@ -97,7 +84,7 @@ Place a time marker. Placing another marker will overwrite the previous one.
       .. highlight:: cpp
       ::
 
-        virtual void placeMark() override
+        virtual void placeMark() = 0
 
 ----
 
@@ -111,7 +98,7 @@ Place a hard time marker. Placing another hard marker will not overwrite the pre
       .. highlight:: cpp
       ::
 
-        virtual void placeHardMark() override
+        virtual void placeHardMark() = 0
 
 ----
 
@@ -125,7 +112,7 @@ Clears the hard marker.
       .. highlight:: cpp
       ::
 
-        virtual QTime clearHardMark() override
+        virtual QTime clearHardMark() = 0
 
 **Returns:** The old hard marker.
 
@@ -141,7 +128,7 @@ Returns the time since the time marker.
       .. highlight:: cpp
       ::
 
-        virtual QTime getDtFromMark() const override
+        virtual QTime getDtFromMark() const = 0
 
 **Returns:** The time since the time marker.
 
@@ -157,7 +144,7 @@ Returns the time since the hard time marker.
       .. highlight:: cpp
       ::
 
-        virtual QTime getDtFromHardMark() const override
+        virtual QTime getDtFromHardMark() const = 0
 
 **Returns:** The time since the hard time marker.
 
@@ -174,7 +161,7 @@ run an action every time period without blocking.
       .. highlight:: cpp
       ::
 
-        virtual bool repeat(const QTime time) override
+        virtual bool repeat(QTime time) = 0
 
    .. tab :: Example
       .. highlight:: cpp
@@ -212,7 +199,7 @@ run an action every time period without blocking.
       .. highlight:: cpp
       ::
 
-        virtual bool repeat(const QFrequency time) override
+        virtual bool repeat(QFrequency time) = 0
 
    .. tab :: Example
       .. highlight:: cpp

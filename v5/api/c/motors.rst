@@ -165,7 +165,7 @@ This velocity corresponds to different actual speeds depending on the gearset
 used for the motor. This results in a range of +-100 for
 `E_MOTOR_GEARSET_36 <motors.html#motor-gearset-e-t>`_,
 +-200 for `E_MOTOR_GEARSET_18 <motors.html#motor-gearset-e-t>`_, and +-600 for
-`E_MOTOR_GEARSET_6 <motors.html#motor-gearset-e-t>`_. The velocity
+`blue <motors.html#motor-gearset-e-t>`_. The velocity
 is held with PID to ensure consistent speed, as opposed to setting the motor's
 voltage.
 
@@ -259,7 +259,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
 - ``EACCES``  - Another resource is currently trying to access the port.
 
-Analogous to `pros::Motor::get_target <../cpp/motors.html#get-target>`_.
+Analogous to `pros::Motor::get_target_position <../cpp/motors.html#get-target-position>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -299,7 +299,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
 - ``EACCES``  - Another resource is currently trying to access the port.
 
-Analogous to `pros::Motor::get_velocity <../cpp/motors.html#get-velocity>`_.
+Analogous to `pros::Motor::get_target_velocity <../cpp/motors.html#get-target-velocity>`_.
 
 .. tabs ::
    .. tab :: Prototype
