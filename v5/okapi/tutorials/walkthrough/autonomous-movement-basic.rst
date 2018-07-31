@@ -5,14 +5,13 @@ Moving Autonomously
 .. note:: This tutorial covers only sequential movement (only one subsystem operating at a time).
           For a tutorial on asynchronous movements, see `Asynchronous Autonomous Movement <./autonomous-movement-async.html>`_.
 
-Arguably the most fundamental task with regard to creating a good autonomous routine 
+Arguably the most fundamental task with regard to creating a good autonomous routine
 is ensuring consistent and accurate movement of the chassis. Robotic autonomous movement
-is an unsolved problem even among professional engineers, so it is obviously a difficult 
-task. OkapiLib won't promise to make your robot move perfectly in autonomous, but it
-makes it much easier to get reasonably accurate autonomous movements with little difficulty.
+is an unsolved problem even among professional engineers, so it is obviously a difficult
+task. OkapiLib makes it easy to get reasonably accurate autonomous movements.
 
 The basis for this autonomous movement is the ``ChassisController`` class. Take a look at its
-`API <../../api/chassis/controller/chassis-controller-integrated.html>`_ and 
+`API <../../api/chassis/controller/chassis-controller-integrated.html>`_ and
 `concept page <../concepts/chassiscontroller.html>`_ for more detailed info on it.
 
 We'll use a ``ChassisControllerIntegrated`` for this tutorial, using the V5 motors' onboard
@@ -24,13 +23,12 @@ Let's start by creating the ``ChassisControllerIntegrated`` with drive motors in
 .. code-block: cpp
    :name: autonomous.cpp
    :linenos:
-   
+
    const int DRIVE_MOTOR_LEFT = 1;
    const int DRIVE_MOTOR_RIGHT = 2;
-   
-   auto chassis = okapi::ChassisControllerFactory::create(okapi::Motor(DRIVE_MOTOR_LEFT), 
-                                                          okapi::Motor(DRIVE_MOTOR_RIGHT));
-                                                         
+
+   auto chassis = okapi::ChassisControllerFactory::create(DRIVE_MOTOR_LEFT, DRIVE_MOTOR_RIGHT);
+
 Now that we've created a ChassisController, let's start moving around. There are two fundamental movement types -
 ``moveDistance()`` and ``turnAngle()``, for moving forward/backward and turning on a point.
 
@@ -38,13 +36,13 @@ Now that we've created a ChassisController, let's start moving around. There are
 .. code-block: cpp
    :name: autonomous.cpp
    :linenos:
-   
+
    const int DRIVE_MOTOR_LEFT = 1;
    const int DRIVE_MOTOR_RIGHT = 2;
-   
+
    void autonomous() {
-     auto chassis = okapi::ChassisControllerFactory::create(okapi::Motor(DRIVE_MOTOR_LEFT), 
-                                                            okapi::Motor(DRIVE_MOTOR_RIGHT));
+     auto chassis = okapi::ChassisControllerFactory::create(DRIVE_MOTOR_LEFT, DRIVE_MOTOR_RIGHT);
+
      // Move to first goal
      chassis.moveDistance(1000);
      // Turn to face second goal
@@ -59,18 +57,16 @@ for the units that you would like the movement to occur in.
 .. code-block: cpp
    :name: autonomous.cpp
    :linenos:
-   
+
    const int DRIVE_MOTOR_LEFT = 1;
    const int DRIVE_MOTOR_RIGHT = 2;
-   
+
    void autonomous() {
-     auto chassis = okapi::ChassisControllerFactory::create(okapi::Motor(DRIVE_MOTOR_LEFT), 
-                                                            okapi::Motor(DRIVE_MOTOR_RIGHT));
+     auto chassis = okapi::ChassisControllerFactory::create(DRIVE_MOTOR_LEFT, DRIVE_MOTOR_RIGHT);
+     
      // Move 1 meter to the first goal
      chassis.moveDistance(1_m);
      // Turn 90 degrees to face second goal
      chassis.turnAngle(90_deg);
      // Drive 1 and a half feet toward second goal
      chassis.moveDistance(1.5_ft);
-  
-  
