@@ -57,7 +57,7 @@ Resets the sensor to ``0``.
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t reset() const override
+        virtual std::int32_t reset() override
 
 **Returns:** ``1`` on success, or ``PROS_ERR`` on a failure.
 
