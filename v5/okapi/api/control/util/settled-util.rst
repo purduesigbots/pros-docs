@@ -27,8 +27,8 @@ Constructor(s)
  Parameters
 ===================== ===============================================================
  iatTargetTimer        The ``AbstractTimer`` to use.
- iatTargetError        Minimum error to be considered settled.
- iatTargetDerivative   Minimum error derivative to be considered settled.
+ iatTargetError        Maximum error to be considered settled.
+ iatTargetDerivative   Maximum error derivative to be considered settled.
  iatTargetTime         Minimum time within ``atTargetError`` to be considered settled.
 ===================== ===============================================================
 
