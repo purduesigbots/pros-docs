@@ -50,7 +50,8 @@ Now that we've created a ChassisController, let's start moving around. There are
      // Drive toward second goal
      chassis.moveDistance(1500);
 
-If you'd like to set movements in real life units, that's possible as well. Just use the appropriate suffix
+If you'd like to set movements in real life units, that's possible as well. Just pass in the
+drive's gearset and dimensions, and then use the appropriate suffix
 for the units that you would like the movement to occur in.
 
 .. highlight: cpp
@@ -60,10 +61,13 @@ for the units that you would like the movement to occur in.
 
    const int DRIVE_MOTOR_LEFT = 1;
    const int DRIVE_MOTOR_RIGHT = 2;
+   const auto WHEEL_DIAMETER = 4_in;
+   const auto CHASSIS_WIDTH = 13.5_in;
 
    void autonomous() {
-     auto chassis = okapi::ChassisControllerFactory::create(DRIVE_MOTOR_LEFT, DRIVE_MOTOR_RIGHT);
-     
+     auto chassis = okapi::ChassisControllerFactory::create(DRIVE_MOTOR_LEFT, DRIVE_MOTOR_RIGHT,
+                    okapi::AbstractMotor::gearset::red, {WHEEL_DIAMETER, CHASSIS_WIDTH});
+
      // Move 1 meter to the first goal
      chassis.moveDistance(1_m);
      // Turn 90 degrees to face second goal
