@@ -243,3 +243,15 @@ Delays until the currently executing movement completes.
       ::
 
         void waitUntilSettled() override
+
+stop
+~~~~
+
+Stops the robot (set all the motors to ``0``).
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void stop() override

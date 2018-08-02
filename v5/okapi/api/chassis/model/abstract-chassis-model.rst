@@ -91,7 +91,7 @@ Stops the robot (set all the motors to ``0``).
       .. highlight:: cpp
       ::
 
-        virtual void stop() const = 0
+        virtual void stop() = 0
 
 ----
 

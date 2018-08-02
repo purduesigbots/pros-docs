@@ -218,7 +218,7 @@ Stops the robot (set all the motors to ``0``).
       .. highlight:: cpp
       ::
 
-        void stop() const override
+        void stop() override
 
 ----
 
