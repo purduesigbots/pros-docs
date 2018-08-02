@@ -7,7 +7,7 @@ Why do I get a "Could not open port" error when flashing?
 
 You might have seen an error like this:
 
-::
+.. code-block:: none
 
   Uploading bin/output.bin to v5 device on COM11 as hello to slot 1
   ERROR - pros.cli.upload:upload - could not open port 'COM11': PermissionError(13, 'Access is denied.', None, 5)
