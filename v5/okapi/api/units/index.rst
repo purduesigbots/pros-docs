@@ -54,7 +54,7 @@ Type name: ``QSpeed``
 Acceleration Units
 ------------------
 
-Type name: ``QAccerlation``
+Type name: ``QAcceleration``
 
 +-------------------+----------+-----------+
 | Unit              | Name     | Literal   |
