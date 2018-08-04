@@ -38,6 +38,29 @@ will be logged.
 
 ----
 
+initialize
+~~~~~~~~~~
+
+Initializes the logger. If the logger is not initialized when logging methods are called, nothing
+will be logged.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        static void initialize(std::unique_ptr<AbstractTimer> itimer, FILE *file, LogLevel level) noexcept
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ itimer       A timer used to get the current time for log statements.
+ file         The file to write log statements to.
+ level        The log level. Log statements above this level will be disabled.
+============ ===============================================================
+
+----
+
 instance
 ~~~~~~~~
 
