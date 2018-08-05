@@ -23,7 +23,7 @@ Constructor(s)
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- iport            The V5 port number the motor is in.
+ iport            The ADI port number (from ``1-8``, ``‘a’-‘h’``, ``‘A’-‘H’``) the motor is in.
  ireverse         Whether the motor's direction is reversed.
 =============== ===================================================================
 
@@ -56,7 +56,7 @@ controllerSet
 ~~~~~~~~~~~~~
 
 Writes the value of the controller output. This method might be automatically called in another
-thread by the controller. The range of input values is expected to be [-1, 1].
+thread by the controller. The range of input values is expected to be ``[-1, 1]``.
 
 .. tabs ::
    .. tab :: Prototype
@@ -68,5 +68,5 @@ thread by the controller. The range of input values is expected to be [-1, 1].
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ivalue          The controller's output in the range [-1, 1].
+ ivalue          The controller's output in the range ``[-1, 1]``.
 =============== ===================================================================
