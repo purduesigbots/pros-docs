@@ -21,6 +21,7 @@ another thread by the controller.
       .. highlight:: cpp
       ::
 
-        virtual double controllerGet() = 0
+        template <typename T>
+        virtual T controllerGet() = 0
 
 **Returns:** The current sensor value, or ``PROS_ERR`` on a failure.

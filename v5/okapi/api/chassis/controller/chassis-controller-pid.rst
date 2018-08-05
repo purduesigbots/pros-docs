@@ -23,31 +23,7 @@ Constructor(s)
 
         ChassisControllerPID(const TimeUtil &itimeUtil,
                              std::unique_ptr<AbstractRate> irate,
-                             std::unique_ptr<ChassisModel> imodel,
-                             const IterativePosPIDControllerArgs &idistanceArgs, const IterativePosPIDControllerArgs &iangleArgs,
-                             AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-                             const ChassisScales &iscales = ChassisScales({1, 1}))
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- itimeUtil                See ``TimeUtil`` docs.
- irate                    An ``AbstractRate``.
- imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
- idistanceArgs            The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the distance PID controller.
- iangleArgs               The `IterativePosPIDControllerArgs <../../control/iterative/iterative-pos-pid-controller.html>`_ for the angle PID controller.
- igearset                 The motor's internal planetary gearset and external gear ratio.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerPID(const TimeUtil &itimeUtil,
-                             std::unique_ptr<AbstractRate> irate,
-                             std::unique_ptr<ChassisModel> imodel,
+                             std::shared_ptr<ChassisModel> imodel,
                              std::unique_ptr<IterativePosPIDController> idistanceController,
                              std::unique_ptr<IterativePosPIDController> iangleController,
                              AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,

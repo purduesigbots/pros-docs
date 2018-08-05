@@ -37,6 +37,8 @@ Parameters
  ikBias          The controller bias.
 =============== ===================================================================
 
+----
+
 velPID
 ~~~~~~
 
@@ -58,6 +60,8 @@ Parameters
  ikF             The Feed-Forward gain.
  iparams         The ``VelMathArgs`` for calculating velocity.
 =============== ===================================================================
+
+----
 
 motorVelocity
 ~~~~~~~~~~~~~
@@ -83,6 +87,8 @@ Parameters
  iparams         The ``VelMathArgs`` for calculating velocity.
 =============== ===================================================================
 
+----
+
 motorVelocity
 ~~~~~~~~~~~~~
 
@@ -107,6 +113,8 @@ Parameters
  iparams         The ``VelMathArgs`` for calculating velocity.
 =============== ===================================================================
 
+----
+
 motorVelocity
 ~~~~~~~~~~~~~
 
@@ -117,7 +125,7 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static IterativeMotorVelocityController motorVelocity(Motor imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+        static IterativeMotorVelocityController motorVelocity(Motor imotor, std::shared_ptr<IterativeVelocityController<double, double>> icontroller)
 
 =============== ===================================================================
 Parameters
@@ -126,6 +134,8 @@ Parameters
  icontroller     The controller to use.
 =============== ===================================================================
 
+----
+
 motorVelocity
 ~~~~~~~~~~~~~
 
@@ -136,7 +146,7 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static IterativeMotorVelocityController motorVelocity(MotorGroup imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+        static IterativeMotorVelocityController motorVelocity(MotorGroup imotor, std::shared_ptr<IterativeVelocityController<double, double>> icontroller)
 
 =============== ===================================================================
 Parameters

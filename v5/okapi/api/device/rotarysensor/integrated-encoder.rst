@@ -39,7 +39,7 @@ Returns the current sensor value.
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t get() const override
+        virtual double get() const override
 
 **Returns:** The current sensor value, or ``PROS_ERR`` on a failure.
 

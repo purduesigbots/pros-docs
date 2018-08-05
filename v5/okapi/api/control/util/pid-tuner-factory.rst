@@ -25,7 +25,7 @@ create
       .. highlight:: cpp
       ::
 
-        static PIDTuner create(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
+        static PIDTuner create(std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
                                QTime itimeout, std::int32_t igoal,
                                double ikPMin, double ikPMax,
                                double ikIMin, double ikIMax,
@@ -52,6 +52,8 @@ create
  ikITAE                An error sum gain which penalizes recent error more than old error.
 ===================== ===============================================================
 
+----
+
 createPtr
 ~~~~~~~~~
 
@@ -61,7 +63,7 @@ createPtr
       ::
 
         static std::unique_ptr<PIDTuner> createPtr(
-                               std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
+                               std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
                                QTime itimeout, std::int32_t igoal,
                                double ikPMin, double ikPMax,
                                double ikIMin, double ikIMax,

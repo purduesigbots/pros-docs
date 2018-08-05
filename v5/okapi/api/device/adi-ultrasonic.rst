@@ -55,7 +55,7 @@ Returns the current sensor value.
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t get()
+        virtual double get()
 
 **Returns:** The current filtered sensor value.
 

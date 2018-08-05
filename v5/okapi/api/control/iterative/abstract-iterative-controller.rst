@@ -4,13 +4,6 @@
 
 .. contents:: :local:
 
-okapi::IterativeControllerArgs
-==============================
-
-Data class for the arguments to ``IterativeController``.
-
-----
-
 okapi::IterativeController
 ==========================
 
@@ -30,7 +23,7 @@ Do one iteration of the controller. Outputs in the range ``[-1, 1]``.
       .. highlight:: cpp
       ::
 
-        virtual double step(double ireading) = 0
+        virtual Output step(Input ireading) = 0
 
 ============ ===============================================================
  Parameters
@@ -52,25 +45,30 @@ Returns the last calculated output of the controller. Default is ``0``.
       .. highlight:: cpp
       ::
 
-        virtual double getOutput() const
+        virtual Output getOutput() const
 
 **Returns:** The previous output from the filter.
 
 ----
 
-getDerivative
-~~~~~~~~~~~~~
+setOutputLimits
+~~~~~~~~~~~~~~~
 
-Returns the last derivative (change in error) of the controller.
+Sets controller output bounds. Default does nothing.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual double getDerivative() const = 0
+        virtual void setOutputLimits(Output imax, Output imin)
 
-**Returns:** The last derivative (change in error) of the controller.
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imax            The upper bound.
+ imin            The lower bound.
+=============== ===================================================================
 
 ----
 
@@ -91,55 +89,6 @@ Parameters
 =============== ===================================================================
  isampleTime     The sample time.
 =============== ===================================================================
-
-----
-
-setOutputLimits
-~~~~~~~~~~~~~~~
-
-Sets controller output bounds. Default does nothing.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void setOutputLimits(double imax, double imin)
-
-=============== ===================================================================
-Parameters
-=============== ===================================================================
- imax            The upper bound.
- imin            The lower bound.
-=============== ===================================================================
-
-----
-
-reset
-~~~~~
-
-Resets the controller so it can start from 0 again properly. Keeps configuration from before.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void reset() = 0
-
-----
-
-flipDisable
-~~~~~~~~~~~
-
-Changes whether the controll is off or on. Default does nothing.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void flipDisable()
 
 ----
 

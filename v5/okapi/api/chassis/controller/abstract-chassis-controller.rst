@@ -15,7 +15,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        explicit ChassisController(std::unique_ptr<ChassisModel> imodel)
+        explicit ChassisController(std::shared_ptr<ChassisModel> imodel)
 
 =================   ===================================================================
  Parameters
@@ -217,7 +217,7 @@ Drives the robot forwards (using open-loop control).
       .. highlight:: cpp
       ::
 
-        virtual void forward(double ispeed) const
+        void forward(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -243,7 +243,7 @@ The algorithm is (approximately):
       .. highlight:: cpp
       ::
 
-        virtual void driveVector(double iySpeed, double izRotation) const
+        void driveVector(double iySpeed, double izRotation) const override
 
 =============== ===================================================================
 Parameters
@@ -264,7 +264,7 @@ Turns the robot clockwise (using open-loop control).
       .. highlight:: cpp
       ::
 
-        virtual void rotate(double ispeed) const
+        void rotate(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -284,7 +284,7 @@ Stops the robot (set all the motors to ``0``).
       .. highlight:: cpp
       ::
 
-        virtual void stop()
+        void stop() override
 
 ----
 
@@ -298,7 +298,7 @@ Drives the robot with a tank drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const
+        void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const override
 
 =============== ===================================================================
 Parameters
@@ -320,7 +320,7 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void arcade(double iySpeed, double izRotation, double ithreshold = 0) const
+        void arcade(double iySpeed, double izRotation, double ithreshold = 0) const override
 
 =============== ===================================================================
 Parameters
@@ -342,7 +342,7 @@ Powers the left side motors.
       .. highlight:: cpp
       ::
 
-        virtual void left(double ispeed) const
+        void left(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -362,7 +362,7 @@ Powers the right side motors.
       .. highlight:: cpp
       ::
 
-        virtual void right(double ispeed) const
+        void right(double ispeed) const override
 
 =============== ===================================================================
 Parameters
@@ -382,7 +382,7 @@ Returns the current sensor values. Ideally, return the values in the format ``{l
       .. highlight:: cpp
       ::
 
-        virtual std::valarray<std::int32_t> getSensorVals() const
+        std::valarray<std::int32_t> getSensorVals() const override
 
 **Returns:** The current sensor values (the formatting is implementation dependent).
 
@@ -398,7 +398,7 @@ Resets the sensors to their zero point.
       .. highlight:: cpp
       ::
 
-        virtual void resetSensors() const
+        void resetSensors() const override
 
 ----
 
@@ -412,7 +412,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setBrakeMode(AbstractMotor::brakeMode mode) const
+        void setBrakeMode(AbstractMotor::brakeMode mode) const override
 
 =============== ===================================================================
 Parameters
@@ -432,7 +432,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setEncoderUnits(AbstractMotor::encoderUnits units) const
+        void setEncoderUnits(AbstractMotor::encoderUnits units) const override
 
 =============== ===================================================================
 Parameters
@@ -452,7 +452,28 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        virtual void setGearing(AbstractMotor::gearset gearset) const
+        void setGearing(AbstractMotor::gearset gearset) const override
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ gearset         The new gearset.
+=============== ===================================================================
+
+----
+
+getChassisModel
+~~~~~~~~~~~~~~~
+
+Get the underlying ``ChassisModel``. This should be used sparingly and carefully because it can
+result in multiple owners writing to the same set of motors.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::shared_ptr<ChassisModel> getChassisModel() const
 
 =============== ===================================================================
 Parameters

@@ -34,6 +34,8 @@ Parameters
  imotor          The controller input (from the integrated encoder) and output.
 =============== ===================================================================
 
+----
+
 posIntegrated
 ~~~~~~~~~~~~~
 
@@ -51,6 +53,8 @@ Parameters
 =============== ===================================================================
  imotor          The controller input (from the integrated encoder) and output.
 =============== ===================================================================
+
+----
 
 velIntegrated
 ~~~~~~~~~~~~~
@@ -70,6 +74,8 @@ Parameters
  imotor          The controller input (from the integrated encoder) and output.
 =============== ===================================================================
 
+----
+
 velIntegrated
 ~~~~~~~~~~~~~
 
@@ -87,6 +93,8 @@ Parameters
 =============== ===================================================================
  imotor          The controller input (from the integrated encoder) and output.
 =============== ===================================================================
+
+----
 
 posPID
 ~~~~~~
@@ -109,6 +117,8 @@ Parameters
  ikD             The D term gain.
  ikBias          The controller bias.
 =============== ===================================================================
+
+----
 
 posPID
 ~~~~~~
@@ -134,6 +144,8 @@ Parameters
  ikBias          The controller bias.
 =============== ===================================================================
 
+----
+
 posPID
 ~~~~~~
 
@@ -155,6 +167,8 @@ Parameters
  ikD             The D term gain.
  ikBias          The controller bias.
 =============== ===================================================================
+
+----
 
 posPID
 ~~~~~~
@@ -180,6 +194,8 @@ Parameters
  ikBias          The controller bias.
 =============== ===================================================================
 
+----
+
 posPID
 ~~~~~~
 
@@ -190,7 +206,7 @@ A position controller that uses the PID algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncPosPIDController posPID(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
+        static AsyncPosPIDController posPID(std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
                                             double ikP, double ikI, double ikD, double ikBias = 0)
 
 =============== ===================================================================
@@ -203,6 +219,8 @@ Parameters
  ikD             The D term gain.
  ikBias          The controller bias.
 =============== ===================================================================
+
+----
 
 velPID
 ~~~~~~
@@ -225,6 +243,8 @@ Parameters
  ikF             The Feed-Forward gain.
  iTPR            The sensor ticks per revolution (see ``VelMath`` docs).
 =============== ===================================================================
+
+----
 
 velPID
 ~~~~~~
@@ -250,6 +270,8 @@ Parameters
  iTPR            The sensor ticks per revolution (see ``VelMath`` docs).
 =============== ===================================================================
 
+----
+
 velPID
 ~~~~~~
 
@@ -271,6 +293,8 @@ Parameters
  ikF             The Feed-Forward gain.
  iTPR            The sensor ticks per revolution (see ``VelMath`` docs).
 =============== ===================================================================
+
+----
 
 velPID
 ~~~~~~
@@ -296,6 +320,8 @@ Parameters
  iTPR            The sensor ticks per revolution (see ``VelMath`` docs).
 =============== ===================================================================
 
+----
+
 velPID
 ~~~~~~
 
@@ -306,7 +332,7 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
+        static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
                                             double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR)
 
 =============== ===================================================================
@@ -318,4 +344,54 @@ Parameters
  ikD             The D term gain.
  ikF             The Feed-Forward gain.
  iTPR            The sensor ticks per revolution (see ``VelMath`` docs).
+=============== ===================================================================
+
+----
+
+motionProfile
+~~~~~~~~~~~~~
+
+A controller which generates and follows 2D motion profiles.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
+                                                          const ChassisController &ichassis, QLength iwidth)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ imaxVel         The maximum possible velocity.
+ imaxAccel       The maximum possible acceleration.
+ imaxJerk        The maxiumm possible jerk.
+ ichassis        The chassis to control.
+ iwidth          The chassis' wheelbase width.
+=============== ===================================================================
+
+----
+
+motionProfile
+~~~~~~~~~~~~~
+
+A controller which generates and follows 2D motion profiles.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
+                                                          std::shared_ptr<SkidSteerModel> imodel, QLength iwidth)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ imaxVel         The maximum possible velocity.
+ imaxAccel       The maximum possible acceleration.
+ imaxJerk        The maxiumm possible jerk.
+ imodel          The ``ChassisModel`` to control.
+ iwidth          The chassis' wheelbase width.
 =============== ===================================================================

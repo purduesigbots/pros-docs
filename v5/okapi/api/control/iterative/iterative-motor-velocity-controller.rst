@@ -17,7 +17,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeMotorVelocityControllerArgs(std::shared_ptr<AbstractMotor> imotor, std::shared_ptr<IterativeVelocityController> icontroller)
+        IterativeMotorVelocityControllerArgs(std::shared_ptr<AbstractMotor> imotor,
+                                             std::shared_ptr<IterativeVelocityController<double, double>> icontroller)
 
 =============== ===================================================================
  Parameters
@@ -140,22 +141,6 @@ Returns the last error of the controller.
         double getError() const override
 
 **Returns:** The last error of the controller.
-
-----
-
-getDerivative
-~~~~~~~~~~~~~
-
-Returns the last derivative (change in error) of the controller.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        double getDerivative() const override
-
-**Returns:** The last derivative (change in error) of the controller.
 
 ----
 

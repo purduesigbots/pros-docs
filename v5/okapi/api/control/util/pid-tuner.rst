@@ -23,7 +23,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        PIDTuner(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
+        PIDTuner(std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
                  const TimeUtil &itimeUtil,
                  QTime itimeout, std::int32_t igoal,
                  double ikPMin, double ikPMax,
@@ -68,6 +68,18 @@ calculated gains.
       .. highlight:: cpp
       ::
 
-        virtual IterativePosPIDControllerArgs autotune()
+        virtual Output autotune()
 
 **Returns:** The PID controller gains.
+
+okapi::PIDTuner::Output
+=======================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        struct Output {
+          double kP, kI, kD;
+        };

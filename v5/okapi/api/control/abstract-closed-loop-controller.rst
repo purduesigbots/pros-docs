@@ -15,14 +15,14 @@ Template Parameter(s)
       .. highlight:: cpp
       ::
 
-        template <typename INPUT, typename ERROR>
+        template <typename Input, typename Output>
         class ClosedLoopController
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- INPUT        The target/input type.
- ERROR        The error type.
+ Input        The target/input type.
+ Output        The error type.
 ============ ===============================================================
 
 Methods
@@ -38,7 +38,7 @@ Sets the target for the controller.
       .. highlight:: cpp
       ::
 
-        virtual void setTarget(INPUT itarget) = 0
+        virtual void setTarget(Input itarget) = 0
 
 ============ ===============================================================
  Parameters
@@ -58,7 +58,7 @@ Returns the last error of the controller.
       .. highlight:: cpp
       ::
 
-        virtual ERROR getError() const = 0
+        virtual Output getError() const = 0
 
 **Returns:** The last error of the controller.
 
@@ -66,6 +66,36 @@ Returns the last error of the controller.
 
 isSettled
 ~~~~~~~~~
+
+Returns whether the controller has settled at the target. Determining what settling means is
+implementation-dependent.
+
+If the controller is disabled, this method must return true.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual bool isSettled() = 0
+
+**Returns:** Whether the controller is settled.
+
+----
+
+reset
+~~~~~
+
+Resets the controller so it can start from 0 again properly. Keeps configuration from before.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void reset() = 0
+
+----
 
 Returns whether the controller has settled at the target. Determining what settling means is
 implementation-dependent.

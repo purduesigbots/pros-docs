@@ -22,4 +22,5 @@ create
       .. highlight:: cpp
       ::
 
-        static ControllerRunner create()
+        template <typename Input, typename Output>
+        static ControllerRunner<Input, Output> create()

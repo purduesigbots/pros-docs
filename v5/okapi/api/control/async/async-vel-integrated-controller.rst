@@ -4,29 +4,6 @@ Async Vel Integrated Controller
 
 .. contents:: :local:
 
-okapi::AsyncVelIntegratedControllerArgs
-=======================================
-
-Data class for the arguments to ``AsyncVelIntegratedController``.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        explicit AsyncVelIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
-=============== ===================================================================
-
-----
-
 okapi::AsyncVelIntegratedController
 ===================================
 
@@ -50,21 +27,6 @@ Constructor(s)
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
- itimeUtil       See ``TimeUtil`` docs.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncVelIntegratedController(const AsyncVelIntegratedControllerArgs &iparams,
-                                     const TimeUtil &itimeUtil)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iparams         The ``AsyncVelIntegratedController`` arguments.
  itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 

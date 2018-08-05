@@ -162,8 +162,8 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
 
         static ChassisControllerPID create(
           Motor ileftSideMotor, Motor irightSideMotor,
-          const IterativePosPIDControllerArgs &idistanceArgs,
-          const IterativePosPIDControllerArgs &iangleArgs,
+          const IterativePosPIDController::Gains &idistanceArgs,
+          const IterativePosPIDController::Gains &iangleArgs,
           const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
@@ -174,15 +174,15 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
         // You can use the default gearset and scales if you have a very simple robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           -11, 1,
-          okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
-          okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0)
+          okapi::IterativePosPIDController::Gains{0.5, 0, 0},
+          okapi::IterativePosPIDController::Gains{0.1, 0.05, 0}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           -11, 1,
-          okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
-          okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0),
+          okapi::IterativePosPIDController::Gains{0.5, 0, 0},
+          okapi::IterativePosPIDController::Gains{0.1, 0.05, 0},
           AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
@@ -212,8 +212,8 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
 
         static ChassisControllerPID create(
           MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-          const IterativePosPIDControllerArgs &idistanceArgs,
-          const IterativePosPIDControllerArgs &iangleArgs,
+          const IterativePosPIDController::Gains &idistanceArgs,
+          const IterativePosPIDController::Gains &iangleArgs,
           const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
@@ -224,15 +224,15 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
         // You can use the default gearset and scales if you have a very simple robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           {1, 2}, {-3, -4},
-          okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
-          okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0)
+          okapi::IterativePosPIDController::Gains{0.5, 0, 0},
+          okapi::IterativePosPIDController::Gains{0.1, 0.05, 0}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           {1, 2}, {-3, -4},
-          okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
-          okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0),
+          okapi::IterativePosPIDController::Gains{0.5, 0, 0},
+          okapi::IterativePosPIDController::Gains{0.1, 0.05, 0},
           AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
@@ -263,8 +263,8 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
         static ChassisControllerPID create(
           MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
           ADIEncoder ileftEnc, ADIEncoder irightEnc,
-          const IterativePosPIDControllerArgs &idistanceArgs,
-          const IterativePosPIDControllerArgs &iangleArgs,
+          const IterativePosPIDController::Gains &idistanceArgs,
+          const IterativePosPIDController::Gains &iangleArgs,
           const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
@@ -276,16 +276,16 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
         auto myChassis = okapi::ChassisControllerFactory::create(
           {1, 2}, {-3, -4},
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
-          okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0)
+          okapi::IterativePosPIDController::Gains{0.5, 0, 0},
+          okapi::IterativePosPIDController::Gains{0.1, 0.05, 0}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           {1, 2}, {-3, -4},
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
-          okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0),
+          okapi::IterativePosPIDController::Gains{0.5, 0, 0},
+          okapi::IterativePosPIDController::Gains{0.1, 0.05, 0},
           AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
@@ -320,8 +320,8 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           std::shared_ptr<AbstractMotor> irightSideMotor,
           std::shared_ptr<ContinuousRotarySensor> ileftEnc,
           std::shared_ptr<ContinuousRotarySensor> irightEnc,
-          const IterativePosPIDControllerArgs &idistanceArgs,
-          const IterativePosPIDControllerArgs &iangleArgs,
+          const IterativePosPIDController::Gains &idistanceArgs,
+          const IterativePosPIDController::Gains &iangleArgs,
           const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
@@ -352,8 +352,8 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
 
         static ChassisControllerPID create(
           Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-          const IterativePosPIDControllerArgs &idistanceArgs,
-          const IterativePosPIDControllerArgs &iangleArgs,
+          const IterativePosPIDController::Gains &idistanceArgs,
+          const IterativePosPIDController::Gains &iangleArgs,
           const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
@@ -364,15 +364,15 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
         // You can use the default gearset and scales if you have a very simple robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           1, -2, -3, 4,
-          okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
-          okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0)
+          okapi::IterativePosPIDController::Gains{0.5, 0, 0},
+          okapi::IterativePosPIDController::Gains{0.1, 0.05, 0}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           1, -2, -3, 4,
-          okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
-          okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0),
+          okapi::IterativePosPIDController::Gains{0.5, 0, 0},
+          okapi::IterativePosPIDController::Gains{0.1, 0.05, 0},
           AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
@@ -405,8 +405,8 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
         static ChassisControllerPID create(
           Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
           ADIEncoder itopLeftEnc, ADIEncoder itopRightEnc,
-          const IterativePosPIDControllerArgs &idistanceArgs,
-          const IterativePosPIDControllerArgs &iangleArgs,
+          const IterativePosPIDController::Gains &idistanceArgs,
+          const IterativePosPIDController::Gains &iangleArgs,
           const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
@@ -418,16 +418,16 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
         auto myChassis = okapi::ChassisControllerFactory::create(
           1, -2, -3, 4,
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
-          okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0)
+          okapi::IterativePosPIDController::Gains{0.5, 0, 0},
+          okapi::IterativePosPIDController::Gains{0.1, 0.05, 0}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = okapi::ChassisControllerFactory::create(
           1, -2, -3, 4,
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          okapi::IterativePosPIDControllerArgs(0.5, 0, 0),
-          okapi::IterativePosPIDControllerArgs(0.1, 0.05, 0),
+          okapi::IterativePosPIDController::Gains{0.5, 0, 0},
+          okapi::IterativePosPIDController::Gains{0.1, 0.05, 0},
           AbstractMotor::gearset::green,
           okapi::ChassisScales({2.75_in, 10.5_in})
         );
@@ -466,8 +466,8 @@ This constructor assumes a x-drive layout. Puts the motors into degree units. Th
           std::shared_ptr<AbstractMotor> ibottomLeftMotor,
           std::shared_ptr<ContinuousRotarySensor> itopLeftEnc,
           std::shared_ptr<ContinuousRotarySensor> itopRightEnc,
-          const IterativePosPIDControllerArgs &idistanceArgs,
-          const IterativePosPIDControllerArgs &iangleArgs,
+          const IterativePosPIDController::Gains &idistanceArgs,
+          const IterativePosPIDController::Gains &iangleArgs,
           const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 

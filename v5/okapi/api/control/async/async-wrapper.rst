@@ -24,20 +24,10 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncWrapper(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
-                     std::unique_ptr<IterativeController> icontroller,
+        AsyncWrapper(std::shared_ptr<ControllerInput<Input>> iinput,
+                     std::shared_ptr<ControllerOutput<Output>> ioutput,
+                     std::unique_ptr<IterativeController<Input, Output>> icontroller,
                      const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier, std::unique_ptr<SettledUtil> isettledUtil)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        using namespace okapi::literals;
-        Motor myMotor = 1_mtr;
-
-        okapi::AsyncWrapper controller(std::make_shared<okapi::IntegratedEncoder>(myMotor), // Use the encoder in the motor as input
-                                       std::make_shared<okapi::Motor>(myMotor),             // Write the controller output to the motor
-                                       std::make_unique<okapi::IterativePosPIDController>(0.5, 0, 0)); // Use a simple P controller
 
 =============== ===================================================================
  Parameters
@@ -62,7 +52,7 @@ Sets the target for the controller.
       .. highlight:: cpp
       ::
 
-        void setTarget(double itarget) override
+        void setTarget(Input itarget) override
 
 ============ ===============================================================
  Parameters
@@ -82,7 +72,7 @@ Returns the last calculated output of the controller.
       .. highlight:: cpp
       ::
 
-        double getOutput() const override
+        Output getOutput() const override
 
 **Returns:** The previous output from the filter.
 
@@ -98,7 +88,7 @@ Returns the last error of the controller.
       .. highlight:: cpp
       ::
 
-        double getError() const override
+        Output getError() const override
 
 **Returns:** The last error of the controller.
 
@@ -153,7 +143,7 @@ Sets controller output bounds.
       .. highlight:: cpp
       ::
 
-        void setOutputLimits(double imax, double imin) override
+        void setOutputLimits(Output imax, Output imin) override
 
 =============== ===================================================================
 Parameters

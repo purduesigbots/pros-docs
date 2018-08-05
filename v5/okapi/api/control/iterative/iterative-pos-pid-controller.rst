@@ -4,32 +4,6 @@ Iterative Pos PID Controller
 
 .. contents:: :local:
 
-okapi::IterativePosPIDControllerArgs
-====================================
-
-Data class for the arguments to ``IterativePosPIDController``.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        IterativePosPIDControllerArgs(double ikP, double ikI, double ikD, double ikBias = 0)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- ikp             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
-=============== ===================================================================
-
-----
-
 okapi::IterativePosPIDController
 ================================
 
@@ -64,13 +38,12 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativePosPIDController(const IterativePosPIDControllerArgs &params,
-                                  const TimeUtil &itimeUtil)
+        IterativePosPIDController(const Gains &igains, const TimeUtil &itimeUtil)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- params          The ``IterativePosPIDController`` arguments.
+ igains          See ``Gains`` below.
  itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
@@ -81,7 +54,8 @@ This constructor is used for testing.
       .. highlight:: cpp
       ::
 
-        IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias, std::unique_ptr<Timer> iloopDtTimer, std::unique_ptr<SettledUtil> isettledUtil)
+        IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias,
+                                  std::unique_ptr<Timer> iloopDtTimer, std::unique_ptr<SettledUtil> isettledUtil)
 
 =============== ===================================================================
  Parameters
@@ -169,22 +143,6 @@ Returns the last error of the controller.
         double getError() const override
 
 **Returns:** The last error of the controller.
-
-----
-
-getDerivative
-~~~~~~~~~~~~~
-
-Returns the last derivative (change in error) of the controller.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        double getDerivative() const override
-
-**Returns:** The last derivative (change in error) of the controller.
 
 ----
 
@@ -413,3 +371,18 @@ Returns the last set sample time. Default is ``10_ms``.
         QTime getSampleTime() const override
 
 **Returns:** The last set sample time.
+
+okapi::IterativePosPIDController::Gains
+=======================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        struct Gains {
+          double kP;
+          double kI;
+          double kD;
+          double kBias;
+        };

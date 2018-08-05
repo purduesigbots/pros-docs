@@ -20,6 +20,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
+        template <typename Input, typename Output>
         ControllerRunner(std::unique_ptr<AbstractRate> irate)
 
 ----
@@ -37,17 +38,7 @@ Runs the controller until it has settled.
       .. highlight:: cpp
       ::
 
-        virtual double runUntilSettled(const double itarget, AsyncController &icontroller)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        using namespace okapi::literals;
-        okapi::AsyncPosIntegratedController controller(1_mtr); // Using motor 1
-        okapi::ControllerRunner runner;
-
-        runner.runUntilSettled(1800, controller);
+        virtual Output runUntilSettled(const Input itarget, AsyncController<Input, Output> &icontroller)
 
 ============ ===============================================================
  Parameters
@@ -68,7 +59,7 @@ Runs the controller until it has settled.
       .. highlight:: cpp
       ::
 
-        virtual double runUntilSettled(const double itarget, IterativeController &icontroller, ControllerOutput &ioutput)
+        virtual Output runUntilSettled(const Input itarget, IterativeController<Input, Output> &icontroller, ControllerOutput<Output> &ioutput)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -101,7 +92,7 @@ Runs the controller until it has reached its target, but not necessarily settled
       .. highlight:: cpp
       ::
 
-        virtual double runUntilAtTarget(const double itarget, AsyncController &icontroller)
+        virtual Output runUntilAtTarget(const Input itarget, AsyncController<Input, Output> &icontroller)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -132,7 +123,7 @@ Runs the controller until it has reached its target, but not necessarily settled
       .. highlight:: cpp
       ::
 
-        virtual double runUntilSettled(const double itarget, AsyncController &icontroller, ControllerOutput &ioutput)
+        virtual Output runUntilSettled(const Input itarget, AsyncController<Input, Output> &icontroller, ControllerOutput<Output> &ioutput)
 
    .. tab :: Example
       .. highlight:: cpp

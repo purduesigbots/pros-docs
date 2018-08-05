@@ -20,16 +20,8 @@ Constructor(s)
       ::
 
         template <typename InputType, typename FilterType>
-        FilteredControllerInput(InputType iinput, FilterType ifilter)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          okapi::FilteredControllerInput<ADIEncoder, EmaFilter>> myInput(okapi::ADIEncoder(1, 2),
-                                                                         okapi::EmaFilter(0.2));
-        }
+        FilteredControllerInput(std::unique_ptr<ControllerInput<InputType>> iinput,
+                                std::unique_ptr<FilterType> ifilter)
 
 =============== ===================================================================
  Parameters

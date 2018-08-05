@@ -4,29 +4,6 @@ Async Pos Integrated Controller
 
 .. contents:: :local:
 
-okapi::AsyncPosIntegratedControllerArgs
-=======================================
-
-Data class for the arguments to ``AsyncPosIntegratedController``.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        explicit AsyncPosIntegratedControllerArgs(std::shared_ptr<AbstractMotor> imotor)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
-=============== ===================================================================
-
-----
-
 okapi::AsyncPosIntegratedController
 ===================================
 
@@ -50,21 +27,6 @@ Constructor(s)
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
- itimeUtil       See ``TimeUtil`` docs.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncPosIntegratedController(const AsyncPosIntegratedControllerArgs &iparams,
-                                     const TimeUtil &itimeUtil)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iparams         The ``AsyncPosIntegratedController`` arguments.
  itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 

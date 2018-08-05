@@ -22,30 +22,7 @@ Constructor(s)
       ::
 
         ChassisControllerIntegrated(const TimeUtil &itimeUtil,
-                                    std::unique_ptr<ChassisModel> imodel,
-                                    const AsyncPosIntegratedControllerArgs &ileftControllerArgs,
-                                    const AsyncPosIntegratedControllerArgs &irightControllerArgs,
-                                    AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-                                    const ChassisScales &iscales = ChassisScales({1, 1}))
-
-======================   =======================================================================================
- Parameters
-======================   =======================================================================================
- itimeUtil                See ``TimeUtil`` docs.
- imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
- ileftControllerArgs      The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the left side PID controller.
- irightControllerArgs     The `AsyncPosIntegratedControllerArgs <../../control/async/async-pos-integrated-controller.html>`_ for the right side PID controller.
- igearset                 The motor's internal planetary gearset and external gear ratio.
- iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
-======================   =======================================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerIntegrated(const TimeUtil &itimeUtil,
-                                    std::unique_ptr<ChassisModel> imodel,
+                                    std::shared_ptr<ChassisModel> imodel,
                                     std::unique_ptr<AsyncPosIntegratedController> ileftController,
                                     std::unique_ptr<AsyncPosIntegratedController> irightController,
                                     AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,

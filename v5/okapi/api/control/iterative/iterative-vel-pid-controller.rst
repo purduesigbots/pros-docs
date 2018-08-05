@@ -111,22 +111,6 @@ Returns the last error of the controller.
 
 ----
 
-getDerivative
-~~~~~~~~~~~~~
-
-Returns the last derivative (change in error) of the controller.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        double getDerivative() const override
-
-**Returns:** The last derivative (change in error) of the controller.
-
-----
-
 isSettled
 ~~~~~~~~~
 

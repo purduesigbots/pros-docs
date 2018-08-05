@@ -20,6 +20,6 @@ Returns the current sensor value.
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t get() const = 0
+        virtual double get() const = 0
 
 **Returns:** The current sensor value, or ``PROS_ERR`` on a failure.

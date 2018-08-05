@@ -19,7 +19,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosPIDController(std::shared_ptr<ControllerInput> iinput, std::shared_ptr<ControllerOutput> ioutput,
+        AsyncPosPIDController(std::shared_ptr<ControllerInput<double>> iinput,
+                              std::shared_ptr<ControllerOutput<double>> ioutput,
                               const TimeUtil &itimeUtil,
                               const double ikP, const double ikD, const double ikF,
                               std::unique_ptr<VelMath> ivelMath)
