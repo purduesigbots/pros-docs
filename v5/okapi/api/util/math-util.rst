@@ -36,7 +36,7 @@ A collection of ``static constexpr double`` constants that help with math.
  Name              Value
 ================= ================
  motorUpdateRate   10 (ms)
- adiUpdateRate     50 (ms)
+ adiUpdateRate     5  (ms)
 ================= ================
 
 Methods

@@ -37,8 +37,8 @@ encoders).
 ================= ===================================================================
 Parameters
 ================= ===================================================================
- ileftSideMotor    The left side motor.
- irightSideMotor   The right side motor.
+ ileftSideMotor    The left side motor (also used for controller input).
+ irightSideMotor   The right side motor (also used for controller input).
  imaxOutput        The maximum output value sent to the motors.
 ================= ===================================================================
 
@@ -62,8 +62,8 @@ encoders).
 ================= ===================================================================
 Parameters
 ================= ===================================================================
- ileftSideMotor    The left side motor.
- irightSideMotor   The right side motor.
+ ileftSideMotor    The left side motor (also used for controller input).
+ irightSideMotor   The right side motor (also used for controller input).
  imaxOutput        The maximum output value sent to the motors.
 ================= ===================================================================
 
@@ -115,8 +115,8 @@ integrated encoders).
 =================== ===================================================================
 Parameters
 =================== ===================================================================
- itopLeftMotor       The top left motor.
- itopRightMotor      The top right motor.
+ itopLeftMotor       The top left motor (also used for controller input).
+ itopRightMotor      The top right motor (also used for controller input).
  ibottomRightMotor   The bottom right motor.
  ibottomLeftMotor    The bottom left motor.
  imaxOutput          The maximum output value sent to the motors.

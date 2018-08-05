@@ -105,7 +105,7 @@ create
 ~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
@@ -139,8 +139,8 @@ Parameters
 =================== ===================================================================
  itopLeftMotor       The top left motor (also used for controller input).
  itopRightMotor      The top right motor (also used for controller input).
- ibottomRightMotor   The bottom right motor (also used for controller input).
- ibottomLeftMotor    The bottom left motor (also used for controller input).
+ ibottomRightMotor   The bottom right motor.
+ ibottomLeftMotor    The bottom left motor.
  igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
  iscales             See `ChassisScales <chassis-scales.html>`_ docs.
 =================== ===================================================================
@@ -151,7 +151,7 @@ ChassisControllerPID
 create
 ~~~~~~
 
-`ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
+`ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
@@ -201,7 +201,7 @@ Parameters
 create
 ~~~~~~
 
-`ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
+`ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
@@ -251,7 +251,7 @@ Parameters
 create
 ~~~~~~
 
-`ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
+`ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
@@ -306,7 +306,7 @@ Parameters
 create
 ~~~~~~
 
-`ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
+`ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
@@ -341,8 +341,8 @@ Parameters
 create
 ~~~~~~
 
-`ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+`ChassisController <abstract-chassis-controller.html>`_ using PID control.
+This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
@@ -393,8 +393,8 @@ Parameters
 create
 ~~~~~~
 
-`ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+`ChassisController <abstract-chassis-controller.html>`_ using PID control.
+This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
@@ -450,8 +450,8 @@ Parameters
 create
 ~~~~~~
 
-`ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+`ChassisController <abstract-chassis-controller.html>`_ using PID control.
+This constructor assumes a x-drive layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
