@@ -10,32 +10,34 @@ to create objects, you won't have to worry about smart pointers and other more c
 Creating an object with a factory is quite simple, as shown in the below example:
 
 .. highlight: cpp
-::
-  
-  const double kP = 1.0;
-  const double kI = 0.001;
-  const double kD = 0.1;
-  const int MOTOR_PORT = 1;
-  
-  okapi::Motor exampleMotor (MOTOR_PORT);
-  auto exampleController = okapi::AsyncControllerFactory::posPID(exampleMotor, kP, kI, kD);
-  
+.. code-block:: cpp
+   :linenos:
+
+   const double kP = 1.0;
+   const double kI = 0.001;
+   const double kD = 0.1;
+   const int MOTOR_PORT = 1;
+
+   okapi::Motor exampleMotor (MOTOR_PORT);
+   auto exampleController = okapi::AsyncControllerFactory::posPID(exampleMotor, kP, kI, kD);
+
 As opposed to creating the same object without factories:
 
 .. highlight: cpp
-::
-  
-  const double kP = 1.0;
-  const double kI = 0.001;
-  const double kD = 0.1;
-  const int MOTOR_PORT = 1;
-  
-  okapi::Motor exampleMotor (MOTOR_PORT);
-  
-  okapi::SettledUtil exampleSettledUtil (std::make_unique<Timer>());
-  okapi::TimeUtil timeUtil (
-    Supplier<std::unique_ptr<AbstractTimer>>([]() { return std::make_unique<Timer>(); }),
-    Supplier<std::unique_ptr<AbstractRate>>([]() { return std::make_unique<Rate>(); }),
-    Supplier<std::unique_ptr<SettledUtil>>([]() { return std::make_unique<SettledUtil>(exampleSettledUtil); }));
-  okapi::AsyncPosPIDController exampleController (exampleMotor.getEncoder(), std::make_shared<Motor>(exampleMotor), 
-                                                  timeUtil, kP, kI, kD);
+.. code-block:: cpp
+   :linenos:
+
+   const double kP = 1.0;
+   const double kI = 0.001;
+   const double kD = 0.1;
+   const int MOTOR_PORT = 1;
+
+   okapi::Motor exampleMotor (MOTOR_PORT);
+
+   okapi::SettledUtil exampleSettledUtil (std::make_unique<Timer>());
+   okapi::TimeUtil timeUtil (
+     Supplier<std::unique_ptr<AbstractTimer>>([]() { return std::make_unique<Timer>(); }),
+     Supplier<std::unique_ptr<AbstractRate>>([]() { return std::make_unique<Rate>(); }),
+     Supplier<std::unique_ptr<SettledUtil>>([]() { return std::make_unique<SettledUtil>(exampleSettledUtil); }));
+   okapi::AsyncPosPIDController exampleController (exampleMotor.getEncoder(), std::make_shared<Motor>(exampleMotor),
+                                                   timeUtil, kP, kI, kD);

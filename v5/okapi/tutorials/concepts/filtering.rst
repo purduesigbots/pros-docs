@@ -14,16 +14,16 @@ It's possible with OkapiLib to filter any value that you want, which makes it ea
 The example below gives an example of filtering a sensor value.
 
 .. highlight: cpp
-.. code-block::
+.. code-block:: cpp
    :linenos:
-   
+
    const int POTENTIOMETER_PORT = 1;
    const int NUM_AVE_POINTS = 5;
-   
+
    okapi::Potentiometer exampleSensor (POTENTIOMETER_PORT);
    okapi::AverageFilter<NUM_AVE_POINTS> exampleFilter
    while (true) {
-     std::cout << "Current Sensor Reading: " << exampleFilter.filter(exampleSensor.get()); 
+     std::cout << "Current Sensor Reading: " << exampleFilter.filter(exampleSensor.get());
      pros::delay(10);
    }
 
@@ -39,17 +39,17 @@ will not have a positive impact on Position PID movements, and is not supported 
 Using a filter with a Velocity PID Controller can be done in the following manner:
 
 .. highlight: cpp
-.. code-block::
+.. code-block:: cpp
    :linenos:
-   
+
    const double kP = 1.0;
    const double kD = 0.1;
    const double kF = 0.0;
    const int NUM_AVE_POINTS = 5;
-   
+
    auto exampleVelMath = okapi::VelMathFactory::createPtr(imeV5TPR, std::make_shared<AverageFilter<NUM_AVE_POINTS>>());
    auto exampleController = okapi::IterativeControllerFactory::VelPID(kP, kD, kF, exampleVelMath);
-   
+
 To clarify step by step:
 
 First a ``VelMath`` object needs to be created. This is used to calculate the motor's velocity for
@@ -60,4 +60,3 @@ the ``AverageFilter<NUM_AVE_POINTS>`` portion is identical to the first code exa
 
 The ``VelMath`` pointer, along with the PID constants, are then passed to the ``IterativeControllerFactory``
 to create a ``IterativeVelPID`` object.
-                              

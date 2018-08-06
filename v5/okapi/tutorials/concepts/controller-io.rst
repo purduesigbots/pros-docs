@@ -2,11 +2,11 @@
 Controller Inputs and Outputs
 =============================
 
-Fundamentally, a feedback control system needs both an input and an output. 
+Fundamentally, a feedback control system needs both an input and an output.
 In OkapiLib, Iterative Controllers do not require Controller Inputs and Outputs
-to be passed into the constructor like Async Controllers do, but they are still 
-a necessary for making use of the controller. This tutorial will explain more 
-about what Controller Inputs and Outputs are, and what classes can be used for 
+to be passed into the constructor like Async Controllers do, but they are still
+a necessary for making use of the controller. This tutorial will explain more
+about what Controller Inputs and Outputs are, and what classes can be used for
 such purposes.
 
 General Usage
@@ -25,12 +25,12 @@ What Classes are of Each Type?
 
 **Controller Inputs:** All sensor classes can be used as Controller Inputs, such as:
 
-* ``RotarySensor``s
-* ``ContinuousRotarySensor``s
-* ``ADIUltrasonic``s
+* ``RotarySensor`` s
+* ``ContinuousRotarySensor`` s
+* ``ADIUltrasonic`` s
 
 **Controller Outputs:**
 
-* ``Motor``s
-* ``MotorGroup``s
-* ``ADIMotor``s
+* ``Motor`` s
+* ``MotorGroup`` s
+* ``ADIMotor`` s

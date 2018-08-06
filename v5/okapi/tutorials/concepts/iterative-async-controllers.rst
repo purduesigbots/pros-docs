@@ -10,8 +10,8 @@ but one will likely be better than the other for your particular preference with
 Iterative Controllers
 =====================
 
-**Iterative Controllers** operate **discretely**, meaning that an Iterative Controller will produce an output for the 
-given input *at a single instance in time* 
+**Iterative Controllers** operate **discretely**, meaning that an Iterative Controller will produce an output for the
+given input *at a single instance in time*
 (see `IterativeController::step() <../../api/control/iterative/abstract-iterative-controller.html#step>`_).
 If you want to execute a full movement for a system with an Iterative Controller,
 you will need to write a loop that runs ``IterativeController::step()`` repeatedly until the movement is finished.
@@ -19,26 +19,27 @@ you will need to write a loop that runs ``IterativeController::step()`` repeated
 An example movement:
 
 .. highlight: cpp
-::
+.. code-block:: cpp
+   :linenos:
 
-  const double kP = 1.0;
-  const double kI = 0.001;
-  const double kD = 0.1;
-  const int MOTOR_PORT = 1;
-  const double TARGET = 100.0;
-  
-  auto exampleController = okapi::IterativeControllerFactory::posPID(kP, kI, kD);
-  okapi::Motor exampleMotor (MOTOR_PORT);
-  
-  // Execute the movement
-  exampleController.setTarget(TARGET);
-  while (!exampleController.isSettled()) {
-    double newInput = exampleMotor.getPosition();
-    double newOutput = exampleController.step(newInput);
-    exampleMotor.controllerSet(newOutput);
-    
-    pros::delay(10); // run the control loop at 10ms intervals
-  }
+   const double kP = 1.0;
+   const double kI = 0.001;
+   const double kD = 0.1;
+   const int MOTOR_PORT = 1;
+   const double TARGET = 100.0;
+
+   auto exampleController = okapi::IterativeControllerFactory::posPID(kP, kI, kD);
+   okapi::Motor exampleMotor (MOTOR_PORT);
+
+   // Execute the movement
+   exampleController.setTarget(TARGET);
+   while (!exampleController.isSettled()) {
+     double newInput = exampleMotor.getPosition();
+     double newOutput = exampleController.step(newInput);
+     exampleMotor.controllerSet(newOutput);
+
+     pros::delay(10); // run the control loop at 10ms intervals
+   }
 
 Async Controllers
 =================
@@ -54,30 +55,31 @@ movements until an Async Controller's movement is done is as simple as a call to
 An example movement:
 
 .. highlight: cpp
-::
+.. code-block:: cpp
+   :linenos:
 
-  const double kP = 1.0;
-  const double kI = 0.001;
-  const double kD = 0.1;
-  const int MOTOR_PORT = 1;
-  const double TARGET = 100.0;
-  
-  okapi::Motor exampleMotor (MOTOR_PORT);
-  auto exampleController = okapi::AsyncControllerFactory::posPID(exampleMotor, kP, kI, kD);
-  
-  // Execute the movement
-  exampleController.setTarget(TARGET);
-  exampleController.waitUntilSettled();
-  
+   const double kP = 1.0;
+   const double kI = 0.001;
+   const double kD = 0.1;
+   const int MOTOR_PORT = 1;
+   const double TARGET = 100.0;
+
+   okapi::Motor exampleMotor (MOTOR_PORT);
+   auto exampleController = okapi::AsyncControllerFactory::posPID(exampleMotor, kP, kI, kD);
+
+   // Execute the movement
+   exampleController.setTarget(TARGET);
+   exampleController.waitUntilSettled();
+
 When Should I Use Which Controller?
 ===================================
 
-Async Controllers are obviously the easiest to work with for normal movements, as seen in the above example code. 
+Async Controllers are obviously the easiest to work with for normal movements, as seen in the above example code.
 If you just want to run a system or systems in the manner shown in the examples, that's probably your best choice.
 If you want to collect extra data during the movement (such as motor stats like current, temperature, etc.), then you
-will need to use an Iterative Controller to collect that data. Additionally, if you want to use the output from 
+will need to use an Iterative Controller to collect that data. Additionally, if you want to use the output from
 two controllers to set the output for your system (i.e. running both a heading PID and a forward/backward PID on
 a drivetrain), the using two Iterative Controllers would be the best idea.
 
-To conclude, for most applications an Async Controller should suffice, but if you want more complex behavior, then use 
+To conclude, for most applications an Async Controller should suffice, but if you want more complex behavior, then use
 an Iterative Controller.

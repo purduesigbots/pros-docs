@@ -19,8 +19,8 @@ To create a Chassis Controller for a given system, modify the below example to f
    const int DRIVE_LEFT_MOTOR_PORT = 1;
    const int DRIVE_RIGHT_MOTOR_PORT = 2;
 
-   auto driveController = okapi::ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
-
+   auto driveController = okapi::ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);\
+   
 And then we'll add a lift subsystem as an Async Controller:
 
 .. highlight: cpp
@@ -82,7 +82,7 @@ on both controllers is necessary.
 .. code-block:: cpp
    :linenos:
    :name: autonomous.cpp
-   :emphasize-lines: 22
+   :emphasize-lines: 17, 18
 
    const int DRIVE_LEFT_MOTOR_PORT = 1;
    const int DRIVE_RIGHT_MOTOR_PORT = 2;
