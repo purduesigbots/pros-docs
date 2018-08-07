@@ -119,10 +119,10 @@ We will be using
 for this tutorial. Let's initialize it now with our two motors in ports ``1`` and ``10``.
 
 .. highlight:: cpp
-::
+.. code-block:: cpp
 
-  // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-  okapi::ChassisControllerIntegrated robotChassisController(1, 10);
+   // Chassis Controller - lets us drive the robot around with open- or closed-loop control
+   okapi::ChassisControllerIntegrated robotChassisController(1, 10);
 
 Next, let's setup tank or arcade control.
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ provides methods for us
@@ -133,39 +133,40 @@ range ``[-1, 1]``, so we don't need to do any division ourselves.
 .. tabs ::
    .. tab :: Tank drive
       .. highlight:: cpp
-      ::
+      .. code-block:: cpp
 
-        // Joystick to read analog values for tank or arcade control.
-        // Master controller by default.
-        okapi::Controller controller;
+         // Joystick to read analog values for tank or arcade control.
+         // Master controller by default.
+         okapi::Controller controller;
 
-        while (true) {
-          // Tank drive with left and right sticks.
-          robotChassisController.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                      controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
+         while (true) {
+           // Tank drive with left and right sticks.
+           robotChassisController.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                       controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
 
-          // Wait and give up the time we don't need to other tasks.
-          // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-          pros::Task::delay(10);
-        }
+           // Wait and give up the time we don't need to other tasks.
+           // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
+           pros::Task::delay(10);
+         }
 
    .. tab :: Arcade drive
       .. highlight:: cpp
-      ::
+      .. code-block:: cpp
+         :linenos:
 
-        // Joystick to read analog values for tank or arcade control.
-        // Master controller by default.
-        okapi::Controller controller;
+         // Joystick to read analog values for tank or arcade control.
+         // Master controller by default.
+         okapi::Controller controller;
 
-        while (true) {
-          // Arcade drive with the left stick.
-          robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                        controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
+         while (true) {
+           // Arcade drive with the left stick.
+           robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                         controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
-          // Wait and give up the time we don't need to other tasks.
-          // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-          pros::Task::delay(10);
-        }
+           // Wait and give up the time we don't need to other tasks.
+           // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
+           pros::Task::delay(10);
+         }
 
 Arm Control
 -----------
@@ -182,70 +183,70 @@ using an if-statement that checks whether the button is pressed.
 We can define our button as an `ADIButton <../../api/device/button/adi-button.html>`_:
 
 .. highlight:: cpp
-::
+.. code-block:: cpp
 
-  okapi::ADIButton armLimitSwitch('H');
+   okapi::ADIButton armLimitSwitch('H');
 
 And the arm motor:
 
 .. highlight:: cpp
-::
+.. code-block:: cpp
 
-  okapi::Motor armMotor = 8_rmtr;
+   okapi::Motor armMotor = 8_rmtr;
 
 The ``_mtr`` syntax is called a user-defined literal. It's a succinct way of initializing a motor,
 and is equivalent to calling the normal constructor. For example,
 
 .. highlight:: cpp
-::
+.. code-blocK:: cpp
 
-  using namespace okapi::literals;
-  okapi::Motor foo = 1_mtr; // Motor in port 1
-  okapi::Motor foo(1);      // Motor in port 1
+   using namespace okapi::literals;
+   okapi::Motor foo = 1_mtr; // Motor in port 1
+   okapi::Motor foo(1);      // Motor in port 1
 
-  okapi::Motor bar = 1_rmtr; // Reversed motor in port 1
-  okapi::Motor bar(1, true); // Reversed motor in port 1
+   okapi::Motor bar = 1_rmtr; // Reversed motor in port 1
+   okapi::Motor bar(1, true); // Reversed motor in port 1
 
 Then we can check if it's pressed and stop powering the arm motor:
 
 .. highlight:: cpp
-::
+.. code-block:: cpp
 
-  // Don't power the arm if it is all the way down
-  if (armLimitSwitch.isPressed()) {
-    armMotor.move_voltage(0);
-  } else {
-    // Normal arm control
-  }
+   // Don't power the arm if it is all the way down
+   if (armLimitSwitch.isPressed()) {
+     armMotor.move_voltage(0);
+   } else {
+     // Normal arm control
+   }
 
 Next, let's add the logic to make the arm user-controller with two buttons on the controller.
 First, we need to define our two controller buttons as
 `ControllerButton <../../api/device/button/controller-button.html>`_ instances:
 
 .. highlight:: cpp
-::
+.. code-block:: cpp
 
-  okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
-  okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
+   okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
+   okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
 
 Then we can use them along with our limit switch logic from above to control the arm:
 
 .. highlight:: cpp
-::
+.. code-block:: cpp
 
-  // Don't power the arm if it is all the way down
-  if (armLimitSwitch.isPressed()) {
-    armMotor.move_voltage(0);
-  } else {
-    // Else, the arm isn't all the way down
-    if (armUpButton.isPressed()) {
-      armMotor.move_voltage(127);
-    } else if (armDownButton.isPressed()) {
-      armMotor.move_voltage(-127);
-    } else {
-      armMotor.move_voltage(0);
-    }
-  }
+   // Don't power the arm if it is all the way down
+   if (armLimitSwitch.isPressed()) {
+     armMotor.move_voltage(0);
+   } else {
+     // Else, the arm isn't all the way down
+     if (armUpButton.isPressed()) {
+       armMotor.move_voltage(127);
+     } else if (armDownButton.isPressed()) {
+       armMotor.move_voltage(-127);
+     } else {
+       armMotor.move_voltage(0);
+     }
+   }
 
 Autonomous Routine
 ------------------
@@ -260,42 +261,42 @@ is:
 .. tabs ::
    .. tab :: Formula
       .. highlight:: cpp
-      ::
+      .. code-block:: none
 
-        ((ticks per wheel rotation) / ((wheel diameter) * pi)) * 12
+         ((ticks per wheel rotation) / ((wheel diameter) * pi)) * 12
 
    .. tab :: Result
      .. highlight:: cpp
-     ::
+     .. code-block:: none
 
-       (1800 ticks / (4 in * pi)) * 12 in = 1719 ticks
+        (1800 ticks / (4 in * pi)) * 12 in = 1719 ticks
 
 Let's follow the same procedure for calculate the ticks equivalent to a 90 degree turn:
 
 .. tabs ::
    .. tab :: Formula
       .. highlight:: cpp
-      ::
+      .. code-block:: none
 
         ((ticks per wheel rotation) / ((wheel diameter) * pi)) * ((center-to-center wheel distance) * (pi) * (1/4))
 
    .. tab :: Result
      .. highlight:: cpp
-     ::
+     .. code-block:: none
 
-       (1800 ticks / (4 in * pi)) * (11.498 in * pi * (1/4)) = 1294 ticks
+        (1800 ticks / (4 in * pi)) * (11.498 in * pi * (1/4)) = 1294 ticks
 
 Now that we know how far we need to drive, we can program the routine. We will use
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_'s ``moveDistance``
 method to drive along a straight line and ``turnAngle`` method to turn in place.
 
 .. highlight:: cpp
-::
+.. code-block:: cpp
 
-    for (int i = 0; i < 4; i++) {
-      robotChassisController.moveDistance(1719); // Drive forward 12 inches
-      robotChassisController.turnAngle(1294);    // Turn in place 90 degrees
-    }
+     for (int i = 0; i < 4; i++) {
+       robotChassisController.moveDistance(1719); // Drive forward 12 inches
+       robotChassisController.turnAngle(1294);    // Turn in place 90 degrees
+     }
 
 Wrap Up
 -------
@@ -305,120 +306,122 @@ This is the final product from this tutorial.
 .. tabs ::
    .. tab :: Tank drive
       .. highlight:: cpp
-      ::
+      .. code-block:: cpp
+        :linenos:
 
-        #include "okapi/api.hpp"
-        using namespace okapi::literals;
+         #include "okapi/api.hpp"
+         using namespace okapi::literals;
 
-        void opcontrol() {
-          pros::Task::delay(100);
+         void opcontrol() {
+           pros::Task::delay(100);
 
-          // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-          okapi::ChassisControllerIntegrated robotChassisController(1, 10);
+           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
+           okapi::ChassisControllerIntegrated robotChassisController(1, 10);
 
-          // Joystick to read analog values for tank or arcade control
-          // Master controller by default
-          okapi::Controller controller;
+           // Joystick to read analog values for tank or arcade control
+           // Master controller by default
+           okapi::Controller controller;
 
-          // Arm related objects
-          okapi::ADIButton armLimitSwitch('H');
-          okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
-          okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-          okapi::Motor armMotor = 8_rmtr;
+           // Arm related objects
+           okapi::ADIButton armLimitSwitch('H');
+           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
+           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
+           okapi::Motor armMotor = 8_rmtr;
 
-          // Button to run our sample autonomous routine
-          okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
+           // Button to run our sample autonomous routine
+           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
 
-          while (true) {
-            // Tank drive with left and right sticks
-            robotChassisController.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                        controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
+           while (true) {
+             // Tank drive with left and right sticks
+             robotChassisController.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                         controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
 
-            // Don't power the arm if it is all the way down
-            if (armLimitSwitch.isPressed()) {
-              armMotor.move_voltage(0);
-            } else {
-              // Else, the arm isn't all the way down
-              if (armUpButton.isPressed()) {
-                armMotor.move_voltage(127);
-              } else if (armDownButton.isPressed()) {
-                armMotor.move_voltage(-127);
-              } else {
-                armMotor.move_voltage(0);
-              }
-            }
+             // Don't power the arm if it is all the way down
+             if (armLimitSwitch.isPressed()) {
+               armMotor.move_voltage(0);
+             } else {
+               // Else, the arm isn't all the way down
+               if (armUpButton.isPressed()) {
+                 armMotor.move_voltage(127);
+               } else if (armDownButton.isPressed()) {
+                 armMotor.move_voltage(-127);
+               } else {
+                 armMotor.move_voltage(0);
+               }
+             }
 
-            // Run the test autonomous routine if we press the button
-            if (runAutoButton.changedToPressed()) {
-              // Drive the robot in a square pattern using closed-loop control
-              for (int i = 0; i < 4; i++) {
-                robotChassisController.moveDistance(2116); // Drive forward 12 inches
-                robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
-              }
-            }
+             // Run the test autonomous routine if we press the button
+             if (runAutoButton.changedToPressed()) {
+               // Drive the robot in a square pattern using closed-loop control
+               for (int i = 0; i < 4; i++) {
+                 robotChassisController.moveDistance(2116); // Drive forward 12 inches
+                 robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+               }
+             }
 
-            // Wait and give up the time we don't need to other tasks.
-            // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-            pros::Task::delay(10);
-          }
-        }
+             // Wait and give up the time we don't need to other tasks.
+             // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
+             pros::Task::delay(10);
+           }
+         }
 
    .. tab :: Arcade drive
       .. highlight:: cpp
-      ::
+      .. code-block:: cpp
+         :linenos:
 
-        #include "okapi/api.hpp"
-        using namespace okapi::literals;
+         #include "okapi/api.hpp"
+         using namespace okapi::literals;
 
-        void opcontrol() {
-          pros::Task::delay(100);
+         void opcontrol() {
+           pros::Task::delay(100);
 
-          // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-          okapi::ChassisControllerIntegrated robotChassisController(1, 10);
+           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
+           okapi::ChassisControllerIntegrated robotChassisController(1, 10);
 
-          // Joystick to read analog values for tank or arcade control
-          // Master controller by default
-          okapi::Controller controller;
+           // Joystick to read analog values for tank or arcade control
+           // Master controller by default
+           okapi::Controller controller;
 
-          // Arm related objects
-          okapi::ADIButton armLimitSwitch('H');
-          okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
-          okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-          okapi::Motor armMotor = 8_rmtr;
+           // Arm related objects
+           okapi::ADIButton armLimitSwitch('H');
+           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
+           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
+           okapi::Motor armMotor = 8_rmtr;
 
-          // Button to run our sample autonomous routine
-          okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
+           // Button to run our sample autonomous routine
+           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
 
-          while (true) {
-            // Arcade drive with the left stick
-            robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                          controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
+           while (true) {
+             // Arcade drive with the left stick
+             robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                                           controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
-            // Don't power the arm if it is all the way down
-            if (armLimitSwitch.isPressed()) {
-              armMotor.move_voltage(0);
-            } else {
-              // Else, the arm isn't all the way down
-              if (armUpButton.isPressed()) {
-                armMotor.move_voltage(127);
-              } else if (armDownButton.isPressed()) {
-                armMotor.move_voltage(-127);
-              } else {
-                armMotor.move_voltage(0);
-              }
-            }
+             // Don't power the arm if it is all the way down
+             if (armLimitSwitch.isPressed()) {
+               armMotor.move_voltage(0);
+             } else {
+               // Else, the arm isn't all the way down
+               if (armUpButton.isPressed()) {
+                 armMotor.move_voltage(127);
+               } else if (armDownButton.isPressed()) {
+                 armMotor.move_voltage(-127);
+               } else {
+                 armMotor.move_voltage(0);
+               }
+             }
 
-            // Run the test autonomous routine if we press the button
-            if (runAutoButton.changedToPressed()) {
-              // Drive the robot in a square pattern using closed-loop control
-              for (int i = 0; i < 4; i++) {
-                robotChassisController.moveDistance(2116); // Drive forward 12 inches
-                robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
-              }
-            }
+             // Run the test autonomous routine if we press the button
+             if (runAutoButton.changedToPressed()) {
+               // Drive the robot in a square pattern using closed-loop control
+               for (int i = 0; i < 4; i++) {
+                 robotChassisController.moveDistance(2116); // Drive forward 12 inches
+                 robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+               }
+             }
 
-            // Wait and give up the time we don't need to other tasks.
-            // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
-            pros::Task::delay(10);
-          }
-        }
+             // Wait and give up the time we don't need to other tasks.
+             // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
+             pros::Task::delay(10);
+           }
+         }

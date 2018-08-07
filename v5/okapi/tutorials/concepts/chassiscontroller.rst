@@ -10,9 +10,12 @@ OkapiLib uses the
 `ChassisModel <../../api/chassis/model/abstract-chassis-model.html>`_) interfaces to manage your
 robot's chassis.
 `ChassisController <../../api/chassis/controller/abstract-chassis-controller.html>`_ provides easy
-to use methods for open- and closed-loop control that you can use during both autonomous and
+to use methods for open and closed loop control that you can use during both autonomous and
 opcontrol. Rather than writing methods to drive the robot around yourself, OkapiLib provides
 battle-tested implementations for you.
+
+.. note:: A ChassisModel has all of the same open loop control functionality as a ChassisController,
+   but none of the closed loop control functionality.
 
 What types of ChassisControllers does OkapiLib come with?
 ---------------------------------------------------------
@@ -40,14 +43,15 @@ Let's say you want to make a
 First, let's look at the code:
 
 .. highlight:: cpp
-::
+.. code-block:: cpp
+   :linenos:
 
-  auto myChassis = okapi::ChassisControllerIntegrated::create(
-    {-1, -2}, // Left motors
-    {3, 4}, // Right motors
-    AbstractMotor::gearset::red, // Torque gearset
-    {4_in, 12.5_in} //4 inch wheels, 12.5 inch wheelbase width
-  );
+   auto myChassis = okapi::ChassisControllerFactory::create(
+     {-1, -2}, // Left motors
+     {3, 4}, // Right motors
+     AbstractMotor::gearset::red, // Torque gearset
+     {4_in, 12.5_in} //4 inch wheels, 12.5 inch wheelbase width
+   );
 
 Breaking that down further, there are three distinct parts:
 
