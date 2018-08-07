@@ -23,16 +23,18 @@ Constructor(s)
                               std::shared_ptr<ControllerOutput<double>> ioutput,
                               const TimeUtil &itimeUtil,
                               const double ikP, const double ikD, const double ikF,
-                              std::unique_ptr<VelMath> ivelMath)
+                              std::unique_ptr<VelMath> ivelMath,
+                              std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
  Parameters
-=============== ===================================================================
- iinput          The controller input.
- ioutput         The controller output.
- itimeUtil       See ``TimeUtil`` docs.
- ikp             The P term gain.
- ikD             The D term gain.
- ikF             The Feed-Forward gain.
- ivelMath        The ``VelMath`` to use.
-=============== ===================================================================
+=================== ===================================================================
+ iinput              The controller input.
+ ioutput             The controller output.
+ itimeUtil           See ``TimeUtil`` docs.
+ ikp                 The P term gain.
+ ikD                 The D term gain.
+ ikF                 The Feed-Forward gain.
+ ivelMath            The ``VelMath`` to use.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================

@@ -26,16 +26,18 @@ A position controller that uses the PID algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncPosPIDController posPID(double ikP, double ikI, double ikD, double ikBias = 0)
+        static AsyncPosPIDController posPID(double ikP, double ikI, double ikD, double ikBias = 0,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- ikp             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
-=============== ===================================================================
+=================== ===================================================================
+ ikp                 The P term gain.
+ ikI                 The I term gain.
+ ikD                 The D term gain.
+ ikBias              The controller bias.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
@@ -50,16 +52,18 @@ A velocity controller that uses the PD algorithm.
       ::
 
         static AsyncVelPIDController velPID(double ikP, double ikD, double ikF = 0,
-                                            const VelMathArgs &iparams = VelMathArgs(imev5TPR))
+                                            const VelMathArgs &iparams = VelMathArgs(imev5TPR),
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- ikp             The P term gain.
- ikD             The D term gain.
- ikF             The Feed-Forward gain.
- iparams         The ``VelMathArgs`` for calculating velocity.
-=============== ===================================================================
+=================== ===================================================================
+ ikp                 The P term gain.
+ ikD                 The D term gain.
+ ikF                 The Feed-Forward gain.
+ iparams             The ``VelMathArgs`` for calculating velocity.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 

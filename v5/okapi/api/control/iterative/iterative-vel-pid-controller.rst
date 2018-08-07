@@ -22,17 +22,19 @@ Constructor(s)
 
         IterativeVelPIDController(double ikP, double ikD, double ikF,
                                   std::unique_ptr<VelMath> ivelMath,
-                                  const TimeUtil &itimeUtil)
+                                  const TimeUtil &itimeUtil,
+                                  std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
  Parameters
-=============== ===================================================================
- ikp             The P term gain.
- ikD             The D term gain.
- ikF             The Feed-Forward gain.
- ivelMath        The `VelMath <../../filters/vel-math.html>`_ used for calculating plant velocity.
- itimeUtil       See ``TimeUtil`` docs.
-=============== ===================================================================
+=================== ===================================================================
+ ikp                 The P term gain.
+ ikD                 The D term gain.
+ ikF                 The Feed-Forward gain.
+ ivelMath            The `VelMath <../../filters/vel-math.html>`_ used for calculating plant velocity.
+ itimeUtil           See ``TimeUtil`` docs.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 Methods
 -------

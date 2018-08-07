@@ -21,52 +21,35 @@ Constructor(s)
       ::
 
         IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias,
-                                  const TimeUtil &itimeUtil)
+                                  const TimeUtil &itimeUtil,
+                                  std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+================== ===================================================================
  Parameters
-=============== ===================================================================
- ikp             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
- itimeUtil       See ``TimeUtil`` docs.
-=============== ===================================================================
+================== ===================================================================
+ ikp                 The P term gain.
+ ikI                 The I term gain.
+ ikD                 The D term gain.
+ ikBias              The controller bias.
+ itimeUtil           See ``TimeUtil`` docs.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        IterativePosPIDController(const Gains &igains, const TimeUtil &itimeUtil)
+        IterativePosPIDController(const Gains &igains, const TimeUtil &itimeUtil,
+                                  std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
  Parameters
-=============== ===================================================================
- igains          See ``Gains`` below.
- itimeUtil       See ``TimeUtil`` docs.
-=============== ===================================================================
-
-This constructor is used for testing.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias,
-                                  std::unique_ptr<Timer> iloopDtTimer, std::unique_ptr<SettledUtil> isettledUtil)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- ikp             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
- iloopDtTimer    The timer used for calculating loop dt's.
- isettledUtil    The `SettledUtil <../util/settled-util.html>`_ for calculating if the controller is settled.
-=============== ===================================================================
+=================== ===================================================================
+ igains              See ``Gains`` below.
+ itimeUtil           See ``TimeUtil`` docs.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 Methods
 -------

@@ -22,16 +22,18 @@ Constructor(s)
         AsyncPosPIDController(std::shared_ptr<ControllerInput<double>> iinput,
                               std::shared_ptr<ControllerOutput<double>> ioutput,
                               const TimeUtil &itimeUtil,
-                              const double ikP, const double ikI, const double ikD, const double ikBias = 0)
+                              const double ikP, const double ikI, const double ikD, const double ikBias = 0,
+                              std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
  Parameters
-=============== ===================================================================
- iinput          The controller input.
- ioutput         The controller output.
- itimeUtil       See ``TimeUtil`` docs.
- ikp             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
-=============== ===================================================================
+=================== ===================================================================
+ iinput               The controller input.
+ ioutput              The controller output.
+ itimeUtil            See ``TimeUtil`` docs.
+ ikp                  The P term gain.
+ ikI                  The I term gain.
+ ikD                  The D term gain.
+ ikBias               The controller bias.
+ iderivativeFilter    The filter to use for filtering the derivative term.
+=================== ===================================================================

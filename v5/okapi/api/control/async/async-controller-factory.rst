@@ -106,17 +106,19 @@ A position controller that uses the PID algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncPosPIDController posPID(Motor imotor, double ikP, double ikI, double ikD, double ikBias = 0)
+        static AsyncPosPIDController posPID(Motor imotor, double ikP, double ikI, double ikD, double ikBias = 0,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- imotor          The controller input (from the integrated encoder) and output.
- ikp             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
-=============== ===================================================================
+=================== ===================================================================
+ imotor              The controller input (from the integrated encoder) and output.
+ ikp                 The P term gain.
+ ikI                 The I term gain.
+ ikD                 The D term gain.
+ ikBias              The controller bias.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
@@ -131,18 +133,20 @@ A position controller that uses the PID algorithm.
       ::
 
         static AsyncPosPIDController posPID(Motor imotor, ADIEncoder ienc,
-                                            double ikP, double ikI, double ikD, double ikBias = 0)
+                                            double ikP, double ikI, double ikD, double ikBias = 0,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- imotor          The controller output.
- ienc            The controller intput.
- ikp             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
-=============== ===================================================================
+=================== ===================================================================
+ imotor              The controller output.
+ ienc                The controller intput.
+ ikp                 The P term gain.
+ ikI                 The I term gain.
+ ikD                 The D term gain.
+ ikBias              The controller bias.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
@@ -156,17 +160,19 @@ A position controller that uses the PID algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncPosPIDController posPID(MotorGroup imotor, double ikP, double ikI, double ikD, double ikBias = 0)
+        static AsyncPosPIDController posPID(MotorGroup imotor, double ikP, double ikI, double ikD, double ikBias = 0,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- imotor          The controller input (from the integrated encoder) and output.
- ikp             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
-=============== ===================================================================
+=================== ===================================================================
+ imotor              The controller input (from the integrated encoder) and output.
+ ikp                 The P term gain.
+ ikI                 The I term gain.
+ ikD                 The D term gain.
+ ikBias              The controller bias.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
@@ -181,18 +187,20 @@ A position controller that uses the PID algorithm.
       ::
 
         static AsyncPosPIDController posPID(MotorGroup imotor, ADIEncoder ienc,
-                                            double ikP, double ikI, double ikD, double ikBias = 0)
+                                            double ikP, double ikI, double ikD, double ikBias = 0,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- imotor          The controller output.
- ienc            The controller input.
- ikp             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
-=============== ===================================================================
+=================== ===================================================================
+ imotor              The controller output.
+ ienc                The controller input.
+ ikp                 The P term gain.
+ ikI                 The I term gain.
+ ikD                 The D term gain.
+ ikBias              The controller bias.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
@@ -207,18 +215,20 @@ A position controller that uses the PID algorithm.
       ::
 
         static AsyncPosPIDController posPID(std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
-                                            double ikP, double ikI, double ikD, double ikBias = 0)
+                                            double ikP, double ikI, double ikD, double ikBias = 0,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- iinput          The controller input.
- ioutput         The controller output.
- ikp             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
-=============== ===================================================================
+=================== ===================================================================
+ iinput              The controller input.
+ ioutput             The controller output.
+ ikp                 The P term gain.
+ ikI                 The I term gain.
+ ikD                 The D term gain.
+ ikBias              The controller bias.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
@@ -232,17 +242,19 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(Motor imotor, double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR)
+        static AsyncVelPIDController velPID(Motor imotor, double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- imotor          The controller input (from the integrated encoder) and output.
- ikp             The P term gain.
- ikD             The D term gain.
- ikF             The Feed-Forward gain.
- iTPR            The sensor ticks per revolution (see ``VelMath`` docs).
-=============== ===================================================================
+=================== ===================================================================
+ imotor              The controller input (from the integrated encoder) and output.
+ ikp                 The P term gain.
+ ikD                 The D term gain.
+ ikF                 The Feed-Forward gain.
+ iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
@@ -257,18 +269,20 @@ A velocity controller that uses the PD algorithm.
       ::
 
         static AsyncVelPIDController velPID(Motor imotor, ADIEncoder,
-                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR)
+                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- imotor          The controller output.
- ienc            The controller input.
- ikp             The P term gain.
- ikD             The D term gain.
- ikF             The Feed-Forward gain.
- iTPR            The sensor ticks per revolution (see ``VelMath`` docs).
-=============== ===================================================================
+=================== ===================================================================
+ imotor              The controller output.
+ ienc                The controller input.
+ ikp                 The P term gain.
+ ikD                 The D term gain.
+ ikF                 The Feed-Forward gain.
+ iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
@@ -282,17 +296,19 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(MotorGroup imotor, double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR)
+        static AsyncVelPIDController velPID(MotorGroup imotor, double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- imotor          The controller input (from the integrated encoder) and output.
- ikp             The P term gain.
- ikD             The D term gain.
- ikF             The Feed-Forward gain.
- iTPR            The sensor ticks per revolution (see ``VelMath`` docs).
-=============== ===================================================================
+=================== ===================================================================
+ imotor              The controller input (from the integrated encoder) and output.
+ ikp                 The P term gain.
+ ikD                 The D term gain.
+ ikF                 The Feed-Forward gain.
+ iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
@@ -307,18 +323,20 @@ A velocity controller that uses the PD algorithm.
       ::
 
         static AsyncVelPIDController velPID(MotorGroup imotor, ADIEncoder ienc,
-                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR)
+                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- imotor          The controller output.
- ienc            The controller input.
- ikp             The P term gain.
- ikD             The D term gain.
- ikF             The Feed-Forward gain.
- iTPR            The sensor ticks per revolution (see ``VelMath`` docs).
-=============== ===================================================================
+=================== ===================================================================
+ imotor              The controller output.
+ ienc                The controller input.
+ ikp                 The P term gain.
+ ikD                 The D term gain.
+ ikF                 The Feed-Forward gain.
+ iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
@@ -333,18 +351,20 @@ A velocity controller that uses the PD algorithm.
       ::
 
         static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
-                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR)
+                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
-=============== ===================================================================
+=================== ===================================================================
 Parameters
-=============== ===================================================================
- iinput          The controller input.
- ioutput         The controller output.
- ikp             The P term gain.
- ikD             The D term gain.
- ikF             The Feed-Forward gain.
- iTPR            The sensor ticks per revolution (see ``VelMath`` docs).
-=============== ===================================================================
+=================== ===================================================================
+ iinput              The controller input.
+ ioutput             The controller output.
+ ikp                 The P term gain.
+ ikD                 The D term gain.
+ ikF                 The Feed-Forward gain.
+ iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
+ iderivativeFilter   The filter to use for filtering the derivative term.
+=================== ===================================================================
 
 ----
 
