@@ -7,7 +7,7 @@
 okapi::ChassisModel
 ===================
 
-A version of the `ReadOnlyChassisModel <abstract-chassis-model.html>`_ that also supports write
+A version of the `ReadOnlyChassisModel <abstract-read-only-chassis-model.html>`_ that also supports write
 methods, such as setting motor speed. Because this class can write to motors, there can only be one
 owner and as such copying is disabled.
 
