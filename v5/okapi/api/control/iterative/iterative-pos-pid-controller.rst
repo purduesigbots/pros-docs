@@ -236,8 +236,9 @@ Parameters
 setErrorSumLimits
 ~~~~~~~~~~~~~~~~~
 
-Sets the error sum bounds. Default bounds are ``[500, 1250]``. Error will only be added to the
-integral term when its absolute value between these bounds of either side of the target.
+Sets the error sum bounds. Default bounds are ``[0, std::numeric_limits<double>::max()]``.
+Error will only be added to the integral term when its absolute value between these bounds
+of either side of the target.
 
 .. tabs ::
    .. tab :: Prototype
