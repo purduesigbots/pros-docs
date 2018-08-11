@@ -7,8 +7,8 @@
 okapi::AbstractMotor
 ====================
 
-Methods
--------
+Movement Methods
+----------------
 
 moveAbsolute
 ~~~~~~~~~~~~
@@ -126,7 +126,8 @@ This function uses the following values of errno when an error state is reached:
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting errno.
 
-----
+Telemetry Methods
+-----------------
 
 getTargetPosition
 ~~~~~~~~~~~~~~~~~
@@ -162,6 +163,26 @@ This function uses the following values of errno when an error state is reached:
       ::
 
         virtual double getPosition() const = 0
+
+**Returns:** The motor's absolute position in its encoder units or ``PROS_ERR_F`` if the operation
+failed, setting errno.
+
+----
+
+tarePosition
+~~~~~~~~~~~~
+
+Sets the "absolute" zero position of the motor to its current position.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t tarePosition() const = 0
 
 **Returns:** The motor's absolute position in its encoder units or ``PROS_ERR_F`` if the operation
 failed, setting errno.
@@ -208,12 +229,10 @@ This function uses the following values of errno when an error state is reached:
 
 ----
 
-tarePosition
-~~~~~~~~~~~~
+getCurrentDraw
+~~~~~~~~~~~~~~
 
-Sets the "absolute" zero position of the motor to its current position.
-
-This will be the future reference point for the motor's "absolute" position.
+Gets the current drawn by the motor in mA.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -223,12 +242,281 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t tarePosition() const = 0
+        virtual std::int32_t getCurrentDraw() const = 0
 
-**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+**Returns:** The motor's current in mA or ``PROS_ERR`` if the operation failed, setting errno.
+
+----
+
+getDirection
+~~~~~~~~~~~~
+
+Gets the direction of movement for the motor.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t getDirection() const = 0
+
+**Returns:** ``1`` for moving in the positive direction, ``-1`` for moving in the negative
+direction, or ``PROS_ERR`` if the operation failed, setting errno.
+
+----
+
+getEfficiency
+~~~~~~~~~~~~~
+
+Gets the efficiency of the motor in percent.
+
+An efficiency of 100% means that the motor is moving electrically while drawing no electrical
+power, and an efficiency of 0% means that the motor is drawing power but not moving.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual double getEfficiency() const = 0
+
+**Returns:** The motor's efficiency in percent or ``PROS_ERR`` if the operation failed,
 setting errno.
 
 ----
+
+isOverCurrent
+~~~~~~~~~~~~~
+
+Checks if the motor is drawing over its current limit.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t isOverCurrent() const = 0
+
+**Returns:** ``1`` if the motor's current limit is being exceeded and ``0`` if the current limit
+is not exceeded, or ``PROS_ERR`` if the operation failed, setting errno.
+
+----
+
+isOverTemp
+~~~~~~~~~~
+
+Checks if the motor's temperature is above its limit.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t isOverTemp() const = 0
+
+**Returns:** ``1`` if the temperature limit is exceeded and ``0`` if the the temperature is below
+the limit, or ``PROS_ERR`` if the operation failed, setting errno.
+
+----
+
+isStopped
+~~~~~~~~~
+
+Checks if the motor is stopped.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t isStopped() const = 0
+
+**Returns:** ``1`` if the motor is not moving, ``0`` if the motor is moving, or ``PROS_ERR`` if
+the operation failed, setting errno.
+
+----
+
+getZeroPositionFlag
+~~~~~~~~~~~~~~~~~~~
+
+Checks if the motor is at its zero position.
+
+Although this function forwards data from the motor, the motor presently does not provide any
+value. This function returns PROS_ERR with errno set to ENOSYS.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t getZeroPositionFlag() const = 0
+
+**Returns:** ``1`` if the motor is at zero absolute position, ``0`` if the motor has moved from
+its absolute zero, or ``PROS_ERR`` if the operation failed, setting errno.
+
+----
+
+getFaults
+~~~~~~~~~
+
+Gets the faults experienced by the motor.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual uint32_t getFaults() const = 0
+
+**Returns:** A currently unknown bitfield containing the motor's faults.
+``0b00000100`` = Current Limit Hit
+
+----
+
+getFlags
+~~~~~~~~
+
+Gets the flags set by the motor's operation.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual uint32_t getFlags() const = 0
+
+**Returns:** A currently unknown bitfield containing the motor's flags. These seem to be unrelated
+to the individual ``get_specific_flag`` functions
+
+----
+
+getRawPosition
+~~~~~~~~~~~~~~
+
+Gets the raw encoder count of the motor at a given timestamp.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t getRawPosition(std::uint32_t *timestamp) const = 0;
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ timestamp       A pointer to a time in milliseconds for which the encoder count will be returned. If ``NULL``, the timestamp at which the encoder count was read will not be supplied
+=============== ===================================================================
+
+**Returns:** The raw encoder count at the given timestamp or ``PROS_ERR`` if
+the operation failed, setting errno.
+
+----
+
+getPower
+~~~~~~~~
+
+Gets the power drawn by the motor in Watts.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual double getPower() const = 0;
+
+**Returns:** The motor's power draw in Watts or ``PROS_ERR`` if
+the operation failed, setting errno.
+
+----
+
+getTemperature
+~~~~~~~~~~~~~~
+
+Gets the temperature of the motor in degrees Celsius.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual double getTemperature() const = 0;
+
+**Returns:** The motor's temperature in degrees Celsius or ``PROS_ERR`` if
+the operation failed, setting errno.
+
+----
+
+getTorque
+~~~~~~~~~
+
+Gets the torque generated by the motor in Newton Metres (Nm).
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual double getTorque() const = 0;
+
+**Returns:** The motor's torque in Nm or ``PROS_ERR`` if
+the operation failed, setting errno.
+
+----
+
+getVoltage
+~~~~~~~~~~
+
+Gets the voltage delivered to the motor in millivolts.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t getVoltage() const = 0;
+
+**Returns:** The motor's voltage in mV or ``PROS_ERR`` if
+the operation failed, setting errno.
+
+Configuration Methods
+---------------------
 
 setBrakeMode
 ~~~~~~~~~~~~
