@@ -22,7 +22,7 @@ Constructor(s)
         AsyncPosPIDController(std::shared_ptr<ControllerInput<double>> iinput,
                               std::shared_ptr<ControllerOutput<double>> ioutput,
                               const TimeUtil &itimeUtil,
-                              const double ikP, const double ikD, const double ikF,
+                              double ikP, double ikD, double ikF, double ikSF,
                               std::unique_ptr<VelMath> ivelMath,
                               std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
@@ -35,6 +35,7 @@ Constructor(s)
  ikp                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
+ ikSF                A Feed-Forward gain to counteract static friction.
  ivelMath            The ``VelMath`` to use.
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================

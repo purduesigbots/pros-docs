@@ -298,7 +298,9 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(Motor imotor, double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+        static AsyncVelPIDController velPID(Motor imotor,
+                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
+                                            double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
 =================== ===================================================================
@@ -308,6 +310,7 @@ Parameters
  ikp                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
+ ikSF                A Feed-Forward gain to counteract static friction.
  iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================
@@ -325,7 +328,8 @@ A velocity controller that uses the PD algorithm.
       ::
 
         static AsyncVelPIDController velPID(Motor imotor, ADIEncoder ienc,
-                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
+                                            double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
 =================== ===================================================================
@@ -336,6 +340,7 @@ Parameters
  ikp                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
+ ikSF                A Feed-Forward gain to counteract static friction.
  iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================
@@ -353,7 +358,8 @@ A velocity controller that uses the PD algorithm.
       ::
 
         static AsyncVelPIDController velPID(Motor imotor, Potentiometer ipot,
-                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
+                                            double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
 =================== ===================================================================
@@ -364,6 +370,7 @@ Parameters
  ikp                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
+ ikSF                A Feed-Forward gain to counteract static friction.
  iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================
@@ -380,7 +387,9 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(MotorGroup imotor, double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+        static AsyncVelPIDController velPID(MotorGroup imotor,
+                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
+                                            double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
 =================== ===================================================================
@@ -390,6 +399,7 @@ Parameters
  ikp                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
+ ikSF                A Feed-Forward gain to counteract static friction.
  iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================
@@ -407,7 +417,8 @@ A velocity controller that uses the PD algorithm.
       ::
 
         static AsyncVelPIDController velPID(MotorGroup imotor, ADIEncoder ienc,
-                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
+                                            double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
 =================== ===================================================================
@@ -418,6 +429,7 @@ Parameters
  ikp                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
+ ikSF                A Feed-Forward gain to counteract static friction.
  iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================
@@ -435,7 +447,8 @@ A velocity controller that uses the PD algorithm.
       ::
 
         static AsyncVelPIDController velPID(MotorGroup imotor, Potentiometer ipot,
-                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
+                                            double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
 =================== ===================================================================
@@ -446,6 +459,7 @@ Parameters
  ikp                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
+ ikSF                A Feed-Forward gain to counteract static friction.
  iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================
@@ -462,8 +476,10 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
-                                            double ikP, double ikD, double ikF = 0, double iTPR = imev5TPR,
+        static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput<double>> iinput,
+                                            std::shared_ptr<ControllerOutput<double>> ioutput,
+                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
+                                            double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
 =================== ===================================================================
@@ -474,6 +490,7 @@ Parameters
  ikp                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
+ ikSF                A Feed-Forward gain to counteract static friction.
  iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================

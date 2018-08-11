@@ -51,7 +51,7 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(double ikP, double ikD, double ikF = 0,
+        static AsyncVelPIDController velPID(double ikP, double ikD, double ikF = 0, double ikSF = 0,
                                             const VelMathArgs &iparams = VelMathArgs(imev5TPR),
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
@@ -61,6 +61,7 @@ Parameters
  ikp                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
+ ikSF                A Feed-Forward gain to counteract static friction.
  iparams             The ``VelMathArgs`` for calculating velocity.
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================
@@ -78,7 +79,7 @@ A velocity controller that uses the PD algorithm.
       ::
 
         static AsyncVelPIDController motorVelocity(Motor imotor,
-                                                   double ikP, double ikD, double ikF = 0,
+                                                   double ikP, double ikD, double ikF = 0, double ikSF = 0,
                                                    const VelMathArgs &iparams = VelMathArgs(imev5TPR))
 
 =============== ===================================================================
@@ -88,6 +89,7 @@ Parameters
  ikp             The P term gain.
  ikD             The D term gain.
  ikF             The Feed-Forward gain.
+ ikSF            A Feed-Forward gain to counteract static friction.
  iparams         The ``VelMathArgs`` for calculating velocity.
 =============== ===================================================================
 
@@ -104,7 +106,7 @@ A velocity controller that uses the PD algorithm.
       ::
 
         static IterativeMotorVelocityController motorVelocity(MotorGroup imotor,
-                                                              double ikP, double ikD, double ikF = 0,
+                                                              double ikP, double ikD, double ikF = 0, double ikSF = 0,
                                                               const VelMathArgs &iparams = VelMathArgs(imev5TPR))
 
 =============== ===================================================================
@@ -114,6 +116,7 @@ Parameters
  ikp             The P term gain.
  ikD             The D term gain.
  ikF             The Feed-Forward gain.
+ ikSF            A Feed-Forward gain to counteract static friction.
  iparams         The ``VelMathArgs`` for calculating velocity.
 =============== ===================================================================
 
