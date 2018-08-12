@@ -4,11 +4,6 @@ Passthrough Filter
 
 .. contents:: :local:
 
-okapi::PassthroughFilterArgs
-============================
-
-Data class for the arguments to ``PassthroughFilter``.
-
 Constructor(s)
 --------------
 

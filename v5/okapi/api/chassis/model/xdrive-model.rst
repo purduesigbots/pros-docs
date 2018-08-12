@@ -4,67 +4,6 @@ X-Drive Model
 
 .. contents:: :local:
 
-
-okapi::XDriveModelArgs
-======================
-
-Data class for the arguments to ``XDriveModel``.
-
-Constructor(s)
---------------
-
-This constructor infers the encoders from the top left and top right motors.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                        std::shared_ptr<AbstractMotor> itopRightMotor,
-                        std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                        std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                        double imaxOutput = 127)
-
-==================   ===================================================================
- Parameters
-==================   ===================================================================
- itopLeftMotor        The top left motor.
- itopRightMotor       The top right motor.
- ibottomRightMotor    The bottom right motor.
- ibottomLeftMotor     The bottom left motor.
- imaxOutput           The maximum output value to the motors.
-==================   ===================================================================
-
-This constructor does not infer the encoders from the motors, and instead takes explicitly specified encoders.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        XDriveModelArgs(std::shared_ptr<AbstractMotor> itopLeftMotor,
-                        std::shared_ptr<AbstractMotor> itopRightMotor,
-                        std::shared_ptr<AbstractMotor> ibottomRightMotor,
-                        std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                        std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                        std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                        double imaxOutput = 127)
-
-==================   ===================================================================
- Parameters
-==================   ===================================================================
- itopLeftMotor        The top left motor.
- itopRightMotor       The top right motor.
- ibottomRightMotor    The bottom right motor.
- ibottomLeftMotor     The bottom left motor.
- ileftEnc             The left side encoder.
- irightEnc            The right side encoder.
- imaxOutput           The maximum output value to the motors.
-==================   ===================================================================
-
-----
-
 okapi::XDriveModel
 ==================
 
@@ -126,19 +65,6 @@ This constructor does not infer the encoders from the motors, and instead takes 
  ileftEnc             The left side encoder.
  irightEnc            The right side encoder.
  imaxOutput           The maximum output value to the motors.
-==================   ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        explicit XDriveModel(const XDriveModelArgs &iparams)
-
-==================   ===================================================================
- Parameters
-==================   ===================================================================
- iparams              The ``XDriveModel`` arguments.
 ==================   ===================================================================
 
 .. tabs ::

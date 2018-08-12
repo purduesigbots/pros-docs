@@ -4,11 +4,6 @@
 
 .. contents:: :local:
 
-okapi::FilterArgs
-=================
-
-Data class for the arguments to ``Filter``.
-
 okapi::Filter
 =============
 

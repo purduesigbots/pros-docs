@@ -4,59 +4,6 @@ Skid-Steer Model
 
 .. contents:: :local:
 
-
-okapi::SkidSteerModelArgs
-=========================
-
-Data class for the arguments to ``SkidSteerModel``.
-
-Constructor(s)
---------------
-
-This constructor infers the encoders from the left side and right side motors.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                           std::shared_ptr<AbstractMotor> irightSideMotor,
-                           double imaxOutput = 127)
-
-=================   ===================================================================
- Parameters
-=================   ===================================================================
- ileftSideMotor      The left side motor.
- irightSideMotor     The right side motor.
- imaxOutput          The maximum output value to the motors.
-=================   ===================================================================
-
-This constructor does not infer the encoders from the motors, and instead takes explicitly specified encoders.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        SkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                           std::shared_ptr<AbstractMotor> irightSideMotor,
-                           std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                           std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                           double imaxOutput = 127)
-
-=================   ===================================================================
- Parameters
-=================   ===================================================================
- ileftSideMotor      The left side motor.
- irightSideMotor     The right side motor.
- ileftEnc            The left side encoder.
- irightEnc           The right side encoder.
- imaxOutput          The maximum output value to the motors.
-=================   ===================================================================
-
-----
-
 okapi::SkidSteerModel
 =====================
 
@@ -110,19 +57,6 @@ This constructor does not infer the encoders from the motors, and instead takes 
  ileftEnc            The left side encoder.
  irightEnc           The right side encoder.
  imaxOutput          The maximum output value to the motors.
-=================   ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        explicit SkidSteerModel(const SkidSteerModelArgs &iparams)
-
-=================   ===================================================================
- Parameters
-=================   ===================================================================
- iparams             The ``SkidSteerModel`` arguments.
 =================   ===================================================================
 
 .. tabs ::

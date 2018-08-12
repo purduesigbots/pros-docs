@@ -4,27 +4,6 @@ Composable Filter
 
 .. contents:: :local:
 
-okapi::ComposableFilterArgs
-===========================
-
-Data class for the arguments to ``ComposableFilter``.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ComposableFilterArgs(const std::initializer_list<std::shared_ptr<Filter>> &ilist)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- ilist           The filters to use in sequence.
-=============== ===================================================================
-
 okapi::ComposableFilter
 =======================
 
@@ -74,19 +53,6 @@ Constructor(s)
  Parameters
 =============== ===================================================================
  ilist            The lambdas used to allocate filters.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        explicit ComposableFilter(const ComposableFilterArgs &iparams)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iparams         The ``ComposableFilter`` arguments.
 =============== ===================================================================
 
 ----

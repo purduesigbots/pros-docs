@@ -29,7 +29,7 @@ Constructor(s)
                  double ikPMin, double ikPMax,
                  double ikIMin, double ikIMax,
                  double ikDMin, double ikDMax,
-                 std::int32_t inumIterations = 5, std::int32_t inumParticles = 16,
+                 std::size_t inumIterations = 5, std::size_t inumParticles = 16,
                  double ikSettle = 1, double ikITAE = 2)
 
 ===================== ===============================================================
