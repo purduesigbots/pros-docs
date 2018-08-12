@@ -16,7 +16,7 @@ Methods
 step
 ~~~~
 
-Do one iteration of the controller. Outputs in the range ``[-1, 1]``.
+Do one iteration of the controller.
 
 .. tabs ::
    .. tab :: Prototype
@@ -38,7 +38,7 @@ Do one iteration of the controller. Outputs in the range ``[-1, 1]``.
 getOutput
 ~~~~~~~~~
 
-Returns the last calculated output of the controller. Default is ``0``.
+Returns the last calculated output of the controller.
 
 .. tabs ::
    .. tab :: Prototype
@@ -54,14 +54,14 @@ Returns the last calculated output of the controller. Default is ``0``.
 setOutputLimits
 ~~~~~~~~~~~~~~~
 
-Sets controller output bounds. Default does nothing.
+Sets controller output bounds.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual void setOutputLimits(Output imax, Output imin)
+        virtual void setOutputLimits(Output imax, Output imin) = 0
 
 =============== ===================================================================
 Parameters
@@ -75,14 +75,14 @@ Parameters
 setSampleTime
 ~~~~~~~~~~~~~
 
-Sets time between loops. Default does nothing.
+Sets time between loops.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual void setSampleTime(QTime isampleTime)
+        virtual void setSampleTime(QTime isampleTime) = 0
 
 =============== ===================================================================
 Parameters
@@ -95,13 +95,13 @@ Parameters
 getSampleTime
 ~~~~~~~~~~~~~
 
-Get the last set sample time. Default is ``10_ms``.
+Get the last set sample time.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual QTime getSampleTime() const
+        virtual QTime getSampleTime() const = 0
 
 **Returns:** The last set sample time.

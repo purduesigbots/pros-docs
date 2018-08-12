@@ -82,6 +82,22 @@ Sets the target for the controller.
 
 ----
 
+getTarget
+~~~~~~~~~
+
+Gets the last set target, or the default target if none was set.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        double getTarget() override
+
+**Returns:** The last target.
+
+----
+
 getOutput
 ~~~~~~~~~
 

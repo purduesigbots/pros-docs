@@ -81,6 +81,22 @@ Any targets set while a path is being followed will be ignored.
 
 ----
 
+getTarget
+~~~~~~~~~
+
+Gets the last set target, or the default target if none was set.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::string getTarget() override
+
+**Returns:** The last target.
+
+----
+
 waitUntilSettled
 ~~~~~~~~~~~~~~~~
 

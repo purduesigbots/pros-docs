@@ -92,6 +92,22 @@ Do one iteration of the controller. Outputs in the range ``[-1, 1]``.
 
 ----
 
+getTarget
+~~~~~~~~~
+
+Gets the last set target, or the default target if none was set.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        double getTarget() override
+
+**Returns:** The last target.
+
+----
+
 setTarget
 ~~~~~~~~~
 
