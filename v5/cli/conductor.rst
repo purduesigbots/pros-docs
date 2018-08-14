@@ -29,7 +29,7 @@ There are a few concepts central to Conductor's functionality:
   contain much information on their own - just a target platform and a list of
   installed templates. PROS Conductor maintains two lists of files originating
   from templates: user files and system files. User files are never replaced
-  when upgrading a project and system files are akways replaced when upgrading a
+  when upgrading a project and system files are always replaced when upgrading a
   project.
 
 Common Tasks
