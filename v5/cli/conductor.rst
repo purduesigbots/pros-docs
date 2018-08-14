@@ -14,8 +14,8 @@ There are a few concepts central to Conductor's functionality:
 
 - Templates: Templates are a description of a set of files. They have a name,
   version, supported target, and possibly other metadata. Templates typically
-  come in one of 3 forms: remote, local, and installed. Remote templates are
-  templates that can be downloaded. Local templates are a downloaded template
+  come in one of 3 forms: remote, local, and installed. A remote template is
+  a template that can be downloaded. A local template is a downloaded template
   that can be installed to a project, even when you're offline. An installed
   template is a template which has been copied into a PROS project.
 
