@@ -14,7 +14,7 @@ Install the CLI
 Install the toolchain
 ---------------------
 
-If you have `homebrew <https://brew.sh>`__ installed:
+If you have `homebrew <https://brew.sh>`__ installed (recommended method):
 1. In a terminal, run ``brew tap osx-cross/arm``, then
 2. run ``brew install arm-gcc-bin``.
 
