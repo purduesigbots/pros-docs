@@ -253,10 +253,10 @@ simple autonomous routine to drive in a square.
 Writing an autonomous routine is much easier when distances and turns can be done
 with real life units, so let's configure the `ChassisController <../../api/chassis/controller/chassis-controller.html>`_
 with the clawbot chassis's dimensions. This will require a change to the drive's
-constructors, two additional parameters are needed. The first is the gearset of
+constructors; two additional parameters are needed. The first is the gearset of
 the motors on the chassis, in this example we will use the standard Green cartridges.
-The second is a vector containing firstly the wheel diameter (4") and secondly,
-the width of the chassis (11.5").
+The second is a `list <http://www.cplusplus.com/reference/initializer_list/initializer_list/>`_
+containing firstly the wheel diameter (4") and secondly, the width of the chassis (11.5").
 
 .. highlight:: cpp
 .. code-block:: cpp
@@ -272,7 +272,7 @@ After this, you can move the chassis in actual units, such as inches and degrees
 
      for (int i = 0; i < 4; i++) {
        drive.moveDistance(12_in); // Drive forward 12 inches
-       drive.turnAngle(90_deg);    // Turn in place 90 degrees
+       drive.turnAngle(90_deg);   // Turn in place 90 degrees
      }
 
 Wrap Up
@@ -333,7 +333,7 @@ This is the final product from this tutorial.
                // Drive the robot in a square pattern using closed-loop control
                for (int i = 0; i < 4; i++) {
                  drive.moveDistance(12_in); // Drive forward 12 inches
-                 drive.turnAngle(90_deg);    // Turn in place 90 degrees
+                 drive.turnAngle(90_deg);   // Turn in place 90 degrees
                }
              }
 
@@ -395,7 +395,7 @@ This is the final product from this tutorial.
                // Drive the robot in a square pattern using closed-loop control
                for (int i = 0; i < 4; i++) {
                  drive.moveDistance(12_in); // Drive forward 12 inches
-                 drive.turnAngle(90_deg);    // Turn in place 90 degrees
+                 drive.turnAngle(90_deg);   // Turn in place 90 degrees
                }
              }
 
