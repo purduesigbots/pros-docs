@@ -248,3 +248,18 @@ implementation-dependent.
       ::
 
         void waitUntilSettled() override
+
+----
+
+startThread
+~~~~~~~~~~~
+
+Starts the internal thread. This should not be called by normal users. This method is called by the
+``AsyncControllerFactory`` when making a new instance of this class.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void startThread()

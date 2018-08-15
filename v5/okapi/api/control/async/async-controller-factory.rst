@@ -533,7 +533,7 @@ A controller which generates and follows 2D motion profiles.
       ::
 
         static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
-                                                          std::shared_ptr<SkidSteerModel> imodel, QLength iwidth)
+                                                          std::shared_ptr<ChassisModel> imodel, QLength iwidth)
 
 =============== ===================================================================
  Parameters
