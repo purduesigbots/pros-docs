@@ -122,7 +122,7 @@ for this tutorial. Let's initialize it now with our two motors in ports ``1`` an
 .. code-block:: cpp
 
    // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-   okapi::ChassisControllerIntegrated robotChassisController(1, 10);
+   auto drive = okapi::ChassisControllerFactory::create(1, 10);
 
 Next, let's setup tank or arcade control.
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ provides methods for us
@@ -141,8 +141,8 @@ range ``[-1, 1]``, so we don't need to do any division ourselves.
 
          while (true) {
            // Tank drive with left and right sticks.
-           robotChassisController.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                       controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
+           drive.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                      controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
 
            // Wait and give up the time we don't need to other tasks.
            // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
@@ -160,8 +160,8 @@ range ``[-1, 1]``, so we don't need to do any division ourselves.
 
          while (true) {
            // Arcade drive with the left stick.
-           robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                         controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
+           drive.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                        controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
            // Wait and give up the time we don't need to other tasks.
            // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
@@ -294,8 +294,8 @@ method to drive along a straight line and ``turnAngle`` method to turn in place.
 .. code-block:: cpp
 
      for (int i = 0; i < 4; i++) {
-       robotChassisController.moveDistance(1719); // Drive forward 12 inches
-       robotChassisController.turnAngle(1294);    // Turn in place 90 degrees
+       drive.moveDistance(1719); // Drive forward 12 inches
+       drive.turnAngle(1294);    // Turn in place 90 degrees
      }
 
 Wrap Up
@@ -316,7 +316,7 @@ This is the final product from this tutorial.
            pros::Task::delay(100);
 
            // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-           okapi::ChassisControllerIntegrated robotChassisController(1, 10);
+           auto drive = okapi::ChassisControllerFactory::create(1, 10);
 
            // Joystick to read analog values for tank or arcade control
            // Master controller by default
@@ -333,8 +333,8 @@ This is the final product from this tutorial.
 
            while (true) {
              // Tank drive with left and right sticks
-             robotChassisController.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                         controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
+             drive.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                        controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
 
              // Don't power the arm if it is all the way down
              if (armLimitSwitch.isPressed()) {
@@ -354,8 +354,8 @@ This is the final product from this tutorial.
              if (runAutoButton.changedToPressed()) {
                // Drive the robot in a square pattern using closed-loop control
                for (int i = 0; i < 4; i++) {
-                 robotChassisController.moveDistance(2116); // Drive forward 12 inches
-                 robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+                 drive.moveDistance(2116); // Drive forward 12 inches
+                 drive.turnAngle(1662);    // Turn in place 90 degrees
                }
              }
 
@@ -377,7 +377,7 @@ This is the final product from this tutorial.
            pros::Task::delay(100);
 
            // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-           okapi::ChassisControllerIntegrated robotChassisController(1, 10);
+           auto drive = okapi::ChassisControllerFactory::create(1, 10);
 
            // Joystick to read analog values for tank or arcade control
            // Master controller by default
@@ -394,8 +394,8 @@ This is the final product from this tutorial.
 
            while (true) {
              // Arcade drive with the left stick
-             robotChassisController.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                                           controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
+             drive.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
+                          controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
 
              // Don't power the arm if it is all the way down
              if (armLimitSwitch.isPressed()) {
@@ -415,8 +415,8 @@ This is the final product from this tutorial.
              if (runAutoButton.changedToPressed()) {
                // Drive the robot in a square pattern using closed-loop control
                for (int i = 0; i < 4; i++) {
-                 robotChassisController.moveDistance(2116); // Drive forward 12 inches
-                 robotChassisController.turnAngle(1662);    // Turn in place 90 degrees
+                 drive.moveDistance(2116); // Drive forward 12 inches
+                 drive.turnAngle(1662);    // Turn in place 90 degrees
                }
              }
 
