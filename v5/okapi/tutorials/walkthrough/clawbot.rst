@@ -2,11 +2,6 @@
 Programming the Clawbot
 =======================
 
-.. note ::
-
-    This tutorial is very much incomplete. This tutorial will guide you through
-    creating and uploading code in the PROS 3 CLI environment.
-
 Objective:
 ==========
 
@@ -198,7 +193,7 @@ The ``_mtr`` syntax is called a user-defined literal. It's a succinct way of ini
 and is equivalent to calling the normal constructor. For example,
 
 .. highlight:: cpp
-.. code-blocK:: cpp
+.. code-block:: cpp
 
    using namespace okapi::literals;
    okapi::Motor foo = 1_mtr; // Motor in port 1
@@ -255,47 +250,29 @@ To illustrate the closed-loop control method that
 `ChassisController <../../api/chassis/controller/chassis-controller.html>`_ has, let's make a
 simple autonomous routine to drive in a square.
 
-First we need to calculate the number of ticks equivalent to driving forward 12 inches. The formula for this
-is:
+Writing an autonomous routine is much easier when distances and turns can be done
+with real life units, so let's configure the `ChassisController <../../api/chassis/controller/chassis-controller.html>`_
+with the clawbot chassis's dimensions. This will require a change to the drive's
+constructors, two additional parameters are needed. The first is the gearset of
+the motors on the chassis, in this example we will use the standard Green cartridges.
+The second is a vector containing firstly the wheel diameter (4") and secondly,
+the width of the chassis (11.5").
 
-.. tabs ::
-   .. tab :: Formula
-      .. highlight:: cpp
-      .. code-block:: none
+.. highlight:: cpp
+.. code-block:: cpp
 
-         ((ticks per wheel rotation) / ((wheel diameter) * pi)) * 12
+   // Chassis Controller - lets us drive the robot around with open- or closed-loop control
+   auto drive = okapi::ChassisControllerFactory::create(1, 10,
+                okapi::AbstractMotor::gearset::green, {4_in, 11.5_in});
 
-   .. tab :: Result
-     .. highlight:: cpp
-     .. code-block:: none
-
-        (1800 ticks / (4 in * pi)) * 12 in = 1719 ticks
-
-Let's follow the same procedure for calculate the ticks equivalent to a 90 degree turn:
-
-.. tabs ::
-   .. tab :: Formula
-      .. highlight:: cpp
-      .. code-block:: none
-
-        ((ticks per wheel rotation) / ((wheel diameter) * pi)) * ((center-to-center wheel distance) * (pi) * (1/4))
-
-   .. tab :: Result
-     .. highlight:: cpp
-     .. code-block:: none
-
-        (1800 ticks / (4 in * pi)) * (11.498 in * pi * (1/4)) = 1294 ticks
-
-Now that we know how far we need to drive, we can program the routine. We will use
-`ChassisController <../../api/chassis/controller/chassis-controller.html>`_'s ``moveDistance``
-method to drive along a straight line and ``turnAngle`` method to turn in place.
+After this, you can move the chassis in actual units, such as inches and degrees.
 
 .. highlight:: cpp
 .. code-block:: cpp
 
      for (int i = 0; i < 4; i++) {
-       drive.moveDistance(1719); // Drive forward 12 inches
-       drive.turnAngle(1294);    // Turn in place 90 degrees
+       drive.moveDistance(12_in); // Drive forward 12 inches
+       drive.turnAngle(90_deg);    // Turn in place 90 degrees
      }
 
 Wrap Up
@@ -316,7 +293,8 @@ This is the final product from this tutorial.
            pros::Task::delay(100);
 
            // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-           auto drive = okapi::ChassisControllerFactory::create(1, 10);
+           auto drive = okapi::ChassisControllerFactory::create(1, 10,
+                        okapi::AbstractMotor::gearset::green, {4_in, 11.5_in});
 
            // Joystick to read analog values for tank or arcade control
            // Master controller by default
@@ -354,8 +332,8 @@ This is the final product from this tutorial.
              if (runAutoButton.changedToPressed()) {
                // Drive the robot in a square pattern using closed-loop control
                for (int i = 0; i < 4; i++) {
-                 drive.moveDistance(2116); // Drive forward 12 inches
-                 drive.turnAngle(1662);    // Turn in place 90 degrees
+                 drive.moveDistance(12_in); // Drive forward 12 inches
+                 drive.turnAngle(90_deg);    // Turn in place 90 degrees
                }
              }
 
@@ -377,7 +355,8 @@ This is the final product from this tutorial.
            pros::Task::delay(100);
 
            // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-           auto drive = okapi::ChassisControllerFactory::create(1, 10);
+           auto drive = okapi::ChassisControllerFactory::create(1, 10,
+                        okapi::AbstractMotor::gearset::green, {4_in, 11.5_in});
 
            // Joystick to read analog values for tank or arcade control
            // Master controller by default
@@ -415,8 +394,8 @@ This is the final product from this tutorial.
              if (runAutoButton.changedToPressed()) {
                // Drive the robot in a square pattern using closed-loop control
                for (int i = 0; i < 4; i++) {
-                 drive.moveDistance(2116); // Drive forward 12 inches
-                 drive.turnAngle(1662);    // Turn in place 90 degrees
+                 drive.moveDistance(12_in); // Drive forward 12 inches
+                 drive.turnAngle(90_deg);    // Turn in place 90 degrees
                }
              }
 
