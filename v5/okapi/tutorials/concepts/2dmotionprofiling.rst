@@ -17,35 +17,39 @@ you can learn about in examples like these:
 OkapiLib, through `Pathfinder <https://github.com/JacisNonsense/Pathfinder>`_, does
 this math for you and ties both the motion profiling and profile following actions
 to the same `async controllers <../walkthrough/autonomous-movement-async.html>`_ that
-are used for other, simpler movements. Creating and following a 2D Motion Profile is a simple,
+are used for other simpler movements. Creating and following a 2D Motion Profile is a simple
 three step process.
 
 First, before creating any profiles, we need to create a motion profile Async Controller.
-This requires first initializing a Chassis Controller to pass into the constructor
-for the profile controller.
+This requires first initializing a Chassis Controller (or Chassis Model) to pass into the
+constructor for the controller.
 
-.. note:: The "linear" properties of the chassis are for its forward/backwards
-          movements, not the maximum properties for turning or other movements.
+.. note:: The "linear" properties of the chassis given to ``AsyncControllerFactory::motionProfile``
+          are for its forward/backwards movements, not the maximum properties for turning or other
+          movements.
 
 .. highlight:: cpp
 .. code-block:: cpp
 
    auto myChassis = okapi::ChassisControllerFactory::create(
      {-1, -2}, // Left motors
-     {3, 4}, // Right motors
+     {3, 4},   // Right motors
      AbstractMotor::gearset::red, // Torque gearset
      {4_in, 12.5_in} // 4 inch wheels, 12.5 inch wheelbase width
    );
    auto profileController = AsyncControllerFactory::motionProfile(
-     1.0, // Maximum linear velocity of the Chassis in m/s
-     2.0, // Maximum linear acceleration of the Chassis in m/s/s
+     1.0,  // Maximum linear velocity of the Chassis in m/s
+     2.0,  // Maximum linear acceleration of the Chassis in m/s/s
      10.0, // Maximum linear jerk of the Chassis in m/s/s/s
      myChassis, // Chassis Controller
      12.5_in // Wheelbase width
    );
 
-Next, let's create a motion profile. A profile is created from a list of points and a name.
-Each of the points is also a list, containing the desired x, y, and heading.
+Next, let's create a motion profile. A profile is created with a list of points and a name.
+Each of the points contains the desired x and y coordinates and heading. The points given to the
+controller form a path which starts at the current position of the robot. Even if the
+starting point is not ``(0, 0, 0)``, the robot will assume the path is specified with the first
+point as its current position.
 
 .. note:: This function computes the set of steps for the desired profile, which
           may take some time.
@@ -53,10 +57,14 @@ Each of the points is also a list, containing the desired x, y, and heading.
 .. highlight:: cpp
 .. code-block:: cpp
 
-   profileController.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
+   profileController.generatePath({
+     Point{0_ft, 0_ft, 0_deg},  // Profile starting position, this will normally be (0, 0, 0)
+     Point{3_ft, 0_ft, 0_deg}}, // The next point in the profile, 3 feet forward
+     "A" // Profile name
+     );
 
-After the profile is created, its name is added to a list of available profiles stored by OkapiLib.
-You can then set one of the named profiles as a target to the Async Controller.
+After the profile is created, it is added to a map of available profiles stored in the controller.
+You can then set a target using the name you gave the profile.
 
 .. highlight:: cpp
 .. code-block:: cpp
@@ -83,17 +91,19 @@ In total, here is how to initialize and use a 2D motion profiling controller:
 
    auto myChassis = okapi::ChassisControllerFactory::create(
      {-1, -2}, // Left motors
-     {3, 4}, // Right motors
+     {3, 4},   // Right motors
      AbstractMotor::gearset::red, // Torque gearset
      {4_in, 12.5_in} // 4 inch wheels, 12.5 inch wheelbase width
    );
+
    auto profileController = AsyncControllerFactory::motionProfile(
-     1.0, // Maximum linear velocity of the Chassis in m/s
-     2.0, // Maximum linear acceleration of the Chassis in m/s/s
+     1.0,  // Maximum linear velocity of the Chassis in m/s
+     2.0,  // Maximum linear acceleration of the Chassis in m/s/s
      10.0, // Maximum linear jerk of the Chassis in m/s/s/s
      myChassis, // Chassis Controller
      12.5_in // Wheelbase width
    );
+
    profileController.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
    profileController.setTarget("A");
    profileController.waitUntilSettled();
