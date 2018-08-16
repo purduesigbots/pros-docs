@@ -47,9 +47,10 @@ constructor for the controller.
 
 Next, let's create a motion profile. A profile is created with a list of points and a name.
 Each of the points contains the desired x and y coordinates and heading. The points given to the
-controller form a path which starts at the current position of the robot. Even if the
-starting point is not ``(0, 0, 0)``, the robot will assume the path is specified with the first
-point as its current position.
+controller form a path from the first given point to the last. The path will be generated
+assuming that all of the points are relative to the first, so if you pass in
+an x value of ``-4_ft`` for the first point, then passing an x value of ``0_ft`` for the second
+point will result in a forward movement of 4 feet.
 
 .. note:: This function computes the set of steps for the desired profile, which
           may take some time.
