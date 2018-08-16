@@ -17,12 +17,11 @@ you can learn about in examples like these:
 OkapiLib, through `Pathfinder <https://github.com/JacisNonsense/Pathfinder>`_, does
 this math for you and ties both the motion profiling and profile following actions
 to the same `async controllers <../walkthrough/autonomous-movement-async.html>`_ that
-are used for other simpler movements. Creating and following a 2D Motion Profile is a simple
-three step process.
+are used for other simpler movements.
 
-First, before creating any profiles, we need to create a motion profile Async Controller.
-This requires first initializing a Chassis Controller (or Chassis Model) to pass into the
-constructor for the controller.
+First, let's initialize a Chassis Controller (or Chassis Model) to pass into the
+constructor for the profile Async controller. Following that, you can create a
+profile Async Controller.
 
 .. note:: The "linear" properties of the chassis given to ``AsyncControllerFactory::motionProfile``
           are for its forward/backwards movements, not the maximum properties for turning or other
