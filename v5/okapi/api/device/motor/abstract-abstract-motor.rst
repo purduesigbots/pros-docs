@@ -531,7 +531,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(brakeMode imode) const = 0
+        virtual std::int32_t setBrakeMode(brakeMode imode) = 0
 
 =============== ===================================================================
  Parameters
@@ -583,7 +583,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(encoderUnits iunits) const = 0
+        virtual std::int32_t setEncoderUnits(encoderUnits iunits) = 0
 
 =============== ===================================================================
  Parameters
@@ -609,7 +609,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(gearset igearset) const = 0
+        virtual std::int32_t setGearing(gearset igearset) = 0
 
 =============== ===================================================================
  Parameters
