@@ -597,7 +597,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(const AbstractMotor::brakeMode imode) const override
+        virtual std::int32_t setBrakeMode(const AbstractMotor::brakeMode imode) override
 
 =============== ===================================================================
  Parameters
@@ -649,7 +649,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(const AbstractMotor::encoderUnits iunits) const override
+        virtual std::int32_t setEncoderUnits(const AbstractMotor::encoderUnits iunits) override
 
 =============== ===================================================================
  Parameters
@@ -675,7 +675,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(const AbstractMotor::gearset igearset) const override
+        virtual std::int32_t setGearing(const AbstractMotor::gearset igearset) override
 
 =============== ===================================================================
  Parameters
