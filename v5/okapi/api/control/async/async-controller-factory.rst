@@ -500,7 +500,8 @@ Parameters
 motionProfile
 ~~~~~~~~~~~~~
 
-A controller which generates and follows 2D motion profiles.
+A controller which generates and follows 2D motion profiles. Pulls the wheelbase width from the
+provided ``ChassisController``.
 
 .. tabs ::
    .. tab :: Prototype
@@ -508,7 +509,7 @@ A controller which generates and follows 2D motion profiles.
       ::
 
         static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
-                                                          const ChassisController &ichassis, QLength iwidth)
+                                                          const ChassisController &ichassis)
 
 =============== ===================================================================
  Parameters
@@ -517,7 +518,6 @@ A controller which generates and follows 2D motion profiles.
  imaxAccel       The maximum possible acceleration.
  imaxJerk        The maximum possible jerk.
  ichassis        The chassis to control.
- iwidth          The chassis' wheelbase width.
 =============== ===================================================================
 
 ----

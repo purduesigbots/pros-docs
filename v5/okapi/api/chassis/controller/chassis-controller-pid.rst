@@ -225,6 +225,8 @@ Delays until the currently executing movement completes.
 
         void waitUntilSettled() override
 
+----
+
 stop
 ~~~~
 
@@ -251,3 +253,19 @@ Starts the internal thread. This should not be called by normal users. This meth
       ::
 
         void startThread()
+
+----
+
+getChassisScales
+~~~~~~~~~~~~~~~~
+
+Get the ``ChassisScales``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisScales getChassisScales() const override
+
+**Returns:** The ``ChassisScales``.

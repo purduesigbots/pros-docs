@@ -108,7 +108,7 @@ Parameters
 moveDistanceAsync
 ~~~~~~~~~~~~~~~~~
 
-Drives the robot straight for a distance with units of motor degrees (using closed-loop control). 
+Drives the robot straight for a distance with units of motor degrees (using closed-loop control).
 Returns immediately (does not block while the robot is driving).
 
 .. tabs ::
@@ -221,6 +221,8 @@ Delays until the currently executing movement completes.
 
         void waitUntilSettled() override
 
+----
+
 stop
 ~~~~
 
@@ -232,3 +234,19 @@ Stops the robot (set all the motors to ``0``).
       ::
 
         void stop() override
+
+----
+
+getChassisScales
+~~~~~~~~~~~~~~~~
+
+Get the ``ChassisScales``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisScales getChassisScales() const override
+
+**Returns:** The ``ChassisScales``.

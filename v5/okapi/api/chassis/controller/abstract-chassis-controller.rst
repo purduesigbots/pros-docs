@@ -92,7 +92,7 @@ Parameters
 moveDistanceAsync
 ~~~~~~~~~~~~~~~~~
 
-Drives the robot straight for a distance with units of motor degrees (using closed-loop control). 
+Drives the robot straight for a distance with units of motor degrees (using closed-loop control).
 Returns immediately (does not block while the robot is driving).
 
 .. tabs ::
@@ -475,8 +475,20 @@ result in multiple owners writing to the same set of motors.
 
         std::shared_ptr<ChassisModel> getChassisModel() const
 
-=============== ===================================================================
-Parameters
-=============== ===================================================================
- gearset         The new gearset.
-=============== ===================================================================
+**Returns:** The underlying ``ChassisModel``.
+
+----
+
+getChassisScales
+~~~~~~~~~~~~~~~~
+
+Get the ``ChassisScales``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual ChassisScales getChassisScales() const = 0
+
+**Returns:** The ``ChassisScales``.
