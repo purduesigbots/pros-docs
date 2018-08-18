@@ -94,7 +94,8 @@ The last 3 commands can be simplified to :code:`prosv5 mut`.
 Tank/Arcade Control
 -------------------
 
-Okapi uses something called a `ChassisController <../../api/chassis/controller/abstract-chassis-controller.html>`_
+OkapiLib uses something called a
+`ChassisController <../../api/chassis/controller/abstract-chassis-controller.html>`_
 to interact with a robot's chassis. This interface lets you use open-loop control methods to drive
 the robot around with a joystick, like tank and arcade control. It also provides methods to move
 the robot programmatically, like driving in an arc or only powering one side of the chassis. It
@@ -115,24 +116,29 @@ for this tutorial. Let's initialize it now with our two motors in ports ``1`` an
 
 .. highlight:: cpp
 .. code-block:: cpp
+   :linenos:
+
+   using namespace okapi;
 
    // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-   auto drive = okapi::ChassisControllerFactory::create(1, 10);
+   auto drive = ChassisControllerFactory::create(1, 10);
 
 Next, let's setup tank or arcade control.
-`ChassisController <../../api/chassis/controller/chassis-controller.html>`_ provides methods for us
+`ChassisController <../../api/chassis/controller/abstract-chassis-controller.html>`_ provides
+methods for us
 to use, we just need to pass in joystick values which have been scaled to be in the range
-``[-1, 1]``. Okapi's `Controller <../../api/device/controller.html>`_ returns analog values in the
+``[-1, 1]``. OkapiLib's `Controller <../../api/device/controller.html>`_ returns analog values in the
 range ``[-1, 1]``, so we don't need to do any division ourselves.
 
 .. tabs ::
    .. tab :: Tank drive
       .. highlight:: cpp
       .. code-block:: cpp
+         :linenos:
 
          // Joystick to read analog values for tank or arcade control.
          // Master controller by default.
-         okapi::Controller controller;
+         Controller controller;
 
          while (true) {
            // Tank drive with left and right sticks.
@@ -151,7 +157,7 @@ range ``[-1, 1]``, so we don't need to do any division ourselves.
 
          // Joystick to read analog values for tank or arcade control.
          // Master controller by default.
-         okapi::Controller controller;
+         Controller controller;
 
          while (true) {
            // Arcade drive with the left stick.
@@ -180,14 +186,14 @@ We can define our button as an `ADIButton <../../api/device/button/adi-button.ht
 .. highlight:: cpp
 .. code-block:: cpp
 
-   okapi::ADIButton armLimitSwitch('H');
+   ADIButton armLimitSwitch('H');
 
 And the arm motor:
 
 .. highlight:: cpp
 .. code-block:: cpp
 
-   okapi::Motor armMotor = 8_rmtr;
+   Motor armMotor = 8_rmtr;
 
 The ``_mtr`` syntax is called a user-defined literal. It's a succinct way of initializing a motor,
 and is equivalent to calling the normal constructor. For example,
@@ -195,12 +201,11 @@ and is equivalent to calling the normal constructor. For example,
 .. highlight:: cpp
 .. code-block:: cpp
 
-   using namespace okapi::literals;
-   okapi::Motor foo = 1_mtr; // Motor in port 1
-   okapi::Motor foo(1);      // Motor in port 1
+   Motor foo = 1_mtr; // Motor in port 1
+   Motor foo(1);      // Motor in port 1
 
-   okapi::Motor bar = 1_rmtr; // Reversed motor in port 1
-   okapi::Motor bar(1, true); // Reversed motor in port 1
+   Motor bar = 1_rmtr; // Reversed motor in port 1
+   Motor bar(1, true); // Reversed motor in port 1
 
 Then we can check if it's pressed and stop powering the arm motor:
 
@@ -221,13 +226,14 @@ First, we need to define our two controller buttons as
 .. highlight:: cpp
 .. code-block:: cpp
 
-   okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
-   okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
+   ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
+   ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
 
 Then we can use them along with our limit switch logic from above to control the arm:
 
 .. highlight:: cpp
 .. code-block:: cpp
+   :linenos:
 
    // Don't power the arm if it is all the way down
    if (armLimitSwitch.isPressed()) {
@@ -260,15 +266,20 @@ containing firstly the wheel diameter (4") and secondly, the width of the chassi
 
 .. highlight:: cpp
 .. code-block:: cpp
+   :linenos:
 
    // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-   auto drive = okapi::ChassisControllerFactory::create(1, 10,
-                okapi::AbstractMotor::gearset::green, {4_in, 11.5_in});
+   auto drive = ChassisControllerFactory::create(
+                  1, 10,
+                  AbstractMotor::gearset::green,
+                  {4_in, 11.5_in}
+                );
 
 After this, you can move the chassis in actual units, such as inches and degrees.
 
 .. highlight:: cpp
 .. code-block:: cpp
+   :linenos:
 
      for (int i = 0; i < 4; i++) {
        drive.moveDistance(12_in); // Drive forward 12 inches
@@ -284,30 +295,33 @@ This is the final product from this tutorial.
    .. tab :: Tank drive
       .. highlight:: cpp
       .. code-block:: cpp
-        :linenos:
+         :linenos:
 
          #include "okapi/api.hpp"
-         using namespace okapi::literals;
+         using namespace okapi;
 
          void opcontrol() {
            pros::Task::delay(100);
 
            // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-           auto drive = okapi::ChassisControllerFactory::create(1, 10,
-                        okapi::AbstractMotor::gearset::green, {4_in, 11.5_in});
+           auto drive = ChassisControllerFactory::create(
+                          1, 10,
+                          AbstractMotor::gearset::green,
+                          {4_in, 11.5_in}
+                        );
 
            // Joystick to read analog values for tank or arcade control
            // Master controller by default
-           okapi::Controller controller;
+           Controller controller;
 
            // Arm related objects
-           okapi::ADIButton armLimitSwitch('H');
-           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
-           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-           okapi::Motor armMotor = 8_rmtr;
+           ADIButton armLimitSwitch('H');
+           ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
+           ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
+           Motor armMotor = 8_rmtr;
 
            // Button to run our sample autonomous routine
-           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
+           ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
 
            while (true) {
              // Tank drive with left and right sticks
@@ -349,27 +363,30 @@ This is the final product from this tutorial.
          :linenos:
 
          #include "okapi/api.hpp"
-         using namespace okapi::literals;
+         using namespace okapi;
 
          void opcontrol() {
            pros::Task::delay(100);
 
            // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-           auto drive = okapi::ChassisControllerFactory::create(1, 10,
-                        okapi::AbstractMotor::gearset::green, {4_in, 11.5_in});
+           auto drive = ChassisControllerFactory::create(
+                          1, 10,
+                          AbstractMotor::gearset::green,
+                          {4_in, 11.5_in}
+                        );
 
            // Joystick to read analog values for tank or arcade control
            // Master controller by default
-           okapi::Controller controller;
+           Controller controller;
 
            // Arm related objects
-           okapi::ADIButton armLimitSwitch('H');
-           okapi::ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
-           okapi::ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
-           okapi::Motor armMotor = 8_rmtr;
+           ADIButton armLimitSwitch('H');
+           ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
+           ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
+           Motor armMotor = 8_rmtr;
 
            // Button to run our sample autonomous routine
-           okapi::ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
+           ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
 
            while (true) {
              // Arcade drive with the left stick

@@ -46,11 +46,13 @@ First, let's look at the code:
 .. code-block:: cpp
    :linenos:
 
-   auto myChassis = okapi::ChassisControllerFactory::create(
+   using namespace okapi;
+
+   auto myChassis = ChassisControllerFactory::create(
      {-1, -2}, // Left motors
-     {3, 4}, // Right motors
+     {3, 4},   // Right motors
      AbstractMotor::gearset::red, // Torque gearset
-     {4_in, 12.5_in} //4 inch wheels, 12.5 inch wheelbase width
+     {4_in, 12.5_in} // 4 inch wheels, 12.5 inch wheelbase width
    );
 
 Breaking that down further, there are three distinct parts:

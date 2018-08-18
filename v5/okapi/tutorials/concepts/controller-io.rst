@@ -25,12 +25,16 @@ What Classes are of Each Type?
 
 **Controller Inputs:** All sensor classes can be used as Controller Inputs, such as:
 
-* ``RotarySensor`` s
-* ``ContinuousRotarySensor`` s
-* ``ADIUltrasonic`` s
+* ``FilteredControllerInput``
+* ``RotarySensor``
+* ``ContinuousRotarySensor``
+* ``ADIUltrasonic``
+* ``ADIEncoder``
+* ``IntegratedEncoder``
+* ``Potentiometer``
 
 **Controller Outputs:**
 
-* ``Motor`` s
-* ``MotorGroup`` s
-* ``ADIMotor`` s
+* ``Motor``
+* ``MotorGroup``
+* ``ADIMotor``

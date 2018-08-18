@@ -30,12 +30,15 @@ profile Async Controller.
 .. highlight:: cpp
 .. code-block:: cpp
 
+   using namespace okapi;
+
    auto myChassis = ChassisControllerFactory::create(
      {-1, -2}, // Left motors
      {3, 4},   // Right motors
      AbstractMotor::gearset::red, // Torque gearset
      {4_in, 12.5_in} // 4 inch wheels, 12.5 inch wheelbase width
    );
+
    auto profileController = AsyncControllerFactory::motionProfile(
      1.0,  // Maximum linear velocity of the Chassis in m/s
      2.0,  // Maximum linear acceleration of the Chassis in m/s/s
@@ -90,6 +93,8 @@ In total, here is how to initialize and use a 2D motion profiling controller:
 .. code-block:: cpp
    :linenos:
 
+   using namespace okapi;
+   
    auto myChassis = ChassisControllerFactory::create(
      {-1, -2}, // Left motors
      {3, 4},   // Right motors

@@ -14,19 +14,21 @@ To create a Chassis Controller for a given system, modify the below example to f
 .. highlight: cpp
 .. code-block:: cpp
    :linenos:
-   :name: autonomous.cpp
+
+   using namespace okapi;
 
    const int DRIVE_LEFT_MOTOR_PORT = 1;
    const int DRIVE_RIGHT_MOTOR_PORT = 2;
 
-   auto driveController = okapi::ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);\
-   
+   auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
+
 And then we'll add a lift subsystem as an Async Controller:
 
 .. highlight: cpp
 .. code-block:: cpp
    :linenos:
-   :name: autonomous.cpp
+
+   using namespace okapi;
 
    const int DRIVE_LEFT_MOTOR_PORT = 1;
    const int DRIVE_RIGHT_MOTOR_PORT = 2;
@@ -36,9 +38,9 @@ And then we'll add a lift subsystem as an Async Controller:
    const double liftkD = 0.1;
    const int LIFT_MOTOR_PORT = 2;
 
-   auto driveController = okapi::ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
+   auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
 
-   auto liftController = okapi::AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
+   auto liftController = AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
 
 Now that we have two subsystems to run, let's execute a few different movements.
 
@@ -49,7 +51,8 @@ with just the drive controller.
 .. highlight: cpp
 .. code-block:: cpp
    :linenos:
-   :name: autonomous.cpp
+
+   using namespace okapi;
 
    const int DRIVE_LEFT_MOTOR_PORT = 1;
    const int DRIVE_RIGHT_MOTOR_PORT = 2;
@@ -60,9 +63,9 @@ with just the drive controller.
    const int LIFT_MOTOR_PORT = 2;
 
    void autonomous() {
-     auto driveController = okapi::ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
+     auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
 
-     auto liftController = okapi::AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
+     auto liftController = AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
 
      // Begin movements
      driveController.moveDistanceAsync(1000); // Move 1000 motor degrees forward
@@ -75,14 +78,15 @@ with just the drive controller.
 If blocking the next movement with regard only to the lift is desired, swap ``driveController`` for ``liftController``
 in the last line.
 
-If both movements need to finish before executing the next movement, then calling ``waitUntilSettled()``
-on both controllers is necessary.
+If both movements need to finish before executing the next movement, then call ``waitUntilSettled()``
+on both controllers.
 
 .. highlight: cpp
 .. code-block:: cpp
    :linenos:
-   :name: autonomous.cpp
-   :emphasize-lines: 17, 18
+   :emphasize-lines: 19, 20
+
+   using namespace okapi;
 
    const int DRIVE_LEFT_MOTOR_PORT = 1;
    const int DRIVE_RIGHT_MOTOR_PORT = 2;
@@ -93,9 +97,9 @@ on both controllers is necessary.
    const int LIFT_MOTOR_PORT = 2;
 
    void autonomous() {
-     auto driveController = okapi::ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
+     auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
 
-     auto liftController = okapi::AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
+     auto liftController = AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
 
      // Begin movements
      driveController.moveDistanceAsync(1000); // Move 1000 motor degrees forward

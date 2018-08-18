@@ -11,7 +11,7 @@ Iterative Controllers
 =====================
 
 **Iterative Controllers** operate **discretely**, meaning that an Iterative Controller will produce an output for the
-given input *at a single instance in time*
+given input *at a single point in time*
 (see `IterativeController::step() <../../api/control/iterative/abstract-iterative-controller.html#step>`_).
 If you want to execute a full movement for a system with an Iterative Controller,
 you will need to write a loop that runs ``IterativeController::step()`` repeatedly until the movement is finished.
@@ -22,14 +22,16 @@ An example movement:
 .. code-block:: cpp
    :linenos:
 
+   using namespace okapi;
+
    const double kP = 1.0;
    const double kI = 0.001;
    const double kD = 0.1;
    const int MOTOR_PORT = 1;
    const double TARGET = 100.0;
 
-   auto exampleController = okapi::IterativeControllerFactory::posPID(kP, kI, kD);
-   okapi::Motor exampleMotor (MOTOR_PORT);
+   auto exampleController = IterativeControllerFactory::posPID(kP, kI, kD);
+   okapi::Motor exampleMotor(MOTOR_PORT);
 
    // Execute the movement
    exampleController.setTarget(TARGET);
@@ -38,7 +40,7 @@ An example movement:
      double newOutput = exampleController.step(newInput);
      exampleMotor.controllerSet(newOutput);
 
-     pros::delay(10); // run the control loop at 10ms intervals
+     pros::delay(10); // Run the control loop at 10ms intervals
    }
 
 Async Controllers
@@ -50,7 +52,7 @@ Each Async Controller operates in its own task, so starting a movement for one A
 Async Controller (or Iterative Controller) from running immediately thereafter.
 
 You don't need to run a loop to generate and set the controller output like with an Iterative Controller, and blocking further
-movements until an Async Controller's movement is done is as simple as a call to ``okapi::AsyncController::waitUntilSettled()``.
+movements until an Async Controller's movement is done is as simple as a call to ``AsyncController::waitUntilSettled()``.
 
 An example movement:
 
@@ -58,14 +60,15 @@ An example movement:
 .. code-block:: cpp
    :linenos:
 
+   using namespace okapi;
+
    const double kP = 1.0;
    const double kI = 0.001;
    const double kD = 0.1;
    const int MOTOR_PORT = 1;
    const double TARGET = 100.0;
 
-   okapi::Motor exampleMotor (MOTOR_PORT);
-   auto exampleController = okapi::AsyncControllerFactory::posPID(exampleMotor, kP, kI, kD);
+   auto exampleController = AsyncControllerFactory::posPID(MOTOR_PORT, kP, kI, kD);
 
    // Execute the movement
    exampleController.setTarget(TARGET);

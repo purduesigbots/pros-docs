@@ -13,13 +13,14 @@ Creating an object with a factory is quite simple, as shown in the below example
 .. code-block:: cpp
    :linenos:
 
+   using namespace okapi;
+
    const double kP = 1.0;
    const double kI = 0.001;
    const double kD = 0.1;
-   const int MOTOR_PORT = 1;
+   const int motorPort = 1;
 
-   okapi::Motor exampleMotor (MOTOR_PORT);
-   auto exampleController = okapi::AsyncControllerFactory::posPID(exampleMotor, kP, kI, kD);
+   auto exampleController = AsyncControllerFactory::posPID(motorPort, kP, kI, kD);
 
 As opposed to creating the same object without factories:
 
@@ -27,17 +28,20 @@ As opposed to creating the same object without factories:
 .. code-block:: cpp
    :linenos:
 
+   using namespace okapi;
+
    const double kP = 1.0;
    const double kI = 0.001;
    const double kD = 0.1;
    const int MOTOR_PORT = 1;
 
-   okapi::Motor exampleMotor (MOTOR_PORT);
+   Motor exampleMotor(MOTOR_PORT);
 
-   okapi::SettledUtil exampleSettledUtil (std::make_unique<Timer>());
-   okapi::TimeUtil timeUtil (
+   TimeUtil timeUtil(
      Supplier<std::unique_ptr<AbstractTimer>>([]() { return std::make_unique<Timer>(); }),
      Supplier<std::unique_ptr<AbstractRate>>([]() { return std::make_unique<Rate>(); }),
-     Supplier<std::unique_ptr<SettledUtil>>([]() { return std::make_unique<SettledUtil>(exampleSettledUtil); }));
-   okapi::AsyncPosPIDController exampleController (exampleMotor.getEncoder(), std::make_shared<Motor>(exampleMotor),
-                                                   timeUtil, kP, kI, kD);
+     Supplier<std::unique_ptr<SettledUtil>>([]() { return std::make_unique<SettledUtil>(std::make_unique<Timer>()); })
+   );
+
+   AsyncPosPIDController exampleController(exampleMotor.getEncoder(), std::make_shared<Motor>(exampleMotor),
+                                           timeUtil, kP, kI, kD);
