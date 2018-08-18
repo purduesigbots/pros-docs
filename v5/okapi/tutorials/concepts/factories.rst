@@ -18,9 +18,9 @@ Creating an object with a factory is quite simple, as shown in the below example
    const double kP = 1.0;
    const double kI = 0.001;
    const double kD = 0.1;
-   const int motorPort = 1;
+   const int MOTOR_PORT = 1;
 
-   auto exampleController = AsyncControllerFactory::posPID(motorPort, kP, kI, kD);
+   auto exampleController = AsyncControllerFactory::posPID(MOTOR_PORT, kP, kI, kD);
 
 As opposed to creating the same object without factories:
 
