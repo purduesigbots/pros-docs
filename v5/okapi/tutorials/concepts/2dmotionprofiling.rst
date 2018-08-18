@@ -30,7 +30,7 @@ profile Async Controller.
 .. highlight:: cpp
 .. code-block:: cpp
 
-   auto myChassis = okapi::ChassisControllerFactory::create(
+   auto myChassis = ChassisControllerFactory::create(
      {-1, -2}, // Left motors
      {3, 4},   // Right motors
      AbstractMotor::gearset::red, // Torque gearset
@@ -41,12 +41,12 @@ profile Async Controller.
      2.0,  // Maximum linear acceleration of the Chassis in m/s/s
      10.0, // Maximum linear jerk of the Chassis in m/s/s/s
      myChassis, // Chassis Controller
-     12.5_in // Wheelbase width
    );
 
 Next, let's create a motion profile. A profile is created with a list of points and a name.
-Each of the points contains the desired x and y coordinates and heading. The points given to the
-controller form a path from the first given point to the last. The path will be generated
+Each of the points contains the desired (x, y) coordinates and heading. The points given to the
+controller form a path from the first given point to the last, with the first point assumed to be
+the current position of the robot. The path will be generated
 assuming that all of the points are relative to the first, so if you pass in
 an x value of ``-4_ft`` for the first point, then passing an x value of ``0_ft`` for the second
 point will result in a forward movement of 4 feet.
@@ -71,7 +71,8 @@ You can then set a target using the name you gave the profile.
 
    profileController.setTarget("A");
 
-And then as with any Async Controller movement, you can call ``waitUntilSettled()``
+And then as with any `AsyncController <../../api/control/async/abstract-async-controller.html>`_,
+you can call ``waitUntilSettled()``
 to block program execution until the movement is finished and the robot reaches the
 desired end point.
 
@@ -89,7 +90,7 @@ In total, here is how to initialize and use a 2D motion profiling controller:
 .. code-block:: cpp
    :linenos:
 
-   auto myChassis = okapi::ChassisControllerFactory::create(
+   auto myChassis = ChassisControllerFactory::create(
      {-1, -2}, // Left motors
      {3, 4},   // Right motors
      AbstractMotor::gearset::red, // Torque gearset
@@ -101,7 +102,6 @@ In total, here is how to initialize and use a 2D motion profiling controller:
      2.0,  // Maximum linear acceleration of the Chassis in m/s/s
      10.0, // Maximum linear jerk of the Chassis in m/s/s/s
      myChassis, // Chassis Controller
-     12.5_in // Wheelbase width
    );
 
    profileController.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
