@@ -12,14 +12,14 @@ A `Button <abstract-button.html>`_ on a controller.
 Constructor(s)
 --------------
 
-This constructor uses the master controller (``E_CONTROLLER_MASTER``).
+This constructor uses the master controller (``ControllerId::master``).
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        ControllerButton(const controller_digital_e_t ibtn, const bool iinverted = false)
+        ControllerButton(const ControllerDigital ibtn, const bool iinverted = false)
 
 =============== ===================================================================
  Parameters
@@ -35,7 +35,7 @@ This constructor uses the master controller (``E_CONTROLLER_MASTER``).
       .. highlight:: cpp
       ::
 
-        ControllerButton(const controller_id_e_t icontroller, const controller_digital_e_t ibtn, const bool iinverted = false)
+        ControllerButton(const ControllerId icontroller, const ControllerDigital ibtn, const bool iinverted = false)
 
 =============== ===================================================================
  Parameters

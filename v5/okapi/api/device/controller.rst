@@ -15,7 +15,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        Controller(const controller_id_e_t iid = E_CONTROLLER_MASTER)
+        Controller(ControllerId iid = ControllerId::master)
 
 =============== ===================================================================
  Parameters
@@ -73,7 +73,7 @@ controller is not connected.
       .. highlight:: cpp
       ::
 
-        virtual float getAnalog(const controller_analog_e_t ichannel)
+        virtual float getAnalog(ControllerAnalog ichannel)
 
 ============ ======================================================================================================
  Parameters
@@ -96,7 +96,7 @@ connected.
       .. highlight:: cpp
       ::
 
-        virtual bool getDigital(const controller_digital_e_t ibutton)
+        virtual bool getDigital(ControllerDigital ibutton)
 
 ============ ======================================================================================================
  Parameters
@@ -119,14 +119,14 @@ controller.
       .. highlight:: cpp
       ::
 
-        virtual ControllerButton operator[](const controller_digital_e_t ibtn)
-  
+        virtual ControllerButton operator[](ControllerDigital ibtn)
+
    .. tab :: Example
       .. highlight:: cpp
       ::
 
         okapi::Controller myController;
-        okapi::ControllerButton myButton = myController[E_CONTROLLER_DIGITAL_A]
+        okapi::ControllerButton myButton = myController[ControllerDigital::A]
 
 ============ ======================================================================================================
  Parameters
@@ -136,3 +136,54 @@ controller.
 
 **Returns:** A `ControllerButton <button/controller-button.html>`_ that matches the given button on
 this controller.
+
+Enumerated Values
+-----------------
+
+ControllerId
+~~~~~~~~~~~~
+
+The ID of the controller (e.g. master or partner).
+
+::
+
+  enum class ControllerId {
+    master = 0,
+    partner = 1
+  };
+
+ControllerAnalog
+~~~~~~~~~~~~~~~~
+
+An analog stick.
+
+::
+
+  enum class ControllerAnalog {
+    leftX = 0,
+    leftY = 1,
+    rightX = 2,
+    rightY = 3
+  };
+
+ControllerDigital
+~~~~~~~~~~~~~~~~~
+
+Various buttons.
+
+::
+
+  enum class ControllerDigital {
+    L1 = 6,
+    L2 = 7,
+    R1 = 8,
+    R2 = 9,
+    up = 10,
+    down = 11,
+    left = 12,
+    right = 13,
+    X = 14,
+    B = 15,
+    Y = 16,
+    A = 17
+  };
