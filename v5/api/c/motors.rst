@@ -249,6 +249,50 @@ setting ``errno``.
 
 ----
 
+motor_modify_profiled_velocity
+------------------------------
+
+Changes the output velocity for a profiled movement (`motor_move_absolute`_ or
+`motor_move_relative`_). This will have no effect if the motor is not following
+a profiled movement.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `pros::Motor::modify_profiled_velocity <../cpp/motors.html#modify-profiled-velocity>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_modify_profiled_velocity ( uint8_t port,
+                                                 const int32_t velocity )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void autonomous() {
+          motor_move_absolute(1, 100, 100);
+          delay(100);
+          motor_modify_profiled_velocity(1, 0); // Stop the motor early
+        }
+
+============ =====================================================================================
+ Parameters
+============ =====================================================================================
+ port         The V5 port number from 1-21
+ velocity     The new motor velocity from +-100, +-200, or +-600 depending on the motor's gearset
+============ =====================================================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
 motor_get_target_position
 -------------------------
 
