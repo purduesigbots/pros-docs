@@ -381,6 +381,68 @@ If the controller was not connected, then 0 is returned
 
 ----
 
+get_battery_capacity
+~~~~~~~~~~~~~~~~~~~~
+
+Gets the battery capacity of the given controller.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the controller port.
+
+Analogous to `controller_get_battery_capacity <../c/misc.html#controller-get-battery-capacity>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       int32_t pros::Controller::get_battery_capacity ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          pros::Controller master (E_CONTROLLER_MASTER);
+          printf("Battery Capacity: %d\n", master.get_battery_capacity());
+        }
+
+**Returns:** The controller's battery capacity.
+
+----
+
+get_battery_level
+~~~~~~~~~~~~~~~~~
+
+Gets the battery level of the given controller.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the controller port.
+
+Analogous to `controller_get_battery_level <../c/misc.html#controller-get-battery-level>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       int32_t pros::Controller::get_battery_level ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          pros::Controller master (E_CONTROLLER_MASTER);
+          printf("Battery Level: %d\n", master.get_battery_level());
+        }
+
+**Returns:** The controller's battery level.
+
+----
+
 get_digital
 ~~~~~~~~~~~
 

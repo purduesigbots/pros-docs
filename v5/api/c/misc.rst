@@ -298,6 +298,84 @@ If the controller was not connected, then 0 is returned
 
 ----
 
+controller_get_battery_capacity
+-------------------------------
+
+Gets the battery capacity of the given controller.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
+- ``EACCES``  - Another resource is currently trying to access the controller port.
+
+Analogous to `pros::Controller::get_battery_capacity <../cpp/misc.html#get-battery-capacity>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       int32_t controller_get_battery_capacity ( controller_id_e_t id )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Battery Capacity: %d\n", controller_get_battery_capacity(E_CONTROLLER_MASTER));
+        }
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ id           The ID of the controller (e.g. the master or partner controller).
+              Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
+============ ======================================================================================================
+
+
+**Returns:** The controller's battery capacity.
+
+----
+
+controller_get_battery_level
+----------------------------
+
+Gets the battery level of the given controller.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
+- ``EACCES``  - Another resource is currently trying to access the controller port.
+
+Analogous to `pros::Controller::get_battery_level <../cpp/misc.html#get-battery-level>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       int32_t controller_get_battery_level ( controller_id_e_t id )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          printf("Battery Level: %d\n", controller_get_battery_level(E_CONTROLLER_MASTER));
+        }
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ id           The ID of the controller (e.g. the master or partner controller).
+              Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
+============ ======================================================================================================
+
+
+**Returns:** The controller's battery level.
+
+----
+
 controller_get_digital
 ----------------------
 
