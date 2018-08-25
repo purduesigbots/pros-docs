@@ -252,6 +252,81 @@ Analogous to `pros::competition::is_disabled <../cpp/misc.html#is-disabled>`_.
 
 ----
 
+controller_clear
+----------------
+
+Clears all of the lines of the controller screen.
+
+.. note:: Controller text setting is currently in beta, so continuous, fast updates will
+          not work well.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t controller_clear ( controller_id_e_t id )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          controller_set_text(E_CONTROLLER_MASTER, 0, 0, "Example");
+          delay(100);
+          controller_clear(E_CONTROLLER_MASTER);
+        }
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ id           The ID of the controller (e.g. the master or partner controller).
+              Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
+============ ======================================================================================================
+
+**Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
+controller_clear_line
+---------------------
+
+Clears an individual line of the controller screen.
+
+.. note:: Controller text setting is currently in beta, so continuous, fast updates will
+          not work well.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t controller_clear_line ( controller_id_e_t id,
+                                        uint8_t line )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          controller_set_text(E_CONTROLLER_MASTER, 0, 0, "Example");
+          delay(100);
+          controller_clear_line(E_CONTROLLER_MASTER, 0);
+        }
+
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ id           The ID of the controller (e.g. the master or partner controller).
+              Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
+ line         The line number at which the text will be displayed [0-2]
+============ ======================================================================================================
+
+**Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
 controller_get_analog
 ---------------------
 
@@ -525,6 +600,106 @@ Analogous to `pros::Controller::is_connected <../cpp/misc.html#id1>`_.
 ============ ======================================================================================================
 
 **Returns:** 1 if the controller is connected, 0 otherwise
+
+----
+
+controller_print
+----------------
+
+Sets text to the controller LCD screen.
+
+.. note:: Controller text setting is currently in beta, so continuous, fast updates will
+          not work well.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       int32_t controller_print ( controller_id_e_t id,
+                                  uint8_t line,
+                                  uint8_t col,
+                                  const char* fmt,
+                                  ... )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          int count = 0;
+          while (true) {
+            if (!(count % 25)) {
+              // Only print every 50ms, the controller text update rate is slow
+              controller_print(E_CONTROLLER_MASTER, 0, 0, "Counter: %d", count);
+            }
+            count++;
+            delay(2);
+          }
+        }
+
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ id           The ID of the controller (e.g. the master or partner controller).
+              Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
+ line         The line number at which the text will be displayed [0-2]
+ col          The column number at which the text will be displayed. The width of the screen is 15 characters.
+ fmt          The format string to print to the controller
+ ...          The argument list for the format string
+============ ======================================================================================================
+
+**Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
+controller_set_text
+-------------------
+
+Sets text to the controller LCD screen.
+
+.. note:: Controller text setting is currently in beta, so continuous, fast updates will
+          not work well.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       int32_t controller_set_text ( controller_id_e_t id,
+                                     uint8_t line,
+                                     uint8_t col,
+                                     const char* str )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          int count = 0;
+          while (true) {
+            if (!(count % 25)) {
+              // Only print every 50ms, the controller text update rate is slow
+              controller_set_text(E_CONTROLLER_MASTER, 0, 0, "Example text");
+            }
+            count++;
+            delay(2);
+          }
+        }
+
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ id           The ID of the controller (e.g. the master or partner controller).
+              Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
+ line         The line number at which the text will be displayed [0-2]
+ col          The column number at which the text will be displayed. The width of the screen is 15 characters.
+ str          The pre-formatted string to print to the controller.
+============ ======================================================================================================
+
+**Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
 
 ----
 

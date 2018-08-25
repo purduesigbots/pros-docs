@@ -297,6 +297,73 @@ This function uses the following values of ``errno`` when an error state is reac
 Methods
 -------
 
+clear
+~~~~~
+
+Clears all of the lines of the controller screen.
+
+.. note:: Controller text setting is currently in beta, so continuous, fast updates will
+          not work well.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t pros::Controller::clear ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          pros::Controller master (E_CONTROLLER_MASTER);
+          master.set_text(0, 0, "Example");
+          pros::delay(100);
+          master.clear();
+        }
+
+**Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
+clear_line
+~~~~~~~~~~
+
+Clears an individual line of the controller screen.
+
+.. note:: Controller text setting is currently in beta, so continuous, fast updates will
+          not work well.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t pros::Controller::clear_line ( uint8_t line )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          pros::Controller master (E_CONTROLLER_MASTER);
+          master.set_text(0, 0, "Example");
+          pros::delay(100);
+          master.clear_line(0);
+        }
+
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================s
+ line         The line number at which the text will be displayed [0-2]
+============ ======================================================================================================
+
+**Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
 is_connected
 ~~~~~~~~~~~~
 
@@ -542,6 +609,102 @@ Analogous to `controller_get_digital_new_press <../c/misc.html#controller-get-di
 
 **Returns:** 1 if the button on the controller is pressed and had not been pressed
 the last time this function was called, 0 otherwise.
+
+----
+
+print
+~~~~~
+
+Sets text to the controller LCD screen.
+
+.. note:: Controller text setting is currently in beta, so continuous, fast updates will
+          not work well.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       int32_t pros::Controller::print ( uint8_t line,
+                                         uint8_t col,
+                                         const char* fmt,
+                                         ... )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          int count = 0;
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            if (!(count % 25)) {
+              // Only print every 50ms, the controller text update rate is slow
+              master.print(0, 0, "Counter: %d", count);
+            }
+            count++;
+            pros::delay(2);
+          }
+        }
+
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ line         The line number at which the text will be displayed [0-2]
+ col          The column number at which the text will be displayed. The width of the screen is 15 characters.
+ fmt          The format string to print to the controller
+ ...          The argument list for the format string
+============ ======================================================================================================
+
+**Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
+set_text
+~~~~~~~~
+
+Sets text to the controller LCD screen.
+
+.. note:: Controller text setting is currently in beta, so continuous, fast updates will
+          not work well.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       int32_t pros::Controller::set_text ( uint8_t line,
+                                            uint8_t col,
+                                            const char* str )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          int count = 0;
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            if (!(count % 25)) {
+              // Only print every 50ms, the controller text update rate is slow
+              master.set_text(E_CONTROLLER_MASTER, 0, 0, "Example text");
+            }
+            count++;
+            pros::delay(2);
+          }
+        }
+
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ line         The line number at which the text will be displayed [0-2]
+ col          The column number at which the text will be displayed. The width of the screen is 15 characters.
+ str          The pre-formatted string to print to the controller.
+============ ======================================================================================================
+
+**Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
 
 .. _controller_analog_e_t: ../c/misc.html#controller-analog-e-t
 .. _controller_id_e_t: ../c/misc.html#controller-id-e-t
