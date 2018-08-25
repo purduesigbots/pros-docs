@@ -351,7 +351,7 @@ setting ``errno``.
 ----
 
 modify_profiled_velocity
-------------------------
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Changes the output velocity for a profiled movement (`move_absolute`_ or
 `move_relative`_). This will have no effect if the motor is not following
@@ -369,8 +369,7 @@ Analogous to `motor_modify_profiled_velocity <../c/motors.html#motor-modify-prof
       .. highlight:: c
       ::
 
-        int32_t pros::Motor::modify_profiled_velocity ( uint8_t port,
-                                                        const int32_t velocity )
+        int32_t pros::Motor::modify_profiled_velocity ( const int32_t velocity )
 
    .. tab :: Example
       .. highlight:: c
@@ -1086,6 +1085,131 @@ setting ``errno``.
 Configuration Functions
 -----------------------
 
+convert_pid
+~~~~~~~~~~~
+
+Takes in floating point values and returns a properly formatted pid struct.
+The ``pros::motor_pid_s_t`` struct is in 4.4 format, i.e. 0x20 is 2.0, 0x21 is 2.0625,
+etc.
+
+This function will convert the floating point values to the nearest 4.4
+value.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `motor_convert_pid <../c/motors.html#motor-convert-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        pros::motor_pid_s_t pros::Motor::convert_pid ( double kf,
+                                                       double kp,
+                                                       double ki,
+                                                       double kd )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+
+        void initialize() {
+          pros::Motor motor (1);
+          pros:motor_pid_s_t pid = pros::Motor::convert_pid(KF, KP, KI, KD);
+          motor.set_pos_pid(pid);
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ kf           The feedforward constant
+ kp           The proportional constant
+ ki           The integral constant
+ kd           The derivative constant
+============ ==============================
+
+**Returns:** A ``pros::motor_pid_s_t`` struct formatted properly in 4.4.
+
+----
+
+convert_pid_full
+~~~~~~~~~~~~~~~~
+
+Takes in floating point values and returns a properly formatted pid struct.
+The ``pros::motor_pid_full_s_t`` struct is in 4.4 format, i.e. 0x20 is 2.0, 0x21 is 2.0625,
+etc.
+
+This function will convert the floating point values to the nearest 4.4
+value.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Analogous to `motor_convert_pid_full <../c/motors.html#motor-convert-pid-full>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        pros::motor_pid_full_s_t pros::Motor::convert_pid_full ( double kf,
+                                                                 double kp,
+                                                                 double ki,
+                                                                 double kd,
+                                                                 double filter,
+                                                                 double limit,
+                                                                 double threshold,
+                                                                 double loopspeed )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          pros::Motor motor (1);
+          pros::motor_pid_full_s_t pid = pros::Motor::convert_pid_full(KF, KP, KI, KD,
+                                         FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor.set_pos_pid_full(1, pid);
+        }
+
+============ =============================================================================
+ Parameters
+============ =============================================================================
+ kf           The feedforward constant
+ kp           The proportional constant
+ ki           The integral constant
+ kd           The derivative constant
+ filter       A constant used for filtering the profile acceleration
+ limit        The integral limit
+ threshold    The threshold for determining if a position movement has reached its goal.
+
+              This has no effect for velocity PID controllers.
+ loopspeed    The rate at which the PID computation is run (in ms)
+============ =============================================================================
+
+**Returns:** A ``pros::motor_pid_s_t`` struct formatted properly in 4.4.
+
+----
+
 get_brake_mode
 ~~~~~~~~~~~~~~
 
@@ -1449,6 +1573,103 @@ setting ``errno``.
 
 ----
 
+set_pos_pid
+~~~~~~~~~~~
+
+Sets one of ``pros::motor_pid_s_t`` for the motor. This intended to just modify the
+main PID constants.
+
+Only non-zero values of the struct will change the existing motor constants.
+
+.. warning:: This feature is in beta, it is advised to use caution when modifying
+             the PID values. The motor could be damaged by particularly large constants.
+
+Analogous to `motor_set_pos_pid <../c/motors.html#motor-set-pos-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Motor::set_pos_pid ( const motor_pid_s_t pid )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+
+        void initialize() {
+          pros::Motor motor (1);
+          pros::motor_pid_s_t pid = pros::Motor::convert_pid(KF, KP, KI, KD);
+          motor.set_pos_pid(pid);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ pid          The new motor PID constants
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+set_pos_pid_full
+~~~~~~~~~~~~~~~~
+
+Sets one of ``pros::motor_pid_full_s_t`` for the motor. This intended to just modify the
+main PID constants.
+
+Only non-zero values of the struct will change the existing motor constants.
+
+.. warning:: This feature is in beta, it is advised to use caution when modifying
+             the PID values. The motor could be damaged by particularly large constants.
+
+Analogous to `motor_set_pos_pid_full <../c/motors.html#motor-set-pos-pid-full>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Motor::set_pos_pid_full ( const motor_pid_full_s_t pid )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          pros::Motor motor (1);
+          pros::motor_pid_full_s_t pid = pros::Motor::convert_pid_full(KF, KP, KI, KD,
+                                         FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor.set_pos_pid_full(pid);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ pid          The new motor PID constants
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
 set_reversed
 ~~~~~~~~~~~~
 
@@ -1483,6 +1704,103 @@ Analogous to `motor_set_reversed <../c/motors.html#motor-set-reversed>`_.
  Parameters
 ============ ===============================================================
  reverse      ``1`` reverses the motor, ``0`` is default
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+set_vel_pid
+~~~~~~~~~~~
+
+Sets one of ``pros::motor_pid_s_t`` for the motor. This intended to just modify the
+main PID constants.
+
+Only non-zero values of the struct will change the existing motor constants.
+
+.. warning:: This feature is in beta, it is advised to use caution when modifying
+             the PID values. The motor could be damaged by particularly large constants.
+
+Analogous to `motor_set_vel_pid <../c/motors.html#motor-set-vel-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Motor::set_vel_pid ( const motor_pid_s_t pid )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+
+        void initialize() {
+          pros::Motor motor (1);
+          pros::motor_pid_s_t pid = pros::Motor::convert_pid(KF, KP, KI, KD);
+          motor.set_vel_pid(pid);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ pid          The new motor PID constants
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+set_vel_pid_full
+~~~~~~~~~~~~~~~~
+
+Sets one of ``pros::motor_pid_full_s_t`` for the motor. This intended to just modify the
+main PID constants.
+
+Only non-zero values of the struct will change the existing motor constants.
+
+.. warning:: This feature is in beta, it is advised to use caution when modifying
+             the PID values. The motor could be damaged by particularly large constants.
+
+Analogous to `motor_set_vel_pid_full <../c/motors.html#motor-set-vel-pid-full>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t pros::Motor::set_vel_pid_full ( const motor_pid_full_s_t pid )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          pros::Motor motor (1);
+          pros::motor_pid_full_s_t pid = pros::Motor::convert_pid_full(KF, KP, KI, KD,
+                                         FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor.set_vel_pid_full(pid);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ pid          The new motor PID constants
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,

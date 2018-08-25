@@ -1066,6 +1066,125 @@ setting ``errno``.
 Configuration Functions
 =======================
 
+motor_convert_pid
+-----------------
+
+Takes in floating point values and returns a properly formatted pid struct.
+The `motor_pid_s_t`_ struct is in 4.4 format, i.e. 0x20 is 2.0, 0x21 is 2.0625,
+etc.
+
+This function will convert the floating point values to the nearest 4.4
+value.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        motor_pid_s_t motor_convert_pid ( double kf,
+                                          double kp,
+                                          double ki,
+                                          double kd )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+
+        void initialize() {
+          motor_pid_s_t pid = motor_convert_pid(KF, KP, KI, KD);
+          motor_set_pos_pid(1, pid);
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ kf           The feedforward constant
+ kp           The proportional constant
+ ki           The integral constant
+ kd           The derivative constant
+============ ==============================
+
+**Returns:** A `motor_pid_s_t`_ struct formatted properly in 4.4.
+
+----
+
+motor_convert_pid_full
+----------------------
+
+Takes in floating point values and returns a properly formatted pid struct.
+The `motor_pid_full_s_t`_ struct is in 4.4 format, i.e. 0x20 is 2.0, 0x21 is 2.0625,
+etc.
+
+This function will convert the floating point values to the nearest 4.4
+value.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        motor_pid_full_s_t motor_convert_pid_full ( double kf,
+                                                    double kp,
+                                                    double ki,
+                                                    double kd,
+                                                    double filter,
+                                                    double limit,
+                                                    double threshold,
+                                                    double loopspeed )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          motor_pid_full_s_t pid = motor_convert_pid_full(KF, KP, KI, KD,
+                                   FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor_set_pos_pid_full(1, pid);
+        }
+
+============ =============================================================================
+ Parameters
+============ =============================================================================
+ kf           The feedforward constant
+ kp           The proportional constant
+ ki           The integral constant
+ kd           The derivative constant
+ filter       A constant used for filtering the profile acceleration
+ limit        The integral limit
+ threshold    The threshold for determining if a position movement has reached its goal.
+
+              This has no effect for velocity PID controllers.
+ loopspeed    The rate at which the PID computation is run (in ms)
+============ =============================================================================
+
+**Returns:** A motor_pid_s_t struct formatted properly in 4.4.
+
+----
+
 motor_get_brake_mode
 --------------------
 
@@ -1470,6 +1589,105 @@ setting ``errno``.
 
 ----
 
+motor_set_pos_pid
+-----------------
+
+Sets one of `motor_pid_s_t`_ for the motor. This intended to just modify the
+main PID constants.
+
+Only non-zero values of the struct will change the existing motor constants.
+
+.. warning:: This feature is in beta, it is advised to use caution when modifying
+             the PID values. The motor could be damaged by particularly large constants.
+
+Analogous to `pros::Motor::set_pos_pid <../cpp/motors.html#set-pos-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_set_pos_pid ( uint8_t port,
+                                    const motor_pid_s_t pid )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+
+        void initialize() {
+          motor_pid_s_t pid = motor_convert_pid(KF, KP, KI, KD);
+          motor_set_pos_pid(1, pid);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ pid          The new motor PID constants
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+motor_set_pos_pid_full
+----------------------
+
+Sets one of `motor_pid_full_s_t`_ for the motor. This intended to just modify the
+main PID constants.
+
+Only non-zero values of the struct will change the existing motor constants.
+
+.. warning:: This feature is in beta, it is advised to use caution when modifying
+             the PID values. The motor could be damaged by particularly large constants.
+
+Analogous to `pros::Motor::set_pos_pid_full <../cpp/motors.html#set-pos-pid-full>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_set_pos_pid_full ( uint8_t port,
+                                         const motor_pid_full_s_t pid )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          motor_pid_full_s_t pid = motor_convert_pid_full(KF, KP, KI, KD,
+                                   FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor_set_pos_pid_full(1, pid);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ pid          The new motor PID constants
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
 motor_set_reversed
 ------------------
 
@@ -1506,6 +1724,105 @@ Analogous to `pros::Motor::set_reversed <../cpp/motors.html#set-reversed>`_.
 ============ ===============================================================
  port         The V5 port number from 1-21
  reverse      ``1`` reverses the motor, ``0`` is default
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+motor_set_vel_pid
+-----------------
+
+Sets one of `motor_pid_s_t`_ for the motor. This intended to just modify the
+main PID constants.
+
+Only non-zero values of the struct will change the existing motor constants.
+
+.. warning:: This feature is in beta, it is advised to use caution when modifying
+             the PID values. The motor could be damaged by particularly large constants.
+
+Analogous to `pros::Motor::set_vel_pid <../cpp/motors.html#set-vel-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_set_vel_pid ( uint8_t port,
+                                    const motor_pid_s_t pid )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+
+        void initialize() {
+          motor_pid_s_t pid = motor_convert_pid(KF, KP, KI, KD);
+          motor_set_vel_pid(1, pid);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ pid          The new motor PID constants
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+motor_set_vel_pid_full
+----------------------
+
+Sets one of `motor_pid_full_s_t`_ for the motor. This intended to just modify the
+main PID constants.
+
+Only non-zero values of the struct will change the existing motor constants.
+
+.. warning:: This feature is in beta, it is advised to use caution when modifying
+             the PID values. The motor could be damaged by particularly large constants.
+
+Analogous to `pros::Motor::set_vel_pid_full <../cpp/motors.html#set-vel-pid-full>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_set_vel_pid_full ( uint8_t port,
+                                         const motor_pid_full_s_t pid )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          motor_pid_full_s_t pid = motor_convert_pid_full(KF, KP, KI, KD,
+                                   FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor_set_vel_pid_full(1, pid);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ pid          The new motor PID constants
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -1668,6 +1985,8 @@ Indicates the current 'brake mode' of the motor.
     E_MOTOR_BRAKE_INVALID = INT32_MAX
   } motor_brake_mode_e_t;
 
+----
+
 motor_encoder_units_e_t
 -----------------------
 
@@ -1681,6 +2000,8 @@ Indicates the units used by the motor's encoder.
     E_MOTOR_ENCODER_COUNTS = 2,
     E_MOTOR_ENCODER_INVALID = INT32_MAX
   } motor_encoder_units_e_t;
+
+----
 
 motor_gearset_e_t
 -----------------
@@ -1699,4 +2020,42 @@ Indicates the internal gearing used by the motor.
 Typedefs
 ========
 
-None.
+motor_pid_full_s_t
+------------------
+
+Holds the information about a Motor's position or velocity PID controls.
+
+These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
+0x21 represents 2.0625, 0x22 represents 2.125, etc.
+
+::
+
+  typedef struct motor_pid_full_s {
+    uint8_t kf;
+    uint8_t kp;
+    uint8_t ki;
+    uint8_t kd;
+    uint8_t filter;
+    uint16_t limit;
+    uint8_t threshold;
+    uint8_t loopspeed;
+  } motor_pid_full_s_t;
+
+----
+
+motor_pid_s_t
+-------------
+
+Holds just the constants for a Motor's position or velocity PID controls.
+
+These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
+0x21 represents 2.0625, 0x22 represents 2.125, etc.
+
+::
+
+  typedef struct motor_pid_s {
+    uint8_t kf;
+    uint8_t kp;
+    uint8_t ki;
+    uint8_t kd;
+  } motor_pid_s_t;
