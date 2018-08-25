@@ -178,6 +178,10 @@ Sets the target absolute position for the motor to move to.
 This movement is relative to the position of the motor when initialized or
 the position when it was most recently reset with `tare_position`_.
 
+.. note:: This function simply sets the target for the motor, it does not block program
+          execution until the movement finishes. The example code shows how to block
+          until a movement is finished.
+
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EACCES``  - Another resource is currently trying to access the port.
@@ -199,10 +203,20 @@ Analogous to `motor_move_absolute <../c/motors.html#motor-move-absolute>`_.
         void autonomous() {
           pros::Motor motor (1);
           motor.move_absolute(100, 100); // Moves 100 units forward
+          while (!((motor.get_position() < 105) && (motor.get_position() > 95))) {
+            // Continue running this loop as long as the motor is not within +-5 units of its goal
+            pros::delay(2);
+          }
           motor.move_absolute(100, 100); // This does not cause a movement
+          while (!((motor.get_position() < 105) && (motor.get_position() > 95))) {
+            pros::delay(2);
+          }
 
           motor.tare_position();
           motor.move_absolute(100, 100); // Moves 100 units forward
+          while (!((motor.get_position() < 105) && (motor.get_position() > 95))) {
+            pros::delay(2);
+          }
         }
 
 ============ ===============================================================
@@ -225,6 +239,10 @@ Sets the relative target position for the motor to move to.
 This movement is relative to the current position of the motor as given in
 `get_position`_.
 
+.. note:: This function simply sets the target for the motor, it does not block program
+          execution until the movement finishes. The example code shows how to block
+          until a movement is finished.
+
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EACCES``  - Another resource is currently trying to access the port.
@@ -246,7 +264,14 @@ Analogous to `motor_move_relative <../c/motors.html#motor-move-relative>`_.
         void autonomous() {
           pros::Motor motor (1);
           motor.move_relative(100, 100); // Moves 100 units forward
+          while (!((motor.get_position() < 105) && (motor.get_position() > 95))) {
+            // Continue running this loop as long as the motor is not within +-5 units of its goal
+            pros::delay(2);
+          }
           motor.move_relative(100, 100); // Also moves 100 units forward
+          while (!((motor.get_position() < 205) && (motor.get_position() > 195))) {
+            pros::delay(2);
+          }
         }
 
 ============ ===============================================================

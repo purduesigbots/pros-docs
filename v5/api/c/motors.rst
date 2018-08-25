@@ -69,6 +69,10 @@ Sets the target absolute position for the motor to move to.
 This movement is relative to the position of the motor when initialized or
 the position when it was most recently reset with `motor_tare_position`_.
 
+.. note:: This function simply sets the target for the motor, it does not block program
+          execution until the movement finishes. The example code shows how to block
+          until a movement is finished.
+
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
@@ -91,10 +95,20 @@ Analogous to `pros::Motor::move_absolute <../cpp/motors.html#move-absolute>`_.
 
         void autonomous() {
           motor_move_absolute(1, 100, 100); // Moves 100 units forward
-          motor_move_absolute(1, 100, 100); // This does not cause a movement
+          while (!((motor_get_position(1) < 105) && (motor_get_position(1) > 95))) {
+            // Continue running this loop as long as the motor is not within +-5 units of its goal
+            delay(2);
+          }
+          motor_move_absolute(1, 100, 100); // This will not cause a movement
+          while (!((motor_get_position(1) < 105) && (motor_get_position(1) > 95))) {
+            delay(2);
+          }
 
           motor_tare_position(1);
           motor_move_absolute(1, 100, 100); // Moves 100 units forward
+          while (!((motor_get_position(1) < 105) && (motor_get_position(1) > 95))) {
+            delay(2);
+          }
         }
 
 ============ ===============================================================
@@ -118,6 +132,10 @@ Sets the relative target position for the motor to move to.
 This movement is relative to the current position of the motor as given in
 `motor_get_position`_.
 
+.. note:: This function simply sets the target for the motor, it does not block program
+          execution until the movement finishes. The example code shows how to block
+          until a movement is finished.
+
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
@@ -140,7 +158,15 @@ Analogous to `pros::Motor::move_relative <../cpp/motors.html#move-relative>`_.
 
         void autonomous() {
           motor_move_relative(1, 100, 100); // Moves 100 units forward
+          while (!((motor_get_position(1) < 105) && (motor_get_position(1) > 95))) {
+            // Continue running this loop as long as the motor is not within +-5 units of its goal
+            delay(2);
+          }
+
           motor_move_relative(1, 100, 100); // Also moves 100 units forward
+          while (!((motor_get_position(1) < 205) && (motor_get_position(1) > 195))) {
+            delay(2);
+          }
         }
 
 ============ ===============================================================
@@ -1903,10 +1929,20 @@ Analogous to `pros::Motor::set_zero_position <../cpp/motors.html#set-zero-positi
 
         void autonomous() {
           motor_move_absolute(1, 100, 100); // Moves 100 units forward
+          while (!((motor_get_position(1) - 100 < 105) && (motor_get_position(1) - 100 > 95))) {
+            // Continue running this loop as long as the motor is not within +-5 units of its goal
+            delay(2);
+          }
           motor_move_absolute(1, 100, 100); // This does not cause a movement
+          while (!((motor_get_position(1) - 100 < 105) && (motor_get_position(1) - 100 > 95))) {
+            delay(2);
+          }
 
           motor_set_zero_position(1, 80);
           motor_move_absolute(1, 100, 100); // Moves 120 units forward
+          while (!((motor_get_position(1) - 100 < 105) && (motor_get_position(1) - 100 > 95))) {
+            delay(2);
+          }
         }
 
 ============ ===============================================================
@@ -1946,10 +1982,20 @@ Analogous to `pros::Motor::tare_position <../cpp/motors.html#tare-position>`_.
 
         void autonomous() {
           motor_move_absolute(1, 100, 100); // Moves 100 units forward
+          while (!((motor_get_position(1) - 100 < 105) && (motor_get_position(1) - 100 > 95))) {
+            // Continue running this loop as long as the motor is not within +-5 units of its goal
+            delay(2);
+          }
           motor_move_absolute(1, 100, 100); // This does not cause a movement
+          while (!((motor_get_position(1) - 100 < 105) && (motor_get_position(1) - 100 > 95))) {
+            delay(2);
+          }
 
           motor_tare_position(1);
           motor_move_absolute(1, 100, 100); // Moves 100 units forward
+          while (!((motor_get_position(1) - 100 < 105) && (motor_get_position(1) - 100 > 95))) {
+            delay(2);
+          }
         }
 
 ============ ==============================
