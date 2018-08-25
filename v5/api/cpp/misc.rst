@@ -651,8 +651,8 @@ Sets text to the controller LCD screen.
 ============ ======================================================================================================
  Parameters
 ============ ======================================================================================================
- line         The line number at which the text will be displayed [0-2]
- col          The column number at which the text will be displayed. The width of the screen is 15 characters.
+ line         The line number at which the text will be displayed [0-2].
+ col          The column number at which the text will be displayed [0-14].
  fmt          The format string to print to the controller
  ...          The argument list for the format string
 ============ ======================================================================================================
@@ -700,7 +700,7 @@ Sets text to the controller LCD screen.
  Parameters
 ============ ======================================================================================================
  line         The line number at which the text will be displayed [0-2]
- col          The column number at which the text will be displayed. The width of the screen is 15 characters.
+ col          The column number at which the text will be displayed [0-14].
  str          The pre-formatted string to print to the controller.
 ============ ======================================================================================================
 
