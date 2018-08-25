@@ -27,9 +27,73 @@ This function uses the following values of ``errno`` when an error state is reac
       ::
 
         explicit Motor ( const std::uint8_t port,
-                         const motor_gearset_e_t_ gearset = E_MOTOR_GEARSET_36,
-                         const bool reverse = false,
-                         const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES )
+                         const motor_gearset_e_t gearset,
+                         const bool reverse,
+                         const motor_encoder_units_e_t encoder_units )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor motor (1, E_MOTOR_GEARSET_18, false, E_MOTOR_ENCODER_DEGREES);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            pros::delay(2);
+          }
+        }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ port            The V5 port number from 1-21
+ gearset         The new motor `gearset <motor_gearset_e_t_>`_
+ reverse         ``1`` reverses the motor, ``0`` is default
+ encoder_units   The new `motor encoder units <motor_encoder_units_e_t_>`_
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        explicit Motor ( const std::uint8_t port,
+                         const motor_gearset_e_t gearset,
+                         const bool reverse )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor motor (1, E_MOTOR_GEARSET_18, falseS);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            pros::delay(2);
+          }
+        }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ port            The V5 port number from 1-21
+ gearset         The new motor `gearset <motor_gearset_e_t_>`_
+ reverse         ``1`` reverses the motor, ``0`` is default
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        explicit Motor ( const std::uint8_t port,
+                         const motor_gearset_e_t gearset )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -49,8 +113,64 @@ This function uses the following values of ``errno`` when an error state is reac
 =============== ===================================================================
  port            The V5 port number from 1-21
  gearset         The new motor `gearset <motor_gearset_e_t_>`_
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        explicit Motor ( const std::uint8_t port,
+                         const bool reverse )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor motor (1, false);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            pros::delay(2);
+          }
+        }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ port            The V5 port number from 1-21
  reverse         ``1`` reverses the motor, ``0`` is default
- encoder_units   The new `motor encoder units <motor_encoder_units_e_t_>`_
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        explicit Motor ( const std::uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            pros::delay(2);
+          }
+        }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ port            The V5 port number from 1-21
 =============== ===================================================================
 
 ----
