@@ -137,6 +137,102 @@ controller.
 **Returns:** A `ControllerButton <button/controller-button.html>`_ that matches the given button on
 this controller.
 
+----
+
+setText
+~~~~~~~
+
+Sets text to the controller LCD screen.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t setText(std::uint8_t iline, std::uint8_t icol, std::string itext)
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ iline        The lin number at which the text will be displayed ``[0-2]``.
+ icol         The column number at which the text will be displayed ``[0-14]``.
+ itext        The string to display.
+============ ======================================================================================================
+
+**Returns:** ``1`` is the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
+clear
+~~~~~
+
+Clears all of the lines of the controller screen.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t clear()
+
+**Returns:** ``1`` is the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
+clearLine
+~~~~~~~~~
+
+Clears an individual line of the controller screen.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t clearLine(std::uint8_t iline)
+
+============ ======================================================================================================
+ Parameters
+============ ======================================================================================================
+ iline        The lin number to clear.
+============ ======================================================================================================
+
+**Returns:** ``1`` is the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
+getBatteryCapacity
+~~~~~~~~~~~~~~~~~~
+
+Gets the battery capacity of the given controller.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t getBatteryCapacity()
+
+**Returns:** The controller's battery capacity.
+
+----
+
+getBatteryLevel
+~~~~~~~~~~~~~~~
+
+Gets the battery level of the given controller.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t getBatteryLevel()
+
+**Returns:** The controller's battery level.
+
+----
+
 Enumerated Values
 -----------------
 

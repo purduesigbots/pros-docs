@@ -126,6 +126,33 @@ This function uses the following values of errno when an error state is reached:
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting errno.
 
+----
+
+modifyProfiledVelocity
+~~~~~~~~~~~~~~~~~~~~~~
+
+Changes the output velocity for a profiled movement (`moveAbsolute`_ or `moveRelative`_). This will
+have no effect if the motor is not following a profiled movement.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t modifyProfiledVelocity(std::int32_t ivelocity) const = 0
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ ivelocity       The new motor velocity from ``-+-100``, ``+-200``, or ``+-600`` depending on the motor's gearset.
+=============== ===================================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting errno.
+
 Telemetry Methods
 -----------------
 
@@ -669,6 +696,120 @@ This function uses the following values of errno when an error state is reached:
  Parameters
 =============== ===================================================================
  ilimit          The new voltage limit in Volts.
+=============== ===================================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting errno.
+
+----
+
+setPosPID
+~~~~~~~~~
+
+Sets new PID constants.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) const = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ikF             The feed-forward constant.
+ ikP             The proportional constant.
+ ikI             The integral constant.
+ ikD             The derivative constant.
+=============== ===================================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting errno.
+
+----
+
+setPosPIDFull
+~~~~~~~~~~~~~
+
+Sets new PID constants.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD,
+                                       double ifilter, double ilimit, double ithreshold, double iloopSpeed) const = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ikF             The feed-forward constant.
+ ikP             The proportional constant.
+ ikI             The integral constant.
+ ikD             The derivative constant.
+ ifilter         A constant used for filtering the profile acceleration.
+ ilimit          The integral limit.
+ ithreshold      The threshold for determining if a position movement has reached its goal.
+ iloopSpeed      The rate at which the PID computation is run (in ms).
+=============== ===================================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting errno.
+
+----
+
+setVelPID
+~~~~~~~~~
+
+Sets new PID constants.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) const = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ikF             The feed-forward constant.
+ ikP             The proportional constant.
+ ikI             The integral constant.
+ ikD             The derivative constant.
+=============== ===================================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting errno.
+
+----
+
+setVelPIDFull
+~~~~~~~~~~~~~
+
+Sets new PID constants.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD,
+                                       double ifilter, double ilimit, double ithreshold, double iloopSpeed) const = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ikF             The feed-forward constant.
+ ikP             The proportional constant.
+ ikI             The integral constant.
+ ikD             The derivative constant.
+ ifilter         A constant used for filtering the profile acceleration.
+ ilimit          The integral limit.
+ ithreshold      The threshold for determining if a position movement has reached its goal.
+ iloopSpeed      The rate at which the PID computation is run (in ms).
 =============== ===================================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,

@@ -250,3 +250,105 @@ Parameters
 =============== ===================================================================
  gearset         The new gearset.
 =============== ===================================================================
+
+----
+
+setPosPID
+~~~~~~~~~
+
+Sets new PID constants.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setPosPID(double ikF, double ikP, double ikI, double ikD) const = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ikF             The feed-forward constant.
+ ikP             The proportional constant.
+ ikI             The integral constant.
+ ikD             The derivative constant.
+=============== ===================================================================
+
+----
+
+setPosPIDFull
+~~~~~~~~~~~~~
+
+Sets new PID constants.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setPosPID(double ikF, double ikP, double ikI, double ikD,
+                               double ifilter, double ilimit, double ithreshold, double iloopSpeed) const = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ikF             The feed-forward constant.
+ ikP             The proportional constant.
+ ikI             The integral constant.
+ ikD             The derivative constant.
+ ifilter         A constant used for filtering the profile acceleration.
+ ilimit          The integral limit.
+ ithreshold      The threshold for determining if a position movement has reached its goal.
+ iloopSpeed      The rate at which the PID computation is run (in ms).
+=============== ===================================================================
+
+----
+
+setVelPID
+~~~~~~~~~
+
+Sets new PID constants.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setPosPID(double ikF, double ikP, double ikI, double ikD) const = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ikF             The feed-forward constant.
+ ikP             The proportional constant.
+ ikI             The integral constant.
+ ikD             The derivative constant.
+=============== ===================================================================
+
+----
+
+setVelPIDFull
+~~~~~~~~~~~~~
+
+Sets new PID constants.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setPosPID(double ikF, double ikP, double ikI, double ikD,
+                               double ifilter, double ilimit, double ithreshold, double iloopSpeed) const = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ikF             The feed-forward constant.
+ ikP             The proportional constant.
+ ikI             The integral constant.
+ ikD             The derivative constant.
+ ifilter         A constant used for filtering the profile acceleration.
+ ilimit          The integral limit.
+ ithreshold      The threshold for determining if a position movement has reached its goal.
+ iloopSpeed      The rate at which the PID computation is run (in ms).
+=============== ===================================================================
