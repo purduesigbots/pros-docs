@@ -320,7 +320,7 @@ Clears an individual line of the controller screen.
 ============ ======================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
               Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
- line         The line number at which the text will be displayed [0-2]
+ line         The line number to clear [0-2]
 ============ ======================================================================================================
 
 **Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.

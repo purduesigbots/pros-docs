@@ -504,7 +504,6 @@ a profiled movement.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
 - ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_modify_profiled_velocity <../c/motors.html#motor-modify-profiled-velocity>`_.
@@ -1240,11 +1239,6 @@ etc.
 This function will convert the floating point values to the nearest 4.4
 value.
 
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
 Analogous to `motor_convert_pid <../c/motors.html#motor-convert-pid>`_.
 
 .. tabs ::
@@ -1294,11 +1288,6 @@ etc.
 
 This function will convert the floating point values to the nearest 4.4
 value.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_convert_pid_full <../c/motors.html#motor-convert-pid-full>`_.
 
@@ -1729,6 +1718,10 @@ Only non-zero values of the struct will change the existing motor constants.
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_set_pos_pid <../c/motors.html#motor-set-pos-pid>`_.
 
 .. tabs ::
@@ -1767,13 +1760,16 @@ setting ``errno``.
 set_pos_pid_full
 ~~~~~~~~~~~~~~~~
 
-Sets one of ``pros::motor_pid_full_s_t`` for the motor. This intended to just modify the
-main PID constants.
+Sets one of ``pros::motor_pid_full_s_t`` for the motor.
 
 Only non-zero values of the struct will change the existing motor constants.
 
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_set_pos_pid_full <../c/motors.html#motor-set-pos-pid-full>`_.
 
@@ -1867,6 +1863,10 @@ Only non-zero values of the struct will change the existing motor constants.
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_set_vel_pid <../c/motors.html#motor-set-vel-pid>`_.
 
 .. tabs ::
@@ -1905,13 +1905,16 @@ setting ``errno``.
 set_vel_pid_full
 ~~~~~~~~~~~~~~~~
 
-Sets one of ``pros::motor_pid_full_s_t`` for the motor. This intended to just modify the
-main PID constants.
+Sets one of ``pros::motor_pid_full_s_t`` for the motor.
 
 Only non-zero values of the struct will change the existing motor constants.
 
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_set_vel_pid_full <../c/motors.html#motor-set-vel-pid-full>`_.
 

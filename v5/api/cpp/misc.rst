@@ -357,7 +357,7 @@ Clears an individual line of the controller screen.
 ============ ======================================================================================================
  Parameters
 ============ ======================================================================================================s
- line         The line number at which the text will be displayed [0-2]
+ line         The line number to clear [0-2]
 ============ ======================================================================================================
 
 **Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.

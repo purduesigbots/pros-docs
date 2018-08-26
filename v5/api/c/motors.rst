@@ -1102,11 +1102,6 @@ etc.
 This function will convert the floating point values to the nearest 4.4
 value.
 
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -1153,11 +1148,6 @@ etc.
 
 This function will convert the floating point values to the nearest 4.4
 value.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
 
 .. tabs ::
    .. tab :: Prototype
@@ -1626,6 +1616,11 @@ Only non-zero values of the struct will change the existing motor constants.
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::set_pos_pid <../cpp/motors.html#set-pos-pid>`_.
 
 .. tabs ::
@@ -1665,13 +1660,17 @@ setting ``errno``.
 motor_set_pos_pid_full
 ----------------------
 
-Sets one of `motor_pid_full_s_t`_ for the motor. This intended to just modify the
-main PID constants.
+Sets one of `motor_pid_full_s_t`_ for the motor.
 
 Only non-zero values of the struct will change the existing motor constants.
 
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::set_pos_pid_full <../cpp/motors.html#set-pos-pid-full>`_.
 
@@ -1768,6 +1767,11 @@ Only non-zero values of the struct will change the existing motor constants.
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::set_vel_pid <../cpp/motors.html#set-vel-pid>`_.
 
 .. tabs ::
@@ -1807,13 +1811,17 @@ setting ``errno``.
 motor_set_vel_pid_full
 ----------------------
 
-Sets one of `motor_pid_full_s_t`_ for the motor. This intended to just modify the
-main PID constants.
+Sets one of `motor_pid_full_s_t`_ for the motor.
 
 Only non-zero values of the struct will change the existing motor constants.
 
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::set_vel_pid_full <../cpp/motors.html#set-vel-pid-full>`_.
 
