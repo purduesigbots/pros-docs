@@ -2085,14 +2085,16 @@ These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
 ::
 
   typedef struct motor_pid_full_s {
-    uint8_t kf;
-    uint8_t kp;
-    uint8_t ki;
-    uint8_t kd;
-    uint8_t filter;
-    uint16_t limit;
-    uint8_t threshold;
-    uint8_t loopspeed;
+    uint8_t kf;        // The feedforward constant
+    uint8_t kp;        // The proportional constant
+    uint8_t ki;        // The integral constants
+    uint8_t kd;        // The derivative constant
+    uint8_t filter;    // A constant used for filtering the profile acceleration
+    uint16_t limit;    // The integral limit
+    uint8_t threshold; // The threshold for determining if a position movement has
+                       // reached its goal. This has no effect for velocity PID
+                       // calculations.
+    uint8_t loopspeed; // The rate at which the PID computation is run in ms
   } motor_pid_full_s_t;
 
 ----
@@ -2106,10 +2108,10 @@ These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
 0x21 represents 2.0625, 0x22 represents 2.125, etc.
 
 ::
-
+s
   typedef struct motor_pid_s {
-    uint8_t kf;
-    uint8_t kp;
-    uint8_t ki;
-    uint8_t kd;
+    uint8_t kf;        // The feedforward constant
+    uint8_t kp;        // The proportional constant
+    uint8_t ki;        // The integral constants
+    uint8_t kd;        // The derivative constant
   } motor_pid_s_t;
