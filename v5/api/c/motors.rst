@@ -1357,6 +1357,118 @@ or ``E_GEARSET_INVALID`` if the operation failed.
 
 ----
 
+motor_get_pos_pid
+-----------------
+
+Gets the position PID that was set for the motor. This function will return
+zero for all of the parameters if the motor_set_pos_pid or
+motor_set_pos_pid_full functions have not been used.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Additionally, in an error state all values of the returned struct are set
+to their negative maximum values.
+
+Analogous to `pros::Motor::get_pos_pid <../cpp/motors.html#get-pos-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        motor_pid_full_s_t motor_get_pos_pid ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          motor_pid_full_s_t pid = motor_convert_pid_full(KF, KP, KI, KD,
+                                   FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor_set_pos_pid_full(1, pid);
+          motor_pid_full_s_t pid_returned = motor_get_pos_pid(1);
+          // pid_returned will be equal to pid
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** A ``motor_pid_full_s_t`` containing the position PID constants last set
+to the given motor
+
+----
+
+motor_get_vel_pid
+-----------------
+
+Gets the velocity PID that was set for the motor. This function will return
+zero for all of the parameters if the motor_set_vel_pid or
+motor_set_vel_pid_full functions have not been used.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Additionally, in an error state all values of the returned struct are set
+to their negative maximum values.
+
+Analogous to `pros::Motor::get_vel_pid <../cpp/motors.html#get-vel-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        motor_pid_full_s_t motor_get_vel_pid ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          motor_pid_full_s_t pid = motor_convert_pid_full(KF, KP, KI, KD,
+                                   FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor_set_vel_pid_full(1, pid);
+          motor_pid_full_s_t pid_returned = motor_get_vel_pid(1);
+          // pid_returned will be equal to pid
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** A ``motor_pid_full_s_t`` containing the velocity PID constants last set
+to the given motor
+
+----
+
 motor_get_voltage_limit
 -----------------------
 
