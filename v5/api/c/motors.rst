@@ -2220,7 +2220,7 @@ These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
 0x21 represents 2.0625, 0x22 represents 2.125, etc.
 
 ::
-s
+
   typedef struct motor_pid_s {
     uint8_t kf;        // The feedforward constant
     uint8_t kp;        // The proportional constant

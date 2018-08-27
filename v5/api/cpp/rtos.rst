@@ -54,7 +54,7 @@ Analogous to `task_create <../c/rtos.html#task-create>`_.
       .. highlight:: cpp
       ::
 
-        pros::Task::Task ( task_fn_t function,
+        pros::Task::Task ( pros::task_fn_t function,
                            void* parameters = NULL,
                            std::uint32_t prio = TASK_PRIORITY_DEFAULT,
                            std::uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT,
@@ -92,7 +92,7 @@ Create a new task and add it to the list of tasks that are ready to run.
       .. highlight:: cpp
       ::
 
-        pros::Task::Task ( task_t task )
+        pros::Task::Task ( pros::task_t task )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -103,7 +103,7 @@ Create a new task and add it to the list of tasks that are ready to run.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          pros::task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
                                        TASK_STACK_DEPTH_DEFAULT, "My Task");
           pros::Task my_cpp_task (my_task);
         }
@@ -126,7 +126,7 @@ Operator Overloads
       .. highlight:: cpp
       ::
 
-        void operator = ( const task_t in )
+        void operator = ( const pros::task_t in )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -137,7 +137,7 @@ Operator Overloads
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          pros::task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
                                        TASK_STACK_DEPTH_DEFAULT, "My Task");
           Task my_cpp_task = my_task;
         }

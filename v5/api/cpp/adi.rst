@@ -504,9 +504,9 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        ADIEncoder::ADIEncoder ( std::uint8_t port_top,
-                                 std::uint8_t port_bottom,
-                                 const bool reverse = false )
+        pros::ADIEncoder::ADIEncoder ( std::uint8_t port_top,
+                                       std::uint8_t port_bottom,
+                                       const bool reverse = false )
 
    .. tab :: Example
       .. highlight:: cpp

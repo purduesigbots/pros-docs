@@ -270,7 +270,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         pros::Controller::Controller ( controller_id_e_t id )
+         pros::Controller::Controller ( pros::controller_id_e_t id )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -310,7 +310,7 @@ Clears all of the lines of the controller screen.
       .. highlight:: c
       ::
 
-        int32_t pros::Controller::clear ( )
+        std::int32_t pros::Controller::clear ( )
 
    .. tab :: Example
       .. highlight:: c
@@ -340,7 +340,7 @@ Clears an individual line of the controller screen.
       .. highlight:: c
       ::
 
-        int32_t pros::Controller::clear_line ( uint8_t line )
+        std::int32_t pros::Controller::clear_line ( std::uint8_t line )
 
    .. tab :: Example
       .. highlight:: c
@@ -420,7 +420,7 @@ Analogous to `controller_get_analog <../c/misc.html#controller-get-analog>`_.
       .. highlight:: cpp
       ::
 
-         std::int32_t pros::Controller::get_analog ( controller_analog_e_t channel )
+         std::int32_t pros::Controller::get_analog ( pros::controller_analog_e_t channel )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -464,7 +464,7 @@ Analogous to `controller_get_battery_capacity <../c/misc.html#controller-get-bat
       .. highlight:: c
       ::
 
-       int32_t pros::Controller::get_battery_capacity ( )
+       std::int32_t pros::Controller::get_battery_capacity ( )
 
    .. tab :: Example
       .. highlight:: c
@@ -495,7 +495,7 @@ Analogous to `controller_get_battery_level <../c/misc.html#controller-get-batter
       .. highlight:: c
       ::
 
-       int32_t pros::Controller::get_battery_level ( )
+       std::int32_t pros::Controller::get_battery_level ( )
 
    .. tab :: Example
       .. highlight:: c
@@ -526,7 +526,7 @@ Analogous to `controller_get_digital <../c/misc.html#controller-get-digital>`_.
       .. highlight:: cpp
       ::
 
-        std::int32_t pros::Controller::get_digital ( controller_digital_e_t button )
+        std::int32_t pros::Controller::get_digital ( pros::controller_digital_e_t button )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -583,7 +583,7 @@ Analogous to `controller_get_digital_new_press <../c/misc.html#controller-get-di
       .. highlight:: cpp
       ::
 
-        std::int32_t pros::Controller::get_digital_new_press ( controller_digital_e_t button )
+        std::int32_t pros::Controller::get_digital_new_press ( pros::controller_digital_e_t button )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -625,10 +625,10 @@ Sets text to the controller LCD screen.
       .. highlight:: c
       ::
 
-       int32_t pros::Controller::print ( uint8_t line,
-                                         uint8_t col,
-                                         const char* fmt,
-                                         ... )
+       std::int32_t pros::Controller::print ( std::uint8_t line,
+                                              std::uint8_t col,
+                                              const char* fmt,
+                                              ... )
 
    .. tab :: Example
       .. highlight:: c
@@ -674,9 +674,9 @@ Sets text to the controller LCD screen.
       .. highlight:: c
       ::
 
-       int32_t pros::Controller::set_text ( uint8_t line,
-                                            uint8_t col,
-                                            const char* str )
+       std::int32_t pros::Controller::set_text ( std::uint8_t line,
+                                                 std::uint8_t col,
+                                                 const char* str )
 
    .. tab :: Example
       .. highlight:: c
