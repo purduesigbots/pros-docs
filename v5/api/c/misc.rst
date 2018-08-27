@@ -320,7 +320,7 @@ Clears an individual line of the controller screen.
 ============ ======================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
               Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
- line         The line number at which the text will be displayed [0-2]
+ line         The line number to clear [0-2]
 ============ ======================================================================================================
 
 **Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
@@ -644,8 +644,8 @@ Sets text to the controller LCD screen.
 ============ ======================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
               Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
- line         The line number at which the text will be displayed [0-2]
- col          The column number at which the text will be displayed. The width of the screen is 15 characters.
+ line         The line number at which the text will be displayed [0-2].
+ col          The column number at which the text will be displayed [0-14].
  fmt          The format string to print to the controller
  ...          The argument list for the format string
 ============ ======================================================================================================
@@ -694,8 +694,8 @@ Sets text to the controller LCD screen.
 ============ ======================================================================================================
  id           The ID of the controller (e.g. the master or partner controller).
               Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
- line         The line number at which the text will be displayed [0-2]
- col          The column number at which the text will be displayed. The width of the screen is 15 characters.
+ line         The line number at which the text will be displayed [0-2].
+ col          The column number at which the text will be displayed [0-14].
  str          The pre-formatted string to print to the controller.
 ============ ======================================================================================================
 

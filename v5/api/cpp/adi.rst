@@ -23,6 +23,7 @@ Constructor(s)
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 .. tabs ::
    .. tab :: Prototype
@@ -75,6 +76,10 @@ Do not use this function when the sensor value might be unstable
    2, and increasing the sample rate would not have a tangible difference in the
    function's performance.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
 Analogous to `adi_analog_calibrate <../c/adi.html#adi-analog-calibrate>`_.
 
 .. tabs ::
@@ -111,6 +116,10 @@ The meaning of the returned value varies depending on the sensor attached.
 
 Inherited from `ADIPort::get_value <get_value_>`_.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
 Analogous to `adi_analog_read <../c/adi.html#adi-analog-read>`_.
 
 .. tabs ::
@@ -144,6 +153,10 @@ Reads the calibrated value of an analog input channel.
 The `adi_analog_calibrate`_ function must be run first on that channel. This function is
 inappropriate for sensor values intended for integration, as round-off error can accumulate
 causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 Analogous to `adi_analog_read_calibrated <../c/adi.html#adi_analog_read_calibrated>`_.
 
@@ -184,6 +197,10 @@ The value returned actually has 16 bits of "precision", even though the ADC only
 12 bits, so that errors induced by the average value being between two values come out
 in the wash when integrated over time. Think of the value as the true value times 16.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
 Analogous to `adi_analog_read_calibrated_HR <../c/adi.html#adi_analog_read_calibrated_HR>`_.
 
 .. tabs ::
@@ -219,6 +236,7 @@ Constructor(s)
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 .. tabs ::
    .. tab :: Prototype
@@ -255,6 +273,10 @@ set_value
 Sets the output for the Analog Output from 0 (0V) to 4095 (5V).
 
 Inherited from `ADIPort::set_value <set_value_>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 .. tabs ::
    .. tab :: Prototype
@@ -293,6 +315,7 @@ Constructor(s)
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 .. tabs ::
    .. tab :: Prototype
@@ -336,6 +359,10 @@ this function for button 3, but should not for buttons 1 or 2. A typical
 use-case for this function is to call inside opcontrol to detect new button
 presses, and not in any other tasks.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
 Analogous to `adi_digital_get_new_press <../c/adi.html#adi-digital-get-new-press>`_.
 
 .. tabs ::
@@ -373,6 +400,10 @@ Gets the digital value (1 or 0) of a pin.
 
 Inherited from `ADIPort::get_value <get_value_>`_.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
 Analogous to `adi_digital_read <../c/adi.html#adi-digital-read>`_.
 
 .. tabs ::
@@ -409,6 +440,7 @@ Constructor(s)
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 .. tabs ::
    .. tab :: Prototype
@@ -452,6 +484,10 @@ set_value
 Sets the digital value (1 or 0) of a pin.
 
 Inherited from `ADIPort::set_value <set_value_>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 Analogous to `adi_digital_write <../c/adi.html#adi-digital-write>`_.
 
@@ -498,15 +534,16 @@ Constructor(s)
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        ADIEncoder::ADIEncoder ( std::uint8_t port_top,
-                                 std::uint8_t port_bottom,
-                                 const bool reverse = false )
+        pros::ADIEncoder::ADIEncoder ( std::uint8_t port_top,
+                                       std::uint8_t port_bottom,
+                                       const bool reverse = false )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -539,6 +576,10 @@ get_value
 Gets the number of ticks recorded by the encoder.
 
 There are 360 ticks in one revolution.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
 
@@ -573,6 +614,10 @@ Resets the encoder to zero.
 
 It is safe to use this method while an encoder is enabled. It is not necessary to call this
 method before stopping or starting an encoder.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 Analogous to `adi_encoder_reset <../c/adi.html#adi-encoder-reset>`_.
 
@@ -609,6 +654,7 @@ Constructor(s)
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 .. tabs ::
    .. tab :: Prototype
@@ -649,6 +695,10 @@ Returns the last set speed of the motor on the given port.
 
 Inherited from `ADIPort::get_value <get_value_>`_.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
 Analogous to `adi_motor_get <../c/adi.html#adi-motor-get>`_.
 
 .. tabs ::
@@ -682,6 +732,10 @@ set_value
 Sets the speed of the given motor.
 
 Inherited from `ADIPort::set_value <set_value_>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 Analogous to `adi_motor_set <../c/adi.html#adi-motor-set>`_.
 
@@ -721,6 +775,10 @@ stop
 
 Stops the given motor.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
 Analogous to `adi_motor_stop <../c/adi.html#adi-motor-stop>`_.
 
 .. tabs ::
@@ -757,6 +815,7 @@ Constructor(s)
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 .. tabs ::
    .. tab :: Prototype
@@ -795,6 +854,10 @@ get_config
 
 Returns the configuration for the given ADI port.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
 Analogous to `adi_port_get_config <../c/adi.html#adi-port-config-get>`_.
 
 .. tabs ::
@@ -826,6 +889,10 @@ get_value
 
 Returns the value for the given ADI port.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
 Analogous to `adi_port_get_value <../c/adi.html#adi-port-value-get>`_.
 
 .. tabs ::
@@ -854,6 +921,10 @@ set_config
 ~~~~~~~~~~
 
 Configures an ADI port to act as a given sensor type.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 Analogous to `adi_port_set_config <../c/adi.html#adi-port-config-set>`_.
 
@@ -897,6 +968,10 @@ Sets the value for the given ADI port
 This only works on ports configured as outputs, and the behavior will change
 depending on the configuration of the port.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
 Analogous to `adi_port_set_value <../c/adi.html#adi-port-value-set>`_.
 
 .. tabs ::
@@ -936,6 +1011,7 @@ Constructor(s)
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 .. tabs ::
    .. tab :: Prototype
@@ -983,6 +1059,10 @@ return value is PROS_ERR. Round and fluffy objects can cause inaccurate values t
 returned.
 
 Inherited from `ADIPort::get_value <get_value_>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
 
 Analogous to `adi_ultrasonic_get <../c/adi.html#adi-ultrasonic-get>`_.
 

@@ -41,6 +41,13 @@ we recommend that you check out C tutorials on the following topics:
    The output from these ``printf()`` statements can be viewed in the
    terminal by running ``pros terminal``.
 
+- `Tasks <../tutorials/topical/multitasking.html>`_. One common mistake that new
+  PROS users make is forgetting to include a ``delay()`` statement in their tasks
+  (this includes ``opcontrol()`` too), starving the processor of resources and
+  preventing the PROS kernel from running properly. Every infinite loop, like
+  the one in ``opcontrol()``, needs to have a delay statement. We recommend at least
+  2ms.
+
 And then for additional C tutorial topics, visit
 `CProgramming.com <https://www.cprogramming.com/tutorial/c-tutorial.html>`__
 or `StudyTonight <http://www.studytonight.com/c/overview-of-c.php>`__. A

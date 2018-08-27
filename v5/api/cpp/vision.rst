@@ -13,9 +13,23 @@ pros::Vision
 Constructor(s)
 --------------
 
-::
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
 
-  pros::Vision::Vision ( uint8_t port )
+        pros::Vision::Vision ( std::uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: cpppp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_sensor.clear_led();
+        }
 
 ============ ==============================
  Parameters
@@ -45,7 +59,7 @@ reached:
       .. highlight:: cpp
       ::
 
-        int32_t pros::Vision::clear_led ( )
+        std::int32_t pros::Vision::clear_led ( )
 
    .. tab :: Example
       .. highlight:: cpppp
@@ -79,8 +93,8 @@ reached:
       .. highlight:: cpp
       ::
 
-        vision_object_s_t pros::Vision::get_by_sig ( const uint32_t size_id,
-                                                     const uint8_t sig_id )
+        pros::vision_object_s_t pros::Vision::get_by_sig ( const std::uint32_t size_id,
+                                                           const std::uint8_t sig_id )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -129,7 +143,7 @@ reached:
       .. highlight:: cpp
       ::
 
-         vision_object_s_t pros::Vision::get_by_size ( const uint32_t size_id )
+         pros::vision_object_s_t pros::Vision::get_by_size ( const std::uint32_t size_id )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -175,7 +189,7 @@ reached:
       .. highlight:: cpp
       ::
 
-        int32_t pros::Vision::get_exposure ( )
+        std::int32_t pros::Vision::get_exposure ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -210,7 +224,7 @@ reached:
       .. highlight:: cpp
       ::
 
-         int32_t pros::Vision::get_object_count ( )
+         std::int32_t pros::Vision::get_object_count ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -245,7 +259,7 @@ reached:
       .. highlight:: cpp
       ::
 
-        int32_t pros::Vision::get_white_balance ( )
+        std::int32_t pros::Vision::get_white_balance ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -280,11 +294,11 @@ reached:
       .. highlight:: cpp
       ::
 
-        int32_t pros::Vision::read_by_sig ( uint8_t port,
-                                            const uint32_t size_id,
-                                            const uint32_t sig_id,
-                                            const uint32_t object_count,
-                                            vision_object_s_t *const object_arr )
+        std::int32_t pros::Vision::read_by_sig ( std::uint8_t port,
+                                                 const std::uint32_t size_id,
+                                                 const std::uint32_t sig_id,
+                                                 const std::uint32_t object_count,
+                                                 pros::vision_object_s_t *const object_arr )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -336,9 +350,9 @@ reached:
       .. highlight:: cpp
       ::
 
-        int32_t pros::Vision::read_by_size ( const uint32_t size_id,
-                                             const uint32_t object_count,
-                                             vision_object_s_t *const object_arr )
+        std::int32_t pros::Vision::read_by_size ( const std::uint32_t size_id,
+                                                  const std::uint32_t object_count,
+                                                  pros::vision_object_s_t *const object_arr )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -388,7 +402,7 @@ reached:
       .. highlight:: cpp
       ::
 
-        int32_t pros::Vision::set_auto_white_balance ( const uint8_t enable )
+        std::int32_t pros::Vision::set_auto_white_balance ( const std::uint8_t enable )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -427,7 +441,7 @@ reached:
       .. highlight:: cpp
       ::
 
-        int32_t pros::Vision::set_exposure ( const uint8_t percent )
+        std::int32_t pros::Vision::set_exposure ( const std::uint8_t percent )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -468,7 +482,7 @@ reached:
       .. highlight:: cpp
       ::
 
-        int32_t pros::Vision::set_led ( const int32_t rgb )
+        std::int32_t pros::Vision::set_led ( const std::int32_t rgb )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -509,7 +523,7 @@ reached:
       .. highlight:: cpp
       ::
 
-        int32_t pros::Vision::set_white_balance ( const int32_t rgb )
+        std::int32_t pros::Vision::set_white_balance ( const std::int32_t rgb )
 
    .. tab :: Example
       .. highlight:: cpp

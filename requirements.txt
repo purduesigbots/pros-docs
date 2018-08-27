@@ -1,3 +1,4 @@
 Sphinx
 sphinx_tabs
 ablog
+sphinx-click

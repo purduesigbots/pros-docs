@@ -1102,11 +1102,6 @@ etc.
 This function will convert the floating point values to the nearest 4.4
 value.
 
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
-
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -1153,11 +1148,6 @@ etc.
 
 This function will convert the floating point values to the nearest 4.4
 value.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
 
 .. tabs ::
    .. tab :: Prototype
@@ -1364,6 +1354,118 @@ Analogous to `pros::Motor::get_gearing <../cpp/motors.html#get-gearing>`_.
 
 **Returns:** One of `motor_gearset_e_t`_ according to what is set for the motor,
 or ``E_GEARSET_INVALID`` if the operation failed.
+
+----
+
+motor_get_pos_pid
+-----------------
+
+Gets the position PID that was set for the motor. This function will return
+zero for all of the parameters if the motor_set_pos_pid or
+motor_set_pos_pid_full functions have not been used.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Additionally, in an error state all values of the returned struct are set
+to their negative maximum values.
+
+Analogous to `pros::Motor::get_pos_pid <../cpp/motors.html#get-pos-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        motor_pid_full_s_t motor_get_pos_pid ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          motor_pid_full_s_t pid = motor_convert_pid_full(KF, KP, KI, KD,
+                                   FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor_set_pos_pid_full(1, pid);
+          motor_pid_full_s_t pid_returned = motor_get_pos_pid(1);
+          // pid_returned will be equal to pid
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** A ``motor_pid_full_s_t`` containing the position PID constants last set
+to the given motor
+
+----
+
+motor_get_vel_pid
+-----------------
+
+Gets the velocity PID that was set for the motor. This function will return
+zero for all of the parameters if the motor_set_vel_pid or
+motor_set_vel_pid_full functions have not been used.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Additionally, in an error state all values of the returned struct are set
+to their negative maximum values.
+
+Analogous to `pros::Motor::get_vel_pid <../cpp/motors.html#get-vel-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        motor_pid_full_s_t motor_get_vel_pid ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          motor_pid_full_s_t pid = motor_convert_pid_full(KF, KP, KI, KD,
+                                   FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor_set_vel_pid_full(1, pid);
+          motor_pid_full_s_t pid_returned = motor_get_vel_pid(1);
+          // pid_returned will be equal to pid
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ port         The V5 port number from 1-21
+============ ==============================
+
+**Returns:** A ``motor_pid_full_s_t`` containing the velocity PID constants last set
+to the given motor
 
 ----
 
@@ -1626,6 +1728,11 @@ Only non-zero values of the struct will change the existing motor constants.
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::set_pos_pid <../cpp/motors.html#set-pos-pid>`_.
 
 .. tabs ::
@@ -1665,13 +1772,17 @@ setting ``errno``.
 motor_set_pos_pid_full
 ----------------------
 
-Sets one of `motor_pid_full_s_t`_ for the motor. This intended to just modify the
-main PID constants.
+Sets one of `motor_pid_full_s_t`_ for the motor.
 
 Only non-zero values of the struct will change the existing motor constants.
 
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::set_pos_pid_full <../cpp/motors.html#set-pos-pid-full>`_.
 
@@ -1768,6 +1879,11 @@ Only non-zero values of the struct will change the existing motor constants.
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `pros::Motor::set_vel_pid <../cpp/motors.html#set-vel-pid>`_.
 
 .. tabs ::
@@ -1807,13 +1923,17 @@ setting ``errno``.
 motor_set_vel_pid_full
 ----------------------
 
-Sets one of `motor_pid_full_s_t`_ for the motor. This intended to just modify the
-main PID constants.
+Sets one of `motor_pid_full_s_t`_ for the motor.
 
 Only non-zero values of the struct will change the existing motor constants.
 
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `pros::Motor::set_vel_pid_full <../cpp/motors.html#set-vel-pid-full>`_.
 
@@ -2077,14 +2197,16 @@ These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
 ::
 
   typedef struct motor_pid_full_s {
-    uint8_t kf;
-    uint8_t kp;
-    uint8_t ki;
-    uint8_t kd;
-    uint8_t filter;
-    uint16_t limit;
-    uint8_t threshold;
-    uint8_t loopspeed;
+    uint8_t kf;        // The feedforward constant
+    uint8_t kp;        // The proportional constant
+    uint8_t ki;        // The integral constants
+    uint8_t kd;        // The derivative constant
+    uint8_t filter;    // A constant used for filtering the profile acceleration
+    uint16_t limit;    // The integral limit
+    uint8_t threshold; // The threshold for determining if a position movement has
+                       // reached its goal. This has no effect for velocity PID
+                       // calculations.
+    uint8_t loopspeed; // The rate at which the PID computation is run in ms
   } motor_pid_full_s_t;
 
 ----
@@ -2100,8 +2222,8 @@ These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
 ::
 
   typedef struct motor_pid_s {
-    uint8_t kf;
-    uint8_t kp;
-    uint8_t ki;
-    uint8_t kd;
+    uint8_t kf;        // The feedforward constant
+    uint8_t kp;        // The proportional constant
+    uint8_t ki;        // The integral constants
+    uint8_t kd;        // The derivative constant
   } motor_pid_s_t;

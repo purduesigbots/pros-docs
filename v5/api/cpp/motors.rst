@@ -26,10 +26,74 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        explicit Motor ( const std::uint8_t port,
-                         const motor_gearset_e_t_ gearset = E_MOTOR_GEARSET_36,
-                         const bool reverse = false,
-                         const motor_encoder_units_e_t encoder_units = E_MOTOR_ENCODER_DEGREES )
+        pros::Motor::Motor ( const std::uint8_t port,
+                             const pros::motor_gearset_e_t gearset,
+                             const bool reverse,
+                             const pros::motor_encoder_units_e_t encoder_units )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor motor (1, E_MOTOR_GEARSET_18, false, E_MOTOR_ENCODER_DEGREES);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            pros::delay(2);
+          }
+        }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ port            The V5 port number from 1-21
+ gearset         The new motor `gearset <motor_gearset_e_t_>`_
+ reverse         ``1`` reverses the motor, ``0`` is default
+ encoder_units   The new `motor encoder units <motor_encoder_units_e_t_>`_
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Motor::Motor ( const std::uint8_t port,
+                             const pros::motor_gearset_e_t gearset,
+                             const bool reverse )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor motor (1, E_MOTOR_GEARSET_18, falseS);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            pros::delay(2);
+          }
+        }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ port            The V5 port number from 1-21
+ gearset         The new motor `gearset <motor_gearset_e_t_>`_
+ reverse         ``1`` reverses the motor, ``0`` is default
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Motor::Motor ( const std::uint8_t port,
+                             const pros::motor_gearset_e_t gearset )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -49,8 +113,64 @@ This function uses the following values of ``errno`` when an error state is reac
 =============== ===================================================================
  port            The V5 port number from 1-21
  gearset         The new motor `gearset <motor_gearset_e_t_>`_
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Motor::Motor ( const std::uint8_t port,
+                             const bool reverse )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor motor (1, false);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            pros::delay(2);
+          }
+        }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ port            The V5 port number from 1-21
  reverse         ``1`` reverses the motor, ``0`` is default
- encoder_units   The new `motor encoder units <motor_encoder_units_e_t_>`_
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Motor::Motor ( const std::uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor motor (1);
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            pros::delay(2);
+          }
+        }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ port            The V5 port number from 1-21
 =============== ===================================================================
 
 ----
@@ -105,8 +225,8 @@ Literal(s)
       .. highlight:: cpp
       ::
 
-        okapi::Motor operator"" _m(const unsigned long long iport)
-        okapi::Motor operator"" _rm(const unsigned long long iport)
+        pros::Motor operator"" _m(const unsigned long long iport)
+        pros::Motor operator"" _rm(const unsigned long long iport)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -144,7 +264,7 @@ Analogous to `motor_move <../c/motors.html#motor-move>`_.
       .. highlight:: cpp
       ::
 
-         int32_t motor_move ( const int8_t voltage )
+         std::int32_t motor_move ( const std::int8_t voltage )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -193,8 +313,8 @@ Analogous to `motor_move_absolute <../c/motors.html#motor-move-absolute>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::move_absolute ( double position,
-                                             int32_t velocity )
+        std::int32_t pros::Motor::move_absolute ( double position,
+                                                  std::int32_t velocity )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -254,8 +374,8 @@ Analogous to `motor_move_relative <../c/motors.html#motor-move-relative>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::move_relative ( double position,
-                                             int32_t velocity )
+        std::int32_t pros::Motor::move_relative ( double position,
+                                                  std::int32_t velocity )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -310,8 +430,8 @@ Analogous to `motor_move_velocity <../c/motors.html#motor-move-velocity>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::move_velocity ( uint8_t port,
-                                             int16_t velocity )
+        std::int32_t pros::Motor::move_velocity ( std::uint8_t port,
+                                                  std::int16_t velocity )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -352,7 +472,7 @@ Analogous to `motor_move_voltage <../c/motors.html#motor-move-voltage>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::move_voltage ( int16_t voltage )
+        std::int32_t pros::Motor::move_voltage ( std::int16_t voltage )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -384,7 +504,6 @@ a profiled movement.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
 - ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_modify_profiled_velocity <../c/motors.html#motor-modify-profiled-velocity>`_.
@@ -394,7 +513,7 @@ Analogous to `motor_modify_profiled_velocity <../c/motors.html#motor-modify-prof
       .. highlight:: c
       ::
 
-        int32_t pros::Motor::modify_profiled_velocity ( const int32_t velocity )
+        std::int32_t pros::Motor::modify_profiled_velocity ( const std::int32_t velocity )
 
    .. tab :: Example
       .. highlight:: c
@@ -468,7 +587,7 @@ Analogous to `motor_get_target_velocity <../c/motors.html#motor-get-target-veloc
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::get_target_velocity ( )
+        std::int32_t pros::Motor::get_target_velocity ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -546,7 +665,7 @@ Analogous to `motor_get_current_draw <../c/motors.html#motor-get-current-draw>`_
       .. highlight:: cpp
       ::
 
-         int32_t pros::Motor::get_current_draw ( )
+         std::int32_t pros::Motor::get_current_draw ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -583,7 +702,7 @@ Analogous to `motor_get_direction <../c/motors.html#motor-get-direction>`_.
       .. highlight:: cpp
       ::
 
-         int32_t pros::Motor::get_direction ( )
+         std::int32_t pros::Motor::get_direction ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -625,7 +744,7 @@ Analogous to `motor_get_efficiency <../c/motors.html#motor-get-efficiency>`_.
       .. highlight:: cpp
       ::
 
-         int32_t pros::Motor::get_efficiency ( )
+         std::int32_t pros::Motor::get_efficiency ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -966,7 +1085,7 @@ Analogous to `motor_get_zero_position_flag <../c/motors.html#motor-get-zero-posi
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::get_zero_position_flag ( )
+        std::int32_t pros::Motor::get_zero_position_flag ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1004,7 +1123,7 @@ Analogous to `motor_is_stopped <../c/motors.html#motor-is-stopped>`_.
       .. highlight:: cpp
       ::
 
-        int32_t motor_is_stopped ( )
+        std::int32_t motor_is_stopped ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1041,7 +1160,7 @@ Analogous to `motor_is_over_current <../c/motors.html#motor-is-over-current>`_.
       .. highlight:: cpp
       ::
 
-         int32_t pros::Motor::is_over_current ( )
+         std::int32_t pros::Motor::is_over_current ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1079,7 +1198,7 @@ Analogous to `motor_is_over_temp <../c/motors.html#motor-is-over-temp>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::is_over_temp ( )
+        std::int32_t pros::Motor::is_over_temp ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1119,11 +1238,6 @@ etc.
 
 This function will convert the floating point values to the nearest 4.4
 value.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_convert_pid <../c/motors.html#motor-convert-pid>`_.
 
@@ -1174,11 +1288,6 @@ etc.
 
 This function will convert the floating point values to the nearest 4.4
 value.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_convert_pid_full <../c/motors.html#motor-convert-pid-full>`_.
 
@@ -1251,7 +1360,7 @@ Analogous to `motor_get_brake_mode <../c/motors.html#motor-get-brake-mode>`_.
       .. highlight:: cpp
       ::
 
-        motor_brake_mode_e_t pros::Motor::get_brake_mode ( )
+        pros::motor_brake_mode_e_t pros::Motor::get_brake_mode ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1286,7 +1395,7 @@ Analogous to `motor_get_current_limit <../c/motors.html#motor-get-current-limit>
       .. highlight:: cpp
       ::
 
-         int32_t pros::Motor::get_current_limit ( )
+         std::int32_t pros::Motor::get_current_limit ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1321,7 +1430,7 @@ Analogous to `motor_get_encoder_units <../c/motors.html#motor-get-encoder-units>
       .. highlight:: cpp
       ::
 
-         motor_encoder_units_e_t pros::Motor::get_encoder_units ( )
+         pros::motor_encoder_units_e_t pros::Motor::get_encoder_units ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1353,7 +1462,7 @@ Analogous to `motor_get_gearing <../c/motors.html#motor-get-gearing>`_.
       .. highlight:: cpp
       ::
 
-         motor_gearset_e_t pros::Motor::get_gearing ( )
+         pros::motor_gearset_e_t pros::Motor::get_gearing ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1385,7 +1494,7 @@ Analogous to `motor_get_voltage_limit <../c/motors.html#motor-get-voltage-limit>
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::get_voltage_limit ( )
+        std::int32_t pros::Motor::get_voltage_limit ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1398,6 +1507,106 @@ Analogous to `motor_get_voltage_limit <../c/motors.html#motor-get-voltage-limit>
 
 **Returns:** The motor's voltage limit in V or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
+----
+
+motor_get_pos_pid
+-----------------
+
+Gets the position PID that was set for the motor. This function will return
+zero for all of the parameters if the pros::Motor::set_pos_pid() or
+pros::Motor::set_pos_pid_full() functions have not been used.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Additionally, in an error state all values of the returned struct are set
+to their negative maximum values.
+
+Analogous to `motor_get_pos_pid <../c/motors.html#motor-get-pos-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        pros::motor_pid_full_s_t pros::Motor::get_pos_pid ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          pros::Motor motor (1);
+          pros::motor_pid_full_s_t pid = pros::Motor::convert_pid_full(KF, KP, KI, KD,
+                                         FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor.set_pos_pid_full(pid);
+          pros::motor_pid_full_s_t pid_returned = motor.get_pos_pid();
+          // pid_returned will be equal to pid
+        }
+
+**Returns:** A ``pros::motor_pid_full_s_t`` containing the position PID constants last set
+* to the given motor
+
+----
+
+motor_get_vel_pid
+-----------------
+
+Gets the velocity PID that was set for the motor. This function will return
+zero for all of the parameters if the pros::Motor::set_vel_pid() or
+pros::Motor::set_vel_pid_full() functions have not been used.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
+Additionally, in an error state all values of the returned struct are set
+to their negative maximum values.
+
+Analogous to `motor_get_vel_pid <../c/motors.html#motor-get-vel-pid>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        pros::motor_pid_full_s_t pros::Motor::get_vel_pid ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define KF 0
+        #define KP 1.0f
+        #define KI 0.001f
+        #define KD 0.1f
+        #define FILTER 1.0f
+        #define LIMIT 1.0f
+        #define THRESHOLD 1.0f
+        #define LOOPSPEED 10
+
+        void initialize() {
+          pros::Motor motor (1);
+          pros::motor_pid_full_s_t pid = pros::Motor::convert_pid_full(KF, KP, KI, KD,
+                                         FILTER, LIMIT, THRESHOLD, LOOPSPEED);
+          motor.set_vel_pid_full(pid);
+          pros::motor_pid_full_s_t pid_returned = motor.get_vel_pid();
+          // pid_returned will be equal to pid
+        }
+
+**Returns:** A ``pros::motor_pid_full_s_t`` containing the velocity PID constants last set
+to the given motor
 
 ----
 
@@ -1417,7 +1626,7 @@ Analogous to `motor_is_reversed <../c/motors.html#motor-is-reversed>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::is_reversed ( )
+        std::int32_t pros::Motor::is_reversed ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1450,7 +1659,7 @@ Analogous to `motor_set_brake_mode <../c/motors.html#motor-set-brake-mode>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_brake_mode ( motor_brake_mode_e_t mode )
+        std::int32_t pros::Motor::set_brake_mode ( pros::motor_brake_mode_e_t mode )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1491,7 +1700,7 @@ Analogous to `motor_set_current_limit <../c/motors.html#motor-set-current-limit>
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_current_limit ( int32_t limit )
+        std::int32_t pros::Motor::set_current_limit ( std::int32_t limit )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1536,7 +1745,7 @@ Analogous to `motor_set_encoder_units <../c/motors.html#motor-set-encoder-units>
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_encoder_units ( motor_encoder_units_e_t units )
+        std::int32_t pros::Motor::set_encoder_units ( pros::motor_encoder_units_e_t units )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1575,7 +1784,7 @@ Analogous to `motor_set_gearing <../c/motors.html#motor-set-gearing>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_gearing ( motor_gearset_e_t_ gearset )
+        std::int32_t pros::Motor::set_gearing ( pros::motor_gearset_e_t_ gearset )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1609,6 +1818,10 @@ Only non-zero values of the struct will change the existing motor constants.
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_set_pos_pid <../c/motors.html#motor-set-pos-pid>`_.
 
 .. tabs ::
@@ -1616,7 +1829,7 @@ Analogous to `motor_set_pos_pid <../c/motors.html#motor-set-pos-pid>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_pos_pid ( const motor_pid_s_t pid )
+        std::int32_t pros::Motor::set_pos_pid ( const pros::motor_pid_s_t pid )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1647,13 +1860,16 @@ setting ``errno``.
 set_pos_pid_full
 ~~~~~~~~~~~~~~~~
 
-Sets one of ``pros::motor_pid_full_s_t`` for the motor. This intended to just modify the
-main PID constants.
+Sets one of ``pros::motor_pid_full_s_t`` for the motor.
 
 Only non-zero values of the struct will change the existing motor constants.
 
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_set_pos_pid_full <../c/motors.html#motor-set-pos-pid-full>`_.
 
@@ -1662,7 +1878,7 @@ Analogous to `motor_set_pos_pid_full <../c/motors.html#motor-set-pos-pid-full>`_
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_pos_pid_full ( const motor_pid_full_s_t pid )
+        std::int32_t pros::Motor::set_pos_pid_full ( const pros::motor_pid_full_s_t pid )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1713,7 +1929,7 @@ Analogous to `motor_set_reversed <../c/motors.html#motor-set-reversed>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_reversed ( bool reverse )
+        std::int32_t pros::Motor::set_reversed ( bool reverse )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1747,6 +1963,10 @@ Only non-zero values of the struct will change the existing motor constants.
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
+
 Analogous to `motor_set_vel_pid <../c/motors.html#motor-set-vel-pid>`_.
 
 .. tabs ::
@@ -1754,7 +1974,7 @@ Analogous to `motor_set_vel_pid <../c/motors.html#motor-set-vel-pid>`_.
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_vel_pid ( const motor_pid_s_t pid )
+        std::int32_t pros::Motor::set_vel_pid ( const pros::motor_pid_s_t pid )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1785,13 +2005,16 @@ setting ``errno``.
 set_vel_pid_full
 ~~~~~~~~~~~~~~~~
 
-Sets one of ``pros::motor_pid_full_s_t`` for the motor. This intended to just modify the
-main PID constants.
+Sets one of ``pros::motor_pid_full_s_t`` for the motor.
 
 Only non-zero values of the struct will change the existing motor constants.
 
 .. warning:: This feature is in beta, it is advised to use caution when modifying
              the PID values. The motor could be damaged by particularly large constants.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the port.
 
 Analogous to `motor_set_vel_pid_full <../c/motors.html#motor-set-vel-pid-full>`_.
 
@@ -1800,7 +2023,7 @@ Analogous to `motor_set_vel_pid_full <../c/motors.html#motor-set-vel-pid-full>`_
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_vel_pid_full ( const motor_pid_full_s_t pid )
+        std::int32_t pros::Motor::set_vel_pid_full ( const pros::motor_pid_full_s_t pid )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1849,7 +2072,7 @@ Analogous to `motor_set_voltage_limit <../c/motors.html#motor-set-voltage-limit>
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_voltage_limit ( int32_t limit )
+        std::int32_t pros::Motor::set_voltage_limit ( std::int32_t limit )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1896,7 +2119,7 @@ Analogous to `motor_set_zero_position <../c/motors.html#motor-set-zero-position>
       .. highlight:: cpp
       ::
 
-        int32_t pros::Motor::set_zero_position ( double position )
+        std::int32_t pros::Motor::set_zero_position ( double position )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1938,7 +2161,7 @@ Analogous to `motor_tare_position <../c/motors.html#motor-tare-position>`_.
       .. highlight:: cpp
       ::
 
-         int32_t pros::Motor::tare_position ( )
+         std::int32_t pros::Motor::tare_position ( )
 
    .. tab :: Example
       .. highlight:: cpp

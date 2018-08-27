@@ -5,7 +5,7 @@ PROS FAQ
 .. note:: This document exists to answer questions about what PROS is and its general use.
    For more coding-specific help, visit :doc:`../tutorials/general/coding-faq`
 
-.. warning:: This document is still in progress
+.. warning:: This document is in progress, we will be adding content as we're asked pertinent questions.
 
 Does PROS have a graphics library for the Brain's Screen?
 =========================================================
