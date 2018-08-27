@@ -322,7 +322,11 @@ reached:
  object_arr     A pointer to copy the data into
 ============== ========================================================
 
-**Returns:** Returns PROS_ERR if the port was invalid or an error occurred.
+**Returns:** The number of object signatures copied. This number will be less than
+object_count if there are fewer objects detected by the vision sensor.
+Returns PROS_ERR if the port was invalid, an error occurred, or fewer objects
+than size_id were found. All objects in object_arr that were not found are
+given VISION_OBJECT_ERR_SIG as their signature.
 
 ----
 
@@ -375,7 +379,11 @@ reached:
  object_arr     A pointer to copy the data into
 ============== ========================================================
 
-**Returns:** Returns PROS_ERR if the port was invalid or an error occurred.
+**Returns:** The number of object signatures copied. This number will be less than
+object_count if there are fewer objects detected by the vision sensor.
+Returns PROS_ERR if the port was invalid, an error occurred, or fewer objects
+than size_id were found. All objects in object_arr that were not found are
+given VISION_OBJECT_ERR_SIG as their signature.
 
 ----
 
