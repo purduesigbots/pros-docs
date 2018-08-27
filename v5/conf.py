@@ -19,6 +19,7 @@
 import os
 import sys
 import ablog
+import pros.common.ui
 
 sys.path.append(os.path.abspath('../sphinx-tabs/sphinx_tabs/'))
 
@@ -27,7 +28,7 @@ sys.path.append(os.path.abspath('../sphinx-tabs/sphinx_tabs/'))
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['tabs', 'ablog']
+extensions = ['tabs', 'ablog', 'sphinx_click.ext']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = [ablog.get_html_templates_path(), '_templates']
