@@ -39,9 +39,10 @@ PROS: Documentation Home
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :caption: CLI
+   :caption: Tools
 
    ./cli/index
+   ./editor/index
 
 .. toctree::
    :hidden:
