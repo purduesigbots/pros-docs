@@ -9,6 +9,14 @@ okapi::AsyncMotionProfileController
 
 An ``AsyncController`` which generates and follows 2D motion profiles.
 
+This controller is internally backed by `Pathfinder <https://github.com/JacisNonsense/Pathfinder>`_. There are a few open issues users should be aware about:
+
+- Pathfinder cannot generate negative velocities, so backward movements and very tight turns do not work
+    - Moving backwards: `<https://github.com/JacisNonsense/Pathfinder/issues/39>`_
+    - Tight turns: `<https://github.com/JacisNonsense/Pathfinder/issues/38>`_
+- Very long movements (typically movements much longer than a VEX field) can potentially never reach maximum speed
+    - `<https://github.com/JacisNonsense/Pathfinder/issues/43>`_
+
 Constructor(s)
 --------------
 

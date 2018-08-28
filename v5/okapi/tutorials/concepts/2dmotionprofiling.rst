@@ -17,7 +17,15 @@ you can learn about in examples like these:
 OkapiLib, through `Pathfinder <https://github.com/JacisNonsense/Pathfinder>`_, does
 this math for you and ties both the motion profiling and profile following actions
 to the same `async controllers <../walkthrough/autonomous-movement-async.html>`_ that
-are used for other simpler movements.
+are used for other simpler movements. Because OkapiLib's motion profile generation uses
+`Pathfinder <https://github.com/JacisNonsense/Pathfinder>`_, there are a few open issues you should
+know about:
+
+- Pathfinder cannot generate negative velocities, so backward movements and very tight turns do not work
+    - Moving backwards: `<https://github.com/JacisNonsense/Pathfinder/issues/39>`_
+    - Tight turns: `<https://github.com/JacisNonsense/Pathfinder/issues/38>`_
+- Very long movements (typically movements much longer than a VEX field) can potentially never reach maximum speed
+    - `<https://github.com/JacisNonsense/Pathfinder/issues/43>`_
 
 First, let's initialize a Chassis Controller (or Chassis Model) to pass into the
 constructor for the profile Async controller. Following that, you can create a
@@ -64,7 +72,7 @@ point will result in a forward movement of 4 feet.
      Point{0_ft, 0_ft, 0_deg},  // Profile starting position, this will normally be (0, 0, 0)
      Point{3_ft, 0_ft, 0_deg}}, // The next point in the profile, 3 feet forward
      "A" // Profile name
-     );
+   );
 
 After the profile is created, it is added to a map of available profiles stored in the controller.
 You can then set a target using the name you gave the profile.
@@ -94,7 +102,7 @@ In total, here is how to initialize and use a 2D motion profiling controller:
    :linenos:
 
    using namespace okapi;
-   
+
    auto myChassis = ChassisControllerFactory::create(
      {-1, -2}, // Left motors
      {3, 4},   // Right motors
