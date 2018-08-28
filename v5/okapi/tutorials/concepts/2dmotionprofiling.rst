@@ -51,7 +51,7 @@ profile Async Controller.
      1.0,  // Maximum linear velocity of the Chassis in m/s
      2.0,  // Maximum linear acceleration of the Chassis in m/s/s
      10.0, // Maximum linear jerk of the Chassis in m/s/s/s
-     myChassis, // Chassis Controller
+     myChassis // Chassis Controller
    );
 
 Next, let's create a motion profile. A profile is created with a list of points and a name.
@@ -114,7 +114,7 @@ In total, here is how to initialize and use a 2D motion profiling controller:
      1.0,  // Maximum linear velocity of the Chassis in m/s
      2.0,  // Maximum linear acceleration of the Chassis in m/s/s
      10.0, // Maximum linear jerk of the Chassis in m/s/s/s
-     myChassis, // Chassis Controller
+     myChassis // Chassis Controller
    );
 
    profileController.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");

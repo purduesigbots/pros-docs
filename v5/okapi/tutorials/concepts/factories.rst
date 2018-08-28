@@ -3,9 +3,9 @@ Factory Object Creation Pattern
 ===============================
 
 OkapiLib uses a pattern of **Factories** to create objects. This means that while you can find constructors
-for any classes you may want to use in ``/okapi/api``, creating these classes is best done with
-a method from the class's related factory in ``/okapi/impl``. These factories are designed to make it as easy as possible
-to create objects, you won't have to worry about smart pointers and other more complex concepts that Okapilib relies on.
+for any classes you may want to use in ``okapi/api``, creating these classes is best done with
+a method from the class's related factory in ``okapi/impl``. These factories are designed to make it as easy as possible
+to create objects, you won't have to worry about smart pointers and other more complex concepts that OkapiLib relies on.
 
 Creating an object with a factory is quite simple, as shown in the below example:
 

@@ -31,7 +31,7 @@ An example movement:
    const double TARGET = 100.0;
 
    auto exampleController = IterativeControllerFactory::posPID(kP, kI, kD);
-   okapi::Motor exampleMotor(MOTOR_PORT);
+   Motor exampleMotor(MOTOR_PORT);
 
    // Execute the movement
    exampleController.setTarget(TARGET);

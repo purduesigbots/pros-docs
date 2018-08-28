@@ -50,10 +50,11 @@ Using a filter with a Velocity PID Controller can be done in the following manne
    const double kP = 1.0;
    const double kD = 0.1;
    const double kF = 0.0;
+   const double kSF = 0.0;
    const int NUM_AVE_POINTS = 5;
 
-   auto exampleVelMath = VelMathFactory::createPtr(imeV5TPR, std::make_shared<AverageFilter<NUM_AVE_POINTS>>());
-   auto exampleController = IterativeControllerFactory::VelPID(kP, kD, kF, exampleVelMath);
+   auto velMathArgs = VelMathArgs(imev5TPR, std::make_shared<AverageFilter<NUM_AVE_POINTS>>());
+   auto exampleController = IterativeControllerFactory::velPID(kP, kD, kF, kSF, velMathArgs);
 
 To clarify step by step:
 
