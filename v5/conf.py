@@ -19,7 +19,8 @@
 import os
 import sys
 import ablog
-import pros.common.ui
+# import pros.common.ui
+# Uncomment this to build the CLI docs
 
 sys.path.append(os.path.abspath('../sphinx-tabs/sphinx_tabs/'))
 

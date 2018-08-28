@@ -48,7 +48,6 @@ For instance, you can write to ``stderr`` in the following manner:
 There are also a number of methods for controlling serial communication behavior
 exposed in `apix.h <../../extended/apix.html>`_. These methods can be accessed
 through the ``serctl()`` function. At the moment two actions are supported -
-activating/deactivating the streams, and enabling/disabling COBS. COBS stands for
-Consistent Overhead Byte Stuffing, and is a way of encoding multiple streams together
-(this is what allows JINX to work). If you want to read the serial comms yourself
+activating/deactivating the streams, and enabling/disabling `COBS <https://en.wikipedia.org/wiki/Consistent_Overhead_Byte_Stuffing>`_
+. If you want to read the serial comms yourself
 (without using ``pros terminal``), then you'll want to disable COBS.
