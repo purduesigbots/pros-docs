@@ -26,14 +26,16 @@ This constructor infers the encoders from the motors.
 
         SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                        std::shared_ptr<AbstractMotor> irightSideMotor,
-                       double imaxOutput = 127)
+                       double imaxVelocity = 127,
+                       double imaxVoltage = 12000)
 
 =================   ===================================================================
  Parameters
 =================   ===================================================================
  ileftSideMotor      The left side motor.
  irightSideMotor     The right side motor.
- imaxOutput          The maximum output value to the motors.
+ imaxVelocity        The maximum velocity output value to the motors.
+ imaxVoltage         The maximum voltage output value to the motors.
 =================   ===================================================================
 
 This constructor does not infer the encoders from the motors, and instead takes explicitly specified encoders.
@@ -47,7 +49,8 @@ This constructor does not infer the encoders from the motors, and instead takes 
                        std::shared_ptr<AbstractMotor> irightSideMotor,
                        std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                        std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                       double imaxOutput = 127)
+                       double imaxVelocity = 127,
+                       double imaxVoltage = 12000)
 
 =================   ===================================================================
  Parameters
@@ -56,7 +59,8 @@ This constructor does not infer the encoders from the motors, and instead takes 
  irightSideMotor     The right side motor.
  ileftEnc            The left side encoder.
  irightEnc           The right side encoder.
- imaxOutput          The maximum output value to the motors.
+ imaxVelocity        The maximum velocity output value to the motors.
+ imaxVoltage         The maximum voltage output value to the motors.
 =================   ===================================================================
 
 .. tabs ::

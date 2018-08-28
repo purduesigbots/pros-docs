@@ -32,14 +32,16 @@ encoders).
       ::
 
         static SkidSteerModel create(Motor ileftSideMotor, Motor irightSideMotor,
-                                     const double imaxOutput = 127)
+                                     double imaxVelocity = 127,
+                                     double imaxVoltage = 12000)
 
 ================= ===================================================================
 Parameters
 ================= ===================================================================
  ileftSideMotor    The left side motor (also used for controller input).
  irightSideMotor   The right side motor (also used for controller input).
- imaxOutput        The maximum output value sent to the motors.
+ imaxVelocity      The maximum velocity output value to the motors.
+ imaxVoltage       The maximum voltage output value to the motors.
 ================= ===================================================================
 
 create
@@ -57,14 +59,16 @@ encoders).
       ::
 
         static SkidSteerModel create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-                                     const double imaxOutput = 127)
+                                     double imaxVelocity = 127,
+                                     double imaxVoltage = 12000)
 
 ================= ===================================================================
 Parameters
 ================= ===================================================================
  ileftSideMotor    The left side motor (also used for controller input).
  irightSideMotor   The right side motor (also used for controller input).
- imaxOutput        The maximum output value sent to the motors.
+ imaxVelocity      The maximum velocity output value to the motors.
+ imaxVoltage       The maximum voltage output value to the motors.
 ================= ===================================================================
 
 create
@@ -80,7 +84,8 @@ motors are powered ``+127``, the robot should move forward in a straight line.
 
         static SkidSteerModel create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                                      ADIEncoder ileftEnc, ADIEncoder irightEnc,
-                                     const double imaxOutput = 127)
+                                     double imaxVelocity = 127,
+                                     double imaxVoltage = 12000)
 
 ================= ===================================================================
 Parameters
@@ -90,6 +95,8 @@ Parameters
  ileftEnc          The left side encoder.
  irightEnc         The right side encoder.
  imaxOutput        The maximum output value sent to the motors.
+ imaxVelocity      The maximum velocity output value to the motors.
+ imaxVoltage       The maximum voltage output value to the motors.
 ================= ===================================================================
 
 XDriveModel
@@ -110,7 +117,8 @@ integrated encoders).
       ::
 
         static XDriveModel create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-                                  const double imaxOutput = 127)
+                                  double imaxVelocity = 127,
+                                  double imaxVoltage = 12000)
 
 =================== ===================================================================
 Parameters
@@ -119,7 +127,8 @@ Parameters
  itopRightMotor      The top right motor (also used for controller input).
  ibottomRightMotor   The bottom right motor.
  ibottomLeftMotor    The bottom left motor.
- imaxOutput          The maximum output value sent to the motors.
+ imaxVelocity        The maximum velocity output value to the motors.
+ imaxVoltage         The maximum voltage output value to the motors.
 =================== ===================================================================
 
 create
@@ -138,7 +147,8 @@ integrated encoders).
 
         static XDriveModel create(Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
                                   ADIEncoder ileftEnc, ADIEncoder irightEnc,
-                                  const double imaxOutput = 127)
+                                  double imaxVelocity = 127,
+                                  double imaxVoltage = 12000)
 
 =================== ===================================================================
 Parameters
@@ -149,7 +159,8 @@ Parameters
  ibottomLeftMotor    The bottom left motor.
  ileftEnc            The left side encoder.
  irightEnc           The right side encoder.
- imaxOutput          The maximum output value sent to the motors.
+ imaxVelocity        The maximum velocity output value to the motors.
+ imaxVoltage         The maximum voltage output value to the motors.
 =================== ===================================================================
 
 ThreeEncoderSkidSteerModel
@@ -168,7 +179,8 @@ motors are powered ``+127``, the robot should move forward in a straight line.
 
         static ThreeEncoderSkidSteerModel create(Motor ileftSideMotor, Motor irightSideMotor,
                                                  ADIEncoder ileftEnc, ADIEncoder imiddleEnc, ADIEncoder irightEnc,
-                                                 const double imaxOutput = 127)
+                                                 double imaxVelocity = 127,
+                                                 double imaxVoltage = 12000)
 
 ================= ===================================================================
 Parameters
@@ -178,7 +190,8 @@ Parameters
  ileftEnc          The left side encoder.
  imiddleEnc        The middle encoder (mounted perpendicular to the left and right side encoders).
  irightEnc         The right side encoder.
- imaxOutput        The maximum output value sent to the motors.
+ imaxVelocity      The maximum velocity output value to the motors.
+ imaxVoltage       The maximum voltage output value to the motors.
 ================= ===================================================================
 
 create
@@ -194,7 +207,8 @@ motors are powered ``+127``, the robot should move forward in a straight line.
 
         static ThreeEncoderSkidSteerModel create(MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
                                                  ADIEncoder ileftEnc, ADIEncoder imiddleEnc, ADIEncoder irightEnc,
-                                                 const double imaxOutput = 127)
+                                                 double imaxVelocity = 127,
+                                                 double imaxVoltage = 12000)
 
 ================= ===================================================================
 Parameters
@@ -204,5 +218,6 @@ Parameters
  ileftEnc          The left side encoder.
  imiddleEnc        The middle encoder (mounted perpendicular to the left and right side encoders).
  irightEnc         The right side encoder.
- imaxOutput        The maximum output value sent to the motors.
+ imaxVelocity      The maximum velocity output value to the motors.
+ imaxVoltage       The maximum voltage output value to the motors.
 ================= ===================================================================

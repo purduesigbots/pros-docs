@@ -28,7 +28,8 @@ Constructor(s)
                                        std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                                        std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
                                        std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                                       double imaxOutput = 127)
+                                       double imaxVelocity = 127,
+                                       double imaxVoltage = 12000)
 
 =================   ===================================================================
  Parameters
@@ -38,7 +39,8 @@ Constructor(s)
  ileftEnc            The left side encoder.
  imiddleEnc          The middle encoder.
  irightEnc           The right side encoder.
- imaxOutput          The maximum output value to the motors.
+ imaxVelocity        The maximum velocity output value to the motors.
+ imaxVoltage         The maximum voltage output value to the motors.
 =================   ===================================================================
 
 Methods
