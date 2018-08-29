@@ -582,6 +582,8 @@ motor_get_faults
 
 Gets the faults experienced by the motor.
 
+Compare this bitfield to the bitmasks in `motor_fault_e_t`_.
+
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
@@ -622,6 +624,8 @@ motor_get_flags
 ---------------
 
 Gets the flags set by the motor's operation.
+
+Compare this bitfield to the bitmasks in `motor_flag_e_t`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -2166,6 +2170,35 @@ Indicates the units used by the motor's encoder.
     E_MOTOR_ENCODER_COUNTS = 2,
     E_MOTOR_ENCODER_INVALID = INT32_MAX
   } motor_encoder_units_e_t;
+
+----
+
+motor_fault_e_t
+---------------
+
+::
+
+  typedef enum motor_fault_e {
+  	E_MOTOR_FAULT_NO_FAULTS = 0x00,
+  	E_MOTOR_FAULT_MOTOR_OVER_TEMP = 0x01,  // Analogous to motor_is_over_temp()
+  	E_MOTOR_FAULT_DRIVER_FAULT = 0x02,     // Indicates a motor h-bridge fault
+  	E_MOTOR_FAULT_OVER_CURRENT = 0x04,     // Analogous to motor_is_over_current()
+  	E_MOTOR_FAULT_DRV_OVER_CURRENT = 0x08  // Indicates an h-bridge over current
+  } motor_fault_e_t;
+
+----
+
+motor_flag_e_t
+--------------
+
+::
+
+  typedef enum motor_flag_e {
+    E_MOTOR_FLAGS_NONE = 0x00,
+    E_MOTOR_FLAGS_BUSY = 0x01,           // Cannot currently communicate to the motor
+    E_MOTOR_FLAGS_ZERO_VELOCITY = 0x02,  // Analogous to motor_is_stopped()
+    E_MOTOR_FLAGS_ZERO_POSITION = 0x04   // Analogous to motor_get_zero_position_flag()
+  } motor_flag_e_t;
 
 ----
 
