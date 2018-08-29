@@ -17,7 +17,8 @@ https://msdn.microsoft.com/en-us/library/hh279674.aspx
 The above tutorial will give you the majority of the information you will need to use Smart Pointers.
 That said, it is worth noting some conventions with Smart Pointer use in OkapiLib.
 
-There are three types of Smart Pointers: ``unique_ptr``, ``shared_ptr``, and ``weak_ptr``.
+There are three types of Smart Pointers: ``unique_ptr``, ``shared_ptr``, and ``weak_ptr``. As of the
+time of writing, there are no uses of ``weak_ptr`` in OkapiLib.
 
 ``unique_ptr`` is used for parameters to an object that will take exclusive ownership of the object that is
 pointed to by the ``unique_ptr``. A good example of this is the ``IterativeController`` parameter
