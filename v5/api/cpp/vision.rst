@@ -18,10 +18,11 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        pros::Vision::Vision ( std::uint8_t port )
+        pros::Vision::Vision ( std::uint8_t port,
+                               vision_zero_e_t zero_point = E_VISION_ZERO_TOPLEFT )
 
    .. tab :: Example
-      .. highlight:: cpppp
+      .. highlight:: cpp
       ::
 
         #define VISION_PORT 1
@@ -31,11 +32,12 @@ Constructor(s)
           vision_sensor.clear_led();
         }
 
-============ ==============================
+============ =========================================================================
  Parameters
-============ ==============================
+============ =========================================================================
  port         The V5 port number from 1-21
-============ ==============================
+ zero_point   One of ``pros::vision_zero_e_t`` to set the (0,0) coordinate for the FOV
+============ =========================================================================
 
 ----
 
