@@ -253,11 +253,11 @@ Autonomous Routine
 ------------------
 
 To illustrate the closed-loop control method that
-`ChassisController <../../api/chassis/controller/chassis-controller.html>`_ has, let's make a
+`ChassisController <../../api/chassis/controller/abstract-chassis-controller.html>`_ has, let's make a
 simple autonomous routine to drive in a square.
 
 Writing an autonomous routine is much easier when distances and turns can be done
-with real life units, so let's configure the `ChassisController <../../api/chassis/controller/chassis-controller.html>`_
+with real life units, so let's configure the `ChassisController <../../api/chassis/controller/abstract-chassis-controller.html>`_
 with the clawbot chassis's dimensions. This will require a change to the drive's
 constructors; two additional parameters are needed. The first is the gearset of
 the motors on the chassis, in this example we will use the standard Green cartridges.
@@ -316,17 +316,17 @@ This is the final product from this tutorial.
 
            // Arm related objects
            ADIButton armLimitSwitch('H');
-           ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
-           ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
+           ControllerButton armUpButton(ControllerDigital::A);
+           ControllerButton armDownButton(ControllerDigital::B);
            Motor armMotor = 8_rmtr;
 
            // Button to run our sample autonomous routine
-           ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
+           ControllerButton runAutoButton(ControllerDigital::X);
 
            while (true) {
              // Tank drive with left and right sticks
-             drive.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                        controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
+             drive.tank(controller.getAnalog(ControllerAnalog::leftY),
+                        controller.getAnalog(ControllerAnalog::rightY));
 
              // Don't power the arm if it is all the way down
              if (armLimitSwitch.isPressed()) {
@@ -381,17 +381,17 @@ This is the final product from this tutorial.
 
            // Arm related objects
            ADIButton armLimitSwitch('H');
-           ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
-           ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
+           ControllerButton armUpButton(ControllerDigital::A);
+           ControllerButton armDownButton(ControllerDigital::B);
            Motor armMotor = 8_rmtr;
 
            // Button to run our sample autonomous routine
-           ControllerButton runAutoButton(E_CONTROLLER_DIGITAL_X);
+           ControllerButton runAutoButton(ControllerDigital::X);
 
            while (true) {
              // Arcade drive with the left stick
-             drive.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                          controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
+             drive.arcade(controller.getAnalog(ControllerAnalog::leftY),
+                          controller.getAnalog(ControllerAnalog::rightY));
 
              // Don't power the arm if it is all the way down
              if (armLimitSwitch.isPressed()) {
