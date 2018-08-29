@@ -190,7 +190,7 @@ run an action every time period without blocking.
       .. highlight:: cpp
       ::
 
-        virtual bool repeat(const QTime time) override
+        virtual bool repeat(QTime time) override
 
    .. tab :: Example
       .. highlight:: cpp
@@ -228,7 +228,7 @@ run an action every time period without blocking.
       .. highlight:: cpp
       ::
 
-        virtual bool repeat(const QFrequency time) override
+        virtual bool repeat(QFrequency time) override
 
    .. tab :: Example
       .. highlight:: cpp

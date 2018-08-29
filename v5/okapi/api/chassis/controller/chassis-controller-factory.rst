@@ -31,7 +31,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
 
         static ChassisControllerIntegrated create(
           Motor ileftSideMotor, Motor irightSideMotor,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -75,7 +75,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
 
         static ChassisControllerIntegrated create(
           MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+           AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -119,7 +119,7 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
 
         static ChassisControllerIntegrated create(
           Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -168,7 +168,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           Motor ileftSideMotor, Motor irightSideMotor,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -221,7 +221,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
           const IterativePosPIDController::Gains &iturnArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -276,7 +276,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -329,7 +329,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
           const IterativePosPIDController::Gains &iturnArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -385,7 +385,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           ADIEncoder ileftEnc, ADIEncoder irightEnc,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -443,7 +443,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
           const IterativePosPIDController::Gains &iturnArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -505,7 +505,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           std::shared_ptr<ContinuousRotarySensor> irightEnc,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
 ================= ===================================================================
@@ -543,7 +543,7 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
           const IterativePosPIDController::Gains &iturnArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
 ================= ===================================================================
@@ -578,7 +578,7 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
           Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -633,7 +633,7 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
           const IterativePosPIDController::Gains &iturnArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -691,7 +691,7 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
           ADIEncoder itopLeftEnc, ADIEncoder itopRightEnc,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -751,7 +751,7 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
           const IterativePosPIDController::Gains &iturnArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
    .. tab :: Example
@@ -817,7 +817,7 @@ This constructor assumes a x-drive layout. Puts the motors into degree units. Th
           std::shared_ptr<ContinuousRotarySensor> itopRightEnc,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
 =================== ===================================================================
@@ -859,7 +859,7 @@ This constructor assumes a x-drive layout. Puts the motors into degree units. Th
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
           const IterativePosPIDController::Gains &iturnArgs,
-          const AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
           const ChassisScales &iscales = ChassisScales({1, 1}))
 
 =================== ===================================================================

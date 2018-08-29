@@ -66,7 +66,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveAbsolute(const double iposition, const std::int32_t ivelocity) const override
+        virtual std::int32_t moveAbsolute(double iposition, std::int32_t ivelocity) const override
 
 =============== ===================================================================
  Parameters
@@ -97,7 +97,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveRelative(const double iposition, const std::int32_t ivelocity) const override
+        virtual std::int32_t moveRelative(double iposition, std::int32_t ivelocity) const override
 
 =============== ===================================================================
  Parameters
@@ -129,7 +129,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveVelocity(const std::int16_t ivelocity) const override
+        virtual std::int32_t moveVelocity(std::int16_t ivelocity) const override
 
 =============== ===================================================================
  Parameters
@@ -155,7 +155,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveVoltage(const std::int16_t ivoltage) const override
+        virtual std::int32_t moveVoltage(std::int16_t ivoltage) const override
 
 =============== ===================================================================
  Parameters
@@ -598,7 +598,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setBrakeMode(const AbstractMotor::brakeMode imode) override
+        virtual std::int32_t setBrakeMode(AbstractMotor::brakeMode imode) override
 
 =============== ===================================================================
  Parameters
@@ -624,7 +624,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setCurrentLimit(const std::int32_t ilimit) const override
+        virtual std::int32_t setCurrentLimit(std::int32_t ilimit) const override
 
 =============== ===================================================================
  Parameters
@@ -650,7 +650,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setEncoderUnits(const AbstractMotor::encoderUnits iunits) override
+        virtual std::int32_t setEncoderUnits(AbstractMotor::encoderUnits iunits) override
 
 =============== ===================================================================
  Parameters
@@ -676,7 +676,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setGearing(const AbstractMotor::gearset igearset) override
+        virtual std::int32_t setGearing(AbstractMotor::gearset igearset) override
 
 =============== ===================================================================
  Parameters
@@ -704,7 +704,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setReversed(const bool ireverse) const override
+        virtual std::int32_t setReversed(bool ireverse) const override
 
 =============== ===================================================================
  Parameters
@@ -730,7 +730,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setVoltageLimit(const std::int32_t ilimit) const override
+        virtual std::int32_t setVoltageLimit(std::int32_t ilimit) const override
 
 =============== ===================================================================
  Parameters
@@ -868,7 +868,7 @@ thread by the controller. The range of input values is expected to be [-1, 1].
       .. highlight:: cpp
       ::
 
-        virtual void controllerSet(const double ivalue) override
+        virtual void controllerSet(double ivalue) override
 
 =============== ===================================================================
 Parameters

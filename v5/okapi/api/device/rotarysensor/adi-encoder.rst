@@ -17,8 +17,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ADIEncoder(const std::uint8_t iportTop, const std::uint8_t iportBottom,
-                   const bool ireversed = false)
+        ADIEncoder(std::uint8_t iportTop, std::uint8_t iportBottom,
+                   bool ireversed = false)
 
 =============== ===================================================================
  Parameters

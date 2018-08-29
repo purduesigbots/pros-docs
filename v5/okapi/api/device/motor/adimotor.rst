@@ -18,7 +18,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        Motor(const uint8_t iport, const bool ireverse = false)
+        Motor(uint8_t iport, bool ireverse = false)
 
 =============== ===================================================================
  Parameters
@@ -40,7 +40,7 @@ Sets the voltage for the motor from ``-127`` to ``127``.
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveVoltage(const std::int32_t ivoltage) const override
+        virtual std::int32_t moveVoltage(std::int32_t ivoltage) const override
 
 =============== ===================================================================
  Parameters
@@ -63,7 +63,7 @@ thread by the controller. The range of input values is expected to be ``[-1, 1]`
       .. highlight:: cpp
       ::
 
-        virtual void controllerSet(const double ivalue) override
+        virtual void controllerSet(double ivalue) override
 
 =============== ===================================================================
 Parameters

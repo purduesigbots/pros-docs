@@ -17,7 +17,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        Potentiometer(const std::uint8_t iport)
+        Potentiometer(std::uint8_t iport)
 
 =============== ===================================================================
  Parameters

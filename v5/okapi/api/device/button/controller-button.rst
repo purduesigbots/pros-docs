@@ -19,7 +19,7 @@ This constructor uses the master controller (``ControllerId::master``).
       .. highlight:: cpp
       ::
 
-        ControllerButton(const ControllerDigital ibtn, const bool iinverted = false)
+        ControllerButton(ControllerDigital ibtn, bool iinverted = false)
 
 =============== ===================================================================
  Parameters
@@ -35,7 +35,7 @@ This constructor uses the master controller (``ControllerId::master``).
       .. highlight:: cpp
       ::
 
-        ControllerButton(const ControllerId icontroller, const ControllerDigital ibtn, const bool iinverted = false)
+        ControllerButton(ControllerId icontroller, ControllerDigital ibtn, bool iinverted = false)
 
 =============== ===================================================================
  Parameters

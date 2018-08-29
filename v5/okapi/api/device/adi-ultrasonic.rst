@@ -18,7 +18,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom)
+        ADIUltrasonic(std::uint8_t iportTop, std::uint8_t iportBottom)
 
 =============== ===================================================================
  Parameters
@@ -32,7 +32,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ADIUltrasonic(const std::uint8_t iportTop, const std::uint8_t iportBottom, std::unique_ptr<Filter> ifilter)
+        ADIUltrasonic(std::uint8_t iportTop, std::uint8_t iportBottom, std::unique_ptr<Filter> ifilter)
 
 =============== ===================================================================
  Parameters
