@@ -7,7 +7,25 @@
 okapi::AbstractTimer
 ====================
 
-A time- and timing-related utility class.
+A time- and timing-related utility class. Implements its methods in terms of ``millis()``.
+
+Constructor(s)
+--------------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        AbstractTimer(QTime ifirstCalled)
+
+============== ===============================================================
+ Parameters
+============== ===============================================================
+ ifirstCalled   The current time.
+============== ===============================================================
+
+----
 
 Methods
 -------
@@ -26,6 +44,8 @@ Returns the current time in units of ``QTime``.
 
 **Returns:** The current time in units of ``QTime``.
 
+----
+
 getDt
 ~~~~~
 
@@ -36,7 +56,23 @@ Returns the time passed in ms since the previous call of this function.
       .. highlight:: cpp
       ::
 
-        virtual QTime getDt() = 0
+        virtual QTime getDt()
+
+**Returns:** The time passed in ms since the previous call of this function.
+
+----
+
+readDt
+~~~~~~
+
+Returns the time passed in ms since the previous call of ``getDt()``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual QTime readDt() const
 
 **Returns:** The time passed in ms since the previous call of this function.
 
@@ -52,7 +88,7 @@ Returns the time the timer was first constructed.
       .. highlight:: cpp
       ::
 
-        virtual QTime getStartingTime() const = 0
+        virtual QTime getStartingTime() const
 
 **Returns:** The time the timer was first constructed.
 
@@ -68,7 +104,7 @@ Returns the time since the timer was first constructed.
       .. highlight:: cpp
       ::
 
-        virtual QTime getDtFromStart() const = 0
+        virtual QTime getDtFromStart() const
 
 **Returns:** The time since the timer was first constructed.
 
@@ -84,7 +120,7 @@ Place a time marker. Placing another marker will overwrite the previous one.
       .. highlight:: cpp
       ::
 
-        virtual void placeMark() = 0
+        virtual void placeMark()
 
 ----
 
@@ -98,7 +134,7 @@ Clears the marker.
       .. highlight:: cpp
       ::
 
-        virtual QTime clearMark() = 0
+        virtual QTime clearMark()
 
 **Returns:** The old marker.
 
@@ -115,7 +151,7 @@ call ``clearHardMark()`` and then place another.
       .. highlight:: cpp
       ::
 
-        virtual void placeHardMark() = 0
+        virtual void placeHardMark()
 
 ----
 
@@ -129,7 +165,7 @@ Clears the hard marker.
       .. highlight:: cpp
       ::
 
-        virtual QTime clearHardMark() = 0
+        virtual QTime clearHardMark()
 
 **Returns:** The old hard marker.
 
@@ -145,7 +181,7 @@ Returns the time since the time marker. Returns ``0_ms`` if there is no marker.
       .. highlight:: cpp
       ::
 
-        virtual QTime getDtFromMark() const = 0
+        virtual QTime getDtFromMark() const
 
 **Returns:** The time since the time marker.
 
@@ -161,7 +197,7 @@ Returns the time since the hard time marker. Returns ``0_ms`` if there is no har
       .. highlight:: cpp
       ::
 
-        virtual QTime getDtFromHardMark() const = 0
+        virtual QTime getDtFromHardMark() const
 
 **Returns:** The time since the hard time marker.
 
@@ -178,7 +214,7 @@ run an action every time period without blocking.
       .. highlight:: cpp
       ::
 
-        virtual bool repeat(QTime time) = 0
+        virtual bool repeat(QTime time)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -216,7 +252,7 @@ run an action every time period without blocking.
       .. highlight:: cpp
       ::
 
-        virtual bool repeat(QFrequency time) = 0
+        virtual bool repeat(QFrequency time)
 
    .. tab :: Example
       .. highlight:: cpp

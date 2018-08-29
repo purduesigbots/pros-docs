@@ -26,7 +26,7 @@ Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
       .. highlight:: cpp
       ::
 
-        static VelMath create(double iticksPerRev)
+        static VelMath create(double iticksPerRev, QTime isampleTime = 0_ms)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -39,6 +39,7 @@ Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
 Parameters
 ================= ===================================================================
  iticksPerRev      The number of ticks per revolution (or whatever units you are using).
+ isampleTime       The minimum time between velocity measurements.
 ================= ===================================================================
 
 create
@@ -53,7 +54,7 @@ Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
       .. highlight:: cpp
       ::
 
-        static VelMath create(double iticksPerRev, std::shared_ptr<Filter> ifilter)
+        static VelMath create(double iticksPerRev, std::shared_ptr<Filter> ifilter, QTime isampleTime = 0_ms)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -67,6 +68,7 @@ Parameters
 ================= ===================================================================
  iticksPerRev      The number of ticks per revolution (or whatever units you are using).
  ifilter           The filter used for filtering the calculated velocity.
+ isampleTime       The minimum time between velocity measurements.
 ================= ===================================================================
 
 createPtr
@@ -81,12 +83,13 @@ Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
       .. highlight:: cpp
       ::
 
-        static std::unique_ptr<VelMath> createPtr(double iticksPerRev)
+        static std::unique_ptr<VelMath> createPtr(double iticksPerRev, QTime isampleTime = 0_ms)
 
 ================= ===================================================================
 Parameters
 ================= ===================================================================
  iticksPerRev      The number of ticks per revolution (or whatever units you are using).
+ isampleTime       The minimum time between velocity measurements.
 ================= ===================================================================
 
 createPtr
@@ -101,13 +104,14 @@ Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
       .. highlight:: cpp
       ::
 
-        static std::unique_ptr<VelMath> createPtr(double iticksPerRev, std::shared_ptr<Filter> ifilter)
+        static std::unique_ptr<VelMath> createPtr(double iticksPerRev, std::shared_ptr<Filter> ifilter, QTime isampleTime = 0_ms)
 
 ================= ===================================================================
 Parameters
 ================= ===================================================================
  iticksPerRev      The number of ticks per revolution (or whatever units you are using).
  ifilter           The filter used for filtering the calculated velocity.
+ isampleTime       The minimum time between velocity measurements.
 ================= ===================================================================
 
 createPtr
