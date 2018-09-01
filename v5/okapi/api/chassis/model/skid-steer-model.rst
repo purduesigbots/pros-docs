@@ -94,7 +94,7 @@ Drives the robot forwards (using open-loop control).
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ispeed          The motor power.
+ ispeed          The motor power in the range ``[-1, 1]``.
 =============== ===================================================================
 
 ----
@@ -120,8 +120,8 @@ The algorithm is (approximately):
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- iySpeed         The speed on the y axis (forward).
- izRotation      The speed around the z axis (up).
+ iySpeed         The speed on the y axis (forward) in the range ``[-1, 1]``.
+ izRotation      The speed around the z axis (up) in the range ``[-1, 1]``.
 =============== ===================================================================
 
 ----
@@ -141,7 +141,7 @@ Turns the robot clockwise (using open-loop control).
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ispeed          The motor power.
+ ispeed          The motor power in the range ``[-1, 1]``.
 =============== ===================================================================
 
 ----
@@ -175,9 +175,9 @@ Drives the robot with a tank drive layout. Uses voltage mode.
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ileftSpeed      The left side speed.
- irightSpeed     The right side speed.
- ithreshold      The joystick deadband.
+ ileftSpeed      The left side speed in the range ``[-1, 1]``.
+ irightSpeed     The right side speed in the range ``[-1, 1]``.
+ ithreshold      The joystick deadband in the range ``[-1, 1]``.
 =============== ===================================================================
 
 ----
@@ -197,9 +197,9 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- iySpeed         The speed on the y axis (forward).
- izRotation      The speed around the z axis (up).
- ithreshold      The joystick deadband.
+ iySpeed         The speed on the y axis (forward) in the range ``[-1, 1]``.
+ izRotation      The speed around the z axis (up) in the range ``[-1, 1]``.
+ ithreshold      The joystick deadband in the range ``[-1, 1]``.
 =============== ===================================================================
 
 ----
@@ -219,7 +219,7 @@ Powers the left side motors.
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ispeed          The new speed.
+ ispeed          The new speed in the range ``[-1, 1]``.
 =============== ===================================================================
 
 ----
@@ -239,7 +239,7 @@ Powers the right side motors.
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ispeed          The new speed.
+ ispeed          The new speed in the range ``[-1, 1]``.
 =============== ===================================================================
 
 ----
