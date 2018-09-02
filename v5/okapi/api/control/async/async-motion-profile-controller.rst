@@ -33,9 +33,9 @@ Constructor(s)
  Parameters
 =============== ===================================================================
  itimeUtil       See ``TimeUtil`` docs.
- imaxVel         The maximum possible velocity.
- imaxAccel       The maximum possible acceleration.
- imaxJerk        The maxiumm possible jerk.
+ imaxVel         The maximum possible velocity in m/s.
+ imaxAccel       The maximum possible acceleration in m/s/s.
+ imaxJerk        The maxiumm possible jerk in m/s/s/s.
  imodel          The ``ChassisModel`` to control.
  iwidth          The chassis' wheelbase width.
 =============== ===================================================================

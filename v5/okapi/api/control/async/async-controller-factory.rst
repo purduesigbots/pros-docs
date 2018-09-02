@@ -514,9 +514,9 @@ provided ``ChassisController``.
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imaxVel         The maximum possible velocity.
- imaxAccel       The maximum possible acceleration.
- imaxJerk        The maximum possible jerk.
+ imaxVel         The maximum possible velocity in m/s.
+ imaxAccel       The maximum possible acceleration in m/s/s.
+ imaxJerk        The maxiumm possible jerk in m/s/s/s.
  ichassis        The chassis to control.
 =============== ===================================================================
 
@@ -538,9 +538,9 @@ A controller which generates and follows 2D motion profiles.
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imaxVel         The maximum possible velocity.
- imaxAccel       The maximum possible acceleration.
- imaxJerk        The maximum possible jerk.
+ imaxVel         The maximum possible velocity in m/s.
+ imaxAccel       The maximum possible acceleration in m/s/s.
+ imaxJerk        The maxiumm possible jerk in m/s/s/s.
  imodel          The ``ChassisModel`` to control.
  iwidth          The chassis' wheelbase width.
 =============== ===================================================================
