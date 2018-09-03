@@ -50,14 +50,15 @@ Generates a path which intersects the given waypoints and saves it internally wi
 Call executePath() with the same pathId to run it.
 
 If the waypoints form a path which is impossible to achieve, an instance of ``std::runtime_error``
-is thrown (and an error is logged) which describes the waypoints.
+is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no
+path is generated.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        void generatePath(std::initializer_list<Point> iwaypoints, std::string ipathId)
+        void generatePath(std::initializer_list<Point> iwaypoints, const std::string &ipathId)
 
 ============ ===============================================================
  Parameters
@@ -65,6 +66,42 @@ is thrown (and an error is logged) which describes the waypoints.
  iwaypoints   The waypoints to hit on the path.
  ipathId      A unique identifier to save the path with.
 ============ ===============================================================
+
+----
+
+removePath
+~~~~~~~~~~
+
+Removes a path and frees the memory it used.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void removePath(const std::string &ipathId)
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ ipathId      A unique identifier for the path, previously passed to ``generatePath()``.
+============ ===============================================================
+
+----
+
+getPaths
+~~~~~~~~
+
+Gets the identifiers of all paths saved in this ``AsyncMotionProfileController``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::vector<std::string> getPaths()
+
+**Returns:** The identifiers of all paths.
 
 ----
 
