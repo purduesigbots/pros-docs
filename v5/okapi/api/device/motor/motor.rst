@@ -83,6 +83,9 @@ Sets the target absolute position for the motor to move to.
 This movement is relative to the position of the motor when initialized or the position when it was
 most recently reset with ``set_zero_position()``.
 
+This function simply sets the target for the motor, it does not block program execution until the
+movement finishes.
+
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
 
@@ -113,6 +116,9 @@ Sets the relative target position for the motor to move to.
 This movement is relative to the current position of the motor. Providing ``10.0`` as the position
 parameter would result in the motor moving clockwise ``10`` units, no matter what the current
 position is.
+
+This function simply sets the target for the motor, it does not block program execution until the
+movement finishes.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -466,7 +472,8 @@ its absolute zero, or ``PROS_ERR`` if the operation failed, setting errno.
 getFaults
 ~~~~~~~~~
 
-Gets the faults experienced by the motor.
+Gets the faults experienced by the motor. Compare this bitfield to the bitmasks in
+``pros::motor_fault_e_t``.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -486,7 +493,8 @@ This function uses the following values of errno when an error state is reached:
 getFlags
 ~~~~~~~~
 
-Gets the flags set by the motor's operation.
+Gets the flags set by the motor's operation. Compare this bitfield to the bitmasks in
+``pros::motor_flag_e_t``.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.

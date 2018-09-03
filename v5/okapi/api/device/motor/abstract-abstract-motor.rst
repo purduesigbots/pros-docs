@@ -49,6 +49,9 @@ This movement is relative to the current position of the motor. Providing ``10.0
 parameter would result in the motor moving clockwise ``10`` units, no matter what the current
 position is.
 
+This function simply sets the target for the motor, it does not block program execution until the
+movement finishes.
+
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
 
@@ -80,6 +83,9 @@ This velocity corresponds to different actual speeds depending on the gearset us
 This results in a range of ``+-100`` for ``red``, ``+-200`` for
 ``green``, and ``+-600`` for ``blue``. The velocity is held with PID to
 ensure consistent speed, as opposed to setting the motor's voltage.
+
+This function simply sets the target for the motor, it does not block program execution until the
+movement finishes.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -401,7 +407,8 @@ its absolute zero, or ``PROS_ERR`` if the operation failed, setting errno.
 getFaults
 ~~~~~~~~~
 
-Gets the faults experienced by the motor.
+Gets the faults experienced by the motor. Compare this bitfield to the bitmasks in
+``pros::motor_fault_e_t``.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -421,7 +428,8 @@ This function uses the following values of errno when an error state is reached:
 getFlags
 ~~~~~~~~
 
-Gets the flags set by the motor's operation.
+Gets the flags set by the motor's operation. Compare this bitfield to the bitmasks in
+``pros::motor_flag_e_t``.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
