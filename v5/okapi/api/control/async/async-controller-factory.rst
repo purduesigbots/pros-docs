@@ -28,6 +28,13 @@ A position controller that uses the V5 motor's onboard control.
 
         static AsyncPosIntegratedController posIntegrated(Motor imotor)
 
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling a motor on port 1
+       auto controller = AsyncControllerFactory::posIntegrated(1);
+
 =============== ===================================================================
 Parameters
 =============== ===================================================================
@@ -47,6 +54,13 @@ A position controller that uses the V5 motor's onboard control.
       ::
 
         static AsyncPosIntegratedController posIntegrated(MotorGroup imotor)
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling motors geared together in ports 1 and 2
+       auto controller = AsyncControllerFactory::posIntegrated({1, -2});
 
 =============== ===================================================================
 Parameters
@@ -68,6 +82,13 @@ A velocity controller that uses the V5 motor's onboard control.
 
         static AsyncVelIntegratedController velIntegrated(Motor imotor)
 
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling a motor on port 1
+       auto controller = AsyncControllerFactory::velIntegrated(1);
+
 =============== ===================================================================
 Parameters
 =============== ===================================================================
@@ -87,6 +108,13 @@ A velocity controller that uses the V5 motor's onboard control.
       ::
 
         static AsyncVelIntegratedController velIntegrated(MotorGroup imotor)
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling motors geared together in ports 1 and 2
+       auto controller = AsyncControllerFactory::velIntegrated({1, -2});
 
 =============== ===================================================================
 Parameters
@@ -108,6 +136,13 @@ A position controller that uses the PID algorithm.
 
         static AsyncPosPIDController posPID(Motor imotor, double ikP, double ikI, double ikD, double ikBias = 0,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling a motor on port 1
+       auto controller = AsyncControllerFactory::posPID(1, 0.01, 0.0, 0.005);
 
 =================== ===================================================================
 Parameters
@@ -135,6 +170,13 @@ A position controller that uses the PID algorithm.
         static AsyncPosPIDController posPID(Motor imotor, ADIEncoder ienc,
                                             double ikP, double ikI, double ikD, double ikBias = 0,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling a motor on port 1 with an encoder in ADI ports A and B
+       auto controller = AsyncControllerFactory::posPID(1, ADIEncoder('A', 'B'), 0.01, 0.0, 0.005);
 
 =================== ===================================================================
 Parameters
@@ -164,6 +206,13 @@ A position controller that uses the PID algorithm.
                                             double ikP, double ikI, double ikD, double ikBias = 0,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling a motor on port 1 with a a potentiometer in ADI port A
+       auto controller = AsyncControllerFactory::posPID(1, Potentiometer('A'), 0.01, 0.0, 0.005);
+
 =================== ===================================================================
 Parameters
 =================== ===================================================================
@@ -190,6 +239,13 @@ A position controller that uses the PID algorithm.
 
         static AsyncPosPIDController posPID(MotorGroup imotor, double ikP, double ikI, double ikD, double ikBias = 0,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling motors geared together in ports 1 and 2
+       auto controller = AsyncControllerFactory::posPID({1, -2}, 0.01, 0.0, 0.005);
 
 =================== ===================================================================
 Parameters
@@ -218,6 +274,13 @@ A position controller that uses the PID algorithm.
                                             double ikP, double ikI, double ikD, double ikBias = 0,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling motors geared together in ports 1 and 2 with an encoder in ADI ports A and B
+       auto controller = AsyncControllerFactory::posPID({1, -2}, ADIEncoder('A', 'B'), 0.01, 0.0, 0.005);
+
 =================== ===================================================================
 Parameters
 =================== ===================================================================
@@ -245,6 +308,13 @@ A position controller that uses the PID algorithm.
         static AsyncPosPIDController posPID(MotorGroup imotor, Potentiometer ipot,
                                             double ikP, double ikI, double ikD, double ikBias = 0,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling motors geared together in ports 1 and 2 with a potentiometer in ADI port A
+       auto controller = AsyncControllerFactory::posPID({1, -2}, Potentiometer('A'), 0.01, 0.0, 0.005);
 
 =================== ===================================================================
 Parameters
@@ -303,6 +373,13 @@ A velocity controller that uses the PD algorithm.
                                             double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling a motor in port 1
+       auto controller = AsyncControllerFactory::velPID(1, 0.01, 0.005);
+
 =================== ===================================================================
 Parameters
 =================== ===================================================================
@@ -331,6 +408,13 @@ A velocity controller that uses the PD algorithm.
                                             double ikP, double ikD, double ikF = 0, double ikSF = 0,
                                             double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling a motor in port 1 with an encoder in ADI ports A and B
+       auto controller = AsyncControllerFactory::velPID(1, ADIEncoder('A', 'B'), 0.01, 0.005);
 
 =================== ===================================================================
 Parameters
@@ -362,6 +446,13 @@ A velocity controller that uses the PD algorithm.
                                             double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling a motor in port 1 with a potentiometer in ADI port A
+       auto controller = AsyncControllerFactory::velPID(1, Potentiometer('A'), 0.01, 0.005);
+
 =================== ===================================================================
 Parameters
 =================== ===================================================================
@@ -392,6 +483,13 @@ A velocity controller that uses the PD algorithm.
                                             double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling motors geared together in ports 1 and 2
+       auto controller = AsyncControllerFactory::velPID({1, -2}, 0.01, 0.005);
+
 =================== ===================================================================
 Parameters
 =================== ===================================================================
@@ -420,6 +518,13 @@ A velocity controller that uses the PD algorithm.
                                             double ikP, double ikD, double ikF = 0, double ikSF = 0,
                                             double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling motors geared together in ports 1 and 2 with an encoder in ADI ports A and B
+       auto controller = AsyncControllerFactory::velPID({1, -2}, ADIEncoder('A', 'B'), 0.01, 0.005);
 
 =================== ===================================================================
 Parameters
@@ -450,6 +555,13 @@ A velocity controller that uses the PD algorithm.
                                             double ikP, double ikD, double ikF = 0, double ikSF = 0,
                                             double iTPR = imev5TPR,
                                             std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling motors geared together in ports 1 and 2 with a potentiometer in ADI port A
+       auto controller = AsyncControllerFactory::velPID({1, -2}, Potentiometer('A'), 0.01, 0.005);
 
 =================== ===================================================================
 Parameters
@@ -510,6 +622,19 @@ provided ``ChassisController``.
 
         static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
                                                           const ChassisController &ichassis)
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       auto drive = ChassisControllerFactory::create(
+         {-1, -2},
+         {3, 4},
+         AbstractMotor::gearset::green,
+         {4_in, 11.5_in}
+       );
+
+       auto controller = AsyncControllerFactory::motionProfile(1.0, 2.0, 10.0, drive);
 
 =============== ===================================================================
  Parameters
