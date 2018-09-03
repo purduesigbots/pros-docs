@@ -26,8 +26,14 @@ A position controller that uses the PID algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncPosPIDController posPID(double ikP, double ikI, double ikD, double ikBias = 0,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+        static IterativePosPIDController posPID(double ikP, double ikI, double ikD, double ikBias = 0,
+                                                std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       auto controller = IterativeControllerFactory::posPID(0.01, 0.005);
 
 =================== ===================================================================
 Parameters
@@ -51,9 +57,15 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(double ikP, double ikD, double ikF = 0, double ikSF = 0,
-                                            const VelMathArgs &iparams = VelMathArgs(imev5TPR),
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+        static IterativeVelPIDController velPID(double ikP, double ikD, double ikF = 0, double ikSF = 0,
+                                                const VelMathArgs &iparams = VelMathArgs(imev5TPR),
+                                                std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       auto controller = IterativeControllerFactory::velPID(0.01, 0.005);
 
 =================== ===================================================================
 Parameters
@@ -78,9 +90,16 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController motorVelocity(Motor imotor,
-                                                   double ikP, double ikD, double ikF = 0, double ikSF = 0,
-                                                   const VelMathArgs &iparams = VelMathArgs(imev5TPR))
+        static IterativeMotorVelocityController motorVelocity(Motor imotor,
+                                                              double ikP, double ikD, double ikF = 0, double ikSF = 0,
+                                                              const VelMathArgs &iparams = VelMathArgs(imev5TPR))
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling a motor on port 1
+       auto controller = IterativeControllerFactory::motorVelocity(1, 0.01, 0.005);
 
 =============== ===================================================================
 Parameters
@@ -108,6 +127,13 @@ A velocity controller that uses the PD algorithm.
         static IterativeMotorVelocityController motorVelocity(MotorGroup imotor,
                                                               double ikP, double ikD, double ikF = 0, double ikSF = 0,
                                                               const VelMathArgs &iparams = VelMathArgs(imev5TPR))
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       // Controlling motors geared together on ports 1 and 2
+       auto controller = IterativeControllerFactory::motorVelocity({1, -2}, 0.01, 0.005);
 
 =============== ===================================================================
 Parameters
