@@ -6,23 +6,9 @@ Learning a new coding platform is often a rather daunting task. For this
 reason we prepared some small tutorials with examples on how to interact
 with OkapiLib on your VEX V5 system.
 
-The OkapiLib tutorials are split into three sections:
+The OkapiLib tutorials are split into two sections:
 
 .. contents:: :local:
-
-General Tutorials
-=================
-
-A general understanding of PROS and its API is an important foundation for using OkapiLib.
-If you're still new to writing software or PROS, the **PROS General
-Tutorials** are a great resource for topics like debugging and the PROS project
-structure.
-
-.. toctree::
-   :glob:
-   :titlesonly:
-
-   ../../tutorials/general/*
 
 Walkthrough Tutorials
 =====================
@@ -43,13 +29,7 @@ Topical Tutorials
 
 If you want more information about using a particular part of the OkapiLib API after
 reading through the `API reference <../api/index.html>`_ , the **Topical Tutorials**
-offer longer examples and more detail about using the OkapiLib API.
-
-Concepts
---------
-
-This section is focused on covering specific OkapiLib (and sometimes general software engineering)
-concepts in detail.
+offer longer examples and more detail about using the API.
 
 .. toctree::
    :glob:
