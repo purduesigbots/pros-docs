@@ -4,3 +4,4 @@ build/
 .buildignore
 .vscode
 myenv/
+pros-docs.tar.gz
