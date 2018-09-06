@@ -817,7 +817,7 @@ Analogous to `pros::ADIPort::set_config <../cpp/adi.html#set-config>`_.
  Parameters
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
- type         The `configuration <adi_port_config_e_t>`_ type for the port
+ type         The `configuration <./adi.html#adi-port-config-e-t>`_ type for the port
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
