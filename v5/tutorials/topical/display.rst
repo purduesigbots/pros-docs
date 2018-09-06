@@ -11,5 +11,4 @@ This includes the full LVGL feature set as described in their documentation: htt
 From there, you can follow along with any of the LVGL tutorials (such as the one linked above). There is no need
 to initialize LVGL, you can simply start creating objects.
 
-.. warning:: LVGL code should be executed in one of the main PROS tasks (``initialize()``, ``autonomous()``,
-             or ``opcontrol()``). Running LVGL code in a user-created task will fail to change the display.
+.. note:: Custom LVGL code cannot be displayed at the same time as the `LLEMU <./llemu.html>`_.
