@@ -12,3 +12,5 @@ From there, you can follow along with any of the LVGL tutorials (such as the one
 to initialize LVGL, you can simply start creating objects.
 
 .. note:: Custom LVGL code cannot be displayed at the same time as the `LLEMU <./llemu.html>`_.
+          As a result, you must remove the LLEMU code that is present in ``initialize.cpp`` by default in a 
+          new project.
