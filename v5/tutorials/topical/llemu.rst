@@ -128,3 +128,6 @@ is pressed.
            pros::lcd::initialize();
            pros::lcd::register_btn0_cb(on_center_button);
          }
+
+
+.. note:: Custom LVGL code cannot be displayed at the same time as LLEMU.
