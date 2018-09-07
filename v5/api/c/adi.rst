@@ -28,7 +28,7 @@ Do not use this function when the sensor value might be unstable
 (gyro rotation, accelerometer movement).
 
 .. note::
-   The ADI currently returns data at 50msintervals, despite the calibrate function's
+   The ADI currently returns data at 10ms intervals, in constrast to the calibrate function's
    1ms sample rate. This sample rate was kept for the sake of being similar to PROS
    2, and increasing the sample rate would not have a tangible difference in the
    function's performance.
