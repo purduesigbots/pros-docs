@@ -21,16 +21,6 @@ Constructor(s)
 
         ComposableFilter()
 
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          okapi::ComposableFilter filter;
-          filter.addFilter([] { return new okapi::MedianFilter<3>(); });  // First filter in the list
-          filter.addFilter([] { return new okapi::AverageFilter<5>(); }); // Second filter in the list
-        }
-
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
