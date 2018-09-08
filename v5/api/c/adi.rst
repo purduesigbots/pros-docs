@@ -28,7 +28,7 @@ Do not use this function when the sensor value might be unstable
 (gyro rotation, accelerometer movement).
 
 .. note::
-   The ADI currently returns data at 50msintervals, despite the calibrate function's
+   The ADI currently returns data at 10ms intervals, in constrast to the calibrate function's
    1ms sample rate. This sample rate was kept for the sake of being similar to PROS
    2, and increasing the sample rate would not have a tangible difference in the
    function's performance.
@@ -817,7 +817,7 @@ Analogous to `pros::ADIPort::set_config <../cpp/adi.html#set-config>`_.
  Parameters
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
- type         The `configuration <adi_port_config_e_t>`_ type for the port
+ type         The `configuration <./adi.html#adi-port-config-e-t>`_ type for the port
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
