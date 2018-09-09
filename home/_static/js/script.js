@@ -24,15 +24,32 @@ $(document).ready(function(){
 	   tag = $.getJSON('https://api.github.com/repos/purduesigbots/pros-cli3/releases/latest', function(data) {
 	   baseUrl = "https://github.com/purduesigbots/pros-cli3/releases/download/" + data.tag_name;
 	   anchor = $("#pros3-dl-link");
+	   var installer_64bit = baseUrl + "/pros-windows-" + data.tag_name + "-64bit.exe";
+	   var installer_32bit = baseUrl + "/pros-windows-" + data.tag_name + "-32bit.exe";
+	   var request;
+		var target_url;
+		if(window.XMLHttpRequest)
+			request = new XMLHttpRequest();
+		else
+			request = new ActiveXObject("Microsoft.XMLHTTP");
+		// test with 64 bit installer first
+		request.open('GET', installer_64bit, false);
+		request.send(); // there will be a 'pause' here until the response to come.
+		// the object request will be actually modified
+		if (request.status === 404) {
+			// If there aren't installers, just direct people to the releases page
+			installer_64bit = 'https://api.github.com/repos/purduesigbots/pros-cli3/releases';
+			installer_32bit = 'https://api.github.com/repos/purduesigbots/pros-cli3/releases';
+		}
 	   if(navigator.userAgent.indexOf("WOW64") != -1 || 
 		  navigator.userAgent.indexOf("Win64") != -1 ) {
 		   // 64 Bit Windows
-		   anchor.attr("href", baseUrl + "/pros-windows-3.1.0.0-64bit.exe");
+		   anchor.attr("href", installer_64bit);
 		   anchor.parent().parent().append("<div class=\"text-center\">For Windows. <a href=\"https://github.com/purduesigbots/pros-cli3/releases/latest\">Other Platforms</a></div>");
 	   }
 	   else if(navigator.userAgent.indexOf("Win32") != -1 ) {
 		   // 32 Bit Windows
-		   anchor.attr("href", baseUrl + "/pros-windows-3.1.0.0-32bit.exe");
+		   anchor.attr("href", installer_32bit);
 		   anchor.parent().parent().append("<div class=\"text-center\">For Windows. <a href=\"https://github.com/purduesigbots/pros-cli3/releases/latest\">Other Platforms</a></div>");
 	   }
    });

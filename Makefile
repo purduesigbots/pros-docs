@@ -1,6 +1,8 @@
 .PHONY: cortex home v5 all clean linkcheck
 
-all: home v5 cortex
+.default: home v5 cortex
+
+all: clean home v5 cortex
 
 cortex:
 	sphinx-build ./cortex/ ./build/cortex
