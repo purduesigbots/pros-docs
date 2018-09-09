@@ -1,6 +1,6 @@
-.PHONY: cortex home v5 all clean linkcheck
+.PHONY: cortex home v5 all clean linkcheck quick
 
-.default: home v5 cortex
+quick: home v5 cortex
 
 all: clean home v5 cortex
 
