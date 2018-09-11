@@ -257,8 +257,8 @@ controller_clear
 
 Clears all of the lines of the controller screen.
 
-.. note:: Controller text setting is currently in beta, so continuous, fast updates will
-          not work well.
+.. note:: Controller text setting is a slow process, so updates faster than 10ms when on
+          a wired connection or 50ms over Vexnet will not be applied to the controller.
 
 .. tabs ::
    .. tab :: Prototype
@@ -293,8 +293,8 @@ controller_clear_line
 
 Clears an individual line of the controller screen.
 
-.. note:: Controller text setting is currently in beta, so continuous, fast updates will
-          not work well.
+.. note:: Controller text setting is a slow process, so updates faster than 10ms when on
+          a wired connection or 50ms over Vexnet will not be applied to the controller.
 
 .. tabs ::
    .. tab :: Prototype
@@ -608,8 +608,8 @@ controller_print
 
 Sets text to the controller LCD screen.
 
-.. note:: Controller text setting is currently in beta, so continuous, fast updates will
-          not work well.
+.. note:: Controller text setting is a slow process, so updates faster than 10ms when on
+          a wired connection or 50ms over Vexnet will not be applied to the controller.
 
 .. tabs ::
    .. tab :: Prototype
@@ -659,8 +659,8 @@ controller_set_text
 
 Sets text to the controller LCD screen.
 
-.. note:: Controller text setting is currently in beta, so continuous, fast updates will
-          not work well.
+.. note:: Controller text setting is a slow process, so updates faster than 10ms when on
+          a wired connection or 50ms over Vexnet will not be applied to the controller.
 
 .. tabs ::
    .. tab :: Prototype
