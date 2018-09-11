@@ -17,8 +17,8 @@ You can read more about the factory pattern
 ChassisControllerIntegrated
 ---------------------------
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
@@ -61,8 +61,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
@@ -105,8 +105,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
 This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
@@ -152,8 +152,8 @@ Parameters
 ChassisControllerPID
 --------------------
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
@@ -204,8 +204,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
@@ -260,8 +260,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
@@ -312,8 +312,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
@@ -368,8 +368,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
@@ -425,8 +425,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
@@ -486,8 +486,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
@@ -523,8 +523,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
@@ -562,8 +562,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
@@ -616,8 +616,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
@@ -674,8 +674,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
@@ -733,8 +733,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
@@ -796,8 +796,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a x-drive layout. Puts the motors into degree units. Throws a
@@ -837,8 +837,8 @@ Parameters
 
 ----
 
-create
-~~~~~~
+create/createPtr
+~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
 This constructor assumes a x-drive layout. Puts the motors into degree units. Throws a
