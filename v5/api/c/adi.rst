@@ -760,7 +760,7 @@ Analogous to `pros::ADIPort::get_value <../cpp/adi.html#id18>`_.
       .. highlight:: c
       ::
 
-       int32_t adi_get_value (uint8_t port )
+       int32_t adi_get_value ( uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
