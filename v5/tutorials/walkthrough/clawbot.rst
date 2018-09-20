@@ -179,7 +179,7 @@ And we'll set the motors with the following function:
                             
 Before we get started with the tank drive control, it's important to note that in C++, smart devices have
 `constructors` that create the smart device object. Constructors are a standard C++ concept, and they're
-very important because a constructor is necessary to define a `Class` for objects like the motors and 
+very important because a constructor is necessary to define a `class` for objects like the motors and 
 controllers. 
 
 We'll be calling the constructors for the motors and controller at the beginning of ``opcontrol()``, 
