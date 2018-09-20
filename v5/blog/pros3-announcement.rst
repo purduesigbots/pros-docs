@@ -3,7 +3,7 @@ Announcing PROS 3
 =================
 
 .. post:: 27 Apr, 2018
-   :tags: blog
+   :tags: blog, kernel-release, cli-release
    :excerpt: 1
 
 
