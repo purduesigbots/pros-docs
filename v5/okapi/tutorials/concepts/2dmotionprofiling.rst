@@ -59,7 +59,7 @@ Each of the points contains the desired (x, y) coordinates and heading. The poin
 controller form a path from the first given point to the last, with the first point assumed to be
 the current position of the robot. The path will be generated
 assuming that all of the points are relative to the first, so if you pass in
-an x value of ``-4_ft`` for the first point, then passing an x value of ``0_ft`` for the second
+an x value of ``-1 * 4_ft`` for the first point, then passing an x value of ``0_ft`` for the second
 point will result in a forward movement of 4 feet.
 
 .. note:: This function computes the set of steps for the desired profile, which
