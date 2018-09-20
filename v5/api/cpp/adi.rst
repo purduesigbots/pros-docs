@@ -384,7 +384,7 @@ Analogous to `adi_digital_get_new_press <../c/adi.html#adi-digital-get-new-press
             if (sensor.get_new_press()) {
               // Toggle pneumatics or other state operations
             }
-            delay(50);
+            pros::delay(10);
           }
         }
 
@@ -423,7 +423,7 @@ Analogous to `adi_digital_read <../c/adi.html#adi-digital-read>`_.
           pros::ADIDigitalIn sensor (DIGITAL_SENSOR_PORT);
           while (true) {
             std::cout << "Sensor Value:" << sensor.get_value();
-            delay(50);
+            pros::delay(10);
           }
         }
 
@@ -462,7 +462,7 @@ This function uses the following values of ``errno`` when an error state is reac
           while (true) {
             state != state;
             sensor.set_value(state);
-            delay(50); // toggle the sensor value every 50ms
+            pros::delay(10); // toggle the sensor value every 50ms
           }
         }
 
@@ -510,7 +510,7 @@ Analogous to `adi_digital_write <../c/adi.html#adi-digital-write>`_.
           while (true) {
             state != state;
             sensor.set_value(state);
-            delay(50); // toggle the sensor value every 50ms
+            pros::delay(10); // toggle the sensor value every 50ms
           }
         }
 
@@ -601,7 +601,7 @@ Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
           pros::ADIEncoder sensor (PORT_TOP, PORT_BOTTOM, false);
           while (true) {
             std::cout << "Encoder Value: " << sensor.get_value();
-            delay(50);
+            pros::delay(10);
           }
         }
 
@@ -1033,7 +1033,7 @@ This function uses the following values of ``errno`` when an error state is reac
           while (true) {
             // Print the distance read by the ultrasonic
             std::cout << "Distance: " << sensor.get_value();
-            delay(50);
+            pros::delay(10);
           }
         }
 
@@ -1085,13 +1085,151 @@ Analogous to `adi_ultrasonic_get <../c/adi.html#adi-ultrasonic-get>`_.
           while (true) {
             // Print the distance read by the ultrasonic
             std::cout << "Distance: " << sensor.get_value();
-            delay(50);
+            pros::delay(10);
           }
         }
 
 **Returns:** The distance to the nearest object in centimeters.
 
 ----
+
+pros::ADIGyro 
+=============
+
+Constructor(s) 
+--------------
+
+Initializes a gyroscope on the given port. If the given port has not
+previously been configured as a gyro, then this function starts a 1 second
+calibration period.
+
+If calibration is required, it is highly recommended that this function be
+called from initialize when the robot is stationary.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
+Analogous to `adi_gyro_init <../c/adi.html#adi-gyro-init>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::ADIGyro::ADIGyro ( std::uint8_t port, 
+                                 double multiplier = 1 )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define GYRO_PORT 1
+
+        void opcontrol() {
+          pros::ADIGyro gyro (GYRO_PORT);
+          while (true) {
+            // Get the gyro heading
+            std::cout << "Distance: " << gyro.get_value();
+            pros::delay(10);
+          }
+        }
+
+============ =============================================================================================================
+ Parameters
+============ =============================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a gyro
+ multiplier   A scalar value that will be mutliplied by the gyro heading value
+============ =============================================================================================================
+
+Methods 
+-------
+
+get_value 
+~~~~~~~~~
+
+Gets the current gyro angle in tenths of a degree. Unless a multiplier is
+applied to the gyro, the return value will be a whole number representing
+the number of degrees of rotation times 10.
+
+There are 360 degrees in a circle, thus the gyro will return 3600 for one
+whole rotation.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
+Analogous to `adi_gyro_get <../c/adi.html#adi-gyro-get>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        double pros::ADIGyro::get_value ( ) const
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define GYRO_PORT 1
+
+        void opcontrol() {
+          pros::ADIGyro gyro (GYRO_PORT);
+          while (true) {
+            // Get the gyro heading
+            std::cout << "Distance: " << gyro.get_value();
+            pros::delay(10);
+          }
+        }
+
+**Returns:**  The gyro angle in tenths of a degree.
+
+----
+
+reset 
+-----
+
+Resets the gyro value to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
+Analogous to `adi_gyro_reset <../c/adi.html#adi-gyro-reset>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::ADIGyro::reset ( ) const
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define GYRO_PORT 1
+
+        void opcontrol() {
+          pros::ADIGyro gyro (GYRO_PORT);
+          std::uint32_t now = pros::millis();
+          while (true) {
+            // Get the gyro heading
+            std::cout << "Distance: " << gyro.get_value();
+
+            if (pros::millis() - now > 2000) {
+              // Reset the gyro every 2 seconds
+              gyro.reset();
+              now = pros::millis();
+            }
+
+            pros::delay(10);
+          }
+        }
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 Macros
 ======
@@ -1195,13 +1333,25 @@ object to store encoder data in PROS 2.
 
 	typedef int32_t adi_encoder_t;
 
+pros::adi_gyro_t
+----------------
+
+Reference type for an initialized gyro.
+
+This merely contains the port number for the gyro, unlike its use as an
+object to store gyro data in PROS 2.
+
+::
+
+  typedef int32_t adi_gyro_t;
+
 pros::adi_ultrasonic_t
 ----------------------
 
 Reference type for an initialized ultrasonic.
 
 This merely contains the port number for the ultrasonic, unlike its use as an
-object to store encoder data in PROS 2.
+object to store ultrasonic data in PROS 2.
 
 ::
 

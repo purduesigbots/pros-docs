@@ -2158,10 +2158,10 @@ Indicates the current 'brake mode' of the motor.
 ================================== ===========================================================
  Value
 ================================== ===========================================================
- E_MOTOR_BRAKE_COAST          Motor coasts when stopped, traditional behavior
- E_MOTOR_BRAKE_BRAKE          Motor brakes when stopped 
- E_MOTOR_BRAKE_HOLD           Motor actively holds position when stopped 
- E_MOTOR_BRAKE_INVALID        Invalid brake mode
+ E_MOTOR_BRAKE_COAST                Motor coasts when stopped, traditional behavior
+ E_MOTOR_BRAKE_BRAKE                Motor brakes when stopped 
+ E_MOTOR_BRAKE_HOLD                 Motor actively holds position when stopped 
+ E_MOTOR_BRAKE_INVALID              Invalid brake mode
 ================================== ===========================================================
 
 ----
@@ -2186,10 +2186,10 @@ Indicates the units used by the motor's encoder.
 ================================== =======================================================================
  Value
 ================================== =======================================================================
- E_MOTOR_ENCODER_DEGREES      Position is recorded as angle in degrees as a floating point number 
- E_MOTOR_ENCODER_ROTATIONS    Position is recorded as angle in rotations as a floating point number 
- E_MOTOR_ENCODER_COUNTS       Position is recorded as raw encoder ticks as a whole number 
- E_MOTOR_BRAKE_INVALID        Invalid motor encoder units
+ E_MOTOR_ENCODER_DEGREES            Position is recorded as angle in degrees as a floating point number 
+ E_MOTOR_ENCODER_ROTATIONS          Position is recorded as angle in rotations as a floating point number 
+ E_MOTOR_ENCODER_COUNTS             Position is recorded as raw encoder ticks as a whole number 
+ E_MOTOR_BRAKE_INVALID              Invalid motor encoder units
 ================================== =======================================================================
 
 ----
@@ -2210,10 +2210,10 @@ motor_fault_e_t
 ================================== ===========================================================
  Value
 ================================== ===========================================================
- E_MOTOR_FAULT_NO_FAULTS      No faults
- E_MOTOR_BRAKE_BRAKE          Motor brakes when stopped 
- E_MOTOR_BRAKE_HOLD           Motor actively holds position when stopped 
- E_MOTOR_BRAKE_INVALID        Invalid brake mode
+ E_MOTOR_FAULT_NO_FAULTS            No faults
+ E_MOTOR_BRAKE_BRAKE                Motor brakes when stopped 
+ E_MOTOR_BRAKE_HOLD                 Motor actively holds position when stopped 
+ E_MOTOR_BRAKE_INVALID              Invalid brake mode
 ================================== ===========================================================
 
 ----
@@ -2233,10 +2233,10 @@ motor_flag_e_t
 ================================== ===========================================================
  Value
 ================================== ===========================================================
- E_MOTOR_FLAGS_NONE           There are no flags raised
- E_MOTOR_FLAGS_BUSY           Cannot currently communicate to the motor 
- E_MOTOR_FLAGS_ZERO_VELOCITY  Analogous to pros::Motor::is_stopped() 
- E_MOTOR_FLAGS_ZERO_POSITION  Analogous to pros::Motor::get_zero_position_flag()
+ E_MOTOR_FLAGS_NONE                 There are no flags raised
+ E_MOTOR_FLAGS_BUSY                 Cannot currently communicate to the motor 
+ E_MOTOR_FLAGS_ZERO_VELOCITY        Analogous to motor_is_stopped() 
+ E_MOTOR_FLAGS_ZERO_POSITION        Analogous to motor_get_zero_position_flag()
 ================================== ===========================================================
 
 ----
@@ -2258,10 +2258,10 @@ Indicates the internal gearing used by the motor.
 ================================== ===========================================================
  Value
 ================================== ===========================================================
- E_MOTOR_GEARSET_36           36:1, 100 RPM, Red gear set
- E_MOTOR_GEARSET_18           18:1, 200 RPM, Green gear set
- E_MOTOR_GEARSET_06           6:1, 600 RPM, Blue Gear Set
- E_MOTOR_GEARSET_INVALID      Error return code
+ E_MOTOR_GEARSET_36                 36:1, 100 RPM, Red gear set
+ E_MOTOR_GEARSET_18                 18:1, 200 RPM, Green gear set
+ E_MOTOR_GEARSET_06                 6:1, 600 RPM, Blue Gear Set
+ E_MOTOR_GEARSET_INVALID            Error return code
 ================================== ===========================================================
 
 Typedefs

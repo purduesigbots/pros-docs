@@ -254,7 +254,7 @@ wheels.
 
    .. group-tab :: C++
       .. highlight:: cpp
-      .. code-block:: cpppp
+      .. code-block:: cpp
          :caption: opcontrol.cpp 
          :linenos:
 
