@@ -4,13 +4,13 @@ Programming the Clawbot
 
 .. contents:: :local:
 
-Objective:
+Objective
 ==========
 
 This tutorial will guide you through basic programming of the VEX
 Clawbot.
 
-Intended Audience:
+Intended Audience
 ==================
 
 This tutorial is intended for developers with some programming
@@ -21,7 +21,7 @@ series <http://www.studytonight.com/c/overview-of-c.php>`__; you may also
 benefit from the "Pointers, Arrays and Strings" sections as well
 (although they aren't as pertinent).
 
-Goals:
+Goals
 ======
 
 At the end of this tutorial you will have:
