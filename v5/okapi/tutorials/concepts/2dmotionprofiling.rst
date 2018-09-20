@@ -27,9 +27,8 @@ know about:
 - Very long movements (typically movements much longer than a VEX field) can potentially never reach maximum speed
     - `<https://github.com/JacisNonsense/Pathfinder/issues/43>`_
 
-First, let's initialize a Chassis Controller (or Chassis Model) to pass into the
-constructor for the profile Async controller. Following that, you can create a
-profile Async Controller.
+First, let's initialize a Chassis Controller to pass into the factory method for the
+motion profile Async controller. Following that, you can create a profile Async Controller.
 
 .. note:: The "linear" properties of the chassis given to ``AsyncControllerFactory::motionProfile``
           are for its forward/backwards movements, not the maximum properties for turning or other
