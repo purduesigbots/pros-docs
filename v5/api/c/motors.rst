@@ -2155,6 +2155,15 @@ Indicates the current 'brake mode' of the motor.
     E_MOTOR_BRAKE_INVALID = INT32_MAX
   } motor_brake_mode_e_t;
 
+================================== ===========================================================
+ Value
+================================== ===========================================================
+ E_MOTOR_BRAKE_COAST                Motor coasts when stopped, traditional behavior
+ E_MOTOR_BRAKE_BRAKE                Motor brakes when stopped 
+ E_MOTOR_BRAKE_HOLD                 Motor actively holds position when stopped 
+ E_MOTOR_BRAKE_INVALID              Invalid brake mode
+================================== ===========================================================
+
 ----
 
 motor_encoder_units_e_t
@@ -2174,6 +2183,15 @@ Indicates the units used by the motor's encoder.
     E_MOTOR_ENCODER_INVALID = INT32_MAX
   } motor_encoder_units_e_t;
 
+================================== =======================================================================
+ Value
+================================== =======================================================================
+ E_MOTOR_ENCODER_DEGREES            Position is recorded as angle in degrees as a floating point number 
+ E_MOTOR_ENCODER_ROTATIONS          Position is recorded as angle in rotations as a floating point number 
+ E_MOTOR_ENCODER_COUNTS             Position is recorded as raw encoder ticks as a whole number 
+ E_MOTOR_BRAKE_INVALID              Invalid motor encoder units
+================================== =======================================================================
+
 ----
 
 motor_fault_e_t
@@ -2189,6 +2207,15 @@ motor_fault_e_t
   	E_MOTOR_FAULT_DRV_OVER_CURRENT = 0x08  // Indicates an h-bridge over current
   } motor_fault_e_t;
 
+================================== ===========================================================
+ Value
+================================== ===========================================================
+ E_MOTOR_FAULT_NO_FAULTS            No faults
+ E_MOTOR_BRAKE_BRAKE                Motor brakes when stopped 
+ E_MOTOR_BRAKE_HOLD                 Motor actively holds position when stopped 
+ E_MOTOR_BRAKE_INVALID              Invalid brake mode
+================================== ===========================================================
+
 ----
 
 motor_flag_e_t
@@ -2202,6 +2229,15 @@ motor_flag_e_t
     E_MOTOR_FLAGS_ZERO_VELOCITY = 0x02,  // Analogous to motor_is_stopped()
     E_MOTOR_FLAGS_ZERO_POSITION = 0x04   // Analogous to motor_get_zero_position_flag()
   } motor_flag_e_t;
+
+================================== ===========================================================
+ Value
+================================== ===========================================================
+ E_MOTOR_FLAGS_NONE                 There are no flags raised
+ E_MOTOR_FLAGS_BUSY                 Cannot currently communicate to the motor 
+ E_MOTOR_FLAGS_ZERO_VELOCITY        Analogous to motor_is_stopped() 
+ E_MOTOR_FLAGS_ZERO_POSITION        Analogous to motor_get_zero_position_flag()
+================================== ===========================================================
 
 ----
 
@@ -2218,6 +2254,15 @@ Indicates the internal gearing used by the motor.
   	E_MOTOR_GEARSET_06 = 2, // 6:1, 600 RPM, Blue gear set
   	E_MOTOR_GEARSET_INVALID = INT32_MAX
   } motor_gearset_e_t;
+
+================================== ===========================================================
+ Value
+================================== ===========================================================
+ E_MOTOR_GEARSET_36                 36:1, 100 RPM, Red gear set
+ E_MOTOR_GEARSET_18                 18:1, 200 RPM, Green gear set
+ E_MOTOR_GEARSET_06                 6:1, 600 RPM, Blue Gear Set
+ E_MOTOR_GEARSET_INVALID            Error return code
+================================== ===========================================================
 
 Typedefs
 ========

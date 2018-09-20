@@ -735,5 +735,157 @@ Analogous to `mutex_take <../c/rtos.html#mutex-take>`_.
 is returned, then ``errno`` is set with a hint about why the the mutex
 couldn't be taken.
 
+----
+
+Macros
+======
+
+CURRENT_TASK
+------------
+
+Refers to the current task. To be used for checking attributes of the task in which
+this macro is called.
+
+**Value:** ``((task_t)NULL)``
+
+TASK_NAME_MAX_LEN
+-----------------
+
+The maximum number of characters allowed in a task's name.
+
+**Value:** ``32``
+
+TASK_PRIORITY_DEFAULT
+---------------------
+
+The default task priority, which should be used for most tasks.
+
+Default tasks such as autonomous() inherit this priority.
+
+**Value:** ``8``
+
+TASK_PRIORITY_MAX
+-----------------
+
+The highest priority that can be assigned to a task. Beware of deadlock.
+
+**Value:** ``16``
+
+TASK_PRIORITY_MIN
+-----------------
+
+The lowest priority that can be assigned to a task.
+
+This may cause severe performance problems and is generally not
+recommended.
+
+**Value:** ``1``
+
+TASK_STACK_DEPTH_DEFAULT
+------------------------
+
+The recommended stack size for a new task. This stack size is used for
+default tasks such as autonomous(). This equates to 32,768 bytes, or 128 times
+the default stack size for a task in PROS 2.
+
+**Value:** ``0x2000``
+
+TASK_STACK_DEPTH_MIN
+--------------------
+
+The minimal stack size for a task. This equates to 2048 bytes, or 8 times the
+default stack size for a task in PROS 2.
+
+**Value:** ``0x200``
+
+TIMEOUT_MAX
+-----------
+
+The maximum timeout value that can be given to, for instance, a `mutex grab <rtos.html#mutex-take>`_.
+
+**Value:** ``((uint32_t)0xffffffffUL)``
+
+Enumerated Values
+=================
+
+pros::task_state_e_t
+--------------------
+
+::
+
+   typedef enum {
+     E_TASK_STATE_RUNNING = 0,
+     E_TASK_STATE_READY,
+     E_TASK_STATE_BLOCKED,
+     E_TASK_STATE_SUSPENDED,
+     E_TASK_STATE_DELETED,
+     E_TASK_STATE_INVALID
+   } task_state_e_t;
+
+============================== ==========================================================================
+ Value
+============================== ==========================================================================
+ pros::E_TASK_STATE_RUNNING     The task is actively executing.
+ pros::E_TASK_STATE_READY       The task exists and is available to run, but is not currently running.
+ pros::E_TASK_STATE_BLOCKED     The task is delayed or blocked by a mutex, semaphore, or I/O operation.
+ pros::E_TASK_STATE_SUSPENDED   The task is supended using `task_suspend`_.
+ pros::E_TASK_STATE_DELETED     The task has been deleted using `task_delete`_.
+ pros::E_TASK_STATE_INVALID     The task handle does not point to a current or past task.
+============================== ==========================================================================
+
+pros::task_notify_t
+-------------------
+
+::
+
+  typedef enum {
+    E_NOTIFY_ACTION_NONE,
+    E_NOTIFY_ACTION_BITS,
+    E_NOTIFY_ACTION_INCR,
+    E_NOTIFY_ACTION_OWRITE,
+    E_NOTIFY_ACTION_NO_OWRITE
+  } notify_action_e_t;
+
+================================= =============
+ Value
+================================= =============
+ pros::E_NOTIFY_ACTION_NONE        TO BE ADDED
+ pros::E_NOTIFY_ACTION_BITS
+ pros::E_NOTIFY_ACTION_INCR
+ pros::E_NOTIFY_ACTION_OWRITE
+ pros::E_NOTIFY_ACTION_NO_OWRITE
+================================= =============
+
+
+Typedefs
+========
+
+pros::task_t
+------------
+
+Points to a task handle. Used for referencing a task.
+
+::
+
+  typedef void* task_t;
+
+pros::task_fn_t
+---------------
+
+Points to the function associated with a task.
+
+::
+
+  typedef void (*task_fn_t)(void*);
+
+pros::mutex_t
+-------------
+
+A `mutex <../../tutorials/topical/multitasking.html#mutexes>`_.
+
+::
+
+  typedef void* mutex_t;
+
 .. _notify_action_e_t: ../c/rtos.html#notify-action-e-t
 .. _task_state_e_t: ../c/rtos.html#task-state-e-t

@@ -433,3 +433,44 @@ Analogous to `lcd_shutdown <../c/llemu.html#lcd-shutdown>`_.
 
 **Returns:** ``true`` if the operation was successful, or ``false`` otherwise, setting
 ``errno`` values as specified above.
+
+Macros
+======
+
+LCD_BTN_CENTER
+--------------
+
+Use LCD_BTN_CENTER as a bitmask for determining if the center LCD button was pressed from `lcd_read_buttons`_.
+
+**Value:** ``2``
+
+LCD_BTN_LEFT
+------------
+
+Use LCD_BTN_LEFT as a bitmask for determining if the left LCD button was pressed from `lcd_read_buttons`_.
+
+**Value:** ``4``
+
+LCD_BTN_RIGHT
+-------------
+
+Use LCD_BTN_RIGHT as a bitmask for determining if the right LCD button was pressed from `lcd_read_buttons`_.
+
+**Value:** ``1``
+
+Enumerated Values
+=================
+
+Typedefs
+========
+
+pros::lcd_btn_cb_fn_t
+---------------------
+
+::
+
+  typedef void (*lcd_btn_cb_fn_t)(void);
+
+A callback function for a button on the LCD.
+
+This will be called each time its corresponding button is pressed.

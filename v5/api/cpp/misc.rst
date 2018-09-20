@@ -706,5 +706,246 @@ Sets text to the controller LCD screen.
 
 **Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
 
+---
+
+Macros
+======
+
+ANALOG_LEFT_X
+-------------
+
+The horizontal axis of the controller's left analog stick.
+
+**Value:** ``E_CONTROLLER_ANALOG_LEFT_X``
+
+ANALOG_LEFT_Y
+-------------
+
+The vertical axis of the controller's left analog stick.
+
+**Value:** ``E_CONTROLLER_ANALOG_LEFT_Y``
+
+ANALOG_RIGHT_X
+--------------
+
+The horizontal axis of the controller's right analog stick.
+
+**Value:** ``E_CONTROLLER_ANALOG_RIGHT_X``
+
+ANALOG_RIGHT_Y
+--------------
+
+The vertical axis of the controller's right analog stick.
+
+**Value:** ``E_CONTROLLER_ANALOG_RIGHT_Y``
+
+COMPETITION_AUTONOMOUS
+----------------------
+
+Use COMPETITION_AUTONOMOUS as a bitmask for checking whether the brain is in autonomous mode
+with `get_status`_.
+
+**Value:** ``(1 << 0)``
+
+COMPETITION_DISABLED
+--------------------
+
+Use COMPETITION_DISABLED as a bitmask for checking whether the brain is disabled with `get_status`_.
+
+**Value:** ``(1 << 1)``
+
+COMPETITION_CONNECTED
+---------------------
+
+Use COMPETITION_CONNECTED as a bitmask for checking whether the brain is connected to competition control with `get_status`_.
+
+**Value:** ``(1 << 2)``
+
+CONTROLLER_MASTER
+-----------------
+
+The master controller.
+
+**Value:** ``E_CONTROLLER_MASTER``
+
+CONTROLLER_PARTNER
+------------------
+
+The partner controller.
+
+**Value:** ``E_CONTROLLER_PARTNER``
+
+DIGITAL_L1
+----------
+
+The first trigger on the left side of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_L1``
+
+DIGITAL_L2
+----------
+
+The second trigger on the left side of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_L2``
+
+DIGITAL_R1
+----------
+
+The first trigger on the right side of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_R1``
+
+DIGITAL_R2
+----------
+
+The second trigger on the right side of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_R2``
+
+DIGITAL_UP
+----------
+
+The up arrow on the left arrow pad of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_UP``
+
+DIGITAL_DOWN
+------------
+
+The down arrow on the left arrow pad of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_DOWN``
+
+DIGITAL_LEFT
+------------
+
+The left arrow on the left arrow pad of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_LEFT``
+
+DIGITAL_RIGHT
+-------------
+
+The right arrow on the left arrow pad of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_RIGHT``
+
+DIGITAL_X
+---------
+
+The 'X' button on the right button pad of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_X``
+
+DIGITAL_B
+---------
+
+The 'B' button on the right button pad of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_B``
+
+DIGITAL_Y
+---------
+
+The 'Y' button on the right button pad of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_Y``
+
+DIGITAL_A
+---------
+
+The 'A' button on the right button pad of the controller.
+
+**Value:** ``E_CONTROLLER_DIGITAL_A``
+
+NUM_V5_PORTS
+------------
+
+The number of RJ11 ports available on the V5 brain.
+
+**Value:** ``(22)``
+
+Enumerated Values
+=================
+
+pros::controller_analog_e_t
+---------------------------
+
+::
+
+  typedef enum {
+    E_CONTROLLER_ANALOG_LEFT_X = 0,
+    E_CONTROLLER_ANALOG_LEFT_Y,
+    E_CONTROLLER_ANALOG_RIGHT_X,
+    E_CONTROLLER_ANALOG_RIGHT_Y
+  } controller_analog_e_t;
+
+=================================== =============================================================
+ Value
+=================================== =============================================================
+ pros::E_CONTROLLER_ANALOG_LEFT_X    The horizontal axis of the controller's left analog stick.
+ pros::E_CONTROLLER_ANALOG_LEFT_Y    The vertical axis of the controller's left analog stick.
+ pros::E_CONTROLLER_ANALOG_RIGHT_X   The horizontal axis of the controller's right analog stick.
+ pros::E_CONTROLLER_ANALOG_RIGHT_Y   The vertical axis of the controller's right analog stick.
+=================================== =============================================================
+
+pros::controller_digital_e_t
+----------------------------
+
+::
+
+  typedef enum {
+    E_CONTROLLER_DIGITAL_L1 = 6,
+    E_CONTROLLER_DIGITAL_L2,
+    E_CONTROLLER_DIGITAL_R1,
+    E_CONTROLLER_DIGITAL_R2,
+    E_CONTROLLER_DIGITAL_UP,
+    E_CONTROLLER_DIGITAL_DOWN,
+    E_CONTROLLER_DIGITAL_LEFT,
+    E_CONTROLLER_DIGITAL_RIGHT,
+    E_CONTROLLER_DIGITAL_X,
+    E_CONTROLLER_DIGITAL_B,
+    E_CONTROLLER_DIGITAL_Y,
+    E_CONTROLLER_DIGITAL_A
+  } controller_digital_e_t;
+
+================================== ===========================================================
+ Value
+================================== ===========================================================
+ pros::E_CONTROLLER_DIGITAL_L1      The first trigger on the left side of the controller.
+ pros::E_CONTROLLER_DIGITAL_L2      The second trigger on the left side of the controller.
+ pros::E_CONTROLLER_DIGITAL_R1      The first trigger on the right side of the controller.
+ pros::E_CONTROLLER_DIGITAL_R2      The second trigger on the right side of the controller.
+ pros::E_CONTROLLER_DIGITAL_UP      The up arrow on the left arrow pad of the controller.
+ pros::E_CONTROLLER_DIGITAL_DOWN    The down arrow on the left arrow pad of the controller.
+ pros::E_CONTROLLER_DIGITAL_LEFT    The left arrow on the left arrow pad of the controller.
+ pros::E_CONTROLLER_DIGITAL_RIGHT   The right arrow on the left arrow pad of the controller.
+ pros::E_CONTROLLER_DIGITAL_X       The 'X' button on the right button pad of the controller.
+ pros::E_CONTROLLER_DIGITAL_B       The 'B' button on the right button pad of the controller.
+ pros::E_CONTROLLER_DIGITAL_Y       The 'Y' button on the right button pad of the controller.
+ pros::E_CONTROLLER_DIGITAL_A       The 'A' button on the right button pad of the controller.
+================================== ===========================================================
+
+pros::controller_id_e_t
+-----------------------
+
+::
+
+  typedef enum {
+    E_CONTROLLER_MASTER = 0,
+    E_CONTROLLER_PARTNER
+  } controller_id_e_t;
+
+============================ =========================
+ Value
+============================ =========================
+ pros::E_CONTROLLER_MASTER    The master controller.
+ pros::E_CONTROLLER_PARTNER   The partner controller.
+============================ =========================
+
+Typedefs
+========
+
 .. _controller_analog_e_t: ../c/misc.html#controller-analog-e-t
 .. _controller_id_e_t: ../c/misc.html#controller-id-e-t
