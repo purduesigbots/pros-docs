@@ -1091,6 +1091,122 @@ Analogous to `adi_ultrasonic_get <../c/adi.html#adi-ultrasonic-get>`_.
 
 **Returns:** The distance to the nearest object in centimeters.
 
+----
+
+Macros
+======
+
+HIGH
+----
+
+Used to specify a logic HIGH state to output.
+
+In reality, using any non-zero expression or "true" will work to set a pin to HIGH.
+
+**Value:** 1
+
+LOW
+---
+
+Used to specify a logic LOW state to output.
+
+In reality, using a zero expression or "false" will work to set a pin to LOW.
+
+**Value:** 0
+
+NUM_ADI_PORTS
+-------------
+
+The number of ADI ports available on the V5 Brain (from 1-8, 'a'-'h', 'A'-'H').
+
+**Value:** 8
+
+Enumerated Values
+=================
+
+pros::adi_port_config_e_t
+-------------------------
+
+::
+
+	typedef enum adi_port_config_e {
+		E_ADI_ANALOG_IN = 0,
+		E_ADI_ANALOG_OUT,
+		E_ADI_DIGITAL_IN,
+		E_ADI_DIGITAL_OUT,
+
+		E_ADI_SMART_BUTTON,
+		E_ADI_SMART_POT,
+
+		E_ADI_LEGACY_BUTTON,
+		E_ADI_LEGACY_POT,
+		E_ADI_LEGACY_LINE_SENSOR,
+		E_ADI_LEGACY_LIGHT_SENSOR,
+		E_ADI_LEGACY_GYRO,
+		E_ADI_LEGACY_ACCELEROMETER,
+
+		E_ADI_LEGACY_SERVO,
+		E_ADI_LEGACY_PWM,
+
+		E_ADI_LEGACY_ENCODER,
+		E_ADI_LEGACY_ULTRASONIC,
+
+		E_ADI_TYPE_UNDEFINED = 255,
+		E_ADI_ERR = PROS_ERR
+	} adi_port_config_e_t;
+
+================================== ================================================================
+ Value
+================================== ================================================================
+ pros::E_ADI_ANALOG_IN               Configures the ADI port as an analog input
+ pros::E_ADI_ANALOG_OUT              Configures the ADI port as an analog output
+ pros::E_ADI_DIGITAL_IN              Configures the ADI port as a digital input
+ pros::E_ADI_DIGITAL_OUT             Configures the ADI port as a digital output
+ pros::E_ADI_SMART_BUTTON            Configures the ADI port for use with a Smart Button Sensor
+ pros::E_ADI_SMART_POT               Configures the ADI port for use with a Smart Pot Sensor
+ pros::E_ADI_LEGACY_BUTTON           Configures the ADI port for use with a Cortex-Era Button
+ pros::E_ADI_LEGACY_POT              Configures the ADI port for use with a Cortex-Era Pot
+ pros::E_ADI_LEGACY_LINE_SENSOR      Configures the ADI port for use with a Cortex-Era Line Sensor
+ pros::E_ADI_LEGACY_LIGHT_SENSOR     Configures the ADI port for use with a Cortex-Era Light Sensor
+ pros::E_ADI_LEGACY_GYRO             Configures the ADI port for use with a Cortex-Era Gyro
+ pros::E_ADI_LEGACY_ACCELEROMETER    Configures the ADI port for use with a Cortex-Era accelerometer
+ pros::E_ADI_LEGACY_SERVO            Configures the ADI port for use with a Cortex-Era servo motor
+ pros::E_ADI_LEGACY_PWM              Configures the ADI port for use with a Cortex-Era motor
+ pros::E_ADI_LEGACY_ENCODER          Configures the ADI port (and the one immediately above it)
+                                     for use with a Cortex-Era Encoder
+ pros::E_ADI_LEGACY_ULTRASONIC       Configures the ADI port (and the one immediately above it)
+                                     for use with a Cortex-Era Ultrasonic
+ pros::E_ADI_TYPE_UNDEFINED          The default value for an uninitialized ADI port
+ pros::E_ADI_ERR                     Error return value for ADI port configuration
+================================== ================================================================
+
+Typedefs
+========
+
+pros::adi_encoder_t
+-------------------
+
+Reference type for an initialized encoder.
+
+This merely contains the port number for the encoder, unlike its use as an
+object to store encoder data in PROS 2.
+
+::
+
+	typedef int32_t adi_encoder_t;
+
+pros::adi_ultrasonic_t
+----------------------
+
+Reference type for an initialized ultrasonic.
+
+This merely contains the port number for the ultrasonic, unlike its use as an
+object to store encoder data in PROS 2.
+
+::
+
+	typedef int32_t adi_ultrasonic_t;
+
 .. _HIGH: ../c/adi.html#HIGH
 .. _LOW: ../c/adi.html#LOW
 .. _adi_port_config_e_t: ../c/adi.html#adi-port-config-e-t

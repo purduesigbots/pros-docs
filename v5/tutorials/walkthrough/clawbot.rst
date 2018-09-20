@@ -202,8 +202,8 @@ and then we'll run the tank drive code.
            pros::Controller master (CONTROLLER_MASTER);
 
            while (true) {
-             left_wheels.move(master.get_analog(CONTROLLER_ANALOG_LEFT_Y));
-             right_wheels.move(master.get_analog(CONTROLLER_ANALOG_RIGHT_Y));
+             left_wheels.move(master.get_analog(ANALOG_LEFT_Y));
+             right_wheels.move(master.get_analog(ANALOG_RIGHT_Y));
 
              pros::delay(2);
            }
@@ -220,8 +220,8 @@ and then we'll run the tank drive code.
 
          void opcontrol() {
            while (true) {
-             int left = controller_get_analog(CONTROLLER_MASTER, CONTROLLER_ANALOG_LEFT_Y);
-             int right = controller_get_analog(CONTROLLER_MASTER, CONTROLLER_ANALOG_RIGHT_Y);
+             int left = controller_get_analog(CONTROLLER_MASTER, ANALOG_LEFT_Y);
+             int right = controller_get_analog(CONTROLLER_MASTER, ANALOG_RIGHT_Y);
              right *= -1; // This will reverse the right motor
              motor_move(LEFT_WHEELS_PORT, left);
              motor_move(RIGHT_WHEELS_PORT, right);
@@ -267,8 +267,8 @@ wheels.
            pros::Controller master (CONTROLLER_MASTER);
 
            while (true) {
-             int power = master.get_analog(CONTROLLER_ANALOG_LEFT_Y);
-             int turn = master.get_analog(CONTROLLER_ANALOG_RIGHT_X);
+             int power = master.get_analog(ANALOG_LEFT_Y);
+             int turn = master.get_analog(ANALOG_RIGHT_X);
              int left = power + turn;
              int right = power - turn;
              left_wheels.move(left);
@@ -289,8 +289,8 @@ wheels.
 
          void opcontrol() {
            while (true) {
-             int power = controller_get_analog(CONTROLLER_MASTER, CONTROLLER_ANALOG_LEFT_Y);
-             int turn = controller_get_analog(CONTROLLER_MASTER, CONTROLLER_ANALOG_RIGHT_X);
+             int power = controller_get_analog(CONTROLLER_MASTER, ANALOG_LEFT_Y);
+             int turn = controller_get_analog(CONTROLLER_MASTER, ANALOG_RIGHT_X);
              int left = power + turn;
              int right = power - turn;
              right *= -1; // This reverses the right motor
@@ -364,21 +364,21 @@ is pressed on the controller, and move the lift in that direction if so.
          void opcontrol() {
            pros::Motor left_wheels (LEFT_WHEELS_PORT);
            pros::Motor right_wheels (RIGHT_WHEELS_PORT, true);
-           pros::Motor arm (ARM_PORT, GEARSET_36); // The arm motor has the 100rpm (red) gearset
+           pros::Motor arm (ARM_PORT, MOTOR_GEARSET_36); // The arm motor has the 100rpm (red) gearset
            pros::Controller master (CONTROLLER_MASTER);
 
            while (true) {
-             int power = master.get_analog(CONTROLLER_ANALOG_LEFT_Y);
-             int turn = master.get_analog(CONTROLLER_ANALOG_RIGHT_X);
+             int power = master.get_analog(ANALOG_LEFT_Y);
+             int turn = master.get_analog(ANALOG_RIGHT_X);
              int left = power + turn;
              int right = power - turn;
              left_wheels.move(left);
              right_wheels.move(right);
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (master.get_digital(DIGITAL_R1)) {
                arm.move_velocity(100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2)) {
+             else if (master.get_digital(DIGITAL_R2)) {
                arm.move_velocity(-100);
              }
              else {
@@ -400,20 +400,20 @@ is pressed on the controller, and move the lift in that direction if so.
          #define ARM_PORT 8
 
          void opcontrol() {
-           motor_set_gearing(ARM_PORT, GEARSET_36); // Establish that there is a 100rpm (red) gearset in the arm motor
+           motor_set_gearing(ARM_PORT, MOTOR_GEARSET_36); // Establish that there is a 100rpm (red) gearset in the arm motor
            while (true) {
-             int power = controller_get_analog(CONTROLLER_MASTER, CONTROLLER_ANALOG_LEFT_Y);
-             int turn = controller_get_analog(CONTROLLER_MASTER, CONTROLLER_ANALOG_RIGHT_X);
+             int power = controller_get_analog(CONTROLLER_MASTER, ANALOG_LEFT_Y);
+             int turn = controller_get_analog(CONTROLLER_MASTER, ANALOG_RIGHT_X);
              int left = power + turn;
              int right = power - turn;
              right *= -1; // This reverses the right motor
              motor_move(LEFT_WHEELS_PORT, left);
              motor_move(RIGHT_WHEELS_PORT, right);
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (master.get_digital(DIGITAL_R1)) {
                motor_move_velocity(ARM_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2)) {
+             else if (master.get_digital(DIGITAL_R2)) {
                motor_move_velocity(ARM_PORT, -100);
              }
              else {
@@ -450,27 +450,27 @@ We will control the claw in the same manner as the lift, by toggling its movemen
            pros::Controller master (CONTROLLER_MASTER);
 
            while (true) {
-             int power = master.get_analog(CONTROLLER_ANALOG_LEFT_Y);
-             int turn = master.get_analog(CONTROLLER_ANALOG_RIGHT_X);
+             int power = master.get_analog(ANALOG_LEFT_Y);
+             int turn = master.get_analog(ANALOG_RIGHT_X);
              int left = power + turn;
              int right = power - turn;
              left_wheels.move(left);
              right_wheels.move(right);
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (master.get_digital(DIGITAL_R1)) {
                arm.move_velocity(100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2)) {
+             else if (master.get_digital(DIGITAL_R2)) {
                arm.move_velocity(-100);
              }
              else {
                arm.move_velocity(0);
              }
 
-             if (master.get_digital(CONTROLLER_DIGITAL_L1)) {
+             if (master.get_digital(DIGITAL_L1)) {
                claw.move_velocity(100);
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_L2)) {
+             else if (master.get_digital(DIGITAL_L2)) {
                claw.move_velocity(-100);
              }
              else {
@@ -493,31 +493,31 @@ We will control the claw in the same manner as the lift, by toggling its movemen
          #define CLAW_PORT 3
 
          void opcontrol() {
-           motor_set_gearing(ARM_PORT, GEARSET_36); // Establish that there is a 100rpm (red) gearset in the arm motor
-           motor_set_gearing(CLAW_PORT, GEARSET_36);
+           motor_set_gearing(ARM_PORT, MOTOR_GEARSET_36); // Establish that there is a 100rpm (red) gearset in the arm motor
+           motor_set_gearing(CLAW_PORT, MOTOR_GEARSET_36);
            while (true) {
-             int power = controller_get_analog(CONTROLLER_MASTER, CONTROLLER_ANALOG_LEFT_Y);
-             int turn = controller_get_analog(CONTROLLER_MASTER, CONTROLLER_ANALOG_RIGHT_X);
+             int power = controller_get_analog(CONTROLLER_MASTER, ANALOG_LEFT_Y);
+             int turn = controller_get_analog(CONTROLLER_MASTER, ANALOG_RIGHT_X);
              int left = power + turn;
              int right = power - turn;
              right *= -1; // This reverses the right motor
              motor_move(LEFT_WHEELS_PORT, left);
              motor_move(RIGHT_WHEELS_PORT, right);
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (master.get_digital(DIGITAL_R1)) {
                motor_move_velocity(ARM_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2)) {
+             else if (master.get_digital(DIGITAL_R2)) {
                motor_move_velocity(ARM_PORT, -100);
              }
              else {
                motor_move_velocity(ARM_PORT, 0);
              }
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (master.get_digital(DIGITAL_R1)) {
                motor_move_velocity(CLAW_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2)) {
+             else if (master.get_digital(DIGITAL_R2)) {
                motor_move_velocity(CLAW_PORT, -100);
              }
              else {
@@ -572,8 +572,8 @@ And here is the updated code:
          void opcontrol() {
            pros::Motor left_wheels (LEFT_WHEELS_PORT);
            pros::Motor right_wheels (RIGHT_WHEELS_PORT, true);
-           pros::Motor arm (ARM_PORT, GEARSET_36); // The arm motor has the 100rpm (red) gearset
-           pros::Motor claw (CLAW_PORT, GEARSET_36);
+           pros::Motor arm (ARM_PORT, MOTOR_GEARSET_36); // The arm motor has the 100rpm (red) gearset
+           pros::Motor claw (CLAW_PORT, MOTOR_GEARSET_36);
 
            pros::ADIDigitalIn left_bumper (LEFT_BUMPER_PORT);
            pros::ADIDigitalIn right_bumper (RIGHT_BUMPER_PORT);
@@ -581,8 +581,8 @@ And here is the updated code:
            pros::Controller master (CONTROLLER_MASTER);
 
            while (true) {
-             int power = master.get_analog(CONTROLLER_ANALOG_LEFT_Y);
-             int turn = master.get_analog(CONTROLLER_ANALOG_RIGHT_X);
+             int power = master.get_analog(ANALOG_LEFT_Y);
+             int turn = master.get_analog(ANALOG_RIGHT_X);
              int left = power + turn;
              int right = power - turn;
              
@@ -598,20 +598,20 @@ And here is the updated code:
              left_wheels.move(left);
              right_wheels.move(right);
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (master.get_digital(DIGITAL_R1)) {
                arm.move_velocity(100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2)) {
+             else if (master.get_digital(DIGITAL_R2)) {
                arm.move_velocity(-100);
              }
              else {
                arm.move_velocity(0);
              }
 
-             if (master.get_digital(CONTROLLER_DIGITAL_L1)) {
+             if (master.get_digital(DIGITAL_L1)) {
                claw.move_velocity(100);
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_L2)) {
+             else if (master.get_digital(DIGITAL_L2)) {
                claw.move_velocity(-100);
              }
              else {
@@ -637,14 +637,14 @@ And here is the updated code:
          #define RIGHT_BUMPER_PORT 'b'
 
          void opcontrol() {
-           motor_set_gearing(ARM_PORT, GEARSET_36); // Establish that there is a 100rpm (red) gearset in the arm motor
-           motor_set_gearing(CLAW_PORT, GEARSET_36);
+           motor_set_gearing(ARM_PORT, MOTOR_GEARSET_36); // Establish that there is a 100rpm (red) gearset in the arm motor
+           motor_set_gearing(CLAW_PORT, MOTOR_GEARSET_36);
 
            adi_port_set_config(LEFT_BUMPER_PORT, ADI_DIGITAL_IN);
            adi_port_set_config(RIGHT_BUMPER_PORT, ADI_DIGITAL_IN);
            while (true) {
-             int power = controller_get_analog(CONTROLLER_MASTER, CONTROLLER_ANALOG_LEFT_Y);
-             int turn = controller_get_analog(CONTROLLER_MASTER, CONTROLLER_ANALOG_RIGHT_X);
+             int power = controller_get_analog(CONTROLLER_MASTER, ANALOG_LEFT_Y);
+             int turn = controller_get_analog(CONTROLLER_MASTER, ANALOG_RIGHT_X);
              int left = power + turn;
              int right = power - turn;
              
@@ -661,20 +661,20 @@ And here is the updated code:
              motor_move(LEFT_WHEELS_PORT, left);
              motor_move(RIGHT_WHEELS_PORT, right);
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (master.get_digital(DIGITAL_R1)) {
                motor_move_velocity(ARM_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2)) {
+             else if (master.get_digital(DIGITAL_R2)) {
                motor_move_velocity(ARM_PORT, -100);
              }
              else {
                motor_move_velocity(ARM_PORT, 0);
              }
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (master.get_digital(DIGITAL_R1)) {
                motor_move_velocity(CLAW_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2)) {
+             else if (master.get_digital(DIGITAL_R2)) {
                motor_move_velocity(CLAW_PORT, -100);
              }
              else {
@@ -708,8 +708,8 @@ we will prevent the lift from being driven down further.
          void opcontrol() {
            pros::Motor left_wheels (LEFT_WHEELS_PORT);
            pros::Motor right_wheels (RIGHT_WHEELS_PORT, true);
-           pros::Motor arm (ARM_PORT, GEARSET_36); // The arm motor has the 100rpm (red) gearset
-           pros::Motor claw (CLAW_PORT, GEARSET_36);
+           pros::Motor arm (ARM_PORT, MOTOR_GEARSET_36); // The arm motor has the 100rpm (red) gearset
+           pros::Motor claw (CLAW_PORT, MOTOR_GEARSET_36);
 
            pros::ADIDigitalIn left_bumper (LEFT_BUMPER_PORT);
            pros::ADIDigitalIn right_bumper (RIGHT_BUMPER_PORT);
@@ -718,11 +718,11 @@ we will prevent the lift from being driven down further.
            pros::Controller master (CONTROLLER_MASTER);
 
            while (true) {
-             int power = master.get_analog(CONTROLLER_ANALOG_LEFT_Y);
-             int turn = master.get_analog(CONTROLLER_ANALOG_RIGHT_X);
+             int power = master.get_analog(ANALOG_LEFT_Y);
+             int turn = master.get_analog(ANALOG_RIGHT_X);
              int left = power + turn;
              int right = power - turn;
-             
+
              if (left_bumper.get_value() || right_bumper.get_value()) {
                // One of the bump switches is currently pressed
                if (left < 0) {
@@ -735,20 +735,20 @@ we will prevent the lift from being driven down further.
              left_wheels.move(left);
              right_wheels.move(right);
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (master.get_digital(DIGITAL_R1)) {
                arm.move_velocity(100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2) && !arm_limit.get_value()) {
+             else if (master.get_digital(DIGITAL_R2) && !arm_limit.get_value()) {
                arm.move_velocity(-100);
              }
              else {
                arm.move_velocity(0);
              }
 
-             if (master.get_digital(CONTROLLER_DIGITAL_L1)) {
+             if (master.get_digital(DIGITAL_L1)) {
                claw.move_velocity(100);
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_L2)) {
+             else if (master.get_digital(DIGITAL_L2)) {
                claw.move_velocity(-100);
              }
              else {

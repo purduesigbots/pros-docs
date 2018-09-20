@@ -554,3 +554,110 @@ reached:
 ============ ===============================
 
 **Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
+
+----
+
+Macros
+======
+
+None.
+
+Data Structures
+===============
+
+pros::vision_signature_s_t
+--------------------------
+
+This structure contains the parameters used by the Vision Sensor
+to detect objects.
+
+::
+
+  typedef struct __attribute__((__packed__)) vision_signature {
+    uint8_t id;
+    uint8_t _pad[3];
+    float range;
+    int32_t u_min;
+    int32_t u_max;
+    int32_t u_mean;
+    int32_t v_min;
+    int32_t v_max;
+    int32_t v_mean;
+    uint32_t rgb;
+    uint32_t type;
+  } vision_signature_s_t;
+
+pros::vision_object_s_t
+-----------------------
+
+This structure contains a descriptor of an object detected
+by the Vision Sensor
+
+::
+
+  typedef struct __attribute__((__packed__)) vision_object {
+    // Object signature
+    uint16_t signature;
+    // Object type, e.g. normal, color code, or line detection
+    vision_object_type_e_t type;
+    // left boundary coordinate of the object
+    uint16_t left_coord;
+    // top boundary coordinate of the object
+    uint16_t top_coord;
+    // width of the object
+    uint16_t width;
+    // height of the object
+    uint16_t height;
+    // Angle of a color code object in 0.1 degree units (e.g. 10 -> 1 degree, 155 -> 15.5 degrees)
+    uint16_t angle;
+
+    // coordinates of the middle of the object (computed from the values above)
+    uint16_t x_middle_coord;
+    uint16_t y_middle_coord;
+  } vision_object_s_t;
+
+================ ==========================================================================
+ Value
+================ ==========================================================================
+ signature        Object signature
+ type             `Object type <vision.html#vision-object-e-t>`_,
+                  e.g. normal, color code, or line detection
+ left_coord       left boundary coordinate of the object
+ top_coord        top boundary coordinate of the object
+ width            width of the object
+ height           height of the object
+ angle            angle of a color code object in 0.1 degree units
+                  (e.g. 10 -> 1 degree, 155 -> 15.5 degrees)
+ x_middle_coord   coordinates of the middle of the object (computed from the values above)
+ y_middle_coord   coordinates of the middle of the object (computed from the values above)
+================ ==========================================================================
+
+Enumerated Values
+=================
+
+pros::vision_object_type_e_t
+----------------------------
+
+This enumeration defines the different types of objects
+that can be detected by the Vision Sensor
+
+::
+
+  typedef enum vision_object_type {
+    E_VISION_OBJECT_NORMAL = 0,
+    E_VISION_OBJECT_COLOR_CODE = 1,
+    E_VISION_OBJECT_LINE = 2
+  } vision_object_type_e_t;
+
+================================== ====================================================================================================
+ Value
+================================== ====================================================================================================
+ pros::E_VISION_OBJECT_NORMAL       Default behavior for the vision sensor 
+ pros::E_VISION_OBJECT_COLOR_CODE   Object returned is a `color code <http://www.cmucam.org/projects/cmucam5/wiki/Using_Color_Codes>`_ 
+ pros::E_VISION_OBJECT_LINE         Object returned is a line type.
+================================== ====================================================================================================
+
+Typedefs
+========
+
+None.
