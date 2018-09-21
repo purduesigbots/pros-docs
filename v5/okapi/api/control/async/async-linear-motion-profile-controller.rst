@@ -161,6 +161,22 @@ Gets the last set target, or the default target if none was set.
 
 ----
 
+getTarget
+~~~~~~~~~
+
+Gets the last set target, or the default target if none was set.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::string getTarget() const
+
+**Returns:** The last target.
+
+----
+
 waitUntilSettled
 ~~~~~~~~~~~~~~~~
 
@@ -201,9 +217,8 @@ until the controller has settled. Does not save the path which was generated.
 getError
 ~~~~~~~~
 
-Returns the last error of the controller. This implementation always returns zero since the robot
-is assumed to perfectly follow the path. Subclasses can override this to be more accurate using
-odometry information.
+Returns the last error of the controller. Returns zero if there is no path currently
+being followed.
 
 .. tabs ::
    .. tab :: Prototype
