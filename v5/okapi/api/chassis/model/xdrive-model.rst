@@ -115,21 +115,21 @@ Drives the robot in an arc (using open-loop control).
 The algorithm is (approximately):
 ::
 
-  leftPower = ySpeed + zRotation
-  rightPower = ySpeed - zRotation
+  leftPower = forwardSpeed + yaw
+  rightPower = forwardSpeed - yaw
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        void driveVector(double iySpeed, double izRotation) const override
+        void driveVector(double iforwardSpeed, double iyaw) const override
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- iySpeed         The speed on the y axis (forward) in the range ``[-1, 1]``.
- izRotation      The speed around the z axis (up) in the range ``[-1, 1]``.
+ iforwardSpeed   The speed in the forward direction in the range ``[-1, 1]``.
+ iyaw            The speed around the vertical axis in the range ``[-1, 1]``.
 =============== ===================================================================
 
 ----
@@ -200,13 +200,13 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        void arcade(double iySpeed, double izRotation, double ithreshold = 0) const override
+        void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) const override
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- iySpeed         The speed on the y axis (forward) in the range ``[-1, 1]``.
- izRotation      The speed around the z axis (up) in the range ``[-1, 1]``.
+ iforwardSpeed   The speed in the forward direction in the range ``[-1, 1]``.
+ iyaw            The speed around the vertical axis in the range ``[-1, 1]``.
  ithreshold      The joystick deadband in the range ``[-1, 1]``.
 =============== ===================================================================
 
@@ -222,14 +222,14 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        virtual void xArcade(double ixSpeed, double iySpeed, double izRotation, double ithreshold = 0) const
+        virtual void xArcade(double ixSpeed, double iforwardSpeed, double iyaw, double ithreshold = 0) const
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ixSpeed         The speed on the x axis (right) in the range ``[-1, 1]``.
- iySpeed         The speed on the y axis (forward) in the range ``[-1, 1]``.
- izRotation      The speed around the z axis (up in the range ``[-1, 1]``).
+ ixSpeed         The speed to the right in the range ``[-1, 1]``.
+ iforwardSpeed   The speed in the forward direction in the range ``[-1, 1]``.
+ iyaw            The speed around the vertical axis in the range ``[-1, 1]``.
  ithreshold      The joystick deadband in the range ``[-1, 1]``.
 =============== ===================================================================
 
