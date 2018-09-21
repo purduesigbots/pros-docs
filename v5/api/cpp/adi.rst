@@ -384,7 +384,7 @@ Analogous to `adi_digital_get_new_press <../c/adi.html#adi-digital-get-new-press
             if (sensor.get_new_press()) {
               // Toggle pneumatics or other state operations
             }
-            delay(50);
+            pros::delay(10);
           }
         }
 
@@ -423,7 +423,7 @@ Analogous to `adi_digital_read <../c/adi.html#adi-digital-read>`_.
           pros::ADIDigitalIn sensor (DIGITAL_SENSOR_PORT);
           while (true) {
             std::cout << "Sensor Value:" << sensor.get_value();
-            delay(50);
+            pros::delay(10);
           }
         }
 
@@ -462,7 +462,7 @@ This function uses the following values of ``errno`` when an error state is reac
           while (true) {
             state != state;
             sensor.set_value(state);
-            delay(50); // toggle the sensor value every 50ms
+            pros::delay(10); // toggle the sensor value every 50ms
           }
         }
 
@@ -510,7 +510,7 @@ Analogous to `adi_digital_write <../c/adi.html#adi-digital-write>`_.
           while (true) {
             state != state;
             sensor.set_value(state);
-            delay(50); // toggle the sensor value every 50ms
+            pros::delay(10); // toggle the sensor value every 50ms
           }
         }
 
@@ -601,7 +601,7 @@ Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
           pros::ADIEncoder sensor (PORT_TOP, PORT_BOTTOM, false);
           while (true) {
             std::cout << "Encoder Value: " << sensor.get_value();
-            delay(50);
+            pros::delay(10);
           }
         }
 
@@ -1033,7 +1033,7 @@ This function uses the following values of ``errno`` when an error state is reac
           while (true) {
             // Print the distance read by the ultrasonic
             std::cout << "Distance: " << sensor.get_value();
-            delay(50);
+            pros::delay(10);
           }
         }
 
@@ -1085,11 +1085,277 @@ Analogous to `adi_ultrasonic_get <../c/adi.html#adi-ultrasonic-get>`_.
           while (true) {
             // Print the distance read by the ultrasonic
             std::cout << "Distance: " << sensor.get_value();
-            delay(50);
+            pros::delay(10);
           }
         }
 
 **Returns:** The distance to the nearest object in centimeters.
+
+----
+
+pros::ADIGyro 
+=============
+
+Constructor(s) 
+--------------
+
+Initializes a gyroscope on the given port. If the given port has not
+previously been configured as a gyro, then this function starts a 1 second
+calibration period.
+
+If calibration is required, it is highly recommended that this function be
+called from initialize when the robot is stationary.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
+Analogous to `adi_gyro_init <../c/adi.html#adi-gyro-init>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::ADIGyro::ADIGyro ( std::uint8_t port, 
+                                 double multiplier = 1 )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define GYRO_PORT 1
+
+        void opcontrol() {
+          pros::ADIGyro gyro (GYRO_PORT);
+          while (true) {
+            // Get the gyro heading
+            std::cout << "Distance: " << gyro.get_value();
+            pros::delay(10);
+          }
+        }
+
+============ =============================================================================================================
+ Parameters
+============ =============================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a gyro
+ multiplier   A scalar value that will be mutliplied by the gyro heading value
+============ =============================================================================================================
+
+Methods 
+-------
+
+get_value 
+~~~~~~~~~
+
+Gets the current gyro angle in tenths of a degree. Unless a multiplier is
+applied to the gyro, the return value will be a whole number representing
+the number of degrees of rotation times 10.
+
+There are 360 degrees in a circle, thus the gyro will return 3600 for one
+whole rotation.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
+Analogous to `adi_gyro_get <../c/adi.html#adi-gyro-get>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        double pros::ADIGyro::get_value ( ) const
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define GYRO_PORT 1
+
+        void opcontrol() {
+          pros::ADIGyro gyro (GYRO_PORT);
+          while (true) {
+            // Get the gyro heading
+            std::cout << "Distance: " << gyro.get_value();
+            pros::delay(10);
+          }
+        }
+
+**Returns:**  The gyro angle in tenths of a degree.
+
+----
+
+reset 
+-----
+
+Resets the gyro value to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
+Analogous to `adi_gyro_reset <../c/adi.html#adi-gyro-reset>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::ADIGyro::reset ( ) const
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define GYRO_PORT 1
+
+        void opcontrol() {
+          pros::ADIGyro gyro (GYRO_PORT);
+          std::uint32_t now = pros::millis();
+          while (true) {
+            // Get the gyro heading
+            std::cout << "Distance: " << gyro.get_value();
+
+            if (pros::millis() - now > 2000) {
+              // Reset the gyro every 2 seconds
+              gyro.reset();
+              now = pros::millis();
+            }
+
+            pros::delay(10);
+          }
+        }
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+Macros
+======
+
+HIGH
+----
+
+Used to specify a logic HIGH state to output.
+
+In reality, using any non-zero expression or "true" will work to set a pin to HIGH.
+
+**Value:** 1
+
+LOW
+---
+
+Used to specify a logic LOW state to output.
+
+In reality, using a zero expression or "false" will work to set a pin to LOW.
+
+**Value:** 0
+
+NUM_ADI_PORTS
+-------------
+
+The number of ADI ports available on the V5 Brain (from 1-8, 'a'-'h', 'A'-'H').
+
+**Value:** 8
+
+Enumerated Values
+=================
+
+pros::adi_port_config_e_t
+-------------------------
+
+::
+
+	typedef enum adi_port_config_e {
+		E_ADI_ANALOG_IN = 0,
+		E_ADI_ANALOG_OUT,
+		E_ADI_DIGITAL_IN,
+		E_ADI_DIGITAL_OUT,
+
+		E_ADI_SMART_BUTTON,
+		E_ADI_SMART_POT,
+
+		E_ADI_LEGACY_BUTTON,
+		E_ADI_LEGACY_POT,
+		E_ADI_LEGACY_LINE_SENSOR,
+		E_ADI_LEGACY_LIGHT_SENSOR,
+		E_ADI_LEGACY_GYRO,
+		E_ADI_LEGACY_ACCELEROMETER,
+
+		E_ADI_LEGACY_SERVO,
+		E_ADI_LEGACY_PWM,
+
+		E_ADI_LEGACY_ENCODER,
+		E_ADI_LEGACY_ULTRASONIC,
+
+		E_ADI_TYPE_UNDEFINED = 255,
+		E_ADI_ERR = PROS_ERR
+	} adi_port_config_e_t;
+
+================================== ================================================================
+ Value
+================================== ================================================================
+ pros::E_ADI_ANALOG_IN               Configures the ADI port as an analog input
+ pros::E_ADI_ANALOG_OUT              Configures the ADI port as an analog output
+ pros::E_ADI_DIGITAL_IN              Configures the ADI port as a digital input
+ pros::E_ADI_DIGITAL_OUT             Configures the ADI port as a digital output
+ pros::E_ADI_SMART_BUTTON            Configures the ADI port for use with a Smart Button Sensor
+ pros::E_ADI_SMART_POT               Configures the ADI port for use with a Smart Pot Sensor
+ pros::E_ADI_LEGACY_BUTTON           Configures the ADI port for use with a Cortex-Era Button
+ pros::E_ADI_LEGACY_POT              Configures the ADI port for use with a Cortex-Era Pot
+ pros::E_ADI_LEGACY_LINE_SENSOR      Configures the ADI port for use with a Cortex-Era Line Sensor
+ pros::E_ADI_LEGACY_LIGHT_SENSOR     Configures the ADI port for use with a Cortex-Era Light Sensor
+ pros::E_ADI_LEGACY_GYRO             Configures the ADI port for use with a Cortex-Era Gyro
+ pros::E_ADI_LEGACY_ACCELEROMETER    Configures the ADI port for use with a Cortex-Era accelerometer
+ pros::E_ADI_LEGACY_SERVO            Configures the ADI port for use with a Cortex-Era servo motor
+ pros::E_ADI_LEGACY_PWM              Configures the ADI port for use with a Cortex-Era motor
+ pros::E_ADI_LEGACY_ENCODER          Configures the ADI port (and the one immediately above it)
+                                     for use with a Cortex-Era Encoder
+ pros::E_ADI_LEGACY_ULTRASONIC       Configures the ADI port (and the one immediately above it)
+                                     for use with a Cortex-Era Ultrasonic
+ pros::E_ADI_TYPE_UNDEFINED          The default value for an uninitialized ADI port
+ pros::E_ADI_ERR                     Error return value for ADI port configuration
+================================== ================================================================
+
+Typedefs
+========
+
+pros::adi_encoder_t
+-------------------
+
+Reference type for an initialized encoder.
+
+This merely contains the port number for the encoder, unlike its use as an
+object to store encoder data in PROS 2.
+
+::
+
+	typedef int32_t adi_encoder_t;
+
+pros::adi_gyro_t
+----------------
+
+Reference type for an initialized gyro.
+
+This merely contains the port number for the gyro, unlike its use as an
+object to store gyro data in PROS 2.
+
+::
+
+  typedef int32_t adi_gyro_t;
+
+pros::adi_ultrasonic_t
+----------------------
+
+Reference type for an initialized ultrasonic.
+
+This merely contains the port number for the ultrasonic, unlike its use as an
+object to store ultrasonic data in PROS 2.
+
+::
+
+	typedef int32_t adi_ultrasonic_t;
 
 .. _HIGH: ../c/adi.html#HIGH
 .. _LOW: ../c/adi.html#LOW

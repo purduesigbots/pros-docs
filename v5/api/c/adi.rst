@@ -99,7 +99,7 @@ Analogous to `pros::ADIAnalogIn::get_value <../cpp/adi.html#get-value>`_.
         void opcontrol() {
           while (true) {
             printf("Sensor Reading: %d\n", adi_analog_read(ANALOG_SENSOR_PORT));
-            delay(50);
+            delay(5);
           }
         }
 
@@ -146,7 +146,7 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated <../cpp/adi.html#get-value
         void opcontrol() {
           while (true) {
             printf("Sensor Reading: %d\n", adi_analog_read_calibrated(ANALOG_SENSOR_PORT));
-            delay(50);
+            delay(5);
           }
         }
 
@@ -197,7 +197,7 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-va
           while (true) {
             adi_analog_calibrate(ANALOG_SENSOR_PORT);
             printf("Sensor Reading: %d\n", adi_analog_read_calibrated_HR(ANALOG_SENSOR_PORT));
-            delay(50);
+            delay(5);
           }
         }
 
@@ -249,7 +249,7 @@ Analogous to `pros::ADIDigitalIn::get_new_press <../cpp/adi.html#get-new-press>`
             if (adi_digital_get_new_press(DIGITAL_SENSOR_PORT)) {
               // Toggle pneumatics or other state operations
             }
-            delay(50);
+            delay(5);
           }
         }
 
@@ -296,7 +296,7 @@ Analogous to `pros::ADIDigitalIn::get_value <../cpp/adi.html#id5>`_.
         void opcontrol() {
           while (true) {
             printf("Sensor Value: %d\n", adi_digital_read(DIGITAL_SENSOR_PORT));
-            delay(50);
+            delay(5);
           }
         }
 
@@ -341,7 +341,7 @@ Analogous to `pros::ADIDigitalOut::set_value <../cpp/adi.html#id8>`_.
           while (true) {
             state != state;
             adi_digital_write(DIGITAL_SENSOR_PORT, state);
-            delay(50); // toggle the sensor value every 50ms
+            delay(5); // toggle the sensor value every 50ms
           }
         }
 
@@ -389,7 +389,7 @@ Analogous to `pros::ADIEncoder::get_value <../cpp/adi.html#id11>`_.
           adi_encoder_t enc = adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
           while (true) {
             printf("Encoder Value: %d\n", adi_encoder_get(enc));
-            delay(50);
+            delay(5);
           }
         }
 
@@ -435,7 +435,7 @@ Analogous to `pros::ADIEncoder::ADIEncoder <../cpp/adi.html#id9>`_.
           adi_encoder_t enc = adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
           while (true) {
             printf("Encoder Value: %d\n", adi_encoder_get(enc));
-            delay(50);
+            delay(5);
           }
         }
 
@@ -760,7 +760,7 @@ Analogous to `pros::ADIPort::get_value <../cpp/adi.html#id18>`_.
       .. highlight:: c
       ::
 
-       int32_t adi_get_value (uint8_t port )
+       int32_t adi_get_value ( uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -904,7 +904,7 @@ Analogous to `pros::ADIUltrasonic::get_value <../cpp/adi.html#id24>`_.
           while (true) {
             // Print the distance read by the ultrasonic
             printf("Distance: %d\n", adi_ultrasonic_get(ult));
-            delay(50);
+            delay(5);
           }
         }
 
@@ -950,7 +950,7 @@ Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
           while (true) {
             // Print the distance read by the ultrasonic
             printf("Distance: %d\n", adi_ultrasonic_get(ult));
-            delay(50);
+            delay(5);
           }
         }
 
@@ -994,7 +994,7 @@ This function uses the following values of ``errno`` when an error state is reac
           while (true) {
             // Print the distance read by the ultrasonic
             printf("Distance: %d\n", adi_ultrasonic_get(ult));
-            delay(50);
+            delay(5);
           }
           adi_ultrasonic_shutdown(ult);
         }
@@ -1008,6 +1008,210 @@ This function uses the following values of ``errno`` when an error state is reac
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
 ----
+
+adi_gyro_init
+-------------
+
+Initializes a gyroscope on the given port. If the given port has not
+previously been configured as a gyro, then this function starts a 1 second
+calibration period.
+
+If calibration is required, it is highly recommended that this function be
+called from initialize when the robot is stationary.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
+Analogous to `pros::ADIGyro::ADIGyro <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        adi_gyro_t adi_gyro_init ( uint8_t port,
+                                   double multiplier )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define GYRO_PORT 1
+        #define GYRO_MULTIPLIER 1 // Standard behavior
+
+        void opcontrol() {
+          adi_gyro_t gyro = adi_gyro_init(GYRO_PORT, GYRO_MULTIPLIER);
+          while (true) {
+            // Print the gyro's heading
+            printf("Heading: %lf\n", adi_gyro_get(gyro));
+            delay(5);
+          }
+        }
+
+============ =============================================================================================================
+ Parameters
+============ =============================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a gyro
+ multiplier   A scalar value that will be mutliplied by the gyro heading value
+============ =============================================================================================================
+
+**Returns:** An `adi_gyro_t`_ object to be stored and used for later calls to gyro functions.
+
+----
+
+adi_gyro_get 
+------------
+
+Gets the current gyro angle in tenths of a degree. Unless a multiplier is
+applied to the gyro, the return value will be a whole number representing
+the number of degrees of rotation times 10.
+
+There are 360 degrees in a circle, thus the gyro will return 3600 for one
+whole rotation.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
+Analogous to `pros::ADIGyro::get_value <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        double adi_gyro_get ( adi_gyro_t gyro )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define GYRO_PORT 1
+        #define GYRO_MULTIPLIER 1 // Standard behavior
+
+        void opcontrol() {
+          adi_gyro_t gyro = adi_gyro_init(GYRO_PORT, GYRO_MULTIPLIER);
+          while (true) {
+            // Print the gyro's heading
+            printf("Heading: %lf\n", adi_gyro_get(gyro));
+            delay(5);
+          }
+        }
+
+============ =============================================================================================================
+ Parameters
+============ =============================================================================================================
+  gyro        The `adi_gyro_t` object for which the heading will be returned
+============ =============================================================================================================
+
+**Returns:** The gyro angle in tenths of a degree.
+
+----
+
+adi_gyro_reset 
+--------------
+
+Resets the gyro value to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
+Analogous to `pros::ADIGyro::reset <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t adi_gyro_reset ( adi_gyro_t gyro )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define GYRO_PORT 1
+        #define GYRO_MULTIPLIER 1 // Standard behavior
+
+        void opcontrol() {
+          adi_gyro_t gyro = adi_gyro_init(GYRO_PORT, GYRO_MULTIPLIER);
+          uint32_t now = millis();
+          while (true) {
+            // Print the gyro's heading
+            printf("Heading: %lf\n", adi_gyro_get(gyro));
+
+            if (millis() - now > 2000) {
+              // Reset the gyro every 2 seconds
+              adi_gyro_reset(gyro);
+              now = millis();
+            }
+
+            delay(5);
+          }
+        }
+
+============ =============================================================================================================
+ Parameters
+============ =============================================================================================================
+ gyro         The `adi_gyro_t` object to reset
+============ =============================================================================================================
+
+**Returns:** 1 if the operation was successful, PROS_ERR otherwise.
+
+----
+
+adi_gyro_shutdown
+-----------------
+
+Disables the gyro and voids the configuration on its port.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - The given ports do not match the parameter criteria given below.
+- ``EACCES``  - Another resource is currently trying to access the ADI.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t adi_gyro_shutdown ( adi_gyro_t gyro )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define GYRO_PORT 1
+        #define GYRO_MULTIPLIER 1 // Standard behavior
+
+        void opcontrol() {
+          adi_gyro_t gyro = adi_gyro_init(GYRO_PORT, GYRO_MULTIPLIER);
+          uint32_t now = millis();
+          while (true) {
+            // Print the gyro's heading
+            printf("Heading: %lf\n", adi_gyro_get(gyro));
+
+            if (millis() - now > 2000) {
+              adi_gyro_shutdown(gyro);
+              // Shut down the gyro after two seconds
+              break;
+            }
+
+            delay(5);
+          }
+        }
+
+============ =============================================================================================================
+ Parameters
+============ =============================================================================================================
+ gyro         The `adi_gyro_t` object to shut down
+============ =============================================================================================================
+
+**Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
 Macros
 ======
@@ -1139,13 +1343,25 @@ object to store encoder data in PROS 2.
 
 	typedef int32_t adi_encoder_t;
 
+adi_gyro_t 
+----------
+
+Reference type for an initialized gyro.
+
+This merely contains the port number for the gyro, unlike its use as an
+object to store gyro data in PROS 2.
+
+::
+
+	typedef int32_t adi_gyro_t;
+
 adi_ultrasonic_t
 ----------------
 
 Reference type for an initialized ultrasonic.
 
 This merely contains the port number for the ultrasonic, unlike its use as an
-object to store encoder data in PROS 2.
+object to store ultrasonic data in PROS 2.
 
 ::
 

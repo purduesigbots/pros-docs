@@ -24,4 +24,4 @@ CLI Releases
    :list-style: circle
    :tags: cli-release
 
-These notes are pulled from `Github Releases <https://github.com/purduesigbots/pros-cli/releases>`_.
+These notes are pulled from `Github Releases <https://github.com/purduesigbots/pros-cli3/releases>`_.

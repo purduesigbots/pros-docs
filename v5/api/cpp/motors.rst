@@ -2183,6 +2183,185 @@ Analogous to `motor_tare_position <../c/motors.html#motor-tare-position>`_.
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+
+Macros
+======
+
+None.
+
+Enumerated Values
+=================
+
+pros::motor_brake_mode_e_t
+--------------------------
+
+Indicates the current 'brake mode' of the motor.
+
+::
+
+  typedef enum motor_brake_mode_e {
+    E_MOTOR_BRAKE_COAST = 0, // Motor coasts when stopped, traditional behavior
+    E_MOTOR_BRAKE_BRAKE = 1, // Motor brakes when stopped
+    E_MOTOR_BRAKE_HOLD = 2, // Motor actively holds position when stopped
+    E_MOTOR_BRAKE_INVALID = INT32_MAX
+  } motor_brake_mode_e_t;
+
+================================== ===========================================================
+ Value
+================================== ===========================================================
+ pros::E_MOTOR_BRAKE_COAST          Motor coasts when stopped, traditional behavior
+ pros::E_MOTOR_BRAKE_BRAKE          Motor brakes when stopped 
+ pros::E_MOTOR_BRAKE_HOLD           Motor actively holds position when stopped 
+ pros::E_MOTOR_BRAKE_INVALID        Invalid brake mode
+================================== ===========================================================
+
+----
+
+pros::motor_encoder_units_e_t
+-----------------------------
+
+Indicates the units used by the motor's encoder.
+
+::
+
+  typedef enum motor_encoder_units_e {
+    E_MOTOR_ENCODER_DEGREES = 0,   // Position is recorded as angle in degrees
+                                   // as a floating point number
+    E_MOTOR_ENCODER_ROTATIONS = 1, // Position is recorded as angle in rotations
+                                   // as a floating point number
+    E_MOTOR_ENCODER_COUNTS = 2,    // Position is recorded as raw encoder ticks
+                                   // as a whole number
+    E_MOTOR_ENCODER_INVALID = INT32_MAX
+  } motor_encoder_units_e_t;
+
+================================== =======================================================================
+ Value
+================================== =======================================================================
+ pros::E_MOTOR_ENCODER_DEGREES      Position is recorded as angle in degrees as a floating point number 
+ pros::E_MOTOR_ENCODER_ROTATIONS    Position is recorded as angle in rotations as a floating point number 
+ pros::E_MOTOR_ENCODER_COUNTS       Position is recorded as raw encoder ticks as a whole number 
+ pros::E_MOTOR_BRAKE_INVALID        Invalid motor encoder units
+================================== =======================================================================
+
+----
+
+pros::motor_fault_e_t
+---------------------
+
+::
+
+  typedef enum motor_fault_e {
+  	E_MOTOR_FAULT_NO_FAULTS = 0x00,
+  	E_MOTOR_FAULT_MOTOR_OVER_TEMP = 0x01,  // Analogous to motor_is_over_temp()
+  	E_MOTOR_FAULT_DRIVER_FAULT = 0x02,     // Indicates a motor h-bridge fault
+  	E_MOTOR_FAULT_OVER_CURRENT = 0x04,     // Analogous to motor_is_over_current()
+  	E_MOTOR_FAULT_DRV_OVER_CURRENT = 0x08  // Indicates an h-bridge over current
+  } motor_fault_e_t;
+
+================================== ===========================================================
+ Value
+================================== ===========================================================
+ pros::E_MOTOR_FAULT_NO_FAULTS      No faults
+ pros::E_MOTOR_BRAKE_BRAKE          Motor brakes when stopped 
+ pros::E_MOTOR_BRAKE_HOLD           Motor actively holds position when stopped 
+ pros::E_MOTOR_BRAKE_INVALID        Invalid brake mode
+================================== ===========================================================
+
+----
+
+pros::motor_flag_e_t
+--------------------
+
+::
+
+  typedef enum motor_flag_e {
+    E_MOTOR_FLAGS_NONE = 0x00,
+    E_MOTOR_FLAGS_BUSY = 0x01,           // Cannot currently communicate to the motor
+    E_MOTOR_FLAGS_ZERO_VELOCITY = 0x02,  // Analogous to motor_is_stopped()
+    E_MOTOR_FLAGS_ZERO_POSITION = 0x04   // Analogous to motor_get_zero_position_flag()
+  } motor_flag_e_t;
+
+================================== ===========================================================
+ Value
+================================== ===========================================================
+ pros::E_MOTOR_FLAGS_NONE           There are no flags raised
+ pros::E_MOTOR_FLAGS_BUSY           Cannot currently communicate to the motor 
+ pros::E_MOTOR_FLAGS_ZERO_VELOCITY  Analogous to pros::Motor::is_stopped() 
+ pros::E_MOTOR_FLAGS_ZERO_POSITION  Analogous to pros::Motor::get_zero_position_flag()
+================================== ===========================================================
+
+----
+
+pros::motor_gearset_e_t
+-----------------------
+
+Indicates the internal gearing used by the motor.
+
+::
+
+  typedef enum motor_gearset_e {
+  	E_MOTOR_GEARSET_36 = 0, // 36:1, 100 RPM, Red gear set
+  	E_MOTOR_GEARSET_18 = 1, // 18:1, 200 RPM, Green gear set
+  	E_MOTOR_GEARSET_06 = 2, // 6:1, 600 RPM, Blue gear set
+  	E_MOTOR_GEARSET_INVALID = INT32_MAX
+  } motor_gearset_e_t;
+
+================================== ===========================================================
+ Value
+================================== ===========================================================
+ pros::E_MOTOR_GEARSET_36           36:1, 100 RPM, Red gear set
+ pros::E_MOTOR_GEARSET_18           18:1, 200 RPM, Green gear set
+ pros::E_MOTOR_GEARSET_06           6:1, 600 RPM, Blue Gear Set
+ pros::E_MOTOR_GEARSET_INVALID      Error return code
+================================== ===========================================================
+
+Typedefs
+========
+
+motor_pid_full_s_t
+------------------
+
+Holds the information about a Motor's position or velocity PID controls.
+
+These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
+0x21 represents 2.0625, 0x22 represents 2.125, etc.
+
+::
+
+  typedef struct motor_pid_full_s {
+    uint8_t kf;        // The feedforward constant
+    uint8_t kp;        // The proportional constant
+    uint8_t ki;        // The integral constants
+    uint8_t kd;        // The derivative constant
+    uint8_t filter;    // A constant used for filtering the profile acceleration
+    uint16_t limit;    // The integral limit
+    uint8_t threshold; // The threshold for determining if a position movement has
+                       // reached its goal. This has no effect for velocity PID
+                       // calculations.
+    uint8_t loopspeed; // The rate at which the PID computation is run in ms
+  } motor_pid_full_s_t;
+
+----
+
+motor_pid_s_t
+-------------
+
+Holds just the constants for a Motor's position or velocity PID controls.
+
+These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
+0x21 represents 2.0625, 0x22 represents 2.125, etc.
+
+::
+
+  typedef struct motor_pid_s {
+    uint8_t kf;        // The feedforward constant
+    uint8_t kp;        // The proportional constant
+    uint8_t ki;        // The integral constants
+    uint8_t kd;        // The derivative constant
+  } motor_pid_s_t;
+
+
 .. _motor_gearset_e_t: ../c/motors.html#motor-gearset-e-t
 .. _motor_encoder_units_e_t: ../c/motors.html#motor-encoder-units-e-t
 .. _motor_brake_mode_e_t: ../c/motors.html#motor-brake-mode-e-t
