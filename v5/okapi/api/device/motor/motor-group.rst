@@ -21,6 +21,8 @@ all the motors.
 Constructor(s)
 --------------
 
+Throws a ``std::invalid_argument`` exception if no motors are passed in.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -44,7 +46,7 @@ Constructor(s)
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- imotors         The motors to use.
+ imotors         The motors in the group.
 =============== ===================================================================
 
 Movement Methods
