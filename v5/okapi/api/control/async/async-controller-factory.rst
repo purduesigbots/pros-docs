@@ -669,3 +669,28 @@ A controller which generates and follows 2D motion profiles.
  imodel          The ``ChassisModel`` to control.
  iwidth          The chassis' wheelbase width.
 =============== ===================================================================
+
+----
+
+linearMotionProfile
+~~~~~~~~~~~~~~~~~~~
+
+A controller which generates and follows 2D motion profiles.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        static AsyncLinearMotionProfileController linearMotionProfile(
+          double imaxVel, double imaxAccel, double imaxJerk,
+          std::shared_ptr<ControllerOutput<double>> ioutput)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ imaxVel         The maximum possible velocity in m/s.
+ imaxAccel       The maximum possible acceleration in m/s/s.
+ imaxJerk        The maxiumm possible jerk in m/s/s/s.
+ ioutput         The output to write velocity targets to.
+=============== ===================================================================

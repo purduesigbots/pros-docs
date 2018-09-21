@@ -72,6 +72,38 @@ Parameters
 
 ----
 
+getMaxOutput
+~~~~~~~~~~~~
+
+Get the upper output bound.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual Output getMaxOutput() = 0
+
+**Returns:** The upper output bound.
+
+----
+
+getMinOutput
+~~~~~~~~~~~~
+
+Get the lower output bound.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual Output getMinOutput() - 0
+
+**Returns:** The lower output bound.
+
+----
+
 setSampleTime
 ~~~~~~~~~~~~~
 

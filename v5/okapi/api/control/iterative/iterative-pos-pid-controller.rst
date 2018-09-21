@@ -96,6 +96,27 @@ Sets the target for the controller.
 
 ----
 
+controllerSet
+~~~~~~~~~~~~~
+
+Writes the value of the controller output. This method might be automatically called in another
+thread by the controller. The range of input values is expected to be ``[-1, 1]``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void controllerSet(double ivalue) override
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ ivalue       The controller's output in the range ``[-1, 1]``.
+============ ===============================================================
+
+----
+
 getTarget
 ~~~~~~~~~
 
@@ -225,6 +246,38 @@ Parameters
  imax            The upper bound.
  imin            The lower bound.
 =============== ===================================================================
+
+----
+
+getMaxOutput
+~~~~~~~~~~~~
+
+Get the upper output bound.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        Output getMaxOutput() override
+
+**Returns:** The upper output bound.
+
+----
+
+getMinOutput
+~~~~~~~~~~~~
+
+Get the lower output bound.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        Output getMinOutput() override
+
+**Returns:** The lower output bound.
 
 ----
 

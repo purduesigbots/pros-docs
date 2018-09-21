@@ -579,6 +579,26 @@ setting errno.
 
 ----
 
+getBrakeMode
+~~~~~~~~~~~~
+
+Gets the brake mode that was set for the motor.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual brakeMode getBrakeMode() const = 0
+
+**Returns:** One of ``brakeMode``, according to what was set for the motor, or
+``brakeMode::invalid`` if the operation failed, setting errno.
+
+----
+
 setCurrentLimit
 ~~~~~~~~~~~~~~~
 
@@ -601,6 +621,28 @@ This function uses the following values of errno when an error state is reached:
 =============== ===================================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting errno.
+
+----
+
+getCurrentLimit
+~~~~~~~~~~~~~~~
+
+Gets the current limit for the motor in mA.
+
+The default value is ``2500`` mA.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t getCurrentLimit() const = 0
+
+**Returns:** The motor's current limit in mA or ``PROS_ERR`` if the operation failed,
 setting errno.
 
 ----
@@ -631,6 +673,26 @@ setting errno.
 
 ----
 
+getEncoderUnits
+~~~~~~~~~~~~~~~
+
+Gets the encoder units that were set for the motor.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual encoderUnits getEncoderUnits() const = 0
+
+**Returns:** One of ``encoderUnits`` according to what is set for the motor or
+``encoderUnits::invalid`` if the operation failed.
+
+----
+
 setGearing
 ~~~~~~~~~~
 
@@ -654,6 +716,26 @@ This function uses the following values of errno when an error state is reached:
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting errno.
+
+----
+
+getGearing
+~~~~~~~~~~
+
+Gets the gearset that was set for the motor.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual gearset getGearing() const = 0
+
+**Returns:** One of ``gearset`` according to what is set for the motor, or ``gearset::invalid`` if
+the operation failed.
 
 ----
 

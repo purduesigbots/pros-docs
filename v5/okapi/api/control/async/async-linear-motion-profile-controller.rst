@@ -1,19 +1,18 @@
-===============================
-Async Motion Profile Controller
-===============================
+======================================
+Async Linear Motion Profile Controller
+======================================
 
 .. contents:: :local:
 
-okapi::AsyncMotionProfileController
-===================================
+okapi::AsyncLinearMotionProfileController
+=========================================
 
-An ``AsyncController`` which generates and follows 2D motion profiles.
+An ``AsyncController`` which generates and follows 1D motion profiles.
 
 This controller is internally backed by `Pathfinder <https://github.com/JacisNonsense/Pathfinder>`_. There are a few open issues users should be aware about:
 
-- Pathfinder cannot generate negative velocities, so backward movements and very tight turns do not work
+- Pathfinder cannot generate negative velocities, so backward movements do not work
     - Moving backwards: `<https://github.com/JacisNonsense/Pathfinder/issues/39>`_
-    - Tight turns: `<https://github.com/JacisNonsense/Pathfinder/issues/38>`_
 - Very long movements (typically movements much longer than a VEX field) can potentially never reach maximum speed
     - `<https://github.com/JacisNonsense/Pathfinder/issues/43>`_
 
@@ -25,9 +24,9 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncMotionProfileController(const TimeUtil &itimeUtil,
-                                     double imaxVel, double imaxAccel, double imaxJerk,
-                                     std::shared_ptr<ChassisModel> imodel, Length iwidth)
+        AsyncLinearMotionProfileController(const TimeUtil &itimeUtil,
+                                           double imaxVel, double imaxAccel, double imaxJerk,
+                                           std::shared_ptr<ControllerOutput<double>> ioutput)
 
 =============== ===================================================================
  Parameters
@@ -36,8 +35,7 @@ Constructor(s)
  imaxVel         The maximum possible velocity in m/s.
  imaxAccel       The maximum possible acceleration in m/s/s.
  imaxJerk        The maxiumm possible jerk in m/s/s/s.
- imodel          The ``ChassisModel`` to control.
- iwidth          The chassis' wheelbase width.
+ ioutput         The output to write velocity targets to.
 =============== ===================================================================
 
 Methods
@@ -58,7 +56,7 @@ path is generated.
       .. highlight:: cpp
       ::
 
-        void generatePath(std::initializer_list<Point> iwaypoints, const std::string &ipathId)
+        void generatePath(std::initializer_list<QLength> iwaypoints, const std::string &ipathId)
 
 ============ ===============================================================
  Parameters
@@ -178,6 +176,28 @@ finished following a path. If no path is being followed, it is settled.
 
 ----
 
+moveTo
+~~~~~~
+
+Generates a new path from the position (typically the current position) to the target and blocks
+until the controller has settled. Does not save the path which was generated.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void moveTo(QLength iposition, QLength itarget)
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ iposition    The starting position.
+ itarget      The target position.
+============ ===============================================================
+
+----
+
 getError
 ~~~~~~~~
 
@@ -190,7 +210,7 @@ odometry information.
       .. highlight:: cpp
       ::
 
-        Point getError() const override
+        QLength getError() const override
 
 **Returns:** The last error of the controller.
 
@@ -295,19 +315,3 @@ Starts the internal thread. This should not be called by normal users. This meth
       ::
 
         void startThread()
-
-----
-
-okapi::Point
-============
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        struct Point {
-            QLength x;    // X coordinate relative to the start of the movement
-            QLength y;    // Y coordinate relative to the start of the movement
-            QAngle theta; // Exit angle relative to the start of the movement
-        };
