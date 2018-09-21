@@ -5,13 +5,13 @@ Programming the Clawbot
 .. contents:: :local:
 
 Objective
-==========
+=========
 
 This tutorial will guide you through basic programming of the VEX
 Clawbot.
 
 Intended Audience
-==================
+=================
 
 This tutorial is intended for developers with some programming
 experience, but with little to no experience with the PROS library. If
@@ -22,7 +22,7 @@ benefit from the "Pointers, Arrays and Strings" sections as well
 (although they aren't as pertinent).
 
 Goals
-======
+=====
 
 At the end of this tutorial you will have:
 
