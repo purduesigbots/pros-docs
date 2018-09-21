@@ -120,8 +120,8 @@ The algorithm is (approximately):
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- iforwardSpeed         The speed on the y axis (forward) in the range ``[-1, 1]``.
- iyaw      The speed around the z axis (up) in the range ``[-1, 1]``.
+ iforwardSpeed   The speed in the forward direction in the range ``[-1, 1]``.
+ iyaw            The speed around the vertical axis in the range ``[-1, 1]``.
 =============== ===================================================================
 
 ----
@@ -197,8 +197,8 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- iforwardSpeed         The speed on the y axis (forward) in the range ``[-1, 1]``.
- iyaw      The speed around the z axis (up) in the range ``[-1, 1]``.
+ iforwardSpeed   The speed in the forward direction in the range ``[-1, 1]``.
+ iyaw            The speed around the vertical axis in the range ``[-1, 1]``.
  ithreshold      The joystick deadband in the range ``[-1, 1]``.
 =============== ===================================================================
 
