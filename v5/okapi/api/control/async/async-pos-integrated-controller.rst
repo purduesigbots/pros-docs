@@ -30,6 +30,25 @@ Constructor(s)
  itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+                                     std::int32_t imaxVelocity,
+                                     const TimeUtil &itimeUtil)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ imotor          The motor to control.
+ imaxVelocity    The maximum velocity during a profiled movement.
+ itimeUtil       See ``TimeUtil`` docs.
+=============== ===================================================================
+
 Methods
 -------
 

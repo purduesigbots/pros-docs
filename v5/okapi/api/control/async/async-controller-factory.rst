@@ -26,7 +26,7 @@ A position controller that uses the V5 motor's onboard control.
       .. highlight:: cpp
       ::
 
-        static AsyncPosIntegratedController posIntegrated(Motor imotor)
+        static AsyncPosIntegratedController posIntegrated(Motor imotor, std::int32_t imaxVelocity = 600)
 
    .. tab :: Example
      .. highlight:: cpp
@@ -39,6 +39,7 @@ A position controller that uses the V5 motor's onboard control.
 Parameters
 =============== ===================================================================
  imotor          The controller input (from the integrated encoder) and output.
+ imaxVelocity    The maximum velocity during a profiled movement.
 =============== ===================================================================
 
 ----
@@ -53,7 +54,7 @@ A position controller that uses the V5 motor's onboard control.
       .. highlight:: cpp
       ::
 
-        static AsyncPosIntegratedController posIntegrated(MotorGroup imotor)
+        static AsyncPosIntegratedController posIntegrated(MotorGroup imotor, std::int32_t imaxVelocity = 600)
 
    .. tab :: Example
      .. highlight:: cpp
@@ -66,6 +67,7 @@ A position controller that uses the V5 motor's onboard control.
 Parameters
 =============== ===================================================================
  imotor          The controller input (from the integrated encoder) and output.
+ imaxVelocity    The maximum velocity during a profiled movement.
 =============== ===================================================================
 
 ----
