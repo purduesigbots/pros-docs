@@ -56,7 +56,7 @@ path is generated.
       .. highlight:: cpp
       ::
 
-        void generatePath(std::initializer_list<QLength> iwaypoints, const std::string &ipathId)
+        void generatePath(std::initializer_list<double> iwaypoints, const std::string &ipathId)
 
 ============ ===============================================================
  Parameters
@@ -203,7 +203,7 @@ until the controller has settled. Does not save the path which was generated.
       .. highlight:: cpp
       ::
 
-        void moveTo(QLength iposition, QLength itarget)
+        void moveTo(double iposition, double itarget)
 
 ============ ===============================================================
  Parameters
@@ -225,7 +225,7 @@ being followed.
       .. highlight:: cpp
       ::
 
-        QLength getError() const override
+        double getError() const override
 
 **Returns:** The last error of the controller.
 
