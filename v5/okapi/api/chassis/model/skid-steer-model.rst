@@ -26,7 +26,7 @@ This constructor infers the encoders from the motors.
 
         SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
                        std::shared_ptr<AbstractMotor> irightSideMotor,
-                       double imaxVelocity = 127,
+                       double imaxVelocity = 600,
                        double imaxVoltage = 12000)
 
 =================   ===================================================================
@@ -49,7 +49,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
                        std::shared_ptr<AbstractMotor> irightSideMotor,
                        std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                        std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                       double imaxVelocity = 127,
+                       double imaxVelocity = 600,
                        double imaxVoltage = 12000)
 
 =================   ===================================================================

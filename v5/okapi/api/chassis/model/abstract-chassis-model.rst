@@ -352,3 +352,43 @@ Parameters
  ithreshold      The threshold for determining if a position movement has reached its goal.
  iloopSpeed      The rate at which the PID computation is run (in ms).
 =============== ===================================================================
+
+----
+
+setMaxVelocity
+~~~~~~~~~~~~~~
+
+Sets a new maximum velocity.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setMaxVelocity(double imaxVelocity)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imaxVelocity    The new maximum velocity in RPM.
+=============== ===================================================================
+
+----
+
+setMaxVoltage
+~~~~~~~~~~~~~
+
+Sets a new maximum voltage.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setMaxVoltage(double imaxVoltage)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imaxVoltage     The new maximum voltage in mV.
+=============== ===================================================================

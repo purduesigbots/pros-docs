@@ -28,7 +28,7 @@ This constructor infers the encoders from the motors.
                     std::shared_ptr<AbstractMotor> itopRightMotor,
                     std::shared_ptr<AbstractMotor> ibottomRightMotor,
                     std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-                    double imaxVelocity = 127,
+                    double imaxVelocity = 600,
                     double imaxVoltage = 12000)
 
 ==================   ===================================================================
@@ -55,7 +55,7 @@ This constructor does not infer the encoders from the motors, and instead takes 
                     std::shared_ptr<AbstractMotor> ibottomLeftMotor,
                     std::shared_ptr<ContinuousRotarySensor> ileftEnc,
                     std::shared_ptr<ContinuousRotarySensor> irightEnc,
-                    double imaxVelocity = 127,
+                    double imaxVelocity = 600,
                     double imaxVoltage = 12000)
 
 ==================   ===================================================================
