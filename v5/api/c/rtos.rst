@@ -229,7 +229,7 @@ Analogous to `pros::Task::Task <../cpp/rtos.html#task>`_.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          task_t my_task = task_create(my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                                       TASK_STACK_DEPTH_DEFAULT, "My Task");
         }
 
@@ -351,7 +351,7 @@ should be freed before the task is deleted.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          task_t my_task = task_create(my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                                       TASK_STACK_DEPTH_DEFAULT, "My Task");
           // Do other things
           task_delete(my_task);
@@ -388,7 +388,7 @@ The operation takes a relatively long time and should be used sparingly.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          task_t my_task = task_create(my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                                       TASK_STACK_DEPTH_DEFAULT, "My Task");
           // Do other things
           task_delete(task_get_by_name("My Task"));
@@ -430,7 +430,7 @@ Analogous to `pros::Task::get_count <../cpp/rtos.html#get-count>`_.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          task_t my_task = task_create(my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                                       TASK_STACK_DEPTH_DEFAULT, "My Task");
           printf("Number of Running Tasks: %d\n", task_get_count());
         }
@@ -462,7 +462,7 @@ Analogous to `pros::Task::get_name <../cpp/rtos.html#get-name>`_.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          task_t my_task = task_create(my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                                       TASK_STACK_DEPTH_DEFAULT, "My Task");
           printf("Task Name: %d\n", task_get_name(my_task));
         }
@@ -500,7 +500,7 @@ Analogous to `pros::Task::get_priority <../cpp/rtos.html#get-priority>`_.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          task_t my_task = task_create(my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                                       TASK_STACK_DEPTH_DEFAULT, "My Task");
           printf("Task Priority: %d\n", task_get_priority(my_task));
         }
@@ -538,7 +538,7 @@ Analogous to `pros::Task::get_state <../cpp/rtos.html#get-state>`_.
           // ...
         }
         void initialize() {
-          task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          task_t my_task = task_create(my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                                       TASK_STACK_DEPTH_DEFAULT, "My Task");
           printf("Task's State: %d\n", task_get_state(my_task));
         }

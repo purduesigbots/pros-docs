@@ -69,7 +69,7 @@ Analogous to `task_create <../c/rtos.html#task-create>`_.
           // ...
         }
         void initialize() {
-          pros::Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          pros::Task my_task (my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                         TASK_STACK_DEPTH_DEFAULT, "My Task");
         }
 
@@ -103,7 +103,7 @@ Create a new task and add it to the list of tasks that are ready to run.
           // ...
         }
         void initialize() {
-          pros::task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          pros::task_t my_task = task_create(my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                                        TASK_STACK_DEPTH_DEFAULT, "My Task");
           pros::Task my_cpp_task (my_task);
         }
@@ -137,7 +137,7 @@ Operator Overloads
           // ...
         }
         void initialize() {
-          pros::task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          pros::task_t my_task = task_create(my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                                        TASK_STACK_DEPTH_DEFAULT, "My Task");
           Task my_cpp_task = my_task;
         }
@@ -256,7 +256,7 @@ Analogous to `Task_get_count <../c/rtos.html#task-get-count>`_.
           // ...
         }
         void initialize() {
-          Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          Task my_task (my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                         TASK_STACK_DEPTH_DEFAULT, "My Task");
           std::cout << "Number of Running Tasks:" << pros::Task::get_count();
         }
@@ -288,7 +288,7 @@ Analogous to `task_get_name <../c/rtos.html#task-get-name>`_.
           // ...
         }
         void initialize() {
-          Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          Task my_task (my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                         TASK_STACK_DEPTH_DEFAULT, "My Task");
           std::cout << "Task Name:" << my_task.get_name();
         }
@@ -320,7 +320,7 @@ Analogous to `task_get_priority <../c/rtos.html#task-get-priority>`_.
           // ...
         }
         void initialize() {
-          Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          Task my_task (my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                         TASK_STACK_DEPTH_DEFAULT, "My Task");
           std::cout << "Task Priority:" << my_task.get_priority();
 
@@ -351,7 +351,7 @@ Analogous to `task_get_state <../c/rtos.html#task-get-state>`_.
           // ...
         }
         void initialize() {
-          Task my_task (my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+          Task my_task (my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
                         TASK_STACK_DEPTH_DEFAULT, "My Task");
           std::cout << "Task's State:" << my_task.get_state();
         }
