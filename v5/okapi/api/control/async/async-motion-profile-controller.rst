@@ -27,7 +27,8 @@ Constructor(s)
 
         AsyncMotionProfileController(const TimeUtil &itimeUtil,
                                      double imaxVel, double imaxAccel, double imaxJerk,
-                                     std::shared_ptr<ChassisModel> imodel, Length iwidth)
+                                     std::shared_ptr<ChassisModel> imodel,
+                                     const ChassisScales &iscales, AbstractMotor::GearsetRatioPair ipair)
 
 =============== ===================================================================
  Parameters
@@ -37,7 +38,8 @@ Constructor(s)
  imaxAccel       The maximum possible acceleration in m/s/s.
  imaxJerk        The maxiumm possible jerk in m/s/s/s.
  imodel          The ``ChassisModel`` to control.
- iwidth          The chassis' wheelbase width.
+ iscales         The ``ChassisScales``.
+ ipair           The ``AbstractMotor::GearsetRatioPair``.
 =============== ===================================================================
 
 Methods

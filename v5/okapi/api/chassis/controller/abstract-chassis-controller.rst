@@ -597,3 +597,19 @@ Get the ``ChassisScales``.
         virtual ChassisScales getChassisScales() const = 0
 
 **Returns:** The ``ChassisScales``.
+
+----
+
+getGearsetRatioPair
+~~~~~~~~~~~~~~~~~~~
+
+Get the ``GearsetRatioPair``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual AbstractMotor::GearsetRatioPair getGearsetRatioPair() const = 0
+
+**Returns:** The ``GearsetRatioPair``.

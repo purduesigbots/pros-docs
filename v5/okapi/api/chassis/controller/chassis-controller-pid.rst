@@ -269,3 +269,19 @@ Get the ``ChassisScales``.
         ChassisScales getChassisScales() const override
 
 **Returns:** The ``ChassisScales``.
+
+----
+
+getGearsetRatioPair
+~~~~~~~~~~~~~~~~~~~
+
+Get the ``GearsetRatioPair``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override
+
+**Returns:** The ``GearsetRatioPair``.
