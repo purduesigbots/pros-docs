@@ -18,9 +18,9 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        TimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &timerSupplier,
-                 const Supplier<std::unique_ptr<AbstractRate>> &rateSupplier,
-                 const Supplier<std::unique_ptr<SettledUtil>> &settledUtilSupplier);
+        TimeUtil(const Supplier<std::unique_ptr<AbstractTimer>> &itimerSupplier,
+                 const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
+                 const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier);
 
 Methods
 -------

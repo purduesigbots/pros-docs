@@ -11,6 +11,23 @@ A version of the `ReadOnlyChassisModel <abstract-read-only-chassis-model.html>`_
 methods, such as setting motor speed. Because this class can write to motors, there can only be one
 owner and as such copying is disabled.
 
+Constructor(s)
+--------------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisModel(double imaxVelocity, double imaxVoltage = 12000)
+
+=================   ===================================================================
+ Parameters
+=================   ===================================================================
+ imaxVelocity        The maximum velocity.
+ imaxVoltage         The maximum voltage.
+=================   ===================================================================
+
 Methods
 -------
 

@@ -15,12 +15,15 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        explicit ChassisController(std::shared_ptr<ChassisModel> imodel)
+        explicit ChassisController(std::shared_ptr<ChassisModel> imodel,
+                                   double imaxVelocity, double imaxVoltage = 12000)
 
 =================   ===================================================================
  Parameters
 =================   ===================================================================
  imodel              The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
+ imaxVelocity        The maximum velocity.
+ imaxVoltage         The maximum voltage.
 =================   ===================================================================
 
 Methods
@@ -594,3 +597,19 @@ Get the ``ChassisScales``.
         virtual ChassisScales getChassisScales() const = 0
 
 **Returns:** The ``ChassisScales``.
+
+----
+
+getGearsetRatioPair
+~~~~~~~~~~~~~~~~~~~
+
+Get the ``GearsetRatioPair``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual AbstractMotor::GearsetRatioPair getGearsetRatioPair() const = 0
+
+**Returns:** The ``GearsetRatioPair``.
