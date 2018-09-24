@@ -108,7 +108,7 @@ ensure a consistent execution frequency.
 delayUntil
 ----------
 
-Delay the current task until ``itime`` has passed. This method can be used by periodic tasks to
+Delay the current task until ``ims`` has passed. This method can be used by periodic tasks to
 ensure a consistent execution frequency.
 
 .. tabs ::
@@ -116,7 +116,7 @@ ensure a consistent execution frequency.
       .. highlight:: cpp
       ::
 
-        virtual void delayUntil(uint32_t itime) = 0
+        virtual void delayUntil(uint32_t ims) = 0
 
    .. tab :: Example
       .. highlight:: cpp
@@ -133,5 +133,5 @@ ensure a consistent execution frequency.
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- itime        The time period in milliseconds.
+ ims          The time period in milliseconds.
 ============ ===============================================================
