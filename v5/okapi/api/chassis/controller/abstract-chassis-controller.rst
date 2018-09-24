@@ -567,6 +567,46 @@ Parameters
 
 ----
 
+setMaxVelocity
+~~~~~~~~~~~~~~
+
+Sets a new maximum velocity.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void setMaxVelocity(double imaxVelocity) override
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imaxVelocity    The new maximum velocity.
+=============== ===================================================================
+
+----
+
+setMaxVoltage
+~~~~~~~~~~~~~
+
+Sets a new maximum voltage.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void setMaxVoltage(double imaxVoltage) override
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imaxVoltage     The new maximum voltage.
+=============== ===================================================================
+
+----
+
 getChassisModel
 ~~~~~~~~~~~~~~~
 
