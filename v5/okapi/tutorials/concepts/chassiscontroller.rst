@@ -60,3 +60,6 @@ Breaking that down further, there are three distinct parts:
 First, the motor port configuration, ``{-1, -2}, {3, 4}``. This creates two
 `MotorGroup <../../api/device/motor/motor-group.html>`_ instances. The first contains two motors in
 ports 1 and 2 and reverses them, and the second contains two motors in ports 3 and 4.
+
+For more info on the usage of a ChassisController and the reason behind its gearset and dimension parameters, 
+see the following tutorial: `Basic Autonomous Movement <../walkthrough/autonomous-movement-basic.html>`_
