@@ -197,7 +197,8 @@ Delay a task until a specified time.  This function can be used by periodic
 tasks to ensure a constant execution frequency.
 
 The task will be woken up at the time ``*prev_time + delta``, and ``*prev_time`` will
-be updated to reflect the time at which the task will unblock.
+be updated to reflect the time at which the task will unblock. ``*prev_time`` should 
+be initialized to the result from `millis() <./rtos.html#millis>`_.
 
 Analogous to `task_delay_until <../c/rtos.html#delay-until>`_.
 
