@@ -45,7 +45,7 @@ Constructor(s)
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
- imaxVelocity    The maximum velocity during a profiled movement.
+ imaxVelocity    The maximum velocity during a profiled movement in RPM ``[0-600]``.
  itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
@@ -222,3 +222,23 @@ thread by the controller. The range of input values is expected to be ``[-1, 1]`
 ============ ===============================================================
  ivalue       The controller's output in the range ``[-1, 1]``.
 ============ ===============================================================
+
+----
+
+setMaxVelocity
+~~~~~~~~~~~~~~
+
+Sets a new maximum velocity in RPM ``[0-600]``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setMaxVelocity(std::int32_t imaxVelocity)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imaxVelocity    The new maximum velocity in RPM.
+=============== ===================================================================

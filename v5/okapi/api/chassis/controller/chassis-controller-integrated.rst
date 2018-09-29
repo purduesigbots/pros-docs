@@ -237,6 +237,26 @@ Stops the robot (set all the motors to ``0``).
 
 ----
 
+setMaxVelocity
+~~~~~~~~~~~~~~
+
+Sets a new maximum velocity in RPM ``[0-600]``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void setMaxVelocity(double imaxVelocity) override
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imaxVelocity    The new maximum velocity.
+=============== ===================================================================
+
+----
+
 getChassisScales
 ~~~~~~~~~~~~~~~~
 
