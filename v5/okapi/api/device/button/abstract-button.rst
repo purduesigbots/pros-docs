@@ -45,7 +45,7 @@ Returns whether the state of the button changed since the last time this method 
 changedToPressed
 ~~~~~~~~~~~~~~~~
 
-Returns whether the state of the button changed to being pressed since the last time this method
+Returns whether the state of the button changed to pressed since the last time this method
 was called.
 
 .. tabs ::
@@ -55,7 +55,7 @@ was called.
 
         virtual bool changedToPressed()
 
-**Returns:** Whether the state of the button changed to being pressed since the last time this
+**Returns:** Whether the state of the button changed to pressed since the last time this
 method was called.
 
 ----
@@ -63,7 +63,7 @@ method was called.
 changedToReleased
 ~~~~~~~~~~~~~~~~~
 
-Returns whether the state of the button to being not pressed changed since the last time this
+Returns whether the state of the button changed to not pressed since the last time this
 method was called.
 
 .. tabs ::
@@ -73,5 +73,5 @@ method was called.
 
         virtual bool changedToReleased()
 
-**Returns:** Whether the state of the button to being not pressed changed since the last time this
-method was called.
+**Returns:** Whether the state of the button changed to not pressed since the last time
+this method was called.
