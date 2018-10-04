@@ -21,7 +21,7 @@ Constructor(s)
       ::
 
         template <typename Input, typename Output>
-        ControllerRunner(std::unique_ptr<AbstractRate> irate)
+        explicit ControllerRunner(std::unique_ptr<AbstractRate> irate)
 
 ----
 

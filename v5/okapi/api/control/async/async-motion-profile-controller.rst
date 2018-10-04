@@ -7,7 +7,8 @@ Async Motion Profile Controller
 okapi::AsyncMotionProfileController
 ===================================
 
-An ``AsyncController`` which generates and follows 2D motion profiles.
+An ``AsyncController`` which generates and follows 2D motion profiles. Throws a
+``std::invalid_argument`` exception if the gear ratio is zero.
 
 This controller is internally backed by `Pathfinder <https://github.com/JacisNonsense/Pathfinder>`_. There are a few open issues users should be aware about:
 
