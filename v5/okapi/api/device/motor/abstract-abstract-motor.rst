@@ -972,7 +972,9 @@ Helper Structs
 GearsetRatioPair
 ~~~~~~~~~~~~~~~~
 
-This is a simple data class to hold an internal gearset and an external gear ratio.
+This is a simple data class to hold an internal gearset and an external gear ratio. The ratio
+``iratio`` is motor rotation to wheel rotation. So for example, if one motor rotation corresponds
+to two wheel rotations, the ratio is ``1.0/2.0``.
 
 .. tabs ::
    .. tab :: Prototype
