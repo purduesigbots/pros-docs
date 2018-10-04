@@ -375,7 +375,7 @@ Parameters
 setMaxVelocity
 ~~~~~~~~~~~~~~
 
-Sets a new maximum velocity.
+Sets a new maximum velocity in RPM ``[0-600]``.
 
 .. tabs ::
    .. tab :: Prototype
@@ -395,7 +395,7 @@ Parameters
 setMaxVoltage
 ~~~~~~~~~~~~~
 
-Sets a new maximum voltage.
+Sets a new maximum voltage in mV ``[0-12000]``.
 
 .. tabs ::
    .. tab :: Prototype

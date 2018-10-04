@@ -111,7 +111,7 @@ setting errno.
 moveVoltage
 ~~~~~~~~~~~
 
-Sets the voltage for the motor from ``-127`` to ``127``.
+Sets the voltage for the motor from ``-12000`` to ``12000``.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -126,7 +126,7 @@ This function uses the following values of errno when an error state is reached:
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- ivoltage        The new voltage value from ``-127`` to ``127``.
+ ivoltage        The new voltage value from ``-12000`` to ``12000``.
 =============== ===================================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -972,7 +972,9 @@ Helper Structs
 GearsetRatioPair
 ~~~~~~~~~~~~~~~~
 
-This is a simple data class to hold an internal gearset and an external gear ratio.
+This is a simple data class to hold an internal gearset and an external gear ratio. The ratio
+``iratio`` is motor rotation to wheel rotation. So for example, if one motor rotation corresponds
+to two wheel rotations, the ratio is ``1.0/2.0``.
 
 .. tabs ::
    .. tab :: Prototype

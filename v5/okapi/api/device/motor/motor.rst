@@ -176,7 +176,7 @@ setting errno.
 moveVoltage
 ~~~~~~~~~~~
 
-Sets the voltage for the motor from ``-127`` to ``127``.
+Sets the voltage for the motor from ``-12000`` to ``12000``.
 
 This function uses the following values of errno when an error state is reached:
   EACCES - Another resource is currently trying to access the port.
@@ -191,7 +191,7 @@ This function uses the following values of errno when an error state is reached:
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- ivoltage        The new voltage value from ``-127`` to ``127``.
+ ivoltage        The new voltage value from ``-12000`` to ``12000``.
 =============== ===================================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
