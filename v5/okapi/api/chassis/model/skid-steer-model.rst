@@ -24,8 +24,8 @@ This constructor infers the encoders from the motors.
       .. highlight:: cpp
       ::
 
-        SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                       std::shared_ptr<AbstractMotor> irightSideMotor,
+        SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
+                       const std::shared_ptr<AbstractMotor> &irightSideMotor,
                        double imaxVelocity,
                        double imaxVoltage = 12000)
 
@@ -45,10 +45,10 @@ This constructor does not infer the encoders from the motors, and instead takes 
       .. highlight:: cpp
       ::
 
-        SkidSteerModel(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                       std::shared_ptr<AbstractMotor> irightSideMotor,
-                       std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                       std::shared_ptr<ContinuousRotarySensor> irightEnc,
+        SkidSteerModel(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
+                       const std::shared_ptr<AbstractMotor> &irightSideMotor,
+                       const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
+                       const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
                        double imaxVelocity,
                        double imaxVoltage = 12000)
 

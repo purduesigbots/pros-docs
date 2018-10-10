@@ -28,7 +28,7 @@ Constructor(s)
 
         AsyncMotionProfileController(const TimeUtil &itimeUtil,
                                      double imaxVel, double imaxAccel, double imaxJerk,
-                                     std::shared_ptr<ChassisModel> imodel,
+                                     const std::shared_ptr<ChassisModel> &imodel,
                                      const ChassisScales &iscales, AbstractMotor::GearsetRatioPair ipair)
 
 =============== ===================================================================

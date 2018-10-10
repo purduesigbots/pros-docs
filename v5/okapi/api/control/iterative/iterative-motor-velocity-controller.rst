@@ -17,8 +17,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IterativeMotorVelocityControllerArgs(std::shared_ptr<AbstractMotor> imotor,
-                                             std::shared_ptr<IterativeVelocityController<double, double>> icontroller)
+        IterativeMotorVelocityControllerArgs(const std::shared_ptr<AbstractMotor> &imotor,
+                                             const std::shared_ptr<IterativeVelocityController<double, double>> &icontroller)
 
 =============== ===================================================================
  Parameters

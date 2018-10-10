@@ -20,7 +20,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+        AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                      const TimeUtil &itimeUtil)
 
 =============== ===================================================================
@@ -37,7 +37,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+        AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                      std::int32_t imaxVelocity,
                                      const TimeUtil &itimeUtil)
 

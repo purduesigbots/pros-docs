@@ -23,7 +23,7 @@ Constructor(s)
 
         ChassisControllerPID(const TimeUtil &itimeUtil,
                              std::unique_ptr<AbstractRate> irate,
-                             std::shared_ptr<ChassisModel> imodel,
+                             const std::shared_ptr<ChassisModel> &imodel,
                              std::unique_ptr<IterativePosPIDController> idistanceController,
                              std::unique_ptr<IterativePosPIDController> iangleController,
                              std::unique_ptr<IterativePosPIDController> iturnController,

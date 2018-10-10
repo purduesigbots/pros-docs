@@ -19,8 +19,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosPIDController(std::shared_ptr<ControllerInput<double>> iinput,
-                              std::shared_ptr<ControllerOutput<double>> ioutput,
+        AsyncPosPIDController(const std::shared_ptr<ControllerInput<double>> &iinput,
+                              const std::shared_ptr<ControllerOutput<double>> &ioutput,
                               const TimeUtil &itimeUtil,
                               const double ikP, const double ikI, const double ikD, const double ikBias = 0,
                               std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())

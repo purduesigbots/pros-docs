@@ -26,7 +26,7 @@ Constructor(s)
 
         AsyncLinearMotionProfileController(const TimeUtil &itimeUtil,
                                            double imaxVel, double imaxAccel, double imaxJerk,
-                                           std::shared_ptr<ControllerOutput<double>> ioutput)
+                                           const std::shared_ptr<ControllerOutput<double>> &ioutput)
 
 =============== ===================================================================
  Parameters

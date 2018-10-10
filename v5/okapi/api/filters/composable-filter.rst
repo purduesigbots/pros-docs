@@ -98,7 +98,7 @@ Adds a filter to the end of the sequence.
       .. highlight:: cpp
       ::
 
-        virtual void addFilter(std::shared_ptr<Filter> ifilter)
+        virtual void addFilter(const std::shared_ptr<Filter> &ifilter)
 
 ================= ===============================================================
  Parameters

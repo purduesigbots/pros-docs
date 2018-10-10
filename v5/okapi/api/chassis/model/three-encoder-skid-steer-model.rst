@@ -23,11 +23,11 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ThreeEncoderSkidSteerModelArgs(std::shared_ptr<AbstractMotor> ileftSideMotor,
-                                       std::shared_ptr<AbstractMotor> irightSideMotor,
-                                       std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-                                       std::shared_ptr<ContinuousRotarySensor> imiddleEnc,
-                                       std::shared_ptr<ContinuousRotarySensor> irightEnc,
+        ThreeEncoderSkidSteerModelArgs(const std::shared_ptr<AbstractMotor> &ileftSideMotor,
+                                       const std::shared_ptr<AbstractMotor> &irightSideMotor,
+                                       const std::shared_ptr<ContinuousRotarySensor> &ileftEnc,
+                                       const std::shared_ptr<ContinuousRotarySensor> &imiddleEnc,
+                                       const std::shared_ptr<ContinuousRotarySensor> &irightEnc,
                                        double imaxVelocity,
                                        double imaxVoltage = 12000)
 
