@@ -30,6 +30,6 @@ Troubleshooting
 ===============
 
 If OkapiLib is not getting downloaded from GitHub correctly during installation, you can `download
-it manually here <https://github.com/OkapiLib/OkapiLib/releases/download/v3.1.0/okapilib.3.1.0.zip>`_
-and then install it by running ``prosv5 conduct fetch path/to/okapilib.3.1.0.zip``. Once OkapiLib is
+it manually here <https://github.com/OkapiLib/OkapiLib/releases>`_
+and then install it by running ``prosv5 conduct fetch path/to/okapilib.zip``. Once OkapiLib is
 installed, try creating a PROS project again.
