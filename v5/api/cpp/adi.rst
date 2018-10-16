@@ -1300,12 +1300,6 @@ pros::adi_port_config_e_t
  pros::E_ADI_ANALOG_OUT              Configures the ADI port as an analog output
  pros::E_ADI_DIGITAL_IN              Configures the ADI port as a digital input
  pros::E_ADI_DIGITAL_OUT             Configures the ADI port as a digital output
- pros::E_ADI_SMART_BUTTON            Configures the ADI port for use with a Smart Button Sensor
- pros::E_ADI_SMART_POT               Configures the ADI port for use with a Smart Pot Sensor
- pros::E_ADI_LEGACY_BUTTON           Configures the ADI port for use with a Cortex-Era Button
- pros::E_ADI_LEGACY_POT              Configures the ADI port for use with a Cortex-Era Pot
- pros::E_ADI_LEGACY_LINE_SENSOR      Configures the ADI port for use with a Cortex-Era Line Sensor
- pros::E_ADI_LEGACY_LIGHT_SENSOR     Configures the ADI port for use with a Cortex-Era Light Sensor
  pros::E_ADI_LEGACY_GYRO             Configures the ADI port for use with a Cortex-Era Gyro
  pros::E_ADI_LEGACY_ACCELEROMETER    Configures the ADI port for use with a Cortex-Era accelerometer
  pros::E_ADI_LEGACY_SERVO            Configures the ADI port for use with a Cortex-Era servo motor

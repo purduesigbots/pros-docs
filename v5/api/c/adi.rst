@@ -1283,13 +1283,6 @@ adi_port_config_e_t
 		E_ADI_DIGITAL_IN,
 		E_ADI_DIGITAL_OUT,
 
-		E_ADI_SMART_BUTTON,
-		E_ADI_SMART_POT,
-
-		E_ADI_LEGACY_BUTTON,
-		E_ADI_LEGACY_POT,
-		E_ADI_LEGACY_LINE_SENSOR,
-		E_ADI_LEGACY_LIGHT_SENSOR,
 		E_ADI_LEGACY_GYRO,
 		E_ADI_LEGACY_ACCELEROMETER,
 
@@ -1310,12 +1303,6 @@ adi_port_config_e_t
  E_ADI_ANALOG_OUT              Configures the ADI port as an analog output
  E_ADI_DIGITAL_IN              Configures the ADI port as a digital input
  E_ADI_DIGITAL_OUT             Configures the ADI port as a digital output
- E_ADI_SMART_BUTTON            Configures the ADI port for use with a Smart Button Sensor
- E_ADI_SMART_POT               Configures the ADI port for use with a Smart Pot Sensor
- E_ADI_LEGACY_BUTTON           Configures the ADI port for use with a Cortex-Era Button
- E_ADI_LEGACY_POT              Configures the ADI port for use with a Cortex-Era Pot
- E_ADI_LEGACY_LINE_SENSOR      Configures the ADI port for use with a Cortex-Era Line Sensor
- E_ADI_LEGACY_LIGHT_SENSOR     Configures the ADI port for use with a Cortex-Era Light Sensor
  E_ADI_LEGACY_GYRO             Configures the ADI port for use with a Cortex-Era Gyro
  E_ADI_LEGACY_ACCELEROMETER    Configures the ADI port for use with a Cortex-Era accelerometer
  E_ADI_LEGACY_SERVO            Configures the ADI port for use with a Cortex-Era servo motor
