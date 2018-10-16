@@ -441,7 +441,7 @@ Analogous to `pros::Motor::get_actual_velocity <../cpp/motors.html#get-actual-ve
  port         The V5 port number from 1-21
 ============ ==============================
 
-**Returns:** The motor's actual velocity in `motor_encoder_units_e_t`_ per second
+**Returns:** The motor's actual velocity in RPM
 or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
 ----
