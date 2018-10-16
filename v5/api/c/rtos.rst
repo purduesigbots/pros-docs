@@ -336,6 +336,8 @@ deleted will be removed from all ready, blocked, suspended and event lists.
 Memory dynamically allocated by the task is not automatically freed, and
 should be freed before the task is deleted.
 
+Analogous to `pros::Task::remove <../cpp/rtos.html#remove>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
