@@ -265,6 +265,8 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
 - ``EACCES``  - Another resource is currently trying to access the controller port.
 
+Analogous to `pros::Controller::clear <../cpp/misc.html#clear>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -305,6 +307,8 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
 - ``EACCES``  - Another resource is currently trying to access the controller port.
+
+Analogous to `pros::Controller::clear_line <../cpp/misc.html#clear-line>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -626,6 +630,8 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
 - ``EACCES``  - Another resource is currently trying to access the controller port.
 
+Analogous to `pros::Controller::print <../cpp/misc.html#print>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -735,6 +741,8 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
 - ``EACCES``  - Another resource is currently trying to access the controller port.
+
+Analogous to `pros::Controller::set_text <../cpp/misc.html#set-text>`_.
 
 .. tabs ::
    .. tab :: Prototype

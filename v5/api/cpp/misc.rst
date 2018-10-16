@@ -309,6 +309,8 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``EACCES``  - Another resource is currently trying to access the controller port.
 
+Analogous to `controller_clear <../c/misc.html#controller-clear>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -342,6 +344,8 @@ Clears an individual line of the controller screen.
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EACCES``  - Another resource is currently trying to access the controller port.
+
+Analogous to `controller_clear_line <../c/misc.html#controller-clear-line>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -632,6 +636,8 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``EACCES``  - Another resource is currently trying to access the controller port.
 
+Analogous to `controller_print <../c/misc.html#controller-print>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -685,7 +691,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``EACCES``  - Another resource is currently trying to access the controller port.
 
-Analogous to `pros::Controller::rumble <../cpp/misc.html#rumble>`_.
+Analogous to `controller_rumble <../c/misc.html#controller-rumble>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -735,6 +741,8 @@ Sets text to the controller LCD screen.
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EACCES``  - Another resource is currently trying to access the controller port.
+
+Analogous to `controller_set_text <../c/misc.html#controller-set-text>`_.
 
 .. tabs ::
    .. tab :: Prototype
