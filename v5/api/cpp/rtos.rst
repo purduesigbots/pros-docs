@@ -225,7 +225,8 @@ Analogous to `task_delay_until <../c/rtos.html#delay-until>`_.
 ============ ===================================================================
  Parameters
 ============ ===================================================================
- prev_time    A pointer to the location storing the setpoint time
+ prev_time    A pointer to the location storing the setpoint time. This should
+              typically be initialized to the return value of millis().
  delta        The number of milliseconds to wait (1000 milliseconds per second)
 ============ ===================================================================
 
