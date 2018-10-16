@@ -673,6 +673,57 @@ This function uses the following values of ``errno`` when an error state is reac
 
 ----
 
+controller_rumble
+-----------------
+
+Rumble the controller.
+
+.. note:: Controller text setting is a slow process, so updates faster than 10ms when on
+          a wired connection or 50ms over Vexnet will not be applied to the controller.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the controller port.
+
+Analogous to `pros::Controller::rumble <../cpp/misc.html#rumble>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       std::int32_t controller_rumble ( const char* rumble_pattern )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          int count = 0;
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            if (!(count % 25)) {
+              // Only print every 50ms, the controller text update rate is slow
+              master.rumble(". _ . _");
+            }
+            count++;
+            delay(2);
+          }
+        }
+
+
+================ ======================================================================================================
+ Parameters
+================ ======================================================================================================
+ rumble_pattern   A string consisting of the characters '.', '-', and ' ', where dots
+                  are short rumbles, dashes are long rumbles, and spaces are pauses.
+                  Maximum supported length is 8 characters. 
+================ ======================================================================================================
+
+**Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
 set_text
 ~~~~~~~~
 

@@ -669,6 +669,60 @@ This function uses the following values of ``errno`` when an error state is reac
 
 ----
 
+controller_rumble
+-----------------
+
+Rumble the controller.
+
+.. note:: Controller text setting is a slow process, so updates faster than 10ms when on
+          a wired connection or 50ms over Vexnet will not be applied to the controller.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL``  - A value other than ``E_CONTROLLER_MASTER`` or ``E_CONTROLLER_PARTNER`` is given.
+- ``EACCES``  - Another resource is currently trying to access the controller port.
+
+Analogous to `pros::Controller::rumble <../cpp/misc.html#rumble>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       int32_t controller_rumble ( controller_id_e_t id, 
+                                   const char* rumble_pattern )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          int count = 0;
+          while (true) {
+            if (!(count % 25)) {
+              // Only print every 50ms, the controller text update rate is slow
+              controller_rumble(E_CONTROLLER_MASTER, ". _ . _");
+            }
+            count++;
+            delay(2);
+          }
+        }
+
+
+================ ======================================================================================================
+ Parameters
+================ ======================================================================================================
+ id               The ID of the controller (e.g. the master or partner controller).
+                  Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
+ rumble_pattern   A string consisting of the characters '.', '-', and ' ', where dots
+                  are short rumbles, dashes are long rumbles, and spaces are pauses.
+                  Maximum supported length is 8 characters. 
+================ ======================================================================================================
+
+**Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
 controller_set_text
 -------------------
 
