@@ -305,6 +305,10 @@ Clears all of the lines of the controller screen.
 .. note:: Controller text setting is a slow process, so updates faster than 10ms when on
           a wired connection or 50ms over Vexnet will not be applied to the controller.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the controller port.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -334,6 +338,10 @@ Clears an individual line of the controller screen.
 
 .. note:: Controller text setting is a slow process, so updates faster than 10ms when on
           a wired connection or 50ms over Vexnet will not be applied to the controller.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the controller port.
 
 .. tabs ::
    .. tab :: Prototype
@@ -620,6 +628,10 @@ Sets text to the controller LCD screen.
 .. note:: Controller text setting is a slow process, so updates faster than 10ms when on
           a wired connection or 50ms over Vexnet will not be applied to the controller.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the controller port.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -668,6 +680,10 @@ Sets text to the controller LCD screen.
 
 .. note:: Controller text setting is a slow process, so updates faster than 10ms when on
           a wired connection or 50ms over Vexnet will not be applied to the controller.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCES``  - Another resource is currently trying to access the controller port.
 
 .. tabs ::
    .. tab :: Prototype
