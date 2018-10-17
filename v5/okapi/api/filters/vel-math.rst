@@ -35,7 +35,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        VelMathArgs(double iticksPerRev, std::shared_ptr<Filter> ifilter, QTime isampleTime = 0_ms)
+        VelMathArgs(double iticksPerRev, const std::shared_ptr<Filter> &ifilter, QTime isampleTime = 0_ms)
 
 =============== ===================================================================
  Parameters
@@ -63,7 +63,7 @@ Throws a ``std::invalid_argument`` exception if `iticksPerRev` is zero.
       .. highlight:: cpp
       ::
 
-        VelMath(double iticksPerRev, std::shared_ptr<Filter> ifilter, QTime isampleTime, std::unique_ptr<Timer> iloopDtTimer)
+        VelMath(double iticksPerRev, const std::shared_ptr<Filter> &ifilter, QTime isampleTime, std::unique_ptr<Timer> iloopDtTimer)
 
 =============== ===================================================================
  Parameters

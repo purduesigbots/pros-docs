@@ -24,8 +24,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncWrapper(std::shared_ptr<ControllerInput<Input>> iinput,
-                     std::shared_ptr<ControllerOutput<Output>> ioutput,
+        AsyncWrapper(const std::shared_ptr<ControllerInput<Input>> &iinput,
+                     const std::shared_ptr<ControllerOutput<Output>> &ioutput,
                      std::unique_ptr<IterativeController<Input, Output>> icontroller,
                      const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier, std::unique_ptr<SettledUtil> isettledUtil)
 

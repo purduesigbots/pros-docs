@@ -15,8 +15,9 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        explicit ChassisController(std::shared_ptr<ChassisModel> imodel,
-                                   double imaxVelocity, double imaxVoltage = 12000)
+        explicit ChassisController(const std::shared_ptr<ChassisModel> &imodel,
+                                   double imaxVelocity,
+                                   double imaxVoltage = 12000);
 
 =================   ===================================================================
  Parameters

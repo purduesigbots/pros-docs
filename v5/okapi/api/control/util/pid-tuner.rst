@@ -23,7 +23,8 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        PIDTuner(std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
+        PIDTuner(const std::shared_ptr<ControllerInput<double>> &iinput,
+                 const std::shared_ptr<ControllerOutput<double>> &ioutput,
                  const TimeUtil &itimeUtil,
                  QTime itimeout, std::int32_t igoal,
                  double ikPMin, double ikPMax,

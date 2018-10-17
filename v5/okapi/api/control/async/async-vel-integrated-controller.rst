@@ -20,7 +20,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncVelIntegratedController(std::shared_ptr<AbstractMotor> imotor,
+        AsyncVelIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                      const TimeUtil &itimeUtil)
 
 =============== ===================================================================
