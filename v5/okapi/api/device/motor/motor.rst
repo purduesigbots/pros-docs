@@ -322,8 +322,8 @@ This function uses the following values of errno when an error state is reached:
 
         virtual double getActualVelocity() const override
 
-**Returns:** The motor's actual velocity in ``motor_encoder_units_e_t`` per second or
-``PROS_ERR_F`` if the operation failed, setting errno.
+**Returns:** The motor's actual velocity in RPM or ``PROS_ERR_F`` if the operation failed,
+setting errno.
 
 ----
 

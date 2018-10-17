@@ -154,7 +154,7 @@ Sets text to the controller LCD screen.
 ============ ======================================================================================================
  Parameters
 ============ ======================================================================================================
- iline        The lin number at which the text will be displayed ``[0-2]``.
+ iline        The line number at which the text will be displayed ``[0-2]``.
  icol         The column number at which the text will be displayed ``[0-14]``.
  itext        The string to display.
 ============ ======================================================================================================
@@ -194,10 +194,35 @@ Clears an individual line of the controller screen.
 ============ ======================================================================================================
  Parameters
 ============ ======================================================================================================
- iline        The lin number to clear.
+ iline        The line number to clear.
 ============ ======================================================================================================
 
 **Returns:** ``1`` is the operation was successful, ``PROS_ERR`` otherwise.
+
+----
+
+rumble
+~~~~~~
+
+Rumble the controller.
+
+Controller rumble activation is currently in beta, so continuous, fast updates will not work well.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t rumble(std::string irumblePattern)
+
+================ ======================================================================================================
+ Parameters
+================ ======================================================================================================
+ irumblePattern   A string consisting of the characters period, hyphen, and space, where periods are short rumbles, hyphens are long rumbles, and spaces are pauses. Maximum supported length is 8 characters.
+================ ======================================================================================================
+
+**Returns:** ``1`` is the operation was successful or ``PROS_ERR`` if the operation failed,
+setting errno.
 
 ----
 
