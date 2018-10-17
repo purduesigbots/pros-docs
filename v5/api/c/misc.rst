@@ -695,7 +695,7 @@ Analogous to `pros::Controller::rumble <../cpp/misc.html#rumble>`_.
       .. highlight:: c
       ::
 
-       int32_t controller_rumble ( controller_id_e_t id, 
+       int32_t controller_rumble ( controller_id_e_t id,
                                    const char* rumble_pattern )
 
    .. tab :: Example
@@ -707,7 +707,7 @@ Analogous to `pros::Controller::rumble <../cpp/misc.html#rumble>`_.
           while (true) {
             if (!(count % 25)) {
               // Only print every 50ms, the controller text update rate is slow
-              controller_rumble(E_CONTROLLER_MASTER, ". _ . _");
+              controller_rumble(E_CONTROLLER_MASTER, ". - . -");
             }
             count++;
             delay(2);
@@ -722,7 +722,7 @@ Analogous to `pros::Controller::rumble <../cpp/misc.html#rumble>`_.
                   Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
  rumble_pattern   A string consisting of the characters '.', '-', and ' ', where dots
                   are short rumbles, dashes are long rumbles, and spaces are pauses.
-                  Maximum supported length is 8 characters. 
+                  Maximum supported length is 8 characters.
 ================ ======================================================================================================
 
 **Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.

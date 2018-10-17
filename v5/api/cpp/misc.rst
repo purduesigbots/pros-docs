@@ -710,7 +710,7 @@ Analogous to `controller_rumble <../c/misc.html#controller-rumble>`_.
           while (true) {
             if (!(count % 25)) {
               // Only print every 50ms, the controller text update rate is slow
-              master.rumble(". _ . _");
+              master.rumble(". - . -");
             }
             count++;
             delay(2);
@@ -723,7 +723,7 @@ Analogous to `controller_rumble <../c/misc.html#controller-rumble>`_.
 ================ ======================================================================================================
  rumble_pattern   A string consisting of the characters '.', '-', and ' ', where dots
                   are short rumbles, dashes are long rumbles, and spaces are pauses.
-                  Maximum supported length is 8 characters. 
+                  Maximum supported length is 8 characters.
 ================ ======================================================================================================
 
 **Returns:** 1 if the operation was successful, ``PROS_ERR`` otherwise.
