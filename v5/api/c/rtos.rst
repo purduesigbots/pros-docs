@@ -321,7 +321,8 @@ Analogous to `pros::Task::delay_until <../cpp/rtos.html#delay_until>`_.
 ============ ===================================================================
  Parameters
 ============ ===================================================================
- prev_time    A pointer to the location storing the setpoint time
+ prev_time    A pointer to the location storing the setpoint time. This should
+              typically be initialized to the return value of millis().
  delta        The number of milliseconds to wait (1000 milliseconds per second)
 ============ ===================================================================
 
@@ -335,6 +336,8 @@ deleted will be removed from all ready, blocked, suspended and event lists.
 
 Memory dynamically allocated by the task is not automatically freed, and
 should be freed before the task is deleted.
+
+Analogous to `pros::Task::remove <../cpp/rtos.html#remove>`_.
 
 .. tabs ::
    .. tab :: Prototype

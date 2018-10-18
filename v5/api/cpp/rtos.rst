@@ -225,7 +225,8 @@ Analogous to `task_delay_until <../c/rtos.html#delay-until>`_.
 ============ ===================================================================
  Parameters
 ============ ===================================================================
- prev_time    A pointer to the location storing the setpoint time
+ prev_time    A pointer to the location storing the setpoint time. This should
+              typically be initialized to the return value of millis().
  delta        The number of milliseconds to wait (1000 milliseconds per second)
 ============ ===================================================================
 
@@ -514,6 +515,42 @@ Analogous to `task_notify_take <../c/rtos.html#task-notify-take>`_.
 =============== ================================================================================================================
 
 **Returns:** The value of the task's notification value before it is decremented or cleared.
+
+----
+
+remove
+~~~~~~
+
+Remove a task from the RTOS real time kernel's management.  The task being
+deleted will be removed from all ready, blocked, suspended and event lists.
+
+Memory dynamically allocated by the task is not automatically freed, and
+should be freed before the task is deleted.
+
+Analogous to `task_delete <../c/rtos.html#task-delete>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        void pros::Task::remove ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void my_task_fn(void* ign) {
+            // Do things
+          }
+          void opcontrol() {
+            Task my_task (my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                          TASK_STACK_DEPTH_DEFAULT, "Example Task");
+            // Do things
+            my_task.remove(); // Delete the task 
+            std::cout << "Task State: " << my_task.get_state() << std::endl;
+            // Prints the value of E_TASK_STATE_DELETED 
+          }
 
 ----
 
