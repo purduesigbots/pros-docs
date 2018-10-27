@@ -643,8 +643,7 @@ Analogous to `motor_get_actual_velocity <../c/motors.html#motor-get-actual-veloc
           }
         }
 
-**Returns:** The motor's actual velocity in
-`motor_encoder_units_e_t <motor_encoder_units_e_t_>`_ per second
+**Returns:** The motor's actual velocity in RPM
 or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
 ----

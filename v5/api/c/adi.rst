@@ -896,11 +896,11 @@ Analogous to `pros::ADIUltrasonic::get_value <../cpp/adi.html#id24>`_.
       .. highlight:: c
       ::
 
-        #define PORT_ECHO 1
-        #define PORT_PING 2
-
+        #define PORT_PING 1
+        #define PORT_ECHO 2
+    
         void opcontrol() {
-          adi_ultrasonic_t ult = adi_ultrasonic_init(PORT_ECHO, PORT_PING);
+          adi_ultrasonic_t ult = adi_ultrasonic_init(PORT_PING, PORT_ECHO);
           while (true) {
             // Print the distance read by the ultrasonic
             printf("Distance: %d\n", adi_ultrasonic_get(ult));
@@ -935,18 +935,18 @@ Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
       .. highlight:: c
       ::
 
-        adi_ultrasonic_t adi_ultrasonic_init (uint8_t port_echo,
-                                              uint8_t port_ping )
+        adi_ultrasonic_t adi_ultrasonic_init (uint8_t port_ping,
+                                              uint8_t port_echo )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
-        #define PORT_ECHO 1
-        #define PORT_PING 2
-
+        #define PORT_PING 1
+        #define PORT_ECHO 2
+    
         void opcontrol() {
-          adi_ultrasonic_t ult = adi_ultrasonic_init(PORT_ECHO, PORT_PING);
+          adi_ultrasonic_t ult = adi_ultrasonic_init(PORT_PING, PORT_ECHO);
           while (true) {
             // Print the distance read by the ultrasonic
             printf("Distance: %d\n", adi_ultrasonic_get(ult));
@@ -957,8 +957,8 @@ Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
 ============ =============================================================================================================
  Parameters
 ============ =============================================================================================================
- port_echo    the port connected to the yellow INPUT cable. This should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G').
- port_ping    the port connected to the orange OUTPUT cable. This should be in the next highest port following port_echo.
+ port_ping    the port connected to the orange OUTPUT cable. This should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G').
+ port_echo    the port connected to the yellow INPUT cable. This should be in the next highest port following port_ping.
 ============ =============================================================================================================
 
 **Returns:** An `adi_ultrasonic_t`_ object to be stored and used for later calls to ultrasonic functions.
@@ -986,11 +986,11 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define PORT_ECHO 1
-        #define PORT_PING 2
-
+        #define PORT_PING 1
+        #define PORT_ECHO 2
+    
         void opcontrol() {
-          adi_ultrasonic_t ult = adi_ultrasonic_init(PORT_ECHO, PORT_PING);
+          adi_ultrasonic_t ult = adi_ultrasonic_init(PORT_PING, PORT_ECHO);
           while (true) {
             // Print the distance read by the ultrasonic
             printf("Distance: %d\n", adi_ultrasonic_get(ult));
@@ -1283,13 +1283,6 @@ adi_port_config_e_t
 		E_ADI_DIGITAL_IN,
 		E_ADI_DIGITAL_OUT,
 
-		E_ADI_SMART_BUTTON,
-		E_ADI_SMART_POT,
-
-		E_ADI_LEGACY_BUTTON,
-		E_ADI_LEGACY_POT,
-		E_ADI_LEGACY_LINE_SENSOR,
-		E_ADI_LEGACY_LIGHT_SENSOR,
 		E_ADI_LEGACY_GYRO,
 		E_ADI_LEGACY_ACCELEROMETER,
 
@@ -1310,12 +1303,6 @@ adi_port_config_e_t
  E_ADI_ANALOG_OUT              Configures the ADI port as an analog output
  E_ADI_DIGITAL_IN              Configures the ADI port as a digital input
  E_ADI_DIGITAL_OUT             Configures the ADI port as a digital output
- E_ADI_SMART_BUTTON            Configures the ADI port for use with a Smart Button Sensor
- E_ADI_SMART_POT               Configures the ADI port for use with a Smart Pot Sensor
- E_ADI_LEGACY_BUTTON           Configures the ADI port for use with a Cortex-Era Button
- E_ADI_LEGACY_POT              Configures the ADI port for use with a Cortex-Era Pot
- E_ADI_LEGACY_LINE_SENSOR      Configures the ADI port for use with a Cortex-Era Line Sensor
- E_ADI_LEGACY_LIGHT_SENSOR     Configures the ADI port for use with a Cortex-Era Light Sensor
  E_ADI_LEGACY_GYRO             Configures the ADI port for use with a Cortex-Era Gyro
  E_ADI_LEGACY_ACCELEROMETER    Configures the ADI port for use with a Cortex-Era accelerometer
  E_ADI_LEGACY_SERVO            Configures the ADI port for use with a Cortex-Era servo motor

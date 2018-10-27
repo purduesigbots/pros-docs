@@ -1018,18 +1018,18 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        pros::ADIUltrasonic::ADIUltrasonic ( std::uint8_t port_echo,
-                                             std::uint8_t port_ping )
+        pros::ADIUltrasonic::ADIUltrasonic ( std::uint8_t port_ping,
+                                             std::uint8_t port_echo )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        #define PORT_ECHO 1
-        #define PORT_PING 2
-
+        #define PORT_PING 1
+        #define PORT_ECHO 2
+        
         void opcontrol() {
-          pros::ADIUltrasonic sensor (PORT_ECHO, PORT_PING);
+          pros::ADIUltrasonic sensor (PORT_PING, PORT_ECHO);
           while (true) {
             // Print the distance read by the ultrasonic
             std::cout << "Distance: " << sensor.get_value();
@@ -1040,8 +1040,8 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =============================================================================================================
  Parameters
 ============ =============================================================================================================
- port_echo    the port connected to the yellow INPUT cable. This should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G').
- port_ping    the port connected to the orange OUTPUT cable. This should be in the next highest port following port_echo.
+ port_ping    the port connected to the orange OUTPUT cable. This should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G').
+ port_echo    the port connected to the yellow INPUT cable. This should be in the next highest port following port_ping.
 ============ =============================================================================================================
 
 ----
@@ -1077,11 +1077,11 @@ Analogous to `adi_ultrasonic_get <../c/adi.html#adi-ultrasonic-get>`_.
       .. highlight:: cpp
       ::
 
-        #define PORT_ECHO 1
-        #define PORT_PING 2
-
+        #define PORT_PING 1
+        #define PORT_ECHO 2
+        
         void opcontrol() {
-          pros::ADIUltrasonic sensor (PORT_ECHO, PORT_PING);
+          pros::ADIUltrasonic sensor (PORT_PING, PORT_ECHO);
           while (true) {
             // Print the distance read by the ultrasonic
             std::cout << "Distance: " << sensor.get_value();
@@ -1300,12 +1300,6 @@ pros::adi_port_config_e_t
  pros::E_ADI_ANALOG_OUT              Configures the ADI port as an analog output
  pros::E_ADI_DIGITAL_IN              Configures the ADI port as a digital input
  pros::E_ADI_DIGITAL_OUT             Configures the ADI port as a digital output
- pros::E_ADI_SMART_BUTTON            Configures the ADI port for use with a Smart Button Sensor
- pros::E_ADI_SMART_POT               Configures the ADI port for use with a Smart Pot Sensor
- pros::E_ADI_LEGACY_BUTTON           Configures the ADI port for use with a Cortex-Era Button
- pros::E_ADI_LEGACY_POT              Configures the ADI port for use with a Cortex-Era Pot
- pros::E_ADI_LEGACY_LINE_SENSOR      Configures the ADI port for use with a Cortex-Era Line Sensor
- pros::E_ADI_LEGACY_LIGHT_SENSOR     Configures the ADI port for use with a Cortex-Era Light Sensor
  pros::E_ADI_LEGACY_GYRO             Configures the ADI port for use with a Cortex-Era Gyro
  pros::E_ADI_LEGACY_ACCELEROMETER    Configures the ADI port for use with a Cortex-Era accelerometer
  pros::E_ADI_LEGACY_SERVO            Configures the ADI port for use with a Cortex-Era servo motor
