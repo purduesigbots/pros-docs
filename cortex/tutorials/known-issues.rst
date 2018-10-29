@@ -76,7 +76,7 @@ follows:
 
    Diagram courtesy of VEX Robotics.
 
-Both wired and wirless (VEXnet 1.0 & 2.0) are supported.
+Both wired and wireless (VEXnet 1.0 & 2.0) are supported.
 
 Terminal doesn't show up!
 -------------------------
