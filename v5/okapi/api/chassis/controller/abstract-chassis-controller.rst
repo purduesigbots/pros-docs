@@ -197,6 +197,26 @@ Parameters
 
 ----
 
+setTurnsMirrored
+~~~~~~~~~~~~~~~~
+
+Sets whether turns should be mirrored.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setTurnsMirrored(bool ishouldMirror)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ishouldMirror   Whether turns should be mirrored.
+=============== ===================================================================
+
+----
+
 waitUntilSettled
 ~~~~~~~~~~~~~~~~
 
