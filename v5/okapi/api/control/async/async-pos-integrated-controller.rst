@@ -259,3 +259,17 @@ Sets the "absolute" zero position of the motor to its current position.
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting errno.
+
+----
+
+stop
+~~~~
+
+Stops the motor mid-movement. Does not change the last set target.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void stop()
