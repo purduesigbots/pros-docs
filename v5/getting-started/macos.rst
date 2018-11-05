@@ -25,7 +25,7 @@ Install the toolchain
 ^^^^^^^^^^^^^^^^^^^^^
 1. Download the latest version of the GNU Arm Embedded Toolchain for macOS from `their site <https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads>`_.
 2. Once you have downloaded the toolchain, double click the file to extract its contents.
-3. Copy the contents of the :code:`gcc-arm-none-eabi-X-20XX-qX-update` folder (where the :code:`X`s are numbers specific to the version you downloaded) to another folder, for example :code:`/usr/local/lib/pros-toolchain`.
+3. Copy the contents of the :code:`gcc-arm-none-eabi-X-20XX-qX-update` folder (where the Xs are numbers specific to the version you downloaded) to another folder, for example :code:`/usr/local/lib/pros-toolchain`.
 4. Now you will need to link the toolchain binaries to somewhere that the system will be able to find them. There are two ways to do this:
 
    i) (recommended, easy to update) run ``mkdir -p /usr/local/bin/pros-toolchain && ln -s /usr/local/lib/pros-toolchain/bin/* /usr/local/bin/pros-toolchain`` (replacing ``/usr/local/lib/pros-toolchain`` with the path to the folder you made in step 4 above). Finally, add ``/usr/local/bin/pros-toolchain`` to the end of your ``/etc/paths`` file.
