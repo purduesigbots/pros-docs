@@ -43,3 +43,44 @@ Install the Editor
 
 1. Build and install cquery by following the instructions on `their wiki page <https://github.com/cquery-project/cquery/wiki/Building-cquery>`_.
 2. Download the :code:`pros-editor-mac.zip` file from `our releases page <https://github.com/purduesigbots/atom/releases/latest>`_. Once downloaded, double click to extract the application, then drag the :code:`PROS Editor.app` file to your :code:`/Applications` folder.
+
+Requirements
+------------
+
+Minimum macOS version: 10.8
+Minimum Python version: 3.6
+
+Known Issues
+------------
+
+:code:`RuntimeError: Click will abort further execution because Python 3 was configured to use ASCII as encoding for the environment.`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+If you are using the PROS Editor, open up your init script (File > Init Script) and add the following two lines:
+
+.. code-block:: coffee
+   process.env.LANG = 'en_US.utf-8'
+   process.env.LC_ALL = 'en_US.utf-8'
+
+If you are just using the CLI at the Terminal:
+
+1. Open up your Terminal.
+2. Run :code:`cd` to make sure you're in your home directory.
+3. Run :code:`touch .bash_profile` to make sure you have a shell login configuration file.
+4. Edit the :code:`~/.bash_profile` file in your preferred editor (you can also run :code:`open -e .bash_profile` to edit it in TextEdit), adding the following two lines at the end:
+
+.. code-block:: bash
+   export LANG="en_US.utf-8"
+   export LC_ALL="en_US.utf-8"
+
+5. Run :code:`. .bash_profile` to reload the file for the current session.
+
+:code:`/bin/sh: intercept-c++: command not found`
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. note:: This issue should be fixed for PROS CLI versions > 3.1.2
+
+1. Check your PROS CLI version by running :code:`prosv5 --version`. If your version is <= 3.1.2, try updating first to check if that solves your problem. If not, continue with step 2.
+2. Follow steps 1-4 listed above for those using the CLI only. In step 4, however, add the following line instead (replacing the Xs with the numbers found in step 1):
+
+.. code-block:: bash
+   export PATH="/usr/local/Cellar/pros-cli/3.X.X/libexec/bin:$PATH"
