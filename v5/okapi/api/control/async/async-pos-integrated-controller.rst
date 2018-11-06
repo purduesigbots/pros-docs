@@ -126,7 +126,8 @@ If the controller is disabled, this method must return true.
 reset
 ~~~~~
 
-Resets the controller so it can start from 0 again properly. Keeps configuration from before.
+Resets the controller's internal state so it is similar to when it was first initialized, while
+keeping any user-configured information. This implementation also stops movement.
 
 .. tabs ::
    .. tab :: Prototype
@@ -242,3 +243,34 @@ Parameters
 =============== ===================================================================
  imaxVelocity    The new maximum velocity in RPM.
 =============== ===================================================================
+
+----
+
+tarePosition
+~~~~~~~~~~~~
+
+Sets the "absolute" zero position of the motor to its current position.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t tarePosition()
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting errno.
+
+----
+
+stop
+~~~~
+
+Stops the motor mid-movement. Does not change the last set target.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void stop()

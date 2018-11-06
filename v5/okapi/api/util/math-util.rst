@@ -180,3 +180,47 @@ Remap a value in the range ``[oldMin, oldMax]`` to the range ``[newMin, newMax]`
 ============ ===============================================================
 
 **Returns:** The remapped value in the new range ``[newMin, newMax]``.
+
+----
+
+toUnderlyingType
+~~~~~~~~~~~~~~~~
+
+Converts an enum to its value type.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        template <typename E> constexpr auto toUnderlyingType(const E e) noexcept
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ e            The enum to convert.
+============ ===============================================================
+
+**Returns:** The value type for the enum.
+
+----
+
+boolToSign
+~~~~~~~~~~
+
+Converts a bool to a sign. ``true`` corresponds to ``1`` and ``false`` corresponds to ``-1``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        constexpr auto boolToSign(const bool b) noexcept
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ b            The bool to convert.
+============ ===============================================================
+
+**Returns:** The sign value of the bool.

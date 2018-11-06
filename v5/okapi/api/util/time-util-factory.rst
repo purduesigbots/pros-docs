@@ -32,3 +32,19 @@ Get a new instance of ``TimeUtil``.
         static TimeUtil create()
 
 **Returns:** A new instance of ``TimeUtil``.
+
+withSettledUtilParams
+~~~~~~~~~~~~~~~~~~~~~
+
+Get a new instance of ``TimeUtil`` which returns a custom ``SettledUtil``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        static TimeUtil withSettledUtilParams(double iatTargetError = 50,
+                                              double iatTargetDerivative = 5,
+                                              QTime iatTargetTime = 250_ms)
+
+**Returns:** A new instance of ``TimeUtil``.
