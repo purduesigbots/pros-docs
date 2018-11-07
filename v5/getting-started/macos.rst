@@ -53,11 +53,13 @@ Minimum Python version: 3.6
 Known Issues
 ------------
 
-:code:`RuntimeError: Click will abort further execution because Python 3 was configured to use ASCII as encoding for the environment.`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:code:`RuntimeError: Click will abort further execution because Python 3 was configured
+to use ASCII as encoding for the environment.`
+
 If you are using the PROS Editor, open up your init script (File > Init Script) and add the following two lines:
 
 .. code-block:: coffee
+
    process.env.LANG = 'en_US.utf-8'
    process.env.LC_ALL = 'en_US.utf-8'
 
@@ -69,6 +71,7 @@ If you are just using the CLI at the Terminal:
 4. Edit the :code:`~/.bash_profile` file in your preferred editor (you can also run :code:`open -e .bash_profile` to edit it in TextEdit), adding the following two lines at the end:
 
 .. code-block:: bash
+
    export LANG="en_US.utf-8"
    export LC_ALL="en_US.utf-8"
 
@@ -83,4 +86,5 @@ If you are just using the CLI at the Terminal:
 2. Follow steps 1-4 listed above for those using the CLI only. In step 4, however, add the following line instead (replacing the Xs with the numbers found in step 1):
 
 .. code-block:: bash
+
    export PATH="/usr/local/Cellar/pros-cli/3.X.X/libexec/bin:$PATH"
