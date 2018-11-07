@@ -78,7 +78,6 @@ If you are just using the CLI at the Terminal:
 5. Run :code:`. .bash_profile` to reload the file for the current session.
 
 :code:`/bin/sh: intercept-c++: command not found`
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. note:: This issue should be fixed for PROS CLI versions > 3.1.2
 
