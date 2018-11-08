@@ -20,7 +20,7 @@ For more advanced, topical guides, visit the :doc:`../tutorials/index` section.
 
    windows
    macos
-   debian-linux
+   linux
 
 .. toctree::
    :caption: FAQ
