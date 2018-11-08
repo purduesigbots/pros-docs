@@ -960,7 +960,7 @@ Indicates the internal gearing used by the motor.
 ::
 
   enum class gearset {
-    red = 1000,  // 36:1, 100 RPM, Red gear set
+    red = 100,  // 36:1, 100 RPM, Red gear set
     green = 200, // 18:1, 200 RPM, Green gear set
     blue = 600,  // 6:1,  600 RPM, Blue gear set
     invalid = INT32_MAX
