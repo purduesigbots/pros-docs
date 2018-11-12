@@ -49,6 +49,58 @@ reached:
 
 ----
 
+vision_create_color_code
+------------------------
+
+Creates a color code that represents a combination of the given signature
+IDs. If fewer than 5 signatures are to be a part of the color code, pass 0
+for the additional function parameters.
+
+This function uses the following values of errno when an error state is
+reached:
+
+	- ``EINVAL`` - Fewer than two signatures have been provided, or one of the
+             		 signatures is out of its [1-7] range.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+				vision_color_code_t vision_create_color_code ( uint8_t port,
+				                                               const uint32_t sig_id1,
+																											 const uint32_t sig_id2,
+																									     const uint32_t sig_id3,
+																											 const uint32_t sig_id4,
+																											 const uint32_t sig_id5 )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+				#define OTHER_SIG 2
+
+        void opcontrol() {
+          vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ sig_id1      The first signature id [1-7] to add to the color code
+ sig_id2      The second signature id [1-7] to add to the color code
+ sig_id3      The third signature id [1-7] to add to the color code
+ sig_id4      The fourth signature id [1-7] to add to the color code
+ sig_id5      The fifth signature id [1-7] to add to the color code
+============ ===============================================================
+
+**Returns:** A ``vision_color_code_t`` object containing the color code information.
+
+----
+
 vision_get_by_sig
 -----------------
 
@@ -59,7 +111,8 @@ reached:
 
 - ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
-- ``EAGAIN`` - Reading the Vision Sensor failed for an unknown reason.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -111,6 +164,8 @@ reached:
 
 - ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -145,6 +200,60 @@ reached:
 
 **Returns:** The vision_object_s_t object corresponding to the given size id, or
 PROS_ERR if an error occurred.
+
+----
+
+vision_get_by_code
+------------------
+
+Gets the nth largest object of the given color code according to size_id.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         vision_object_s_t vision_get_by_code ( uint8_t port,
+				                                        const uint32_t size_id,
+																								const vision_color_code_t color_code )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+				#define OTHER_SIG 2
+
+        void opcontrol() {
+					vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG);
+          while (true) {
+            vision_object_s_t rtn = vision_get_by_code(VISION_PORT, 0, code1);
+            // Gets the largest object
+            printf("sig: %d", rtn.signature);
+            delay(2);
+          }
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+ size_id      The object to read from a list roughly ordered by object size
+              (0 is the largest item, 1 is the second largest, etc.)
+ color_code   The vision_color_code_t for which an object will be returned
+============ ===============================================================
+
+**Returns:** The vision_object_s_t object corresponding to the given color code
+and size_id, or PROS_ERR if an error occurred.
 
 ----
 
@@ -230,6 +339,48 @@ Returns PROS_ERR if the port was invalid or an error occurred.
 
 ----
 
+vision_get_signature
+--------------------
+
+Gets the object detection signature with the given id number.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        vision_signature_s_t vision_get_signature ( uint8_t port,
+				                                            const uint8_t signature_id )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+				#define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+
+				void opcontrol() {
+					vision_signature_s_t sig = vision_get_signature(VISION_PORT, EXAMPLE_SIG);
+					vision_print_signature(sig);
+				}
+
+=============== ==============================
+ Parameters
+=============== ==============================
+ port            The V5 port number from 1-21
+ signature_id    The signature id to read
+============== ==============================
+
+**Returns:** A ``vision_signature_s_t`` containing information about the signature.
+
+----
+
 vision_get_white_balance
 ------------------------
 
@@ -270,6 +421,40 @@ reached:
 
 ----
 
+vision_print_signature
+----------------------
+
+Prints the contents of the signature as an initializer list to the terminal.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t vision_print_signature ( const vision_signature_s_t sig )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+
+        void opcontrol() {
+					vision_signature_s_t sig = vision_get_signature(VISION_PORT, EXAMPLE_SIG);
+          vision_print_signature(sig);
+        }
+
+============== ========================================================
+ Parameters
+============== ========================================================
+ sig            The signature for which the contents will be printed
+============== ========================================================
+
+**Returns:** 1 if no errors occured, PROS_ERR otherwise
+
+----
+
 vision_read_by_sig
 ------------------
 
@@ -280,6 +465,7 @@ reached:
 
 - ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype
@@ -340,6 +526,7 @@ reached:
 
 - ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype
@@ -375,6 +562,70 @@ reached:
  size_id        The first object to read from a list roughly ordered
                 by object size (0 is the largest item, 1 is the second
                 largest, etc.)
+ object_count   How many objects to read
+ object_arr     A pointer to copy the data into
+============== ========================================================
+
+**Returns:** The number of object signatures copied. This number will be less than
+object_count if there are fewer objects detected by the vision sensor.
+Returns PROS_ERR if the port was invalid, an error occurred, or fewer objects
+than size_id were found. All objects in object_arr that were not found are
+given VISION_OBJECT_ERR_SIG as their signature.
+
+----
+
+vision_read_by_code
+-------------------
+
+Reads up to object_count object descriptors into object_arr.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+				int32_t vision_read_by_code ( uint8_t port,
+				                              const uint32_t size_id,
+																			const vision_color_code_t color_code,
+																	    const uint32_t object_count,
+																			vision_object_s_t* const object_arr )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+				#define OTHER_SIG 2
+        #define NUM_VISION_OBJECTS 4
+
+        void opcontrol() {
+          vision_object_s_t object_arr[NUM_VISION_OBJECTS];
+					vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG);
+          while (true) {
+            vision_read_by_code(VISION_PORT, 0, code1, NUM_VISION_OBJECTS, object_arr);
+            printf("sig: %d", object_arr[0].signature);
+            // Prints the signature of the largest object found
+            delay(2);
+          }
+        }
+
+============== ========================================================
+ Parameters
+============== ========================================================
+ port           The V5 port number from 1-21
+ size_id        The first object to read from a list roughly ordered
+                by object size (0 is the largest item, 1 is the second
+                largest, etc.)
+ color_code     The vision_color_code_t for which objects will be
+                returned
  object_count   How many objects to read
  object_arr     A pointer to copy the data into
 ============== ========================================================
@@ -506,6 +757,54 @@ reached:
 ============ ==============================
 
 **Returns:** 0 if no errors occured, PROS_ERR otherwise
+
+----
+
+vision_set_signature
+--------------------
+
+Stores the supplied object detection signature onto the vision sensor.
+
+.. note:: This saves the signature in volatile memory, and the signature will be
+          lost as soon as the sensor is powered down.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t vision_set_signature ( uint8_t port,
+				                               const uint8_t signature_id,
+																			 vision_signature_s_t* const signature_ptr )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+
+        void opcontrol() {
+          vision_signature_s_t sig = vision_get_signature(VISION_PORT, EXAMPLE_SIG);
+					sig.range = 10.0;
+					vision_set_signature(VISION_PORT, EXAMPLE_SIG, &sig);
+        }
+
+================ ===================================
+ Parameters
+================ ===================================
+ port            The V5 port number from 1-21
+ signature_id    The signature id to store into
+ signature_ptr   A pointer to the signature to save
+================ ===================================
+
+**Returns:** 1 if no errors, occurred, PROS_ERR otherwise
 
 ----
 
@@ -647,4 +946,10 @@ that can be detected by the Vision Sensor
 Typedefs
 ========
 
-None.
+vision_color_code_t
+-------------------
+
+Color codes are just signatures with multiple IDs and a different type.
+
+::
+	typedef uint16_t vision_color_code_t;
