@@ -322,8 +322,9 @@ This method assumes an x-drive layout. Puts the motors into degree units. Throws
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
+        // The last x-drive MotorGroup must be specified explicitly
         auto myChassis = ChassisControllerFactory::create(
-          {1, -2}, {-3, 4}, {-5, 6}, {7, -8},
+          {1, -2}, {-3, 4}, {-5, 6}, MotorGroup{7, -8},
           IterativePosPIDController::Gains{0.5, 0, 0},
           IterativePosPIDController::Gains{0.1, 0.05, 0},
           AbstractMotor::gearset::green,
@@ -339,8 +340,9 @@ This method assumes an x-drive layout. Puts the motors into degree units. Throws
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
+        // The last x-drive MotorGroup must be specified explicitly
         auto myChassis = ChassisControllerFactory::create(
-          {1, -2}, {-3, 4}, {-5, 6}, {7, -8},
+          {1, -2}, {-3, 4}, {-5, 6}, MotorGroup{7, -8},
           IterativePosPIDController::Gains{0.5, 0, 0},
           IterativePosPIDController::Gains{0.1, 0.05, 0},
           IterativePosPIDController::Gains{0.2, 0, 0},
@@ -399,8 +401,9 @@ This method assumes an x-drive layout. Puts the motors into degree units. Throws
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
+        // The last x-drive MotorGroup must be specified explicitly
         auto myChassis = ChassisControllerFactory::create(
-          {1, -2}, {-3, 4}, {-5, 6}, {7, -8},
+          {1, -2}, {-3, 4}, {-5, 6}, MotorGroup{7, -8},
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
           IterativePosPIDController::Gains{0.5, 0, 0},
           IterativePosPIDController::Gains{0.1, 0.05, 0},
@@ -418,8 +421,9 @@ This method assumes an x-drive layout. Puts the motors into degree units. Throws
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
+        // The last x-drive MotorGroup must be specified explicitly
         auto myChassis = ChassisControllerFactory::create(
-          {1, -2}, {-3, 4}, {-5, 6}, {7, -8},
+          {1, -2}, {-3, 4}, {-5, 6}, MotorGroup{7, -8},
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
           IterativePosPIDController::Gains{0.5, 0, 0},
           IterativePosPIDController::Gains{0.1, 0.05, 0},
