@@ -28,9 +28,10 @@ What Classes are of Each Type?
 * ``FilteredControllerInput``
 * ``RotarySensor``
 * ``ContinuousRotarySensor``
-* ``ADIUltrasonic``
 * ``ADIEncoder``
 * ``IntegratedEncoder``
+* ``ADIGyro``
+* ``ADIUltrasonic``
 * ``Potentiometer``
 
 **Controller Outputs:**

@@ -25,9 +25,11 @@ The example below gives an example of filtering a sensor value.
    Potentiometer exampleSensor(POTENTIOMETER_PORT);
    AverageFilter<NUM_AVE_POINTS> exampleFilter;
 
-   while (true) {
-     std::cout << "Current Sensor Reading: " << exampleFilter.filter(exampleSensor.get());
-     pros::Task::delay(10);
+   void opcontrol() {
+     while (true) {
+       std::cout << "Current Sensor Reading: " << exampleFilter.filter(exampleSensor.get());
+       pros::Task::delay(10);
+     }
    }
 
 The above example will print out the average of the last five readings of the potentiometer.
@@ -55,6 +57,9 @@ Using a filter with a Velocity PID Controller can be done in the following manne
 
    auto velMathArgs = VelMathArgs(imev5TPR, std::make_shared<AverageFilter<NUM_AVE_POINTS>>());
    auto exampleController = IterativeControllerFactory::velPID(kP, kD, kF, kSF, velMathArgs);
+
+   void opcontrol() {
+   }
 
 To clarify step by step:
 
