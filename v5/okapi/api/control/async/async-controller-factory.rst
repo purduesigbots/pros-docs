@@ -26,7 +26,9 @@ A position controller that uses the V5 motor's onboard control.
       .. highlight:: cpp
       ::
 
-        static AsyncPosIntegratedController posIntegrated(Motor imotor, std::int32_t imaxVelocity = 600)
+        static AsyncPosIntegratedController posIntegrated(
+          Motor/MotorGroup imotor,
+          std::int32_t imaxVelocity = 600)
 
    .. tab :: Example
      .. highlight:: cpp
@@ -44,34 +46,6 @@ Parameters
 
 ----
 
-posIntegrated
-~~~~~~~~~~~~~
-
-A position controller that uses the V5 motor's onboard control.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static AsyncPosIntegratedController posIntegrated(MotorGroup imotor, std::int32_t imaxVelocity = 600)
-
-   .. tab :: Example
-     .. highlight:: cpp
-     ::
-
-       // Controlling motors geared together in ports 1 and 2
-       auto controller = AsyncControllerFactory::posIntegrated({1, -2});
-
-=============== ===================================================================
-Parameters
-=============== ===================================================================
- imotor          The controller input (from the integrated encoder) and output.
- imaxVelocity    The maximum velocity during a profiled movement.
-=============== ===================================================================
-
-----
-
 velIntegrated
 ~~~~~~~~~~~~~
 
@@ -82,7 +56,9 @@ A velocity controller that uses the V5 motor's onboard control.
       .. highlight:: cpp
       ::
 
-        static AsyncVelIntegratedController velIntegrated(Motor imotor)
+        static AsyncVelIntegratedController velIntegrated(
+          Motor/MotorGroup imotor
+        )
 
    .. tab :: Example
      .. highlight:: cpp
@@ -99,52 +75,31 @@ Parameters
 
 ----
 
-velIntegrated
-~~~~~~~~~~~~~
-
-A velocity controller that uses the V5 motor's onboard control.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static AsyncVelIntegratedController velIntegrated(MotorGroup imotor)
-
-   .. tab :: Example
-     .. highlight:: cpp
-     ::
-
-       // Controlling motors geared together in ports 1 and 2
-       auto controller = AsyncControllerFactory::velIntegrated({1, -2});
-
-=============== ===================================================================
-Parameters
-=============== ===================================================================
- imotor          The controller input (from the integrated encoder) and output.
-=============== ===================================================================
-
-----
-
 posPID
 ~~~~~~
 
-A position controller that uses the PID algorithm.
+A position controller that uses the PID algorithm. Uses the motor's integrated encoder.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        static AsyncPosPIDController posPID(Motor imotor, double ikP, double ikI, double ikD, double ikBias = 0,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+        static AsyncPosPIDController posPID(
+          Motor/MotorGroup imotor,
+          double ikP, double ikI, double ikD, double ikBias = 0,
+          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>()
+        )
 
    .. tab :: Example
      .. highlight:: cpp
      ::
 
-       // Controlling a motor on port 1
+       // Controlling a motor on port 1 with its integrated encoder
        auto controller = AsyncControllerFactory::posPID(1, 0.01, 0.0, 0.005);
+
+       // Controlling a motor group on ports 1 and 2 with its integrated encoder
+       auto controller = AsyncControllerFactory::posPID({-1, 2}, 0.01, 0.0, 0.005);
 
 =================== ===================================================================
 Parameters
@@ -169,9 +124,12 @@ A position controller that uses the PID algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncPosPIDController posPID(Motor imotor, ADIEncoder ienc,
-                                            double ikP, double ikI, double ikD, double ikBias = 0,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+        static AsyncPosPIDController posPID(
+          Motor/MotorGroup imotor,
+          ADIEncoder/ADIGyro/Potentiometer/IntegratedEncoder isensor,
+          double ikP, double ikI, double ikD, double ikBias = 0,
+          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>()
+        )
 
    .. tab :: Example
      .. highlight:: cpp
@@ -180,46 +138,17 @@ A position controller that uses the PID algorithm.
        // Controlling a motor on port 1 with an encoder in ADI ports A and B
        auto controller = AsyncControllerFactory::posPID(1, ADIEncoder('A', 'B'), 0.01, 0.0, 0.005);
 
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- imotor              The controller output.
- ienc                The controller input.
- ikp                 The P term gain.
- ikI                 The I term gain.
- ikD                 The D term gain.
- ikBias              The controller bias.
- iderivativeFilter   The filter to use for filtering the derivative term.
-=================== ===================================================================
+       // Controlling a motor group on ports 1 and 2 with an encoder in ADI ports A and B
+       auto controller = AsyncControllerFactory::posPID({-1, 2}, ADIEncoder('A', 'B'), 0.01, 0.0, 0.005);
 
-----
-
-posPID
-~~~~~~
-
-A position controller that uses the PID algorithm.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static AsyncPosPIDController posPID(Motor imotor, Potentiometer ipot,
-                                            double ikP, double ikI, double ikD, double ikBias = 0,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
-
-   .. tab :: Example
-     .. highlight:: cpp
-     ::
-
-       // Controlling a motor on port 1 with a a potentiometer in ADI port A
-       auto controller = AsyncControllerFactory::posPID(1, Potentiometer('A'), 0.01, 0.0, 0.005);
+       // Controlling a motor group on ports 1 and 2 with a gyro in ADI port A
+       auto controller = AsyncControllerFactory::posPID({-1, 2}, ADIGyro('A'), 0.01, 0.0, 0.005);
 
 =================== ===================================================================
 Parameters
 =================== ===================================================================
  imotor              The controller output.
- ipot                The controller input.
+ isensor             The controller input.
  ikp                 The P term gain.
  ikI                 The I term gain.
  ikD                 The D term gain.
@@ -239,112 +168,12 @@ A position controller that uses the PID algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncPosPIDController posPID(MotorGroup imotor, double ikP, double ikI, double ikD, double ikBias = 0,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
-
-   .. tab :: Example
-     .. highlight:: cpp
-     ::
-
-       // Controlling motors geared together in ports 1 and 2
-       auto controller = AsyncControllerFactory::posPID({1, -2}, 0.01, 0.0, 0.005);
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- imotor              The controller input (from the integrated encoder) and output.
- ikp                 The P term gain.
- ikI                 The I term gain.
- ikD                 The D term gain.
- ikBias              The controller bias.
- iderivativeFilter   The filter to use for filtering the derivative term.
-=================== ===================================================================
-
-----
-
-posPID
-~~~~~~
-
-A position controller that uses the PID algorithm.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static AsyncPosPIDController posPID(MotorGroup imotor, ADIEncoder ienc,
-                                            double ikP, double ikI, double ikD, double ikBias = 0,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
-
-   .. tab :: Example
-     .. highlight:: cpp
-     ::
-
-       // Controlling motors geared together in ports 1 and 2 with an encoder in ADI ports A and B
-       auto controller = AsyncControllerFactory::posPID({1, -2}, ADIEncoder('A', 'B'), 0.01, 0.0, 0.005);
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- imotor              The controller output.
- ienc                The controller input.
- ikp                 The P term gain.
- ikI                 The I term gain.
- ikD                 The D term gain.
- ikBias              The controller bias.
- iderivativeFilter   The filter to use for filtering the derivative term.
-=================== ===================================================================
-
-----
-
-posPID
-~~~~~~
-
-A position controller that uses the PID algorithm.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static AsyncPosPIDController posPID(MotorGroup imotor, Potentiometer ipot,
-                                            double ikP, double ikI, double ikD, double ikBias = 0,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
-
-   .. tab :: Example
-     .. highlight:: cpp
-     ::
-
-       // Controlling motors geared together in ports 1 and 2 with a potentiometer in ADI port A
-       auto controller = AsyncControllerFactory::posPID({1, -2}, Potentiometer('A'), 0.01, 0.0, 0.005);
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- imotor              The controller output.
- ipot                The controller input.
- ikp                 The P term gain.
- ikI                 The I term gain.
- ikD                 The D term gain.
- ikBias              The controller bias.
- iderivativeFilter   The filter to use for filtering the derivative term.
-=================== ===================================================================
-
-----
-
-posPID
-~~~~~~
-
-A position controller that uses the PID algorithm.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static AsyncPosPIDController posPID(std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
-                                            double ikP, double ikI, double ikD, double ikBias = 0,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+        static AsyncPosPIDController posPID(
+          std::shared_ptr<ControllerInput<double>> iinput,
+          std::shared_ptr<ControllerOutput<double>> ioutput,
+          double ikP, double ikI, double ikD, double ikBias = 0,
+          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>()
+        )
 
 =================== ===================================================================
 Parameters
@@ -363,25 +192,29 @@ Parameters
 velPID
 ~~~~~~
 
-A velocity controller that uses the PD algorithm.
+A velocity controller that uses the PD algorithm. Uses the motor's integrated encoder.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(Motor imotor,
-                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
-                                            double iTPR = imev5TPR,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+        static AsyncVelPIDController velPID(
+          Motor/MotorGroup imotor,
+          double ikP, double ikD, double ikF = 0, double ikSF = 0, double iTPR = imev5TPR,
+          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>()
+        )
 
    .. tab :: Example
      .. highlight:: cpp
      ::
 
-       // Controlling a motor in port 1
+       // Controlling a motor in port 1 with its integrated encoder
        auto controller = AsyncControllerFactory::velPID(1, 0.01, 0.005);
 
+       // Controlling a motor group on ports 1 and 2 with its integrated encoder
+       auto controller = AsyncControllerFactory::velPID({-1, 2}, 0.01, 0.005);
+
 =================== ===================================================================
 Parameters
 =================== ===================================================================
@@ -406,60 +239,31 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(Motor imotor, ADIEncoder ienc,
-                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
-                                            double iTPR = imev5TPR,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+        static AsyncVelPIDController velPID(
+          Motor/MotorGroup imotor,
+          ADIEncoder/ADIGyro/Potentiometer/IntegratedEncoder isensor,
+          double ikP, double ikD, double ikF = 0, double ikSF = 0, double iTPR = imev5TPR,
+          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>()
+        )
 
    .. tab :: Example
      .. highlight:: cpp
      ::
 
-       // Controlling a motor in port 1 with an encoder in ADI ports A and B
+       // Controlling a motor on port 1 with an encoder in ADI ports A and B
        auto controller = AsyncControllerFactory::velPID(1, ADIEncoder('A', 'B'), 0.01, 0.005);
 
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- imotor              The controller output.
- ienc                The controller input.
- ikp                 The P term gain.
- ikD                 The D term gain.
- ikF                 The Feed-Forward gain.
- ikSF                A Feed-Forward gain to counteract static friction.
- iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
- iderivativeFilter   The filter to use for filtering the derivative term.
-=================== ===================================================================
+       // Controlling a motor group on ports 1 and 2 with an encoder in ADI ports A and B
+       auto controller = AsyncControllerFactory::velPID({-1, 2}, ADIEncoder('A', 'B'), 0.01, 0.005);
 
-----
-
-velPID
-~~~~~~
-
-A velocity controller that uses the PD algorithm.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static AsyncVelPIDController velPID(Motor imotor, Potentiometer ipot,
-                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
-                                            double iTPR = imev5TPR,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
-
-   .. tab :: Example
-     .. highlight:: cpp
-     ::
-
-       // Controlling a motor in port 1 with a potentiometer in ADI port A
-       auto controller = AsyncControllerFactory::velPID(1, Potentiometer('A'), 0.01, 0.005);
+       // Controlling a motor group on ports 1 and 2 with a gyro in ADI port A
+       auto controller = AsyncControllerFactory::velPID({-1, 2}, ADIGyro('A'), 0.01, 0.005);
 
 =================== ===================================================================
 Parameters
 =================== ===================================================================
  imotor              The controller output.
- ipot                The controller input.
+ isensor             The controller input.
  ikp                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
@@ -480,121 +284,12 @@ A velocity controller that uses the PD algorithm.
       .. highlight:: cpp
       ::
 
-        static AsyncVelPIDController velPID(MotorGroup imotor,
-                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
-                                            double iTPR = imev5TPR,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
-
-   .. tab :: Example
-     .. highlight:: cpp
-     ::
-
-       // Controlling motors geared together in ports 1 and 2
-       auto controller = AsyncControllerFactory::velPID({1, -2}, 0.01, 0.005);
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- imotor              The controller input (from the integrated encoder) and output.
- ikp                 The P term gain.
- ikD                 The D term gain.
- ikF                 The Feed-Forward gain.
- ikSF                A Feed-Forward gain to counteract static friction.
- iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
- iderivativeFilter   The filter to use for filtering the derivative term.
-=================== ===================================================================
-
-----
-
-velPID
-~~~~~~
-
-A velocity controller that uses the PD algorithm.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static AsyncVelPIDController velPID(MotorGroup imotor, ADIEncoder ienc,
-                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
-                                            double iTPR = imev5TPR,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
-
-   .. tab :: Example
-     .. highlight:: cpp
-     ::
-
-       // Controlling motors geared together in ports 1 and 2 with an encoder in ADI ports A and B
-       auto controller = AsyncControllerFactory::velPID({1, -2}, ADIEncoder('A', 'B'), 0.01, 0.005);
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- imotor              The controller output.
- ienc                The controller input.
- ikp                 The P term gain.
- ikD                 The D term gain.
- ikF                 The Feed-Forward gain.
- ikSF                A Feed-Forward gain to counteract static friction.
- iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
- iderivativeFilter   The filter to use for filtering the derivative term.
-=================== ===================================================================
-
-----
-
-velPID
-~~~~~~
-
-A velocity controller that uses the PD algorithm.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static AsyncVelPIDController velPID(MotorGroup imotor, Potentiometer ipot,
-                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
-                                            double iTPR = imev5TPR,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
-
-   .. tab :: Example
-     .. highlight:: cpp
-     ::
-
-       // Controlling motors geared together in ports 1 and 2 with a potentiometer in ADI port A
-       auto controller = AsyncControllerFactory::velPID({1, -2}, Potentiometer('A'), 0.01, 0.005);
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- imotor              The controller output.
- ipot                The controller input.
- ikp                 The P term gain.
- ikD                 The D term gain.
- ikF                 The Feed-Forward gain.
- ikSF                A Feed-Forward gain to counteract static friction.
- iTPR                The sensor ticks per revolution (see ``VelMath`` docs).
- iderivativeFilter   The filter to use for filtering the derivative term.
-=================== ===================================================================
-
-----
-
-velPID
-~~~~~~
-
-A velocity controller that uses the PD algorithm.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static AsyncVelPIDController velPID(std::shared_ptr<ControllerInput<double>> iinput,
-                                            std::shared_ptr<ControllerOutput<double>> ioutput,
-                                            double ikP, double ikD, double ikF = 0, double ikSF = 0,
-                                            double iTPR = imev5TPR,
-                                            std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+        static AsyncVelPIDController velPID(
+          std::shared_ptr<ControllerInput<double>> iinput,
+          std::shared_ptr<ControllerOutput<double>> ioutput,
+          double ikP, double ikD, double ikF = 0, double ikSF = 0, double iTPR = imev5TPR,
+          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>()
+        )
 
 =================== ===================================================================
 Parameters
@@ -622,8 +317,10 @@ information from the provided ``ChassisController``.
       .. highlight:: cpp
       ::
 
-        static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
-                                                          const ChassisController &ichassis)
+        static AsyncMotionProfileController motionProfile(
+          double imaxVel, double imaxAccel, double imaxJerk,
+          const ChassisController &ichassis
+        )
 
    .. tab :: Example
      .. highlight:: cpp
@@ -659,9 +356,11 @@ A controller which generates and follows 2D motion profiles.
       .. highlight:: cpp
       ::
 
-        static AsyncMotionProfileController motionProfile(double imaxVel, double imaxAccel, double imaxJerk,
-                                                          std::shared_ptr<ChassisModel> imodel,
-                                                          const ChassisScales &iscales, AbstractMotor::GearsetRatioPair ipair)
+        static AsyncMotionProfileController motionProfile(
+          double imaxVel, double imaxAccel, double imaxJerk,
+          std::shared_ptr<ChassisModel> imodel,
+          const ChassisScales &iscales, AbstractMotor::GearsetRatioPair ipair
+        )
 
 =============== ===================================================================
  Parameters
@@ -688,7 +387,8 @@ A controller which generates and follows 2D motion profiles.
 
         static AsyncLinearMotionProfileController linearMotionProfile(
           double imaxVel, double imaxAccel, double imaxJerk,
-          std::shared_ptr<ControllerOutput<double>> ioutput)
+          std::shared_ptr<ControllerOutput<double>> ioutput
+        )
 
 =============== ===================================================================
  Parameters
