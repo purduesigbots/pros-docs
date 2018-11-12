@@ -50,6 +50,29 @@ Returns the current sensor value.
 
 ----
 
+getRemapped
+~~~~~~~~~~~
+
+Get the current sensor value remapped into the target range (``[1800, -1800]`` by default).
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        double getRemapped(double iupperBound = 1800, double ilowerBound = -1800) const
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ iupperBound     The upper bound of the range.
+ ilowerBound     The lower bound of the range.
+=============== ===================================================================
+
+**Returns:** The remapped sensor value, or ``PROS_ERR`` on a failure.
+
+----
+
 reset
 ~~~~~
 
