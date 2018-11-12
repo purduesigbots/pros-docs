@@ -475,8 +475,7 @@ reached:
       .. highlight:: cpp
       ::
 
-        std::int32_t pros::Vision::read_by_sig ( std::uint8_t port,
-                                                 const std::uint32_t size_id,
+        std::int32_t pros::Vision::read_by_sig ( const std::uint32_t size_id,
                                                  const std::uint32_t sig_id,
                                                  const std::uint32_t object_count,
                                                  pros::vision_object_s_t *const object_arr )
