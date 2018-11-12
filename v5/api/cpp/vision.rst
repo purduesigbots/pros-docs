@@ -78,6 +78,57 @@ reached:
 
 ----
 
+create_color_code
+~~~~~~~~~~~~~~~~~
+
+Creates a color code that represents a combination of the given signature
+IDs. If fewer than 5 signatures are to be a part of the color code, pass 0
+for the additional function parameters.
+
+This function uses the following values of errno when an error state is
+reached:
+
+	- ``EINVAL`` - Fewer than two signatures have been provided, or one of the
+             		 signatures is out of its [1-7] range.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+				pros::vision_color_code_t pros::Vision::create_color_code ( const uint32_t sig_id1,
+							              																			  const uint32_t sig_id2,
+							              																	      const uint32_t sig_id3,
+							              																			  const uint32_t sig_id4,
+							              																			  const uint32_t sig_id5 )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+				#define OTHER_SIG 2
+
+        void opcontrol() {
+					pros::Vision vis (VISION_PORT);
+          pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ sig_id1      The first signature id [1-7] to add to the color code
+ sig_id2      The second signature id [1-7] to add to the color code
+ sig_id3      The third signature id [1-7] to add to the color code
+ sig_id4      The fourth signature id [1-7] to add to the color code
+ sig_id5      The fifth signature id [1-7] to add to the color code
+============ ===============================================================
+
+**Returns:** A ``pros::vision_color_code_t`` object containing the color code information.
+
+----
+
 get_by_sig
 ~~~~~~~~~~
 
@@ -86,9 +137,9 @@ Gets the nth largest object of the given signature according to size_id.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
-- ``EAGAIN`` - Reading the Vision Sensor failed for an unknown reason.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -137,8 +188,9 @@ Gets the nth largest object according to size_id.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -172,6 +224,58 @@ reached:
 
 **Returns:** The vision_object_s_t object corresponding to the given size id, or
 PROS_ERR if an error occurred.
+
+----
+
+get_by_code
+~~~~~~~~~~~
+
+Gets the nth largest object of the given color code according to size_id.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         pros::vision_object_s_t pros::Vision::get_by_code ( const uint32_t size_id,
+																							               const vision_color_code_t color_code )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+				#define OTHER_SIG 2
+
+        void opcontrol() {
+					pros::Vision vis (VISION_PORT);
+					pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+          while (true) {
+            pros::vision_object_s_t rtn = vis.get_by_code(0, code1);
+            // Gets the largest object
+            printf("sig: %d", rtn.signature);
+            delay(2);
+          }
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ size_id      The object to read from a list roughly ordered by object size
+              (0 is the largest item, 1 is the second largest, etc.)
+ color_code   The vision_color_code_t for which an object will be returned
+============ ===============================================================
+
+**Returns:** The vision_object_s_t object corresponding to the given color code
+and size_id, or PROS_ERR if an error occurred.
 
 ----
 
@@ -245,6 +349,46 @@ Returns PROS_ERR if the port was invalid or an error occurred.
 
 ----
 
+get_signature
+~~~~~~~~~~~~~
+
+Gets the object detection signature with the given id number.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        pros::vision_signature_s_t pros::Vision::get_signature ( const std::uint8_t signature_id )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+				#define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+
+				void opcontrol() {
+					pros::Vision vis (VISION_PORT);
+					pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+					pros::Vision::print_signature(sig);
+				}
+
+=============== ==============================
+ Parameters
+=============== ==============================
+ signature_id    The signature id to read
+============== ==============================
+
+**Returns:** A ``pros::vision_signature_s_t`` containing information about the signature.
+
+----
+
 get_white_balance
 ~~~~~~~~~~~~~~~~~
 
@@ -280,6 +424,41 @@ reached:
 
 ----
 
+print_signature
+~~~~~~~~~~~~~~~
+
+Prints the contents of the signature as an initializer list to the terminal.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        static std::int32_t pros::Vision::print_signature ( const vision_signature_s_t sig )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+
+        void opcontrol() {
+					pros::Vision vis (VISION_PORT);
+					pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+          pros::Vision::print_signature(sig);
+        }
+
+============== ========================================================
+ Parameters
+============== ========================================================
+ sig            The signature for which the contents will be printed
+============== ========================================================
+
+**Returns:** 1 if no errors occured, PROS_ERR otherwise
+
+----
+
 read_by_sig
 ~~~~~~~~~~~
 
@@ -288,8 +467,8 @@ Reads up to object_count object descriptors into object_arr.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype
@@ -348,8 +527,8 @@ Reads up to object_count object descriptors into object_arr.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype
@@ -384,6 +563,68 @@ reached:
  size_id        The first object to read from a list roughly ordered
                 by object size (0 is the largest item, 1 is the second
                 largest, etc.)
+ object_count   How many objects to read
+ object_arr     A pointer to copy the data into
+============== ========================================================
+
+**Returns:** The number of object signatures copied. This number will be less than
+object_count if there are fewer objects detected by the vision sensor.
+Returns PROS_ERR if the port was invalid, an error occurred, or fewer objects
+than size_id were found. All objects in object_arr that were not found are
+given VISION_OBJECT_ERR_SIG as their signature.
+
+----
+
+read_by_code
+~~~~~~~~~~~~
+
+Reads up to object_count object descriptors into object_arr.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+				std::int32_t pros::Vision::read_by_code ( const uint32_t size_id,
+																				         const vision_color_code_t color_code,
+																	    	         const uint32_t object_count,
+																				         vision_object_s_t* const object_arr )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+				#define OTHER_SIG 2
+        #define NUM_VISION_OBJECTS 4
+
+        void opcontrol() {
+          pros::vision_object_s_t object_arr[NUM_VISION_OBJECTS];
+					pros::Vision vis (VISION_PORT);
+					pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+          while (true) {
+            vis.read_by_code(0, code1, NUM_VISION_OBJECTS, object_arr);
+            printf("sig: %d", object_arr[0].signature);
+            // Prints the signature of the largest object found
+            delay(2);
+          }
+        }
+
+============== ========================================================
+ Parameters
+============== ========================================================
+ size_id        The first object to read from a list roughly ordered
+                by object size (0 is the largest item, 1 is the second
+                largest, etc.)
+ color_code     The vision_color_code_t for which objects will be
+                returned
  object_count   How many objects to read
  object_arr     A pointer to copy the data into
 ============== ========================================================
@@ -512,6 +753,52 @@ reached:
 ============ ==============================
 
 **Returns:** 0 if no errors occurred, PROS_ERR otherwise
+
+----
+
+set_signature
+~~~~~~~~~~~~~
+
+Stores the supplied object detection signature onto the vision sensor.
+
+.. note:: This saves the signature in volatile memory, and the signature will be
+          lost as soon as the sensor is powered down.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        std::int32_t pros::Vision::set_signature ( const std::uint8_t signature_id,
+																			             pros::vision_signature_s_t* const signature_ptr )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+
+        void opcontrol() {
+					pros::Vision vis (VISION_PORT);
+					pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+					sig.range = 10.0;
+					vis.set_signature(EXAMPLE_SIG, &sig);
+        }
+
+================ ===================================
+ Parameters
+================ ===================================
+ signature_id    The signature id to store into
+ signature_ptr   A pointer to the signature to save
+================ ===================================
+
+**Returns:** 1 if no errors, occurred, PROS_ERR otherwise
 
 ----
 
@@ -652,12 +939,19 @@ that can be detected by the Vision Sensor
 ================================== ====================================================================================================
  Value
 ================================== ====================================================================================================
- pros::E_VISION_OBJECT_NORMAL       Default behavior for the vision sensor 
- pros::E_VISION_OBJECT_COLOR_CODE   Object returned is a `color code <http://www.cmucam.org/projects/cmucam5/wiki/Using_Color_Codes>`_ 
+ pros::E_VISION_OBJECT_NORMAL       Default behavior for the vision sensor
+ pros::E_VISION_OBJECT_COLOR_CODE   Object returned is a `color code <http://www.cmucam.org/projects/cmucam5/wiki/Using_Color_Codes>`_
  pros::E_VISION_OBJECT_LINE         Object returned is a line type.
 ================================== ====================================================================================================
 
 Typedefs
 ========
 
-None.
+vision_color_code_t
+-------------------
+
+Color codes are just signatures with multiple IDs and a different type.
+
+::
+
+	typedef uint16_t vision_color_code_t;
