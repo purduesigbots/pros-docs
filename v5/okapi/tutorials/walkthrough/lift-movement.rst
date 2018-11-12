@@ -20,16 +20,18 @@ as is common in a lot of op control code for the subject. The following code sni
    ControllerButton btnDown(E_CONTROLLER_DIGITAL_R2);
    Motor lift(LIFT_MOTOR);
 
-   while (true) {
-     if (btnUp.isPressed()) {
-       lift.move(127);
-     } else if (btnDown.isPressed()) {
-       lift.move(-127);
-     } else {
-       lift.move(0);
+   void opcontrol() {
+     while (true) {
+       if (btnUp.isPressed()) {
+         lift.move(127);
+       } else if (btnDown.isPressed()) {
+         lift.move(-127);
+       } else {
+         lift.move(0);
+       }
+  
+       pros::delay(10);
      }
-
-     pros::delay(10);
    }
 
 One improvement that can be made to this lift code would be a switch to using set heights and a PID controller.
@@ -54,17 +56,20 @@ This is a common approach used for stacking games where movement to precise heig
    ControllerButton btnUp(E_CONTROLLER_DIGITAL_R1);
    ControllerButton btnDown(E_CONTROLLER_DIGITAL_R2);
    auto liftControl = AsyncControllerFactory::posIntegrated(LIFT_MOTOR);
-   int goalHeight = 0;
 
-   while (true) {
-     if (btnUp.changedToPressed() && goalHeight < NUM_HEIGHTS - 1) {
-       // If the goal height is not at maximum and the up button is pressed, increase the setpoint
-       goalHeight++;
-       liftControl.setTarget(heights[goalHeight]);
-     } else if (btnDown.changedToPressed() && goalHeight > 0) {
-       goalHeight--;
-       liftControl.setTarget(heights[goalHeight]);
+   void opcontrol() {
+     int goalHeight = 0;
+ 
+     while (true) {
+       if (btnUp.changedToPressed() && goalHeight < NUM_HEIGHTS - 1) {
+         // If the goal height is not at maximum and the up button is pressed, increase the setpoint
+         goalHeight++;
+         liftControl.setTarget(heights[goalHeight]);
+       } else if (btnDown.changedToPressed() && goalHeight > 0) {
+         goalHeight--;
+         liftControl.setTarget(heights[goalHeight]);
+       }
+ 
+       pros::delay(10);
      }
-
-     pros::delay(10);
    }

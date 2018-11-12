@@ -224,3 +224,27 @@ Converts a bool to a sign. ``true`` corresponds to ``1`` and ``false`` correspon
 ============ ===============================================================
 
 **Returns:** The sign value of the bool.
+
+----
+
+modulus
+~~~~~~~
+
+Computes ``lhs`` mod ``rhs`` using Euclidean division. C's ``%`` symbol computes the remainder,
+not modulus.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        constexpr long modulus(const long lhs, const long rhs) noexcept
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ lhs          The left-hand side.
+ rhs          The right-hand side.
+============ ===============================================================
+
+**Returns:** ``lhs`` mod ``rhs``.
