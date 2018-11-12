@@ -129,6 +129,28 @@ Any targets set while a path is being followed will be ignored.
 
 ----
 
+setTarget
+~~~~~~~~~
+
+Executes a path with the given ID. If there is no path matching the ID, the method will return.
+Any targets set while a path is being followed will be ignored.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void setTarget(std::string ipathId, bool ibackwards)
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ ipathId      A unique identifier for the path, previously passed to ``generatePath()``.
+ ibackwards   Whether to follow the profile backwards.
+============ ===============================================================
+
+----
+
 controllerSet
 ~~~~~~~~~~~~~
 
