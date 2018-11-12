@@ -21,7 +21,7 @@ create/createPtr
 ~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+This method assumes a skid steer layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
@@ -29,65 +29,32 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
       .. highlight:: cpp
       ::
 
-        static ChassisControllerIntegrated create(
-          Motor ileftSideMotor, Motor irightSideMotor,
+        static
+        ChassisControllerIntegrated/std::shared_ptr<ChassisControllerIntegrated>
+        create/createPtr(
+          Motor/MotorGroup ileftSideMotor, Motor/MotorGroup irightSideMotor,
           AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
+          const ChassisScales &iscales = ChassisScales({1, 1})
+        )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        // You can use the default gearset and scales if you have a very simple robot
         auto myChassis = ChassisControllerFactory::create(
           -11, 1
         );
 
-        // Otherwise, you should specify the gearset and scales for your robot
+        auto myChassis = ChassisControllerFactory::create(
+          {1, 2}, {-3, -4}
+        );
+
         auto myChassis = ChassisControllerFactory::create(
           -11, 1,
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
 
-================= ===================================================================
-Parameters
-================= ===================================================================
- ileftSideMotor    The left side motor (also used for controller input).
- irightSideMotor   The right side motor (also used for controller input).
- igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales           See `ChassisScales <chassis-scales.html>`_ docs.
-================= ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerIntegrated create(
-          MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // You can use the default gearset and scales if you have a very simple robot
-        auto myChassis = ChassisControllerFactory::create(
-          {1, 2}, {-3, -4}
-        );
-
-        // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = ChassisControllerFactory::create(
           {1, 2}, {-3, -4},
           AbstractMotor::gearset::green,
@@ -109,7 +76,7 @@ create/createPtr
 ~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using the V5 motor's integrated control.
-This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
+This method assumes an x-drive layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
@@ -117,10 +84,13 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
       .. highlight:: cpp
       ::
 
-        static ChassisControllerIntegrated create(
-          Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
+        static
+        ChassisControllerIntegrated/std::shared_ptr<ChassisControllerIntegrated>
+        create/createPtr(
+          Motor/MotorGroup itopLeftMotor, Motor/MotorGroup itopRightMotor, Motor/MotorGroup ibottomRightMotor, Motor/MotorGroup ibottomLeftMotor,
           AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
+          const ChassisScales &iscales = ChassisScales({1, 1})
+        )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -138,6 +108,12 @@ This constructor assumes an x-drive layout. Puts the motors into degree units. T
           {2.75_in, 10.5_in}
         );
 
+        // If you have an x-drive with motor groups then
+        // the last group needs to be specified explicitly
+        auto myChassis = ChassisControllerFactory::create(
+          {1, -2}, {-3, 4}, {-5, 6}, MotorGroup{7, -8}
+        );
+
 =================== ===================================================================
 Parameters
 =================== ===================================================================
@@ -148,6 +124,8 @@ Parameters
  igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
  iscales             See `ChassisScales <chassis-scales.html>`_ docs.
 =================== ===================================================================
+
+----
 
 ChassisControllerPID
 --------------------
@@ -156,7 +134,7 @@ create/createPtr
 ~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+This method assumes a skid steer layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
@@ -164,12 +142,16 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
       .. highlight:: cpp
       ::
 
-        static ChassisControllerPID create(
-          Motor ileftSideMotor, Motor irightSideMotor,
+        static
+        ChassisControllerPID/std::shared_ptr<ChassisControllerPID>
+        create/createPtr(
+          Motor/MotorGroup ileftSideMotor, Motor/MotorGroup irightSideMotor,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
+          (optional) const IterativePosPIDController::Gains &iturnArgs,
           AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
+          const ChassisScales &iscales = ChassisScales({1, 1})
+        )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -190,43 +172,6 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
-
-================= ===================================================================
-Parameters
-================= ===================================================================
- ileftSideMotor    The left side motor (also used for controller input).
- irightSideMotor   The right side motor (also used for controller input).
- idistanceArgs     The distance PID controller params.
- iangleArgs        The angle PID controller params (keeps the robot straight).
- igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales           See `ChassisScales <chassis-scales.html>`_ docs.
-================= ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerPID create(
-          Motor ileftSideMotor, Motor irightSideMotor,
-          const IterativePosPIDController::Gains &idistanceArgs,
-          const IterativePosPIDController::Gains &iangleArgs,
-          const IterativePosPIDController::Gains &iturnArgs,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
 
         // You can use the default gearset and scales if you have a very simple robot
         auto myChassis = ChassisControllerFactory::create(
@@ -264,7 +209,7 @@ create/createPtr
 ~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+This method assumes a skid steer layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
@@ -272,121 +217,17 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
       .. highlight:: cpp
       ::
 
-        static ChassisControllerPID create(
-          MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
+        static
+        ChassisControllerPID/std::shared_ptr<ChassisControllerPID>
+        create/createPtr(
+          Motor/MotorGroup ileftSideMotor, Motor/MotorGroup irightSideMotor,
+          ADIEncoder/IntegratedEncoder ileftEnc, ADIEncoder/IntegratedEncoder irightEnc,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
+          (optional) const IterativePosPIDController::Gains &iturnArgs,
           AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // You can use the default gearset and scales if you have a very simple robot
-        auto myChassis = ChassisControllerFactory::create(
-          {1, 2}, {-3, -4},
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0}
-        );
-
-        // Otherwise, you should specify the gearset and scales for your robot
-        auto myChassis = ChassisControllerFactory::create(
-          {1, 2}, {-3, -4},
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          AbstractMotor::gearset::green,
-          {2.75_in, 10.5_in}
-        );
-
-================= ===================================================================
-Parameters
-================= ===================================================================
- ileftSideMotor    The left side motor (also used for controller input).
- irightSideMotor   The right side motor (also used for controller input).
- idistanceArgs     The distance PID controller params.
- iangleArgs        The angle PID controller params (keeps the robot straight).
- igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales           See `ChassisScales <chassis-scales.html>`_ docs.
-================= ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerPID create(
-          MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-          const IterativePosPIDController::Gains &idistanceArgs,
-          const IterativePosPIDController::Gains &iangleArgs,
-          const IterativePosPIDController::Gains &iturnArgs,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // You can use the default gearset and scales if you have a very simple robot
-        auto myChassis = ChassisControllerFactory::create(
-          {1, 2}, {-3, -4},
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0}
-        );
-
-        // Otherwise, you should specify the gearset and scales for your robot
-        auto myChassis = ChassisControllerFactory::create(
-          {1, 2}, {-3, -4},
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0},
-          AbstractMotor::gearset::green,
-          {2.75_in, 10.5_in}
-        );
-
-================= ===================================================================
-Parameters
-================= ===================================================================
- ileftSideMotor    The left side motor (also used for controller input).
- irightSideMotor   The right side motor (also used for controller input).
- idistanceArgs     The distance PID controller params.
- iangleArgs        The angle PID controller params (keeps the robot straight).
- iturnArgs         The turn PID controller params.
- igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales           See `ChassisScales <chassis-scales.html>`_ docs.
-================= ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerPID create(
-          MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-          ADIEncoder ileftEnc, ADIEncoder irightEnc,
-          const IterativePosPIDController::Gains &idistanceArgs,
-          const IterativePosPIDController::Gains &iangleArgs,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
+          const ChassisScales &iscales = ChassisScales({1, 1})
+        )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -409,46 +250,6 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
-
-================= ===================================================================
-Parameters
-================= ===================================================================
- ileftSideMotor    The left side motor.
- irightSideMotor   The right side motor.
- ileftEnc          The left side encoder.
- irightEnc         The right side encoder.
- idistanceArgs     The distance PID controller params.
- iangleArgs        The angle PID controller params (keeps the robot straight).
- igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales           See `ChassisScales <chassis-scales.html>`_ docs.
-================= ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerPID create(
-          MotorGroup ileftSideMotor, MotorGroup irightSideMotor,
-          ADIEncoder ileftEnc, ADIEncoder irightEnc,
-          const IterativePosPIDController::Gains &idistanceArgs,
-          const IterativePosPIDController::Gains &iangleArgs,
-          const IterativePosPIDController::Gains &iturnArgs,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
 
         // You can use the default gearset and scales if you have a very simple robot
         auto myChassis = ChassisControllerFactory::create(
@@ -490,7 +291,7 @@ create/createPtr
 ~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+This method assumes an x-drive layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
@@ -498,25 +299,63 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
       .. highlight:: cpp
       ::
 
-        static ChassisControllerPID create(
-          std::shared_ptr<AbstractMotor> ileftSideMotor,
-          std::shared_ptr<AbstractMotor> irightSideMotor,
-          std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-          std::shared_ptr<ContinuousRotarySensor> irightEnc,
+        static
+        ChassisControllerPID/std::shared_ptr<ChassisControllerPID>
+        create/createPtr(
+          Motor/MotorGroup itopLeftMotor, Motor/MotorGroup itopRightMotor, Motor/MotorGroup ibottomRightMotor, Motor/MotorGroup ibottomLeftMotor,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
+          (optional) const IterativePosPIDController::Gains &iturnArgs,
           AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
+          const ChassisScales &iscales = ChassisScales({1, 1})
+        )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // You can use the default gearset and scales if you have a very simple robot
+        auto myChassis = ChassisControllerFactory::create(
+          1, -2, -3, 4,
+          IterativePosPIDController::Gains{0.5, 0, 0},
+          IterativePosPIDController::Gains{0.1, 0.05, 0}
+        );
+
+        // Otherwise, you should specify the gearset and scales for your robot
+        auto myChassis = ChassisControllerFactory::create(
+          {1, -2}, {-3, 4}, {-5, 6}, {7, -8},
+          IterativePosPIDController::Gains{0.5, 0, 0},
+          IterativePosPIDController::Gains{0.1, 0.05, 0},
+          AbstractMotor::gearset::green,
+          {2.75_in, 10.5_in}
+        );
+
+        // You can use the default gearset and scales if you have a very simple robot
+        auto myChassis = ChassisControllerFactory::create(
+          1, -2, -3, 4,
+          IterativePosPIDController::Gains{0.5, 0, 0},
+          IterativePosPIDController::Gains{0.1, 0.05, 0},
+          IterativePosPIDController::Gains{0.2, 0, 0}
+        );
+
+        // Otherwise, you should specify the gearset and scales for your robot
+        auto myChassis = ChassisControllerFactory::create(
+          {1, -2}, {-3, 4}, {-5, 6}, {7, -8},
+          IterativePosPIDController::Gains{0.5, 0, 0},
+          IterativePosPIDController::Gains{0.1, 0.05, 0},
+          IterativePosPIDController::Gains{0.2, 0, 0},
+          AbstractMotor::gearset::green,
+          {2.75_in, 10.5_in}
+        );
 
 ================= ===================================================================
 Parameters
 ================= ===================================================================
- ileftSideMotor    The left side motor.
- irightSideMotor   The right side motor.
- ileftEnc          The left side encoder.
- irightEnc         The right side encoder.
+ ileftSideMotor    The left side motor (also used for controller input).
+ irightSideMotor   The right side motor (also used for controller input).
  idistanceArgs     The distance PID controller params.
  iangleArgs        The angle PID controller params (keeps the robot straight).
+ iturnArgs         The turn PID controller params.
  igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
  iscales           See `ChassisScales <chassis-scales.html>`_ docs.
 ================= ===================================================================
@@ -527,7 +366,7 @@ create/createPtr
 ~~~~~~~~~~~~~~~~
 
 `ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes a skid steer layout. Puts the motors into degree units. Throws a
+This method assumes an x-drive layout. Puts the motors into degree units. Throws a
 ``std::invalid_argument`` exception if the gear ratio is zero.
 
 .. tabs ::
@@ -535,16 +374,59 @@ This constructor assumes a skid steer layout. Puts the motors into degree units.
       .. highlight:: cpp
       ::
 
-        static ChassisControllerPID create(
-          std::shared_ptr<AbstractMotor> ileftSideMotor,
-          std::shared_ptr<AbstractMotor> irightSideMotor,
-          std::shared_ptr<ContinuousRotarySensor> ileftEnc,
-          std::shared_ptr<ContinuousRotarySensor> irightEnc,
+        static
+        ChassisControllerPID/std::shared_ptr<ChassisControllerPID>
+        create/createPtr(
+          Motor/MotorGroup itopLeftMotor, Motor/MotorGroup itopRightMotor, Motor/MotorGroup ibottomRightMotor, Motor/MotorGroup ibottomLeftMotor,
+          ADIEncoder/IntegratedEncoder ileftEnc, ADIEncoder/IntegratedEncoder irightEnc,
           const IterativePosPIDController::Gains &idistanceArgs,
           const IterativePosPIDController::Gains &iangleArgs,
-          const IterativePosPIDController::Gains &iturnArgs,
+          (optional) const IterativePosPIDController::Gains &iturnArgs,
           AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
+          const ChassisScales &iscales = ChassisScales({1, 1})
+        )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // You can use the default gearset and scales if you have a very simple robot
+        auto myChassis = ChassisControllerFactory::create(
+          1, -2, -3, 4,
+          ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
+          IterativePosPIDController::Gains{0.5, 0, 0},
+          IterativePosPIDController::Gains{0.1, 0.05, 0}
+        );
+
+        // Otherwise, you should specify the gearset and scales for your robot
+        auto myChassis = ChassisControllerFactory::create(
+          {1, -2}, {-3, 4}, {-5, 6}, {7, -8},
+          ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
+          IterativePosPIDController::Gains{0.5, 0, 0},
+          IterativePosPIDController::Gains{0.1, 0.05, 0},
+          AbstractMotor::gearset::green,
+          {2.75_in, 10.5_in}
+        );
+
+        // You can use the default gearset and scales if you have a very simple robot
+        auto myChassis = ChassisControllerFactory::create(
+          1, -2, -3, 4,
+          ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
+          IterativePosPIDController::Gains{0.5, 0, 0},
+          IterativePosPIDController::Gains{0.1, 0.05, 0},
+          IterativePosPIDController::Gains{0.2, 0, 0}
+        );
+
+        // Otherwise, you should specify the gearset and scales for your robot
+        auto myChassis = ChassisControllerFactory::create(
+          {1, -2}, {-3, 4}, {-5, 6}, {7, -8},
+          ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
+          IterativePosPIDController::Gains{0.5, 0, 0},
+          IterativePosPIDController::Gains{0.1, 0.05, 0},
+          IterativePosPIDController::Gains{0.2, 0, 0},
+          AbstractMotor::gearset::green,
+          {2.75_in, 10.5_in}
+        );
 
 ================= ===================================================================
 Parameters
@@ -559,321 +441,3 @@ Parameters
  igearset          The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
  iscales           See `ChassisScales <chassis-scales.html>`_ docs.
 ================= ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerPID create(
-          Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-          const IterativePosPIDController::Gains &idistanceArgs,
-          const IterativePosPIDController::Gains &iangleArgs,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // You can use the default gearset and scales if you have a very simple robot
-        auto myChassis = ChassisControllerFactory::create(
-          1, -2, -3, 4,
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0}
-        );
-
-        // Otherwise, you should specify the gearset and scales for your robot
-        auto myChassis = ChassisControllerFactory::create(
-          1, -2, -3, 4,
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          AbstractMotor::gearset::green,
-          {2.75_in, 10.5_in}
-        );
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- itopLeftMotor       The top left motor (also used for controller input).
- itopRightMotor      The top right motor (also used for controller input).
- ibottomRightMotor   The bottom right motor.
- ibottomLeftMotor    The bottom left motor.
- idistanceArgs       The distance PID controller params.
- iangleArgs          The angle PID controller params (keeps the robot straight).
- igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales             See `ChassisScales <chassis-scales.html>`_ docs.
-=================== ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerPID create(
-          Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-          const IterativePosPIDController::Gains &idistanceArgs,
-          const IterativePosPIDController::Gains &iangleArgs,
-          const IterativePosPIDController::Gains &iturnArgs,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // You can use the default gearset and scales if you have a very simple robot
-        auto myChassis = ChassisControllerFactory::create(
-          1, -2, -3, 4,
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0}
-        );
-
-        // Otherwise, you should specify the gearset and scales for your robot
-        auto myChassis = ChassisControllerFactory::create(
-          1, -2, -3, 4,
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0},
-          AbstractMotor::gearset::green,
-          {2.75_in, 10.5_in}
-        );
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- itopLeftMotor       The top left motor (also used for controller input).
- itopRightMotor      The top right motor (also used for controller input).
- ibottomRightMotor   The bottom right motor.
- ibottomLeftMotor    The bottom left motor.
- idistanceArgs       The distance PID controller params.
- iangleArgs          The angle PID controller params (keeps the robot straight).
- iturnArgs           The turn PID controller params.
- igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales             See `ChassisScales <chassis-scales.html>`_ docs.
-=================== ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerPID create(
-          Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-          ADIEncoder itopLeftEnc, ADIEncoder itopRightEnc,
-          const IterativePosPIDController::Gains &idistanceArgs,
-          const IterativePosPIDController::Gains &iangleArgs,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // You can use the default gearset and scales if you have a very simple robot
-        auto myChassis = ChassisControllerFactory::create(
-          1, -2, -3, 4,
-          ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0}
-        );
-
-        // Otherwise, you should specify the gearset and scales for your robot
-        auto myChassis = ChassisControllerFactory::create(
-          1, -2, -3, 4,
-          ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          AbstractMotor::gearset::green,
-          {2.75_in, 10.5_in}
-        );
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- itopLeftMotor       The top left motor.
- itopRightMotor      The top right motor.
- ibottomRightMotor   The bottom right motor.
- ibottomLeftMotor    The bottom left motor.
- itopLeftEnc         The top left encoder.
- itopRightEnc        The top right encoder.
- idistanceArgs       The distance PID controller params.
- iangleArgs          The angle PID controller params (keeps the robot straight).
- igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales             See `ChassisScales <chassis-scales.html>`_ docs.
-=================== ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes an x-drive layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerPID create(
-          Motor itopLeftMotor, Motor itopRightMotor, Motor ibottomRightMotor, Motor ibottomLeftMotor,
-          ADIEncoder itopLeftEnc, ADIEncoder itopRightEnc,
-          const IterativePosPIDController::Gains &idistanceArgs,
-          const IterativePosPIDController::Gains &iangleArgs,
-          const IterativePosPIDController::Gains &iturnArgs,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        // You can use the default gearset and scales if you have a very simple robot
-        auto myChassis = ChassisControllerFactory::create(
-          1, -2, -3, 4,
-          ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0}
-        );
-
-        // Otherwise, you should specify the gearset and scales for your robot
-        auto myChassis = ChassisControllerFactory::create(
-          1, -2, -3, 4,
-          ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0},
-          AbstractMotor::gearset::green,
-          {2.75_in, 10.5_in}
-        );
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- itopLeftMotor       The top left motor.
- itopRightMotor      The top right motor.
- ibottomRightMotor   The bottom right motor.
- ibottomLeftMotor    The bottom left motor.
- itopLeftEnc         The top left encoder.
- itopRightEnc        The top right encoder.
- idistanceArgs       The distance PID controller params.
- iangleArgs          The angle PID controller params (keeps the robot straight).
- iturnArgs           The turn PID controller params.
- igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales             See `ChassisScales <chassis-scales.html>`_ docs.
-=================== ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes a x-drive layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerPID create(
-          std::shared_ptr<AbstractMotor> itopLeftMotor,
-          std::shared_ptr<AbstractMotor> itopRightMotor,
-          std::shared_ptr<AbstractMotor> ibottomRightMotor,
-          std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-          std::shared_ptr<ContinuousRotarySensor> itopLeftEnc,
-          std::shared_ptr<ContinuousRotarySensor> itopRightEnc,
-          const IterativePosPIDController::Gains &idistanceArgs,
-          const IterativePosPIDController::Gains &iangleArgs,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- itopLeftMotor       The top left motor.
- itopRightMotor      The top right motor.
- ibottomRightMotor   The bottom right motor.
- ibottomLeftMotor    The bottom left motor.
- itopLeftEnc         The top left encoder.
- itopRightEnc        The top right encoder.
- idistanceArgs       The distance PID controller params.
- iangleArgs          The angle PID controller params (keeps the robot straight).
- igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales             See `ChassisScales <chassis-scales.html>`_ docs.
-=================== ===================================================================
-
-----
-
-create/createPtr
-~~~~~~~~~~~~~~~~
-
-`ChassisController <abstract-chassis-controller.html>`_ using PID control.
-This constructor assumes a x-drive layout. Puts the motors into degree units. Throws a
-``std::invalid_argument`` exception if the gear ratio is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static ChassisControllerPID create(
-          std::shared_ptr<AbstractMotor> itopLeftMotor,
-          std::shared_ptr<AbstractMotor> itopRightMotor,
-          std::shared_ptr<AbstractMotor> ibottomRightMotor,
-          std::shared_ptr<AbstractMotor> ibottomLeftMotor,
-          std::shared_ptr<ContinuousRotarySensor> itopLeftEnc,
-          std::shared_ptr<ContinuousRotarySensor> itopRightEnc,
-          const IterativePosPIDController::Gains &idistanceArgs,
-          const IterativePosPIDController::Gains &iangleArgs,
-          const IterativePosPIDController::Gains &iturnArgs,
-          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-          const ChassisScales &iscales = ChassisScales({1, 1}))
-
-=================== ===================================================================
-Parameters
-=================== ===================================================================
- itopLeftMotor       The top left motor.
- itopRightMotor      The top right motor.
- ibottomRightMotor   The bottom right motor.
- ibottomLeftMotor    The bottom left motor.
- itopLeftEnc         The top left encoder.
- itopRightEnc        The top right encoder.
- idistanceArgs       The distance PID controller params.
- iangleArgs          The angle PID controller params (keeps the robot straight).
- iturnArgs           The turn PID controller params.
- igearset            The internal `gearset <../../device/motor/abstract-abstract-motor.html>`_ and external gear ratio used in all the drive motors.
- iscales             See `ChassisScales <chassis-scales.html>`_ docs.
-=================== ===================================================================
