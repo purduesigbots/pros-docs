@@ -18,7 +18,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IntegratedEncoder(const pros::Motor &imotor)
+        explicit IntegratedEncoder(const pros::Motor &imotor)
 
    .. tab :: Example
      .. highlight:: cpp
@@ -39,7 +39,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IntegratedEncoder(const okapi::Motor &imotor)
+        explicit IntegratedEncoder(const okapi::Motor &imotor)
 
    .. tab :: Example
      .. highlight:: cpp
