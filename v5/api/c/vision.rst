@@ -111,7 +111,8 @@ reached:
 
 - ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
-- ``EAGAIN`` - Reading the Vision Sensor failed for an unknown reason.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -163,6 +164,8 @@ reached:
 
 - ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -210,7 +213,8 @@ reached:
 
 - ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
-- ``EAGAIN`` = Reading the Vision Sensor failed for an unknown reason.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -461,6 +465,7 @@ reached:
 
 - ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype
@@ -521,6 +526,7 @@ reached:
 
 - ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype
@@ -578,6 +584,7 @@ reached:
 
 - ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype

@@ -137,9 +137,9 @@ Gets the nth largest object of the given signature according to size_id.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
-- ``EAGAIN`` - Reading the Vision Sensor failed for an unknown reason.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -188,8 +188,9 @@ Gets the nth largest object according to size_id.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -235,7 +236,8 @@ This function uses the following values of errno when an error state is
 reached:
 
 - ``EACCES`` - Another resource is currently trying to access the port.
-- ``EAGAIN`` = Reading the Vision Sensor failed for an unknown reason.
+- ``EDOM`` - size_id is greater than the number of available objects.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -465,8 +467,8 @@ Reads up to object_count object descriptors into object_arr.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype
@@ -525,8 +527,8 @@ Reads up to object_count object descriptors into object_arr.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype
@@ -582,6 +584,7 @@ This function uses the following values of errno when an error state is
 reached:
 
 - ``EACCES`` - Another resource is currently trying to access the port.
+- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype
