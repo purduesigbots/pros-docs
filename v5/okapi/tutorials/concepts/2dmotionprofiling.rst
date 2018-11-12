@@ -53,6 +53,9 @@ motion profile Async controller. Following that, you can create a profile Async 
      myChassis // Chassis Controller
    );
 
+   void opcontrol() {
+   }
+
 Next, let's create a motion profile. A profile is created with a list of points and a name.
 Each of the points contains the desired (x, y) coordinates and heading. The points given to the
 controller form a path from the first given point to the last, with the first point assumed to be
@@ -116,6 +119,8 @@ In total, here is how to initialize and use a 2D motion profiling controller:
      myChassis // Chassis Controller
    );
 
-   profileController.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
-   profileController.setTarget("A");
-   profileController.waitUntilSettled();
+   void opcontrol() {
+     profileController.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
+     profileController.setTarget("A");
+     profileController.waitUntilSettled();
+   }

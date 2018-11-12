@@ -20,8 +20,9 @@ To create a Chassis Controller for a given system, modify the below example to f
    const int DRIVE_LEFT_MOTOR_PORT = 1;
    const int DRIVE_RIGHT_MOTOR_PORT = 2;
 
+   auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
+
    void autonomous() {
-     auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
    }
 
 And then we'll add a lift subsystem as an Async Controller:
@@ -40,10 +41,10 @@ And then we'll add a lift subsystem as an Async Controller:
    const double liftkD = 0.1;
    const int LIFT_MOTOR_PORT = 2;
 
-   void autonomous() {
-     auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
+   auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
+   auto liftController = AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
 
-     auto liftController = AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
+   void autonomous() {
    }
 
 Now that we have two subsystems to run, let's execute a few different movements.
@@ -66,11 +67,10 @@ with just the drive controller.
    const double liftkD = 0.1;
    const int LIFT_MOTOR_PORT = 2;
 
+   auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
+   auto liftController = AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
+
    void autonomous() {
-     auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
-
-     auto liftController = AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
-
      // Begin movements
      driveController.moveDistanceAsync(1000); // Move 1000 motor degrees forward
      liftController.setTarget(200); // Move 200 motor degrees upward
@@ -99,11 +99,10 @@ on both controllers.
    const double liftkD = 0.1;
    const int LIFT_MOTOR_PORT = 2;
 
+   auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
+   auto liftController = AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
+
    void autonomous() {
-     auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);
-
-     auto liftController = AsyncControllerFactory::posPID(LIFT_MOTOR_PORT, liftkP, liftkI, liftkD);
-
      // Begin movements
      driveController.moveDistanceAsync(1000); // Move 1000 motor degrees forward
      liftController.setTarget(200); // Move 200 motor degrees upward

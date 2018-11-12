@@ -270,10 +270,10 @@ containing firstly the wheel diameter (4") and secondly, the width of the chassi
 
    // Chassis Controller - lets us drive the robot around with open- or closed-loop control
    auto drive = ChassisControllerFactory::create(
-                  1, 10,
-                  AbstractMotor::gearset::green,
-                  {4_in, 11.5_in}
-                );
+     1, 10,
+     AbstractMotor::gearset::green,
+     {4_in, 11.5_in}
+   );
 
 After this, you can move the chassis in actual units, such as inches and degrees.
 
@@ -300,16 +300,14 @@ This is the final product from this tutorial.
          #include "okapi/api.hpp"
          using namespace okapi;
 
+         // Chassis Controller - lets us drive the robot around with open- or closed-loop control
+         auto drive = ChassisControllerFactory::create(
+           1, 10,
+           AbstractMotor::gearset::green,
+           {4_in, 11.5_in}
+         );
+
          void opcontrol() {
-           pros::Task::delay(100);
-
-           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-           auto drive = ChassisControllerFactory::create(
-                          1, 10,
-                          AbstractMotor::gearset::green,
-                          {4_in, 11.5_in}
-                        );
-
            // Joystick to read analog values for tank or arcade control
            // Master controller by default
            Controller controller;
@@ -365,16 +363,14 @@ This is the final product from this tutorial.
          #include "okapi/api.hpp"
          using namespace okapi;
 
+         // Chassis Controller - lets us drive the robot around with open- or closed-loop control
+         auto drive = ChassisControllerFactory::create(
+           1, 10,
+           AbstractMotor::gearset::green,
+           {4_in, 11.5_in}
+         );
+
          void opcontrol() {
-           pros::Task::delay(100);
-
-           // Chassis Controller - lets us drive the robot around with open- or closed-loop control
-           auto drive = ChassisControllerFactory::create(
-                          1, 10,
-                          AbstractMotor::gearset::green,
-                          {4_in, 11.5_in}
-                        );
-
            // Joystick to read analog values for tank or arcade control
            // Master controller by default
            Controller controller;

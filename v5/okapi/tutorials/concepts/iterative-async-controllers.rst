@@ -33,14 +33,16 @@ An example movement:
    auto exampleController = IterativeControllerFactory::posPID(kP, kI, kD);
    Motor exampleMotor(MOTOR_PORT);
 
-   // Execute the movement
-   exampleController.setTarget(TARGET);
-   while (!exampleController.isSettled()) {
-     double newInput = exampleMotor.getPosition();
-     double newOutput = exampleController.step(newInput);
-     exampleMotor.controllerSet(newOutput);
-
-     pros::delay(10); // Run the control loop at 10ms intervals
+   void opcontrol() {
+     // Execute the movement
+     exampleController.setTarget(TARGET);
+     while (!exampleController.isSettled()) {
+       double newInput = exampleMotor.getPosition();
+       double newOutput = exampleController.step(newInput);
+       exampleMotor.controllerSet(newOutput);
+  
+       pros::delay(10); // Run the control loop at 10ms intervals
+     }
    }
 
 Async Controllers
@@ -70,9 +72,11 @@ An example movement:
 
    auto exampleController = AsyncControllerFactory::posPID(MOTOR_PORT, kP, kI, kD);
 
-   // Execute the movement
-   exampleController.setTarget(TARGET);
-   exampleController.waitUntilSettled();
+   void opcontrol() {
+     // Execute the movement
+     exampleController.setTarget(TARGET);
+     exampleController.waitUntilSettled();
+   }
 
 When Should I Use Which Controller?
 ===================================

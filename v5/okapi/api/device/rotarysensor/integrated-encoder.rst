@@ -18,7 +18,35 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        IntegratedEncoder(pros::Motor imotor)
+        explicit IntegratedEncoder(const pros::Motor &imotor)
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+       
+       IntegratedEncoder(pros::Motor(1));
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ imotor          The V5 motor to use the encoder from.
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        explicit IntegratedEncoder(const okapi::Motor &imotor)
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+       
+       IntegratedEncoder(okapi::Motor(1));
+       IntegratedEncoder(1);
 
 =============== ===================================================================
  Parameters
