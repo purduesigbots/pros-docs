@@ -230,6 +230,48 @@ Returns PROS_ERR if the port was invalid or an error occurred.
 
 ----
 
+vision_get_signature
+--------------------
+
+Gets the object detection signature with the given id number.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        vision_signature_s_t vision_get_signature ( uint8_t port,
+				                                            const uint8_t signature_id )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+				#define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+
+				void opcontrol() {
+					vision_signature_s_t sig = vision_get_signature(VISION_PORT, EXAMPLE_SIG);
+					vision_print_signature(sig);
+				}
+
+=============== ==============================
+ Parameters
+=============== ==============================
+ port            The V5 port number from 1-21
+ signature_id    The signature id to read
+============== ==============================
+
+**Returns:** A ``vision_signature_s_t`` containing information about the signature.
+
+----
+
 vision_get_white_balance
 ------------------------
 
@@ -267,6 +309,40 @@ reached:
 ============ ==============================
 
 **Returns:** Returns the current RGB white balance setting of the sensor
+
+----
+
+vision_print_signature
+----------------------
+
+Prints the contents of the signature as an initializer list to the terminal.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t vision_print_signature ( const vision_signature_s_t sig )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+
+        void opcontrol() {
+					vision_signature_s_t sig = vision_get_signature(VISION_PORT, EXAMPLE_SIG);
+          vision_print_signature(sig);
+        }
+
+============== ========================================================
+ Parameters
+============== ========================================================
+ sig            The signature for which the contents will be printed
+============== ========================================================
+
+**Returns:** 1 if no errors occured, PROS_ERR otherwise
 
 ----
 
@@ -506,6 +582,54 @@ reached:
 ============ ==============================
 
 **Returns:** 0 if no errors occured, PROS_ERR otherwise
+
+----
+
+vision_set_signature
+--------------------
+
+Stores the supplied object detection signature onto the vision sensor.
+
+.. note:: This saves the signature in volatile memory, and the signature will be
+          lost as soon as the sensor is powered down.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t vision_set_signature ( uint8_t port,
+				                               const uint8_t signature_id,
+																			 vision_signature_s_t* const signature_ptr )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+
+        void opcontrol() {
+          vision_signature_s_t sig = vision_get_signature(VISION_PORT, EXAMPLE_SIG);
+					sig.range = 10.0;
+					vision_set_signature(VISION_PORT, EXAMPLE_SIG, &sig);
+        }
+
+================ ===================================
+ Parameters
+================ ===================================
+ port            The V5 port number from 1-21
+ signature_id    The signature id to store into
+ signature_ptr   A pointer to the signature to save
+================ ===================================
+
+**Returns:** 1 if no errors, occurred, PROS_ERR otherwise
 
 ----
 

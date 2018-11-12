@@ -245,6 +245,46 @@ Returns PROS_ERR if the port was invalid or an error occurred.
 
 ----
 
+get_signature
+~~~~~~~~~~~~~
+
+Gets the object detection signature with the given id number.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        pros::vision_signature_s_t pros::Vision::get_signature ( const std::uint8_t signature_id )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+				#define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+
+				void opcontrol() {
+					pros::Vision vis (VISION_PORT);
+					pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+					pros::Vision::print_signature(sig);
+				}
+
+=============== ==============================
+ Parameters
+=============== ==============================
+ signature_id    The signature id to read
+============== ==============================
+
+**Returns:** A ``pros::vision_signature_s_t`` containing information about the signature.
+
+----
+
 get_white_balance
 ~~~~~~~~~~~~~~~~~
 
@@ -277,6 +317,41 @@ reached:
         }
 
 **Returns:** Returns the current RGB white balance setting of the sensor
+
+----
+
+print_signature
+~~~~~~~~~~~~~~~
+
+Prints the contents of the signature as an initializer list to the terminal.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        static std::int32_t pros::Vision::print_signature ( const vision_signature_s_t sig )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+
+        void opcontrol() {
+					pros::Vision vis (VISION_PORT);
+					pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+          pros::Vision::print_signature(sig);
+        }
+
+============== ========================================================
+ Parameters
+============== ========================================================
+ sig            The signature for which the contents will be printed
+============== ========================================================
+
+**Returns:** 1 if no errors occured, PROS_ERR otherwise
 
 ----
 
@@ -515,6 +590,52 @@ reached:
 
 ----
 
+set_signature
+~~~~~~~~~~~~~
+
+Stores the supplied object detection signature onto the vision sensor.
+
+.. note:: This saves the signature in volatile memory, and the signature will be
+          lost as soon as the sensor is powered down.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        std::int32_t pros::Vision::set_signature ( const std::uint8_t signature_id,
+																			             pros::vision_signature_s_t* const signature_ptr )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+				#define EXAMPLE_SIG 1
+
+        void opcontrol() {
+					pros::Vision vis (VISION_PORT);
+					pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+					sig.range = 10.0;
+					vis.set_signature(EXAMPLE_SIG, &sig);
+        }
+
+================ ===================================
+ Parameters
+================ ===================================
+ signature_id    The signature id to store into
+ signature_ptr   A pointer to the signature to save
+================ ===================================
+
+**Returns:** 1 if no errors, occurred, PROS_ERR otherwise
+
+----
+
 set_white_balance
 ~~~~~~~~~~~~~~~~~
 
@@ -652,8 +773,8 @@ that can be detected by the Vision Sensor
 ================================== ====================================================================================================
  Value
 ================================== ====================================================================================================
- pros::E_VISION_OBJECT_NORMAL       Default behavior for the vision sensor 
- pros::E_VISION_OBJECT_COLOR_CODE   Object returned is a `color code <http://www.cmucam.org/projects/cmucam5/wiki/Using_Color_Codes>`_ 
+ pros::E_VISION_OBJECT_NORMAL       Default behavior for the vision sensor
+ pros::E_VISION_OBJECT_COLOR_CODE   Object returned is a `color code <http://www.cmucam.org/projects/cmucam5/wiki/Using_Color_Codes>`_
  pros::E_VISION_OBJECT_LINE         Object returned is a line type.
 ================================== ====================================================================================================
 
