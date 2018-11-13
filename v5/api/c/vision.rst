@@ -222,19 +222,19 @@ reached:
       ::
 
          vision_object_s_t vision_get_by_code ( uint8_t port,
-				                                        const uint32_t size_id,
-																								const vision_color_code_t color_code )
+                                                const uint32_t size_id,
+                                                const vision_color_code_t color_code )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
         #define VISION_PORT 1
-				#define EXAMPLE_SIG 1
-				#define OTHER_SIG 2
+        #define EXAMPLE_SIG 1
+        #define OTHER_SIG 2
 
         void opcontrol() {
-					vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG);
+          vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG);
           while (true) {
             vision_object_s_t rtn = vision_get_by_code(VISION_PORT, 0, code1);
             // Gets the largest object
@@ -356,18 +356,18 @@ reached:
       ::
 
         vision_signature_s_t vision_get_signature ( uint8_t port,
-				                                            const uint8_t signature_id )
+                                                    const uint8_t signature_id )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
 				#define VISION_PORT 1
-				#define EXAMPLE_SIG 1
+        #define EXAMPLE_SIG 1
 
 				void opcontrol() {
-					vision_signature_s_t sig = vision_get_signature(VISION_PORT, EXAMPLE_SIG);
-					vision_print_signature(sig);
+          vision_signature_s_t sig = vision_get_signature(VISION_PORT, EXAMPLE_SIG);
+          vision_print_signature(sig);
 				}
 
 =============== ==============================
@@ -592,23 +592,23 @@ reached:
       ::
 
 				int32_t vision_read_by_code ( uint8_t port,
-				                              const uint32_t size_id,
-																			const vision_color_code_t color_code,
-																	    const uint32_t object_count,
-																			vision_object_s_t* const object_arr )
+                                      const uint32_t size_id,
+                                      const vision_color_code_t color_code,
+                                      const uint32_t object_count,
+                                      vision_object_s_t* const object_arr )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
         #define VISION_PORT 1
-				#define EXAMPLE_SIG 1
-				#define OTHER_SIG 2
+        #define EXAMPLE_SIG 1
+        #define OTHER_SIG 2
         #define NUM_VISION_OBJECTS 4
 
         void opcontrol() {
           vision_object_s_t object_arr[NUM_VISION_OBJECTS];
-					vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG);
+          vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG);
           while (true) {
             vision_read_by_code(VISION_PORT, 0, code1, NUM_VISION_OBJECTS, object_arr);
             printf("sig: %d", object_arr[0].signature);

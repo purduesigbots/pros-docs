@@ -245,19 +245,19 @@ reached:
       ::
 
          pros::vision_object_s_t pros::Vision::get_by_code ( const uint32_t size_id,
-																							               const vision_color_code_t color_code )
+                                                             const vision_color_code_t color_code )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
         #define VISION_PORT 1
-				#define EXAMPLE_SIG 1
-				#define OTHER_SIG 2
+        #define EXAMPLE_SIG 1
+        #define OTHER_SIG 2
 
         void opcontrol() {
-					pros::Vision vis (VISION_PORT);
-					pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+          pros::Vision vis (VISION_PORT);
+          pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
           while (true) {
             pros::vision_object_s_t rtn = vis.get_by_code(0, code1);
             // Gets the largest object
@@ -371,12 +371,12 @@ reached:
       ::
 
 				#define VISION_PORT 1
-				#define EXAMPLE_SIG 1
+        #define EXAMPLE_SIG 1
 
 				void opcontrol() {
-					pros::Vision vis (VISION_PORT);
-					pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
-					pros::Vision::print_signature(sig);
+          pros::Vision vis (VISION_PORT);
+          pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+          pros::Vision::print_signature(sig);
 				}
 
 =============== ==============================
@@ -591,23 +591,23 @@ reached:
       ::
 
 				std::int32_t pros::Vision::read_by_code ( const uint32_t size_id,
-																				         const vision_color_code_t color_code,
-																	    	         const uint32_t object_count,
-																				         vision_object_s_t* const object_arr )
+                                                  const vision_color_code_t color_code,
+                                                  const uint32_t object_count,
+                                                  vision_object_s_t* const object_arr )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
         #define VISION_PORT 1
-				#define EXAMPLE_SIG 1
-				#define OTHER_SIG 2
+        #define EXAMPLE_SIG 1
+        #define OTHER_SIG 2
         #define NUM_VISION_OBJECTS 4
 
         void opcontrol() {
           pros::vision_object_s_t object_arr[NUM_VISION_OBJECTS];
-					pros::Vision vis (VISION_PORT);
-					pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+          pros::Vision vis (VISION_PORT);
+          pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
           while (true) {
             vis.read_by_code(0, code1, NUM_VISION_OBJECTS, object_arr);
             printf("sig: %d", object_arr[0].signature);
@@ -774,20 +774,20 @@ reached:
       ::
 
         std::int32_t pros::Vision::set_signature ( const std::uint8_t signature_id,
-																			             pros::vision_signature_s_t* const signature_ptr )
+                                                   pros::vision_signature_s_t* const signature_ptr )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
         #define VISION_PORT 1
-				#define EXAMPLE_SIG 1
+        #define EXAMPLE_SIG 1
 
         void opcontrol() {
-					pros::Vision vis (VISION_PORT);
-					pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
-					sig.range = 10.0;
-					vis.set_signature(EXAMPLE_SIG, &sig);
+          pros::Vision vis (VISION_PORT);
+          pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+          sig.range = 10.0;
+          vis.set_signature(EXAMPLE_SIG, &sig);
         }
 
 ================ ===================================
