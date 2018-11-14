@@ -608,7 +608,7 @@ reached:
 
         void opcontrol() {
           vision_object_s_t object_arr[NUM_VISION_OBJECTS];
-          vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG);
+          vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG, 0, 0, 0);
           while (true) {
             vision_read_by_code(VISION_PORT, 0, code1, NUM_VISION_OBJECTS, object_arr);
             printf("sig: %d", object_arr[0].signature);
