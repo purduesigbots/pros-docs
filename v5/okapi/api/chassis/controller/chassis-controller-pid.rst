@@ -230,7 +230,7 @@ Delays until the currently executing movement completes.
 stop
 ~~~~
 
-Stops the robot (set all the motors to ``0``).
+Stops the robot (set all the motors to ``0`` and stop the PID controllers).
 
 .. tabs ::
    .. tab :: Prototype
