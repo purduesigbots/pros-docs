@@ -853,8 +853,24 @@ reached:
 
 Macros
 ======
+ 
+VISION_FOV_WIDTH
+----------------
 
-None.
+The width of the Vision Sensor's field of view.
+
+**Value:** 316
+
+----
+
+VISION_FOV_HEIGHT
+----------------- 
+
+The height of the Vision Sensor's field of view.
+
+**Value:** 212
+
+----
 
 Data Structures
 ===============
