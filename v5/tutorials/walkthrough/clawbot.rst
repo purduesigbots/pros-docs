@@ -133,7 +133,7 @@ to build your project. The structure of the project looks like:
 
 .. note::
    By convention, the ``opcontrol()``, ``autonomous()``, and initialize functions are separated into separate 
-   files (opcontrol.c, auto.c, and init.c). They could be all in the same file, but it can be helpful to 
+   files (opcontrol.cpp, autonomous.cpp, and initialize.cpp). They could be all in the same file, but it can be helpful to 
    organize your functions into multiple files to keep things from becoming messy.
 
 Drive Control 
