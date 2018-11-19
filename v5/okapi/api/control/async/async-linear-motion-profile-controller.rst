@@ -34,7 +34,7 @@ Constructor(s)
  itimeUtil       See ``TimeUtil`` docs.
  imaxVel         The maximum possible velocity in m/s.
  imaxAccel       The maximum possible acceleration in m/s/s.
- imaxJerk        The maxiumm possible jerk in m/s/s/s.
+ imaxJerk        The maximum possible jerk in m/s/s/s.
  ioutput         The output to write velocity targets to.
 =============== ===================================================================
 
