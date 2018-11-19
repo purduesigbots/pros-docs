@@ -1,5 +1,5 @@
 =========================
-PROS Kernel 3.1.3 Release
+PROS Kernel 3.1.4 Release
 =========================
 
 .. post:: 14 November, 2018
