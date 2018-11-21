@@ -988,8 +988,8 @@ to two wheel rotations, the ratio is ``1.0/2.0``.
 
           ~GearsetRatioPair() = default;
 
-          const gearset internalGearset;
-          const double ratio = 1;
+          gearset internalGearset;
+          double ratio = 1;
         };
 
         AbstractMotor::GearsetRatioPair operator*(AbstractMotor::gearset gearset, double ratio);
