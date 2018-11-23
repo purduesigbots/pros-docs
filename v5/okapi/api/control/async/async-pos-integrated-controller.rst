@@ -10,7 +10,7 @@ okapi::AsyncPosIntegratedController
 An `AsyncPositionController <abstract-async-position-controller.html>`_ that uses the V5 motor's
 onboard control. If you are trying to create an instance of this class, you should most likely be
 using the `AsyncControllerFactory <async-controller-factory.html>`_ instead of a constructor from
-this class.
+this class. Throws a ``std::invalid_argument`` exception if the gear ratio is zero.
 
 Constructor(s)
 --------------
@@ -21,23 +21,7 @@ Constructor(s)
       ::
 
         AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
-                                     const TimeUtil &itimeUtil)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- imotor          The motor to control.
- itimeUtil       See ``TimeUtil`` docs.
-=============== ===================================================================
-
-----
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
+                                     const AbstractMotor::GearsetRatioPair &ipair,
                                      std::int32_t imaxVelocity,
                                      const TimeUtil &itimeUtil)
 
@@ -45,7 +29,8 @@ Constructor(s)
  Parameters
 =============== ===================================================================
  imotor          The motor to control.
- imaxVelocity    The maximum velocity during a profiled movement in RPM ``[0-600]``.
+ ipair           The gearset.
+ imaxVelocity    The maximum velocity after gearing.
  itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 

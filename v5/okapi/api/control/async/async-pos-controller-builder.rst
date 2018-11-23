@@ -253,6 +253,35 @@ filter is ignored when using integrated control. The default derivative filter i
 
 ----
 
+withGearset
+~~~~~~~~~~~
+
+Sets the gearset. The default gearset is derived from the motor's.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        AsyncPosControllerBuilder &withGearset(const AbstractMotor::GearsetRatioPair &igearset)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // External gear ratio of 2
+        builder.withGearset(AbstractMotor::gearset::red * 2)
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ igearset          The gearset.
+================= ===================================================================
+
+**Returns:** An ongoing builder.
+
+----
+
 withMaxVelocity
 ~~~~~~~~~~~~~~~
 

@@ -387,7 +387,7 @@ Parameters
 withGearset
 ~~~~~~~~~~~
 
-Sets the gearset.
+Sets the gearset. The default gearset is derived from the motor's.
 
 .. tabs ::
    .. tab :: Prototype
@@ -400,7 +400,8 @@ Sets the gearset.
       .. highlight:: cpp
       ::
 
-        builder.withGearset(AbstractMotor::gearset::red)
+        // External gear ratio of 2
+        builder.withGearset(AbstractMotor::gearset::red * 2)
 
 ================= ===================================================================
 Parameters

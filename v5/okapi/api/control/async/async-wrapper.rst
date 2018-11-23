@@ -27,7 +27,8 @@ Constructor(s)
         AsyncWrapper(const std::shared_ptr<ControllerInput<Input>> &iinput,
                      const std::shared_ptr<ControllerOutput<Output>> &ioutput,
                      std::unique_ptr<IterativeController<Input, Output>> icontroller,
-                     const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier, std::unique_ptr<SettledUtil> isettledUtil)
+                     const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier, std::unique_ptr<SettledUtil> isettledUtil
+                     const double iratio = 1)
 
 =============== ===================================================================
  Parameters
@@ -37,6 +38,7 @@ Constructor(s)
  icontroller     The controller to use.
  irateSupplier   The a ``Supplier`` of ``AbstractRate``.
  isettledUtil    The ``SettledUtil`` to use.
+ iratio          Any external gear ratio.
 =============== ===================================================================
 
 Methods
@@ -52,7 +54,7 @@ Sets the target for the controller.
       .. highlight:: cpp
       ::
 
-        void setTarget(Input itarget) override
+        void setTarget(const Input itarget) override
 
 ============ ===============================================================
  Parameters
@@ -73,7 +75,7 @@ thread by the controller.
       .. highlight:: cpp
       ::
 
-        void controllerSet(double ivalue)
+        void controllerSet(const Input ivalue)
 
 ============ ===============================================================
  Parameters
@@ -160,7 +162,7 @@ Sets time between loops.
       .. highlight:: cpp
       ::
 
-        void setSampleTime(QTime isampleTime) override
+        void setSampleTime(const QTime &isampleTime) override
 
 =============== ===================================================================
 Parameters
@@ -180,7 +182,7 @@ Sets controller output bounds.
       .. highlight:: cpp
       ::
 
-        void setOutputLimits(Output imax, Output imin) override
+        void setOutputLimits(const Output imax, const Output imin) override
 
 =============== ===================================================================
 Parameters
@@ -264,7 +266,7 @@ controller to move to its last set target, unless it was reset in that time.
       .. highlight:: cpp
       ::
 
-        void flipDisable(bool iisDisabled) override
+        void flipDisable(const bool iisDisabled) override
 
 ============= ===============================================================
  Parameters

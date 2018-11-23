@@ -24,6 +24,7 @@ Constructor(s)
                               const TimeUtil &itimeUtil,
                               double ikP, double ikD, double ikF, double ikSF,
                               std::unique_ptr<VelMath> ivelMath,
+                              double iratio = 1,
                               std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
 =================== ===================================================================
@@ -37,5 +38,6 @@ Constructor(s)
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
  ivelMath            The ``VelMath`` to use.
+ iratio              Any external gear ratio.
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================

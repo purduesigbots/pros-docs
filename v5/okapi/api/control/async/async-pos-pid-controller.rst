@@ -19,10 +19,11 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosPIDController(const std::shared_ptr<ControllerInput<double>> &iinput,
-                              const std::shared_ptr<ControllerOutput<double>> &ioutput,
-                              const TimeUtil &itimeUtil,
-                              const double ikP, const double ikI, const double ikD, const double ikBias = 0,
+        AsyncPosPIDController(std::shared_ptr<ControllerInput<double>> &iinput,
+                              std::shared_ptr<ControllerOutput<double>> &ioutput,
+                              TimeUtil &itimeUtil,
+                              double ikP, double ikI, double ikD, double ikBias = 0,
+                              double iratio = 1,
                               std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
 =================== ===================================================================
@@ -35,6 +36,7 @@ Constructor(s)
  ikI                  The I term gain.
  ikD                  The D term gain.
  ikBias               The controller bias.
+ iratio               Any external gear ratio.
  iderivativeFilter    The filter to use for filtering the derivative term.
 =================== ===================================================================
 
@@ -45,10 +47,11 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosPIDController(const std::shared_ptr<OffsetableControllerInput> &iinput,
-                              const std::shared_ptr<ControllerOutput<double>> &ioutput,
-                              const TimeUtil &itimeUtil,
-                              const double ikP, const double ikI, const double ikD, const double ikBias = 0,
+        AsyncPosPIDController(std::shared_ptr<OffsetableControllerInput> &iinput,
+                              std::shared_ptr<ControllerOutput<double>> &ioutput,
+                              TimeUtil &itimeUtil,
+                              double ikP, double ikI, double ikD, double ikBias = 0,
+                              double iratio = 1,
                               std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
 
 =================== ===================================================================
@@ -61,6 +64,7 @@ Constructor(s)
  ikI                  The I term gain.
  ikD                  The D term gain.
  ikBias               The controller bias.
+ iratio               Any external gear ratio.
  iderivativeFilter    The filter to use for filtering the derivative term.
 =================== ===================================================================
 
