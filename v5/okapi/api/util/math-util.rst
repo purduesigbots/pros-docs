@@ -11,24 +11,26 @@ Constants
 
 A collection of ``static constexpr double`` constants that help with math.
 
-================ ================
- Name             Value
-================ ================
- analogInToV      286.0
- inchToMM         25.4
- mmToInch         0.0393700787
- degreeToRadian   0.01745
- radianToDegree   57.2957795
- imeTorqueTPR     627.2
- imeSpeedTPR      392.0
- imeTurboTPR      261.333
- ime269TPR        240.448
- imev5TPR         1800.0
- quadEncoderTPR   360.0
- pi               3.1415926535897932
- pi2              1.5707963267948966
- gravity          9.80665 (m/s^2)
-================ ================
+================== ================
+ Name               Value
+================== ================
+ analogInToV        286.0
+ inchToMM           25.4
+ mmToInch           0.0393700787
+ degreeToRadian     0.01745
+ radianToDegree     57.2957795
+ imeTorqueTPR       627.2
+ imeSpeedTPR        392.0
+ imeTurboTPR        261.333
+ ime269TPR          240.448
+ imev5TPR           1800.0
+ quadEncoderTPR     360.0
+ pi                 3.1415926535897932
+ pi2                1.5707963267948966
+ gravity            9.80665 (m/s^2)
+ OKAPI_PROS_ERR     INT32_MAX
+ OKAPI_PROS_ERR_F   INFINITY
+================== ================
 
 "V5 Brain"-specific constants.
 

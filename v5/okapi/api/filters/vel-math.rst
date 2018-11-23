@@ -1,49 +1,8 @@
-=============
-Velocity Math
-=============
+========
+Vel Math
+========
 
 .. contents:: :local:
-
-okapi::VelMathArgs
-==================
-
-Data class for the arguments to ``VelMath``.
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        explicit VelMathArgs(double iticksPerRev, QTime isampleTime = 0_ms)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iticksPerRev    The number of ticks per revolution (or whatever units you are using).
- isampleTime     The minimum time between velocity measurements.
-=============== ===================================================================
-
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        VelMathArgs(double iticksPerRev, const std::shared_ptr<Filter> &ifilter, QTime isampleTime = 0_ms)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iticksPerRev    The number of ticks per revolution (or whatever units you are using).
- ifilter         The filter used for filtering the calculated velocity.
- isampleTime     The minimum time between velocity measurements.
-=============== ===================================================================
 
 okapi::VelMath
 ==============
@@ -63,7 +22,12 @@ Throws a ``std::invalid_argument`` exception if `iticksPerRev` is zero.
       .. highlight:: cpp
       ::
 
-        VelMath(double iticksPerRev, const std::shared_ptr<Filter> &ifilter, QTime isampleTime, std::unique_ptr<Timer> iloopDtTimer)
+        VelMath(
+          double iticksPerRev,
+          const std::unique_ptr<Filter> &ifilter,
+          QTime isampleTime,
+          std::unique_ptr<Timer> iloopDtTimer
+        )
 
 =============== ===================================================================
  Parameters
@@ -71,24 +35,6 @@ Throws a ``std::invalid_argument`` exception if `iticksPerRev` is zero.
  iticksPerRev    The number of ticks per revolution (or whatever units you are using).
  ifilter         The filter used for filtering the calculated velocity.
  isampleTime     The minimum time between velocity measurements.
- iloopDtTimer    The timer used for calculating loop dt's.
-=============== ===================================================================
-
-----
-
-Throws a ``std::invalid_argument`` exception if `iticksPerRev` is zero.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        VelMath(const VelMathArgs &iparams, std::unique_ptr<Timer> iloopDtTimer)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iparams         The ``VelMathArgs``.
  iloopDtTimer    The timer used for calculating loop dt's.
 =============== ===================================================================
 

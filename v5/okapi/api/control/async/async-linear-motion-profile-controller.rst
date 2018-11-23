@@ -25,18 +25,22 @@ Constructor(s)
       ::
 
         AsyncLinearMotionProfileController(const TimeUtil &itimeUtil,
-                                           double imaxVel, double imaxAccel, double imaxJerk,
-                                           const std::shared_ptr<ControllerOutput<double>> &ioutput)
+                                           const PathfinderLimits &ilimits,
+                                           const std::shared_ptr<ControllerOutput<double>> &ioutput,
+                                           const QLength &idiameter,
+                                           const AbstractMotor::GearsetRatioPair &ipair)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  itimeUtil       See ``TimeUtil`` docs.
- imaxVel         The maximum possible velocity in m/s.
- imaxAccel       The maximum possible acceleration in m/s/s.
- imaxJerk        The maximum possible jerk in m/s/s/s.
+ ilimits         The limits.
  ioutput         The output to write velocity targets to.
+ idiameter       The effective diameter for whatever the motor spins.
+ ipair           The gearset.
 =============== ===================================================================
+
+----
 
 Methods
 -------
@@ -56,7 +60,7 @@ path is generated.
       .. highlight:: cpp
       ::
 
-        void generatePath(std::initializer_list<double> iwaypoints, const std::string &ipathId)
+        void generatePath(std::initializer_list<QLength> iwaypoints, const std::string &ipathId)
 
 ============ ===============================================================
  Parameters
@@ -124,6 +128,28 @@ Any targets set while a path is being followed will be ignored.
 
 ----
 
+setTarget
+~~~~~~~~~
+
+Executes a path with the given ID. If there is no path matching the ID, the method will return.
+Any targets set while a path is being followed will be ignored.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void setTarget(std::string ipathId, bool ibackwards)
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ ipathId      A unique identifier for the path, previously passed to ``generatePath()``.
+ ibackwards   Whether to follow the path backwards.
+============ ===============================================================
+
+----
+
 controllerSet
 ~~~~~~~~~~~~~
 
@@ -171,7 +197,7 @@ Gets the last set target, or the default target if none was set.
       .. highlight:: cpp
       ::
 
-        std::string getTarget() const
+        virtual std::string getTarget() const
 
 **Returns:** The last target.
 
@@ -203,13 +229,14 @@ until the controller has settled. Does not save the path which was generated.
       .. highlight:: cpp
       ::
 
-        void moveTo(double iposition, double itarget)
+        void moveTo(const QLength &iposition, const QLength &itarget, bool ibackwards = false)
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
  iposition    The starting position.
  itarget      The target position.
+ ibackwards   Whether to follow the path backwards.
 ============ ===============================================================
 
 ----
@@ -315,6 +342,23 @@ Returns whether the controller is currently disabled.
         bool isDisabled() override
 
 **Returns:** Whether the controller is currently disabled.
+
+----
+
+tarePosition
+~~~~~~~~~~~~
+
+Sets the "absolute" zero position of the controller to its current position.
+
+This implementation does nothing because the API always requires the starting position to be
+specified.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void tarePosition() override
 
 ----
 

@@ -49,6 +49,8 @@ Constructor(s)
  itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
+----
+
 Methods
 -------
 
@@ -249,17 +251,14 @@ Parameters
 tarePosition
 ~~~~~~~~~~~~
 
-Sets the "absolute" zero position of the motor to its current position.
+Sets the "absolute" zero position of the controller to its current position.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t tarePosition()
-
-**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
-setting errno.
+        void tarePosition() override
 
 ----
 

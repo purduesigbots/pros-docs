@@ -27,21 +27,22 @@ Constructor(s)
       ::
 
         AsyncMotionProfileController(const TimeUtil &itimeUtil,
-                                     double imaxVel, double imaxAccel, double imaxJerk,
+                                     const PathfinderLimits &ilimits,
                                      const std::shared_ptr<ChassisModel> &imodel,
-                                     const ChassisScales &iscales, AbstractMotor::GearsetRatioPair ipair)
+                                     const ChassisScales &iscales,
+                                     const AbstractMotor::GearsetRatioPair &ipair)
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
  itimeUtil       See ``TimeUtil`` docs.
- imaxVel         The maximum possible velocity in m/s.
- imaxAccel       The maximum possible acceleration in m/s/s.
- imaxJerk        The maximum possible jerk in m/s/s/s.
- imodel          The ``ChassisModel`` to control.
- iscales         The ``ChassisScales``.
- ipair           The ``AbstractMotor::GearsetRatioPair``.
+ ilimits         The limits.
+ imodel          The chassis model to control.
+ iscales         The chassis dimensions.
+ ipair           The gearset.
 =============== ===================================================================
+
+----
 
 Methods
 -------
@@ -214,7 +215,7 @@ until the controller has settled. Does not save the path which was generated.
       .. highlight:: cpp
       ::
 
-        void moveTo(std::initializer_list<Point> iwaypoints)
+        void moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false)
 
    .. tab :: Example
      .. highlight:: cpp
@@ -229,6 +230,7 @@ until the controller has settled. Does not save the path which was generated.
  Parameters
 ============ ===============================================================
  iwaypoints   The waypoints to hit on the path.
+ ibackwards   Whether to follow the path backwards.
 ============ ===============================================================
 
 ----
@@ -338,6 +340,23 @@ Returns whether the controller is currently disabled.
 
 ----
 
+tarePosition
+~~~~~~~~~~~~
+
+Sets the "absolute" zero position of the controller to its current position.
+
+This implementation does nothing because the API always requires the starting position to be
+specified.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void tarePosition() override
+
+----
+
 startThread
 ~~~~~~~~~~~
 
@@ -350,19 +369,3 @@ Starts the internal thread. This should not be called by normal users. This meth
       ::
 
         void startThread()
-
-----
-
-okapi::Point
-============
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        struct Point {
-            QLength x;    // X coordinate relative to the start of the movement
-            QLength y;    // Y coordinate relative to the start of the movement
-            QAngle theta; // Exit angle relative to the start of the movement
-        };

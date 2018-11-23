@@ -30,6 +30,25 @@ Constructor(s)
  itimeUtil       See ``TimeUtil`` docs.
 =============== ===================================================================
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        AsyncVelIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
+                                     std::int32_t imaxVelocity,
+                                     const TimeUtil &itimeUtil)
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ imotor          The motor to control.
+ imaxVelocity    The maximum target velocity.
+ itimeUtil       See ``TimeUtil`` docs.
+=============== ===================================================================
+
+----
+
 Methods
 -------
 

@@ -28,6 +28,4 @@ Control API
    :maxdepth: 1
    :glob:
 
-   ./abstract-closed-loop-controller
-   ./abstract-controller-input
-   ./abstract-controller-output
+   ./other-interfaces/*

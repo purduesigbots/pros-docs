@@ -32,10 +32,12 @@ Constructor(s)
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
- ivelMath            The `VelMath <../../filters/vel-math.html>`_ used for calculating plant velocity.
+ ivelMath            The `VelMath <../../filters/vel-math.html>`_ used for calculating velocity.
  itimeUtil           See ``TimeUtil`` docs.
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================
+
+----
 
 Methods
 -------
@@ -404,3 +406,23 @@ Returns the current velocity.
         virtual QAngularSpeed getVel() const
 
 **Returns:** The filtered velocity.
+
+----
+
+Structures
+----------
+
+Gains
+~~~~~
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+          struct Gains {
+            double kP{0};
+            double kD{0};
+            double kF{0};
+            double kSF{0};
+          };

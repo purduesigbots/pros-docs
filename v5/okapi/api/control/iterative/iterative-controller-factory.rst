@@ -67,7 +67,7 @@ A velocity controller that uses the PD algorithm.
 
         static IterativeVelPIDController velPID(
           double ikP, double ikD, double ikF = 0, double ikSF = 0,
-          const VelMathArgs &iparams = VelMathArgs(imev5TPR),
+          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5TPR),
           std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>()
         )
 
@@ -80,7 +80,7 @@ A velocity controller that uses the PD algorithm.
        // Controller using a custom derivative filter
        auto controller = IterativeControllerFactory::velPID(
          0.01, 0.005, 0, 0,
-         VelMathArgs(imev5TPR),
+         VelMathFactory::createPtr(imev5TPR),
          std::make_unique<AverageFilter<3>>()
        );
 
@@ -91,7 +91,7 @@ Parameters
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
- iparams             The ``VelMathArgs`` for calculating velocity.
+ ivelMath            The ``VelMath`` for calculating velocity.
  iderivativeFilter   The filter to use for filtering the derivative term.
 =================== ===================================================================
 
@@ -111,7 +111,7 @@ output.
         static IterativeMotorVelocityController motorVelocity(
           Motor/MotorGroup imotor,
           double ikP, double ikD, double ikF = 0, double ikSF = 0,
-          const VelMathArgs &iparams = VelMathArgs(imev5TPR)
+          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5TPR)
         )
 
    .. tab :: Example
@@ -132,7 +132,7 @@ Parameters
  ikD             The D term gain.
  ikF             The Feed-Forward gain.
  ikSF            A Feed-Forward gain to counteract static friction.
- iparams         The ``VelMathArgs`` for calculating velocity.
+ ivelMath        The ``VelMath`` for calculating velocity.
 =============== ===================================================================
 
 ----
