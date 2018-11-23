@@ -42,6 +42,13 @@ Sets the output. This must be used with ``buildLinearMotionProfileController()``
           const AbstractMotor::GearsetRatioPair &ipair
         )
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // Motor in port 1 with a 4 inch wheel and red gearset
+        builder.withOutput(1, 4_in, AbstractMotor::gearset::red);
+
 ============ ===============================================================
  Parameters
 ============ ===============================================================
@@ -69,6 +76,13 @@ Sets the output. This must be used with ``buildLinearMotionProfileController()``
           const QLength &idiameter,
           const AbstractMotor::GearsetRatioPair &ipair
         )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // Motor group in ports 1 & 2 (port 2 reversed) with a 4 inch wheel and red gearset
+        builder.withOutput({1, -2}, 4_in, AbstractMotor::gearset::red);
 
 ============ ===============================================================
  Parameters
@@ -124,6 +138,13 @@ Sets the output. This must be used with ``buildMotionProfileController()``.
           const ChassisController &icontroller
         )
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        auto drive = ChassisControllerBuilder().withMotors(1, -2).build();
+        builder.withOutput(*drive);
+
 ============ ===============================================================
  Parameters
 ============ ===============================================================
@@ -147,6 +168,13 @@ Sets the output. This must be used with ``buildMotionProfileController()``.
         AsyncMotionProfileControllerBuilder &withOutput(
           const std::shared_ptr<ChassisController> &icontroller
         )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        auto drive = ChassisControllerBuilder().withMotors(1, -2).build();
+        builder.withOutput(drive);
 
 ============ ===============================================================
  Parameters
@@ -198,6 +226,13 @@ Sets the limits.
 
         AsyncMotionProfileControllerBuilder &withLimits(const PathfinderLimits &ilimits)
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // 1 m/s max vel, 2 m/s/s max accel, 10 m/s/s/s max jerk
+        builder.withLimits({1, 2, 10});
+
 ============ ===============================================================
  Parameters
 ============ ===============================================================
@@ -243,6 +278,12 @@ Builds the ``AsyncLinearMotionProfileController``.
 
         std::shared_ptr<AsyncLinearMotionProfileController> buildLinearMotionProfileController()
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        auto controller = builder.build();
+
 **Returns:** A fully built ``AsyncLinearMotionProfileController``.
 
 ----
@@ -258,5 +299,11 @@ Builds the ``AsyncMotionProfileController``.
       ::
 
         std::shared_ptr<AsyncMotionProfileController> buildMotionProfileController()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        auto controller = builder.build();
 
 **Returns:** A fully built ``AsyncMotionProfileController``.

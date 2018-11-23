@@ -38,6 +38,13 @@ Sets the motor.
 
         AsyncVelControllerBuilder &withMotor(const Motor &imotor)
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // Motor in port 1
+        builder.withMotor(1);
+
 ============ ===============================================================
  Parameters
 ============ ===============================================================
@@ -59,6 +66,13 @@ Sets the motor.
       ::
 
         AsyncVelControllerBuilder &withMotor(const MotorGroup &imotor)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // Motor group in ports 1 & 2 (port 2 reversed)
+        builder.withMotor({1, -2});
 
 ============ ===============================================================
  Parameters
@@ -104,6 +118,16 @@ Sets the sensor. The default sensor is the motor's integrated encoder.
 
         AsyncVelControllerBuilder &withSensor(const ADIEncoder &isensor)
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // ADI encoder in ADI ports A & B
+        builder.withSensor({'A', 'B'});
+
+        // Reversed ADI encoder in ADI ports A & B
+        builder.withSensor({'A', 'B', true});
+
 ============ ===============================================================
  Parameters
 ============ ===============================================================
@@ -125,6 +149,16 @@ Sets the sensor. The default sensor is the motor's integrated encoder.
       ::
 
         AsyncVelControllerBuilder &withSensor(const IntegratedEncoder &isensor)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // Integrated encoder in port 1
+        builder.withSensor({1});
+
+        // Reversed integrated encoder in port 1
+        builder.withSensor({-1});
 
 ============ ===============================================================
  Parameters
@@ -171,6 +205,13 @@ This does not set the integrated control's gains.
 
         AsyncVelControllerBuilder &withGains(const IterativeVelPIDController::Gains &igains)
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // kP of 0.01, kD of 0, kF of 0.01, kSF of 0
+        builder.withGains({0.01, 0, 0.01, 0});
+
 ============ ===============================================================
  Parameters
 ============ ===============================================================
@@ -193,6 +234,13 @@ controller. If using a PID controller (by setting the gains), this is required.
       ::
 
         AsyncVelControllerBuilder &withVelMath(std::unique_ptr<VelMath> ivelMath)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // VelMath with the default ticks per rev for an integrated encoder
+        builder.withVelMath(VelMathFactory::createPtr(imev5TPR));
 
 ============ ===============================================================
  Parameters
@@ -218,6 +266,13 @@ filter is ignored when using integrated control. The default derivative filter i
 
         AsyncVelPIDController &withDerivativeFilter(std::unique_ptr<Filter> iderivativeFilter)
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // 3-tap average filter
+        builder.withDerivativeFilter(std::make_unique<AverageFilter<3>>());
+
 =================== ===============================================================
  Parameters
 =================== ===============================================================
@@ -240,6 +295,13 @@ This parameter is ignored when using an ``AsyncVelPIDController``.
       ::
 
         AsyncVelPIDController &withMaxVelocity(double imaxVelocity)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // 200 RPM max velocity
+        builder.withMaxVelocity(200);
 
 =================== ===============================================================
  Parameters
@@ -285,5 +347,11 @@ Builds the ``AsyncVelPIDController``. Throws a ``std::runtime_exception`` is no 
       ::
 
         std::shared_ptr<AsyncVelocityController<double, double>> build()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        auto controller = builder.build();
 
 **Returns:** A fully built ``AsyncVelPIDController``

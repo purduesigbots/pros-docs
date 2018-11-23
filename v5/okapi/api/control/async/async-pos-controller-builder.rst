@@ -38,6 +38,13 @@ Sets the motor.
 
         AsyncPosControllerBuilder &withMotor(const Motor &imotor)
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // Motor in port 1
+        builder.withMotor(1);
+
 ============ ===============================================================
  Parameters
 ============ ===============================================================
@@ -59,6 +66,13 @@ Sets the motor.
       ::
 
         AsyncPosControllerBuilder &withMotor(const MotorGroup &imotor)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // Motor group in ports 1 & 2 (port 2 reversed)
+        builder.withMotor({1, -2});
 
 ============ ===============================================================
  Parameters
@@ -104,6 +118,16 @@ Sets the sensor. The default sensor is the motor's integrated encoder.
 
         AsyncPosControllerBuilder &withSensor(const ADIEncoder &isensor)
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // ADI encoder in ADI ports A & B
+        builder.withSensor({'A', 'B'});
+
+        // Reversed ADI encoder in ADI ports A & B
+        builder.withSensor({'A', 'B', true});
+
 ============ ===============================================================
  Parameters
 ============ ===============================================================
@@ -125,6 +149,16 @@ Sets the sensor. The default sensor is the motor's integrated encoder.
       ::
 
         AsyncPosControllerBuilder &withSensor(const IntegratedEncoder &isensor)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // Integrated encoder in port 1
+        builder.withSensor({1});
+
+        // Reversed integrated encoder in port 1
+        builder.withSensor({-1});
 
 ============ ===============================================================
  Parameters
@@ -171,6 +205,13 @@ This does not set the integrated control's gains.
 
         AsyncPosControllerBuilder &withGains(const IterativePosPIDController::Gains &igains)
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // kP of 0.01, kI, kD, and kBias of 0
+        builder.withGains({0.01, 0, 0, 0});
+
 ============ ===============================================================
  Parameters
 ============ ===============================================================
@@ -195,6 +236,13 @@ filter is ignored when using integrated control. The default derivative filter i
 
         AsyncPosControllerBuilder &withDerivativeFilter(std::unique_ptr<Filter> iderivativeFilter)
 
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // 3-tap average filter
+        builder.withDerivativeFilter(std::make_unique<AverageFilter<3>>());
+
 =================== ===============================================================
  Parameters
 =================== ===============================================================
@@ -217,6 +265,13 @@ This parameter is ignored when using an ``AsyncPosPIDController``.
       ::
 
         AsyncPosControllerBuilder &withMaxVelocity(double imaxVelocity)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // 200 RPM max velocity
+        builder.withMaxVelocity(200);
 
 =================== ===============================================================
  Parameters
@@ -262,5 +317,11 @@ Builds the ``AsyncPositionController``. Throws a ``std::runtime_exception`` is n
       ::
 
         std::shared_ptr<AsyncPositionController<double, double>> build()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        auto controller = builder.build();
 
 **Returns:** A fully built ``AsyncPositionController``
