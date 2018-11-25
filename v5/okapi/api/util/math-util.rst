@@ -23,7 +23,9 @@ A collection of ``static constexpr double`` constants that help with math.
  imeSpeedTPR        392.0
  imeTurboTPR        261.333
  ime269TPR          240.448
- imev5TPR           1800.0
+ imev5RedTPR        1800.0
+ imev5GreenTPR      900.0
+ imev5BlueTPR       300.0
  quadEncoderTPR     360.0
  pi                 3.1415926535897932
  pi2                1.5707963267948966

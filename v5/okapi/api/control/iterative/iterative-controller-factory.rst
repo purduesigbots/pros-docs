@@ -67,7 +67,7 @@ A velocity controller that uses the PD algorithm.
 
         static IterativeVelPIDController velPID(
           double ikP, double ikD, double ikF = 0, double ikSF = 0,
-          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5TPR),
+          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5RedTPR),
           std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>()
         )
 
@@ -80,7 +80,7 @@ A velocity controller that uses the PD algorithm.
        // Controller using a custom derivative filter
        auto controller = IterativeControllerFactory::velPID(
          0.01, 0.005, 0, 0,
-         VelMathFactory::createPtr(imev5TPR),
+         VelMathFactory::createPtr(imev5RedTPR),
          std::make_unique<AverageFilter<3>>()
        );
 
@@ -111,7 +111,7 @@ output.
         static IterativeMotorVelocityController motorVelocity(
           Motor/MotorGroup imotor,
           double ikP, double ikD, double ikF = 0, double ikSF = 0,
-          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5TPR)
+          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5RedTPR)
         )
 
    .. tab :: Example
