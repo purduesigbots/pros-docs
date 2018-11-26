@@ -19,7 +19,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+        explicit AsyncPosControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 ================= ===================================================================
 Parameters

@@ -21,7 +21,9 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ChassisControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+        explicit ChassisControllerBuilder(
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+        )
 
 ================= ===================================================================
 Parameters

@@ -19,7 +19,9 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncVelControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+        explicit AsyncVelControllerBuilder(
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+        )
 
 ================= ===================================================================
 Parameters

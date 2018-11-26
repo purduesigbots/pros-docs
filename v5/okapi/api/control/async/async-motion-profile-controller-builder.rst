@@ -19,7 +19,7 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncMotionProfileControllerBuilder(
+        explicit AsyncMotionProfileControllerBuilder(
           const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
         )
 
