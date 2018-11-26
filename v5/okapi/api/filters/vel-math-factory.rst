@@ -29,7 +29,10 @@ Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
       .. highlight:: cpp
       ::
 
-        static VelMath create(double iticksPerRev, QTime isampleTime = 0_ms)
+        static VelMath create(
+          double iticksPerRev, QTime isampleTime = 0_ms,
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+        )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -43,6 +46,7 @@ Parameters
 ================= ===================================================================
  iticksPerRev      The number of ticks per revolution (or whatever units you are using).
  isampleTime       The minimum time between velocity measurements.
+ ilogger           The logger this instance will log to.
 ================= ===================================================================
 
 ----
@@ -59,7 +63,10 @@ Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
       .. highlight:: cpp
       ::
 
-        static VelMath create(double iticksPerRev, std::unique_ptr<Filter> ifilter, QTime isampleTime = 0_ms)
+        static VelMath create(
+          double iticksPerRev, std::unique_ptr<Filter> ifilter, QTime isampleTime = 0_ms,
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+        )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -74,6 +81,7 @@ Parameters
  iticksPerRev      The number of ticks per revolution (or whatever units you are using).
  ifilter           The filter used for filtering the calculated velocity.
  isampleTime       The minimum time between velocity measurements.
+ ilogger           The logger this instance will log to.
 ================= ===================================================================
 
 ----
@@ -90,13 +98,17 @@ Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
       .. highlight:: cpp
       ::
 
-        static std::unique_ptr<VelMath> createPtr(double iticksPerRev, QTime isampleTime = 0_ms)
+        static std::unique_ptr<VelMath> createPtr(
+          double iticksPerRev, QTime isampleTime = 0_ms,
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+        )
 
 ================= ===================================================================
 Parameters
 ================= ===================================================================
  iticksPerRev      The number of ticks per revolution (or whatever units you are using).
  isampleTime       The minimum time between velocity measurements.
+ ilogger           The logger this instance will log to.
 ================= ===================================================================
 
 ----
@@ -113,7 +125,10 @@ Velocity math helper. Calculates filtered velocity. Filters using a 2-tap
       .. highlight:: cpp
       ::
 
-        static std::unique_ptr<VelMath> createPtr(double iticksPerRev, std::unique_ptr<Filter> ifilter, QTime isampleTime = 0_ms)
+        static std::unique_ptr<VelMath> createPtr(
+          double iticksPerRev, std::unique_ptr<Filter> ifilter, QTime isampleTime = 0_ms,
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+        )
 
 ================= ===================================================================
 Parameters
@@ -121,4 +136,5 @@ Parameters
  iticksPerRev      The number of ticks per revolution (or whatever units you are using).
  ifilter           The filter used for filtering the calculated velocity.
  isampleTime       The minimum time between velocity measurements.
+ ilogger           The logger this instance will log to.
 ================= ===================================================================

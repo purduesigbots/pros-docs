@@ -22,7 +22,8 @@ Constructor(s)
 
         IterativePosPIDController(double ikP, double ikI, double ikD, double ikBias,
                                   const TimeUtil &itimeUtil,
-                                  std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+                                  std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+                                  const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 =================== ===================================================================
  Parameters
@@ -33,6 +34,7 @@ Constructor(s)
  ikBias              The controller bias.
  itimeUtil           See ``TimeUtil`` docs.
  iderivativeFilter   The filter to use for filtering the derivative term.
+ ilogger             The logger this instance will log to.
 =================== ===================================================================
 
 .. tabs ::
@@ -41,7 +43,8 @@ Constructor(s)
       ::
 
         IterativePosPIDController(const Gains &igains, const TimeUtil &itimeUtil,
-                                  std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+                                  std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+                                  const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 =================== ===================================================================
  Parameters
@@ -49,6 +52,7 @@ Constructor(s)
  igains              See ``Gains`` below.
  itimeUtil           See ``TimeUtil`` docs.
  iderivativeFilter   The filter to use for filtering the derivative term.
+ ilogger             The logger this instance will log to.
 =================== ===================================================================
 
 Methods

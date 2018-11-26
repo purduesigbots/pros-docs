@@ -23,4 +23,12 @@ create
       ::
 
         template <typename Input, typename Output>
-        static ControllerRunner<Input, Output> create()
+        static ControllerRunner<Input, Output> create(
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+        )
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ ilogger           The logger this instance will log to.
+================= ===================================================================

@@ -28,7 +28,8 @@ Constructor(s)
                                            const PathfinderLimits &ilimits,
                                            const std::shared_ptr<ControllerOutput<double>> &ioutput,
                                            const QLength &idiameter,
-                                           const AbstractMotor::GearsetRatioPair &ipair)
+                                           const AbstractMotor::GearsetRatioPair &ipair,
+                                           const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 =============== ===================================================================
  Parameters
@@ -38,6 +39,7 @@ Constructor(s)
  ioutput         The output to write velocity targets to.
  idiameter       The effective diameter for whatever the motor spins.
  ipair           The gearset.
+ ilogger         The logger this instance will log to.
 =============== ===================================================================
 
 ----

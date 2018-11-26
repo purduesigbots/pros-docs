@@ -23,7 +23,8 @@ Constructor(s)
         AsyncPosIntegratedController(const std::shared_ptr<AbstractMotor> &imotor,
                                      const AbstractMotor::GearsetRatioPair &ipair,
                                      std::int32_t imaxVelocity,
-                                     const TimeUtil &itimeUtil)
+                                     const TimeUtil &itimeUtil,
+                                     const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 =============== ===================================================================
  Parameters
@@ -32,6 +33,7 @@ Constructor(s)
  ipair           The gearset.
  imaxVelocity    The maximum velocity after gearing.
  itimeUtil       See ``TimeUtil`` docs.
+ ilogger         The logger this instance will log to.
 =============== ===================================================================
 
 ----

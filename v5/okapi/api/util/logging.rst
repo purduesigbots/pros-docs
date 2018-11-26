@@ -12,92 +12,71 @@ OkapiLib to log internal events to help users trying to debug their programs. Th
 can be ``/ser/sout`` (output to the PROS terminal) or any other custom stream or file. Logging is
 disabled by default unless explicitly configured.
 
+Constructor(s)
+--------------
+
+This constructor configures the logger to do nothing.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        Logger() noexcept
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        Logger(
+          std::unique_ptr<AbstractTimer> itimer,
+          std::string_view ifileName,
+          const LogLevel &ilevel
+        ) noexcept
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // Output to standard out (shows in the PROS terminal)
+        Logger(
+          TimeUtilFactory::create().getTimer(),
+          "/ser/sout,
+          Logger::LogLevel::debug
+        )
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ itimer       A timer used to get the current time for log statements.
+ ifileName    The name of the log file to open with append permissions.
+ ilevel       The log level. Log statements more verbose than this level will be disabled.
+============ ===============================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        Logger(
+          std::unique_ptr<AbstractTimer> itimer,
+          FILE *const ifile,
+          const LogLevel &ilevel
+        ) noexcept
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ itimer       A timer used to get the current time for log statements.
+ ifile        The log file to open. Will be closed by the logger!
+ ilevel       The log level. Log statements more verbose than this level will be disabled.
+============ ===============================================================
+
+----
+
 Methods
 -------
-
-initialize
-~~~~~~~~~~
-
-Initializes the logger. If the logger is not initialized when logging methods are called, nothing
-will be logged.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static void initialize(std::unique_ptr<AbstractTimer> itimer, std::string_view filename, LogLevel level) noexcept
-
-============ ===============================================================
- Parameters
-============ ===============================================================
- itimer       A timer used to get the current time for log statements.
- filename     The name of the log file to open. ``/ser/sout`` for ``stdout``.
- level        The log level. Log statements above this level will be disabled.
-============ ===============================================================
-
-----
-
-initialize
-~~~~~~~~~~
-
-Initializes the logger. If the logger is not initialized when logging methods are called, nothing
-will be logged.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static void initialize(std::unique_ptr<AbstractTimer> itimer, FILE *file, LogLevel level) noexcept
-
-============ ===============================================================
- Parameters
-============ ===============================================================
- itimer       A timer used to get the current time for log statements.
- file         The file to write log statements to.
- level        The log level. Log statements above this level will be disabled.
-============ ===============================================================
-
-----
-
-instance
-~~~~~~~~
-
-Get the logger instance.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static Logger *instance() noexcept
-
-**Returns:** The logger instance.
-
-----
-
-setLogLevel
-~~~~~~~~~~~
-
-Set a new logging level. Log statements above this level will be disabled. For example, if the
-level is set to ``LogLevel::warn``, then ``LogLevel::warn`` and ``LogLevel::error`` will be
-enabled, but ``LogLevel::info`` and ``LogLevel::debug`` will be disabled.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        static void setLogLevel(LogLevel level) noexcept
-
-============ ===============================================================
- Parameters
-============ ===============================================================
- level        The log level. Log statements above this level will be disabled.
-============ ===============================================================
-
-----
 
 debug
 ~~~~~
@@ -109,7 +88,7 @@ Log at the ``LogLevel::debug`` level.
       .. highlight:: cpp
       ::
 
-        void debug(std::string_view message) const noexcept
+        constexpr void debug(std::string_view message) const noexcept
 
 ============ ===============================================================
  Parameters
@@ -129,7 +108,7 @@ Log at the ``LogLevel::info`` level.
       .. highlight:: cpp
       ::
 
-        void info(std::string_view message) const noexcept
+        constexpr void info(std::string_view message) const noexcept
 
 ============ ===============================================================
  Parameters
@@ -149,7 +128,7 @@ Log at the ``LogLevel::warn`` level.
       .. highlight:: cpp
       ::
 
-        void warn(std::string_view message) const noexcept
+        constexpr void warn(std::string_view message) const noexcept
 
 ============ ===============================================================
  Parameters
@@ -169,7 +148,7 @@ Log at the ``LogLevel::error`` level.
       .. highlight:: cpp
       ::
 
-        void error(std::string_view message) const noexcept
+        constexpr void error(std::string_view message) const noexcept
 
 ============ ===============================================================
  Parameters
@@ -190,3 +169,18 @@ Closes the connection to the log file.
       ::
 
         void close() noexcept
+
+----
+
+Enumerations
+------------
+
+LogLevel
+~~~~~~~~
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        enum class LogLevel { debug = 4, info = 3, warn = 2, error = 1, off = 0 };

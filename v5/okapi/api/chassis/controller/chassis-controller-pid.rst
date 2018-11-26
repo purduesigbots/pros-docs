@@ -28,7 +28,8 @@ Constructor(s)
                              std::unique_ptr<IterativePosPIDController> iturnController,
                              std::unique_ptr<IterativePosPIDController> iangleController,
                              AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-                             const ChassisScales &iscales = ChassisScales({1, 1}))
+                             const ChassisScales &iscales = ChassisScales({1, 1}),
+                             const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 ======================   =======================================================================================
  Parameters
@@ -41,6 +42,7 @@ Constructor(s)
  iangleController         The `IterativePosPIDController <../../control/iterative/iterative-pos-pid-controller.html>`_ for angle control (while driving straight).
  igearset                 The motor's internal planetary gearset and external gear ratio.
  iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
+ ilogger                  The logger this instance will log to.
 ======================   =======================================================================================
 
 Methods

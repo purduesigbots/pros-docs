@@ -26,7 +26,8 @@ Constructor(s)
                                     std::unique_ptr<AsyncPosIntegratedController> ileftController,
                                     std::unique_ptr<AsyncPosIntegratedController> irightController,
                                     AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-                                    const ChassisScales &iscales = ChassisScales({1, 1}))
+                                    const ChassisScales &iscales = ChassisScales({1, 1}),
+                                    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 ======================   =======================================================================================
  Parameters
@@ -37,6 +38,7 @@ Constructor(s)
  irightController         The `AsyncPosIntegratedController <../../control/async/async-pos-integrated-controller.html>`_ for the right side.
  igearset                 The motor's internal planetary gearset and external gear ratio.
  iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
+ ilogger                  The logger this instance will log to.
 ======================   =======================================================================================
 
 Methods

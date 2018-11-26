@@ -19,7 +19,13 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        AsyncPosControllerBuilder()
+        AsyncPosControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ ilogger           The logger this instance will log to.
+================= ===================================================================
 
 ----
 
@@ -330,6 +336,38 @@ Sets the ``TimeUtilFactory`` used when building the controller. The default is t
 =================== ===============================================================
  itimeUtilFactory    The ``TimeUtilFactory``.
 =================== ===============================================================
+
+**Returns:** An ongoing builder.
+
+----
+
+withLogger
+~~~~~~~~~~
+
+Sets the logger.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        AsyncPosControllerBuilder &withLogger(const std::shared_ptr<Logger> &ilogger)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        builder.withLogger(std::make_shared<Logger>(
+          TimeUtilFactory::create().getTimer(),
+          "/ser/sout",
+          Logger::LogLevel::debug
+        ))
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ ilogger           The logger.
+================= ===================================================================
 
 **Returns:** An ongoing builder.
 

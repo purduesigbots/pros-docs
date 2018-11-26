@@ -21,7 +21,13 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ChassisControllerBuilder()
+        ChassisControllerBuilder(const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ ilogger           The logger this instance will log to.
+================= ===================================================================
 
 ----
 
@@ -563,6 +569,38 @@ Sets the max voltage.
 Parameters
 ================= ===================================================================
  imaxVoltage       The max voltage.
+================= ===================================================================
+
+**Returns:** An ongoing builder.
+
+----
+
+withLogger
+~~~~~~~~~~
+
+Sets the logger.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisControllerBuilder &withLogger(const std::shared_ptr<Logger> &ilogger)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        builder.withLogger(std::make_shared<Logger>(
+          TimeUtilFactory::create().getTimer(),
+          "/ser/sout",
+          Logger::LogLevel::debug
+        ))
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ ilogger           The logger.
 ================= ===================================================================
 
 **Returns:** An ongoing builder.

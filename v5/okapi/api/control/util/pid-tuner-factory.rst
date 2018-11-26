@@ -25,13 +25,17 @@ create
       .. highlight:: cpp
       ::
 
-        static PIDTuner create(std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
-                               QTime itimeout, std::int32_t igoal,
-                               double ikPMin, double ikPMax,
-                               double ikIMin, double ikIMax,
-                               double ikDMin, double ikDMax,
-                               std::int32_t inumIterations = 5, std::int32_t inumParticles = 16,
-                               double ikSettle = 1, double ikITAE = 2)
+        static PIDTuner create(
+          std::shared_ptr<ControllerInput<double>> iinput,
+          std::shared_ptr<ControllerOutput<double>> ioutput,
+          QTime itimeout, std::int32_t igoal,
+          double ikPMin, double ikPMax,
+          double ikIMin, double ikIMax,
+          double ikDMin, double ikDMax,
+          std::int32_t inumIterations = 5, std::int32_t inumParticles = 16,
+          double ikSettle = 1, double ikITAE = 2,
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+        )
 
 ===================== ===============================================================
  Parameters
@@ -50,6 +54,7 @@ create
  inumParticles         The number of particles to use for estimating gains.
  ikSettle              A settling time gain which penalizes long settling times.
  ikITAE                An error sum gain which penalizes recent error more than old error.
+ ilogger               The logger this instance will log to.
 ===================== ===============================================================
 
 ----
@@ -63,13 +68,16 @@ createPtr
       ::
 
         static std::unique_ptr<PIDTuner> createPtr(
-                               std::shared_ptr<ControllerInput<double>> iinput, std::shared_ptr<ControllerOutput<double>> ioutput,
-                               QTime itimeout, std::int32_t igoal,
-                               double ikPMin, double ikPMax,
-                               double ikIMin, double ikIMax,
-                               double ikDMin, double ikDMax,
-                               std::int32_t inumIterations = 5, std::int32_t inumParticles = 16,
-                               double ikSettle = 1, double ikITAE = 2)
+          std::shared_ptr<ControllerInput<double>> iinput,
+          std::shared_ptr<ControllerOutput<double>> ioutput,
+          QTime itimeout, std::int32_t igoal,
+          double ikPMin, double ikPMax,
+          double ikIMin, double ikIMax,
+          double ikDMin, double ikDMax,
+          std::int32_t inumIterations = 5, std::int32_t inumParticles = 16,
+          double ikSettle = 1, double ikITAE = 2,
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+        )
 
 ===================== ===============================================================
  Parameters
@@ -88,4 +96,5 @@ createPtr
  inumParticles         The number of particles to use for estimating gains.
  ikSettle              A settling time gain which penalizes long settling times.
  ikITAE                An error sum gain which penalizes recent error more than old error.
+ ilogger               The logger this instance will log to.
 ===================== ===============================================================

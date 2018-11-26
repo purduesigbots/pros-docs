@@ -28,7 +28,8 @@ Constructor(s)
                      const std::shared_ptr<ControllerOutput<Output>> &ioutput,
                      std::unique_ptr<IterativeController<Input, Output>> icontroller,
                      const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier, std::unique_ptr<SettledUtil> isettledUtil
-                     const double iratio = 1)
+                     const double iratio = 1,
+                     const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 =============== ===================================================================
  Parameters
@@ -39,6 +40,7 @@ Constructor(s)
  irateSupplier   The a ``Supplier`` of ``AbstractRate``.
  isettledUtil    The ``SettledUtil`` to use.
  iratio          Any external gear ratio.
+ ilogger         The logger this instance will log to.
 =============== ===================================================================
 
 Methods

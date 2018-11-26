@@ -21,7 +21,15 @@ Constructor(s)
       ::
 
         template <typename Input, typename Output>
-        explicit ControllerRunner(std::unique_ptr<AbstractRate> irate)
+        explicit ControllerRunner(const TimeUtil &itimeUtil,
+                                  const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ itimeUtil    The TimeUtil.
+ ilogger      The logger this instance will log to.
+============ ===============================================================
 
 ----
 

@@ -24,7 +24,8 @@ Constructor(s)
                               TimeUtil &itimeUtil,
                               double ikP, double ikI, double ikD, double ikBias = 0,
                               double iratio = 1,
-                              std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+                              std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+                              const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 =================== ===================================================================
  Parameters
@@ -38,6 +39,7 @@ Constructor(s)
  ikBias               The controller bias.
  iratio               Any external gear ratio.
  iderivativeFilter    The filter to use for filtering the derivative term.
+ ilogger              The logger this instance will log to.
 =================== ===================================================================
 
 ----
@@ -52,7 +54,8 @@ Constructor(s)
                               TimeUtil &itimeUtil,
                               double ikP, double ikI, double ikD, double ikBias = 0,
                               double iratio = 1,
-                              std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+                              std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+                              const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 =================== ===================================================================
  Parameters
@@ -66,6 +69,7 @@ Constructor(s)
  ikBias               The controller bias.
  iratio               Any external gear ratio.
  iderivativeFilter    The filter to use for filtering the derivative term.
+ ilogger              The logger this instance will log to.
 =================== ===================================================================
 
 ----

@@ -23,7 +23,8 @@ Constructor(s)
         IterativeVelPIDController(double ikP, double ikD, double ikF, double ikSF,
                                   std::unique_ptr<VelMath> ivelMath,
                                   const TimeUtil &itimeUtil,
-                                  std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>())
+                                  std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+                                  const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 =================== ===================================================================
  Parameters
@@ -35,6 +36,7 @@ Constructor(s)
  ivelMath            The `VelMath <../../filters/vel-math.html>`_ used for calculating velocity.
  itimeUtil           See ``TimeUtil`` docs.
  iderivativeFilter   The filter to use for filtering the derivative term.
+ ilogger             The logger this instance will log to.
 =================== ===================================================================
 
 ----

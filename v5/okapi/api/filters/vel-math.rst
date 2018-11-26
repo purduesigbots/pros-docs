@@ -26,7 +26,8 @@ Throws a ``std::invalid_argument`` exception if `iticksPerRev` is zero.
           double iticksPerRev,
           const std::unique_ptr<Filter> &ifilter,
           QTime isampleTime,
-          std::unique_ptr<Timer> iloopDtTimer
+          std::unique_ptr<Timer> iloopDtTimer,
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
         )
 
 =============== ===================================================================

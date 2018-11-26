@@ -31,7 +31,8 @@ Constructor(s)
                  double ikIMin, double ikIMax,
                  double ikDMin, double ikDMax,
                  std::size_t inumIterations = 5, std::size_t inumParticles = 16,
-                 double ikSettle = 1, double ikITAE = 2)
+                 double ikSettle = 1, double ikITAE = 2,
+                 const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 ===================== ===============================================================
  Parameters
@@ -51,6 +52,7 @@ Constructor(s)
  inumParticles         The number of particles to use for estimating gains.
  ikSettle              A settling time gain which penalizes long settling times.
  ikITAE                An error sum gain which penalizes recent error more than old error.
+ ilogger               The logger this instance will log to.
 ===================== ===============================================================
 
 ----

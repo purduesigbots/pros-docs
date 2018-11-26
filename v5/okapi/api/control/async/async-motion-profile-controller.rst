@@ -30,7 +30,8 @@ Constructor(s)
                                      const PathfinderLimits &ilimits,
                                      const std::shared_ptr<ChassisModel> &imodel,
                                      const ChassisScales &iscales,
-                                     const AbstractMotor::GearsetRatioPair &ipair)
+                                     const AbstractMotor::GearsetRatioPair &ipair,
+                                     const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
 
 =============== ===================================================================
  Parameters
@@ -40,6 +41,7 @@ Constructor(s)
  imodel          The chassis model to control.
  iscales         The chassis dimensions.
  ipair           The gearset.
+ ilogger         The logger this instance will log to.
 =============== ===================================================================
 
 ----
