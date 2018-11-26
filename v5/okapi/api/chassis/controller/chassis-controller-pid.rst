@@ -25,8 +25,8 @@ Constructor(s)
                              std::unique_ptr<AbstractRate> irate,
                              const std::shared_ptr<ChassisModel> &imodel,
                              std::unique_ptr<IterativePosPIDController> idistanceController,
-                             std::unique_ptr<IterativePosPIDController> iangleController,
                              std::unique_ptr<IterativePosPIDController> iturnController,
+                             std::unique_ptr<IterativePosPIDController> iangleController,
                              AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
                              const ChassisScales &iscales = ChassisScales({1, 1}))
 
@@ -37,8 +37,8 @@ Constructor(s)
  irate                    An ``AbstractRate``.
  imodel                   The underlying `ChassisModel <../model/abstract-chassis-model.html>`_ to control.
  idistanceController      The `IterativePosPIDController <../../control/iterative/iterative-pos-pid-controller.html>`_ for distance control.
- iangleController         The `IterativePosPIDController <../../control/iterative/iterative-pos-pid-controller.html>`_ for angle control (while driving straight).
  iturnController          The `IterativePosPIDController <../../control/iterative/iterative-pos-pid-controller.html>`_ for turning.
+ iangleController         The `IterativePosPIDController <../../control/iterative/iterative-pos-pid-controller.html>`_ for angle control (while driving straight).
  igearset                 The motor's internal planetary gearset and external gear ratio.
  iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
 ======================   =======================================================================================

@@ -314,7 +314,7 @@ withGains
 ~~~~~~~~~
 
 Sets the PID controller gains, causing the builder to generate a ChassisControllerPID. Uses the
-angle controller's gains for the turn controller's gains.
+turn controller's gains for the angle controller's gains.
 
 .. tabs ::
    .. tab :: Prototype
@@ -323,7 +323,7 @@ angle controller's gains for the turn controller's gains.
 
         ChassisControllerBuilder &withGains(
           const IterativePosPIDController::Gains &idistanceGains,
-          const IterativePosPIDController::Gains &iangleGains
+          const IterativePosPIDController::Gains &iturnGains
         )
 
    .. tab :: Example
@@ -339,7 +339,7 @@ angle controller's gains for the turn controller's gains.
 Parameters
 ================= ===================================================================
  idistanceGains    The distance controller's gains.
- iangleGains       The angle controller's gains.
+ iturnGains        The turn controller's gains.
 ================= ===================================================================
 
 **Returns:** An ongoing builder.
@@ -358,8 +358,8 @@ Sets the PID controller gains, causing the builder to generate a ChassisControll
 
         ChassisControllerBuilder &withGains(
           const IterativePosPIDController::Gains &idistanceGains,
-          const IterativePosPIDController::Gains &iangleGains,
-          const IterativePosPIDController::Gains &iturnGains
+          const IterativePosPIDController::Gains &iturnGains,
+          const IterativePosPIDController::Gains &iangleGains
         )
 
    .. tab :: Example
@@ -376,9 +376,80 @@ Sets the PID controller gains, causing the builder to generate a ChassisControll
 Parameters
 ================= ===================================================================
  idistanceGains    The distance controller's gains.
+ iturnGains        The turn controller's gains.
  iangleGains       The angle controller's gains.
- iturnGains         The turn controller's gains.
 ================= ===================================================================
+
+**Returns:** An ongoing builder.
+
+----
+
+withDerivativeFilters
+~~~~~~~~~~~~~~~~~~~~~
+
+Sets the derivative filters. Uses a ``PassthroughFilter`` by default.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisControllerBuilder &withDerivativeFilters(
+          std::unique_ptr<Filter> idistanceFilter,
+          std::unique_ptr<Filter> iturnFilter = std::make_unique<PassthroughFilter>(),
+          std::unique_ptr<Filter> iangleFilter = std::make_unique<PassthroughFilter>()
+        )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        builder.withDerivativeFilters(
+          std::make_unique<PassthroughFilter>()
+        )
+
+        builder.withDerivativeFilters(
+          std::make_unique<PassthroughFilter>(),
+          std::make_unique<PassthroughFilter>(),
+          std::make_unique<PassthroughFilter>()
+        )
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ idistanceFilter   The distance controller's filter.
+ iturnFilter       The turn controller's filter.
+ iangleFilter      The angle controller's filter.
+================= ===================================================================
+
+**Returns:** An ongoing builder.
+
+----
+
+withTimeUtilFactory
+~~~~~~~~~~~~~~~~~~~
+
+Sets the ``TimeUtilFactory`` used for creating a ``TimeUtil`` for each controller. Uses the static
+``TimeUtilFactory`` by default.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        builder.withTimeUtilFactory(TimeUtilFactory()))
+
+================== ===================================================================
+Parameters
+================== ===================================================================
+ itimeUtilFactory   The TimeUtilFactory.
+================== ===================================================================
 
 **Returns:** An ongoing builder.
 
