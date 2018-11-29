@@ -309,7 +309,7 @@ reached:
             vision_sensor.set_exposure(50);
         }
 
-**Returns:** the current exposure percentage parameter from [0,100],
+**Returns:** the current exposure percentage parameter from [0,150],
 PROS_ERR if an error occurred
 
 ----
@@ -691,7 +691,7 @@ reached:
       .. highlight:: cpp
       ::
 
-        std::int32_t pros::Vision::set_exposure ( const std::uint8_t percent )
+        std::int32_t pros::Vision::set_exposure ( const std::uint8_t exposure )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -709,10 +709,10 @@ reached:
  Parameters
 ============ ==============================
  percent      The new exposure percentage
-              from [0,100]
+              from [0,150]
 ============ ==============================
 
-**Returns:** 0 if no errors occurred, PROS_ERR otherwise
+**Returns:** 1 if no errors occurred, PROS_ERR otherwise
 
 ----
 
@@ -839,14 +839,53 @@ reached:
  rgb          The white balance parameter
 ============ ===============================
 
-**Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
+**Returns:** Returns 1 if no errors occurred, PROS_ERR otherwise
+
+----
+
+set_white_balance
+~~~~~~~~~~~~~~~~~
+
+Sets the Wi-Fi mode of the Vision sensor.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Vision::set_wifi_mode ( const std::uint8_t enable )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_sensor.set_wifi_mode(1);
+        }
+
+============ =================================================================
+ Parameters
+============ =================================================================
+ enable      Disable Wi-Fi on the Vision sensor if 0, enable otherwise (e.g. 1)
+============ =================================================================
+
+**Returns:** Returns 1 if no errors occurred, PROS_ERR otherwise
 
 ----
 
 Macros
 ======
 
- 
+
 VISION_FOV_WIDTH
 ----------------
 
@@ -857,7 +896,7 @@ The width of the Vision Sensor's field of view.
 ----
 
 VISION_FOV_HEIGHT
------------------ 
+-----------------
 
 The height of the Vision Sensor's field of view.
 
