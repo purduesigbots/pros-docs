@@ -901,7 +901,7 @@ vision_object_s_t
 -----------------
 
 This structure contains a descriptor of an object detected
-by the Vision Sensor
+by the Vision Sensor.
 
 ::
 
@@ -949,7 +949,7 @@ vision_object_type_e_t
 ----------------------
 
 This enumeration defines the different types of objects
-that can be detected by the Vision Sensor
+that can be detected by the Vision Sensor.
 
 ::
 
