@@ -143,13 +143,14 @@ Any targets set while a path is being followed will be ignored.
       .. highlight:: cpp
       ::
 
-        void setTarget(std::string ipathId, bool ibackwards)
+        void setTarget(std::string ipathId, bool ibackwards, bool imirrored = false)
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
  ipathId      A unique identifier for the path, previously passed to ``generatePath()``.
  ibackwards   Whether to follow the profile backwards.
+ imirrored    Whether to follow the profile mirrored.
 ============ ===============================================================
 
 ----
@@ -217,7 +218,7 @@ until the controller has settled. Does not save the path which was generated.
       .. highlight:: cpp
       ::
 
-        void moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false)
+        void moveTo(std::initializer_list<Point> iwaypoints, bool ibackwards = false, bool imirrored = false)
 
    .. tab :: Example
      .. highlight:: cpp
@@ -233,6 +234,7 @@ until the controller has settled. Does not save the path which was generated.
 ============ ===============================================================
  iwaypoints   The waypoints to hit on the path.
  ibackwards   Whether to follow the path backwards.
+ imirrored    Whether to follow the profile mirrored.
 ============ ===============================================================
 
 ----
