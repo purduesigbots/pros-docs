@@ -72,6 +72,28 @@ Parameters
 
 ----
 
+setControllerSetTargetLimits
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sets the (soft) limits for the target range that ``controllerSet()`` scales into. The target
+computed by ``controllerSet()`` is scaled into the range ``[-itargetMin, itargetMax]``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setControllerSetTargetLimits(Output itargetMax, Output itargetMin) = 0
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ itargetMax      The new max target for ``controllerSet()``.
+ itargetMin      The new min target for ``controllerSet()``.
+=============== ===================================================================
+
+----
+
 getMaxOutput
 ~~~~~~~~~~~~
 

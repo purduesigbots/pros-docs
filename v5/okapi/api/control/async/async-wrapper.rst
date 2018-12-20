@@ -77,7 +77,7 @@ thread by the controller.
       .. highlight:: cpp
       ::
 
-        void controllerSet(const Input ivalue)
+        void controllerSet(const Input ivalue) override
 
 ============ ===============================================================
  Parameters
@@ -113,7 +113,7 @@ Returns the last calculated output of the controller.
       .. highlight:: cpp
       ::
 
-        Output getOutput() const override
+        Output getOutput() const
 
 **Returns:** The previous output from the filter.
 
@@ -164,7 +164,7 @@ Sets time between loops.
       .. highlight:: cpp
       ::
 
-        void setSampleTime(const QTime &isampleTime) override
+        void setSampleTime(const QTime &isampleTime)
 
 =============== ===================================================================
 Parameters
@@ -184,13 +184,35 @@ Sets controller output bounds.
       .. highlight:: cpp
       ::
 
-        void setOutputLimits(const Output imax, const Output imin) override
+        void setOutputLimits(const Output imax, const Output imin)
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
  imax            The upper bound.
  imin            The lower bound.
+=============== ===================================================================
+
+----
+
+setControllerSetTargetLimits
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sets the (soft) limits for the target range that ``controllerSet()`` scales into. The target
+computed by ``controllerSet()`` is scaled into the range ``[-itargetMin, itargetMax]``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void setControllerSetTargetLimits(double itargetMax, double itargetMin)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ itargetMax      The new max target for ``controllerSet()``.
+ itargetMin      The new min target for ``controllerSet()``.
 =============== ===================================================================
 
 ----
