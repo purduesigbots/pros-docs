@@ -16,7 +16,7 @@ analog components, where a range of possible values exist instead of
 simply an arrangement of 1s and 0s. Analog sensors like potentiometers and line
 trackers are used to communicate with these analog real-world systems.
 These sensors return a number within a preset range of values
-in accordance with their input, as opposed to a digit sensor which
+in accordance with their input, as opposed to a digital sensor which
 simply returns an on or off state.
 
 To take these analog inputs and convert them to information that the
