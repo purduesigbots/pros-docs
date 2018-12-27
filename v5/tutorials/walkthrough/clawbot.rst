@@ -307,7 +307,7 @@ As with the tank drive code, this can be uploaded with the ``prosv5 mu`` command
 Arm Control 
 ===========
 
-Next let's control the clawbot's arm. This will not require the use of a joystick, but instead 
+Next, let's control the clawbot's arm. This will not require the use of a joystick, but instead 
 we will use the controller's buttons. 
 
 We will use the following function to read the button press from the controller:
