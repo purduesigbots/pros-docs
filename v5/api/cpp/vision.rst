@@ -894,7 +894,7 @@ reached:
 
         void initialize() {
           pros::Vision vision_sensor (VISION_PORT);
-          vision_sensor.set_zero_point(pros::E_VISION_ZERO_CENTER);
+          vision_sensor.set_white_balance(VISION_WHITE);
         }
 
 
@@ -938,7 +938,7 @@ reached:
 
         void initialize() {
           pros::Vision vision_sensor (VISION_PORT);
-          vision_sensor.set_white_balance(VISION_WHITE);
+          vision_sensor.set_zero_point(pros::E_VISION_ZERO_CENTER);
         }
 
 ============ ===============================
