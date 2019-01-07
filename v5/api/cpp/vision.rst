@@ -158,13 +158,13 @@ reached:
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
-      ::
-
-				pros::vision_color_code_t pros::Vision::create_color_code ( const uint32_t sig_id1,
-							              																			  const uint32_t sig_id2,
-							              																	      const uint32_t sig_id3,
-							              																			  const uint32_t sig_id4,
-							              																			  const uint32_t sig_id5 )
+      :: 
+            
+        pros::vision_color_code_t pros::Vision::create_color_code ( const uint32_t sig_id1,
+                                                                    const uint32_t sig_id2,
+                                                                    const uint32_t sig_id3,
+                                                                    const uint32_t sig_id4,
+                                                                    const uint32_t sig_id5 )
 
    .. tab :: Example
       .. highlight:: c
@@ -175,7 +175,7 @@ reached:
 				#define OTHER_SIG 2
 
         void opcontrol() {
-					pros::Vision vis (VISION_PORT);
+          pros::Vision vis (VISION_PORT);
           pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
         }
 
@@ -654,7 +654,7 @@ reached:
       .. highlight:: c
       ::
 
-				std::int32_t pros::Vision::read_by_code ( const uint32_t size_id,
+        std::int32_t pros::Vision::read_by_code ( const uint32_t size_id,
                                                   const vision_color_code_t color_code,
                                                   const uint32_t object_count,
                                                   vision_object_s_t* const object_arr )
