@@ -830,13 +830,101 @@ reached:
 
         void initialize() {
           pros::Vision vision_sensor (VISION_PORT);
+          vision_sensor.set_zero_point(pros::E_VISION_ZERO_CENTER);
+        }
+
+
+============ ===============================
+ Parameters
+============ ===============================
+ rgb          The white balance parameter
+============ ===============================
+
+**Returns:** Returns 1 if no errors occurred, PROS_ERR otherwise
+
+----
+
+set_zero_point
+~~~~~~~~~~~~~~
+
+Set the (0,0) coordinate for the Field of View.
+
+This will affect the coordinates returned for each request for a
+``vision_object_s_t`` from the sensor, so it is recommended that this
+function only be used to configure the sensor at the beginning of its use.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Vision::set_zero_point ( vision_zero_e_t zero_point )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
           vision_sensor.set_white_balance(VISION_WHITE);
         }
 
 ============ ===============================
  Parameters
 ============ ===============================
- rgb          The white balance parameter
+ zero_point   One of ``vision_zero_e_t`` to
+              set the (0,0) coordinate for
+              the FOV
+============ ===============================
+
+**Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
+
+----
+
+
+set_wifi_mode
+~~~~~~~~~~~~~
+
+Set the Wi-Fi mode of the Vision Sensor.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Vision::set_wifi_mode ( const std::uint8_t enable )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_sensor.set_wifi_mode(0);
+        }
+
+============ ===============================
+ Parameters
+============ ===============================
+ enable       Disable Wi-Fi mode on the
+              Vision Sensor if 0, enable
+              otherwise (e.g. 1).
 ============ ===============================
 
 **Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
@@ -959,6 +1047,25 @@ that can be detected by the Vision Sensor
  pros::E_VISION_OBJECT_COLOR_CODE   Object returned is a `color code <http://www.cmucam.org/projects/cmucam5/wiki/Using_Color_Codes>`_
  pros::E_VISION_OBJECT_LINE         Object returned is a line type.
 ================================== ====================================================================================================
+
+pros::vision_zero_e_t
+---------------------
+
+This enumeration defines different zero points for returned vision objects.
+
+::
+
+  typedef enum vision_zero {
+    E_VISION_ZERO_TOPLEFT = 0,
+    E_VISION_ZERO_CENTER = 1
+  } vision_zero_e_t;
+
+======================= =============================================
+ Value
+======================= =============================================
+ E_VISION_ZERO_TOPLEFT   (0,0) coordinate is the top left of the FOV
+ E_VISION_ZERO_CENTER    (0,0) coordinate is the center of the FOV
+======================= =============================================
 
 Typedefs
 ========
