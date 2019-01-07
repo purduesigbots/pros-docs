@@ -963,7 +963,7 @@ get_temperature
 ~~~~~~~~~~~~~~~
 
 Gets the temperature of the motor in degrees Celsius. The resolution of this
-eading is 5 degrees Celsius. The motor will start to reduce its power when the
+reading is 5 degrees Celsius. The motor will start to reduce its power when the
 temperature reading is greater than or equal to 55 C.
 
 This function uses the following values of ``errno`` when an error state is reached:
