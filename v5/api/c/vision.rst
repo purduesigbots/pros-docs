@@ -135,7 +135,7 @@ reached:
                                                        const uint32_t sig_id2,
                                                        const uint32_t sig_id3,
                                                        const uint32_t sig_id4,
-																											 const uint32_t sig_id5 )
+                                                       const uint32_t sig_id5 )
 
    .. tab :: Example
       .. highlight:: c
@@ -654,7 +654,7 @@ reached:
       .. highlight:: c
       ::
 
-				int32_t vision_read_by_code ( uint8_t port,
+        int32_t vision_read_by_code ( uint8_t port,
                                       const uint32_t size_id,
                                       const vision_color_code_t color_code,
                                       const uint32_t object_count,
