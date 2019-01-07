@@ -847,9 +847,95 @@ reached:
  rgb          The white balance parameter
 ============ ===============================
 
-**Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
+**Returns:** Returns 1 if no errors occurred, PROS_ERR otherwise
 
 ----
+
+vision_set_zero_point
+=====================
+
+Sets the (0,0) coordinate for the Field of View
+
+This will affect the coordinates returned for each request for a
+``vision_object_s_t`` from the sensor, so it is recommended that this
+function only be used to configure the sensor at the beginning of its use.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t vision_set_zero_point ( uint8_t port,
+                                           vision_zero_e_t zero_point )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          vision_set_zero_point(VISION_PORT, E_VISION_ZERO_CENTER);
+        }
+
+============ ===============================
+ Parameters
+============ ===============================
+ port         The V5 port number from 1-21
+ zero_point   One of ``vision_zero_e_t`` to
+              set the (0,0) coordinate for
+              the FOV
+============ ===============================
+
+**Returns:** Returns 1 if no errors occurred, PROS_ERR otherwise
+
+----
+
+vision_set_wifi_mode
+====================
+
+Sets the Wi-Fi mode of the Vision Sensor
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t vision_set_wifi_mode ( uint8_t port,
+                                           const uint8_t enable )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          vision_set_wifi_mode(VISION_PORT, 0);
+        }
+
+============ ===============================
+ Parameters
+============ ===============================
+ port         The V5 port number from 1-21
+ enable       Disable Wi-Fi on the Vision
+              Sensor if 0, enable otherwise
+              (e.g. 1)
+============ ===============================
+
+**Returns:** Returns 1 if no errors occurred, PROS_ERR otherwise
 
 Macros
 ======
@@ -958,6 +1044,25 @@ that can be detected by the Vision Sensor.
     E_VISION_OBJECT_COLOR_CODE = 1,
     E_VISION_OBJECT_LINE = 2
   } vision_object_type_e_t;
+  
+vision_zero_e_t
+===============
+
+This enumeration defines different zero points for returned vision objects.
+
+::
+
+  typedef enum vision_zero {
+    E_VISION_ZERO_TOPLEFT = 0,
+    E_VISION_ZERO_CENTER = 1
+  } vision_zero_e_t;
+
+======================= =============================================
+ Value
+======================= =============================================
+ E_VISION_ZERO_TOPLEFT   (0,0) coordinate is the top left of the FOV
+ E_VISION_ZERO_CENTER    (0,0) coordinate is the center of the FOV
+======================= =============================================
 
 Typedefs
 ========
