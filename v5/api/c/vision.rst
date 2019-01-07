@@ -49,6 +49,69 @@ reached:
 
 ----
 
+vision_signature_from_utility
+-----------------------------
+
+Creates a signature from the Vision Sensor utility
+
+This function is parameter-equivalent to the functions used in VCS and RMS for constructing
+vision signatures.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        vision_signature_s_t vision_signature_from_utility ( const int32_t id,
+                                                             const int32_t u_min,
+                                                             const int32_t u_max,
+                                                             const int32_t u_mean,
+                                                             const int32_t v_min,
+                                                             const int32_t v_max,
+                                                             const int32_t v_mean,
+                                                             const float range,
+                                                             const int32_t type )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+
+        void opcontrol() {
+          // values acquired from the vision utility
+          vision_signature_s_t RED_SIG =
+            vision_signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+          
+          vision_set_signature(VISION_PORT, EXAMPLE_SIG, &RED_SIG);
+          while (true) {
+            vision_signature_s_t rtn = vision_get_by_sig(VISION_PORT, 0, EXAMPLE_SIG);
+            // Gets the largest object of the EXAMPLE_SIG signature
+            printf("sig: %d", rtn.signature);
+            // Prints "sig: 1"
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ id           The signature ID
+ u_min        Minimum value on U axis
+ u_max        Maximum value on U axis
+ u_mean       Mean value on U axis
+ v_min        Minimum value on V axis
+ v_max        Maximum value on V axis
+ v_mean       Mean value on V axis
+ range        Signature range scale factor
+ type         The signature type
+============ ==============================
+
+**Returns:** A ``vision_signature_s_t`` initialized with the given values
+
+----
+
 vision_create_color_code
 ------------------------
 
@@ -67,11 +130,11 @@ reached:
       .. highlight:: c
       ::
 
-				vision_color_code_t vision_create_color_code ( uint8_t port,
-				                                               const uint32_t sig_id1,
-																											 const uint32_t sig_id2,
-																									     const uint32_t sig_id3,
-																											 const uint32_t sig_id4,
+        vision_color_code_t vision_create_color_code ( uint8_t port,
+                                                       const uint32_t sig_id1,
+                                                       const uint32_t sig_id2,
+                                                       const uint32_t sig_id3,
+                                                       const uint32_t sig_id4,
 																											 const uint32_t sig_id5 )
 
    .. tab :: Example
@@ -852,7 +915,7 @@ reached:
 ----
 
 vision_set_zero_point
-=====================
+---------------------
 
 Sets the (0,0) coordinate for the Field of View
 
@@ -898,7 +961,7 @@ reached:
 ----
 
 vision_set_wifi_mode
-====================
+--------------------
 
 Sets the Wi-Fi mode of the Vision Sensor
 
