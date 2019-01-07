@@ -1046,7 +1046,7 @@ that can be detected by the Vision Sensor.
   } vision_object_type_e_t;
   
 vision_zero_e_t
-===============
+---------------
 
 This enumeration defines different zero points for returned vision objects.
 
