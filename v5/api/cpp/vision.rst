@@ -897,7 +897,6 @@ reached:
           vision_sensor.set_white_balance(VISION_WHITE);
         }
 
-
 ============ ===============================
  Parameters
 ============ ===============================
