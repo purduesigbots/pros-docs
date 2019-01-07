@@ -78,6 +78,70 @@ reached:
 
 ----
 
+signature_from_utility
+~~~~~~~~~~~~~~~~~~~~~~
+
+Creates a signature from the Vision Sensor utility
+
+This function is parameter-equivalent to the functions used in VCS and RMS for constructing
+vision signatures.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        vision_signature_s_t pros::Vision::signature_from_utility ( const int32_t id,
+                                                                    const int32_t u_min,
+                                                                    const int32_t u_max,
+                                                                    const int32_t u_mean,
+                                                                    const int32_t v_min,
+                                                                    const int32_t v_max,
+                                                                    const int32_t v_mean,
+                                                                    const float range,
+                                                                    const int32_t type )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+
+        void opcontrol() {
+          pros::Vision sensor(VISION_PORT);
+          // values acquired from the vision utility
+          pros::vision_signature_s_t RED_SIG =
+            pros::Vision::signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+          
+          sensor.set_signature(EXAMPLE_SIG, &RED_SIG);
+          while (true) {
+            pros::vision_signature_s_t rtn = sensor.get_by_sig(VISION_PORT, 0, EXAMPLE_SIG);
+            // Gets the largest object of the EXAMPLE_SIG signature
+            std::cout << "sig: " << rtn.signature << std::endl;
+            // Prints "sig: 1"
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ id           The signature ID
+ u_min        Minimum value on U axis
+ u_max        Maximum value on U axis
+ u_mean       Mean value on U axis
+ v_min        Minimum value on V axis
+ v_max        Maximum value on V axis
+ v_mean       Mean value on V axis
+ range        Signature range scale factor
+ type         The signature type
+============ ==============================
+
+**Returns:** A ``pros::vision_signature_s_t`` initialized with the given values.
+
+----
+
 create_color_code
 ~~~~~~~~~~~~~~~~~
 
