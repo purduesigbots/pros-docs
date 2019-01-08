@@ -49,6 +49,69 @@ reached:
 
 ----
 
+vision_signature_from_utility
+-----------------------------
+
+Creates a signature from the Vision Sensor utility
+
+This function is parameter-equivalent to the functions used in VCS and RMS for constructing
+vision signatures.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        vision_signature_s_t vision_signature_from_utility ( const int32_t id,
+                                                             const int32_t u_min,
+                                                             const int32_t u_max,
+                                                             const int32_t u_mean,
+                                                             const int32_t v_min,
+                                                             const int32_t v_max,
+                                                             const int32_t v_mean,
+                                                             const float range,
+                                                             const int32_t type )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+
+        void opcontrol() {
+          // values acquired from the vision utility
+          vision_signature_s_t RED_SIG =
+            vision_signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+          
+          vision_set_signature(VISION_PORT, EXAMPLE_SIG, &RED_SIG);
+          while (true) {
+            vision_signature_s_t rtn = vision_get_by_sig(VISION_PORT, 0, EXAMPLE_SIG);
+            // Gets the largest object of the EXAMPLE_SIG signature
+            printf("sig: %d", rtn.signature);
+            // Prints "sig: 1"
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ id           The signature ID
+ u_min        Minimum value on U axis
+ u_max        Maximum value on U axis
+ u_mean       Mean value on U axis
+ v_min        Minimum value on V axis
+ v_max        Maximum value on V axis
+ v_mean       Mean value on V axis
+ range        Signature range scale factor
+ type         The signature type
+============ ==============================
+
+**Returns:** A ``vision_signature_s_t`` initialized with the given values
+
+----
+
 vision_create_color_code
 ------------------------
 
@@ -67,12 +130,12 @@ reached:
       .. highlight:: c
       ::
 
-				vision_color_code_t vision_create_color_code ( uint8_t port,
-				                                               const uint32_t sig_id1,
-																											 const uint32_t sig_id2,
-																									     const uint32_t sig_id3,
-																											 const uint32_t sig_id4,
-																											 const uint32_t sig_id5 )
+        vision_color_code_t vision_create_color_code ( uint8_t port,
+                                                       const uint32_t sig_id1,
+                                                       const uint32_t sig_id2,
+                                                       const uint32_t sig_id3,
+                                                       const uint32_t sig_id4,
+                                                       const uint32_t sig_id5 )
 
    .. tab :: Example
       .. highlight:: c
@@ -591,7 +654,7 @@ reached:
       .. highlight:: c
       ::
 
-				int32_t vision_read_by_code ( uint8_t port,
+        int32_t vision_read_by_code ( uint8_t port,
                                       const uint32_t size_id,
                                       const vision_color_code_t color_code,
                                       const uint32_t object_count,
@@ -847,9 +910,95 @@ reached:
  rgb          The white balance parameter
 ============ ===============================
 
-**Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
+**Returns:** Returns 1 if no errors occurred, PROS_ERR otherwise
 
 ----
+
+vision_set_zero_point
+---------------------
+
+Sets the (0,0) coordinate for the Field of View
+
+This will affect the coordinates returned for each request for a
+``vision_object_s_t`` from the sensor, so it is recommended that this
+function only be used to configure the sensor at the beginning of its use.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t vision_set_zero_point ( uint8_t port,
+                                           vision_zero_e_t zero_point )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          vision_set_zero_point(VISION_PORT, E_VISION_ZERO_CENTER);
+        }
+
+============ ===============================
+ Parameters
+============ ===============================
+ port         The V5 port number from 1-21
+ zero_point   One of ``vision_zero_e_t`` to
+              set the (0,0) coordinate for
+              the FOV
+============ ===============================
+
+**Returns:** Returns 1 if no errors occurred, PROS_ERR otherwise
+
+----
+
+vision_set_wifi_mode
+--------------------
+
+Sets the Wi-Fi mode of the Vision Sensor
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t vision_set_wifi_mode ( uint8_t port,
+                                           const uint8_t enable )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          vision_set_wifi_mode(VISION_PORT, 0);
+        }
+
+============ ===============================
+ Parameters
+============ ===============================
+ port         The V5 port number from 1-21
+ enable       Disable Wi-Fi on the Vision
+              Sensor if 0, enable otherwise
+              (e.g. 1)
+============ ===============================
+
+**Returns:** Returns 1 if no errors occurred, PROS_ERR otherwise
 
 Macros
 ======
@@ -958,6 +1107,25 @@ that can be detected by the Vision Sensor.
     E_VISION_OBJECT_COLOR_CODE = 1,
     E_VISION_OBJECT_LINE = 2
   } vision_object_type_e_t;
+  
+vision_zero_e_t
+---------------
+
+This enumeration defines different zero points for returned vision objects.
+
+::
+
+  typedef enum vision_zero {
+    E_VISION_ZERO_TOPLEFT = 0,
+    E_VISION_ZERO_CENTER = 1
+  } vision_zero_e_t;
+
+======================= =============================================
+ Value
+======================= =============================================
+ E_VISION_ZERO_TOPLEFT   (0,0) coordinate is the top left of the FOV
+ E_VISION_ZERO_CENTER    (0,0) coordinate is the center of the FOV
+======================= =============================================
 
 Typedefs
 ========
