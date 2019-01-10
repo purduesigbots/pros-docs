@@ -412,7 +412,7 @@ Analogous to `controller_is_connected <../c/misc.html#controller-is-connected>`_
           }
         }
 
-**Returns:** True if the V5 Brain is connected to competition control, false otherwise.
+**Returns:** True if the Controller is connected to the Brain, false otherwise.
 
 ----
 
