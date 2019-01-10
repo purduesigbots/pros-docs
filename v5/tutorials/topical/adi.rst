@@ -335,7 +335,7 @@ always return a true or false (boolean) value.
            pros::ADIDigitalIn button (DIGITAL_SENSOR_PORT);
            pros::Motor drive (MOTOR_PORT);
 
-           while (!button.get_value) {
+           while (!button.get_value()) {
              // Drive forward until the button digital sensor button is pressed
              drive = 127;
              pros::delay(50);
