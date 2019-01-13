@@ -10,11 +10,12 @@ Recommended Method (Homebrew)
 The recommended method of installing PROS 3 for macOS involves using `Homebrew <https://brew.sh/>`_.
 
 1. If you do not already have Homebrew installed, install it by following the instructions on `their site <https://brew.sh>`_. This will take a while, and may prompt you to follow some additional instructions.
-2. Once you have Homebrew installed, run :code:`brew tap purduesigbots/pros` to register the PROS Homebrew repository with Homebrew.
-3. Run :code:`brew cask install gcc-arm-embedded pros-editor` to install the toolchain and the PROS Editor. This may also take a while.
+2. Once you have Homebrew installed, run :code:`brew tap osx-cross/arm && brew install arm-gcc-bin` to register a repository with Homebrew that contains the toolchain used to build PROS projects, and then install the toolchain.
+2. Run :code:`brew tap purduesigbots/pros` to register the PROS Homebrew repository with Homebrew.
+3. Run :code:`brew cask install pros-editor` to install the PROS Editor (the CLI will also be installed). This may also take a while.
 4. That's it! You can now start using PROS 3.
 
-.. note:: If you do not want to use the PROS Editor, and instead intend to use only the PROS CLI, substitute the command in step 3 with the following: :code:`brew cask install gcc-arm-embedded && brew install pros-cli`.
+.. note:: If you do not want to use the PROS Editor, and instead intend to use only the PROS CLI, substitute the command in step 3 with the following: :code:`brew install pros-cli`.
 
 Other Methods
 -------------
