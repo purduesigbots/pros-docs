@@ -59,3 +59,17 @@ Returns the current sensor values in the format ``{left, right, middle}``.
         std::valarray<std::int32_t> getSensorVals() const override
 
 **Returns:** The current sensor values.
+
+----
+
+resetSensors
+~~~~~~~~~~~~
+
+Resets the sensors to their zero point.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void resetSensors() const override
