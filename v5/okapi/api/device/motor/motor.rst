@@ -32,7 +32,7 @@ Constructor(s)
       ::
 
         explicit Motor(std::int8_t port,
-                       bool reverse = false,
+                       bool reverse,
                        AbstractMotor::gearset igearset,
                        AbstractMotor::encoderUnits encoderUnits = AbstractMotor::encoderUnits::degrees)
 
