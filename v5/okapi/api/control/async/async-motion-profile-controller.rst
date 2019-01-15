@@ -274,8 +274,7 @@ reset
 ~~~~~
 
 Resets the controller's internal state so it is similar to when it was first initialized, while
-keeping any user-configured information. This implementation also stops movement. This
-implementation also stops movement.
+keeping any user-configured information. This implementation also stops movement.
 
 .. tabs ::
    .. tab :: Prototype
