@@ -133,7 +133,7 @@ Analogous to `lcd_is_initialized <../c/llemu.html#lcd-is-initialized>`_.
 
         void initialize() {
           pros::lcd::initialize();
-          std::cout << "Is the LCD initialized?" << lcd_is_initialized();
+          std::cout << "Is the LCD initialized?" << pros::is_initialized();
           // Will Display True
         }
 
