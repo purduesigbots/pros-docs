@@ -32,7 +32,7 @@ Constructor(s)
  iinput              The controller input.
  ioutput             The controller output.
  itimeUtil           See ``TimeUtil`` docs.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
