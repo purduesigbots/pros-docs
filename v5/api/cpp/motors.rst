@@ -1371,7 +1371,7 @@ Analogous to `motor_get_brake_mode <../c/motors.html#motor-get-brake-mode>`_.
 
         void initialize() {
           pros::Motor motor (1);
-          motor.set_brake_mode(E_MOTOR_BRAKE_HOLD);
+          motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
           std::cout << "Brake Mode: " << motor.get_brake_mode();
         }
 
@@ -1670,7 +1670,7 @@ Analogous to `motor_set_brake_mode <../c/motors.html#motor-set-brake-mode>`_.
 
         void initialize() {
           pros::Motor motor (1);
-          motor.set_brake_mode(E_MOTOR_BRAKE_HOLD);
+          motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
           std::cout << "Brake Mode: " << motor.get_brake_mode();
         }
 
