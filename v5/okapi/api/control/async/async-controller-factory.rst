@@ -105,7 +105,7 @@ A position controller that uses the PID algorithm. Uses the motor's integrated e
 Parameters
 =================== ===================================================================
  imotor              The controller input (from the integrated encoder) and output.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikI                 The I term gain.
  ikD                 The D term gain.
  ikBias              The controller bias.
@@ -149,7 +149,7 @@ Parameters
 =================== ===================================================================
  imotor              The controller output.
  isensor             The controller input.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikI                 The I term gain.
  ikD                 The D term gain.
  ikBias              The controller bias.
@@ -180,7 +180,7 @@ Parameters
 =================== ===================================================================
  iinput              The controller input.
  ioutput             The controller output.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikI                 The I term gain.
  ikD                 The D term gain.
  ikBias              The controller bias.
@@ -219,7 +219,7 @@ A velocity controller that uses the PD algorithm. Uses the motor's integrated en
 Parameters
 =================== ===================================================================
  imotor              The controller input (from the integrated encoder) and output.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
@@ -264,7 +264,7 @@ Parameters
 =================== ===================================================================
  imotor              The controller output.
  isensor             The controller input.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
@@ -296,7 +296,7 @@ Parameters
 =================== ===================================================================
  iinput              The controller input.
  ioutput             The controller output.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
