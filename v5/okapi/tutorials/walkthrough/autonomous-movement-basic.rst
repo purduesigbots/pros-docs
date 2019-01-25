@@ -11,8 +11,7 @@ is an unsolved problem even among professional engineers, so it is obviously a d
 task. OkapiLib makes it easy to get reasonably accurate autonomous movements.
 
 The basis for this autonomous movement is the ``ChassisController`` class. Take a look at its
-`API <../../api/chassis/controller/chassis-controller-integrated.html>`_ and
-`concept page <../concepts/chassiscontroller.html>`_ for more detailed info on it.
+`API <../../api/chassis/controller/chassis-controller-integrated.html>`_ for more detailed info on it.
 
 We'll use a ``ChassisControllerIntegrated`` for this tutorial, using the V5 motors' onboard
 PID makes setup a much quicker and easier process (No PID tuning needed!).
@@ -73,7 +72,7 @@ for the units that you would like the movement to occur in.
      AbstractMotor::gearset::red,
      {WHEEL_DIAMETER, CHASSIS_WIDTH}
    );
-   
+
    void autonomous() {
      // Move 1 meter to the first goal
      chassis.moveDistance(1_m);
