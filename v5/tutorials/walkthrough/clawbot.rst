@@ -307,7 +307,7 @@ As with the tank drive code, this can be uploaded with the ``prosv5 mu`` command
 Arm Control 
 ===========
 
-Next, let's control the clawbot's arm. This will not require the use of a joystick, but instead 
+Next let's control the clawbot's arm. This will not require the use of a joystick, but instead 
 we will use the controller's buttons. 
 
 We will use the following function to read the button press from the controller:
@@ -822,4 +822,44 @@ we will prevent the lift from being driven down further.
 
              delay(2);
            }
+         }
+
+Simple Autonomous
+=================
+
+The autonomous program runs without the use of a controller. We will make a simple autonomous program that drives straight.
+
+.. tabs ::
+
+   .. group-tab :: C++
+      .. highlight:: cpp
+      .. code-block:: cpp
+         :caption: autonomous.cpp 
+         :linenos:
+
+         #define LEFT_WHEELS_PORT 1
+         #define RIGHT_WHEELS_PORT 10
+         #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
+
+         void autonomous() {
+           pros::Motor left_wheels (LEFT_WHEELS_PORT);
+           pros::Motor right_wheels (RIGHT_WHEELS_PORT, true); // This reverses the motor
+           
+           right_wheels.move_relative(1000, MOTOR_MAX_SPEED);
+           left_wheels.move_relative(1000, MOTOR_MAX_SPEED);
+         }
+
+   .. group-tab :: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: autonomous.c
+         :linenos:
+
+         #define LEFT_WHEELS_PORT 1
+         #define RIGHT_WHEELS_PORT 10
+         #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
+
+         void autonomous() {
+           motor_move_relative(LEFT_WHEELS_PORT, 1000, MOTOR_MAX_SPEED);
+           motor_move_relative(RIGHT_WHEELS_PORT, -1000, MOTOR_MAX_SPEED);
          }
