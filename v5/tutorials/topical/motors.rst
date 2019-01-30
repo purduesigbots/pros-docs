@@ -122,12 +122,14 @@ These functions are very well suited to movement in autonomous.
          #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
 
          void autonomous() {
-           motor_move_relative(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
            // This will move 1000 ticks forward
            motor_move_relative(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
+
            // This moves an additional 1000 ticks forward
-           motor_move_absolute(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
+           motor_move_relative(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
+
            // This moves 1000 ticks backwards to the 1000 tick position
+           motor_move_absolute(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
          }
 
    .. group-tab:: C++
@@ -141,13 +143,21 @@ These functions are very well suited to movement in autonomous.
 
          void autonomous() {
            pros::Motor drive_left (MOTOR_PORT);
-           drive_left.move_relative(1000, MOTOR_MAX_SPEED);
            // This will move 1000 ticks forward
            drive_left.move_relative(1000, MOTOR_MAX_SPEED);
+
            // This moves an additional 1000 ticks forward
-           drive_left.move_absolute(1000, MOTOR_MAX_SPEED);
+           drive_left.move_relative(1000, MOTOR_MAX_SPEED);
+
            // This moves 1000 ticks backwards to the 1000 tick position
+           drive_left.move_absolute(1000, MOTOR_MAX_SPEED);
          }
+
+.. note:: Profile movement functions are non-blocking. The code example above runs immediately. If this were used
+          in actual autonomous, this code would effectively only set the absolute target to 1000 units because the ``move_relative``
+          commands do not have any time to execute. If you want to wait until the movement is complete, add delays or poll the current 
+          motor speed or position until you're on target. OkapiLib provides simple utilities for waiting until motors have completed their
+          movement.
 
 For further reading material on the algorithms that create these profiled movement,
 see `Mathematics of Motion Control Profiles <https://pdfs.semanticscholar.org/a229/fdba63d8d68abd09f70604d56cc07ee50f7d.pdf>`_
