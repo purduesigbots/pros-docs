@@ -13,6 +13,7 @@ steps:
 - script: ./scripts/build.sh
   displayName: 'Build Documentation'
 
+- bash: ls
 - task: PublishPipelineArtifact@0
   inputs:
     targetPath: pros-docs.tar.gz
