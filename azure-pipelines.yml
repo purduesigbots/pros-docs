@@ -13,10 +13,9 @@ steps:
 - script: ./scripts/build.sh
   displayName: 'Build Documentation'
 
-- bash: ls
 - task: PublishPipelineArtifact@0
   inputs:
-    targetPath: pros-docs.tar.gz
+    targetPath: artifacts
     artifactName: pros-docs.tar.gz
   displayName: Upload pros-docs.tar.gz
   condition: succeeded()

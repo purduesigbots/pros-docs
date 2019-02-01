@@ -14,6 +14,7 @@ $python -m pip install -r requirements.txt
 echo Building project
 make clean all
 
+mkdir artifacts
 pushd build
-tar -zcf ../pros-docs.tar.gz *
+tar -zcf ../artifacts/pros-docs.tar.gz *
 popd
