@@ -1,5 +1,7 @@
 # PROS Documentation
 
+[![Build Status](https://dev.azure.com/purdue-acm-sigbots/Docs/_apis/build/status/purduesigbots.pros-docs?branchName=master)](https://dev.azure.com/purdue-acm-sigbots/Docs/_build/latest?definitionId=2&branchName=master)
+
 This repository hosts the documentation for [PROS for V5](https://github.com/purduesigbots/pros3)
 and [PROS for Cortex](https://github.com/purduesigbots/pros). These docs are hosted
 at https://pros.cs.purdue.edu/.
