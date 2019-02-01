@@ -15,7 +15,7 @@ steps:
 
 - task: PublishPipelineArtifact@0
   inputs:
-    targetPath: $(Build.SourcesDirectory)/pros-docs.tar.gz
-    ArtifactName: pros-docs.tar.gz
+    targetPath: pros-docs.tar.gz
+    artifactName: pros-docs.tar.gz
   displayName: Upload pros-docs.tar.gz
   condition: succeeded()
