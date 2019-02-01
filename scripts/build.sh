@@ -11,9 +11,6 @@ fi
 echo Installing requirements.txt
 $python -m pip install -r requirements.txt
 
-echo Installing PROS CLI
-$python -m pip install pros_cli*.whl
-
 echo Building project
 make clean all
 

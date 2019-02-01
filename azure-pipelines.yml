@@ -6,6 +6,10 @@ steps:
   inputs:
     versionSpec: '3.6'
 
+- task: PipAuthenticate@0
+  inputs:
+    artifactFeeds: 'pros'
+
 - script: ./scripts/build.sh
   displayName: 'Build Documentation'
 
