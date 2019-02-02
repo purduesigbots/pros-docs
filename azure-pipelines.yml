@@ -1,17 +1,18 @@
-pool:
-  vmImage: 'Ubuntu 16.04'
-
 steps:
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '3.6'
+
+- task: PipAuthenticate@0
+  inputs:
+    artifactFeeds: 'pros'
 
 - script: ./scripts/build.sh
   displayName: 'Build Documentation'
 
 - task: PublishPipelineArtifact@0
   inputs:
-    PathtoPublish: $(Build.SourcesDirectory)/pros-docs.tar.gz
-    ArtifactName: pros-docs.tar.gz
+    targetPath: artifacts
+    artifactName: pros-docs.tar.gz
   displayName: Upload pros-docs.tar.gz
   condition: succeeded()
