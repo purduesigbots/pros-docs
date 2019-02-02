@@ -117,7 +117,7 @@ html_favicon = "../common/_static/favicon.ico"
 html_additional_pages = {
     'index': 'index.html',
     '404':   '404.html',
-    'report', 'report.html'
+    'report': 'report.html'
 }
 
 html_show_sphinx = False
