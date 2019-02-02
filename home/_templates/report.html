@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>PROS Sentry Report User Feedback</title>
+
+    <script src="https://browser.sentry-cdn.com/4.2.4/bundle.min.js" crossorigin="anonymous"></script>
+
+    <script>
+      Sentry.init({dsn: 'https://00bd27dcded6436cad5c8b2941d6a9d6@sentry.io/1226033'});
+      const urlParams = new URLSearchParams(window.location.search);
+      if (urlParams.has('event')) {
+        Sentry.showReportDialog({eventId: urlParams.get('event')});
+      }
+    </script>
+  </head>
+  <body>
+    <div style="text-align: center; position: fixed; top: 25%; left: 50%; transform: translate(-50%, -50%); font-family: sans-serif;">
+      <h2>Thanks for your feedback!</h2>
+      <p>We do our best to let you know when there's an update to your report or when we'd like more information.</p>
+      <p style="margin-top: 3em">You may close this window now.</p>
+    </div>
+  </body>
+</html>
