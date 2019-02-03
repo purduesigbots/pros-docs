@@ -4,8 +4,8 @@ ADI (3 Wire Ports)
 
 .. note:: For a full list of functions for interacting with the ADI, see its
           `C API <../../api/c/adi.html>`_ and `C++ API <../../api/cpp/adi.html>`_.
-          
-.. contents:: :local: 
+
+.. contents:: :local:
 
 Analog Sensors
 ==============
@@ -335,7 +335,7 @@ always return a true or false (boolean) value.
            pros::ADIDigitalIn button (DIGITAL_SENSOR_PORT);
            pros::Motor drive (MOTOR_PORT);
 
-           while (!button.get_value) {
+           while (!button.get_value()) {
              // Drive forward until the button digital sensor button is pressed
              drive = 127;
              pros::delay(50);
@@ -444,9 +444,9 @@ Ultrasonic
 Ultrasonic sensors are used in a manner that is very similar to encoders, given
 that they are both two-wire sensors.
 
-.. note:: Ultrasonic sensors must be plugged into the ADI such that the ECHO wire
-          (the yellow INPUT cable) is in an odd numbered port (1, 3, 5, 7 or 'A', 'C', 'E', or 'G'),
-          and then the PING wire (the orange OUTPUT cable) must be in the next highest port number.
+.. note:: Ultrasonic sensors must be plugged into the ADI such that the PING wire
+          (the orange OUTPUT cable) is in an odd numbered port (1, 3, 5, 7 or 'A', 'C', 'E', or 'G'),
+          and then the ECHO wire (the yellow INPUT cable) must be in the next highest port number.
 
 Ultrasonic sensors are initialized as such:
 
@@ -458,8 +458,8 @@ Ultrasonic sensors are initialized as such:
          :linenos:
 
          // Digital port number for top and bottom port of quad encoder
-         #define ULTRA_ECHO_PORT 1
-         #define ULTRA_PING_PORT 2
+         #define ULTRA_PING_PORT 1
+         #define ULTRA_ECHO_PORT 2
 
          // Multiple encoders can be declared
          extern adi_ultrasonic_t ultrasonic;
@@ -469,7 +469,7 @@ Ultrasonic sensors are initialized as such:
          :linenos:
 
          void initialize() {
-           ultrasonic = adi_ultrasonic_init(ULTRA_ECHO_PORT, ULTRA_PING_PORT);
+           ultrasonic = adi_ultrasonic_init(ULTRA_PING_PORT, ULTRA_ECHO_PORT);
          }
 
    .. group-tab :: C++
@@ -479,11 +479,11 @@ Ultrasonic sensors are initialized as such:
          :linenos:
 
          // Digital port number for top and bottom port of quad encoder
-         #define ULTRA_ECHO_PORT 1
-         #define ULTRA_PING_PORT 2
+         #define ULTRA_PING_PORT 1
+         #define ULTRA_ECHO_PORT 2
 
          void initialize() {
-           pros::ADIUltrasonic ultrasonic (ULTRA_ECHO_PORT, ULTRA_PING_PORT);
+           pros::ADIUltrasonic ultrasonic (ULTRA_PING_PORT, ULTRA_ECHO_PORT);
          }
 
 And then used in the following manner:
@@ -513,11 +513,11 @@ And then used in the following manner:
          :linenos:
 
          #define MOTOR_PORT 1
-         #define ULTRA_ECHO_PORT 1
-         #define ULTRA_PING_PORT 2
+         #define ULTRA_PING_PORT 1
+         #define ULTRA_ECHO_PORT 2
 
          void autonomous() {
-           pros::ADIUltrasonic ultrasonic (ULTRA_ECHO_PORT, ULTRA_PING_PORT);
+           pros::ADIUltrasonic ultrasonic (ULTRA_PING_PORT, ULTRA_ECHO_PORT);
            pros::Motor drive (MOTOR_PORT);
 
            while (ultrasonic.get_value() > 100) {

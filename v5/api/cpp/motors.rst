@@ -963,7 +963,7 @@ get_temperature
 ~~~~~~~~~~~~~~~
 
 Gets the temperature of the motor in degrees Celsius. The resolution of this
-eading is 5 degrees Celsius. The motor will start to reduce its power when the
+reading is 5 degrees Celsius. The motor will start to reduce its power when the
 temperature reading is greater than or equal to 55 C.
 
 This function uses the following values of ``errno`` when an error state is reached:
@@ -1371,7 +1371,7 @@ Analogous to `motor_get_brake_mode <../c/motors.html#motor-get-brake-mode>`_.
 
         void initialize() {
           pros::Motor motor (1);
-          motor.set_brake_mode(E_MOTOR_BRAKE_HOLD);
+          motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
           std::cout << "Brake Mode: " << motor.get_brake_mode();
         }
 
@@ -1670,7 +1670,7 @@ Analogous to `motor_set_brake_mode <../c/motors.html#motor-set-brake-mode>`_.
 
         void initialize() {
           pros::Motor motor (1);
-          motor.set_brake_mode(E_MOTOR_BRAKE_HOLD);
+          motor.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
           std::cout << "Brake Mode: " << motor.get_brake_mode();
         }
 

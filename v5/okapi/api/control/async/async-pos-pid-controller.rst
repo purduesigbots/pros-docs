@@ -63,7 +63,7 @@ Constructor(s)
  iinput               The controller input.
  ioutput              The controller output.
  itimeUtil            See ``TimeUtil`` docs.
- ikp                  The P term gain.
+ ikP                  The P term gain.
  ikI                  The I term gain.
  ikD                  The D term gain.
  ikBias               The controller bias.

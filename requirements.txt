@@ -2,3 +2,4 @@ Sphinx
 sphinx_tabs
 ablog
 sphinx-click
+pros-cli-v5

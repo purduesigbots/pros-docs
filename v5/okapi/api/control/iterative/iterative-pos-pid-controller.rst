@@ -28,7 +28,7 @@ Constructor(s)
 =================== ===================================================================
  Parameters
 =================== ===================================================================
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikI                 The I term gain.
  ikD                 The D term gain.
  ikBias              The controller bias.
@@ -204,7 +204,7 @@ Sets controller gains.
 =============== ===================================================================
 Parameters
 =============== ===================================================================
- ikp             The P term gain.
+ ikP             The P term gain.
  ikI             The I term gain.
  ikD             The D term gain.
  ikBias          The controller bias.
