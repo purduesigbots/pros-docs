@@ -78,6 +78,22 @@ This constructor configures the logger to do nothing.
 Methods
 -------
 
+isDebugLevelEnabled
+~~~~~~~~~~~~~~~~~~~
+
+Returns whether the debug ``LogLevel`` is enabled.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        constexpr bool isDebugLevelEnabled() const noexcept
+
+**Returns:** Whether the debug ``LogLevel`` in enabled.
+
+----
+
 debug
 ~~~~~
 
@@ -88,13 +104,29 @@ Log at the ``LogLevel::debug`` level.
       .. highlight:: cpp
       ::
 
-        constexpr void debug(std::string_view message) const noexcept
+        template <typename T> constexpr void debug(T ilazyMessage) const noexcept
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
  message      The message to log.
 ============ ===============================================================
+
+----
+
+isInfoLevelEnabled
+~~~~~~~~~~~~~~~~~~
+
+Returns whether the info ``LogLevel`` is enabled.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        constexpr bool isInfoLevelEnabled() const noexcept
+
+**Returns:** Whether the info ``LogLevel`` in enabled.
 
 ----
 
@@ -108,13 +140,29 @@ Log at the ``LogLevel::info`` level.
       .. highlight:: cpp
       ::
 
-        constexpr void info(std::string_view message) const noexcept
+        template <typename T> constexpr void info(T ilazyMessage) const noexcept
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
  message      The message to log.
 ============ ===============================================================
+
+----
+
+isWarnLevelEnabled
+~~~~~~~~~~~~~~~~~~~
+
+Returns whether the warn ``LogLevel`` is enabled.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        constexpr bool isWarnLevelEnabled() const noexcept
+
+**Returns:** Whether the warn ``LogLevel`` in enabled.
 
 ----
 
@@ -128,13 +176,29 @@ Log at the ``LogLevel::warn`` level.
       .. highlight:: cpp
       ::
 
-        constexpr void warn(std::string_view message) const noexcept
+        template <typename T> constexpr void warn(T ilazyMessage) const noexcept
 
 ============ ===============================================================
  Parameters
 ============ ===============================================================
  message      The message to log.
 ============ ===============================================================
+
+----
+
+isErrorLevelEnabled
+~~~~~~~~~~~~~~~~~~~
+
+Returns whether the error ``LogLevel`` is enabled.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        constexpr bool isErrorLevelEnabled() const noexcept
+
+**Returns:** Whether the error ``LogLevel`` in enabled.
 
 ----
 
@@ -148,7 +212,7 @@ Log at the ``LogLevel::error`` level.
       .. highlight:: cpp
       ::
 
-        constexpr void error(std::string_view message) const noexcept
+        template <typename T> constexpr void error(T ilazyMessage) const noexcept
 
 ============ ===============================================================
  Parameters
@@ -168,7 +232,7 @@ Closes the connection to the log file.
       .. highlight:: cpp
       ::
 
-        void close() noexcept
+        constexpr void close() noexcept
 
 ----
 
