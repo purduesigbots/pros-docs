@@ -14,6 +14,7 @@ Installing the CLI
 
 1. If you do not already have one installed, install a version of Python greater than or equal to 3.6
 2. Check the latest version of the PROS CLI on `our releases page <https://github.com/purduesigbots/pros-cli3/releases/latest>`_, and run :code:`python3.6 -m pip install --user https://github.com/purduesigbots/pros-cli3/releases/download/3.X.X/pros_cli_v5-3.X.X-py3-none-any.whl`, replacing the number after 'python' with the version you installed and the Xs with the numbers you found before. If you wish to install for all users, run the command with :code:`sudo` and remove the :code:`--user` flag.
+3. Run :code:`prosv5 --version` to verify the CLI was installed correctly. If the command doesn't work, try restarting your machine.
 
 Installing the Editor
 ---------------------

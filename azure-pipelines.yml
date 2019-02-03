@@ -1,0 +1,18 @@
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.6'
+
+- task: PipAuthenticate@0
+  inputs:
+    artifactFeeds: 'pros-cli'
+
+- script: ./scripts/build.sh
+  displayName: 'Build Documentation'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    targetPath: artifacts
+    artifactName: pros-docs.tar.gz
+  displayName: Upload pros-docs.tar.gz
+  condition: succeeded()

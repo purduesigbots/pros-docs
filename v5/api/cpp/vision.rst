@@ -78,6 +78,70 @@ reached:
 
 ----
 
+signature_from_utility
+~~~~~~~~~~~~~~~~~~~~~~
+
+Creates a signature from the Vision Sensor utility
+
+This function is parameter-equivalent to the functions used in VCS and RMS for constructing
+vision signatures.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        vision_signature_s_t pros::Vision::signature_from_utility ( const int32_t id,
+                                                                    const int32_t u_min,
+                                                                    const int32_t u_max,
+                                                                    const int32_t u_mean,
+                                                                    const int32_t v_min,
+                                                                    const int32_t v_max,
+                                                                    const int32_t v_mean,
+                                                                    const float range,
+                                                                    const int32_t type )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+        #define EXAMPLE_SIG 1
+
+        void opcontrol() {
+          pros::Vision sensor(VISION_PORT);
+          // values acquired from the vision utility
+          pros::vision_signature_s_t RED_SIG =
+            pros::Vision::signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+          
+          sensor.set_signature(EXAMPLE_SIG, &RED_SIG);
+          while (true) {
+            pros::vision_signature_s_t rtn = sensor.get_by_sig(VISION_PORT, 0, EXAMPLE_SIG);
+            // Gets the largest object of the EXAMPLE_SIG signature
+            std::cout << "sig: " << rtn.signature << std::endl;
+            // Prints "sig: 1"
+            delay(2);
+          }
+        }
+
+============ ==============================
+ Parameters
+============ ==============================
+ id           The signature ID
+ u_min        Minimum value on U axis
+ u_max        Maximum value on U axis
+ u_mean       Mean value on U axis
+ v_min        Minimum value on V axis
+ v_max        Maximum value on V axis
+ v_mean       Mean value on V axis
+ range        Signature range scale factor
+ type         The signature type
+============ ==============================
+
+**Returns:** A ``pros::vision_signature_s_t`` initialized with the given values.
+
+----
+
 create_color_code
 ~~~~~~~~~~~~~~~~~
 
@@ -94,13 +158,13 @@ reached:
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
-      ::
-
-				pros::vision_color_code_t pros::Vision::create_color_code ( const uint32_t sig_id1,
-							              																			  const uint32_t sig_id2,
-							              																	      const uint32_t sig_id3,
-							              																			  const uint32_t sig_id4,
-							              																			  const uint32_t sig_id5 )
+      :: 
+            
+        pros::vision_color_code_t pros::Vision::create_color_code ( const uint32_t sig_id1,
+                                                                    const uint32_t sig_id2,
+                                                                    const uint32_t sig_id3,
+                                                                    const uint32_t sig_id4,
+                                                                    const uint32_t sig_id5 )
 
    .. tab :: Example
       .. highlight:: c
@@ -111,7 +175,7 @@ reached:
 				#define OTHER_SIG 2
 
         void opcontrol() {
-					pros::Vision vis (VISION_PORT);
+          pros::Vision vis (VISION_PORT);
           pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
         }
 
@@ -590,7 +654,7 @@ reached:
       .. highlight:: c
       ::
 
-				std::int32_t pros::Vision::read_by_code ( const uint32_t size_id,
+        std::int32_t pros::Vision::read_by_code ( const uint32_t size_id,
                                                   const vision_color_code_t color_code,
                                                   const uint32_t object_count,
                                                   vision_object_s_t* const object_arr )
@@ -839,6 +903,93 @@ reached:
  rgb          The white balance parameter
 ============ ===============================
 
+**Returns:** Returns 1 if no errors occurred, PROS_ERR otherwise
+
+----
+
+set_zero_point
+~~~~~~~~~~~~~~
+
+Set the (0,0) coordinate for the Field of View.
+
+This will affect the coordinates returned for each request for a
+``vision_object_s_t`` from the sensor, so it is recommended that this
+function only be used to configure the sensor at the beginning of its use.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Vision::set_zero_point ( vision_zero_e_t zero_point )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_sensor.set_zero_point(pros::E_VISION_ZERO_CENTER);
+        }
+
+============ ===============================
+ Parameters
+============ ===============================
+ zero_point   One of ``vision_zero_e_t`` to
+              set the (0,0) coordinate for
+              the FOV
+============ ===============================
+
+**Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
+
+----
+
+
+set_wifi_mode
+~~~~~~~~~~~~~
+
+Set the Wi-Fi mode of the Vision Sensor.
+
+This function uses the following values of errno when an error state is
+reached:
+
+- ``EINVAL`` - The given value is not within the range of V5 ports (1-21).
+- ``EACCES`` - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Vision::set_wifi_mode ( const std::uint8_t enable )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          vision_sensor.set_wifi_mode(0);
+        }
+
+============ ===============================
+ Parameters
+============ ===============================
+ enable       Disable Wi-Fi mode on the
+              Vision Sensor if 0, enable
+              otherwise (e.g. 1).
+============ ===============================
+
 **Returns:** Returns 0 if no errors occurred, PROS_ERR otherwise
 
 ----
@@ -959,6 +1110,25 @@ that can be detected by the Vision Sensor
  pros::E_VISION_OBJECT_COLOR_CODE   Object returned is a `color code <http://www.cmucam.org/projects/cmucam5/wiki/Using_Color_Codes>`_
  pros::E_VISION_OBJECT_LINE         Object returned is a line type.
 ================================== ====================================================================================================
+
+pros::vision_zero_e_t
+---------------------
+
+This enumeration defines different zero points for returned vision objects.
+
+::
+
+  typedef enum vision_zero {
+    E_VISION_ZERO_TOPLEFT = 0,
+    E_VISION_ZERO_CENTER = 1
+  } vision_zero_e_t;
+
+======================= =============================================
+ Value
+======================= =============================================
+ E_VISION_ZERO_TOPLEFT   (0,0) coordinate is the top left of the FOV
+ E_VISION_ZERO_CENTER    (0,0) coordinate is the center of the FOV
+======================= =============================================
 
 Typedefs
 ========

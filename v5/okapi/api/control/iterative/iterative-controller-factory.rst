@@ -46,7 +46,7 @@ A position controller that uses the PID algorithm.
 =================== ===================================================================
 Parameters
 =================== ===================================================================
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikI                 The I term gain.
  ikD                 The D term gain.
  ikBias              The controller bias.
@@ -87,7 +87,7 @@ A velocity controller that uses the PD algorithm.
 =================== ===================================================================
 Parameters
 =================== ===================================================================
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
@@ -128,7 +128,7 @@ output.
 Parameters
 =============== ===================================================================
  imotor          The output motor.
- ikp             The P term gain.
+ ikP             The P term gain.
  ikD             The D term gain.
  ikF             The Feed-Forward gain.
  ikSF            A Feed-Forward gain to counteract static friction.
