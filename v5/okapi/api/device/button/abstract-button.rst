@@ -75,3 +75,23 @@ method was called.
 
 **Returns:** Whether the state of the button changed to not pressed since the last time
 this method was called.
+
+----
+
+controllerGet
+~~~~~~~~~~~~~
+
+Returns whether the button is currently pressed. This method might be automatically called in
+another thread by a controller.
+
+This is identical to ``isPressed()`` and only exists to implement the
+`ControllerInput <../../control/abstract-controller-input.html>` interface.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual bool controllerGet() override
+
+**Returns:** Whether the button is currently pressed.
