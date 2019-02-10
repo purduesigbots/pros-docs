@@ -160,15 +160,15 @@ This method assumes a skid steer layout. Puts the motors into degree units. Thro
         // You can use the default gearset and scales if you have a very simple robot
         auto myChassis = ChassisControllerFactory::create(
           -11, 1,
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0}
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = ChassisControllerFactory::create(
           -11, 1,
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
@@ -176,17 +176,17 @@ This method assumes a skid steer layout. Puts the motors into degree units. Thro
         // You can use the default gearset and scales if you have a very simple robot
         auto myChassis = ChassisControllerFactory::create(
           -11, 1,
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0}
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = ChassisControllerFactory::create(
           -11, 1,
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
@@ -237,16 +237,16 @@ This method assumes a skid steer layout. Puts the motors into degree units. Thro
         auto myChassis = ChassisControllerFactory::create(
           {1, 2}, {-3, -4},
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0}
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = ChassisControllerFactory::create(
           {1, 2}, {-3, -4},
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
@@ -255,18 +255,18 @@ This method assumes a skid steer layout. Puts the motors into degree units. Thro
         auto myChassis = ChassisControllerFactory::create(
           {1, 2}, {-3, -4},
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0}
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         auto myChassis = ChassisControllerFactory::create(
           {1, 2}, {-3, -4},
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
@@ -317,16 +317,16 @@ This method assumes an x-drive layout. Puts the motors into degree units. Throws
         // You can use the default gearset and scales if you have a very simple robot
         auto myChassis = ChassisControllerFactory::create(
           1, -2, -3, 4,
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0}
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         // The last x-drive MotorGroup must be specified explicitly
         auto myChassis = ChassisControllerFactory::create(
           {1, -2}, {-3, 4}, {-5, 6}, MotorGroup{7, -8},
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
@@ -334,18 +334,18 @@ This method assumes an x-drive layout. Puts the motors into degree units. Throws
         // You can use the default gearset and scales if you have a very simple robot
         auto myChassis = ChassisControllerFactory::create(
           1, -2, -3, 4,
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0}
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
         // The last x-drive MotorGroup must be specified explicitly
         auto myChassis = ChassisControllerFactory::create(
           {1, -2}, {-3, 4}, {-5, 6}, MotorGroup{7, -8},
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
@@ -396,8 +396,8 @@ This method assumes an x-drive layout. Puts the motors into degree units. Throws
         auto myChassis = ChassisControllerFactory::create(
           1, -2, -3, 4,
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0}
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
@@ -405,8 +405,8 @@ This method assumes an x-drive layout. Puts the motors into degree units. Throws
         auto myChassis = ChassisControllerFactory::create(
           {1, -2}, {-3, 4}, {-5, 6}, MotorGroup{7, -8},
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
@@ -415,9 +415,9 @@ This method assumes an x-drive layout. Puts the motors into degree units. Throws
         auto myChassis = ChassisControllerFactory::create(
           1, -2, -3, 4,
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0}
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001}
         );
 
         // Otherwise, you should specify the gearset and scales for your robot
@@ -425,9 +425,9 @@ This method assumes an x-drive layout. Puts the motors into degree units. Throws
         auto myChassis = ChassisControllerFactory::create(
           {1, -2}, {-3, 4}, {-5, 6}, MotorGroup{7, -8},
           ADIEncoder('A', 'B', true), ADIEncoder('C', 'D'),
-          IterativePosPIDController::Gains{0.5, 0, 0},
-          IterativePosPIDController::Gains{0.1, 0.05, 0},
-          IterativePosPIDController::Gains{0.2, 0, 0},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
+          IterativePosPIDController::Gains{0.001, 0, 0.0001},
           AbstractMotor::gearset::green,
           {2.75_in, 10.5_in}
         );
