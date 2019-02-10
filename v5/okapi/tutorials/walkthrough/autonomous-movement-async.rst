@@ -36,9 +36,9 @@ And then we'll add a lift subsystem as an Async Controller:
    const int DRIVE_LEFT_MOTOR_PORT = 1;
    const int DRIVE_RIGHT_MOTOR_PORT = 2;
 
-   const double liftkP = 1.0;
-   const double liftkI = 0.001;
-   const double liftkD = 0.1;
+   const double liftkP = 0.001;
+   const double liftkI = 0.0001;
+   const double liftkD = 0.0001;
    const int LIFT_MOTOR_PORT = 2;
 
    auto driveController = ChassisControllerFactory::create(DRIVE_LEFT_MOTOR_PORT, DRIVE_RIGHT_MOTOR_PORT);

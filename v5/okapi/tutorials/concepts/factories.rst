@@ -15,9 +15,9 @@ Creating an object with a factory is quite simple, as shown in the below example
 
    using namespace okapi;
 
-   const double kP = 1.0;
-   const double kI = 0.001;
-   const double kD = 0.1;
+   const double kP = 0.001;
+   const double kI = 0.0001;
+   const double kD = 0.0001;
    const int MOTOR_PORT = 1;
 
    auto exampleController = AsyncControllerFactory::posPID(MOTOR_PORT, kP, kI, kD);
@@ -30,9 +30,9 @@ As opposed to creating the same object without factories:
 
    using namespace okapi;
 
-   const double kP = 1.0;
-   const double kI = 0.001;
-   const double kD = 0.1;
+   const double kP = 0.001;
+   const double kI = 0.0001;
+   const double kD = 0.0001;
    const int MOTOR_PORT = 1;
 
    Motor exampleMotor(MOTOR_PORT);

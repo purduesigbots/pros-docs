@@ -49,8 +49,8 @@ Using a filter with a Velocity PID Controller can be done in the following manne
 
    using namespace okapi;
 
-   const double kP = 1.0;
-   const double kD = 0.1;
+   const double kP = 0.001;
+   const double kD = 0.0001;
    const double kF = 0.0;
    const double kSF = 0.0;
    const int NUM_AVE_POINTS = 5;

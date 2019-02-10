@@ -24,9 +24,9 @@ An example movement:
 
    using namespace okapi;
 
-   const double kP = 1.0;
-   const double kI = 0.001;
-   const double kD = 0.1;
+   const double kP = 0.001;
+   const double kI = 0.0001;
+   const double kD = 0.0001;
    const int MOTOR_PORT = 1;
    const double TARGET = 100.0;
 
