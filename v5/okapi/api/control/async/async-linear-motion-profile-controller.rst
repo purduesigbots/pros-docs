@@ -246,8 +246,8 @@ until the controller has settled. Does not save the path which was generated.
 getError
 ~~~~~~~~
 
-Returns the last error of the controller. Returns zero if there is no path currently
-being followed.
+Returns the last error of the controller. Does not update when disabled. Returns zero if there is
+no path currently being followed.
 
 .. tabs ::
    .. tab :: Prototype

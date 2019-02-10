@@ -80,7 +80,7 @@ Gets the last set target, or the default target if none was set.
 getError
 ~~~~~~~~
 
-Returns the last error of the controller.
+Returns the last error of the controller. Does not update when disabled.
 
 .. tabs ::
    .. tab :: Prototype

@@ -157,7 +157,7 @@ Returns the last calculated output of the controller. Default is ``0``. Output i
 getError
 ~~~~~~~~
 
-Returns the last error of the controller.
+Returns the last error of the controller. Does not update when disabled.
 
 .. tabs ::
    .. tab :: Prototype
