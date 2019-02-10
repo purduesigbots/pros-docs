@@ -35,11 +35,11 @@ A position controller that uses the PID algorithm.
      .. highlight:: cpp
      ::
 
-        auto controller = IterativeControllerFactory::posPID(0.01, 0.0, 0.005);
+        auto controller = IterativeControllerFactory::posPID(0.001, 0.0, 0.0001);
 
         // Controller using a custom derivative filter
         auto controller = IterativeControllerFactory::posPID(
-          0.01, 0.0, 0.005, 0,
+          0.001, 0.0, 0.0001, 0,
           std::make_unique<AverageFilter<3>>()
         );
 
@@ -75,11 +75,11 @@ A velocity controller that uses the PD algorithm.
      .. highlight:: cpp
      ::
 
-       auto controller = IterativeControllerFactory::velPID(0.01, 0.005);
+       auto controller = IterativeControllerFactory::velPID(0.001, 0.0001);
 
        // Controller using a custom derivative filter
        auto controller = IterativeControllerFactory::velPID(
-         0.01, 0.005, 0, 0,
+         0.001, 0.0001, 0, 0,
          VelMathFactory::createPtr(imev5RedTPR),
          std::make_unique<AverageFilter<3>>()
        );
@@ -119,10 +119,10 @@ output.
      ::
 
        // Controlling a motor on port 1
-       auto controller = IterativeControllerFactory::motorVelocity(1, 0.01, 0.005);
+       auto controller = IterativeControllerFactory::motorVelocity(1, 0.001, 0.0001);
 
        // Controlling a motor group on ports 1 and 2
-       auto controller = IterativeControllerFactory::motorVelocity({-1, 2}, 0.01, 0.005);
+       auto controller = IterativeControllerFactory::motorVelocity({-1, 2}, 0.001, 0.0001);
 
 =============== ===================================================================
 Parameters
