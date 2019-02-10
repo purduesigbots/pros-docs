@@ -94,7 +94,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveAbsolute(double iposition, std::int32_t ivelocity) const override
+        virtual std::int32_t moveAbsolute(double iposition, std::int32_t ivelocity) override
 
 =============== ===================================================================
  Parameters
@@ -128,7 +128,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveRelative(double iposition, std::int32_t ivelocity) const override
+        virtual std::int32_t moveRelative(double iposition, std::int32_t ivelocity) override
 
 =============== ===================================================================
  Parameters
@@ -160,7 +160,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveVelocity(std::int16_t ivelocity) const override
+        virtual std::int32_t moveVelocity(std::int16_t ivelocity) override
 
 =============== ===================================================================
  Parameters
@@ -186,7 +186,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t moveVoltage(std::int16_t ivoltage) const override
+        virtual std::int32_t moveVoltage(std::int16_t ivoltage) override
 
 =============== ===================================================================
  Parameters
@@ -213,7 +213,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t modifyProfiledVelocity(std::int32_t ivelocity) const override
+        virtual std::int32_t modifyProfiledVelocity(std::int32_t ivelocity) override
 
 =============== ===================================================================
  Parameters
@@ -240,7 +240,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual double getTargetPosition() const override
+        virtual double getTargetPosition() override
 
 **Returns:** The target position in its encoder units or ``PROS_ERR_F`` if the operation failed,
 setting errno.
@@ -260,7 +260,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual double getPosition() const override
+        virtual double getPosition() override
 
 **Returns:** The motor's absolute position in its encoder units or ``PROS_ERR_F`` if the operation
 failed, setting errno.
@@ -280,7 +280,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t tarePosition() const override
+        virtual std::int32_t tarePosition() override
 
 **Returns:** The motor's absolute position in its encoder units or ``PROS_ERR_F`` if the operation
 failed, setting errno.
@@ -300,7 +300,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t getTargetVelocity() const override
+        virtual std::int32_t getTargetVelocity() override
 
 **Returns:** The commanded motor velocity from ``+-100``, ``+-200``, or ``+-600``, or ``PROS_ERR``
 if the operation failed, setting errno.
@@ -320,7 +320,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual double getActualVelocity() const override
+        virtual double getActualVelocity() override
 
 **Returns:** The motor's actual velocity in RPM or ``PROS_ERR_F`` if the operation failed,
 setting errno.
@@ -340,7 +340,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t getCurrentDraw() const override
+        virtual std::int32_t getCurrentDraw() override
 
 **Returns:** The motor's current in mA or ``PROS_ERR`` if the operation failed, setting errno.
 
@@ -359,7 +359,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t getDirection() const override
+        virtual std::int32_t getDirection() override
 
 **Returns:** ``1`` for moving in the positive direction, ``-1`` for moving in the negative
 direction, or ``PROS_ERR`` if the operation failed, setting errno.
@@ -382,7 +382,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual double getEfficiency() const override
+        virtual double getEfficiency() override
 
 **Returns:** The motor's efficiency in percent or ``PROS_ERR`` if the operation failed,
 setting errno.
@@ -402,7 +402,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t isOverCurrent() const override
+        virtual std::int32_t isOverCurrent() override
 
 **Returns:** ``1`` if the motor's current limit is being exceeded and ``0`` if the current limit
 is not exceeded, or ``PROS_ERR`` if the operation failed, setting errno.
@@ -422,7 +422,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t isOverTemp() const override
+        virtual std::int32_t isOverTemp() override
 
 **Returns:** ``1`` if the temperature limit is exceeded and ``0`` if the the temperature is below
 the limit, or ``PROS_ERR`` if the operation failed, setting errno.
@@ -442,7 +442,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t isStopped() const override
+        virtual std::int32_t isStopped() override
 
 **Returns:** ``1`` if the motor is not moving, ``0`` if the motor is moving, or ``PROS_ERR`` if
 the operation failed, setting errno.
@@ -462,7 +462,7 @@ value. This function returns PROS_ERR with errno set to ENOSYS.
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t getZeroPositionFlag() const override
+        virtual std::int32_t getZeroPositionFlag() override
 
 **Returns:** ``1`` if the motor is at zero absolute position, ``0`` if the motor has moved from
 its absolute zero, or ``PROS_ERR`` if the operation failed, setting errno.
@@ -483,7 +483,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual uint32_t getFaults() const override
+        virtual uint32_t getFaults() override
 
 **Returns:** A currently unknown bitfield containing the motor's faults.
 ``0b00000100`` = Current Limit Hit
@@ -504,7 +504,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual uint32_t getFlags() const override
+        virtual uint32_t getFlags() override
 
 **Returns:** A currently unknown bitfield containing the motor's flags. These seem to be unrelated
 to the individual ``get_specific_flag`` functions
@@ -524,7 +524,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t getRawPosition(std::uint32_t *timestamp) const override;
+        virtual std::int32_t getRawPosition(std::uint32_t *timestamp) override;
 
 =============== ===================================================================
  Parameters
@@ -550,7 +550,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual double getPower() const override;
+        virtual double getPower() override;
 
 **Returns:** The motor's power draw in Watts or ``PROS_ERR`` if
 the operation failed, setting errno.
@@ -570,7 +570,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual double getTemperature() const override;
+        virtual double getTemperature() override;
 
 **Returns:** The motor's temperature in degrees Celsius or ``PROS_ERR`` if
 the operation failed, setting errno.
@@ -590,7 +590,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual double getTorque() const override;
+        virtual double getTorque() override;
 
 **Returns:** The motor's torque in Nm or ``PROS_ERR`` if
 the operation failed, setting errno.
@@ -610,7 +610,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t getVoltage() const override;
+        virtual std::int32_t getVoltage() override;
 
 **Returns:** The motor's voltage in mV or ``PROS_ERR`` if
 the operation failed, setting errno.
@@ -657,7 +657,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual brakeMode getBrakeMode() const override
+        virtual brakeMode getBrakeMode() override
 
 **Returns:** One of ``brakeMode``, according to what was set for the motor, or
 ``brakeMode::invalid`` if the operation failed, setting errno.
@@ -677,7 +677,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setCurrentLimit(std::int32_t ilimit) const override
+        virtual std::int32_t setCurrentLimit(std::int32_t ilimit) override
 
 =============== ===================================================================
  Parameters
@@ -705,7 +705,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t getCurrentLimit() const override
+        virtual std::int32_t getCurrentLimit() override
 
 **Returns:** The motor's current limit in mA or ``PROS_ERR`` if the operation failed,
 setting errno.
@@ -751,7 +751,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual encoderUnits getEncoderUnits() const override
+        virtual encoderUnits getEncoderUnits() override
 
 **Returns:** One of ``encoderUnits`` according to what is set for the motor or
 ``encoderUnits::invalid`` if the operation failed.
@@ -797,7 +797,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual gearset getGearing() const override
+        virtual gearset getGearing() override
 
 **Returns:** One of ``gearset`` according to what is set for the motor, or ``gearset::invalid`` if
 the operation failed.
@@ -819,7 +819,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setReversed(bool ireverse) const override
+        virtual std::int32_t setReversed(bool ireverse) override
 
 =============== ===================================================================
  Parameters
@@ -845,7 +845,7 @@ This function uses the following values of errno when an error state is reached:
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setVoltageLimit(std::int32_t ilimit) const override
+        virtual std::int32_t setVoltageLimit(std::int32_t ilimit) override
 
 =============== ===================================================================
  Parameters
@@ -868,7 +868,7 @@ Sets new PID constants.
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) const override
+        virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override
 
 =============== ===================================================================
 Parameters
@@ -895,7 +895,7 @@ Sets new PID constants.
       ::
 
         virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD,
-                                       double ifilter, double ilimit, double ithreshold, double iloopSpeed) const override
+                                       double ifilter, double ilimit, double ithreshold, double iloopSpeed) override
 
 =============== ===================================================================
 Parameters
@@ -925,7 +925,7 @@ Sets new PID constants.
       .. highlight:: cpp
       ::
 
-        virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) const override
+        virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD) override
 
 =============== ===================================================================
 Parameters
@@ -952,7 +952,7 @@ Sets new PID constants.
       ::
 
         virtual std::int32_t setPosPID(double ikF, double ikP, double ikI, double ikD,
-                                       double ifilter, double ilimit, double ithreshold, double iloopSpeed) const override
+                                       double ifilter, double ilimit, double ithreshold, double iloopSpeed) override
 
 =============== ===================================================================
 Parameters
@@ -982,7 +982,7 @@ Returns the encoder associated with this motor.
       .. highlight:: cpp
       ::
 
-        virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() const override
+        virtual std::shared_ptr<ContinuousRotarySensor> getEncoder() override
 
 **Returns:** The encoder associated with this motor.
 
