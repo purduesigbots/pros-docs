@@ -82,7 +82,7 @@ Methods
 forward
 ~~~~~~~
 
-Drives the robot forwards (using open-loop control).
+Drives the robot forwards (using open-loop control). Uses velocity mode.
 
 .. tabs ::
    .. tab :: Prototype
@@ -102,7 +102,7 @@ Parameters
 driveVector
 ~~~~~~~~~~~
 
-Drives the robot in an arc (using open-loop control).
+Drives the robot in an arc (using open-loop control). Uses velocity mode.
 
 The algorithm is (approximately):
 ::
@@ -129,7 +129,7 @@ Parameters
 rotate
 ~~~~~~
 
-Turns the robot clockwise (using open-loop control).
+Turns the robot clockwise (using open-loop control). Uses velocity mode.
 
 .. tabs ::
    .. tab :: Prototype
@@ -149,7 +149,7 @@ Parameters
 stop
 ~~~~
 
-Stops the robot (set all the motors to ``0``).
+Stops the robot (set all the motors to ``0``). Uses velocity mode.
 
 .. tabs ::
    .. tab :: Prototype
@@ -207,7 +207,7 @@ Parameters
 left
 ~~~~
 
-Powers the left side motors.
+Powers the left side motors. Uses velocity mode.
 
 .. tabs ::
    .. tab :: Prototype
@@ -227,7 +227,7 @@ Parameters
 right
 ~~~~~
 
-Powers the right side motors.
+Powers the right side motors. Uses velocity mode.
 
 .. tabs ::
    .. tab :: Prototype
