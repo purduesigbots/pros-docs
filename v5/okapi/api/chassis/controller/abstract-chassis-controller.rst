@@ -234,14 +234,14 @@ Delays until the currently executing movement completes.
 forward
 ~~~~~~~
 
-Drives the robot forwards (using open-loop control).
+Drives the robot forwards (using open-loop control). Uses velocity mode.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        void forward(double ispeed) const override
+        void forward(double ispeed) override
 
 =============== ===================================================================
 Parameters
@@ -254,7 +254,7 @@ Parameters
 driveVector
 ~~~~~~~~~~~
 
-Drives the robot in an arc (using open-loop control).
+Drives the robot in an arc (using open-loop control). Uses velocity mode.
 
 The algorithm is (approximately):
 ::
@@ -267,7 +267,34 @@ The algorithm is (approximately):
       .. highlight:: cpp
       ::
 
-        void driveVector(double iforwardSpeed, double iyaw) const override
+        void driveVector(double iforwardSpeed, double iyaw) override
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ iforwardSpeed   The speed in the forward direction in the range ``[-1, 1]``.
+ iyaw            The speed around the vertical axis in the range ``[-1, 1]``.
+=============== ===================================================================
+
+----
+
+driveVectorVoltage
+~~~~~~~~~~~~~~~~~~
+
+Drives the robot in an arc. Uses voltage mode.
+
+The algorithm is (approximately):
+::
+
+  leftPower = forwardSpeed + yaw
+  rightPower = forwardSpeed - yaw
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void driveVectorVoltage(double iforwardSpeed, double iyaw) override
 
 =============== ===================================================================
 Parameters
@@ -281,14 +308,14 @@ Parameters
 rotate
 ~~~~~~
 
-Turns the robot clockwise (using open-loop control).
+Turns the robot clockwise (using open-loop control). Uses velocity mode.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        void rotate(double ispeed) const override
+        void rotate(double ispeed) override
 
 =============== ===================================================================
 Parameters
@@ -301,7 +328,7 @@ Parameters
 stop
 ~~~~
 
-Stops the robot (set all the motors to ``0``).
+Stops the robot (set all the motors to ``0``). Uses velocity mode.
 
 .. tabs ::
    .. tab :: Prototype
@@ -322,7 +349,7 @@ Drives the robot with a tank drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) const override
+        void tank(double ileftSpeed, double irightSpeed, double ithreshold = 0) override
 
 =============== ===================================================================
 Parameters
@@ -344,7 +371,7 @@ Drives the robot with an arcade drive layout. Uses voltage mode.
       .. highlight:: cpp
       ::
 
-        void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) const override
+        void arcade(double iforwardSpeed, double iyaw, double ithreshold = 0) override
 
 =============== ===================================================================
 Parameters
@@ -359,14 +386,14 @@ Parameters
 left
 ~~~~
 
-Powers the left side motors.
+Powers the left side motors. Uses velocity mode.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        void left(double ispeed) const override
+        void left(double ispeed) override
 
 =============== ===================================================================
 Parameters
@@ -379,14 +406,14 @@ Parameters
 right
 ~~~~~
 
-Powers the right side motors.
+Powers the right side motors. Uses velocity mode.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        void right(double ispeed) const override
+        void right(double ispeed) override
 
 =============== ===================================================================
 Parameters
@@ -422,7 +449,7 @@ Resets the sensors to their zero point.
       .. highlight:: cpp
       ::
 
-        void resetSensors() const override
+        void resetSensors() override
 
 ----
 
@@ -436,7 +463,7 @@ Sets the brake mode for each motor.
       .. highlight:: cpp
       ::
 
-        void setBrakeMode(AbstractMotor::brakeMode mode) const override
+        void setBrakeMode(AbstractMotor::brakeMode mode) override
 
 =============== ===================================================================
 Parameters
@@ -456,7 +483,7 @@ Sets the encoder units for each motor.
       .. highlight:: cpp
       ::
 
-        void setEncoderUnits(AbstractMotor::encoderUnits units) const override
+        void setEncoderUnits(AbstractMotor::encoderUnits units) override
 
 =============== ===================================================================
 Parameters
@@ -476,7 +503,7 @@ Sets the gearset for each motor.
       .. highlight:: cpp
       ::
 
-        void setGearing(AbstractMotor::gearset gearset) const override
+        void setGearing(AbstractMotor::gearset gearset) override
 
 =============== ===================================================================
 Parameters
@@ -496,7 +523,7 @@ Sets new PID constants.
       .. highlight:: cpp
       ::
 
-        void setPosPID(double ikF, double ikP, double ikI, double ikD) const override
+        void setPosPID(double ikF, double ikP, double ikI, double ikD) override
 
 =============== ===================================================================
 Parameters
@@ -520,7 +547,7 @@ Sets new PID constants.
       ::
 
         void setPosPID(double ikF, double ikP, double ikI, double ikD,
-                       double ifilter, double ilimit, double ithreshold, double iloopSpeed) const override
+                       double ifilter, double ilimit, double ithreshold, double iloopSpeed) override
 
 =============== ===================================================================
 Parameters
@@ -547,7 +574,7 @@ Sets new PID constants.
       .. highlight:: cpp
       ::
 
-        void setPosPID(double ikF, double ikP, double ikI, double ikD) const override
+        void setPosPID(double ikF, double ikP, double ikI, double ikD) override
 
 =============== ===================================================================
 Parameters
@@ -571,7 +598,7 @@ Sets new PID constants.
       ::
 
         void setPosPID(double ikF, double ikP, double ikI, double ikD,
-                       double ifilter, double ilimit, double ithreshold, double iloopSpeed) const override
+                       double ifilter, double ilimit, double ithreshold, double iloopSpeed) override
 
 =============== ===================================================================
 Parameters

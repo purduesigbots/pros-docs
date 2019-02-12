@@ -261,7 +261,7 @@ Starts the internal thread. This should not be called by normal users. This meth
 getChassisScales
 ~~~~~~~~~~~~~~~~
 
-Get the ``ChassisScales``.
+Gets the ``ChassisScales``.
 
 .. tabs ::
    .. tab :: Prototype
@@ -277,7 +277,7 @@ Get the ``ChassisScales``.
 getGearsetRatioPair
 ~~~~~~~~~~~~~~~~~~~
 
-Get the ``GearsetRatioPair``.
+Gets the ``GearsetRatioPair``.
 
 .. tabs ::
    .. tab :: Prototype
@@ -287,3 +287,26 @@ Get the ``GearsetRatioPair``.
         virtual AbstractMotor::GearsetRatioPair getGearsetRatioPair() const override
 
 **Returns:** The ``GearsetRatioPair``.
+
+----
+
+setVelocityMode
+~~~~~~~~~~~~~~~
+
+Sets the velocity mode flag. When the controller is in velocity mode, the control loop will set
+motor velocities. When the controller is in voltage mode (``ivelocityMode = false``), the control
+loop will set motor voltages. Additionally, when the controller is in voltage mode, it will not obey
+maximum velocity limits.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void setVelocityMode(bool ivelocityMode)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ivelocityMode   Whether the controller should be in velocity or voltage mode.
+=============== ===================================================================

@@ -72,4 +72,4 @@ Resets the sensors to their zero point.
       .. highlight:: cpp
       ::
 
-        void resetSensors() const override
+        void resetSensors() override
