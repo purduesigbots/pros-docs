@@ -271,6 +271,46 @@ Sets the sensors. The default sensors are the motor's integrated encoders.
       ::
 
         ChassisControllerBuilder &withSensors(
+          const ADIEncoder &ileft,
+          const ADIEncoder &iright,
+          const ADIEncoder &imiddle
+        )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // ADI Encoders on ADI ports A & B and C & D (encoder on C & D reversed)
+        // and on E & F
+        builder.withSensors(
+          {'A', 'B'},
+          {'C', 'D', true},
+          {'E', 'F'}
+        )
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ ileft             The left side sensor.
+ iright            The right side sensor.
+ imiddle           The middle sensor.
+================= ===================================================================
+
+**Returns:** An ongoing builder.
+
+----
+
+withSensors
+~~~~~~~~~~~
+
+Sets the sensors. The default sensors are the motor's integrated encoders.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisControllerBuilder &withSensors(
           const IntegratedEncoder &ileft,
           const IntegratedEncoder &iright
         )
@@ -304,14 +344,79 @@ Sets the sensors. The default sensors are the motor's integrated encoders.
       ::
 
         ChassisControllerBuilder &withSensors(
-          const std::shared_ptr<ContinuousRotarySensor> &ileft,
-          const std::shared_ptr<ContinuousRotarySensor> &iright
+          const IntegratedEncoder &ileft,
+          const IntegratedEncoder &iright,
+          const ADIEncoder &imiddle
+        )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        // Integrated encoders on ports 1 and 2 (port 2 reversed)
+        // and an ADI encoder on ADI ports A & B
+        builder.withSensors({1}, {-2}, {'A', 'B'})
 
 ================= ===================================================================
 Parameters
 ================= ===================================================================
  ileft             The left side sensor.
  iright            The right side sensor.
+ imiddle           The middle sensor.
+================= ===================================================================
+
+**Returns:** An ongoing builder.
+
+----
+
+withSensors
+~~~~~~~~~~~
+
+Sets the sensors. The default sensors are the motor's integrated encoders.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisControllerBuilder &withSensors(
+          const std::shared_ptr<ContinuousRotarySensor> &ileft,
+          const std::shared_ptr<ContinuousRotarySensor> &iright
+        )
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ ileft             The left side sensor.
+ iright            The right side sensor.
+================= ===================================================================
+
+**Returns:** An ongoing builder.
+
+----
+
+withSensors
+~~~~~~~~~~~
+
+Sets the sensors. The default sensors are the motor's integrated encoders.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisControllerBuilder &withSensors(
+          const std::shared_ptr<ContinuousRotarySensor> &ileft,
+          const std::shared_ptr<ContinuousRotarySensor> &iright,
+          const std::shared_ptr<ContinuousRotarySensor> &imiddle
+        )
+
+================= ===================================================================
+Parameters
+================= ===================================================================
+ ileft             The left side sensor.
+ iright            The right side sensor.
+ imiddle           The middle sensor.
 ================= ===================================================================
 
 **Returns:** An ongoing builder.
