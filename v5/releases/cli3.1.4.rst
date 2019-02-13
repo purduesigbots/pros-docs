@@ -41,7 +41,6 @@ Run brew cask install gcc-arm-embedded pros-editor (if you want to install only 
 Notes:
 ~~~~~~
 
-- if Homebrew complains about some files existing when trying to install the toolchain (gcc-arm-embedded), run rm -f /usr/local/bin/arm-none-eabi-* to clear the old files out
 - if you already have the PROS CLI installed, or if Homebrew complains about some files existing when trying to install the CLI, you'll want to uninstall it first
 - if you installed using pip, you can run pip3 uninstall pros-cli-v5
 - if you installed using the .app bundle, you can move that bundle to the trash folder, and then run rm -f /usr/local/bin/prosv5 to clear out the old file
