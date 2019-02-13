@@ -35,8 +35,8 @@ macOS installs
 ~~~~~~~~~~~~~~
 
 Install Homebrew if it's not already installed. This may take a while.
-Run brew tap purduesigbots/pros
-Run brew cask install gcc-arm-embedded pros-editor (if you want to install only the CLI, you can run brew cask install gcc-arm-embedded && brew install pros-cli instead)
+Run ``brew tap osx-cross/arm && brew tap purduesigbots/pros``
+Run ``brew install gcc-arm-bin && brew cask install pros-editor`` (if you want to install only the CLI, you can run ``brew install gcc-arm-bin pros-cli`` instead)
 
 Notes:
 ~~~~~~
