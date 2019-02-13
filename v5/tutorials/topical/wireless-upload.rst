@@ -42,11 +42,12 @@ cold image. To do so, edit the following lines of your project's Makefile:
 
 Change `IS_LIBRARY` to ``1`` and rename the library to something of your choosing. We recommend ``lib<robot name>``
 or ``lib<team number>`` (e.g. ``lib7701``) to be unique enough to avoid cause naming conflicts with other cold 
-images. By default, the Makefile is set up to exclude your project's opcontrol.cpp, autonomous.cpp, and 
-initialize.cpp files. If you change other files frequently, you can add lines like 
-``EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/myfile.c`` as needed. **An important caveat** is that code that goes into the 
-cold image is **not** able to link against anything (call functions or use variables) in the hot image. An
-example of a modified Makefile's relevant lines is shown below:
+images. When compiling, PROS will include this library as part of the cold image. Your library should only contain
+files you infrequently change so that you do not have to frequently upload the cold image. By default, the Makefile 
+is set up to exclude your project's opcontrol.cpp, autonomous.cpp, and initialize.cpp files. If you change other 
+files frequently, you can add lines like ``EXCLUDE_SRC_FROM_LIB+=$(SRCDIR)/myfile.c`` as needed.
+**An important caveat** is that code that goes into the cold image is **not** able to link against anything (call 
+functions or use variables) in the hot image. An example of a modified Makefile's relevant lines is shown below:
 
 .. highlight: Makefile
 .. code-block:: Makefile
