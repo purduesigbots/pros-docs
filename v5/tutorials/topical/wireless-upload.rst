@@ -88,7 +88,7 @@ If you see a black scren, then PROS did not boot correctly.
 - A global constructor is in an infinite loop or raised an exception.
 - See also troubleshooting steps below
 
-If you see a grey screen, the PROS booted correctly, but is not running your hot image.
+If you see a grey screen, then PROS booted correctly, but is not running your hot image.
 
 - Delete all user programs, perform a clean build, and upload
 
