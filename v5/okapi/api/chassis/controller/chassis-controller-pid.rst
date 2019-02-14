@@ -310,3 +310,48 @@ Parameters
 =============== ===================================================================
  ivelocityMode   Whether the controller should be in velocity or voltage mode.
 =============== ===================================================================
+
+----
+
+setGains
+~~~~~~~~
+
+Sets the gains for all controllers.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+          void setGains(
+            const IterativePosPIDController::Gains &idistanceGains,
+            const IterativePosPIDController::Gains &iturnGains,
+            const IterativePosPIDController::Gains &iangleGains
+          )
+
+================ ===================================================================
+Parameters
+================ ===================================================================
+ idistanceGains   The gains for the distance controller.
+ iturnGains       The gains for the turn controller.
+ iangleGains      The gains for the angle controller.
+================ ===================================================================
+
+----
+
+getGains
+~~~~~~~~
+
+Gets the current controller gains.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+          std::tuple<IterativePosPIDController::Gains,
+                     IterativePosPIDController::Gains,
+                     IterativePosPIDController::Gains>
+          getGains() const
+
+**Returns:** The current controller gains in the order: distance, turn, angle.

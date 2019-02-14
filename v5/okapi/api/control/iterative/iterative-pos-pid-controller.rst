@@ -189,29 +189,6 @@ If the controller is disabled, this method must return true.
 
 ----
 
-setGains
-~~~~~~~~
-
-Sets controller gains.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void setGains(double ikP, double ikI, double ikD, double ikBias = 0)
-
-=============== ===================================================================
-Parameters
-=============== ===================================================================
- ikP             The P term gain.
- ikI             The I term gain.
- ikD             The D term gain.
- ikBias          The controller bias.
-=============== ===================================================================
-
-----
-
 setSampleTime
 ~~~~~~~~~~~~~
 
@@ -307,50 +284,6 @@ Get the lower output bound.
 
 ----
 
-setIntegralLimits
-~~~~~~~~~~~~~~~~~
-
-Sets integrator bounds. Default bounds are ``[-1, 1]``.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void setIntegralLimits(double imax, double imin)
-
-=============== ===================================================================
-Parameters
-=============== ===================================================================
- imax            The upper bound.
- imin            The lower bound.
-=============== ===================================================================
-
-----
-
-setErrorSumLimits
-~~~~~~~~~~~~~~~~~
-
-Sets the error sum bounds. Default bounds are ``[0, std::numeric_limits<double>::max()]``.
-Error will only be added to the integral term when its absolute value between these bounds
-of either side of the target.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void setErrorSumLimits(double imax, double imin)
-
-=============== ===================================================================
-Parameters
-=============== ===================================================================
- imax            The upper bound.
- imin            The lower bound.
-=============== ===================================================================
-
-----
-
 reset
 ~~~~~
 
@@ -363,26 +296,6 @@ keeping any user-configured information. This implementation also stops movement
       ::
 
         void reset() override
-
-----
-
-setIntegratorReset
-~~~~~~~~~~~~~~~~~~
-
-Sets whether the integrator should be reset when error is ``0`` or changes sign.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void setIntegratorReset(bool iresetOnZero)
-
-=============== ===================================================================
-Parameters
-=============== ===================================================================
- iresetOnZero    Whether the integrator should be reset when error is ``0`` or changes sign.
-=============== ===================================================================
 
 ----
 
@@ -452,6 +365,108 @@ Returns the last set sample time. Default is ``10_ms``.
 
 **Returns:** The last set sample time.
 
+----
+
+setIntegralLimits
+~~~~~~~~~~~~~~~~~
+
+Sets integrator bounds. Default bounds are ``[-1, 1]``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setIntegralLimits(double imax, double imin)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imax            The upper bound.
+ imin            The lower bound.
+=============== ===================================================================
+
+----
+
+setErrorSumLimits
+~~~~~~~~~~~~~~~~~
+
+Sets the error sum bounds. Default bounds are ``[0, std::numeric_limits<double>::max()]``.
+Error will only be added to the integral term when its absolute value between these bounds
+of either side of the target.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setErrorSumLimits(double imax, double imin)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imax            The upper bound.
+ imin            The lower bound.
+=============== ===================================================================
+
+----
+
+setIntegratorReset
+~~~~~~~~~~~~~~~~~~
+
+Sets whether the integrator should be reset when error is ``0`` or changes sign.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setIntegratorReset(bool iresetOnZero)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ iresetOnZero    Whether the integrator should be reset when error is ``0`` or changes sign.
+=============== ===================================================================
+
+----
+
+setGains
+~~~~~~~~
+
+Sets controller gains.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setGains(const Gains &igains)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ igains          The new gains.
+=============== ===================================================================
+
+----
+
+getGains
+~~~~~~~~
+
+Gets the current gains.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        Gains getGains() const
+
+**Returns:** The current gains.
+
+----
+
 okapi::IterativePosPIDController::Gains
 =======================================
 
@@ -466,3 +481,12 @@ okapi::IterativePosPIDController::Gains
           double kD;
           double kBias;
         };
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ikP             The proportional term gain.
+ ikI             The integral term gain.
+ ikD             The derivative term gain.
+ ikBias          The controller bias (a constant offset added to the output).
+=============== ===================================================================

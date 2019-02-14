@@ -39,6 +39,27 @@ Constructor(s)
  ilogger             The logger this instance will log to.
 =================== ===================================================================
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        IterativeVelPIDController(const Gains &igains,
+                                  std::unique_ptr<VelMath> ivelMath,
+                                  const TimeUtil &itimeUtil,
+                                  std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+                                  const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+
+=================== ===================================================================
+ Parameters
+=================== ===================================================================
+ igains              The controller gains.
+ ivelMath            The `VelMath <../../filters/vel-math.html>`_ used for calculating velocity.
+ itimeUtil           See ``TimeUtil`` docs.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+ ilogger             The logger this instance will log to.
+=================== ===================================================================
+
 ----
 
 Methods
@@ -352,29 +373,6 @@ Parameters
 
 ----
 
-setGains
-~~~~~~~~
-
-Sets controller gains.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        virtual void setGains(double ikP, double ikD, double ikF, double ikSF)
-
-=============== ===================================================================
-Parameters
-=============== ===================================================================
- ikP             The P term gain.
- ikD             The D term gain.
- ikF             The Feed-Forward gain.
- ikSF            A Feed-Forward gain to counteract static friction.
-=============== ===================================================================
-
-----
-
 setControllerSetTargetLimits
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -433,11 +431,44 @@ Returns the current velocity.
 
 ----
 
-Structures
-----------
+setGains
+~~~~~~~~
 
-Gains
-~~~~~
+Sets controller gains.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual void setGains(const Gains &igains)
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ igains          The new gains.
+=============== ===================================================================
+
+----
+
+getGains
+~~~~~~~~
+
+Gets the current gains.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        Gains getGains() const
+
+**Returns:** The current gains.
+
+----
+
+okapi::IterativeVelPIDController::Gains
+=======================================
 
 .. tabs ::
    .. tab :: Prototype
@@ -450,3 +481,12 @@ Gains
             double kF{0};
             double kSF{0};
           };
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ ikP             The P term gain.
+ ikD             The D term gain.
+ ikF             The Feed-Forward gain.
+ ikSF            A Feed-Forward gain to counteract static friction.
+=============== ===================================================================
