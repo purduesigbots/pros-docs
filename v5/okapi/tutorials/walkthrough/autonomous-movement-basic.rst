@@ -27,7 +27,9 @@ Let's start by creating the ``ChassisControllerIntegrated`` with drive motors in
    const int DRIVE_MOTOR_LEFT = 1;
    const int DRIVE_MOTOR_RIGHT = 2;
 
-   auto chassis = ChassisControllerFactory::create(DRIVE_MOTOR_LEFT, DRIVE_MOTOR_RIGHT);
+   auto chassis = ChassisControllerBuilder()
+                    .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                    .build();
 
 Now that we've created a ChassisController, let's start moving around. There are two fundamental movement types -
 ``moveDistance()`` and ``turnAngle()``, for moving forward/backward and turning on a point.
@@ -41,20 +43,22 @@ Now that we've created a ChassisController, let's start moving around. There are
    const int DRIVE_MOTOR_LEFT = 1;
    const int DRIVE_MOTOR_RIGHT = 2;
 
-   auto chassis = ChassisControllerFactory::create(DRIVE_MOTOR_LEFT, DRIVE_MOTOR_RIGHT);
+   auto chassis = ChassisControllerBuilder()
+                    .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                    .build();
 
    void autonomous() {
      // Move to first goal
-     chassis.moveDistance(1000);
+     chassis->moveDistance(1000);
      // Turn to face second goal
-     chassis.turnAngle(100);
+     chassis->turnAngle(100);
      // Drive toward second goal
-     chassis.moveDistance(1500);
+     chassis->moveDistance(1500);
    }
 
-If you'd like to set movements in real life units, that's possible as well. Just pass in the
-drive's gearset and dimensions, and then use the appropriate suffix
-for the units that you would like the movement to occur in.
+If you'd like to set movements in real life units, that's possible as well. Just pass in the drive's
+gearset and dimensions, and then use the appropriate suffix for the units that you would like the
+movement to occur in.
 
 .. highlight: cpp
 .. code-block:: cpp
@@ -67,17 +71,17 @@ for the units that you would like the movement to occur in.
    const auto WHEEL_DIAMETER = 4_in;
    const auto CHASSIS_WIDTH = 13.5_in;
 
-   auto chassis = ChassisControllerFactory::create(
-     DRIVE_MOTOR_LEFT, DRIVE_MOTOR_RIGHT,
-     AbstractMotor::gearset::red,
-     {WHEEL_DIAMETER, CHASSIS_WIDTH}
-   );
+   auto chassis = ChassisControllerBuilder()
+                    .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
+                    .withGearset(AbstractMotor::gearset::green)
+                    .withDimensions({WHEEL_DIAMETER, CHASSIS_WIDTH})
+                    .build();
 
    void autonomous() {
      // Move 1 meter to the first goal
-     chassis.moveDistance(1_m);
+     chassis->moveDistance(1_m);
      // Turn 90 degrees to face second goal
-     chassis.turnAngle(90_deg);
+     chassis->turnAngle(90_deg);
      // Drive 1 and a half feet toward second goal
-     chassis.moveDistance(1.5_ft);
+     chassis->moveDistance(1.5_ft);
    }

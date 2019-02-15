@@ -55,7 +55,7 @@ This is a common approach used for stacking games where movement to precise heig
 
    ControllerButton btnUp(ControllerDigital::R1);
    ControllerButton btnDown(ControllerDigital::R2);
-   auto liftControl = AsyncPosControllerBuilder().withMotor(1).build();
+   auto liftControl = AsyncPosControllerBuilder().withMotor(LIFT_MOTOR).build();
 
    void opcontrol() {
      int goalHeight = 0;
