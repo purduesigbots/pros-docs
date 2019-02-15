@@ -39,30 +39,26 @@ motion profile Async controller. Following that, you can create a profile Async 
 
    using namespace okapi;
 
-   auto myChassis = ChassisControllerFactory::create(
-     {-1, -2}, // Left motors
-     {3, 4},   // Right motors
-     AbstractMotor::gearset::red, // Torque gearset
-     {4_in, 12.5_in} // 4 inch wheels, 12.5 inch wheelbase width
-   );
+   auto myChassis = ChassisControllerBuilder()
+                      .withMotors({1, 2}, {-3, -4})
+                      .withGearset(AbstractMotor::gearset::green)
+                      .withDimensions({4_in, 11.5_in})
+                      .build();
 
-   auto profileController = AsyncControllerFactory::motionProfile(
-     1.0,  // Maximum linear velocity of the Chassis in m/s
-     2.0,  // Maximum linear acceleration of the Chassis in m/s/s
-     10.0, // Maximum linear jerk of the Chassis in m/s/s/s
-     myChassis // Chassis Controller
-   );
+   auto profileController = AsyncMotionProfileControllerBuilder()
+                              .withLimits({1.0, 2.0, 10.0})
+                              .withOutput(myChassis)
+                              .buildMotionProfileController();
 
    void opcontrol() {
    }
 
-Next, let's create a motion profile. A profile is created with a list of points and a name.
-Each of the points contains the desired (x, y) coordinates and heading. The points given to the
-controller form a path from the first given point to the last, with the first point assumed to be
-the current position of the robot. The path will be generated
-assuming that all of the points are relative to the first, so if you pass in
-an x value of ``-1 * 4_ft`` for the first point, then passing an x value of ``0_ft`` for the second
-point will result in a forward movement of 4 feet.
+Next, let's create a motion profile. A profile is created with a list of points and a name. Each of
+the points contains the desired (x, y) coordinates and heading. The points given to the controller
+form a path from the first given point to the last, with the first point assumed to be the current
+position of the robot. The path will be generated assuming that all of the points are relative to
+the first, so if you pass in an x value of ``-1 * 4_ft`` for the first point, then passing an x
+value of ``0_ft`` for the second point will result in a forward movement of 4 feet.
 
 .. note:: This function computes the set of steps for the desired profile, which
           may take some time.
@@ -70,9 +66,9 @@ point will result in a forward movement of 4 feet.
 .. highlight:: cpp
 .. code-block:: cpp
 
-   profileController.generatePath({
-     Point{0_ft, 0_ft, 0_deg},  // Profile starting position, this will normally be (0, 0, 0)
-     Point{3_ft, 0_ft, 0_deg}}, // The next point in the profile, 3 feet forward
+   profileController->generatePath({
+     {0_ft, 0_ft, 0_deg},  // Profile starting position, this will normally be (0, 0, 0)
+     {3_ft, 0_ft, 0_deg}}, // The next point in the profile, 3 feet forward
      "A" // Profile name
    );
 
@@ -82,7 +78,7 @@ You can then set a target using the name you gave the profile.
 .. highlight:: cpp
 .. code-block:: cpp
 
-   profileController.setTarget("A");
+   profileController->setTarget("A");
 
 And then as with any `AsyncController <../../api/control/async/abstract-async-controller.html>`_,
 you can call ``waitUntilSettled()``
@@ -92,7 +88,7 @@ desired end point.
 .. highlight:: cpp
 .. code-block:: cpp
 
-   profileController.waitUntilSettled();
+   profileController->waitUntilSettled();
 
 Wrap-up
 =======
@@ -105,22 +101,19 @@ In total, here is how to initialize and use a 2D motion profiling controller:
 
    using namespace okapi;
 
-   auto myChassis = ChassisControllerFactory::create(
-     {-1, -2}, // Left motors
-     {3, 4},   // Right motors
-     AbstractMotor::gearset::red, // Torque gearset
-     {4_in, 12.5_in} // 4 inch wheels, 12.5 inch wheelbase width
-   );
+   auto myChassis = ChassisControllerBuilder()
+                      .withMotors({1, 2}, {-3, -4})
+                      .withGearset(AbstractMotor::gearset::green)
+                      .withDimensions({4_in, 11.5_in})
+                      .build();
 
-   auto profileController = AsyncControllerFactory::motionProfile(
-     1.0,  // Maximum linear velocity of the Chassis in m/s
-     2.0,  // Maximum linear acceleration of the Chassis in m/s/s
-     10.0, // Maximum linear jerk of the Chassis in m/s/s/s
-     myChassis // Chassis Controller
-   );
+   auto profileController = AsyncMotionProfileControllerBuilder()
+                              .withLimits({1.0, 2.0, 10.0})
+                              .withOutput(myChassis)
+                              .buildMotionProfileController();
 
    void opcontrol() {
-     profileController.generatePath({Point{0_ft, 0_ft, 0_deg}, Point{3_ft, 0_ft, 0_deg}}, "A");
-     profileController.setTarget("A");
-     profileController.waitUntilSettled();
+     profileController->generatePath({{0_ft, 0_ft, 0_deg}, {3_ft, 0_ft, 0_deg}}, "A");
+     profileController->setTarget("A");
+     profileController->waitUntilSettled();
    }
