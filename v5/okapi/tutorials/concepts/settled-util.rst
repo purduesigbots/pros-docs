@@ -2,15 +2,15 @@
 SettledUtils
 ============
 
-One of the most important factors in utilizing feedback controllers is establishing proper
-exit conditions. If a feedback controller decides that it has reached its target and exits too early,
-then the target will never be met. Alternatively, if the controller takes too long to realize that it's
-at its goal, the best case scenario is that the movement is just a bit slower, but in the worst case
-the movement may never be considered complete, leaving the motors humming indefinitely.
+One of the most important factors in utilizing feedback controllers is establishing proper exit
+conditions. If a feedback controller decides that it has reached its target and exits too early,
+then the target will never be met. Alternatively, if the controller takes too long to realize that
+it's at its goal, the best case scenario is that the movement is just a bit slower, but in the worst
+case the movement may never be considered complete, leaving the motors humming indefinitely.
 
-OkapiLib's `SettledUtil <../../api/control/util/settled-util.html>`_ provides three different parameters
-for tuning this exit condition: ``atTargetError``, ``atTargetDerivative``, and ``atTargetTime``. We'll
-take a further look at tuning these three parameters.
+OkapiLib's `SettledUtil <../../api/control/util/settled-util.html>`_ provides three different
+parameters for tuning this exit condition: ``atTargetError``, ``atTargetDerivative``, and
+``atTargetTime``. We'll take a further look at tuning these three parameters.
 
 atTargetError
 =============
@@ -32,9 +32,9 @@ To disable this check, set the maximum value for a double.
 atTargetDerivative
 ==================
 
-``atTargetDerivative`` is the maximum *change in error* that the controller can be observing and still
-consider itself settled. This value helps prevent scenarios where the controller considers itself settled
-while quickly passing by the target and oscillating.
+``atTargetDerivative`` is the maximum *change in error* that the controller can be observing and
+still consider itself settled. This value helps prevent scenarios where the controller considers
+itself settled while quickly passing by the target and oscillating.
 
 To disable this check, set the maximum value for a double.
 
