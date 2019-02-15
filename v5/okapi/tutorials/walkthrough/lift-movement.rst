@@ -16,8 +16,8 @@ as is common in a lot of op control code for the subject. The following code sni
 
    const int LIFT_MOTOR = 1; // Controlling a lift with a single motor on port 1
 
-   ControllerButton btnUp(E_CONTROLLER_DIGITAL_R1);
-   ControllerButton btnDown(E_CONTROLLER_DIGITAL_R2);
+   ControllerButton btnUp(ControllerDigital::R1);
+   ControllerButton btnDown(ControllerDigital::R2);
    Motor lift(LIFT_MOTOR);
 
    void opcontrol() {
@@ -53,9 +53,9 @@ This is a common approach used for stacking games where movement to precise heig
 
    const int heights[NUM_HEIGHTS] = {height1, height2, height3, height4};
 
-   ControllerButton btnUp(E_CONTROLLER_DIGITAL_R1);
-   ControllerButton btnDown(E_CONTROLLER_DIGITAL_R2);
-   auto liftControl = AsyncControllerFactory::posIntegrated(LIFT_MOTOR);
+   ControllerButton btnUp(ControllerDigital::R1);
+   ControllerButton btnDown(ControllerDigital::R2);
+   auto liftControl = AsyncPosControllerBuilder().withMotor(1).build();
 
    void opcontrol() {
      int goalHeight = 0;
@@ -64,10 +64,10 @@ This is a common approach used for stacking games where movement to precise heig
        if (btnUp.changedToPressed() && goalHeight < NUM_HEIGHTS - 1) {
          // If the goal height is not at maximum and the up button is pressed, increase the setpoint
          goalHeight++;
-         liftControl.setTarget(heights[goalHeight]);
+         liftControl->setTarget(heights[goalHeight]);
        } else if (btnDown.changedToPressed() && goalHeight > 0) {
          goalHeight--;
-         liftControl.setTarget(heights[goalHeight]);
+         liftControl->setTarget(heights[goalHeight]);
        }
 
        pros::delay(10);
