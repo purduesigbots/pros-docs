@@ -28,7 +28,8 @@ A position controller that uses the PID algorithm.
 
         static IterativePosPIDController posPID(
           double ikP, double ikI, double ikD, double ikBias = 0,
-          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>()
+          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
         )
 
    .. tab :: Example
@@ -51,6 +52,7 @@ Parameters
  ikD                 The D term gain.
  ikBias              The controller bias.
  iderivativeFilter   The filter to use for filtering the derivative term.
+ ilogger             The logger this instance will log to.
 =================== ===================================================================
 
 ----
@@ -67,8 +69,9 @@ A velocity controller that uses the PD algorithm.
 
         static IterativeVelPIDController velPID(
           double ikP, double ikD, double ikF = 0, double ikSF = 0,
-          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5RedTPR),
-          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>()
+          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
+          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
         )
 
    .. tab :: Example
@@ -93,6 +96,7 @@ Parameters
  ikSF                A Feed-Forward gain to counteract static friction.
  ivelMath            The ``VelMath`` for calculating velocity.
  iderivativeFilter   The filter to use for filtering the derivative term.
+ ilogger             The logger this instance will log to.
 =================== ===================================================================
 
 ----
@@ -109,9 +113,11 @@ output.
       ::
 
         static IterativeMotorVelocityController motorVelocity(
-          Motor/MotorGroup imotor,
+          Motor imotor,
           double ikP, double ikD, double ikF = 0, double ikSF = 0,
-          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5RedTPR)
+          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
+          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
         )
 
    .. tab :: Example
@@ -120,6 +126,44 @@ output.
 
        // Controlling a motor on port 1
        auto controller = IterativeControllerFactory::motorVelocity(1, 0.001, 0.0001);
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imotor          The output motor.
+ ikP             The P term gain.
+ ikD             The D term gain.
+ ikF             The Feed-Forward gain.
+ ikSF            A Feed-Forward gain to counteract static friction.
+ ivelMath        The ``VelMath`` for calculating velocity.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+ ilogger             The logger this instance will log to.
+=============== ===================================================================
+
+----
+
+motorVelocity
+~~~~~~~~~~~~~
+
+A velocity controller that uses an ``IterativeVelPIDController`` and automatically writes to its
+output.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        static IterativeMotorVelocityController motorVelocity(
+          MotorGroup imotor,
+          double ikP, double ikD, double ikF = 0, double ikSF = 0,
+          std::unique_ptr<VelMath> ivelMath = VelMathFactory::createPtr(imev5GreenTPR),
+          std::unique_ptr<Filter> iderivativeFilter = std::make_unique<PassthroughFilter>(),
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+        )
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
 
        // Controlling a motor group on ports 1 and 2
        auto controller = IterativeControllerFactory::motorVelocity({-1, 2}, 0.001, 0.0001);
@@ -133,6 +177,8 @@ Parameters
  ikF             The Feed-Forward gain.
  ikSF            A Feed-Forward gain to counteract static friction.
  ivelMath        The ``VelMath`` for calculating velocity.
+ iderivativeFilter   The filter to use for filtering the derivative term.
+ ilogger             The logger this instance will log to.
 =============== ===================================================================
 
 ----
@@ -148,7 +194,31 @@ A velocity controller that uses the supplied controller and automatically writes
       ::
 
         static IterativeMotorVelocityController motorVelocity(
-          Motor/MotorGroup imotor,
+          Motor imotor,
+          std::shared_ptr<IterativeVelocityController<double, double>> icontroller
+        )
+
+=============== ===================================================================
+Parameters
+=============== ===================================================================
+ imotor          The output motor.
+ icontroller     The controller to use.
+=============== ===================================================================
+
+----
+
+motorVelocity
+~~~~~~~~~~~~~
+
+A velocity controller that uses the supplied controller and automatically writes to its output.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        static IterativeMotorVelocityController motorVelocity(
+          MotorGroup imotor,
           std::shared_ptr<IterativeVelocityController<double, double>> icontroller
         )
 
