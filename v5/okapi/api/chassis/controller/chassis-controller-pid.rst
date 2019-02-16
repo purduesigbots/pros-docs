@@ -243,21 +243,6 @@ Stops the robot (set all the motors to ``0`` and stops the PID controllers).
 
 ----
 
-startThread
-~~~~~~~~~~~
-
-Starts the internal thread. This should not be called by normal users. This method is called by the
-``ChassisControllerFactory`` when making a new instance of this class.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        void startThread()
-
-----
-
 getChassisScales
 ~~~~~~~~~~~~~~~~
 
@@ -355,3 +340,34 @@ Gets the current controller gains.
           getGains() const
 
 **Returns:** The current controller gains in the order: distance, turn, angle.
+
+----
+
+startThread
+~~~~~~~~~~~
+
+Starts the internal thread. This should not be called by normal users. This method is called by the
+``ChassisControllerFactory`` when making a new instance of this class.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void startThread()
+
+----
+
+getThread
+~~~~~~~~~
+
+Returns the underlying thread handle.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+          CrossplatformThread *getThread() const
+
+**Returns:** The underlying thread handle.

@@ -343,3 +343,19 @@ Starts the internal thread. This should not be called by normal users. This meth
       ::
 
         void startThread()
+
+----
+
+getThread
+~~~~~~~~~
+
+Returns the underlying thread handle.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+          CrossplatformThread *getThread() const
+
+**Returns:** The underlying thread handle.
