@@ -698,9 +698,17 @@ Sets the logger.
       .. highlight:: cpp
       ::
 
+        // Output to standard out (shows in the PROS terminal)
         builder.withLogger(std::make_shared<Logger>(
           TimeUtilFactory::create().getTimer(),
           "/ser/sout",
+          Logger::LogLevel::debug
+        ))
+
+        // Output to a file on an SD card
+        builder.withLogger(std::make_shared<Logger>(
+          TimeUtilFactory::create().getTimer(),
+          "/usd/test_logger",
           Logger::LogLevel::debug
         ))
 

@@ -46,6 +46,13 @@ This constructor configures the logger to do nothing.
           Logger::LogLevel::debug
         )
 
+        // Output to a file on an SD card
+        Logger(
+          TimeUtilFactory::create().getTimer(),
+          "/usd/test_logger.txt",
+          Logger::LogLevel::debug
+        )
+
 ============ ===============================================================
  Parameters
 ============ ===============================================================
