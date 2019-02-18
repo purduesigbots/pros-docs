@@ -27,6 +27,8 @@ Constructor(s)
  ireverse         Whether the motor's direction is reversed.
 =============== ===================================================================
 
+----
+
 Methods
 -------
 

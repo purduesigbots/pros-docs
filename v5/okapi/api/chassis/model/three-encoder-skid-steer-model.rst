@@ -43,6 +43,8 @@ Constructor(s)
  imaxVoltage         The maximum voltage output value to the motors.
 =================   ===================================================================
 
+----
+
 Methods
 -------
 

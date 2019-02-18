@@ -21,15 +21,17 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ChassisControllerPID(const TimeUtil &itimeUtil,
-                             std::unique_ptr<AbstractRate> irate,
-                             const std::shared_ptr<ChassisModel> &imodel,
-                             std::unique_ptr<IterativePosPIDController> idistanceController,
-                             std::unique_ptr<IterativePosPIDController> iturnController,
-                             std::unique_ptr<IterativePosPIDController> iangleController,
-                             AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-                             const ChassisScales &iscales = ChassisScales({1, 1}),
-                             const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+        ChassisControllerPID(
+          const TimeUtil &itimeUtil,
+          std::unique_ptr<AbstractRate> irate,
+          const std::shared_ptr<ChassisModel> &imodel,
+          std::unique_ptr<IterativePosPIDController> idistanceController,
+          std::unique_ptr<IterativePosPIDController> iturnController,
+          std::unique_ptr<IterativePosPIDController> iangleController,
+          AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::green,
+          const ChassisScales &iscales = ChassisScales({1, 1}),
+          const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>()
+      )
 
 ======================   =======================================================================================
  Parameters
@@ -44,6 +46,8 @@ Constructor(s)
  iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
  ilogger                  The logger this instance will log to.
 ======================   =======================================================================================
+
+----
 
 Methods
 -------

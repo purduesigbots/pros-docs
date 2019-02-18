@@ -21,13 +21,15 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ChassisControllerIntegrated(const TimeUtil &itimeUtil,
-                                    const std::shared_ptr<ChassisModel> &imodel,
-                                    std::unique_ptr<AsyncPosIntegratedController> ileftController,
-                                    std::unique_ptr<AsyncPosIntegratedController> irightController,
-                                    AbstractMotor::GearsetRatioPair igearset = AbstractMotor::gearset::red,
-                                    const ChassisScales &iscales = ChassisScales({1, 1}),
-                                    const std::shared_ptr<Logger> &ilogger = std::make_shared<Logger>())
+        ChassisControllerIntegrated(
+          const TimeUtil &itimeUtil,
+          const std::shared_ptr<ChassisModel> &imodel,
+          std::unique_ptr<AsyncPosIntegratedController> ileftController,
+          std::unique_ptr<AsyncPosIntegratedController> irightController,
+          AbstractMotor::GearsetRatioPaiAbstractMotor::gearset::green,
+          const ChassisScales &iscales = ChassisScales({1, 1}),
+          const std::shared_ptr<Loggerstd::make_shared<Logger>()
+        )
 
 ======================   =======================================================================================
  Parameters
@@ -40,6 +42,8 @@ Constructor(s)
  iscales                  See `ChassisScales <chassis-scales.html>`_ docs.
  ilogger                  The logger this instance will log to.
 ======================   =======================================================================================
+
+----
 
 Methods
 -------

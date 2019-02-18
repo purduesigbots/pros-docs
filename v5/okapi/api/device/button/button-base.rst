@@ -25,6 +25,8 @@ Constructor(s)
  iinverted       Whether the button's state is inverted.
 =============== ===================================================================
 
+----
+
 Methods
 -------
 

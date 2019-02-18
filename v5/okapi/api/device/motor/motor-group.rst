@@ -49,6 +49,8 @@ Throws a ``std::invalid_argument`` exception if no motors are passed in.
  imotors         The motors in the group.
 =============== ===================================================================
 
+----
+
 Movement Methods
 ----------------
 

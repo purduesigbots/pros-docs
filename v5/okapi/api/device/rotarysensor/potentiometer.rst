@@ -25,6 +25,8 @@ Constructor(s)
  iport            The port the potentiometer's wire is in.
 =============== ===================================================================
 
+----
+
 Methods
 -------
 

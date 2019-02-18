@@ -22,6 +22,8 @@ Constructor(s)
                  const Supplier<std::unique_ptr<AbstractRate>> &irateSupplier,
                  const Supplier<std::unique_ptr<SettledUtil>> &isettledUtilSupplier);
 
+----
+
 Methods
 -------
 

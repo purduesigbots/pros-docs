@@ -55,6 +55,8 @@ Constructor(s)
  ilogger             The logger this instance will log to.
 =================== ===================================================================
 
+----
+
 Methods
 -------
 

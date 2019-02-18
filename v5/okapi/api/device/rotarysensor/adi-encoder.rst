@@ -28,6 +28,8 @@ Constructor(s)
  ireversed       Whether the encoder's direction is reversed.
 =============== ===================================================================
 
+----
+
 Methods
 -------
 

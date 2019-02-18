@@ -31,6 +31,8 @@ If the port has not previously been configured as a gyro, then the constructor w
  imultiplier     A value multiplied by the gyro heading value.
 =============== ===================================================================
 
+----
+
 Methods
 -------
 

@@ -67,6 +67,8 @@ Constructor(s)
  iparams         The ``IterativeMotorController`` arguments.
 =============== ===================================================================
 
+----
+
 Methods
 -------
 

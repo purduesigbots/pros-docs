@@ -31,6 +31,7 @@ Constructor(s)
             okapi::Supplier<int> intSupplier([]() { return 42; });
             std::cout << intSupplier.get() << std::endl;
 
+----
 
 Methods
 -------

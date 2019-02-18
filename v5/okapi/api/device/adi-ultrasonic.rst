@@ -30,6 +30,8 @@ Constructor(s)
  ifilter         The filter to use for filtering the ultrasonic measurements.
 =============== ===================================================================
 
+----
+
 Methods
 -------
 

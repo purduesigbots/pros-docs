@@ -54,6 +54,8 @@ Constructor(s)
  imotor          The V5 motor to use the encoder from.
 =============== ===================================================================
 
+----
+
 Methods
 -------
 

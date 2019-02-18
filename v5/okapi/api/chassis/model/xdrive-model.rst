@@ -84,6 +84,8 @@ This constructor does not infer the encoders from the motors, and instead takes 
  other                Copy constructor.
 ==================   ===================================================================
 
+----
+
 Methods
 -------
 

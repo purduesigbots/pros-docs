@@ -23,6 +23,8 @@ Constructor(s)
  iid             The ID of the controller (e.g. the master or partner controller).
 =============== ===================================================================
 
+----
+
 Methods
 -------
 
