@@ -2,6 +2,9 @@
 Smart Pointers
 ==============
 
+Overview
+~~~~~~~~
+
 **Smart Pointers** are a C++ concept that extend the functionality of C pointers. A knowledge of
 Smart Pointers is not necessary for simple to intermediate OkapiLib programs, but extending
 OkapiLib's functionality (i.e. adding your own control algorithm) will require that you know how to
@@ -33,3 +36,26 @@ the ``ControllerOutput`` (typically a motor or motor group) object, it is bad pr
 other objects from accessing that data if, for instance, you also wanted a class to monitor and log
 the ``ControllerInput`` data. ``shared_ptr`` is a good choice if there is a possibility that the
 user will want to use the pointer's object for more applications than the class you're designing.
+
+
+Dynamic-casting Smart Pointers
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A smart pointer cannot be used with ``dynamic_cast`` like a normal object could. Instead, you need
+to use ``dynamic_pointer_cast``. For example, if you want to cast the output of a
+``ChassisControllerBuilder`` into a more specific type because you need features of that specific
+implementation, you could do this:
+
+.. tabs ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        auto drive = std::dynamic_pointer_cast<ChassisControllerPID>(
+          ChassisControllerBuilder()
+            .withMotors(18, -19)
+            .withGains({0.01}, {0.01})
+            .withGearset(AbstractMotor::gearset::green)
+            .withDimensions({4_in, 11.5_in})
+            .build()
+        );
