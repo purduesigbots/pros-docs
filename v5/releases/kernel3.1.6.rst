@@ -34,7 +34,7 @@ you enable hot/cold linking), you must modify your Makefile as follows:
     .. highlight: Makefile
     .. code-block:: Makefile
     
-        # Set this to 1 to add additional rules to compile your project as a PROS library template
-        IS_LIBRARY:=0
+        # Set to 1 to enable hot/cold linking
+        USE_PACKAGE:=0
 
 Your Makefile should now be similar to the template `Makefile <https://github.com/purduesigbots/pros/blob/3.1.6/template-Makefile>`_.
