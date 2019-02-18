@@ -7,8 +7,7 @@ ADI Ultrasonic
 okapi::ADIUltrasonic
 ====================
 
-An ultrasonic sensor on the ADI ports. Uses a 5-tap
-`median filter <../filters/median-filter.html>`_ by default to filter out spikes and errors in the signal.
+An ultrasonic sensor on the ADI ports.
 
 Constructor(s)
 --------------
@@ -18,27 +17,16 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        ADIUltrasonic(std::uint8_t iportTop, std::uint8_t iportBottom)
+        ADIUltrasonic(
+          std::uint8_t iportPing, std::uint8_t iportEcho,
+          std::unique_ptr<Filter> ifilter = std::make_unique<PassthroughFilter>()
+        )
 
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- iportTop        The port the top wire is in.
- iportBottom     The port the bottom wire is in.
-=============== ===================================================================
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ADIUltrasonic(std::uint8_t iportTop, std::uint8_t iportBottom, std::unique_ptr<Filter> ifilter)
-
-=============== ===================================================================
- Parameters
-=============== ===================================================================
- iportTop        The port the top wire is in.
- iportBottom     The port the bottom wire is in.
+ iportPing       The port connected to the orange OUTPUT cable. This should be in the next highest port following ``iportEcho``.
+ iportEcho       The port connected to the yellow INPUT cable. This should be in port ``1``, ``3``, ``5``, or ``7`` (``'A'``, ``'C'``, ``'E'``, ``'G'``).
  ifilter         The filter to use for filtering the ultrasonic measurements.
 =============== ===================================================================
 
