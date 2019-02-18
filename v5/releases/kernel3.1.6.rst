@@ -28,8 +28,8 @@ In order to support modified hot/cold linking we needed to modify the Makefile, 
 is intended to be modified by you. When upgrading your project (regardless of whether
 you enable hot/cold linking), you must modify your Makefile as follows:
 
-1. Remove all lines after ``-include ./common.mk``
-2. Add the following two lines:
+1. Remove all lines after `-include ./common.mk`
+2. Add the following two lines above the `-include ./common.mk` line (perhaps below `EXTRA_CXXFLAGS=`):
 
     .. highlight: Makefile
     .. code-block:: Makefile
