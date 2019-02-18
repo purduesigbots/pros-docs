@@ -2,7 +2,7 @@
 PROS CLI 3.1.4 Release
 ======================
 
-.. post:: 12 February, 2019
+.. post:: 18 February, 2019
    :tags: blog, cli-release
 
 - New UI experience for creating, upgrading, and uploading projects
@@ -19,7 +19,7 @@ Updating to the new version
 Python PIP
 ----------
 
-Run pip install https://github.com/purduesigbots/pros-cli/releases/download/3.1.4/pros_cli_v5-3.1.4-py3-none-any.whl (or pip3, depending on your system)
+Run ``pip install https://github.com/purduesigbots/pros-cli/releases/download/3.1.4/pros_cli_v5-3.1.4-py3-none-any.whl`` (or pip3, depending on your system)
 
 Windows
 -------
@@ -32,9 +32,6 @@ macOS
 To upgrade a previous installation, run ``brew upgrade pros-cli``
 
 To install from scratch:
-
-macOS installs
-~~~~~~~~~~~~~~
 
 Install Homebrew if it's not already installed. This may take a while.
 Run ``brew tap osx-cross/arm && brew tap purduesigbots/pros``

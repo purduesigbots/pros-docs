@@ -2,7 +2,7 @@
 PROS Kernel 3.1.6 Release
 =========================
 
-.. post:: 12 February, 2019
+.. post:: 18 February, 2019
    :tags: blog, kernel-release
 
 .. warning:: Be sure to look at important upgrade instructions below.
