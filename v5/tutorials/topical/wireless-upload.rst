@@ -2,7 +2,7 @@
 Wireless Upload and Hot/Cold Linking
 ====================================
 
-.. note:: Wireless Upload requires at least CLI 3.1.4, Kernel 3.1.6, VEXos 1.0.5, and OkapiLib 3.1.7 (if used).
+.. note:: Wireless Upload requires at least CLI 3.1.4, Kernel 3.1.6, VEXos 1.0.5, and OkapiLib 3.3.12 (if used).
 
 PROS supports wireless upload to the V5 Brain via a V5 Controller. Although there are no special requirements to 
 enable PROS to do this, file transfer speeds are typically unacceptably slow. To make them more reasonable, PROS
