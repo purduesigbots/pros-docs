@@ -29,7 +29,9 @@ Download and run the appropriate installer
 macOS
 -----
 
-See below for the new recommended method of installing the CLI
+To upgrade a previous installation, run ``brew upgrade pros-cli``
+
+To install from scratch:
 
 macOS installs
 ~~~~~~~~~~~~~~
@@ -43,4 +45,4 @@ Notes:
 
 - if you already have the PROS CLI installed, or if Homebrew complains about some files existing when trying to install the CLI, you'll want to uninstall it first
 - if you installed using pip, you can run pip3 uninstall pros-cli-v5
-- if you installed using the .app bundle, you can move that bundle to the trash folder, and then run rm -f /usr/local/bin/prosv5 to clear out the old file
+- if you installed using the .app bundle, you can move that bundle to the trash folder, and then run ``rm -f /usr/local/bin/prosv5`` to clear out the old file
