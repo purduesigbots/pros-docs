@@ -269,7 +269,7 @@ wheel diameter (``4`` inches) and the width of the chassis (``11.5`` inches).
    auto drive = ChassisControllerBuilder()
                  .withMotors(1, -10)
                  .withGearset(AbstractMotor::gearset::green)
-                 .withDimensions({4_in, 11.5_in})
+                 .withDimensions({{4_in, 11.5_in}, imev5GreenTPR})
                  .build();
 
 After this, you can move the chassis in actual units, such as inches and degrees.
@@ -302,7 +302,7 @@ This is the final product from this tutorial.
            auto drive = ChassisControllerBuilder()
                           .withMotors(1, -10)
                           .withGearset(AbstractMotor::gearset::green)
-                          .withDimensions({4_in, 11.5_in})
+                          .withDimensions({{4_in, 11.5_in}, imev5GreenTPR})
                           .build();
 
            // Joystick to read analog values for tank or arcade control
@@ -365,7 +365,7 @@ This is the final product from this tutorial.
            auto drive = ChassisControllerBuilder()
                           .withMotors(1, -10)
                           .withGearset(AbstractMotor::gearset::green)
-                          .withDimensions({4_in, 11.5_in})
+                          .withDimensions({{4_in, 11.5_in}, imev5GreenTPR})
                           .build();
 
            // Joystick to read analog values for tank or arcade control

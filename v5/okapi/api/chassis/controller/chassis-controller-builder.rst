@@ -613,7 +613,7 @@ Sets the chassis dimensions.
       ::
 
         // 4 inch wheel diameter, 11 inch wheelbase width
-        builder.withDimensions({4_in, 11_in})
+        builder.withDimensions({{4_in, 11_in}, imev5GreenTPR})
 
 ================= ===================================================================
 Parameters

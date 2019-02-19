@@ -134,7 +134,7 @@ them by hand and pass them in directly. See the `ChassisScales
            auto drive = ChassisControllerBuilder()
                           .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
                           .withGearset(AbstractMotor::gearset::green) // Green gearset
-                          .withDimensions({4_in, 11.5_in}) // 4 inch wheel diameter, 11.5 inch wheelbase
+                          .withDimensions({{4_in, 11.5_in}, imev5GreenTPR}) // 4 inch wheel diameter, 11.5 inch wheelbase
                           .build();
          }
 
@@ -150,7 +150,7 @@ them by hand and pass them in directly. See the `ChassisScales
            auto drive = ChassisControllerBuilder()
                           .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
                           .withGearset(AbstractMotor::gearset::green * 1.5) // Green gearset, external ratio of 1.5
-                          .withDimensions({1127.8696, 2.875}) // Straight scale, turn scale
+                          .withDimensions({{1127.8696, 2.875}, imev5GreenTPR}) // Straight scale, turn scale
                           .build();
          }
 

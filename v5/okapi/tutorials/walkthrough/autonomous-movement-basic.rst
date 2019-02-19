@@ -74,7 +74,7 @@ movement to occur in.
    auto chassis = ChassisControllerBuilder()
                     .withMotors(DRIVE_MOTOR_LEFT, -DRIVE_MOTOR_RIGHT)
                     .withGearset(AbstractMotor::gearset::green)
-                    .withDimensions({WHEEL_DIAMETER, CHASSIS_WIDTH})
+                    .withDimensions({{WHEEL_DIAMETER, CHASSIS_WIDTH}, imev5GreenTPR})
                     .build();
 
    void autonomous() {
