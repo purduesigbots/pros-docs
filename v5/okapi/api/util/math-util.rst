@@ -9,24 +9,24 @@ Math utilities.
 Constants
 ---------
 
-A collection of ``static constexpr double`` constants that help with math.
+A collection of ``static constexpr`` constants that help with math.
 
 ================== ================
  Name               Value
 ================== ================
- analogInToV        286.0
+ analogInToV        286
  inchToMM           25.4
  mmToInch           0.0393700787
- degreeToRadian     0.01745
+ degreeToRadian     0.01745329252
  radianToDegree     57.2957795
  imeTorqueTPR       627.2
- imeSpeedTPR        392.0
+ imeSpeedTPR        392
  imeTurboTPR        261.333
  ime269TPR          240.448
- imev5RedTPR        1800.0
- imev5GreenTPR      900.0
- imev5BlueTPR       300.0
- quadEncoderTPR     360.0
+ imev5RedTPR        1800
+ imev5GreenTPR      900
+ imev5BlueTPR       300
+ quadEncoderTPR     360
  pi                 3.1415926535897932
  pi2                1.5707963267948966
  gravity            9.80665 (m/s^2)

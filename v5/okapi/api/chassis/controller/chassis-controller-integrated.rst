@@ -27,7 +27,7 @@ Constructor(s)
           std::unique_ptr<AsyncPosIntegratedController> ileftController,
           std::unique_ptr<AsyncPosIntegratedController> irightController,
           AbstractMotor::GearsetRatioPaiAbstractMotor::gearset::green,
-          const ChassisScales &iscales = ChassisScales({1, 1}),
+          const ChassisScales &iscales = ChassisScales({1, 1}, imev5GreenTPR),
           const std::shared_ptr<Loggerstd::make_shared<Logger>()
         )
 
