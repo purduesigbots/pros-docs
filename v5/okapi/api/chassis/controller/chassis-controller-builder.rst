@@ -539,29 +539,28 @@ Parameters
 
 ----
 
-withTimeUtilFactory
-~~~~~~~~~~~~~~~~~~~
+withTimeUtil
+~~~~~~~~~~~~
 
-Sets the ``TimeUtilFactory`` used for creating a ``TimeUtil`` for each controller. Uses the static
-``TimeUtilFactory`` by default.
+Sets the ``TimeUtil`` for each controller.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        ChassisControllerBuilder &withTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory)
+        ChassisControllerBuilder &withTimeUtil(const TimeUtil &itimeUtil)
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        builder.withTimeUtilFactory(TimeUtilFactory()))
+        builder.withTimeUtil(TimeUtilFactory::withSettledUtilParams(50, 5, 250_ms))
 
 ================== ===================================================================
 Parameters
 ================== ===================================================================
- itimeUtilFactory   The TimeUtilFactory.
+ itimeUtil          The TimeUtil.
 ================== ===================================================================
 
 **Returns:** An ongoing builder.
