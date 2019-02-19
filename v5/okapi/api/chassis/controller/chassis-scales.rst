@@ -11,12 +11,9 @@ Constructor(s)
 --------------
 
 The two scales a `ChassisController <abstract-chassis-controller.html>`_ needs to do all of its
-closed-loop control. First index is the wheel diameter, second index is the wheel track. Read the
-`clawbot programming tutorial <../../../tutorials/walkthrough/clawbot.html>`_ for more information
-behind the meaning of these two numbers.
-
-The wheel track is the center-to-center distance between the wheels (center-to-center meaning the
-width between the centers of both wheels).
+closed-loop control. First index is the wheel diameter, second index is the wheel track. The wheel
+track is the center-to-center distance between the wheels (center-to-center meaning the width
+between the centers of both wheels).
 
 .. tabs ::
    .. tab :: Prototype
@@ -41,8 +38,7 @@ width between the centers of both wheels).
 
 The two scales a Chassis Controller needs to do all of its closed-loop control. First index is the
 straight scale, second index is the turn scale. The straight scale converts motor degrees to meters
-and the turn scale converts motor degrees to robot turn degrees. Read the clawbot programming
-tutorial for more information behind the meaning of these two numbers.
+and the turn scale converts motor degrees to robot turn degrees.
 
 .. tabs ::
    .. tab :: Prototype
