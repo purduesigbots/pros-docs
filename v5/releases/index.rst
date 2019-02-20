@@ -6,7 +6,6 @@ Kernel Releases
 ===============
 
 .. postlist:: 5
-   :sort:
    :date: %B %d, %Y
    :format: {title} on {date}
    :list-style: circle
@@ -18,7 +17,6 @@ CLI Releases
 ============
 
 .. postlist:: 5
-   :sort:
    :date: %B %d, %Y
    :format: {title} on {date}
    :list-style: circle
@@ -30,7 +28,6 @@ OkapiLib Releases
 =================
 
 .. postlist:: 5
-   :sort:
    :date: %B %d, %Y
    :format: {title} on {date}
    :list-style: circle
