@@ -355,7 +355,7 @@ reached:
  port         The V5 port number from 1-21
 ============ ==============================
 
-**Returns:** the current exposure percentage parameter from [0,100],
+**Returns:** the current exposure parameter from [0,150],
 PROS_ERR if an error occurred
 
 ----
@@ -758,7 +758,7 @@ reached:
       ::
 
         int32_t vision_set_exposure ( uint8_t port,
-                                      const uint8_t percent )
+                                      const uint8_t exposure )
 
    .. tab :: Example
       .. highlight:: c
@@ -775,8 +775,8 @@ reached:
  Parameters
 ============ ==============================
  port         The V5 port number from 1-21
- percent      The new exposure percentage
-              from [0,100]
+ exposure     The new exposure setting
+              from [0,150]
 ============ ==============================
 
 **Returns:** 0 if no errors occurred, PROS_ERR otherwise
