@@ -149,7 +149,7 @@ in this configuration.
 Exposure Setting
 ================
 In PROS Kernel 3.1.4 and earlier, the vision sensor exposure parameter was in the
-range [0,58]. In PROS Kernel 3.1.5 and newer, the parameter was scaled to be in
+range [0,58]. In PROS Kernel 3.1.5 and newer, the parameter is scaled to be in
 the range [0,150] to match the Vision Sensor utility. As a result, there is a loss
 of information in this translation since multiple integers on the scale [0,150] map
 to the scale [0,58].
