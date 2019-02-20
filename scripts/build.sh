@@ -11,12 +11,10 @@ fi
 echo Installing requirements.txt
 $python -m pip install -r requirements.txt
 
-echo Installing PROS CLI
-$python -m pip install pros_cli*.whl
-
 echo Building project
 make clean all
 
+mkdir artifacts
 pushd build
-tar -zcf ../pros-docs.tar.gz *
+tar -zcf ../artifacts/pros-docs.tar.gz *
 popd

@@ -96,16 +96,16 @@ A position controller that uses the PID algorithm. Uses the motor's integrated e
      ::
 
        // Controlling a motor on port 1 with its integrated encoder
-       auto controller = AsyncControllerFactory::posPID(1, 0.01, 0.0, 0.005);
+       auto controller = AsyncControllerFactory::posPID(1, 0.001, 0.0, 0.0001);
 
        // Controlling a motor group on ports 1 and 2 with its integrated encoder
-       auto controller = AsyncControllerFactory::posPID({-1, 2}, 0.01, 0.0, 0.005);
+       auto controller = AsyncControllerFactory::posPID({-1, 2}, 0.001, 0.0, 0.0001);
 
 =================== ===================================================================
 Parameters
 =================== ===================================================================
  imotor              The controller input (from the integrated encoder) and output.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikI                 The I term gain.
  ikD                 The D term gain.
  ikBias              The controller bias.
@@ -136,20 +136,20 @@ A position controller that uses the PID algorithm.
      ::
 
        // Controlling a motor on port 1 with an encoder in ADI ports A and B
-       auto controller = AsyncControllerFactory::posPID(1, ADIEncoder('A', 'B'), 0.01, 0.0, 0.005);
+       auto controller = AsyncControllerFactory::posPID(1, ADIEncoder('A', 'B'), 0.001, 0.0, 0.0001);
 
        // Controlling a motor group on ports 1 and 2 with an encoder in ADI ports A and B
-       auto controller = AsyncControllerFactory::posPID({-1, 2}, ADIEncoder('A', 'B'), 0.01, 0.0, 0.005);
+       auto controller = AsyncControllerFactory::posPID({-1, 2}, ADIEncoder('A', 'B'), 0.001, 0.0, 0.0001);
 
        // Controlling a motor group on ports 1 and 2 with a gyro in ADI port A
-       auto controller = AsyncControllerFactory::posPID({-1, 2}, ADIGyro('A'), 0.01, 0.0, 0.005);
+       auto controller = AsyncControllerFactory::posPID({-1, 2}, ADIGyro('A'), 0.001, 0.0, 0.0001);
 
 =================== ===================================================================
 Parameters
 =================== ===================================================================
  imotor              The controller output.
  isensor             The controller input.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikI                 The I term gain.
  ikD                 The D term gain.
  ikBias              The controller bias.
@@ -180,7 +180,7 @@ Parameters
 =================== ===================================================================
  iinput              The controller input.
  ioutput             The controller output.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikI                 The I term gain.
  ikD                 The D term gain.
  ikBias              The controller bias.
@@ -210,16 +210,16 @@ A velocity controller that uses the PD algorithm. Uses the motor's integrated en
      ::
 
        // Controlling a motor in port 1 with its integrated encoder
-       auto controller = AsyncControllerFactory::velPID(1, 0.01, 0.005);
+       auto controller = AsyncControllerFactory::velPID(1, 0.001, 0.0001);
 
        // Controlling a motor group on ports 1 and 2 with its integrated encoder
-       auto controller = AsyncControllerFactory::velPID({-1, 2}, 0.01, 0.005);
+       auto controller = AsyncControllerFactory::velPID({-1, 2}, 0.001, 0.0001);
 
 =================== ===================================================================
 Parameters
 =================== ===================================================================
  imotor              The controller input (from the integrated encoder) and output.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
@@ -251,20 +251,20 @@ A velocity controller that uses the PD algorithm.
      ::
 
        // Controlling a motor on port 1 with an encoder in ADI ports A and B
-       auto controller = AsyncControllerFactory::velPID(1, ADIEncoder('A', 'B'), 0.01, 0.005);
+       auto controller = AsyncControllerFactory::velPID(1, ADIEncoder('A', 'B'), 0.001, 0.0001);
 
        // Controlling a motor group on ports 1 and 2 with an encoder in ADI ports A and B
-       auto controller = AsyncControllerFactory::velPID({-1, 2}, ADIEncoder('A', 'B'), 0.01, 0.005);
+       auto controller = AsyncControllerFactory::velPID({-1, 2}, ADIEncoder('A', 'B'), 0.001, 0.0001);
 
        // Controlling a motor group on ports 1 and 2 with a gyro in ADI port A
-       auto controller = AsyncControllerFactory::velPID({-1, 2}, ADIGyro('A'), 0.01, 0.005);
+       auto controller = AsyncControllerFactory::velPID({-1, 2}, ADIGyro('A'), 0.001, 0.0001);
 
 =================== ===================================================================
 Parameters
 =================== ===================================================================
  imotor              The controller output.
  isensor             The controller input.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
@@ -296,7 +296,7 @@ Parameters
 =================== ===================================================================
  iinput              The controller input.
  ioutput             The controller output.
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.

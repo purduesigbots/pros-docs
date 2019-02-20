@@ -35,18 +35,18 @@ A position controller that uses the PID algorithm.
      .. highlight:: cpp
      ::
 
-        auto controller = IterativeControllerFactory::posPID(0.01, 0.0, 0.005);
+        auto controller = IterativeControllerFactory::posPID(0.001, 0.0, 0.0001);
 
         // Controller using a custom derivative filter
         auto controller = IterativeControllerFactory::posPID(
-          0.01, 0.0, 0.005, 0,
+          0.001, 0.0, 0.0001, 0,
           std::make_unique<AverageFilter<3>>()
         );
 
 =================== ===================================================================
 Parameters
 =================== ===================================================================
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikI                 The I term gain.
  ikD                 The D term gain.
  ikBias              The controller bias.
@@ -75,11 +75,11 @@ A velocity controller that uses the PD algorithm.
      .. highlight:: cpp
      ::
 
-       auto controller = IterativeControllerFactory::velPID(0.01, 0.005);
+       auto controller = IterativeControllerFactory::velPID(0.001, 0.0001);
 
        // Controller using a custom derivative filter
        auto controller = IterativeControllerFactory::velPID(
-         0.01, 0.005, 0, 0,
+         0.001, 0.0001, 0, 0,
          VelMathArgs(imev5TPR),
          std::make_unique<AverageFilter<3>>()
        );
@@ -87,7 +87,7 @@ A velocity controller that uses the PD algorithm.
 =================== ===================================================================
 Parameters
 =================== ===================================================================
- ikp                 The P term gain.
+ ikP                 The P term gain.
  ikD                 The D term gain.
  ikF                 The Feed-Forward gain.
  ikSF                A Feed-Forward gain to counteract static friction.
@@ -119,16 +119,16 @@ output.
      ::
 
        // Controlling a motor on port 1
-       auto controller = IterativeControllerFactory::motorVelocity(1, 0.01, 0.005);
+       auto controller = IterativeControllerFactory::motorVelocity(1, 0.001, 0.0001);
 
        // Controlling a motor group on ports 1 and 2
-       auto controller = IterativeControllerFactory::motorVelocity({-1, 2}, 0.01, 0.005);
+       auto controller = IterativeControllerFactory::motorVelocity({-1, 2}, 0.001, 0.0001);
 
 =============== ===================================================================
 Parameters
 =============== ===================================================================
  imotor          The output motor.
- ikp             The P term gain.
+ ikP             The P term gain.
  ikD             The D term gain.
  ikF             The Feed-Forward gain.
  ikSF            A Feed-Forward gain to counteract static friction.
