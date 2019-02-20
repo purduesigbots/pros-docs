@@ -375,9 +375,11 @@ for debugging or other purposes, you can supply a ``Logger``.
            auto drive = ChassisControllerBuilder()
                           .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
                           .withLogger(
-                            TimeUtilFactory::create().getTimer(), // It needs a Timer
-                            "/ser/sout", // Output to the PROS terminal
-                            Logger::LogLevel::debug // Most verbose log level
+                            std::make_shared<Logger>(
+                              TimeUtilFactory::create().getTimer(), // It needs a Timer
+                              "/ser/sout", // Output to the PROS terminal
+                              Logger::LogLevel::debug // Most verbose log level
+                            )
                           )
                           .build();
          }
@@ -394,9 +396,11 @@ for debugging or other purposes, you can supply a ``Logger``.
            auto drive = ChassisControllerBuilder()
                           .withMotors(1, -2) // Left motor is 1, right motor is 2 (reversed)
                           .withLogger(
-                            TimeUtilFactory::create().getTimer(), // It needs a Timer
-                            "/usd/test_logging.txt", // Output to a file on the SD card
-                            Logger::LogLevel::debug  // Most verbose log level
+                            std::make_shared<Logger>(
+                              TimeUtilFactory::create().getTimer(), // It needs a Timer
+                              "/usd/test_logging.txt", // Output to a file on the SD card
+                              Logger::LogLevel::debug  // Most verbose log level
+                            )
                           )
                           .build();
          }
