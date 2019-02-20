@@ -9,8 +9,8 @@ okapi::AsyncVelIntegratedController
 
 An `AsyncVelocityController <abstract-async-velocity-controller.html>`_ that uses the V5 motor's
 onboard control. If you are trying to create an instance of this class, you should most likely be
-using the `AsyncControllerFactory <async-controller-factory.html>`_ instead of a constructor from
-this class. Throws a ``std::invalid_argument`` exception if the gear ratio is zero.
+using the `AsyncVelControllerBuilder <async-vel-controller-builder.html>`_ instead of a constructor
+from this class. Throws a ``std::invalid_argument`` exception if the gear ratio is zero.
 
 Constructor(s)
 --------------

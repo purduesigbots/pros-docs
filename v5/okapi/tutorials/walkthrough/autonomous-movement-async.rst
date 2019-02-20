@@ -6,8 +6,7 @@ Asynchronous Autonomous Movement
           For a more basic tutorial on sequential movements, see `Moving Autonomously <./autonomous-movement-basic.html>`_.
 
 Oftentimes the fastest way to move in autonomous involves actuating multiple subsystems at once
-(i.e. driving and raising/lowering a lift). This is made possible with `Async Controllers
-<../../api/control/async/async-controller-factory.html>`_.
+(i.e. driving and raising/lowering a lift). This is made possible with Async Controllers.
 
 To create a Chassis Controller for a given system, modify the below example to fit your subsystem.
 

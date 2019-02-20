@@ -13,8 +13,9 @@ An `AsyncController <abstract-async-controller.html>`_ that transforms an
 the input controller will act like an `AsyncController <abstract-async-controller.html>`_.
 
 This class is normally not used directly. If you are trying to create an instance of this class,
-you should most likely be using the `AsyncControllerFactory <async-controller-factory.html>`_
-instead of a constructor from this class.
+you should most likely be using the `AsyncPosControllerBuilder
+<async-pos-controller-builder.html>`_ or `AsyncVelControllerBuilder
+<async-vel-controller-builder.html>`_ instead of a constructor from this class.
 
 Constructor(s)
 --------------

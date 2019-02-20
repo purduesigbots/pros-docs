@@ -9,9 +9,9 @@ okapi::ChassisControllerPID
 
 A `ChassisController <abstract-chassis-controller.html>`_ using PID control. Does not use the V5
 motor's integrated control. The motors passed in will be put into degree units. If you are trying
-to make an instance of this class, you should most likely be using the
-`ChassisControllerFactory <chassis-controller-factory.html>`_ instead of a constructor from this
-class. Throws a ``std::invalid_argument`` exception if the gear ratio is zero.
+to make an instance of this class, you should most likely be using the `ChassisControllerBuilder
+<chassis-controller-builder.html>`_ instead of a constructor from this class. Throws a
+``std::invalid_argument`` exception if the gear ratio is zero.
 
 Constructor(s)
 --------------

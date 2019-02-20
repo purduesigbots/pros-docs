@@ -9,7 +9,8 @@ okapi::AsyncVelPIDController
 
 An `AsyncVelPIDController <abstract-async-velocity-controller.html>`_ that uses PID. If you are
 trying to create an instance of this class, you should most likely be using the
-`AsyncControllerFactory <async-controller-factory.html>`_ instead of a constructor from this class.
+`AsyncVelControllerBuilder <async-vel-controller-builder.html>`_ instead of a constructor from this
+class.
 
 Constructor(s)
 --------------
