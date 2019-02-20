@@ -252,3 +252,25 @@ not modulus.
 ============ ===============================================================
 
 **Returns:** ``lhs`` mod ``rhs``.
+
+----
+
+gearsetToTPR
+~~~~~~~~~~~~
+
+Converts a gearset to its TPR.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        constexpr std::int32_t gearsetToTPR(const AbstractMotor::gearset igearset) noexcept
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ igearset     The gearset.
+============ ===============================================================
+
+**Returns:** The TPR.
