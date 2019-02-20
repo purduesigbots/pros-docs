@@ -22,7 +22,12 @@ process of writing an OkapiLib program.
    :glob:
    :titlesonly:
 
-   ./walkthrough/*
+   ./walkthrough/getting-started
+   ./walkthrough/clawbot
+   ./walkthrough/lift
+   ./walkthrough/chassis-controller-builder
+   ./walkthrough/autonomous-movement-basic
+   ./walkthrough/autonomous-movement-async
 
 Topical Tutorials
 =================
