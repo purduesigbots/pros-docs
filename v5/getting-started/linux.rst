@@ -23,4 +23,8 @@ Installing the Editor
 
 1. Follow the instructions `here <https://github.com/cquery-project/cquery/wiki/Building-cquery>`_ to build and install cquery.
 2. `Install Atom <https://atom.io>`_.
-3. Open Atom, and install the :code:`pros-bootstrapper` package (Settings > Packages).
+3. Run :code:`apm install pros-bootstrapper@0.0.12`.
+4. Open Atom and wait for any plugins to finish installing.
+5. Happy coding!
+
+.. note:: If Atom seems to get stuck during step 4, restart Atom every few minutes.
