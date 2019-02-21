@@ -10,3 +10,4 @@ to use the PROS 2 with the Cortex while we backport the VEX Cortex functionality
    :titlesonly:
 
    conductor
+   libraries
