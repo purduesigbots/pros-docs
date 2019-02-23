@@ -35,7 +35,7 @@ Constructor(s)
  Parameters
 =============== ===================================================================
  itimeUtil       See ``TimeUtil`` docs.
- ilimits         The limits.
+ ilimits         The default limits.
  ioutput         The output to write velocity targets to.
  idiameter       The effective diameter for whatever the motor spins.
  ipair           The gearset.
@@ -69,6 +69,37 @@ path is generated.
 ============ ===============================================================
  iwaypoints   The waypoints to hit on the path.
  ipathId      A unique identifier to save the path with.
+============ ===============================================================
+
+----
+
+generatePath
+~~~~~~~~~~~~
+
+Generates a path which intersects the given waypoints and saves it internally with a key of pathId.
+Call executePath() with the same pathId to run it.
+
+If the waypoints form a path which is impossible to achieve, an instance of ``std::runtime_error``
+is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no
+path is generated.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void generatePath(
+          std::initializer_list<QLength> iwaypoints,
+          const std::string &ipathId,
+          const PathfinderLimits &ilimits
+        )
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ iwaypoints   The waypoints to hit on the path.
+ ipathId      A unique identifier to save the path with.
+ ilimits      The limits to use for this path only.
 ============ ===============================================================
 
 ----
@@ -238,6 +269,34 @@ until the controller has settled. Does not save the path which was generated.
 ============ ===============================================================
  iposition    The starting position.
  itarget      The target position.
+ ibackwards   Whether to follow the path backwards.
+============ ===============================================================
+
+----
+
+moveTo
+~~~~~~
+
+Generates a new path from the position (typically the current position) to the target and blocks
+until the controller has settled. Does not save the path which was generated.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void moveTo(
+          const QLength &iposition, const QLength &itarget,
+          const PathfinderLimits &ilimits,
+          bool ibackwards = false
+        )
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ iposition    The starting position.
+ itarget      The target position.
+ ilimits      The limits to use for this path only.
  ibackwards   Whether to follow the path backwards.
 ============ ===============================================================
 

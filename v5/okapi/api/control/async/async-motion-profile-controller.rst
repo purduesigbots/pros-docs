@@ -37,7 +37,7 @@ Constructor(s)
  Parameters
 =============== ===================================================================
  itimeUtil       See ``TimeUtil`` docs.
- ilimits         The limits.
+ ilimits         The default limits.
  imodel          The chassis model to control.
  iscales         The chassis dimensions.
  ipair           The gearset.
@@ -71,6 +71,37 @@ path is generated.
 ============ ===============================================================
  iwaypoints   The waypoints to hit on the path.
  ipathId      A unique identifier to save the path with.
+============ ===============================================================
+
+----
+
+generatePath
+~~~~~~~~~~~~
+
+Generates a path which intersects the given waypoints and saves it internally with a key of pathId.
+Call executePath() with the same pathId to run it.
+
+If the waypoints form a path which is impossible to achieve, an instance of ``std::runtime_error``
+is thrown (and an error is logged) which describes the waypoints. If there are no waypoints, no
+path is generated.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void generatePath(
+          std::initializer_list<Point> iwaypoints,
+          const std::string &ipathId,
+          const PathfinderLimits &ilimits
+        )
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ iwaypoints   The waypoints to hit on the path.
+ ipathId      A unique identifier to save the path with.
+ ilimits      The limits to use for this path only.
 ============ ===============================================================
 
 ----
@@ -233,6 +264,43 @@ until the controller has settled. Does not save the path which was generated.
  Parameters
 ============ ===============================================================
  iwaypoints   The waypoints to hit on the path.
+ ibackwards   Whether to follow the path backwards.
+ imirrored    Whether to follow the profile mirrored.
+============ ===============================================================
+
+----
+
+moveTo
+~~~~~~
+
+Generates a new path from the position (typically the current position) to the target and blocks
+until the controller has settled. Does not save the path which was generated.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void moveTo(
+          std::initializer_list<Point> iwaypoints,
+          const PathfinderLimits &ilimits,
+          bool ibackwards = false, bool imirrored = false
+        )
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+       controller.moveTo({
+         Point{0_m, 0_m, 0_deg},
+         Point{3_ft, 0_m, 45_deg}
+       })
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ iwaypoints   The waypoints to hit on the path.
+ ilimits      The limits for this path only.
  ibackwards   Whether to follow the path backwards.
  imirrored    Whether to follow the profile mirrored.
 ============ ===============================================================
