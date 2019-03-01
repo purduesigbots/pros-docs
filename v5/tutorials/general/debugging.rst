@@ -16,7 +16,7 @@ To view a robot's output, there are two officially supported methods:
 
 1. Through the PROS CLI:
 
-   Running ``pros terminal`` on the command line will open an output
+   Running ``prosv5 terminal`` on the command line will open an output
    stream from a robot connected over direct USB connection, VEXnet, or
    `JINX <./tutorials/topical/jinx.html>`_.
 
