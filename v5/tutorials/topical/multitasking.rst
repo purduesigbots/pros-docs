@@ -6,11 +6,11 @@ Multitasking
           `C API <../../api/c/rtos.html>`_ and `C++ API <../../api/cpp/rtos.html>`_.
 
 Tasks are a great tool to do multiple things at once, but they can be difficult
-to use properly. The most important thing to remember when using tasks is that
-every task should include an infinite loop (``while(true)``), and every infinite loop
-needs to include a ``delay()`` or ``task_delay_until()`` statement. Without a
-``delay()`` statement, your task could starve the processor of resources and
-prevent the kernel from running properly.
+to use properly. The most important thing to remember when using tasks is that tasks aren't
+truly running in the background - they are run one at a time and swapped out by the PROS
+scheduler. If your task performs some repeated action (e.g. a ``while`` loop), you should
+include a ``delay()`` or ``task_delay_until()``. Without a ``delay()`` statement, your task
+could starve the processor of resources and prevent the kernel from running properly.
 
 The PROS task scheduler is a preemptive, priority-based, round-robin scheduler.
 This means that tasks are preempted (interrupted) every millisecond to determine if another task
@@ -39,7 +39,7 @@ The following list are some commonly made mistakes and guidelines for using Task
       programming environments for VEX, tasks must be marked with a special keyword. With most modern
       programming environments, tasks are just functions that get executed asynchronously.
     - It was mentioned above, but it's important enough for a second mention: every tasks'
-      infinite loop requires a ``delay()`` statement.
+      loop should have a ``delay()`` statement.
 
 Task Management
 ===============
