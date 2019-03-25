@@ -35,7 +35,8 @@ Do not use this function when the sensor value might be unstable
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range or the port is not configured to be an analog input.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an analog input
 
 Analogous to `pros::ADIAnalogIn::calibrate <../cpp/adi.html#calibrate>`_.
 
@@ -78,8 +79,8 @@ The meaning of the returned value varies depending on the sensor attached.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range or the port is not configured to be an analog input.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an analog input
 
 Analogous to `pros::ADIAnalogIn::get_value <../cpp/adi.html#get-value>`_.
 
@@ -125,8 +126,8 @@ causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range or the port is not configured to be an analog input.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an analog input
 
 Analogous to `pros::ADIAnalogIn::get_value_calibrated <../cpp/adi.html#get-value-calibrated>`_.
 
@@ -175,8 +176,8 @@ in the wash when integrated over time. Think of the value as the true value time
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range or the port is not configured to be an analog input.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an analog input
 
 Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-value-calibrated-HR>`_.
 
@@ -226,8 +227,8 @@ presses, and not in any other tasks.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range or the port is not configured to be a digital input.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a digital input
 
 Analogous to `pros::ADIDigitalIn::get_new_press <../cpp/adi.html#get-new-press>`_.
 
@@ -275,8 +276,8 @@ return value is undefined for pins configured as Analog inputs.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range or the port is not configured to be a digital input.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a digital input
 
 Analogous to `pros::ADIDigitalIn::get_value <../cpp/adi.html#id5>`_.
 
@@ -317,8 +318,8 @@ Sets the digital value (1 or 0) of a pin configured as a digital output.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range or the port is not configured to be a digital output.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a digital output
 
 Analogous to `pros::ADIDigitalOut::set_value <../cpp/adi.html#id8>`_.
 
@@ -366,8 +367,8 @@ There are 360 ticks in one revolution.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The encoder port number is out of range or the port is not configured to be an encoder.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an encoder
 
 Analogous to `pros::ADIEncoder::get_value <../cpp/adi.html#id11>`_.
 
@@ -410,8 +411,8 @@ Initializes and enables a quadrature encoder on two ADI ports.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the criteria in the parameter list below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an encoder
 
 Analogous to `pros::ADIEncoder::ADIEncoder <../cpp/adi.html#id9>`_.
 
@@ -461,8 +462,8 @@ method before stopping or starting an encoder.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The encoder port number is out of range or the port is not configured to be an encoder.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an encoder
 
 Analogous to `pros::ADIEncoder::reset <../cpp/adi.html#reset>`_.
 
@@ -503,8 +504,8 @@ Stops and disables the encoder.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The encoder port number is out of range or the port is not configured to be an encoder.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an encoder
 
 .. tabs ::
    .. tab :: Prototype
@@ -543,8 +544,8 @@ Returns the last set speed of the motor on the given port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range or the port is not configured as a motor.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a motor
 
 Analogous to `pros::ADIMotor::get_value <../cpp/adi.html#id14>`_.
 
@@ -585,8 +586,8 @@ Sets the speed of the motor on the given port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range or the port is not configured as a motor.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a motor
 
 Analogous to `pros::ADIMotor::set_value <../cpp/adi.html#id15>`_.
 
@@ -628,8 +629,8 @@ Stops the motor on the given port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range or the port is not configured as a motor.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a motor
 
 Analogous to `pros::ADIMotor::stop <../cpp/adi.html#id16>`_.
 
@@ -670,8 +671,7 @@ Configures the pin as an input or output with a variety of settings.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 .. tabs ::
    .. tab :: Prototype
@@ -709,8 +709,7 @@ Returns the configuration for the given ADI port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 Analogous to `pros::ADIPort::get_config <../cpp/adi.html#get-config>`_.
 
@@ -750,8 +749,7 @@ Returns the value for the given ADI port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 Analogous to `pros::ADIPort::get_value <../cpp/adi.html#id18>`_.
 
@@ -790,8 +788,7 @@ Configures an ADI port to act as a given sensor type.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 Analogous to `pros::ADIPort::set_config <../cpp/adi.html#set-config>`_.
 
@@ -834,8 +831,7 @@ depending on the configuration of the port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The port number is out of range.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 Analogous to `pros::ADIPort::set_value <../cpp/adi.html#id20>`_.
 
@@ -880,8 +876,8 @@ returned.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The ultrasonic port number is out of range or the ultrasonic port is not properly configured.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an ultrasonic
 
 Analogous to `pros::ADIUltrasonic::get_value <../cpp/adi.html#id24>`_.
 
@@ -925,8 +921,8 @@ Initializes an ultrasonic sensor on the specified ADI ports.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an ultrasonic
 
 Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
 
@@ -972,8 +968,8 @@ Stops and disables the ultrasonic sensor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The ultrasonic port number is out of range or the ultrasonic port is not properly configured.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as an ultrasonic
 
 .. tabs ::
    .. tab :: Prototype
@@ -1021,8 +1017,8 @@ called from initialize when the robot is stationary.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a gyro
 
 Analogous to `pros::ADIGyro::ADIGyro <../cpp/adi.html#>`_.
 
@@ -1073,8 +1069,8 @@ whole rotation.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a gyro
 
 Analogous to `pros::ADIGyro::get_value <../cpp/adi.html#>`_.
 
@@ -1118,8 +1114,8 @@ Resets the gyro value to zero.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a gyro
 
 Analogous to `pros::ADIGyro::reset <../cpp/adi.html#>`_.
 
@@ -1171,8 +1167,8 @@ Disables the gyro and voids the configuration on its port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a gyro
 
 .. tabs ::
    .. tab :: Prototype
