@@ -245,7 +245,7 @@ Then we can use them along with our limit switch logic from above to control the
      } else if (armDownButton.isPressed()) {
        armMotor.moveVoltage(-12000);
      } else {
-       armMotor.move_voltage(0);
+       armMotor.moveVoltage(0);
      }
    }
 
@@ -328,15 +328,15 @@ This is the final product from this tutorial.
 
              // Don't power the arm if it is all the way down
              if (armLimitSwitch.isPressed()) {
-               armMotor.move_voltage(0);
+               armMotor.moveVoltage(0);
              } else {
                // Else, the arm isn't all the way down
                if (armUpButton.isPressed()) {
-                 armMotor.move_voltage(127);
+                 armMotor.moveVoltage(12000);
                } else if (armDownButton.isPressed()) {
-                 armMotor.move_voltage(-127);
+                 armMotor.moveVoltage(-12000);
                } else {
-                 armMotor.move_voltage(0);
+                 armMotor.moveVoltage(0);
                }
              }
 
