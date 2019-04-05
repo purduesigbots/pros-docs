@@ -142,8 +142,8 @@ range ``[-1, 1]``, so we don't need to do any division ourselves.
 
          while (true) {
            // Tank drive with left and right sticks.
-           drive.tank(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                      controller.getAnalog(E_CONTROLLER_ANALOG_RIGHT_Y));
+           drive.tank(controller.getAnalog(controllerAnalog::leftY),
+                      controller.getAnalog(controllerAnalog::rightY));
 
            // Wait and give up the time we don't need to other tasks.
            // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
@@ -161,8 +161,8 @@ range ``[-1, 1]``, so we don't need to do any division ourselves.
 
          while (true) {
            // Arcade drive with the left stick.
-           drive.arcade(controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_Y),
-                        controller.getAnalog(E_CONTROLLER_ANALOG_LEFT_X));
+           drive.arcade(controller.getAnalog(controllerAnalog::leftY),
+                        controller.getAnalog(controllerAnalog::leftX));
 
            // Wait and give up the time we don't need to other tasks.
            // Additionally, joystick values, motor telemetry, etc. all updates every 10 ms.
@@ -214,7 +214,7 @@ Then we can check if it's pressed and stop powering the arm motor:
 
    // Don't power the arm if it is all the way down
    if (armLimitSwitch.isPressed()) {
-     armMotor.move_voltage(0);
+     armMotor.moveVoltage(0);
    } else {
      // Normal arm control
    }
@@ -226,8 +226,8 @@ First, we need to define our two controller buttons as
 .. highlight:: cpp
 .. code-block:: cpp
 
-   ControllerButton armUpButton(E_CONTROLLER_DIGITAL_A);
-   ControllerButton armDownButton(E_CONTROLLER_DIGITAL_B);
+   ControllerButton armUpButton(ControllerDigital::A);
+   ControllerButton armDownButton(ControllerDigital::B);
 
 Then we can use them along with our limit switch logic from above to control the arm:
 
@@ -237,13 +237,13 @@ Then we can use them along with our limit switch logic from above to control the
 
    // Don't power the arm if it is all the way down
    if (armLimitSwitch.isPressed()) {
-     armMotor.move_voltage(0);
+     armMotor.moveVoltage(0);
    } else {
      // Else, the arm isn't all the way down
      if (armUpButton.isPressed()) {
-       armMotor.move_voltage(127);
+       armMotor.moveVoltage(12000);
      } else if (armDownButton.isPressed()) {
-       armMotor.move_voltage(-127);
+       armMotor.moveVoltage(-12000);
      } else {
        armMotor.move_voltage(0);
      }
@@ -391,15 +391,15 @@ This is the final product from this tutorial.
 
              // Don't power the arm if it is all the way down
              if (armLimitSwitch.isPressed()) {
-               armMotor.move_voltage(0);
+               armMotor.moveVoltage(0);
              } else {
                // Else, the arm isn't all the way down
                if (armUpButton.isPressed()) {
-                 armMotor.move_voltage(127);
+                 armMotor.moveVoltage(12000);
                } else if (armDownButton.isPressed()) {
-                 armMotor.move_voltage(-127);
+                 armMotor.moveVoltage(-12000);
                } else {
-                 armMotor.move_voltage(0);
+                 armMotor.moveVoltage(0);
                }
              }
 
