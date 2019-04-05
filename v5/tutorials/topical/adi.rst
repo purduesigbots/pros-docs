@@ -197,7 +197,7 @@ An example of Line Tracker use:
            pros::ADILineSensor sensor (LINE_TRACKER_PORT);
            pros::Motor motor (MOTOR_PORT);
            // Arbitrarily set the threshold for a line at 2000 quid
-           while(sensor.get_value < 2000) {
+           while(sensor.get_value() < 2000) {
              // drive forward until a line is hit
              motor = 127;
              delay(50);
