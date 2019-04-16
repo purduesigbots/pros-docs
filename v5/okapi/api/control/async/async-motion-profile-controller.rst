@@ -456,3 +456,50 @@ Returns the underlying thread handle.
           CrossplatformThread *getThread() const
 
 **Returns:** The underlying thread handle.
+
+~~~~
+
+loadPath
+~~~~~~~~~
+
+Loads a path from a set of CSV files. The path must exist in the directory as 
+<ipathId>.<left/right>.csv
+
+The path can then be run with ``setTarget`` as if it had been just generated.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void loadPath(std::string idirectory, std::string ipathId)
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ idirectory   The directory that the paths are stored in
+ ipathId      A unique identifier for the path that is both the base filename and the name to be loaded
+============ ===============================================================
+
+~~~~
+
+storePath
+~~~~~~~~~
+
+Stores a path into a set of CSV files. The path must have already been generated and the directory must exist.
+
+The path is stored as two files, <ipathId>.left.csv and <ipathId>.right.csv.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void storePath(std::string idirectory, std::string ipathId)
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ idirectory   The directory that the paths are to be stored in
+ ipathId      A unique identifier for the path that is both the base filename and path identifier
+============ ===============================================================
