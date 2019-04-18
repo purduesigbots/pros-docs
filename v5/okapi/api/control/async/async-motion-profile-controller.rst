@@ -486,7 +486,9 @@ The path can then be run with ``setTarget`` as if it had been just generated.
 storePath
 ~~~~~~~~~
 
-Stores a path into a set of CSV files. The path must have already been generated and the directory must exist.
+Stores a path into a set of CSV files. 
+The path must have already been generated and the directory must exist on the SD card.
+``idirectory`` can be, but is not required to be, prefixed with /usd/. 
 
 The path is stored as two files, <ipathId>.left.csv and <ipathId>.right.csv.
 
