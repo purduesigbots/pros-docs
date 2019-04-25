@@ -5,3 +5,4 @@
 	path = sphinx-tabs
 	url = https://github.com/purduesigbots/sphinx-tabs.git
 	branch = master
+	ignore = dirty
