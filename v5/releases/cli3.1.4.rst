@@ -24,7 +24,7 @@ Run ``pip install https://github.com/purduesigbots/pros-cli/releases/download/3.
 Windows
 -------
 
-Download and run the appropriate installer from `our release page <https://github.com/purduesigbots/pros-cli/releases/3.1.4>`_.
+Download and run the appropriate (.exe) installer from `our release page <https://github.com/purduesigbots/pros-cli/releases/3.1.4>`_.
 
 macOS
 -----
