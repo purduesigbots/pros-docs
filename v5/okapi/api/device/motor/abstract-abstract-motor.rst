@@ -202,6 +202,27 @@ failed, setting errno.
 
 ----
 
+getPositionError
+~~~~~~~~~~~~~~~~
+
+Gets the positional error (target position minus actual position) of the motor in its encoder 
+units.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        double getPositionError()
+
+**Returns:** The motor's positional error in its encoder units or ``PROS_ERR_F`` if the operation
+failed, setting errno.
+
+----
+
 tarePosition
 ~~~~~~~~~~~~
 
@@ -258,6 +279,27 @@ This function uses the following values of errno when an error state is reached:
         virtual double getActualVelocity() = 0
 
 **Returns:** The motor's actual velocity in RPM or ``PROS_ERR_F`` if the operation failed,
+setting errno.
+
+----
+
+getVelocityError
+~~~~~~~~~~~~~~~~
+
+Gets the difference between the target velocity of the motor and the actual velocity of the
+motor.
+
+This function uses the following values of errno when an error state is reached:
+  EACCES - Another resource is currently trying to access the port.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        double getActualVelocity()
+
+**Returns:** The motor's velocity error in RPM or ``PROS_ERR_F`` if the operation failed,
 setting errno.
 
 ----
