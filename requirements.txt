@@ -3,3 +3,4 @@ sphinx_tabs==1.1.10
 ablog==0.9.4
 sphinx-click==2.0.1
 pros-cli-v5
+click
