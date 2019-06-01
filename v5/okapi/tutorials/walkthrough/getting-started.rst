@@ -21,7 +21,7 @@ using it by uncommenting OkapiLib's API header include statement in the file ``i
     #include "okapi/api.hpp"
     //#include "pros/api_legacy.h"
 
-Then, in file ``src/opcontrol.cpp``, remove the statement ``using namespace pros::literals``.
+Then, in file ``src/opcontrol.cpp``, remove the statement ``using namespace pros::literals`` (if it exists).
 
 That's it! Take a look at the `other tutorials <../index.html>`_ to get a better understanding
 of the tools Okapilib has.
