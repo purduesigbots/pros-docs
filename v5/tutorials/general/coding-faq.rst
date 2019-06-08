@@ -2,6 +2,15 @@
 Coding FAQ
 ==========
 
+    * ``"main.h" file not found``:
+        The linter being separate from the compiler produces this error when
+        `compile_commands.json` is out of date. This file stores the absolute
+        paths of your project files for the linter to use. When moving and renaming
+        files and directories, there can be a discrepancy between the actual file
+        path and the one in `compile_commands.json`. By running `pros make all` or
+        in the editor running PROS -> Build -> All, the whole project is compiled
+        again, fixing this issue.
+    
 Compile-Time Issues
 ===================
 
