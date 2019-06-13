@@ -36,7 +36,7 @@ Methods
 setTarget
 ~~~~~~~~~
 
-Sets the target for the controller.
+Sets the target for the controller in the motor's encoder units.
 
 .. tabs ::
    .. tab :: Prototype
@@ -48,7 +48,7 @@ Sets the target for the controller.
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- itarget      The new target.
+ itarget      The new target in the motor's encoder units.
 ============ ===============================================================
 
 ----

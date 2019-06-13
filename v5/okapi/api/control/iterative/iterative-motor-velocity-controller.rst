@@ -111,7 +111,7 @@ Gets the last set target, or the default target if none was set.
 setTarget
 ~~~~~~~~~
 
-Sets the target for the controller.
+Sets the target for the controller in the motor's encoder units.
 
 .. tabs ::
    .. tab :: Prototype
@@ -123,7 +123,7 @@ Sets the target for the controller.
 ============ ===============================================================
  Parameters
 ============ ===============================================================
- itarget      The new target.
+ itarget      The new target in the motor's encoder units.
 ============ ===============================================================
 
 ----
