@@ -7,11 +7,11 @@ Chassis Controller Builder
 okapi::ChassisControllerBuilder
 ===============================
 
-A `builder <https://sourcemaking.com/design_patterns/builder>`_ which creates instances
-of `ChassisController <abstract-chassis-controller.html>`_.
-This is the preferred way of creating a `ChassisController <abstract-chassis-controller.html>`_.
-You can read more about the builder pattern
-`here <https://sourcemaking.com/design_patterns/builder>`_.
+A `builder <https://sourcemaking.com/design_patterns/builder>`_ which creates
+instances of `ChassisController <abstract-chassis-controller.html>`_. This is
+the preferred way of creating a `ChassisController
+<abstract-chassis-controller.html>`_. You can read more about the builder
+pattern `here <https://sourcemaking.com/design_patterns/builder>`_.
 
 Constructor(s)
 --------------
@@ -539,34 +539,6 @@ Parameters
 
 ----
 
-withTimeUtil
-~~~~~~~~~~~~
-
-Sets the ``TimeUtil`` for each controller.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        ChassisControllerBuilder &withTimeUtil(const TimeUtil &itimeUtil)
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        builder.withTimeUtil(TimeUtilFactory::withSettledUtilParams(50, 5, 250_ms))
-
-================== ===================================================================
-Parameters
-================== ===================================================================
- itimeUtil          The TimeUtil.
-================== ===================================================================
-
-**Returns:** An ongoing builder.
-
-----
-
 withGearset
 ~~~~~~~~~~~
 
@@ -681,10 +653,59 @@ Parameters
 
 ----
 
+withChassisControllerTimeUtilFactory
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sets the ``TimeUtilFactory`` used when building a ``ChassisController``. The
+default is the static ``TimeUtilFactory``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisControllerBuilder &
+        withChassisControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory)
+
+================== ===================================================================
+Parameters
+================== ===================================================================
+ itimeUtilFactory   The TimeUtilFactory.
+================== ===================================================================
+
+**Returns:** An ongoing builder.
+
+----
+
+withClosedLoopControllerTimeUtilFactory
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Sets the ``TimeUtilFactory`` used when building a ``ClosedLoopController``. The
+default is the static ``TimeUtilFactory``.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        ChassisControllerBuilder &
+        withClosedLoopControllerTimeUtilFactory(const TimeUtilFactory &itimeUtilFactory)
+
+================== ===================================================================
+Parameters
+================== ===================================================================
+ itimeUtilFactory   The TimeUtilFactory.
+================== ===================================================================
+
+**Returns:** An ongoing builder.
+
+----
+
 withLogger
 ~~~~~~~~~~
 
-Sets the logger.
+Sets the logger used for the ``ChassisController`` and
+``ClosedLoopControllers``.
 
 .. tabs ::
    .. tab :: Prototype
