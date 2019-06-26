@@ -5,13 +5,16 @@ Installing on Linux
 Installing the toolchain for Ubuntu-Based Distributions
 -------------------------------------------------------
 
-If you are using a version >18.04, you can find the toolchain `here <https://www.ubuntuupdates.org/package/core/disco/universe/base/gcc-arm-none-eabi>`
+1. If you are using a version >18.04, you can find the toolchain `here <https://www.ubuntuupdates.org/package/core/disco/universe/base/gcc-arm-none-eabi>`
 
 .. note:: If you are using an older distrobution the instructions found `here <https://launchpad.net/~team-gcc-arm-embedded/+archive/ubuntu/ppa>`_ to add and install the latest version of the GNU Arm Embedded toolchain.
 
 Installing the toolchain for Other Distributions
 -----------------------------------------------
 
+1. If you are running a Debian-based distribution, follow the instructions found `here <https://launchpad.net/~team-gcc-arm-embedded/+archive/ubuntu/ppa>`_ to add and install the latest version of the GNU Arm Embedded toolchain.
+
+.. note:: If you are using a non-Debian-based distribution of Linux, check your favorite package repository for an updated version of the toolchain. The main requirement is that you get one that uses GCC version 7.2 or greater.
 
 
 Installing the CLI
