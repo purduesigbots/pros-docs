@@ -129,7 +129,7 @@ It returns false if the path could not be removed because it is running.
 ----
 
 forceRemovePath
-~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 Attempts to remove a path without stopping execution, then if that fails, disables the controller and removes the path.
 
