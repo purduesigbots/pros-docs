@@ -496,7 +496,7 @@ The path can then be run with ``setTarget`` as if it had been just generated.
       .. highlight:: cpp
       ::
 
-        void loadPath(std::string idirectory, std::string ipathId)
+        void loadPath(const std::string &idirectory, const std::string &ipathId)
 
 ============ ===============================================================
  Parameters
@@ -521,7 +521,7 @@ The path is stored as two files, <ipathId>.left.csv and <ipathId>.right.csv.
       .. highlight:: cpp
       ::
 
-        void storePath(std::string idirectory, std::string ipathId)
+        void storePath(const std::string &idirectory, const std::string &ipathId)
 
 ============ ===============================================================
  Parameters
