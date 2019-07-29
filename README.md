@@ -21,7 +21,7 @@ A few Sphinx extensions are used as well:
 Great! Please help us. Choose one of the following that best suits your needs. 
 
 #### Easy
-If you want ot change a page or a couple words, it is simple. All you have to do is fork this repository and change a `.rst` file. Then submit a pull request, or a PR, and you have officially contributed to `pros-docs`! 
+If you want ot change a page or a couple words, it is simple. All you have to do is to edit a file and [Github's UI](https://help.github.com/en/articles/editing-files-in-another-users-repository) will take care of the rest of it! Then you have officially contributed to `pros-docs`! 
 
 #### Medium
 Here you will install a basic html version of `pros-docs` This is adequate for most people
