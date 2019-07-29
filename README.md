@@ -20,13 +20,13 @@ A few Sphinx extensions are used as well:
 ## I Just Want to Help
 Great! Please help us. Choose one of the following that best suits your needs. 
 
-#### Easy
+#### Simple Text Changes
 To change a page or a couple words, it is simple. You can:
  - Edit a file in this repository and [Github's UI](https://help.github.com/en/articles/editing-files-in-another-users-repository) will take care of the rest of it!
  - Go to the pros [website](https://pros.cs.purdue.edu/v5/okapi/tutorials/walkthrough/clawbot.html), and on the top right of each page is a `Edit on Github` button. Pressing that will also allow you to edit the source file.
 
-#### Medium
-Here you will install a basic html version of `pros-docs` This is adequate for most people.
+#### Formatting Changes
+Here you will install a basic html version of `pros-docs` This is adequate for most formatting changes people.
 To make this process easier. If you don't already have a basic understanding of how these work: [git](https://rogerdudler.github.io/git-guide/), [github](https://github.com/firstcontributions/first-contributions), [sphinx](https://www.mageworx.com/blog/2016/05/sphinx-the-beginners-guide/), [python3](https://wiki.python.org/moin/BeginnersGuide), you should go check them out before you start.
  
  Clone the project, change the directory to `pros-docs`
@@ -63,7 +63,7 @@ Whether or not you decide to use a virtual environment, install all of the depen
 ```sh
 pip3 install -r requirements.txt
 ```
-Note: to get out of the virtual environment run `deactivate`
+*Note: to get out of the virtual environment run `deactivate`*
 
 Once you have installed the requirements, building is very straightforward. Just
 run `make` in the `pros-docs` directory.
@@ -72,8 +72,8 @@ Now, pull up a browser and open `pros-docs/build/index.html`
 
 Now you can easily edit the `.rst`, and make new files. If you would like to, submit a PR to get those files changed on the website.
 
-#### Hard
-Modifying the tabs theming
+#### Theme Changes
+For more advanced users, if there is a bug in the theme, or *syntax highlighting*, for example. The tabs theming may be changed if you follow this guide. 
 
 Modification of the tabs theming should be done within the [SIGBots fork of the tabs extension](https://github.com/purduesigbots/sphinx-tabs). Testing modifications to the
 theming is often easier done from within the main docs repo; since the theming is just CSS
