@@ -56,7 +56,7 @@ We recommend working in a virtual environment, but the following 2 lines are opt
 > python3 -m venv ./docs-venv
 > . ./docs-venv/bin/activate
 
-Whether or not you decide to use the python virtual environment install all of the dependencies for building the PROS Documentation, run:
+Whether or not you decide to use a virtual environment install all of the dependencies for building the PROS Documentation, run:
 
 ```sh
 pip3 install -r requirements.txt
