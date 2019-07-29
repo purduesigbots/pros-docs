@@ -8,9 +8,7 @@ at https://pros.cs.purdue.edu/.
 
 ## How are these docs built?
 
-The PROS docs are built with [Sphinx](http://www.sphinx-doc.org/en/master/). The
-theming is a modified version of the [Read The Docs theme](http://sphinx-rtd-theme.readthedocs.io/en/latest/),
-which can be found at [this fork](https://github.com/purduesigbots/sphinx_rtd_theme).
+The PROS docs are built with [Sphinx](http://www.sphinx-doc.org/en/master/). 
 
 A few Sphinx extensions are used as well:
 
@@ -19,50 +17,67 @@ A few Sphinx extensions are used as well:
   in the API docs and tutorials. This is also modified from its original state, and that
   fork can be found at [this fork](https://github.com/purduesigbots/sphinx-tabs).
 
-## Contributing
+## I Just Want to Help
+Great! Please help us. Choose one of the following that best suits your needs. 
 
-The requirements to build the docs site (with no modifications to anything but the
-source (`.rst`) files) are as follows:
+#### Easy
+If you want ot change a page or a couple words, it is simple. All you have to do is fork this repository and change a `.rst` file. Then submit a pull request, or a PR, and you have officially contributed to `pros-docs`! 
 
-* Python3
-* Sphinx (pip package)
-* Sphinx-tabs (pip package)
-* Ablog (pip package)
-
-To install all of the dependencies for building the PROS Documentation, run
-
+#### Medium
+Here you will install a basic html version of `pros-docs` This is adequate for most people
+To make this process easier. If you don't already have a basic understanding of how these work:       [git](https://rogerdudler.github.io/git-guide/), 
+                  [github](https://github.com/firstcontributions/first-contributions), 
+                  [sphinx](https://www.mageworx.com/blog/2016/05/sphinx-the-beginners-guide/), 
+                  [python3](https://wiki.python.org/moin/BeginnersGuide), you should go check them out before you start.
+ 
+ Clone the project, change the directory to `pros-docs`
+ ```sh
+git clone https://github.com/purduesigbots/pros-docs
+cd pros-docs
 ```
-# Recommend working in a virtual environment, but the following 2 lines are optional
-> python3 -m venv ./docs-venv
-> . ./docs-venv/bin/activate
-
-> pip3 install -r requirements.txt
-```
-
-### Building the Docs
-
-Once you have installed the requirements, building is very straightforward. Just
-run `make` in the root directory.
-
-### Git Submodules
 
 The `sphinx_rtd_theme` and `sphinx-tabs` folders within the documentation are
 [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules). As a result,
 you need to initialize these submodules and pull them separately when updating the docs.
 
-```
+```sh
 # Repeat this in both the sphinx_rtd_theme and sphinx-tabs directories
 > git submodule init
 > git submodule update
 ```
 
-### Modifying the tabs theming
+ Install These Dependancies:
+* Python3
+* Sphinx (pip package)
+* Sphinx-tabs (pip package)
+* Ablog (pip package)
+
+We recommend working in a virtual environment, but the following 2 lines are optional
+> python3 -m venv ./docs-venv
+> . ./docs-venv/bin/activate
+
+Whether or not you decide to use the python virtual environment install all of the dependencies for building the PROS Documentation, run:
+
+```sh
+pip3 install -r requirements.txt
+```
+Note: to get out of the virtual environment run `deactivate`
+
+Once you have installed the requirements, building is very straightforward. Just
+run `make` in the `pros-docs` directory.
+
+Now, pull up a browser and open `pros-docs/build/index.html`
+
+Great! Now you can edit the `.rst` files, make new files, and send a PR to change those files on the actual website.
+
+#### Hard
+Modifying the tabs theming
 
 Modification of the tabs theming should be done within the [SIGBots fork of the tabs extension](https://github.com/purduesigbots/sphinx-tabs). Testing modifications to the
 theming is often easier done from within the main docs repo; since the theming is just CSS
 no compilation is required outside of the typical build process.
 
-### Modifying the general theming
+Modifying the general theming
 
 Modifying the Read the Docs theme is a much more difficult process to get set up than the
 tabs theming, but is very straightforward after the initial work.
