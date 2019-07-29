@@ -8,7 +8,7 @@ at https://pros.cs.purdue.edu/.
 
 ## How are these docs built?
 
-The PROS docs are built with [Sphinx](http://www.sphinx-doc.org/en/master/). 
+The PROS docs are built with [Sphinx](http://www.sphinx-doc.org/en/master/). The theming is a modified version of the [Read The Docs theme](http://sphinx-rtd-theme.readthedocs.io/en/latest/)which can be found at [this fork](https://github.com/purduesigbots/sphinx_rtd_theme).
 
 A few Sphinx extensions are used as well:
 
@@ -21,20 +21,20 @@ A few Sphinx extensions are used as well:
 Great! Please help us. Choose one of the following that best suits your needs. 
 
 #### Easy
-If you want ot change a page or a couple words, it is simple. All you have to do is to edit a file and [Github's UI](https://help.github.com/en/articles/editing-files-in-another-users-repository) will take care of the rest of it! Then you have officially contributed to `pros-docs`! 
+To change a page or a couple words, it is simple. You can:
+ - Edit a file in this repository and [Github's UI](https://help.github.com/en/articles/editing-files-in-another-users-repository) will take care of the rest of it!
+ - Go to the pros [website](https://pros.cs.purdue.edu/v5/okapi/tutorials/walkthrough/clawbot.html), and on the top right of each page is a `Edit on Github` button. Pressing that will also allow you to edit the source file.
 
 #### Medium
-Here you will install a basic html version of `pros-docs` This is adequate for most people
-To make this process easier. If you don't already have a basic understanding of how these work:       [git](https://rogerdudler.github.io/git-guide/), 
-                  [github](https://github.com/firstcontributions/first-contributions), 
-                  [sphinx](https://www.mageworx.com/blog/2016/05/sphinx-the-beginners-guide/), 
-                  [python3](https://wiki.python.org/moin/BeginnersGuide), you should go check them out before you start.
+Here you will install a basic html version of `pros-docs` This is adequate for most people.
+To make this process easier. If you don't already have a basic understanding of how these work: [git](https://rogerdudler.github.io/git-guide/), [github](https://github.com/firstcontributions/first-contributions), [sphinx](https://www.mageworx.com/blog/2016/05/sphinx-the-beginners-guide/), [python3](https://wiki.python.org/moin/BeginnersGuide), you should go check them out before you start.
  
  Clone the project, change the directory to `pros-docs`
  ```sh
-git clone https://github.com/purduesigbots/pros-docs
+git clone --recursive https://github.com/purduesigbots/pros-docs
 cd pros-docs
 ```
+*Note: If you forget to add the `--recursive` flag, simply run `git submodule update --init --recursive`. Later on, if your submodules are out of date, you can run `git submodule update --recursive`*
 
 The `sphinx_rtd_theme` and `sphinx-tabs` folders within the documentation are
 [git submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules). As a result,
@@ -52,9 +52,11 @@ you need to initialize these submodules and pull them separately when updating t
 * Sphinx-tabs (pip package)
 * Ablog (pip package)
 
-We recommend working in a virtual environment, but the following 2 lines are optional
+```
+ We recommend working in a virtual environment, but the following 2 lines are optional
 > python3 -m venv ./docs-venv
 > . ./docs-venv/bin/activate
+```
 
 Whether or not you decide to use the python virtual environment install all of the dependencies for building the PROS Documentation, run:
 
@@ -68,7 +70,7 @@ run `make` in the `pros-docs` directory.
 
 Now, pull up a browser and open `pros-docs/build/index.html`
 
-Great! Now you can edit the `.rst` files, make new files, and send a PR to change those files on the actual website.
+Now you can easily edit the `.rst`, and make new files. If you would like to, submit a PR to get those files changed on the website.
 
 #### Hard
 Modifying the tabs theming
