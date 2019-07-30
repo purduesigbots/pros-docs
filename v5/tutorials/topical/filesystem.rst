@@ -18,7 +18,7 @@ in the following manner:
 .. code-block:: cpp
 
    FILE* usd_file_write = fopen("/usd/example.txt", "w");
-   fputs("Example text", usd_fil_write);
+   fputs("Example text", usd_file_write);
    fclose(usd_file_write);
 
    FILE* usd_file_read = fopen("/usd/example.txt", "r");
