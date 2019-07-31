@@ -5,7 +5,7 @@ V5 Brain Display (LVGL)
 Interacting with the touchscreen on the V5 Brain is made possible through `LVGL <https://littlevgl.com>`_.
 LVGL is a full-featured C graphics library (it's accessible in C++ projects too under the same API).
 
-The first step to getting started with LVGL is to include ``apix.h`` in your ``main.h`` file or other header files.
+The first step to getting started with LVGL is to include ``pros/apix.h`` in your ``main.h`` file or other header files.
 This includes the full LVGL feature set as described in their documentation: https://littlevgl.com/
 
 You can follow along with any of the LVGL `tutorials <https://github.com/littlevgl/lv_examples/tree/master/lv_tutorial>`_
