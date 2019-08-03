@@ -22,7 +22,7 @@ To enable this compilation mode, you should open your project's Makefile and edi
 so that ``USE_PACKAGE:=1``. Re-build and upload your project and PROS will automatically use the new files. PROS
 will automatically detect when you're using the same combination of libraries and decide not to re-upload the
 "cold" code. Verification that the library is present is done with filename and checksum of the file. As a result,
-if you use the same combination of libraries (cold image), only one copy of the cold iamge is uploaded to the V5.
+if you use the same combination of libraries (cold image), only one copy of the cold image is uploaded to the V5.
 
 Large Projects
 --------------
