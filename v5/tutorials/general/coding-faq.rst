@@ -6,7 +6,7 @@ Coding FAQ
         This error occurs when the compilation database ``compile_commands.json``
         is not up to date. The file contains the exact compiler calls of the project.
         Right after project creation, this could occur because the project was created
-        using the CLI without the ``–compile-after flag``, or there was a hang-up in the
+        using the CLI without the ``–compile-after`` flag, or there was a hang-up in the
         editor after creating the project. By running ``pros make all`` or in the editor
         running ``PROS -> Build -> All``, the whole project is compiled again, fixing this
         issue. It is possible that a compilation error was not caught by the linter, so running
