@@ -5,11 +5,19 @@ Installing on Linux
 Installing the toolchain
 ------------------------
 
-1. Follow the instructions found `here <https://launchpad.net/~team-gcc-arm-embedded/+archive/ubuntu/ppa>`_ to add and install the latest version of the GNU Arm Embedded toolchain.
+The steps for installing the toolchain can differ greatly per distribution. The first step is to check whether your package manager offers the arm-none-eabi toolchain. If so, make sure that the version available is greater than or equal to 7.2 before installing.
 
-.. note:: If you are using a Debian-based distribution of Linux of version >18.04, you can find the toolchain `here <https://www.ubuntuupdates.org/package/core/disco/universe/base/gcc-arm-none-eabi>`_.
+If you're not sure whether your distribution's package manager has the toolchain available, or if you prefer to install things manually, follow the instructions below.
 
-.. note:: If you are using a non-Debian-based distribution of Linux, check your favorite package repository for an updated version of the toolchain. The main requirement is that you get one that uses GCC version 7.2 or greater.
+.. note:: For users of Debian-based distributions, be aware that the toolchain available through Apt is out of date and likely will not work for PROS projects. For Ubuntu users, you may see references online to a PPA by team-gcc-arm-embedded, but that PPA does not seem to be updated any more. Therefore, if you are using a Debian-based distribution or Ubuntu, please follow the instructions below.
+
+1. Download the latest version of the toolchain from `the Arm developer site <https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads>`_. We recommend the "Linux 64-bit" release. If you can't use this for some reason (e.g. you have a 32-bit system), you may need to download the "Source Invariant" release and build manually, following the instructions in the archive.
+2. Move the file to your home directory and untar it using the command :code:`tar -xjvf gcc-arm-none-eabi-X-20XX-qX-update-linux.tar.bz2`:. The Xs should be replaced with those present in the name of the file you downloaded.
+3. Add this line to your :code:`.bashrc` file (if using bash), replacing :code:`<your user>` with your username: :code:`export PATH=$PATH:/home/<your user>/gcc-arm-none-eabi-8-2019-q3-update/bin/`. If you are using a shell other than bash, refer to that shell's documentation for how and where to add entries to your PATH when logging in.
+4. Close and re-open your terminal, or run :code:`source ~/.bashrc` (if running bash).
+5. Test by running :code:`arm-none-eabi-gcc --version`. The output should confirm that the version is greater than or equal to 7.2. If it is not, make sure you don't have conflicting versions installed through a package manager.
+
+.. note:: After installing the toolchain using the instructions listed above, upgrading to a newer version is as removing the previous install and following the instructions again with the newer version.
 
 Installing the CLI
 ------------------
