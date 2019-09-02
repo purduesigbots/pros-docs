@@ -17,7 +17,7 @@ If you're not sure whether your distribution's package manager has the toolchain
 4. Close and re-open your terminal, or run :code:`source ~/.bashrc` (if running bash).
 5. Test by running :code:`arm-none-eabi-gcc --version`. The output should confirm that the version is greater than or equal to 7.2. If it is not, make sure you don't have conflicting versions installed through a package manager.
 
-.. note:: After installing the toolchain using the instructions listed above, upgrading to a newer version is as removing the previous install and following the instructions again with the newer version.
+.. note:: After installing the toolchain using the instructions listed above, upgrading to a newer version is as simple as removing the previous install and following the instructions again with the newer version.
 
 Installing the CLI
 ------------------
