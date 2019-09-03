@@ -2,6 +2,16 @@
 Coding FAQ
 ==========
 
+    * ``"main.h" file not found``:
+        This error occurs when the compilation database ``compile_commands.json``
+        is not up to date. The file contains the exact compiler calls of the project, and should be automatically populated when the code is compiled.
+        If you see this error just after creating a project, it could be because the project was created
+        using the CLI without the ``–compile-after`` flag, or there was a hang-up in the
+        editor after creating the project. Regardless of when this issue appears, running ``pros make all`` in the CLI or
+        running ``PROS -> Build -> All`` in the editor, the whole project is compiled again, fixing this
+        issue. You may need to close and reopen any files in order for the linter to catch up. It is also possible that a compilation error was not caught by the linter, so running
+        a full build will help discover these hidden errors.
+    
 Compile-Time Issues
 ===================
 
