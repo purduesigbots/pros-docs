@@ -18,8 +18,8 @@ Constructor(s)
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 .. tabs ::
    .. tab :: Prototype
@@ -187,7 +187,7 @@ from the PROS 2 API.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 .. tabs ::
    .. tab :: Prototype
@@ -255,7 +255,7 @@ from the PROS 2 API.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_move <../c/motors.html#motor-move>`_.
 
@@ -304,7 +304,7 @@ the position when it was most recently reset with `tare_position`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_move_absolute <../c/motors.html#motor-move-absolute>`_.
 
@@ -365,7 +365,7 @@ This movement is relative to the current position of the motor as given in
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_move_relative <../c/motors.html#motor-move-relative>`_.
 
@@ -421,7 +421,7 @@ voltage.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_move_velocity <../c/motors.html#motor-move-velocity>`_.
 
@@ -463,7 +463,7 @@ Sets the voltage for the motor from -12000 mV to 12000 mV.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_move_voltage <../c/motors.html#motor-move-voltage>`_.
 
@@ -504,7 +504,7 @@ a profiled movement.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_modify_profiled_velocity <../c/motors.html#motor-modify-profiled-velocity>`_.
 
@@ -544,7 +544,7 @@ Gets the target position set for the motor by the user.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_target_position <../c/motors.html#motor-get-target-position>`_.
 
@@ -578,7 +578,7 @@ Gets the velocity commanded to the motor by the user.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_target_velocity <../c/motors.html#motor-get-target-velocity>`_.
 
@@ -619,7 +619,7 @@ Gets the actual velocity of the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_actual_velocity <../c/motors.html#motor-get-actual-velocity>`_.
 
@@ -655,7 +655,7 @@ Gets the current drawn by the motor in mA.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_current_draw <../c/motors.html#motor-get-current-draw>`_.
 
@@ -692,7 +692,7 @@ Gets the direction of movement for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_direction <../c/motors.html#motor-get-direction>`_.
 
@@ -734,7 +734,7 @@ is drawing power but not moving.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_efficiency <../c/motors.html#motor-get-efficiency>`_.
 
@@ -773,7 +773,7 @@ Compare this bitfield to the bitmasks in ``pros::motor_fault_e_t``.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_faults <../c/motors.html#motor-get-faults>`_.
 
@@ -811,7 +811,7 @@ Compare this bitfield to the bitmasks in ``pros::motor_flag_e_t``.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_flags <../c/motors.html#motor-get-flags>`_.
 
@@ -847,7 +847,7 @@ Gets the absolute position of the motor in its encoder units.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_position <../c/motors.html#motor-get-position>`_.
 
@@ -884,7 +884,7 @@ Gets the power drawn by the motor in Watts.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_power <../c/motors.html#motor-get-power>`_.
 
@@ -921,7 +921,7 @@ Gets the raw encoder count of the motor at a given timestamp.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_raw_position <../c/motors.html#motor-get-raw-position>`_.
 
@@ -968,7 +968,7 @@ temperature reading is greater than or equal to 55 C.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_temperature <../c/motors.html#motor-get-temperature>`_.
 
@@ -1005,7 +1005,7 @@ Gets the torque generated by the motor in Nm.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_torque <../c/motors.html#motor-get-torque>`_.
 
@@ -1042,7 +1042,7 @@ Gets the voltage delivered to the motor in mV.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_voltage <../c/motors.html#motor-get-voltage>`_.
 
@@ -1079,7 +1079,7 @@ Gets the zero position flag for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_zero_position_flag <../c/motors.html#motor-get-zero-position-flag>`_.
 
@@ -1117,7 +1117,7 @@ Gets the zero velocity flag for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_is_stopped <../c/motors.html#motor-is-stopped>`_.
 
@@ -1154,7 +1154,7 @@ Detects if the motor is drawing over its current limit.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_is_over_current <../c/motors.html#motor-is-over-current>`_.
 
@@ -1192,7 +1192,7 @@ Gets the temperature limit flag for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_is_over_temp <../c/motors.html#motor-is-over-temp>`_.
 
@@ -1354,7 +1354,7 @@ Gets the brake mode of the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_brake_mode <../c/motors.html#motor-get-brake-mode>`_.
 
@@ -1389,7 +1389,7 @@ The default limit is 2500 mA.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_current_limit <../c/motors.html#motor-get-current-limit>`_.
 
@@ -1424,7 +1424,7 @@ Gets the encoder units set for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_encoder_units <../c/motors.html#motor-get-encoder-units>`_.
 
@@ -1456,7 +1456,7 @@ Gets the `gearset <motor_gearset_e_t_>`_` that was set for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_gearing <../c/motors.html#motor-get-gearing>`_.
 
@@ -1488,7 +1488,7 @@ Gets the voltage limit set by the user.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_get_voltage_limit <../c/motors.html#motor-get-voltage-limit>`_.
 
@@ -1522,7 +1522,7 @@ pros::Motor::set_pos_pid_full() functions have not been used.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Additionally, in an error state all values of the returned struct are set
 to their negative maximum values.
@@ -1572,7 +1572,7 @@ pros::Motor::set_vel_pid_full() functions have not been used.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Additionally, in an error state all values of the returned struct are set
 to their negative maximum values.
@@ -1620,7 +1620,7 @@ Gets the operation direction of the motor as set by the user.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_is_reversed <../c/motors.html#motor-is-reversed>`_.
 
@@ -1653,7 +1653,7 @@ Sets one of `motor_brake_mode_e_t`_ to the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_brake_mode <../c/motors.html#motor-set-brake-mode>`_.
 
@@ -1694,7 +1694,7 @@ The default limit is 2500 mA.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_current_limit <../c/motors.html#motor-set-current-limit>`_.
 
@@ -1739,7 +1739,7 @@ Sets one of `motor_encoder_units_e_t`_ for the motor encoder.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_encoder_units <../c/motors.html#motor-set-encoder-units>`_.
 
@@ -1778,7 +1778,7 @@ Sets one of `motor_gearset_e_t <motor_gearset_e_t_>`_ for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_gearing <../c/motors.html#motor-set-gearing>`_.
 
@@ -1823,7 +1823,7 @@ Only non-zero values of the struct will change the existing motor constants.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_pos_pid <../c/motors.html#motor-set-pos-pid>`_.
 
@@ -1872,7 +1872,7 @@ Only non-zero values of the struct will change the existing motor constants.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_pos_pid_full <../c/motors.html#motor-set-pos-pid-full>`_.
 
@@ -1923,7 +1923,7 @@ This will invert its movements and the values returned for its position.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_reversed <../c/motors.html#motor-set-reversed>`_.
 
@@ -1968,7 +1968,7 @@ Only non-zero values of the struct will change the existing motor constants.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_vel_pid <../c/motors.html#motor-set-vel-pid>`_.
 
@@ -2017,7 +2017,7 @@ Only non-zero values of the struct will change the existing motor constants.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_vel_pid_full <../c/motors.html#motor-set-vel-pid-full>`_.
 
@@ -2066,7 +2066,7 @@ Sets the voltage limit for the motor in mV.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_voltage_limit <../c/motors.html#motor-set-voltage-limit>`_.
 
@@ -2113,7 +2113,7 @@ This will be the future reference point for the motor's "absolute" position.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_set_zero_position <../c/motors.html#motor-set-zero-position>`_.
 
@@ -2155,7 +2155,7 @@ Sets the "absolute" zero position of the motor to its current position.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `motor_tare_position <../c/motors.html#motor-tare-position>`_.
 

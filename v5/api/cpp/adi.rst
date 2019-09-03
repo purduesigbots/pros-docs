@@ -22,8 +22,7 @@ Constructor(s)
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 .. tabs ::
    .. tab :: Prototype
@@ -78,7 +77,7 @@ Do not use this function when the sensor value might be unstable
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as an analog input  (e.g. the port has been reconfigured)
 
 Analogous to `adi_analog_calibrate <../c/adi.html#adi-analog-calibrate>`_.
 
@@ -118,7 +117,7 @@ Inherited from `ADIPort::get_value <get_value_>`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as an analog input  (e.g. the port has been reconfigured)
 
 Analogous to `adi_analog_read <../c/adi.html#adi-analog-read>`_.
 
@@ -156,7 +155,7 @@ causing drift over time. Use `adi_analog_read_calibrated_HR`_ instead.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as an analog input  (e.g. the port has been reconfigured)
 
 Analogous to `adi_analog_read_calibrated <../c/adi.html#adi_analog_read_calibrated>`_.
 
@@ -199,7 +198,7 @@ in the wash when integrated over time. Think of the value as the true value time
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as an analog input  (e.g. the port has been reconfigured)
 
 Analogous to `adi_analog_read_calibrated_HR <../c/adi.html#adi_analog_read_calibrated_HR>`_.
 
@@ -235,8 +234,7 @@ Constructor(s)
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 .. tabs ::
    .. tab :: Prototype
@@ -314,8 +312,7 @@ Constructor(s)
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 .. tabs ::
    .. tab :: Prototype
@@ -361,7 +358,7 @@ presses, and not in any other tasks.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a digital input  (e.g. the port has been reconfigured)
 
 Analogous to `adi_digital_get_new_press <../c/adi.html#adi-digital-get-new-press>`_.
 
@@ -402,7 +399,7 @@ Inherited from `ADIPort::get_value <get_value_>`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a digital input  (e.g. the port has been reconfigured)
 
 Analogous to `adi_digital_read <../c/adi.html#adi-digital-read>`_.
 
@@ -439,8 +436,7 @@ Constructor(s)
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 .. tabs ::
    .. tab :: Prototype
@@ -487,7 +483,7 @@ Inherited from `ADIPort::set_value <set_value_>`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a digital output  (e.g. the port has been reconfigured)
 
 Analogous to `adi_digital_write <../c/adi.html#adi-digital-write>`_.
 
@@ -533,8 +529,7 @@ Constructor(s)
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 .. tabs ::
    .. tab :: Prototype
@@ -579,7 +574,7 @@ There are 360 ticks in one revolution.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as an encoder (e.g. the port has been reconfigured)
 
 Analogous to `adi_encoder_get <../c/adi.html#adi-encoder-get>`_.
 
@@ -617,7 +612,7 @@ method before stopping or starting an encoder.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as an encoder (e.g. the port has been reconfigured)
 
 Analogous to `adi_encoder_reset <../c/adi.html#adi-encoder-reset>`_.
 
@@ -653,8 +648,7 @@ Constructor(s)
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 .. tabs ::
    .. tab :: Prototype
@@ -697,7 +691,7 @@ Inherited from `ADIPort::get_value <get_value_>`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a motor (e.g. the port has been reconfigured)
 
 Analogous to `adi_motor_get <../c/adi.html#adi-motor-get>`_.
 
@@ -735,7 +729,7 @@ Inherited from `ADIPort::set_value <set_value_>`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a motor (e.g. the port has been reconfigured)
 
 Analogous to `adi_motor_set <../c/adi.html#adi-motor-set>`_.
 
@@ -777,7 +771,7 @@ Stops the given motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a motor (e.g. the port has been reconfigured)
 
 Analogous to `adi_motor_stop <../c/adi.html#adi-motor-stop>`_.
 
@@ -814,8 +808,7 @@ Constructor(s)
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 .. tabs ::
    .. tab :: Prototype
@@ -856,7 +849,7 @@ Returns the configuration for the given ADI port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a the type specified in the constructor (e.g. the port has been reconfigured)
 
 Analogous to `adi_port_get_config <../c/adi.html#adi-port-config-get>`_.
 
@@ -891,7 +884,7 @@ Returns the value for the given ADI port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a the type specified in the constructor (e.g. the port has been reconfigured)
 
 Analogous to `adi_port_get_value <../c/adi.html#adi-port-value-get>`_.
 
@@ -924,7 +917,7 @@ Configures an ADI port to act as a given sensor type.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a the type specified in the constructor (e.g. the port has been reconfigured)
 
 Analogous to `adi_port_set_config <../c/adi.html#adi-port-config-set>`_.
 
@@ -970,7 +963,7 @@ depending on the configuration of the port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a the type specified in the constructor (e.g. the port has been reconfigured)
 
 Analogous to `adi_port_set_value <../c/adi.html#adi-port-value-set>`_.
 
@@ -1010,8 +1003,7 @@ Constructor(s)
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 .. tabs ::
    .. tab :: Prototype
@@ -1062,7 +1054,7 @@ Inherited from `ADIPort::get_value <get_value_>`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as an ultrasonic (e.g. the port has been reconfigured)
 
 Analogous to `adi_ultrasonic_get <../c/adi.html#adi-ultrasonic-get>`_.
 
@@ -1108,8 +1100,7 @@ called from initialize when the robot is stationary.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given ports do not match the parameter criteria given below.
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``ENXIO`` - The given port is not within the range of ADI Ports
 
 Analogous to `adi_gyro_init <../c/adi.html#adi-gyro-init>`_.
 
@@ -1158,7 +1149,7 @@ whole rotation.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a gyro (e.g. the port has been reconfigured)
 
 Analogous to `adi_gyro_get <../c/adi.html#adi-gyro-get>`_.
 
@@ -1195,7 +1186,7 @@ Resets the gyro value to zero.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EACCES``  - Another resource is currently trying to access the ADI.
+- ``EADDRINUSE``  - The port is not configured as a gyro (e.g. the port has been reconfigured)
 
 Analogous to `adi_gyro_reset <../c/adi.html#adi-gyro-reset>`_.
 
