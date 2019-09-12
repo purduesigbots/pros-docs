@@ -134,7 +134,7 @@ Creates a Task object from a task already created with the C API.
           // ...
         }
         void initialize() {
-          pros::Task my_cpp_task (my_task);
+          pros::Task my_cpp_task (my_task_fn, (void*)"PROS", "My Task");
         }
 
 Create a new task and add it to the list of tasks that are ready to run.
