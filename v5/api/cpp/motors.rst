@@ -2258,14 +2258,15 @@ pros::motor_fault_e_t
   	E_MOTOR_FAULT_DRV_OVER_CURRENT = 0x08  // Indicates an h-bridge over current
   } motor_fault_e_t;
 
-================================== ===========================================================
+======================================= ===========================================================
  Value
-================================== ===========================================================
- pros::E_MOTOR_FAULT_NO_FAULTS      No faults
- pros::E_MOTOR_BRAKE_BRAKE          Motor brakes when stopped 
- pros::E_MOTOR_BRAKE_HOLD           Motor actively holds position when stopped 
- pros::E_MOTOR_BRAKE_INVALID        Invalid brake mode
-================================== ===========================================================
+======================================= ===========================================================
+ pros::E_MOTOR_FAULT_NO_FAULTS           No faults
+ pros::E_MOTOR_FAULT_MOTOR_OVER_TEMP     Analogous to motor_is_over_temp()
+ pros::E_MOTOR_FAULT_DRIVER_FAULT        Indicates a motor h-bridge fault
+ pros::E_MOTOR_FAULT_OVER_CURRENT        Analogous to motor_is_over_current()
+ pros::E_MOTOR_FAULT_DRV_OVER_CURRENT    Indicates an h-bridge over current
+======================================= ===========================================================
 
 ----
 
