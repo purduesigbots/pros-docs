@@ -118,6 +118,37 @@ Creates a Task object from a task already created with the C API.
 
 ----
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Task::Task ( task_fn_t function, void* parameters = NULL, const char* name = "" )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* param) {
+          std::cout << "Hello" << (char*)param;
+          // ...
+        }
+        void initialize() {
+          pros::Task my_cpp_task (my_task_fn, (void*)"PROS", "My Task");
+        }
+
+Create a new task and add it to the list of tasks that are ready to run.
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ function          Pointer to the task entry function
+ parameters        Pointer to memory that will be used as a parameter for the task being created. This memory should not typically come from stack, but rather from dynamically (i.e., malloc'd) or statically allocated memory.
+ name               A descriptive name for the task.  This is mainly used to facilitate debugging. The name may be up to 32 characters long.
+=============== ===================================================================
+
+----
+
 Operator Overloads
 ------------------
 
@@ -197,7 +228,7 @@ Delay a task until a specified time.  This function can be used by periodic
 tasks to ensure a constant execution frequency.
 
 The task will be woken up at the time ``*prev_time + delta``, and ``*prev_time`` will
-be updated to reflect the time at which the task will unblock. ``*prev_time`` should 
+be updated to reflect the time at which the task will unblock. ``*prev_time`` should
 be initialized to the result from `millis() <./rtos.html#millis>`_.
 
 Analogous to `task_delay_until <../c/rtos.html#delay-until>`_.
@@ -547,9 +578,9 @@ Analogous to `task_delete <../c/rtos.html#task-delete>`_.
             Task my_task (my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
                           TASK_STACK_DEPTH_DEFAULT, "Example Task");
             // Do things
-            my_task.remove(); // Delete the task 
+            my_task.remove(); // Delete the task
             std::cout << "Task State: " << my_task.get_state() << std::endl;
-            // Prints the value of E_TASK_STATE_DELETED 
+            // Prints the value of E_TASK_STATE_DELETED
           }
 
 ----
