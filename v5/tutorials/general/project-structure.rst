@@ -50,11 +50,12 @@ src
 ===
 
 **User code** has the actual sequential instructions that govern the
-robot's behavior. PROS by default splits the user code up into
+robot's behavior. Prior to PROS kernel 3.2.0, new projects by default split user code into
 autonomous (``autonomous.c`` or ``autonomous.cpp``), driver control
 (``opcontrol.c`` or ``opcontrol.cpp``), and initialization
 (``initialize.c`` or ``initialize.cpp``) files. Code in one file can talk to code in
-another file using declarations in the header files.
+another file using declarations in the header files. Beginning with PROS kernel 3.2.0, new projects by
+default have a single ``main.cpp`` file that contains all of the competition task functions.
 
 New user code files can be created in the ``src`` directory, as long as the name
 ends with ``.c`` or ``.cpp`` it will be compiled with the others.
