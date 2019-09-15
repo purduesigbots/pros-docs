@@ -19,6 +19,7 @@ Usability Improvements:
 - Support GCC 8.3 out of the box
 - Add a default .gitignore to new projects
 - Changes in header files will now be recompiled without having to clean
+- Replace separate :code:`initialize.cpp`, :code:`autonomous.cpp`, and :code:`opcontrol.cpp` files with a single :code:`main.cpp` file for new projects
 
 Bugfixes:
 
@@ -30,6 +31,8 @@ Bugfixes:
 
 Important upgrade notes
 -----------------------
+
+As we are replacing the three :code:`initialize.cpp`, :code:`autonomous.cpp`, and :code:`opcontrol.cpp` files with a single :code:`main.cpp` file, the :code:`main.cpp` file will be introduced into your project when you upgrade. If you compile the project right away, you will likely be faced with multiple definition errors for the competition tasks. To resolve this, you can either delete the new :code:`main.cpp`, or move the contents of your competition task functions into the new file, deleting the previous files. If your project structure has been significantly modified from the default, we trust that you will know how to resolve this issue on your own. Also note that if you have already consolidated the three files listed above into a single :code:`main.cpp` file, this will not be an issue.
 
 If your code checked :code:`errno` values set by PROS functions, you may need to change the values you compare with. Check each function's documentation for more information.
 
