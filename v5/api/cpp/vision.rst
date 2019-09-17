@@ -647,7 +647,7 @@ Reads up to object_count object descriptors into object_arr.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO``  -The given value is not within the range of V5 ports (1-21), or fewer than object_count number of objects were found.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21), or fewer than object_count number of objects were found.
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 - ``EAGAIN`` - Reading the vision sensor failed for an unknown reason.
 .. tabs ::

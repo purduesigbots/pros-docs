@@ -967,7 +967,7 @@ This function uses the following values of errno when an error state is
 reached:
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
-- ``EACCESS``  - Anothe resources is currently trying to access the port
+- ``EACCESS``  - Another resources is currently trying to access the port
 
 .. tabs ::
    .. tab :: Prototype
