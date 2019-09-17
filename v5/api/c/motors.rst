@@ -116,7 +116,7 @@ Analogous to `pros::Motor::move_absolute <../cpp/motors.html#move-absolute>`_.
 ============ ===============================================================
  port         The V5 port number from 1-21
  position     The absolute position to move to in the motor's encoder units
- velocity     The maximum allowable velocity for the movement
+ velocity     The maximum allowable velocity for the movement in RPM
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -130,7 +130,8 @@ motor_move_relative
 Sets the relative target position for the motor to move to.
 
 This movement is relative to the current position of the motor as given in
-`motor_get_position`_.
+`motor_get_position`_. Providing 10.0 as the position parameter would result
+in the motor moving clockwise 10 units, no matter what the current position is.
 
 .. note:: This function simply sets the target for the motor, it does not block program
           execution until the movement finishes. The example code shows how to block
