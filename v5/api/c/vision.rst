@@ -122,7 +122,7 @@ for the additional function parameters.
 This function uses the following values of errno when an error state is
 reached:
 
-	- ``ENXIO`` - Fewer than two signatures have been provided or one of the
+	- ``EINVAL`` - Fewer than two signatures have been provided or one of the
              		 signatures is out of its [1-7] range (or 0 when omitted)
 
 .. tabs ::
@@ -229,7 +229,7 @@ reached:
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The device cannot be configured as a vision sensor (e.g. it has been reconfigured)
 - ``EDOM`` - size_id is greater than the number of available objects.
-- ``EAGAIN`` - Reading the vision sensor failed for an unknown reason.
+- ``EHOSTDOWN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
    .. tab :: Prototype
@@ -277,7 +277,6 @@ reached:
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The device cannot be configured as a vision sensor (e.g. it has been reconfigured)
-- ``EDOM`` - size_id is greater than the number of available objects.
 - ``EAGAIN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
@@ -411,9 +410,6 @@ Gets the object detection signature with the given id number.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
-- ``ENODEV``  - The device cannot be configured as a vision sensor (e.g. it has been reconfigured)
-- ``EINVAL``  - sig_id is outside the range [1-7]
 
 .. tabs ::
    .. tab :: Prototype
@@ -650,7 +646,6 @@ reached:
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The device cannot be configured as a vision sensor (e.g. it has been reconfigured)
-- ``EDOM`` - size_id is greater than the number of available objects.
 
 .. tabs ::
    .. tab :: Prototype
@@ -714,6 +709,8 @@ reached:
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The device cannot be configured as a vision sensor (e.g. it has been reconfigured)
+- ``EINVAL``  - Enable was not 0 or 1
+
 
 .. tabs ::
    .. tab :: Prototype
@@ -837,8 +834,6 @@ Stores the supplied object detection signature onto the vision sensor.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
-- ``ENODEV``  - The device cannot be configured as a vision sensor (e.g. it has been reconfigured)
 
 .. tabs ::
    .. tab :: Prototype
@@ -972,7 +967,7 @@ This function uses the following values of errno when an error state is
 reached:
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
-- ``ENODEV``  - The device cannot be configured as a vision sensor (e.g. it has been reconfigured)
+- ``EACCESS``  - Another resources is currently trying to access the port
 
 .. tabs ::
    .. tab :: Prototype

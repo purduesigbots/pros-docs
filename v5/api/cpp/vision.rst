@@ -257,6 +257,7 @@ reached:
 - ``EDOM`` - size_id is greater than the number of available objects.
 - ``EAGAIN`` - Reading the vision sensor failed for an unknown reason.
 
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -300,8 +301,7 @@ Gets the nth largest object of the given color code according to size_id.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENODEV``  - The port cannot be configured as a vision sensor
-- ``EDOM`` - size_id is greater than the number of available objects.
+- ``ENODEV`` - The port cannot be configured as a vision sensor
 - ``EAGAIN`` - Reading the vision sensor failed for an unknown reason.
 
 .. tabs ::
@@ -352,7 +352,6 @@ Gets the exposure parameter of the Vision Sensor.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 
 .. tabs ::
@@ -387,7 +386,6 @@ Returns the number of objects currently detected by the Vision Sensor.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 
 .. tabs ::
@@ -462,7 +460,6 @@ Gets the white balance parameter of the Vision Sensor.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 
 .. tabs ::
@@ -532,8 +529,10 @@ Reads up to object_count object descriptors into object_arr.
 This function uses the following values of errno when an error state is
 reached:
 
+- ``ENXIO``  -  The given value is not within the range of V5 ports (1-21), or fewer than object_count number of objects were found.
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 - ``EDOM`` - size_id is greater than the number of available objects.
+- ``EAGAIN`` - Reading the vision sensor failed for an unknown reason
 
 .. tabs ::
    .. tab :: Prototype
@@ -591,6 +590,7 @@ Reads up to object_count object descriptors into object_arr.
 This function uses the following values of errno when an error state is
 reached:
 
+- ``EAGAIN``  -  Reading the vision sensor failed for an unknown reason
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 - ``EDOM`` - size_id is greater than the number of available objects.
 
@@ -647,9 +647,9 @@ Reads up to object_count object descriptors into object_arr.
 This function uses the following values of errno when an error state is
 reached:
 
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21), or fewer than object_count number of objects were found.
 - ``ENODEV``  - The port cannot be configured as a vision sensor
-- ``EDOM`` - size_id is greater than the number of available objects.
-
+- ``EAGAIN`` - Reading the vision sensor failed for an unknown reason.
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -709,9 +709,7 @@ Enable/disable auto white-balancing on the Vision Sensor.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The port cannot be configured as a vision sensor
-- ``EINVAL``  - ``enable`` was not 0 or 1
 
 .. tabs ::
    .. tab :: Prototype
@@ -749,7 +747,6 @@ Sets the exposure parameter of the Vision Sensor.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 
 .. tabs ::
@@ -790,7 +787,6 @@ Sets the vision sensor LED color, overriding the automatic behavior.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 
 .. tabs ::
@@ -878,7 +874,6 @@ This function will disable auto white-balancing.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 
 .. tabs ::
@@ -922,7 +917,6 @@ function only be used to configure the sensor at the beginning of its use.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 
 .. tabs ::
@@ -964,8 +958,7 @@ Set the Wi-Fi mode of the Vision Sensor.
 This function uses the following values of errno when an error state is
 reached:
 
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
-- ``ENODEV``  - The port cannot be configured as a vision sensor
+- ``ENODEV`` - The port cannot be configured as a vision sensor
 
 .. tabs ::
    .. tab :: Prototype
