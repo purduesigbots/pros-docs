@@ -25,8 +25,8 @@ from the PROS 2 API.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::move <../cpp/motors.html#move>`_.
 
@@ -75,8 +75,8 @@ the position when it was most recently reset with `motor_tare_position`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::move_absolute <../cpp/motors.html#move-absolute>`_.
 
@@ -116,7 +116,7 @@ Analogous to `pros::Motor::move_absolute <../cpp/motors.html#move-absolute>`_.
 ============ ===============================================================
  port         The V5 port number from 1-21
  position     The absolute position to move to in the motor's encoder units
- velocity     The maximum allowable velocity for the movement
+ velocity     The maximum allowable velocity for the movement in RPM
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -130,7 +130,8 @@ motor_move_relative
 Sets the relative target position for the motor to move to.
 
 This movement is relative to the current position of the motor as given in
-`motor_get_position`_.
+`motor_get_position`_. Providing 10.0 as the position parameter would result
+in the motor moving clockwise 10 units, no matter what the current position is.
 
 .. note:: This function simply sets the target for the motor, it does not block program
           execution until the movement finishes. The example code shows how to block
@@ -138,8 +139,8 @@ This movement is relative to the current position of the motor as given in
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::move_relative <../cpp/motors.html#move-relative>`_.
 
@@ -197,8 +198,8 @@ voltage.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::move_velocity <../cpp/motors.html#move-velocity>`_.
 
@@ -240,8 +241,8 @@ Sets the voltage for the motor from -12000 mV to 12000 mV.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::move_voltage <../cpp/motors.html#move-voltage>`_.
 
@@ -284,8 +285,8 @@ a profiled movement.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::modify_profiled_velocity <../cpp/motors.html#modify-profiled-velocity>`_.
 
@@ -326,8 +327,8 @@ Gets the target position set for the motor by the user.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_target_position <../cpp/motors.html#get-target-position>`_.
 
@@ -366,8 +367,8 @@ Gets the velocity commanded to the motor by the user.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_target_velocity <../cpp/motors.html#get-target-velocity>`_.
 
@@ -411,8 +412,8 @@ Gets the actual velocity of the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_actual_velocity <../cpp/motors.html#get-actual-velocity>`_.
 
@@ -453,8 +454,8 @@ Gets the current drawn by the motor in mA.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_current_draw <../cpp/motors.html#get-current-draw>`_.
 
@@ -495,8 +496,8 @@ Gets the direction of movement for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_direction <../cpp/motors.html#get-direction>`_.
 
@@ -542,8 +543,8 @@ is drawing power but not moving.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_efficiency <../cpp/motors.html#get-efficiency>`_.
 
@@ -586,8 +587,8 @@ Compare this bitfield to the bitmasks in `motor_fault_e_t`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_faults <../cpp/motors.html#get-faults>`_.
 
@@ -629,8 +630,8 @@ Compare this bitfield to the bitmasks in `motor_flag_e_t`_.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_flags <../cpp/motors.html#get-flags>`_.
 
@@ -670,8 +671,8 @@ Gets the absolute position of the motor in its encoder units.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_position <../cpp/motors.html#get-position>`_.
 
@@ -712,8 +713,8 @@ Gets the power drawn by the motor in Watts.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_power <../cpp/motors.html#get-power>`_.
 
@@ -755,8 +756,8 @@ Gets the raw encoder count of the motor at a given timestamp.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_raw_position <../cpp/motors.html#get-raw-position>`_.
 
@@ -803,8 +804,8 @@ temperature reading is greater than or equal to 55 C.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_temperature <../cpp/motors.html#get-temperature>`_.
 
@@ -845,8 +846,8 @@ Gets the torque generated by the motor in Nm.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_torque <../cpp/motors.html#get-torque>`_.
 
@@ -887,8 +888,8 @@ Gets the voltage delivered to the motor in mV.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_voltage <../cpp/motors.html#get-voltage>`_.
 
@@ -929,8 +930,8 @@ Gets the zero position flag for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_zero_position_flag <../cpp/motors.html#get-zero-position-flag>`_.
 
@@ -972,8 +973,8 @@ Gets the zero velocity flag for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::is_stopped <../cpp/motors.html#is-stopped>`_.
 
@@ -1014,8 +1015,8 @@ Detects if the motor is drawing over its current limit.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::is_over_current <../cpp/motors.html#is-over-current>`_.
 
@@ -1057,8 +1058,8 @@ Gets the temperature limit flag for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::is_over_temp <../cpp/motors.html#is-over-temp>`_.
 
@@ -1212,8 +1213,8 @@ Gets the brake mode of the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_brake_mode <../cpp/motors.html#get-brake-mode>`_.
 
@@ -1251,8 +1252,8 @@ Gets the current limit for the motor in mA. The default limit is 2500 mA.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_current_limit <../cpp/motors.html#get-current-limit>`_.
 
@@ -1290,8 +1291,8 @@ Gets the `encoder units <motors.html#motor-encoder-units-e-t>`_ set for the moto
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_encoder_units <../cpp/motors.html#get-encoder-units>`_.
 
@@ -1329,8 +1330,8 @@ Gets the `gearset <motors.html#motor-gearset-e-t>`_` that was set for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_gearing <../cpp/motors.html#get-gearing>`_.
 
@@ -1370,8 +1371,8 @@ motor_set_pos_pid_full functions have not been used.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Additionally, in an error state all values of the returned struct are set
 to their negative maximum values.
@@ -1426,8 +1427,8 @@ motor_set_vel_pid_full functions have not been used.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Additionally, in an error state all values of the returned struct are set
 to their negative maximum values.
@@ -1480,8 +1481,8 @@ Gets the voltage limit set by the user.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::get_voltage_limit <../cpp/motors.html#get-voltage-limit>`_.
 
@@ -1519,8 +1520,8 @@ Gets the operation direction of the motor as set by the user.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::is_reversed <../cpp/motors.html#is-reversed>`_.
 
@@ -1558,8 +1559,8 @@ Sets one of `motor_brake_mode_e_t`_ to the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_brake_mode <../cpp/motors.html#set-brake-mode>`_.
 
@@ -1601,8 +1602,8 @@ The default limit is 2500 mA.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_current_limit <../cpp/motors.html#set-current-limit>`_.
 
@@ -1646,8 +1647,8 @@ Sets one of `motor_encoder_units_e_t`_ for the motor encoder.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_encoder_units <../cpp/motors.html#set-encoder-units>`_.
 
@@ -1687,8 +1688,8 @@ Sets one of `motor_gearset_e_t`_ for the motor.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_gearing <../cpp/motors.html#set-gearing>`_.
 
@@ -1734,8 +1735,8 @@ Only non-zero values of the struct will change the existing motor constants.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_pos_pid <../cpp/motors.html#set-pos-pid>`_.
 
@@ -1785,8 +1786,8 @@ Only non-zero values of the struct will change the existing motor constants.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_pos_pid_full <../cpp/motors.html#set-pos-pid-full>`_.
 
@@ -1838,8 +1839,8 @@ This will invert its movements and the values returned for its position.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_reversed <../cpp/motors.html#set-reversed>`_.
 
@@ -1885,8 +1886,8 @@ Only non-zero values of the struct will change the existing motor constants.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_vel_pid <../cpp/motors.html#set-vel-pid>`_.
 
@@ -1936,8 +1937,8 @@ Only non-zero values of the struct will change the existing motor constants.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_vel_pid_full <../cpp/motors.html#set-vel-pid-full>`_.
 
@@ -1987,8 +1988,8 @@ Sets the voltage limit for the motor in mV.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_voltage_limit <../cpp/motors.html#set-voltage-limit>`_.
 
@@ -2034,8 +2035,8 @@ This will be the future reference point for the motor's "absolute" position.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::set_zero_position <../cpp/motors.html#set-zero-position>`_.
 
@@ -2088,8 +2089,8 @@ Sets the "absolute" zero position of the motor to its current position.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``  - The given value is not within the range of V5 ports (1-21).
-- ``EACCES``  - Another resource is currently trying to access the port.
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
 
 Analogous to `pros::Motor::tare_position <../cpp/motors.html#tare-position>`_.
 

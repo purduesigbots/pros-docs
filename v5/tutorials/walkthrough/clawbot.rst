@@ -104,37 +104,62 @@ PROS Project Structure
 When you create your project, PROS will copy all of the files necessary
 to build your project. The structure of the project looks like:
 
-.. highlight:: none
+.. tabs ::
+   .. group-tab :: After 3.2.0
+      .. highlight:: none
+      ::
 
-::
+         project
+         │   project.pros        (used by PROS CLI to know kernel version and other metadata)
+         │   Makefile            (instructs make how to compile your project)
+         |   common.mk           (helper file for Makefile)
+         │
+         └───src                 (source files should go here)
+         │   │   main.cpp        (source for competition task functions, like operator control and autonomous)
+         |
+         └───include             (Header files should go in here)
+         │   │   api.h           (Lets source files know PROS API functions)
+         │   │   main.h          (Includes api.h and anything else you want to include project-wide)
+         |   └───pros            (Contains all of the specific header files for the PROS API functions)
+         |   └───okapi           (Contains all of the header files for OkapiLib)
+         |   └───display         (Contains all of the header files for LVGL, the graphics library for the V5 screen)
+         │
+         └───firmware
+         │   libpros.a       (Pre-compiled PROS library)
+         │   okapilib.a      (Pre-compiled OkapiLib library)
+         |   v5.ld           (Instructs the linker how to construct binaries for the V5)
 
-  project
-  │   project.pros        (used by PROS CLI to know kernel version and other metadata)
-  │   Makefile            (instructs make how to compile your project)
-  |   common.mk           (helper file for Makefile)
-  │
-  └───src                 (source files should go here)
-  │   │   autonomous.cpp  (source for autonomous function)
-  │   │   initialize.cpp  (source for initialization)
-  │   │   opcontrol.cpp   (source for operator control)
-  |
-  └───include             (Header files should go in here)
-  │   │   api.h           (Lets source files know PROS API functions)
-  │   │   main.h          (Includes api.h and anything else you want to include project-wide)
-  |   └───pros            (Contains all of the specific header files for the PROS API functions)
-  |   └───okapi           (Contains all of the header files for OkapiLib)
-  |   └───display         (Contains all of the header files for LVGL, the graphics library for the V5 screen)
-  │
-  └───firmware 
-      │   libpros.a       (Pre-compiled PROS library)
-      │   okapilib.a      (Pre-compiled OkapiLib library)
-      |   v5.ld           (Instructs the linker how to construct binaries for the V5)
+   .. group-tab :: Before 3.2.0
+      .. highlight:: none
+      ::
+
+         project
+         │   project.pros        (used by PROS CLI to know kernel version and other metadata)
+         │   Makefile            (instructs make how to compile your project)
+         |   common.mk           (helper file for Makefile)
+         │
+         └───src                 (source files should go here)
+         │   │   autonomous.cpp  (source for autonomous function)
+         │   │   initialize.cpp  (source for initialization)
+         │   │   opcontrol.cpp   (source for operator control)
+         |
+         └───include             (Header files should go in here)
+         │   │   api.h           (Lets source files know PROS API functions)
+         │   │   main.h          (Includes api.h and anything else you want to include project-wide)
+         |   └───pros            (Contains all of the specific header files for the PROS API functions)
+         |   └───okapi           (Contains all of the header files for OkapiLib)
+         |   └───display         (Contains all of the header files for LVGL, the graphics library for the V5 screen)
+         │
+         └───firmware
+         │   libpros.a       (Pre-compiled PROS library)
+         │   okapilib.a      (Pre-compiled OkapiLib library)
+         |   v5.ld           (Instructs the linker how to construct binaries for the V5)
 
 
 .. note::
-   By convention, the ``opcontrol()``, ``autonomous()``, and initialize functions are separated into separate 
-   files (opcontrol.cpp, autonomous.cpp, and initialize.cpp). They could be all in the same file, but it can be helpful to 
-   organize your functions into multiple files to keep things from becoming messy.
+   Prior to PROS kernel 3.2.0, the ``opcontrol()``, ``autonomous()``, and initialize functions are separated into separate 
+   files (opcontrol.cpp, autonomous.cpp, and initialize.cpp). After PROS kernel 3.2.0, they are by default kept in one file
+   (main.cpp). These could be separated again if you so wish.
 
 Drive Control 
 =============
@@ -190,7 +215,7 @@ and then we'll run the tank drive code.
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
-         :caption: opcontrol.cpp 
+         :caption: main.cpp 
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -212,7 +237,7 @@ and then we'll run the tank drive code.
    .. group-tab :: C
       .. highlight:: c
       .. code-block:: c
-         :caption: opcontrol.c
+         :caption: main.c
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -255,7 +280,7 @@ wheels.
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
-         :caption: opcontrol.cpp 
+         :caption: main.cpp 
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -281,7 +306,7 @@ wheels.
    .. group-tab :: C
       .. highlight:: c
       .. code-block:: c
-         :caption: opcontrol.c
+         :caption: main.c
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -354,7 +379,7 @@ is pressed on the controller, and move the lift in that direction if so.
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
-         :caption: opcontrol.cpp 
+         :caption: main.cpp 
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -392,7 +417,7 @@ is pressed on the controller, and move the lift in that direction if so.
    .. group-tab :: C
       .. highlight:: c
       .. code-block:: c
-         :caption: opcontrol.c
+         :caption: main.c
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -434,7 +459,7 @@ We will control the claw in the same manner as the lift, by toggling its movemen
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
-         :caption: opcontrol.cpp 
+         :caption: main.cpp 
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -484,7 +509,7 @@ We will control the claw in the same manner as the lift, by toggling its movemen
    .. group-tab :: C
       .. highlight:: c
       .. code-block:: c
-         :caption: opcontrol.c
+         :caption: main.c
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -558,7 +583,7 @@ And here is the updated code:
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
-         :caption: opcontrol.cpp 
+         :caption: main.cpp 
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -625,7 +650,7 @@ And here is the updated code:
    .. group-tab :: C
       .. highlight:: c
       .. code-block:: c
-         :caption: opcontrol.c
+         :caption: main.c
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -693,7 +718,7 @@ we will prevent the lift from being driven down further.
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
-         :caption: opcontrol.cpp 
+         :caption: main.cpp 
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -762,7 +787,7 @@ we will prevent the lift from being driven down further.
    .. group-tab :: C
       .. highlight:: c
       .. code-block:: c
-         :caption: opcontrol.c
+         :caption: main.c
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -834,7 +859,7 @@ The autonomous program runs without the use of a controller. We will make a simp
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
-         :caption: autonomous.cpp 
+         :caption: main.cpp 
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
@@ -852,7 +877,7 @@ The autonomous program runs without the use of a controller. We will make a simp
    .. group-tab :: C
       .. highlight:: c
       .. code-block:: c
-         :caption: autonomous.c
+         :caption: main.c
          :linenos:
 
          #define LEFT_WHEELS_PORT 1
