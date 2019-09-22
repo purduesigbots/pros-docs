@@ -75,7 +75,7 @@ Tasks in PROS are simple to create:
             }
             void initialize() {
                 std::string text("PROS");
-                Task my_task(my_task_fn, &text);
+                Task my_task(my_task_fn, &text, "");
             }
     .. tab :: API2
         .. highlight:: c
