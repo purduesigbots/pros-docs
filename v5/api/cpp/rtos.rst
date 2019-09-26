@@ -493,7 +493,7 @@ Analogous to `task_notify_ext <../c/rtos.html#task-notify-ext>`_.
 ============ ======================================================================================
  value        The value used in performing the action
  action       An action to optionally perform on the task's notification value
- prev_value   A pointer to store the previous value of the target task's notificationvalue, may be NULL
+ prev_value   A pointer to store the previous value of the target task's notification value, may be NULL
 ============ ======================================================================================
 
 **Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <notify_action_e_t_>`_:
