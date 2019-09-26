@@ -560,7 +560,8 @@ Analogous to `pros::Task::get_state <../cpp/rtos.html#get-state>`_.
 task_notify
 -----------
 
-Sends a simple notification to task and increments the notification counter.
+Sends a simple notification to task and increments the notification value,
+using it as a notification counter.
 
 See :doc:`../../tutorials/topical/notifications` for details.
 
@@ -949,15 +950,15 @@ task_notify_t
     E_NOTIFY_ACTION_NO_OWRITE
   } notify_action_e_t;
 
-=========================== =============
+================================= ==========================================================================
  Value
-=========================== =============
- E_NOTIFY_ACTION_NONE        TO BE ADDED
- E_NOTIFY_ACTION_BITS
- E_NOTIFY_ACTION_INCR
- E_NOTIFY_ACTION_OWRITE
- E_NOTIFY_ACTION_NO_OWRITE
-=========================== =============
+================================= ==========================================================================
+ pros::E_NOTIFY_ACTION_NONE        The task's notification value will not be touched.
+ pros::E_NOTIFY_ACTION_BITS        The task's notification value will be bitwise ORed with the new value.
+ pros::E_NOTIFY_ACTION_INCR        The task's notification value will be incremented by one, effectively using it as a notification counter.
+ pros::E_NOTIFY_ACTION_OWRITE      The task's notification value will be unconditionally set to the new value.
+ pros::E_NOTIFY_ACTION_NO_OWRITE   The task's notification value will be set to the new value if the task does not already have a pending notification.
+================================= ==========================================================================
 
 
 Typedefs
