@@ -396,7 +396,8 @@ Analogous to `task_get_state <../c/rtos.html#task-get-state>`_.
 notify
 ~~~~~~
 
-Sends a simple notification to task and increments the notification counter.
+Sends a simple notification to task and increments the notification value,
+using it as a notification counter.
 
 See :doc:`../../tutorials/topical/notifications` for details.
 
@@ -491,8 +492,8 @@ Analogous to `task_notify_ext <../c/rtos.html#task-notify-ext>`_.
  Parameters
 ============ ======================================================================================
  value        The value used in performing the action
- action       An action to optionally perform on the task's notification
- prev_value   A pointer to store the previous value of the target task's notification, may be NULL
+ action       An action to optionally perform on the task's notification value
+ prev_value   A pointer to store the previous value of the target task's notification value, may be NULL
 ============ ======================================================================================
 
 **Returns:** Dependent on the notification action. For `NOTIFY_ACTION_NO_OWRITE <notify_action_e_t_>`_:
@@ -915,15 +916,15 @@ pros::task_notify_t
     E_NOTIFY_ACTION_NO_OWRITE
   } notify_action_e_t;
 
-================================= =============
+================================= ==========================================================================
  Value
-================================= =============
- pros::E_NOTIFY_ACTION_NONE        TO BE ADDED
- pros::E_NOTIFY_ACTION_BITS
- pros::E_NOTIFY_ACTION_INCR
- pros::E_NOTIFY_ACTION_OWRITE
- pros::E_NOTIFY_ACTION_NO_OWRITE
-================================= =============
+================================= ==========================================================================
+ pros::E_NOTIFY_ACTION_NONE        The task's notification value will not be touched.
+ pros::E_NOTIFY_ACTION_BITS        The task's notification value will be bitwise ORed with the new value.
+ pros::E_NOTIFY_ACTION_INCR        The task's notification value will be incremented by one, effectively using it as a notification counter.
+ pros::E_NOTIFY_ACTION_OWRITE      The task's notification value will be unconditionally set to the new value.
+ pros::E_NOTIFY_ACTION_NO_OWRITE   The task's notification value will be set to the new value if the task does not already have a pending notification.
+================================= ==========================================================================
 
 
 Typedefs
