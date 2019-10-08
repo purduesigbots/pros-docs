@@ -67,7 +67,7 @@ If this is your first time using PROS, it is recommended that you check out one 
 
 :doc:`/getting-started/index`
 
-For topical tutorials on everything from the :doc:`./tutorials/topical/adi` to :doc:`./tutorials/walkthrough/uploading`,
+For topical tutorials on everything from the :doc:`./tutorials/topical/adi` to :doc:`./tutorials/topical/wireless-upload`,
 check out the **Tutorial** section:
 
 :doc:`/tutorials/index`
