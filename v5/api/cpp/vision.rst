@@ -113,7 +113,7 @@ vision signatures.
           // values acquired from the vision utility
           pros::vision_signature_s_t RED_SIG =
             pros::Vision::signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
-          
+
           sensor.set_signature(EXAMPLE_SIG, &RED_SIG);
           while (true) {
             pros::vision_signature_s_t rtn = sensor.get_by_sig(VISION_PORT, 0, EXAMPLE_SIG);
@@ -158,8 +158,8 @@ reached:
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
-      :: 
-            
+      ::
+
         pros::vision_color_code_t pros::Vision::create_color_code ( const uint32_t sig_id1,
                                                                     const uint32_t sig_id2,
                                                                     const uint32_t sig_id3,
@@ -446,7 +446,7 @@ reached:
  Parameters
 =============== ==============================
  signature_id    The signature id to read
-============== ==============================
+=============== ==============================
 
 **Returns:** A ``pros::vision_signature_s_t`` containing information about the signature.
 
@@ -650,6 +650,7 @@ reached:
 - ``ENXIO``  - The given value is not within the range of V5 ports (1-21), or fewer than object_count number of objects were found.
 - ``ENODEV``  - The port cannot be configured as a vision sensor
 - ``EAGAIN`` - Reading the vision sensor failed for an unknown reason.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
