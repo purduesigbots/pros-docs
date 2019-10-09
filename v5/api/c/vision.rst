@@ -83,7 +83,7 @@ vision signatures.
           // values acquired from the vision utility
           vision_signature_s_t RED_SIG =
             vision_signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
-          
+
           vision_set_signature(VISION_PORT, EXAMPLE_SIG, &RED_SIG);
           while (true) {
             vision_signature_s_t rtn = vision_get_by_sig(VISION_PORT, 0, EXAMPLE_SIG);
@@ -436,7 +436,7 @@ reached:
 =============== ==============================
  port            The V5 port number from 1-21
  signature_id    The signature id to read
-============== ==============================
+=============== ==============================
 
 **Returns:** A ``vision_signature_s_t`` containing information about the signature.
 
@@ -1105,7 +1105,7 @@ that can be detected by the Vision Sensor.
     E_VISION_OBJECT_COLOR_CODE = 1,
     E_VISION_OBJECT_LINE = 2
   } vision_object_type_e_t;
-  
+
 vision_zero_e_t
 ---------------
 

@@ -662,7 +662,7 @@ suspend
 
 Suspends the current task, making it ineligible to be scheduled.
 
-Analogous to `task_get_state <../c/rtos.html#task-get-state>`_.
+Analogous to `task_suspend <../c/rtos.html#task_suspend>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -898,7 +898,7 @@ pros::task_state_e_t
  pros::E_TASK_STATE_RUNNING     The task is actively executing.
  pros::E_TASK_STATE_READY       The task exists and is available to run, but is not currently running.
  pros::E_TASK_STATE_BLOCKED     The task is delayed or blocked by a mutex, semaphore, or I/O operation.
- pros::E_TASK_STATE_SUSPENDED   The task is supended using `task_suspend`_.
+ pros::E_TASK_STATE_SUSPENDED   The task is suspended using `task_suspend`_.
  pros::E_TASK_STATE_DELETED     The task has been deleted using `task_delete`_.
  pros::E_TASK_STATE_INVALID     The task handle does not point to a current or past task.
 ============================== ==========================================================================
