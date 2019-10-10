@@ -131,5 +131,5 @@ html_show_sphinx = False
 highlight_language = "c"
 nitpicky = True
 
-
+blog_baseurl = 'pros.cs.purdue.edu'
 blog_path = 'blog/index'
