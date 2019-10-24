@@ -1002,4 +1002,4 @@ to two wheel rotations, the ratio is ``1.0/2.0``.
         okapi::AbstractMotor::GearsetRatioPair foo = okapi::AbstractMotor::gearset::green;
 
         // You can also multiple a gearset by an external gear ratio
-        okapi::AbstractMotor::GearsetRatioPair foo = okapi::AbstractMotor::gearset::green * (2/3);
+        okapi::AbstractMotor::GearsetRatioPair foo = okapi::AbstractMotor::gearset::green * (2.0/3.0);
