@@ -4,7 +4,7 @@ Getting Help
 Having an issue using PROS? You can get help in several ways:
 
 * Posting on the `VEX Forum <https://www.vexforum.com/c/edr-technical-support/pros-support>`_ (best for Q&A)
-* Joining us on `Slack <https://join.slack.com/t/pros-development/shared_invite/enQtMzIyNzA2MTU2MDgwLWNlNTk3ZjA3ZWZmM2Q0YzI3NDZkZWE0MzU4ODdkM2U5MzhjZDY4M2RjNzBiZWYzODk0MTdkYzBiMzJjMWUyYmI>`_ (best for debugging an issue with the PROS Environment)
+* Joining us on `Slack <https://join.slack.com/t/pros-development/shared_invite/enQtMzIyNzA2MTU2MDgwLWUwYzRhODRkYjU5ZmM5OTFhOWQxNjc4MzQ1OTc0MjU0MGFiMDdlMTQ3YTdhNDc2ZDU3NjcyZjM4MDgwNGMzOGE>`_ (best for debugging an issue with the PROS Environment)
 * Open an issue on GitHub (best for reporting an issue you've discovered):
 
    * `CLI <https://github.com/purduesigbots/pros-cli/issues/new>`_
