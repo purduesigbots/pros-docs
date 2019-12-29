@@ -2,6 +2,9 @@
 Controller Inputs and Outputs
 =============================
 
+This documentation is for OkapiLib version 3.x.x. Documentation for the latest version can be found
+`here <https://okapilib.github.io/OkapiLib/index.html>`_.
+
 Fundamentally, a feedback control system needs both an input and an output.
 In OkapiLib, Iterative Controllers do not require Controller Inputs and Outputs
 to be passed into the constructor like Async Controllers do, but they are still

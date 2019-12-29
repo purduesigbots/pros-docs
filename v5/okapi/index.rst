@@ -1,6 +1,6 @@
-===========================
-OkapiLib Documentation Home
-===========================
+=============================
+Legacy OkapiLib Documentation
+=============================
 
 .. toctree::
    :caption: Content
@@ -14,6 +14,9 @@ OkapiLib Documentation Home
 floor for teams with all levels of experience. New teams should have an easier time getting their
 robot up and running, and veteran teams should find that OkapiLib doesn't get in the way or place
 any limits on functionality.
+
+This documentation is for OkapiLib version 3.x.x. Documentation for the latest version can be found
+`here <https://okapilib.github.io/OkapiLib/index.html>`_.
 
 For tutorials on how to get the most out of OkapiLib, see the **Tutorials** section:
 

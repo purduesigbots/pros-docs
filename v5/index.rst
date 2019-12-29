@@ -77,7 +77,11 @@ And for documentation on using the PROS **API**, see the **API** section:
 :doc:`/api/index`
 
 We're proud to support **OkapiLib**, a library designed to make it easier to incorporate complex functionality
-in your PROS project. For documentation on OkapiLib, see its Docs section:
+in your PROS project. For documentation on the latest OkapiLib version, go here:
+
+`Latest OkapiLib documentation <https://okapilib.github.io/OkapiLib/index.html>`_
+
+For documentation on OkapiLib version 3.x.x, see its Docs section:
 
 :doc:`okapi/index`
 

@@ -2,6 +2,9 @@
 SettledUtils
 ============
 
+This documentation is for OkapiLib version 3.x.x. Documentation for the latest version can be found
+`here <https://okapilib.github.io/OkapiLib/index.html>`_.
+
 One of the most important factors in utilizing feedback controllers is establishing proper
 exit conditions. If a feedback controller decides that it has reached its target and exits too early,
 then the target will never be met. Alternatively, if the controller takes too long to realize that it's
