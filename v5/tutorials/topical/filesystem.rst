@@ -28,6 +28,11 @@ in the following manner:
    // Should print "Example text" to the terminal
    fclose(usd_file_read); // always close files when you're done with them
 
+Remarks
+-------
+
+The microSD card must be fat32 in order to work.
+
 Serial
 ======
 
