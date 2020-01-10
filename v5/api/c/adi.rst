@@ -448,7 +448,7 @@ Analogous to `pros::ADIEncoder::ADIEncoder <../cpp/adi.html#id9>`_.
  reverse      if "true", the sensor will count in the opposite direction
 ============ ====================================================================================================================================
 
-**Returns:** An `adi_encoder_t`_ object to be stored and used for later calls to encoder functions.
+**Returns:** An `adi_encoder_t`_ object to be stored and used for later calls to encoder functions, or PROS_ERR if there was an error.
 
 ----
 
@@ -957,7 +957,7 @@ Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
  port_echo    the port connected to the yellow INPUT cable. This should be in the next highest port following port_ping.
 ============ =============================================================================================================
 
-**Returns:** An `adi_ultrasonic_t`_ object to be stored and used for later calls to ultrasonic functions.
+**Returns:** An `adi_ultrasonic_t`_ object to be stored and used for later calls to ultrasonic functions, or PROS_ERR if there was an error.
 
 ----
 
@@ -1053,7 +1053,7 @@ Analogous to `pros::ADIGyro::ADIGyro <../cpp/adi.html#>`_.
  multiplier   A scalar value that will be mutliplied by the gyro heading value
 ============ =============================================================================================================
 
-**Returns:** An `adi_gyro_t`_ object to be stored and used for later calls to gyro functions.
+**Returns:** An `adi_gyro_t`_ object to be stored and used for later calls to gyro functions, or PROS_ERR if there was an error.
 
 ----
 
