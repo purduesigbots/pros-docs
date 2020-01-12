@@ -74,3 +74,7 @@ through the following tutorials is recommended:
 
 And then you can find tutorials for specific subjects from `the ADI <../tutorials/topical/adi.html>`_
 to `tasks and multithreading <../tutorials/topical/multitasking.html>`_ as well.
+
+VEX U team QUEEN has also created a series of YouTube videos about C++
+object-oriented programming and other relevant programming topics in the context
+of VEX robots; you can find it `here <https://www.youtube.com/playlist?list=PLxt0dHFRDpQhy24IL1wAniVq3xf8N7QAV>`_.
