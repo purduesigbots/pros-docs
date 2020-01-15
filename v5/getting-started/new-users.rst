@@ -74,3 +74,14 @@ through the following tutorials is recommended:
 
 And then you can find tutorials for specific subjects from `the ADI <../tutorials/topical/adi.html>`_
 to `tasks and multithreading <../tutorials/topical/multitasking.html>`_ as well.
+
+How do I share my code with other people?
+-----------------------------------------
+
+In order to track changes to your code, as well as to help share your code with other people, you can use
+a version control system like Git in conjunction with a service like `GitHub <https://github.com>`_. 
+If you want to share smaller parts of your code with other people in order to get help (e.g. through the software channel on Discord), 
+you can use something like `GitHub Gists <https://gist.github.com>`_ or `Pastebin <https://pastebin.com>`_. 
+
+For more information on how to use Git, including the Git CLI tools and setting up a respository on GitHub, check out
+the `GitHub help pages <https://help.github.com>`_. 
