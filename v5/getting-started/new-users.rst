@@ -78,3 +78,14 @@ to `tasks and multithreading <../tutorials/topical/multitasking.html>`_ as well.
 VEX U team QUEEN has also created a series of YouTube videos about C++,
 object-oriented programming, and other relevant programming topics in the context
 of VEX robots; you can find it `here <https://www.youtube.com/playlist?list=PLxt0dHFRDpQhy24IL1wAniVq3xf8N7QAV>`_.
+
+How do I share my code with other people?
+-----------------------------------------
+
+In order to track changes to your code, as well as to help share your code with other people, you can use
+a version control system like Git in conjunction with a service like `GitHub <https://github.com>`_. 
+If you want to share smaller parts of your code with other people in order to get help (e.g. through the software channel on Discord), 
+you can use something like `GitHub Gists <https://gist.github.com>`_ or `Pastebin <https://pastebin.com>`_. 
+
+For more information on how to use Git, including the Git CLI tools and setting up a respository on GitHub, check out
+the `GitHub help pages <https://help.github.com>`_. 
