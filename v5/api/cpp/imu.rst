@@ -27,7 +27,7 @@ Constructor(s)
         #define IMU_PORT 1
 
         void initialize() {
-          pros::Imu imu_sensor(IMU_PORT 1);
+          pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
 
@@ -69,7 +69,7 @@ This function uses the following values of ``errno`` when an error state is reac
         #define IMU_PORT 1
 
         void initialize() {
-          pros::Imu imu_sensor(IMU_PORT 1);
+          pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
           
           int time = pros::millis();
