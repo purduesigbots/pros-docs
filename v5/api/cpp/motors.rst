@@ -1481,6 +1481,31 @@ or ``E_GEARSET_INVALID`` if the operation failed.
 
 ----
 
+get_port
+~~~~~~~~
+
+Return the port the motor was constructed with.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::int32_t pros::Motor::get_port ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+          pros::Motor motor (1);
+          std::uint8_t port = motor.get_port(); // Returns 1
+        }
+
+**Returns:** the port number of the constructed motor.
+
+----
+
 get_voltage_limit
 ~~~~~~~~~~~~~~~~~
 
