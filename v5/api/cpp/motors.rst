@@ -250,7 +250,7 @@ Sets the voltage for the motor from -127 to 127.
 
 This is designed to map easily to the input from the controller's analog
 stick for simple opcontrol use. The actual behavior of the motor is analogous
-to use of `move_voltage`_, or `motorSet <../../../cortex/api/index.html#motorSet>`_
+to use of `motor_move`_, or `motorSet <../../../cortex/api/index.html#motorSet>`_
 from the PROS 2 API.
 
 This function uses the following values of ``errno`` when an error state is reached:
@@ -264,7 +264,7 @@ Analogous to `motor_move <../c/motors.html#motor-move>`_.
       .. highlight:: cpp
       ::
 
-         std::int32_t motor_move ( const std::int8_t voltage )
+         std::int32_t pros::motor::move ( const std::int32_t voltage )
 
    .. tab :: Example
       .. highlight:: cpp
