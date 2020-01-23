@@ -486,6 +486,33 @@ reached:
 
 ----
 
+get_port
+~~~~~~~~~~~~~~~~~
+
+Gets the port the Vision Sensor class was constructed with.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int8_t pros::Vision::get_port ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define VISION_PORT 1
+
+        void initialize() {
+          pros::Vision vision_sensor (VISION_PORT);
+          std::uint8_t port = vision_sensor.get_port(); // returns 1
+        }
+
+**Returns:** The port of the Vision Sensor.
+
+----
+
 print_signature
 ~~~~~~~~~~~~~~~
 
