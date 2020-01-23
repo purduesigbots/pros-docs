@@ -546,6 +546,7 @@ imu_raw_s
 ---------
 
 ::
+
   struct imu_raw_s {
     double x;
     double y;
@@ -561,6 +562,7 @@ quaternion_s_t
 --------------
 
 ::
+
   typedef struct __attribute__((__packed__)) quaternion_s {
     double x;
     double y;
@@ -574,6 +576,7 @@ euler_s_t
 ---------
 
 ::
+
   typedef struct __attribute__((__packed__)) euler_s {
     double pitch;
     double roll;
@@ -586,6 +589,7 @@ imu_gyro_s_t
 ------------
 
 ::
+
   typedef struct imu_raw_s imu_gyro_s_t;
 
 ---
@@ -594,6 +598,7 @@ imu_accel_s_t
 -------------
 
 ::
+
   typedef struct imu_raw_s imu_accel_s_t;
 
 ---
