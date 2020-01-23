@@ -123,7 +123,7 @@ Creates a Task object from a task already created with the C API.
       .. highlight:: cpp
       ::
 
-        pros::Task::Task ( task_fn_t function, void* parameters = NULL, const char* name = "" )
+        pros::Task::Task ( task_fn_t function, void* parameters, const char* name )
 
    .. tab :: Example
       .. highlight:: cpp
