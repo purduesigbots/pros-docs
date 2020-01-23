@@ -783,6 +783,35 @@ Analogous to `controller_set_text <../c/misc.html#controller-set-text>`_.
 
 ---
 
+pros::usd
+=========
+
+is_installed
+------------
+
+Returns if an SD card is inserted.
+
+Analogous to `usd_is_installed <../c/misc.html#usd-is-installed>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+       std::int32_t pros::usd::is_installed ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void opcontrol() {
+          std::cout << pros::usd::is_installed() << std::endl;
+        }
+
+**Returns:** 1 if the SD card is inserted, 0 otherwise
+
+----
+
 Macros
 ======
 
