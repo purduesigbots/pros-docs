@@ -303,11 +303,13 @@ clear
 Clears all of the lines of the controller screen.
 
 .. note:: Controller text setting is a slow process, so updates faster than 10ms when on
-          a wired connection or 50ms over Vexnet will not be applied to the controller.
+          a wired connection or 50ms over Vexnet will not be applied to the controller. On
+          vexOS version 1.0.0 this function will block for 110 ms.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EACCES``  - Another resource is currently trying to access the controller port.
+- ``EAGAIN``  - Could not send the text to the controller.
 
 Analogous to `controller_clear <../c/misc.html#controller-clear>`_.
 
@@ -344,6 +346,7 @@ Clears an individual line of the controller screen.
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EACCES``  - Another resource is currently trying to access the controller port.
+- ``EAGAIN``  - Could not send the text to the controller.
 
 Analogous to `controller_clear_line <../c/misc.html#controller-clear-line>`_.
 
@@ -635,6 +638,7 @@ Sets text to the controller LCD screen.
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EACCES``  - Another resource is currently trying to access the controller port.
+- ``EAGAIN``  - Could not send the text to the controller.
 
 Analogous to `controller_print <../c/misc.html#controller-print>`_.
 
@@ -741,6 +745,7 @@ Sets text to the controller LCD screen.
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``EACCES``  - Another resource is currently trying to access the controller port.
+- ``EAGAIN``  - Could not send the text to the controller.
 
 Analogous to `controller_set_text <../c/misc.html#controller-set-text>`_.
 
