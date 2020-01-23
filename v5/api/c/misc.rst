@@ -259,7 +259,7 @@ Clears all of the lines of the controller screen.
 
 .. note:: Controller text setting is a slow process, so updates faster than 10ms when on
           a wired connection or 50ms over Vexnet will not be applied to the controller. On
-		vexOS version 1.0.0 this function will block for 110 ms.
+          vexOS version 1.0.0 this function will block for 110 ms.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
