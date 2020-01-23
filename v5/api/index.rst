@@ -9,6 +9,7 @@ This document covers the main PROS API, which is completely sufficient for most 
    :titlesonly:
 
    ./c/adi
+   ./c/imu
    ./c/llemu
    ./c/misc
    ./c/motors
@@ -21,6 +22,7 @@ This document covers the main PROS API, which is completely sufficient for most 
    :titlesonly:
 
    ./cpp/adi
+   ./cpp/imu
    ./cpp/llemu
    ./cpp/misc
    ./cpp/motors
