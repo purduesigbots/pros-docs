@@ -149,6 +149,79 @@ Create a new task and add it to the list of tasks that are ready to run.
 
 ----
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        template <class F>
+        pros::Task::Task ( 
+                F&& function,
+                std::uint32_t prio = TASK_PRIORITY_DEFAULT,
+                std::uint16_t stack_depth = TASK_STACK_DEPTH_DEFAULT,
+                const char* name = ""
+        )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          std::unique_ptr<int> data{new int(7)};
+          pros::Task my_callable_task ([=] {
+            pros::delay(1000);
+            std::cout << *data << std::endl;
+          });
+        }
+
+Create a new task from any C++ `Callable <https://en.cppreference.com/w/cpp/named_req/Callable>`_ object and add it to the list of tasks that are ready to run.
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ function          Callable object to use as entry function. Must also satisfy |invocable docs|_.
+ prio              The priority at which the task should run. TASK_PRIO_DEFAULT plus/minus 1 or 2 is typically used.
+ stack_depth       The number of words (i.e. 4 * stack_depth) available on the task's stack. TASK_STACK_DEPTH_DEFAULT is typically sufficient.
+ name              A descriptive name for the task.  This is mainly used to facilitate debugging. The name may be up to 32 characters long.
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        template <class F>
+        pros::Task::Task ( F&& function, const char* name = "" )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          std::unique_ptr<int> data{new int(7)};
+          pros::Task my_callable_task ([=] {
+            pros::delay(1000);
+            std::cout << *data << std::endl;
+          }, "callable_task");
+        }
+
+Create a new task from any C++ `Callable <https://en.cppreference.com/w/cpp/named_req/Callable>`_ object and add it to the list of tasks that are ready to run.
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ function          Callable object to use as entry function. Must also satisfy |invocable docs|_. 
+ name               A descriptive name for the task.  This is mainly used to facilitate debugging. The name may be up to 32 characters long.
+=============== ===================================================================
+
+.. |invocable docs| replace:: ``std::is_invocable_r_v<void, F>``
+.. _invocable docs: https://en.cppreference.com/w/cpp/types/is_invocable
+
+
+----
+
 Operator Overloads
 ------------------
 
