@@ -496,7 +496,7 @@ Gets the port the Vision Sensor class was constructed with.
       .. highlight:: cpp
       ::
 
-        std::int8_t get_port ( )
+        std::int8_t pros::Vision::get_port ( )
 
    .. tab :: Example
       .. highlight:: cpp
