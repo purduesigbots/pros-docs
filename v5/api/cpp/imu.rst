@@ -74,7 +74,7 @@ This function uses the following values of ``errno`` when an error state is reac
           
           int time = pros::millis();
           int iter = 0;
-          while (imu_sensor.get_status()) {
+          while (imu_sensor.is_calibrating()) {
             printf("IMU calibrating... %d\n", iter);
             iter += 10;
             pros::delay(10);
