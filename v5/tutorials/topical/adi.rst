@@ -143,7 +143,7 @@ Thus an example of use on a lift would look like:
          #define MOTOR_PORT 1
 
          void autonomous() {
-           pros::ADIPotentiometer sensor (POTENTIOMETER_PORT);
+           pros::ADIAnalogIn sensor (POTENTIOMETER_PORT);
            pros::Motor motor (MOTOR_PORT);
            //while the potentiometer is not at its maximum position
            while (sensor.get_value() < 4095) {
@@ -194,7 +194,7 @@ An example of Line Tracker use:
          #define MOTOR_PORT 1
 
          void autonomous() {
-           pros::ADILineSensor sensor (LINE_TRACKER_PORT);
+           pros::ADIAnalogIn sensor (LINE_TRACKER_PORT);
            pros::Motor motor (MOTOR_PORT);
            // Arbitrarily set the threshold for a line at 2000 quid
            while(sensor.get_value() < 2000) {
