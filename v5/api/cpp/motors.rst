@@ -2159,7 +2159,7 @@ Analogous to `motor_set_zero_position <../c/motors.html#motor-set-zero-position>
           motor.move_absolute(100, 100); // This does not cause a movement
 
           motor.set_zero_position(80);
-          motor.move_absolute(100, 100); // Moves 120 units forward
+          motor.move_absolute(100, 100); // Moves 80 units forward
         }
 
 ============ ===============================================================
