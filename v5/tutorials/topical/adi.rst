@@ -42,7 +42,7 @@ for its ADI port.
          #define ANALOG_SENSOR_PORT 'A'
 
          void initialize() {
-           adi_port_set_config(ANALOG_SENSOR_PORT, ADI_ANALOG_IN);
+           adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
          }
 
    .. group-tab :: C++
@@ -76,7 +76,7 @@ line trackers.
          #define ANALOG_SENSOR_PORT 'A'
 
          void initialize() {
-           adi_port_set_config(ANALOG_SENSOR_PORT, ADI_ANALOG_IN);
+           adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
            adi_analog_calibrate(ANALOG_SENSOR_PORT);
          }
 
@@ -283,7 +283,7 @@ for its ADI port.
          #define DIGITAL_SENSOR_PORT 'A'
 
          void initialize() {
-           adi_port_set_config(DIGITAL_SENSOR_PORT, ADI_DIGITAL_IN);
+           adi_port_set_config(DIGITAL_SENSOR_PORT, E_ADI_DIGITAL_IN);
          }
 
    .. group-tab :: C++
@@ -545,7 +545,7 @@ default digital sensor configuration is insufficient.
          #define DIGITAL_SENSOR_PORT 'A'
 
          void initialize() {
-           adi_port_set_config(DIGITAL_SENSOR_PORT, ADI_DIGITAL_OUT);
+           adi_port_set_config(DIGITAL_SENSOR_PORT, E_ADI_DIGITAL_OUT);
          }
 
    .. group-tab :: C++
