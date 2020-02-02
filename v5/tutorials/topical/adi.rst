@@ -251,17 +251,17 @@ Example accelerometer use:
          #define ACCELEROMETER_Z 'A'
 
          void initialize() {
-            pros::ADIAnalogIn acc_x (ACCELEROMETER_X);
-            pros::ADIAnalogIn acc_y (ACCELEROMETER_Y);
-            pros::ADIAnalogIn acc_z (ACCELEROMETER_Z);
-            acc_x.calibrate(); //calibrates the x axis input
-            acc_y.calibrate(); //calibrates the y axis input
-            acc_z.calibrate(); //calibrates the z axis input
+           pros::ADIAnalogIn acc_x (ACCELEROMETER_X);
+           pros::ADIAnalogIn acc_y (ACCELEROMETER_Y);
+           pros::ADIAnalogIn acc_z (ACCELEROMETER_Z);
+           acc_x.calibrate(); //calibrates the x axis input
+           acc_y.calibrate(); //calibrates the y axis input
+           acc_z.calibrate(); //calibrates the z axis input
 
-            int x_acc = acc_x.get_value_calibrated_HR();
-            int y_acc = acc_y.get_value_calibrated_HR();
-            int z_acc = acc_z.get_value_calibrated_HR();
-            std::cout << "X: " << x_acc << "Y: " << y_acc << "Z: " << z_acc;
+           int x_acc = acc_x.get_value_calibrated_HR();
+           int y_acc = acc_y.get_value_calibrated_HR();
+           int z_acc = acc_z.get_value_calibrated_HR();
+           std::cout << "X: " << x_acc << "Y: " << y_acc << "Z: " << z_acc;
          }
 
 Digital Sensors
