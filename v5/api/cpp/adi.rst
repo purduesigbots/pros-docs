@@ -13,10 +13,6 @@ ADI (TriPort) C++ API
 pros::ADIAnalogIn
 =================
 
-.. note::
-   **ADIPotentiometer**, **ADILineSensor**, **ADILightSensor**, and **ADIAccelerometer**
-   are all `pros::ADIAnalogIn`_ objects as well.
-
 Constructor(s)
 --------------
 
