@@ -2064,7 +2064,7 @@ Analogous to `pros::Motor::set_zero_position <../cpp/motors.html#set-zero-positi
           }
 
           motor_set_zero_position(1, 80);
-          motor_move_absolute(1, 100, 100); // Moves 20 units forward
+          motor_move_absolute(1, 100, 100); // Moves 80 units forward
           while (!((motor_get_position(1) - 100 < 105) && (motor_get_position(1) - 100 > 95))) {
             delay(2);
           }
