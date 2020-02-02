@@ -39,10 +39,10 @@ for its ADI port.
          :caption: initialize.c
          :linenos:
 
-         #define ANALOG_SENSOR_PORT 1
+         #define ANALOG_SENSOR_PORT 'A'
 
          void initialize() {
-           adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+           adi_port_set_config(ANALOG_SENSOR_PORT, ADI_ANALOG_IN);
          }
 
    .. group-tab :: C++
@@ -51,7 +51,7 @@ for its ADI port.
          :caption: initialize.cpp
          :linenos:
 
-         #define ANALOG_SENSOR_PORT 1
+         #define ANALOG_SENSOR_PORT 'A'
 
          void initialize() {
            pros::ADIAnalogIn sensor (ANALOG_SENSOR_PORT);
@@ -73,10 +73,10 @@ line trackers.
          :caption: initialize.c
          :linenos:
 
-         #define ANALOG_SENSOR_PORT 1
+         #define ANALOG_SENSOR_PORT 'A'
 
          void initialize() {
-           adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+           adi_port_set_config(ANALOG_SENSOR_PORT, ADI_ANALOG_IN);
            adi_analog_calibrate(ANALOG_SENSOR_PORT);
          }
 
@@ -86,7 +86,7 @@ line trackers.
          :caption: initialize.cpp
          :linenos:
 
-         #define ANALOG_SENSOR_PORT 1
+         #define ANALOG_SENSOR_PORT 'A'
 
          void initialize() {
            pros::ADIAnalogIn sensor (ANALOG_SENSOR_PORT);
@@ -122,7 +122,7 @@ Thus an example of use on a lift would look like:
          :caption: autonomous.c
          :linenos:
 
-         #define POTENTIOMETER_PORT 1
+         #define POTENTIOMETER_PORT 'A'
          #define MOTOR_PORT 1
 
          void autonomous() {
@@ -139,7 +139,7 @@ Thus an example of use on a lift would look like:
          :caption: autonomous.cpp
          :linenos:
 
-         #define POTENTIOMETER_PORT 1
+         #define POTENTIOMETER_PORT 'A'
          #define MOTOR_PORT 1
 
          void autonomous() {
@@ -171,14 +171,14 @@ An example of Line Tracker use:
          :caption: autonomous.c
          :linenos:
 
-         #define LINE_TRACKER_PORT 1
+         #define LINE_TRACKER_PORT 'A'
          #define MOTOR_PORT 1
 
          void autonomous() {
            // Arbitrarily set the threshold for a line at 2000 quid
-           while(analogRead(LINE_TRACKER_PORT) < 2000) {
+           while(adi_analog_read(LINE_TRACKER_PORT) < 2000) {
              // drive forward until a line is hit
-             motorSet(MOTOR_PORT,127);
+             motor_move(MOTOR_PORT,127);
              delay(50);
            }
          }
@@ -190,7 +190,7 @@ An example of Line Tracker use:
          :caption: autonomous.cpp
          :linenos:
 
-         #define LINE_TRACKER_PORT 1
+         #define LINE_TRACKER_PORT 'A'
          #define MOTOR_PORT 1
 
          void autonomous() {
@@ -224,18 +224,18 @@ Example accelerometer use:
          :caption: initialize.c
          :linenos:
 
-         #define ACCELEROMETER_X 1
-         #define ACCELEROMETER_Y 2
-         #define ACCELEROMETER_Z 3
+         #define ACCELEROMETER_X 'A'
+         #define ACCELEROMETER_Y 'B'
+         #define ACCELEROMETER_Z 'C'
 
          void initialize() {
-           analog_calibrate(ACCELEROMETER_X); //calibrates the x axis input
-           analog_calibrate(ACCELEROMETER_Y); //calibrates the y axis input
-           analog_calibrate(ACCELEROMETER_Z); //calibrates the z axis input
+           adi_analog_calibrate(ACCELEROMETER_X); //calibrates the x axis input
+           adi_analog_calibrate(ACCELEROMETER_Y); //calibrates the y axis input
+           adi_analog_calibrate(ACCELEROMETER_Z); //calibrates the z axis input
 
-           int x_acc = analog_read_calibrated_HR(ACCELEROMETER_X);
-           int y_acc = analog_read_calibrated_HR(ACCELEROMETER_Y);
-           int z_acc = analog_read_calibrated_HR(ACCELEROMETER_Z);
+           int x_acc = adi_analog_read_calibrated_HR(ACCELEROMETER_X);
+           int y_acc = adi_analog_read_calibrated_HR(ACCELEROMETER_Y);
+           int z_acc = adi_analog_read_calibrated_HR(ACCELEROMETER_Z);
            printf("X: %d, Y: %d, Z: %d\n", x_acc, y_acc, z_acc);
          }
 
@@ -246,22 +246,22 @@ Example accelerometer use:
          :caption: initialize.cpp
          :linenos:
 
-         #define ACCELEROMETER_X 1
-         #define ACCELEROMETER_Y 2
-         #define ACCELEROMETER_Z 3
+         #define ACCELEROMETER_X 'A'
+         #define ACCELEROMETER_Y 'A'
+         #define ACCELEROMETER_Z 'A'
 
          void initialize() {
-           pros::ADIAnalogIn acc_x (ACCELEROMETER_X);
-           pros::ADIAnalogIn acc_y (ACCELEROMETER_Y);
-           pros::ADIAnalogIn acc_z (ACCELEROMETER_Z);
-           acc_x.calibrate(); //calibrates the x axis input
-           acc_y.calibrate(); //calibrates the y axis input
-           acc_z.calibrate(); //calibrates the z axis input
+            pros::ADIAnalogIn acc_x (ACCELEROMETER_X);
+            pros::ADIAnalogIn acc_y (ACCELEROMETER_Y);
+            pros::ADIAnalogIn acc_z (ACCELEROMETER_Z);
+            acc_x.calibrate(); //calibrates the x axis input
+            acc_y.calibrate(); //calibrates the y axis input
+            acc_z.calibrate(); //calibrates the z axis input
 
-           int x_acc = acc_x.value_get_calibrated_HR();
-           int y_acc = acc_y.value_get_calibrated_HR();
-           int z_acc = acc_z.value_get_calibrated_HR();
-           std::cout << "X: " << x_acc << "Y: " << y_acc << "Z: " z_acc;
+            int x_acc = acc_x.get_value_calibrated_HR();
+            int y_acc = acc_y.get_value_calibrated_HR();
+            int z_acc = acc_z.get_value_calibrated_HR();
+            std::cout << "X: " << x_acc << "Y: " << y_acc << "Z: " << z_acc;
          }
 
 Digital Sensors
@@ -280,10 +280,10 @@ for its ADI port.
          :caption: initialize.c
          :linenos:
 
-         #define DIGITAL_SENSOR_PORT 1
+         #define DIGITAL_SENSOR_PORT 'A'
 
          void initialize() {
-           adi_port_set_config(DIGITAL_SENSOR_PORT, E_ADI_DIGITAL_IN);
+           adi_port_set_config(DIGITAL_SENSOR_PORT, ADI_DIGITAL_IN);
          }
 
    .. group-tab :: C++
@@ -309,7 +309,7 @@ always return a true or false (boolean) value.
          :caption: autonomous.c
          :linenos:
 
-         #define DIGITAL_SENSOR_PORT 1
+         #define DIGITAL_SENSOR_PORT 'A'
          #define MOTOR_PORT 1
 
          void autonomous() {
@@ -328,7 +328,7 @@ always return a true or false (boolean) value.
          :caption: autonomous.cpp
          :linenos:
 
-         #define DIGITAL_SENSOR_PORT 1
+         #define DIGITAL_SENSOR_PORT 'A'
          #define MOTOR_PORT 1
 
          void autonomous() {
@@ -367,9 +367,9 @@ Encoders are initialized as such:
          :caption: main.h
          :linenos:
 
-         // Digital port number for top and bottom port of quad encoder
-         #define QUAD_TOP_PORT 1
-         #define QUAD_BOTTOM_PORT 2
+         // Digital port for top and bottom port of quad encoder
+         #define QUAD_TOP_PORT 'A'
+         #define QUAD_BOTTOM_PORT 'B'
 
          // Multiple encoders can be declared
          extern adi_encoder_t encoder;
@@ -389,8 +389,8 @@ Encoders are initialized as such:
          :linenos:
 
          // Digital port number for top and bottom port of quad encoder
-         #define QUAD_TOP_PORT 1
-         #define QUAD_BOTTOM_PORT 2
+         #define QUAD_TOP_PORT 'A'
+         #define QUAD_BOTTOM_PORT 'B'
 
          void initialize() {
            pros::ADIEncoder encoder (QUAD_TOP_PORT, QUAD_BOTTOM_PORT, false);
@@ -423,8 +423,8 @@ And then used in the following manner:
          :linenos:
 
          #define MOTOR_PORT 1
-         #define QUAD_TOP_PORT 1
-         #define QUAD_BOTTOM_PORT 2
+         #define QUAD_TOP_PORT 'A'
+         #define QUAD_BOTTOM_PORT 'B'
 
          void autonomous() {
            pros::ADIEncoder encoder (QUAD_TOP_PORT, QUAD_BOTTOM_PORT);
@@ -457,9 +457,9 @@ Ultrasonic sensors are initialized as such:
          :caption: main.h
          :linenos:
 
-         // Digital port number for top and bottom port of quad encoder
-         #define ULTRA_PING_PORT 1
-         #define ULTRA_ECHO_PORT 2
+         // Digital port for top and bottom port of Ultrasonic Sensor
+         #define ULTRA_PING_PORT 'A'
+         #define ULTRA_ECHO_PORT 'B'
 
          // Multiple encoders can be declared
          extern adi_ultrasonic_t ultrasonic;
@@ -479,8 +479,8 @@ Ultrasonic sensors are initialized as such:
          :linenos:
 
          // Digital port number for top and bottom port of quad encoder
-         #define ULTRA_PING_PORT 1
-         #define ULTRA_ECHO_PORT 2
+         #define ULTRA_PING_PORT 'A'
+         #define ULTRA_ECHO_PORT 'B'
 
          void initialize() {
            pros::ADIUltrasonic ultrasonic (ULTRA_PING_PORT, ULTRA_ECHO_PORT);
@@ -513,8 +513,8 @@ And then used in the following manner:
          :linenos:
 
          #define MOTOR_PORT 1
-         #define ULTRA_PING_PORT 1
-         #define ULTRA_ECHO_PORT 2
+         #define ULTRA_PING_PORT 'A'
+         #define ULTRA_ECHO_PORT 'B'
 
          void autonomous() {
            pros::ADIUltrasonic ultrasonic (ULTRA_PING_PORT, ULTRA_ECHO_PORT);
@@ -542,10 +542,10 @@ default digital sensor configuration is insufficient.
          :caption: initialize.c
          :linenos:
 
-         #define DIGITAL_SENSOR_PORT 1
+         #define DIGITAL_SENSOR_PORT 'A'
 
          void initialize() {
-           adi_port_set_config(DIGITAL_SENSOR_PORT, E_ADI_DIGITAL_OUT);
+           adi_port_set_config(DIGITAL_SENSOR_PORT, ADI_DIGITAL_OUT);
          }
 
    .. group-tab :: C++
@@ -554,7 +554,7 @@ default digital sensor configuration is insufficient.
          :caption: initialize.cpp
          :linenos:
 
-         #define DIGITAL_SENSOR_PORT 1
+         #define DIGITAL_SENSOR_PORT 'A'
 
          void initialize() {
            pros::ADIDigitalOut piston (DIGITAL_SENSOR_PORT);
@@ -569,12 +569,12 @@ And then the pneumatics are used as such:
          :caption: autonomous.c
          :linenos:
 
-         #define DIGITAL_SENSOR_PORT 1
+         #define DIGITAL_SENSOR_PORT 'A'
 
          void autonomous() {
            adi_digital_write(DIGITAL_SENSOR_PORT, true);
            delay(1000);
-           adi_digital_write(DIGITAL_SENSOR_PORT, false);s
+           adi_digital_write(DIGITAL_SENSOR_PORT, false);
          }
 
    .. group-tab :: C++
@@ -583,7 +583,7 @@ And then the pneumatics are used as such:
          :caption: autonomous.cpp
          :linenos:
 
-         #define DIGITAL_SENSOR_PORT 1
+         #define DIGITAL_SENSOR_PORT 'A'
 
          void autonomous() {
            pros::ADIDigitalOut piston (DIGITAL_SENSOR_PORT);
