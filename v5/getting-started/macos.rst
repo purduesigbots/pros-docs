@@ -12,7 +12,7 @@ The recommended method of installing PROS 3 for macOS involves using `Homebrew <
 1. If you do not already have Homebrew installed, install it by following the instructions on `their site <https://brew.sh>`_. This will take a while, and may prompt you to follow some additional instructions.
 2. Once you have Homebrew installed, run :code:`brew tap purduesigbots/pros` to register the PROS Homebrew repository with Homebrew.
 3. Run :code:`brew cask install gcc-arm-embedded pros-editor` to install the toolchain and the PROS Editor. This may also take a while.
-4. (Optional) If you are planning to use the Vision Sensor, you will likely need to also install the VEX Vision Utility to set up signatures. Run :code:`brew install vcs-vision` to do this. Once installed, you'll be able to run the program by looking for "VCS vision" in searchlight.
+4. (Optional) If you are planning to use the Vision Sensor, you will likely need to also install the VEX Vision Utility to set up signatures. Run :code:`brew cask install vcs-vision` to do this. Once installed, you'll be able to run the program by looking for "VCS vision" in searchlight.
 5. That's it! You can now start using PROS 3.
 
 .. note:: If you do not want to use the PROS Editor, and instead intend to use only the PROS CLI, substitute the command in step 3 with the following: :code:`brew cask install gcc-arm-embedded && brew install pros-cli`.
@@ -57,33 +57,6 @@ Minimum Python version: 3.6
 
 Known Issues
 ------------
-
-:code:`Weird output in the terminal when building`
-
-You may see something like this:
-
-.. code-block::
-   $ prosv5 build all
-   Cleaning project
-   -n Compiling src/autonomous.cpp 
-   -e \x1b[32;01m[OK]\x1b[0m
-   -n Compiling src/initialize.cpp 
-   -e \x1b[32;01m[OK]\x1b[0m
-   -n Compiling src/opcontrol.cpp 
-   -e \x1b[32;01m[OK]\x1b[0m
-   -n Adding timestamp 
-   -e \x1b[32;01m[OK]\x1b[0m
-   -n Linking project with libpros,okapilib 
-   -e \x1b[32;01m[OK]\x1b[0m
-
-This is `because macOS ships with an old version of Bash <https://stackoverflow.com/a/28782466/3681958>`_ that doesn't support some of the flags we use with :code:`echo` in the Makefile.
-
-One solution for this would be to install a newer version of Bash. This can be done with Homebrew: :code:`brew install bash`
-
-Other solutions include installing other shells, like zsh.
-
-If none of the above solutions appeal to you, you may also modify the :code:`common.mk` file (lines 53-64) in your PROS project.
-
 
 :code:`RuntimeError: Click will abort further execution because Python 3 was configured
 to use ASCII as encoding for the environment.`
