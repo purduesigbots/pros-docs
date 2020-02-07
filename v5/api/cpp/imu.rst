@@ -457,7 +457,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-	      pros::c::imu_gyro_s_t get_gyro_rate( )
+	      pros::c::imu_gyro_s_t get_accel( )
 
    .. tab :: Example
       .. highlight:: cpp
