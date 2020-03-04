@@ -2,8 +2,8 @@
 Smart Pointers
 ==============
 
-This documentation is for OkapiLib version 3.x.x. Documentation for the latest version can be found
-`here <https://okapilib.github.io/OkapiLib/index.html>`_.
+.. warning:: This documentation is for OkapiLib version 3.x.x, and might be inaccurate for versions 4.X.X and above. Documentation for the latest version can be found
+         `here <https://okapilib.github.io/OkapiLib/index.html>`_.
 
 **Smart Pointers** are a C++ concept that extend the functionality of C pointers.
 A knowledge of Smart Pointers is not necessary for simple to intermediate OkapiLib programs,

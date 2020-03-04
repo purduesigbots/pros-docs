@@ -2,8 +2,8 @@
 2D Motion Profiling
 ===================
 
-This documentation is for OkapiLib version 3.x.x. Documentation for the latest version can be found
-`here <https://okapilib.github.io/OkapiLib/index.html>`_.
+.. warning:: This documentation is for OkapiLib version 3.x.x, and might be inaccurate for versions 4.X.X and above. Documentation for the latest version can be found
+         `here <https://okapilib.github.io/OkapiLib/index.html>`_.
 
 Motion Profiling is a controls algorithm that defines a movement as a series of
 steps. In one dimension, it defines a motor's position, speed, acceleration, etc.

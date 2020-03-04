@@ -2,8 +2,8 @@
 Asynchronous Autonomous Movement
 ================================
 
-This documentation is for OkapiLib version 3.x.x. Documentation for the latest version can be found
-`here <https://okapilib.github.io/OkapiLib/index.html>`_.
+.. warning:: This documentation is for OkapiLib version 3.x.x, and might be inaccurate for versions 4.X.X and above. Documentation for the latest version can be found
+         `here <https://okapilib.github.io/OkapiLib/index.html>`_.
 
 .. note:: This tutorial covers asynchronous movement (multiple subsystems operating at a time).
           For a more basic tutorial on sequential movements, see `Moving Autonomously <./autonomous-movement-basic.html>`_.
