@@ -5,6 +5,9 @@ Filtering
 .. warning:: This documentation is for OkapiLib version 3.x.x, and might be inaccurate for versions 4.x.x and above. Documentation for the latest version can be found
          `here <https://okapilib.github.io/OkapiLib/index.html>`_.
 
+.. note:: An updated version of this tutorial for Okapi 4.x.x and above can be found 
+         `here <https://okapilib.github.io/OkapiLib/md_docs_tutorials_concepts_filtering.html>`_.
+
 OkapiLib makes it easy to use any one of a number of various types of filters on sensors and controllers.
 The specifics of how each filter works and should be initialized will be left to its API reference,
 but this guide will help provide the general knowledge necessary to make the most out of OkapiLib's

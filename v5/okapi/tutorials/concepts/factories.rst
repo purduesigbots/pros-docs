@@ -3,7 +3,7 @@ Factory Object Creation Pattern
 ===============================
 
 .. warning:: This documentation is for OkapiLib version 3.x.x, and might be inaccurate for versions 4.x.x and above. Documentation for the latest version can be found
-         `here <https://okapilib.github.io/OkapiLib/index.html>`_.
+         `here <https://okapilib.github.io/OkapiLib/index.html>`_. 
 
 OkapiLib uses a pattern of **Factories** to create objects. This means that while you can find constructors
 for any classes you may want to use in ``okapi/api``, creating these classes is best done with

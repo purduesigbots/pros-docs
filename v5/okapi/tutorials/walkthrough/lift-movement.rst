@@ -5,6 +5,9 @@ Lift Movement
 .. warning:: This documentation is for OkapiLib version 3.x.x, and might be inaccurate for versions 4.x.x and above. Documentation for the latest version can be found
          `here <https://okapilib.github.io/OkapiLib/index.html>`_.
 
+.. note:: The latest version of this tutorial can be found 
+         `here <https://okapilib.github.io/OkapiLib/md_docs_tutorials_walkthrough_liftMovement.html>`_. 
+
 In VEX, a large majority of games require the use of a lift, and it serves as a great example for controlling
 non-chassis systems.
 
