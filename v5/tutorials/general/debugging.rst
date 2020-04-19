@@ -22,9 +22,9 @@ To view a robot's output, there are two officially supported methods:
 
 2. From within Atom:
 
-   Click the button labeled "Open cortex serial output"
+   Click the button labeled "Open PROS Terminal"
 
-.. image:: /images/atom/open-cortex.png
+.. image:: /images/atom/open-terminal.png
 
 A terminal panel will open at the bottom of the screen containing the
 output of a connected robot.
