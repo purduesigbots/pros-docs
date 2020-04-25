@@ -35,7 +35,7 @@ Compile-Time Issues
 Does PROS have a graphics library for the Brain's Screen?
 =========================================================
 
-Yes, we have ported `LVGL <https://littlevgl.com/>`_ for use with the V5 Brain. You can out more about it here: doc:`../tutorials/topical/display`.
+Yes, we have ported `LVGL <https://littlevgl.com/>`_ for use with the V5 Brain. You can out more about it here <../tutorials/topical/display.html>.
 
 Run-Time Issues
 ===============
