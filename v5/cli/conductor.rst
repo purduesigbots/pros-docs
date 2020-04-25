@@ -41,7 +41,7 @@ Creating a new project
 
 		.. code-block:: console
 
-			> pros conduct new-project ./Top-5-At-Worlds v5
+			> prosv5 conduct new-project ./Top-5-At-Worlds
 			Updating pros-mainline... Done
 			Downloading kernel@3.0.7 (https://www.cs.purdue.edu/~brookea/kernel@3.0.7.zip) [####################################] 100%
 			Extracting kernel@3.0.7 [####################################] 100%
@@ -61,9 +61,7 @@ Creating a new project
 			--------  ---------  -------------
 			kernel    3.0.7      pros-mainline
 			okapilib  3.0.1      pros-mainline
-	.. tab :: PROS Editor
 
-		Coming soon!
 
 Installing/upgrading a new template
 
@@ -72,7 +70,7 @@ Installing/upgrading a new template
 
 		.. code-block:: console
 
-			> pros conduct apply okapilib
+			> prosv5 conduct apply okapilib
 
 
 Fetching a remote template
@@ -82,7 +80,7 @@ Fetching a remote template
 
 		.. code-block:: console
 
-			> pros conduct fetch kernel 3.1.0
+			> prosv5 conduct fetch kernel 3.1.0
 
 Fetching a local template archive
 
@@ -91,7 +89,7 @@ Fetching a local template archive
 
 		.. code-block:: console
 
-			> pros conduct fetch mylibrary@1.0.0.zip
+			> prosv5 conduct fetch mylibrary@1.0.0.zip
 
 Creating Templates
 ==================
@@ -135,8 +133,8 @@ your own custom arguments to ``pros conduct create-template``
 Reference
 =========
 .. click:: pros.cli.conductor:conductor
-	:prog: pros conduct
+	:prog: prosv5 conduct
 	:show-nested:
 
 .. click:: pros.cli.conductor_utils:create_template
-	:prog: pros conduct create-template
+	:prog: prosv5 conduct create-template

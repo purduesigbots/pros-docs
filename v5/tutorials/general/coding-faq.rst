@@ -11,7 +11,7 @@ Coding FAQ
         running ``PROS -> Build -> All`` in the editor, the whole project is compiled again, fixing this
         issue. You may need to close and reopen any files in order for the linter to catch up. It is also possible that a compilation error was not caught by the linter, so running
         a full build will help discover these hidden errors.
-    
+
 Compile-Time Issues
 ===================
 
@@ -92,7 +92,7 @@ Run-Time Issues
 
  * `printf <printf_>`_ **doesn't work**:
     `printf <http://www.cplusplus.com/reference/cstdio/printf/>`_ prints
-    information over a serial connection (`Debugging <../tutorials/general/debugging>`_),
+    information over a serial connection (`Debugging <../general/debugging>`_),
     not to the VEX LCD. To print to the LCD, use `lcd_print <../../api/c/llemu.html#lcd-print>`_
     instead.
 
