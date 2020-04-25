@@ -11,7 +11,7 @@ Coding FAQ
         running ``PROS -> Build -> All`` in the editor, the whole project is compiled again, fixing this
         issue. You may need to close and reopen any files in order for the linter to catch up. It is also possible that a compilation error was not caught by the linter, so running
         a full build will help discover these hidden errors.
-    
+
 Compile-Time Issues
 ===================
 
@@ -31,6 +31,11 @@ Compile-Time Issues
     Typically caused when a C pointer has the wrong number of asterisks to
     `dereference <http://stackoverflow.com/a/4955297/3681958>`_ it, or when
     assigning a constant to ``pointer`` (instead of ``*pointer``).
+
+Does PROS have a graphics library for the Brain's Screen?
+=========================================================
+
+Yes, we have ported `LVGL <https://littlevgl.com/>`_ for use with the V5 Brain. You can out more about it here: doc:`../tutorials/topical/display`.
 
 Run-Time Issues
 ===============

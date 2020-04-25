@@ -41,7 +41,7 @@ Creating a new project
 
 		.. code-block:: console
 
-			> pros conduct new-project ./Top-5-At-Worlds v5
+			> prosv5 conduct new-project ./Top-5-At-Worlds
 			Updating pros-mainline... Done
 			Downloading kernel@3.0.7 (https://www.cs.purdue.edu/~brookea/kernel@3.0.7.zip) [####################################] 100%
 			Extracting kernel@3.0.7 [####################################] 100%
@@ -63,7 +63,7 @@ Creating a new project
 			okapilib  3.0.1      pros-mainline
 	.. tab :: PROS Editor
 
-		Coming soon!
+   .. image:: /images/tuts/quick-action.png
 
 Installing/upgrading a new template
 
@@ -72,7 +72,7 @@ Installing/upgrading a new template
 
 		.. code-block:: console
 
-			> pros conduct apply okapilib
+			> prosv5 conduct apply okapilib
 
 
 Fetching a remote template
@@ -82,7 +82,7 @@ Fetching a remote template
 
 		.. code-block:: console
 
-			> pros conduct fetch kernel 3.1.0
+			> prosv5 conduct fetch kernel 3.1.0
 
 Fetching a local template archive
 
@@ -91,7 +91,7 @@ Fetching a local template archive
 
 		.. code-block:: console
 
-			> pros conduct fetch mylibrary@1.0.0.zip
+			> prosv5 conduct fetch mylibrary@1.0.0.zip
 
 Creating Templates
 ==================
