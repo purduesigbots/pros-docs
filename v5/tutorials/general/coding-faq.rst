@@ -32,11 +32,6 @@ Compile-Time Issues
     `dereference <http://stackoverflow.com/a/4955297/3681958>`_ it, or when
     assigning a constant to ``pointer`` (instead of ``*pointer``).
 
-Does PROS have a graphics library for the Brain's Screen?
-=========================================================
-
-Yes, we have ported `LVGL <https://littlevgl.com/>`_ for use with the V5 Brain. You can out more about it here <../tutorials/topical/display.html>.
-
 Run-Time Issues
 ===============
 
@@ -97,7 +92,7 @@ Run-Time Issues
 
  * `printf <printf_>`_ **doesn't work**:
     `printf <http://www.cplusplus.com/reference/cstdio/printf/>`_ prints
-    information over a serial connection (`Debugging <../tutorials/general/debugging>`_),
+    information over a serial connection (`Debugging <../general/debugging>`_),
     not to the VEX LCD. To print to the LCD, use `lcd_print <../../api/c/llemu.html#lcd-print>`_
     instead.
 

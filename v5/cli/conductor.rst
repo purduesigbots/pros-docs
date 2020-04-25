@@ -61,9 +61,7 @@ Creating a new project
 			--------  ---------  -------------
 			kernel    3.0.7      pros-mainline
 			okapilib  3.0.1      pros-mainline
-	.. tab :: PROS Editor
 
-   .. image:: /images/tuts/quick-action.png
 
 Installing/upgrading a new template
 
