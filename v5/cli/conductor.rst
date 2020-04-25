@@ -133,8 +133,8 @@ your own custom arguments to ``pros conduct create-template``
 Reference
 =========
 .. click:: pros.cli.conductor:conductor
-	:prog: pros conduct
+	:prog: prosv5 conduct
 	:show-nested:
 
 .. click:: pros.cli.conductor_utils:create_template
-	:prog: pros conduct create-template
+	:prog: prosv5 conduct create-template
