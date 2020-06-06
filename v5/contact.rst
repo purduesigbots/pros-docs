@@ -3,7 +3,7 @@ Getting Help
 
 Having an issue using PROS? You can get help in several ways:
 
-* Posting on the `VEX Forum <https://www.vexforum.com/c/programming-support/pros-support/64>`_ (best for Q&A)
+* Posting on the `VEX Forum <https://www.vexforum.com/c/programming-support/pros-support>`_ (best for Q&A)
 * Joining us on `Slack <https://join.slack.com/t/pros-development/shared_invite/enQtMzIyNzA2MTU2MDgwLWUwYzRhODRkYjU5ZmM5OTFhOWQxNjc4MzQ1OTc0MjU0MGFiMDdlMTQ3YTdhNDc2ZDU3NjcyZjM4MDgwNGMzOGE>`_ (best for debugging an issue with the PROS Environment)
 * Open an issue on GitHub (best for reporting an issue you've discovered):
 
