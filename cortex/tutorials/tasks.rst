@@ -12,7 +12,7 @@ and more CPU time will be awarded to the task. Tasks of higher priority
 will *always* run in preference to lower priority tasks, unless the
 higher priority task is using ``delay()`` or some other waiting action.
 
-Tasks are creating using ``taskCreate()``, which invokes a user function
+Tasks are created using ``taskCreate()``, which invokes a user function
 in the new task:
 
 .. code:: c
