@@ -1253,7 +1253,7 @@ This function uses the following values of ``errno`` when an error state is reac
         #define SMART_PORT 1
         
         void opcontrol() {
-          pros::ADIUltrasonic sensor ( { SMART_PORT, PORT_PING, PORT_ECHO } );
+          pros::ADIUltrasonic sensor ( {{ SMART_PORT, PORT_PING, PORT_ECHO }} );
           while (true) {
             // Print the distance read by the ultrasonic
             std::cout << "Distance: " << sensor.get_value();
@@ -1264,9 +1264,10 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ ====================================================================================================================================
  Parameters
 ============ ====================================================================================================================================
- port_tuple   A 3 value tuple in the form of (smart_port, port_ping, port_bottom} where smart_port is the smart port where the ADI expander is
+ port_tuple   A 3 value tuple in the form of {{smart_port, port_ping, port_bottom}} where smart_port is the smart port where the ADI expander is
               plugged in, port_ping is the port connected to the orange OUTPUT cable and should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G'),
-              and port_bottom being the port connected to the yellow INPUT cable in the next highest port following port_ping.
+              and port_bottom being the port connected to the yellow INPUT cable in the next highest port following port_ping. Note the use of 
+              double paranthesis for this.
 ============ ====================================================================================================================================
 
 ----
