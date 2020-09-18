@@ -694,7 +694,6 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ ====================================================================================================================================
  Parameters
 ============ ====================================================================================================================================
-
  port_tuple   A 3 value tuple in the form of (smart_port, port_top, port_bottom} where smart_port is the smart port where the ADI expander is
               plugged in, port_top is the "top" wire from the encoder sensor with the removable cover side UP. This should be in port 1, 3, 5, 
               or 7 ('A', 'C', 'E', 'G'), and port_bottom being the "bottom" wire from the encoder sensor.

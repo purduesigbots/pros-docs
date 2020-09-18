@@ -89,17 +89,19 @@ Analogous to `pros::ADIAnalogIn::get_value <../cpp/adi.html#get-value>`_.
       .. highlight:: c
       ::
 
-        int32_t ext_adi_analog_read (uint8_t port )
+        int32_t ext_adi_analog_read (uint8_t smart_port, 
+                                      uint8_t adi_port)
 
    .. tab :: Example
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define ANALOG_SENSOR_PORT 1
 
         void opcontrol() {
           while (true) {
-            printf("Sensor Reading: %d\n", ext_adi_analog_read(ANALOG_SENSOR_PORT));
+            printf("Sensor Reading: %d\n", ext_adi_analog_read(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT));
             delay(5);
           }
         }
@@ -107,7 +109,8 @@ Analogous to `pros::ADIAnalogIn::get_value <../cpp/adi.html#get-value>`_.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to read from (from 1-8, 'a'-'h', 'A'-'H')
 ============ =================================================================================================================
 
 **Returns:** The analog sensor value, where a value of 0 reflects an input voltage of nearly 0 V
@@ -136,17 +139,19 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated <../cpp/adi.html#get-value
       .. highlight:: c
       ::
 
-        int32_t ext_adi_analog_read_calibrated (uint8_t port )
+        int32_t ext_adi_analog_read_calibrated (uint8_t smart_port, 
+                                                uint8_t adi_port)
 
    .. tab :: Example
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define ANALOG_SENSOR_PORT 1
 
         void opcontrol() {
           while (true) {
-            printf("Sensor Reading: %d\n", ext_adi_analog_read_calibrated(ANALOG_SENSOR_PORT));
+            printf("Sensor Reading: %d\n", ext_adi_analog_read_calibrated(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT));
             delay(5);
           }
         }
@@ -154,7 +159,8 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated <../cpp/adi.html#get-value
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to calibrate (from 1-8, 'a'-'h', 'A'-'H')
 ============ =================================================================================================================
 
 **Returns:** The difference of the sensor value from its calibrated default from -4095 to 4095.
@@ -186,18 +192,20 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-va
       .. highlight:: c
       ::
 
-        int32_t ext_adi_analog_read_calibrated_HR (uint8_t port )
+        int32_t ext_adi_analog_read_calibrated_HR (uint8_t smart_port, 
+                                                    uint8_t adi_port)
 
    .. tab :: Example
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define ANALOG_SENSOR_PORT 1
 
         void opcontrol() {
           while (true) {
             ext_adi_analog_calibrate(ANALOG_SENSOR_PORT);
-            printf("Sensor Reading: %d\n", ext_adi_analog_read_calibrated_HR(ANALOG_SENSOR_PORT));
+            printf("Sensor Reading: %d\n", ext_adi_analog_read_calibrated_HR(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT));
             delay(5);
           }
         }
@@ -205,7 +213,8 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-va
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to read from (from 1-8, 'a'-'h', 'A'-'H')
 ============ =================================================================================================================
 
 **Returns:** The difference of the sensor value from its calibrated default from -16384 to 16384.
@@ -237,17 +246,19 @@ Analogous to `pros::ADIDigitalIn::get_new_press <../cpp/adi.html#get-new-press>`
       .. highlight:: c
       ::
 
-        int32_t ext_adi_digital_get_new_press (uint8_t port )
+        int32_t ext_adi_digital_get_new_press (uint8_t smart_port, 
+                                              uint8_t adi_port)
 
    .. tab :: Example
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define DIGITAL_SENSOR_PORT 1
 
         void opcontrol() {
           while (true) {
-            if (ext_adi_digital_get_new_press(DIGITAL_SENSOR_PORT)) {
+            if (ext_adi_digital_get_new_press(ADI_EXPANDER_PORT, DIGITAL_SENSOR_PORT)) {
               // Toggle pneumatics or other state operations
             }
             delay(5);
@@ -257,7 +268,8 @@ Analogous to `pros::ADIDigitalIn::get_new_press <../cpp/adi.html#get-new-press>`
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to read from (from 1-8, 'a'-'h', 'A'-'H')
 ============ =================================================================================================================
 
 **Returns:** 1 if the button on the controller is pressed and had not been pressed
@@ -286,17 +298,18 @@ Analogous to `pros::ADIDigitalIn::get_value <../cpp/adi.html#id5>`_.
       .. highlight:: c
       ::
 
-        int32_t ext_adi_digital_read (uint8_t port )
+        int32_t ext_adi_digital_read (uint8_t smart_port, 
+                                      uint8_t adi_port)
 
    .. tab :: Example
       .. highlight:: c
       ::
-
+        #define ADI_EXPANDER_PORT 20
         #define DIGITAL_SENSOR_PORT 1
 
         void opcontrol() {
           while (true) {
-            printf("Sensor Value: %d\n", ext_adi_digital_read(DIGITAL_SENSOR_PORT));
+            printf("Sensor Value: %d\n", ext_adi_digital_read(ADI_EXPANDER_PORT, DIGITAL_SENSOR_PORT));
             delay(5);
           }
         }
@@ -304,7 +317,8 @@ Analogous to `pros::ADIDigitalIn::get_value <../cpp/adi.html#id5>`_.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to read from (from 1-8, 'a'-'h', 'A'-'H')
 ============ =================================================================================================================
 
 **Returns:** True if the pin is `HIGH`_, or false if it is `LOW`_.
@@ -328,20 +342,22 @@ Analogous to `pros::ADIDigitalOut::set_value <../cpp/adi.html#id8>`_.
       .. highlight:: c
       ::
 
-       int32_t ext_adi_digital_write (uint8_t port,
-                                    const bool value )
+       int32_t ext_adi_digital_write (uint8_t smart_port, 
+                                      uint8_t adi_port, 
+                                      bool value)
 
    .. tab :: Example
       .. highlight:: c
       ::
 
-        #define DIGITAL_SENSOR_PORT
+        #define ADI_EXPANDER_PORT 20
+        #define DIGITAL_SENSOR_PORT 1
 
         void opcontrol() {
           bool state = LOW;
           while (true) {
             state != state;
-            ext_adi_digital_write(DIGITAL_SENSOR_PORT, state);
+            ext_adi_digital_write(ADI_EXPANDER_PORT ,DIGITAL_SENSOR_PORT, state);
             delay(5); // toggle the sensor value every 50ms
           }
         }
@@ -349,7 +365,8 @@ Analogous to `pros::ADIDigitalOut::set_value <../cpp/adi.html#id8>`_.
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to write to
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to write to (from 1-8, 'a'-'h', 'A'-'H')
  value        an expression evaluating to "true" or "false" to set the output to HIGH or LOW
               respectively, or the constants HIGH or LOW themselves
 ============ =================================================================================================================
@@ -382,12 +399,12 @@ Analogous to `pros::ADIEncoder::get_value <../cpp/adi.html#id11>`_.
    .. tab :: Example
       .. highlight:: c
       ::
-
+        #define ADI_EXPANDER_PORT 20
         #define PORT_TOP 1
         #define PORT_BOTTOM 2
 
         void opcontrol() {
-          ext_adi_encoder_t enc = ext_adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
+          ext_adi_encoder_t enc = ext_adi_encoder_init(ADI_EXPANDER_PORT, PORT_TOP, PORT_BOTTOM, false);
           while (true) {
             printf("Encoder Value: %d\n", ext_adi_encoder_get(enc));
             delay(5);
@@ -429,11 +446,12 @@ Analogous to `pros::ADIEncoder::ADIEncoder <../cpp/adi.html#id9>`_.
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define PORT_TOP 1
         #define PORT_BOTTOM 2
 
         void opcontrol() {
-          ext_adi_encoder_t enc = ext_adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
+          ext_adi_encoder_t enc = ext_adi_encoder_init(ADI_EXPANDER_PORT, PORT_TOP, PORT_BOTTOM, false);
           while (true) {
             printf("Encoder Value: %d\n", ext_adi_encoder_get(enc));
             delay(5);
@@ -443,6 +461,7 @@ Analogous to `pros::ADIEncoder::ADIEncoder <../cpp/adi.html#id9>`_.
 ============ ====================================================================================================================================
  Parameters
 ============ ====================================================================================================================================
+ smart_port   The smart port number the ADI Expander is in
  port_top     the "top" wire from the encoder sensor with the removable cover side UP. This should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G').
  port_bottom  the "bottom" wire from the encoder sensor
  reverse      if "true", the sensor will count in the opposite direction
@@ -478,11 +497,12 @@ Analogous to `pros::ADIEncoder::reset <../cpp/adi.html#reset>`_.
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define PORT_TOP 1
         #define PORT_BOTTOM 2
 
         void opcontrol() {
-          ext_adi_encoder_t enc = ext_adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
+          ext_adi_encoder_t enc = ext_adi_encoder_init(ADI_EXPANDER_PORT, PORT_TOP, PORT_BOTTOM, false);
           delay(1000); // Move the encoder around in this time
           ext_adi_encoder_reset(enc); // The encoder is now zero again
         }
@@ -518,11 +538,12 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define PORT_TOP 1
         #define PORT_BOTTOM 2
 
         void opcontrol() {
-          ext_adi_encoder_t enc = ext_adi_encoder_init(PORT_TOP, PORT_BOTTOM, false);
+          ext_adi_encoder_t enc = ext_adi_encoder_init(ADI_EXPANDER_PORT, PORT_TOP, PORT_BOTTOM, false);
           // Use the encoder
           ext_adi_encoder_shutdown(enc);
         }
@@ -554,25 +575,27 @@ Analogous to `pros::ADIMotor::get_value <../cpp/adi.html#id14>`_.
       .. highlight:: c
       ::
 
-       int32_t ext_adi_motor_get ( uint8_t port )
+       int32_t ext_adi_motor_get (uint8_t smart_port,
+                                  uint8_t adi_port)
 
    .. tab :: Example
       .. highlight:: c
       ::
-
+        #define ADI_EXPANDER_PORT 20
         #define MOTOR_PORT 1
 
         void opcontrol() {
-          ext_adi_motor_set(MOTOR_PORT, 127); // Go full speed forward
-          printf("Commanded Motor Power: %d\n", ext_adi_motor_get(MOTOR_PORT)); // Will display 127
+          ext_adi_motor_set(ADI_EXPANDER_PORT, MOTOR_PORT, 127); // Go full speed forward
+          printf("Commanded Motor Power: %d\n", ext_adi_motor_get(ADI_EXPANDER_PORT, MOTOR_PORT)); // Will display 127
           delay(1000);
-          ext_adi_motor_set(MOTOR_PORT, 0); // Stop the motor
+          ext_adi_motor_set(ADI_EXPANDER_PORT, MOTOR_PORT, 0); // Stop the motor
         }
 
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to get
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to get (from 1-8, 'a'-'h', 'A'-'H')
 ============ =================================================================================================================
 
 **Returns:** The last set speed of the motor on the given port.
@@ -596,25 +619,28 @@ Analogous to `pros::ADIMotor::set_value <../cpp/adi.html#id15>`_.
       .. highlight:: c
       ::
 
-       int32_t ext_adi_motor_set ( uint8_t port,
-                               const int8_t speed )
+       int32_t ext_adi_motor_set (uint8_t smart_port, 
+                                  uint8_t adi_port, 
+                                  int8_t speed)
 
    .. tab :: Example
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define MOTOR_PORT 1
 
         void opcontrol() {
-          ext_adi_motor_set(MOTOR_PORT, 127); // Go full speed forward
+          ext_adi_motor_set(ADI_EXPANDER_PORT, MOTOR_PORT, 127); // Go full speed forward
           delay(1000);
-          ext_adi_motor_set(MOTOR_PORT, 0); // Stop the motor
+          ext_adi_motor_set(ADI_EXPANDER_PORT, MOTOR_PORT, 0); // Stop the motor
         }
 
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to set
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to set (from 1-8, 'a'-'h', 'A'-'H')
  speed        the new signed speed; -127 is full reverse and 127 is full forward, with 0 being off
 ============ =================================================================================================================
 
@@ -639,25 +665,27 @@ Analogous to `pros::ADIMotor::stop <../cpp/adi.html#id16>`_.
       .. highlight:: c
       ::
 
-       int32_t ext_adi_motor_stop (uint8_t port )
+       int32_t ext_adi_motor_stop (uint8_t smart_port, uint8_t adi_port)
 
    .. tab :: Example
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define MOTOR_PORT 1
 
         void opcontrol() {
-          ext_adi_motor_set(MOTOR_PORT, 127); // Go full speed forward
+          ext_adi_motor_set(ADI_EXPANDER_PORT, MOTOR_PORT, 127); // Go full speed forward
           delay(1000);
-          // ext_adi_motor_set(MOTOR_PORT, 0); // Stop the motor
-          ext_adi_motor_stop(MOTOR_PORT); // use this instead
+          ext_adi_motor_set(ADI_EXPANDER_PORT, MOTOR_PORT, 0); // Stop the motor
+          ext_adi_motor_stop(ADI_EXPANDER_PORT, MOTOR_PORT); // use this instead
         }
 
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to stop
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to stop (from 1-8, 'a'-'h', 'A'-'H')
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
@@ -678,13 +706,15 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-       int32_t ext_adi_pin_mode ( uint8_t port,
-                              const unsigned char mode )
+       int32_t ext_adi_pin_mode (uint8_t smart_port, 
+                                uint8_t adi_port, 
+                                uint8_t mode)
 
    .. tab :: Example
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define ANALOG_SENSOR_PORT 1
 
         void initialize() {
@@ -694,7 +724,8 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to configure (from 1-8, 'a'-'h', 'A'-'H')
  mode         one of `INPUT`_, `INPUT_ANALOG`_, `OUTPUT`_, or `OUTPUT_ANALOG`_
 ============ =================================================================================================================
 
@@ -718,24 +749,27 @@ Analogous to `pros::ADIPort::get_config <../cpp/adi.html#get-config>`_.
       .. highlight:: c
       ::
 
-        ext_adi_port_config_e_t ext_adi_port_get_config (uint8_t port )
+        ext_adi_port_config_e_t ext_adi_port_get_config (uint8_t smart_port, 
+                                                        uint8_t adi_port)
 
    .. tab :: Example
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define ANALOG_SENSOR_PORT 1
 
         void initialize() {
-          ext_adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+          ext_adi_port_set_config(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
           // Displays the value of E_ADI_ANALOG_IN
-          printf("Port Type: %d\n", ext_adi_port_get_config(ANALOG_SENSOR_PORT));
+          printf("Port Type: %d\n", ext_adi_port_get_config(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT));
         }
 
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to get
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port to get (from 1-8, 'a'-'h', 'A'-'H')
 ============ =================================================================================================================
 
 **Returns:** The `ext_adi_port_config_e_t`_ set for the port.
@@ -758,23 +792,26 @@ Analogous to `pros::ADIPort::get_value <../cpp/adi.html#id18>`_.
       .. highlight:: c
       ::
 
-       int32_t ext_adi_get_value ( uint8_t port )
+       int32_t ext_adi_get_value (uint8_t smart_port, 
+                                  uint8_t adi_port)
 
    .. tab :: Example
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define ANALOG_SENSOR_PORT 1
 
         void opcontrol() {
-          ext_adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
-          printf("Port Value: %d\n", ext_adi_get_value(ANALOG_SENSOR_PORT));
+          ext_adi_port_set_config(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+          printf("Port Value: %d\n", ext_adi_get_value(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT));
         }
 
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
+ smart_port       The smart port number the ADI Expander is in
+ adi_port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to read
 ============ =================================================================================================================
 
 **Returns:** The value for the given ADI port.
@@ -797,23 +834,26 @@ Analogous to `pros::ADIPort::set_config <../cpp/adi.html#set-config>`_.
       .. highlight:: c
       ::
 
-       int32_t ext_adi_port_set_config (uint8_t port,
+       int32_t ext_adi_port_set_config (uint8_t smart_port, 
+                                      uint8_t adi_port
                                       ext_adi_port_config_e_t type )
 
    .. tab :: Example
       .. highlight:: c
       ::
-
+        
+        #define ADI_EXPANDER_PORT 20
         #define ANALOG_SENSOR_PORT 1
 
         void initialize() {
-          ext_adi_port_set_config(ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
+          ext_adi_port_set_config(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT, E_ADI_ANALOG_IN);
         }
 
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to configure
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to set
  type         The `configuration <./adi.html#adi-port-config-e-t>`_ type for the port
 ============ =================================================================================================================
 
@@ -840,24 +880,27 @@ Analogous to `pros::ADIPort::set_value <../cpp/adi.html#id20>`_.
       .. highlight:: c
       ::
 
-       int32_t ext_adi_set_value (uint8_t port,
+       int32_t ext_adi_set_value (uint8_t smart_port, 
+                               uint8_t adi_port,
                                int32_t value )
 
    .. tab :: Example
       .. highlight:: c
       ::
 
+        #define ADI_EXPANDER_PORT 20
         #define DIGITAL_SENSOR_PORT 1
 
         void initialize() {
-          ext_adi_port_set_config(DIGITAL_SENSOR_PORT, E_ADI_DIGITAL_OUT);
-          ext_adi_set_value(DIGITAL_SENSOR_PORT, HIGH);
+          ext_adi_port_set_config(ADI_EXPANDER_PORT, DIGITAL_SENSOR_PORT, E_ADI_DIGITAL_OUT);
+          ext_adi_set_value(ADI_EXPANDER_PORT, DIGITAL_SENSOR_PORT, HIGH);
         }
 
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to set
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to set
  value        The value to set the ADI port to
 ============ =================================================================================================================
 
@@ -894,9 +937,10 @@ Analogous to `pros::ADIUltrasonic::get_value <../cpp/adi.html#id24>`_.
 
         #define PORT_PING 1
         #define PORT_ECHO 2
-    
+        #define ADI_EXPANDER_PORT 20
+
         void opcontrol() {
-          ext_adi_ultrasonic_t ult = ext_adi_ultrasonic_init(PORT_PING, PORT_ECHO);
+          ext_adi_ultrasonic_t ult = ext_adi_ultrasonic_init(ADI_EXPANDER_PORT, PORT_PING, PORT_ECHO);
           while (true) {
             // Print the distance read by the ultrasonic
             printf("Distance: %d\n", ext_adi_ultrasonic_get(ult));
@@ -931,7 +975,8 @@ Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
       .. highlight:: c
       ::
 
-        ext_adi_ultrasonic_t ext_adi_ultrasonic_init (uint8_t port_ping,
+        ext_adi_ultrasonic_t ext_adi_ultrasonic_init (uint8_t smart_port,
+                                              uint8_t port_ping,
                                               uint8_t port_echo )
 
    .. tab :: Example
@@ -940,9 +985,10 @@ Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
 
         #define PORT_PING 1
         #define PORT_ECHO 2
-    
+        #define ADI_EXPANDER_PORT 20
+
         void opcontrol() {
-          ext_adi_ultrasonic_t ult = ext_adi_ultrasonic_init(PORT_PING, PORT_ECHO);
+          ext_adi_ultrasonic_t ult = ext_adi_ultrasonic_init(ADI_EXPANDER_PORT, PORT_PING, PORT_ECHO);
           while (true) {
             // Print the distance read by the ultrasonic
             printf("Distance: %d\n", ext_adi_ultrasonic_get(ult));
@@ -953,6 +999,7 @@ Analogous to `pros::ADIUltrasonic::ADIUltrasonic <../cpp/adi.html#id22>`_.
 ============ =============================================================================================================
  Parameters
 ============ =============================================================================================================
+ smart_port   The smart port number the ADI Expander is in
  port_ping    the port connected to the orange OUTPUT cable. This should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G').
  port_echo    the port connected to the yellow INPUT cable. This should be in the next highest port following port_ping.
 ============ =============================================================================================================
@@ -984,9 +1031,10 @@ This function uses the following values of ``errno`` when an error state is reac
 
         #define PORT_PING 1
         #define PORT_ECHO 2
-    
+        #define ADI_EXPANDER_PORT 20
+
         void opcontrol() {
-          ext_adi_ultrasonic_t ult = ext_adi_ultrasonic_init(PORT_PING, PORT_ECHO);
+          ext_adi_ultrasonic_t ult = ext_adi_ultrasonic_init(ADI_EXPANDER_PORT, PORT_PING, PORT_ECHO);
           while (true) {
             // Print the distance read by the ultrasonic
             printf("Distance: %d\n", ext_adi_ultrasonic_get(ult));
@@ -1027,7 +1075,8 @@ Analogous to `pros::ADIGyro::ADIGyro <../cpp/adi.html#>`_.
       .. highlight:: c
       ::
 
-        ext_adi_gyro_t ext_adi_gyro_init ( uint8_t port,
+        ext_adi_gyro_t ext_adi_gyro_init ( uint8_t smart_port,
+                                   uint8_t adi_port,
                                    double multiplier )
 
    .. tab :: Example
@@ -1036,9 +1085,10 @@ Analogous to `pros::ADIGyro::ADIGyro <../cpp/adi.html#>`_.
 
         #define GYRO_PORT 1
         #define GYRO_MULTIPLIER 1 // Standard behavior
+        #define ADI_EXPANDER_PORT 20
 
         void opcontrol() {
-          ext_adi_gyro_t gyro = ext_adi_gyro_init(GYRO_PORT, GYRO_MULTIPLIER);
+          ext_adi_gyro_t gyro = ext_adi_gyro_init(ADI_EXPANDER_PORT, GYRO_PORT, GYRO_MULTIPLIER);
           while (true) {
             // Print the gyro's heading
             printf("Heading: %lf\n", ext_adi_gyro_get(gyro));
@@ -1049,7 +1099,8 @@ Analogous to `pros::ADIGyro::ADIGyro <../cpp/adi.html#>`_.
 ============ =============================================================================================================
  Parameters
 ============ =============================================================================================================
- port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a gyro
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a gyro
  multiplier   A scalar value that will be mutliplied by the gyro heading value
 ============ =============================================================================================================
 
@@ -1087,9 +1138,10 @@ Analogous to `pros::ADIGyro::get_value <../cpp/adi.html#>`_.
 
         #define GYRO_PORT 1
         #define GYRO_MULTIPLIER 1 // Standard behavior
+        #define ADI_EXPANDER_PORT 20
 
         void opcontrol() {
-          ext_adi_gyro_t gyro = ext_adi_gyro_init(GYRO_PORT, GYRO_MULTIPLIER);
+          ext_adi_gyro_t gyro = ext_adi_gyro_init(ADI_EXPANDER_PORT, GYRO_PORT, GYRO_MULTIPLIER);
           while (true) {
             // Print the gyro's heading
             printf("Heading: %lf\n", ext_adi_gyro_get(gyro));
@@ -1132,9 +1184,10 @@ Analogous to `pros::ADIGyro::reset <../cpp/adi.html#>`_.
 
         #define GYRO_PORT 1
         #define GYRO_MULTIPLIER 1 // Standard behavior
+        #define ADI_EXPANDER_PORT 20
 
         void opcontrol() {
-          ext_adi_gyro_t gyro = ext_adi_gyro_init(GYRO_PORT, GYRO_MULTIPLIER);
+          ext_adi_gyro_t gyro = ext_adi_gyro_init(ADI_EXPANDER_PORT, GYRO_PORT, GYRO_MULTIPLIER);
           uint32_t now = millis();
           while (true) {
             // Print the gyro's heading
@@ -1183,9 +1236,10 @@ This function uses the following values of ``errno`` when an error state is reac
 
         #define GYRO_PORT 1
         #define GYRO_MULTIPLIER 1 // Standard behavior
+        #define ADI_EXPANDER_PORT 20
 
         void opcontrol() {
-          ext_adi_gyro_t gyro = ext_adi_gyro_init(GYRO_PORT, GYRO_MULTIPLIER);
+          ext_adi_gyro_t gyro = ext_adi_gyro_init(ADI_EXPANDER_PORT, GYRO_PORT, GYRO_MULTIPLIER);
           uint32_t now = millis();
           while (true) {
             // Print the gyro's heading
@@ -1310,42 +1364,3 @@ ext_adi_port_config_e_t
  E_ADI_TYPE_UNDEFINED          The default value for an uninitialized ADI port
  E_ADI_ERR                     Error return value for ADI port configuration
 ============================= ================================================================
-
-Typedefs
-========
-
-ext_adi_encoder_t
--------------
-
-Reference type for an initialized encoder.
-
-This merely contains the port number for the encoder, unlike its use as an
-object to store encoder data in PROS 2.
-
-::
-
-	typedef int32_t ext_adi_encoder_t;
-
-ext_adi_gyro_t 
-----------
-
-Reference type for an initialized gyro.
-
-This merely contains the port number for the gyro, unlike its use as an
-object to store gyro data in PROS 2.
-
-::
-
-	typedef int32_t ext_adi_gyro_t;
-
-ext_adi_ultrasonic_t
-----------------
-
-Reference type for an initialized ultrasonic.
-
-This merely contains the port number for the ultrasonic, unlike its use as an
-object to store ultrasonic data in PROS 2.
-
-::
-
-	typedef int32_t ext_adi_ultrasonic_t;
