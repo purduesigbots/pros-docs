@@ -758,6 +758,11 @@ Analogous to `controller_set_text <../c/misc.html#controller-set-text>`_.
                                                  std::uint8_t col,
                                                  const char* str )
 
+       std::int32_t pros::Controller::set_text ( std::uint8_t line, 
+                                                 std::uint8_t col, 
+                                                 const std::string& str )
+
+
    .. tab :: Example
       .. highlight:: c
       ::
