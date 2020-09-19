@@ -551,9 +551,9 @@ Analogous to `task_notify_ext <../c/rtos.html#task-notify-ext>`_.
       .. highlight:: cpp
       ::
 
-        std::uint32_t pros::Task::notify_ext ( std::uint32_t value,
-                                          notify_action_e_t action,
-                                          std::uint32_t* prev_value )
+        static std::uint32_t pros::Task::notify_ext ( std::uint32_t value,
+                                                      notify_action_e_t action,
+                                                      std::uint32_t* prev_value )
 
      .. tab :: Example
         .. highlight:: cpp

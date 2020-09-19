@@ -290,8 +290,10 @@ See :doc:`./multitasking` for details.
 ============ =======================================================================================
  queue        The queue handle
  buffer       Pointer to a buffer to which the received item will be copied
- timeout      Time to wait for space to become available. A timeout of 0 can be used to attempt to
-              post without blocking. TIMEOUT_MAX can be used to block indefinitely.
+ timeout      The maximum amount of time the task should block waiting for an
+              item to receive should the queue be empty at the time of the call. 
+              queue_recv() will return immediately if timeout is zero and 
+              the queue is empty.
 ============ =======================================================================================
 
 **Returns:** ``true`` if an item was copied into the buffer, ``false`` otherwise.
