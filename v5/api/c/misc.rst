@@ -670,7 +670,7 @@ Analogous to `pros::Controller::print <../cpp/misc.html#print>`_.
  id           The ID of the controller (e.g. the master or partner controller).
               Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
  line         The line number at which the text will be displayed [0-2].
- col          The column number at which the text will be displayed [0-14].
+ col          The column number at which the text will be displayed [0-18].
  fmt          The format string to print to the controller
  ...          The argument list for the format string
 ============ ======================================================================================================
@@ -782,7 +782,7 @@ Analogous to `pros::Controller::set_text <../cpp/misc.html#set-text>`_.
  id           The ID of the controller (e.g. the master or partner controller).
               Must be one of `CONTROLLER_MASTER <misc.html#controller-id-e-t>`_ or `CONTROLLER_PARTNER <misc.html#controller-id-e-t>`_
  line         The line number at which the text will be displayed [0-2].
- col          The column number at which the text will be displayed [0-14].
+ col          The column number at which the text will be displayed [0-18].
  str          The pre-formatted string to print to the controller.
 ============ ======================================================================================================
 

@@ -158,7 +158,7 @@ Sets text to the controller LCD screen.
  Parameters
 ============ ======================================================================================================
  iline        The line number at which the text will be displayed ``[0-2]``.
- icol         The column number at which the text will be displayed ``[0-14]``.
+ icol         The column number at which the text will be displayed ``[0-18]``.
  itext        The string to display.
 ============ ======================================================================================================
 
