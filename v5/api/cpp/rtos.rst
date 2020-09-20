@@ -799,6 +799,38 @@ Analogous to `mutex_create <../c/rtos.html#mutex-create>`_.
 
 Methods
 -------
+destructor
+~~~~
+
+Unlocks a mutex.
+
+See :doc:`../../tutorials/topical/multitasking` for details.
+
+Analogous to `mutex_give <../c/rtos.html#mutex-give>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         void pros::Mutex::destructor ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        Mutex mutex;
+
+        // Acquire the mutex; other tasks using this command will wait until the mutex is released
+        // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
+        // If the timeout expires, "false" will be returned, otherwise "true"
+        mutex.take(MAX_DELAY);
+        // do some work
+        // Release the mutex for other tasks
+        mutex.give();
+        // Destructor called here
+
+----
 
 give
 ~~~~
