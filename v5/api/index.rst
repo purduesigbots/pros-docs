@@ -9,6 +9,7 @@ This document covers the main PROS API, which is completely sufficient for most 
    :titlesonly:
 
    ./c/adi
+   ./c/adi_ext
    ./c/imu
    ./c/llemu
    ./c/misc

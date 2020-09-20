@@ -5,6 +5,9 @@
 ADI (TriPort) C API
 ====================
 
+.. note:: The external ADI API can be found
+          `here <../../api/c/adi_ext.html>`_.
+
 .. note:: Additional example code for this module can be found in
           `its Tutorial <../../tutorials/topical/adi.html>`_.
 

@@ -5,6 +5,9 @@
 ADI Expander C API
 ==================
 
+.. note:: The internal ADI API can be found
+          `here <../../api/c/adi.html>`_.
+
 .. contents:: :local:
 
 Functions
