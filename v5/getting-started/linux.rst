@@ -38,3 +38,17 @@ Installing the Editor
 5. Happy coding!
 
 .. note:: If Atom seems to get stuck during step 4, restart Atom every few minutes.
+
+Installing the Vision Utility
+-----------------------------
+
+1. Download the `Vision Utility for Windows <https://github.com/purduesigbots/pros-cli/releases/download/3.1.3/vex_vision_utility-0.2.4-win.zip>`_.
+2. Move the .zip file to your home directory or your directory of preference. Then, create a directory for the Vision Utility with :code:`mkdir vision` and :code:`cd vision`.
+3. Unzip the file with :code:`unzip ../vex_vision_utility-0.2.4-win.zip`
+4. Download the `32-bit nw.js SDK v0.31.4 <https://dl.nwjs.io/v0.31.4/nwjs-sdk-v0.31.4-linux-ia32.tar.gz>`_ for Linux in order to be able to run the nw.js app that is the Vision Utility.
+
+.. note:: Do not download the 64-bit nw.js SDK, or a later version of the SDK. It will not be compatible and will crash on attempt to load the Vision Utility.
+
+5. Untar the file with :code:`tar xvf nwjs-sdk-v0.31.4-linux-ia32.tar.gz`
+6. Install these packages to be able to successfully run the 32-bit nw.js runtime on a 64-bit machine: :code:`lib32z1 libnss3:i386 libxtst6:i386 libatk1.0-0:i386 libatk-bridge2.0-0 libgtk-3-0:i386`. On a 32-bit machine, you can safely skip this step.
+7. Now run :code:`sudo nwjs-sdk-v0.31.4-linux-ia32/nw vcs_vision.exe` to execute VCS. :code:`sudo` is needed to interface with the camera, even if you are a part of the :code:`dialout` group.
