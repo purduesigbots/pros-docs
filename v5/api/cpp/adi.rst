@@ -46,6 +46,34 @@ This function uses the following values of ``errno`` when an error state is reac
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
 ============ =================================================================================================================
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::ADIAnalogIn::ADIAnalogIn ( pros::ext_adi_port_pair_t port_pair )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define EXT_ADI_SENSOR_PORT 1
+        #define ADI_PORT 'a'
+
+        void opcontrol() {
+          pros::ADIAnalogIn sensor ({{EXT_ADI_SMART_PORT, ADI_PORT}});
+          while (true) {
+            // Use the sensor
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port_pair    2 value pair in the form of {{smart_port , adi_port}} for which to create an object, where smart_port is an 
+              ADI expander's smart port (1-22) and adi_port is ADI port number (from 1-8, 'a'-'h', 'A'-'H').
+============ =================================================================================================================
+
 ----
 
 Methods
@@ -256,6 +284,32 @@ This function uses the following values of ``errno`` when an error state is reac
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
 ============ =================================================================================================================
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         pros::ADIAnalogOut::ADIAnalogOut ( pros::ext_adi_port_pair_t port_pair )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define EXT_ADI_SMART_PORT 1
+        #define ADI_PORT 'a'
+
+        void opcontrol() {
+          pros::ADIAnalogOut sensor ({{EXT_ADI_SMART_PORT, ADI_PORT}});
+          // Use the sensor
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port_pair    2 value pair in the form of {{smart_port , adi_port}} for which to create an object, where smart_port is an 
+              ADI expander's smart port (1-22) and adi_port is ADI port number (from 1-8, 'a'-'h', 'A'-'H').
+============ =================================================================================================================
+
 ----
 
 Methods
@@ -332,6 +386,33 @@ This function uses the following values of ``errno`` when an error state is reac
  Parameters
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
+============ =================================================================================================================
+
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         pros::ADIDigitalIn::ADIDigitalIn ( pros::ext_adi_port_pair_t port_pair )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define EXT_ADI_SMART_PORT 1
+        #define ADI_PORT 'a'
+
+        void opcontrol() {
+          pros::ADIDigitalIn sensor ({{EXT_ADI_SMART_PORT, ADI_PORT}});
+          // Use the sensor
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port_pair    2 value pair in the form of {{smart_port , adi_port}} for which to create an object, where smart_port is an 
+              ADI expander's smart port (1-22) and adi_port is ADI port number (from 1-8, 'a'-'h', 'A'-'H').
 ============ =================================================================================================================
 
 ----
@@ -465,6 +546,39 @@ This function uses the following values of ``errno`` when an error state is reac
  init_state   The initial state for the digital output. The default value is false.
 ============ =================================================================================================================
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        pros::ADIDigitalOut::ADIDigitalOut ( pros::ext_adi_port_pair_t port_pair
+                                             bool init_state = false )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define EXT_ADI_SMART_PORT 1
+        #define ADI_PORT 'a'
+
+        void opcontrol() {
+          bool state = LOW;
+          pros::ADIDigitalOut sensor ( {{ EXT_ADI_SMART_PORT , ADI_PORT }});
+          while (true) {
+            state != state;
+            sensor.set_value(state);
+            pros::delay(10); // toggle the sensor value every 50ms
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port_pair    2 value pair in the form of {{smart_port , adi_port}} for which to create an object, where smart_port is an 
+              ADI expander's smart port (1-22) and adi_port is ADI port number (from 1-8, 'a'-'h', 'A'-'H').
+ init_state   The initial state for the digital output. The default value is false.
+============ =================================================================================================================
+
 ----
 
 Methods
@@ -553,6 +667,36 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ ====================================================================================================================================
  port_top     the "top" wire from the encoder sensor with the removable cover side UP. This should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G').
  port_bottom  the "bottom" wire from the encoder sensor
+ reverse      if "true", the sensor will count in the opposite direction. The default value is "false".
+============ ====================================================================================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::ADIEncoder::ADIEncoder ( pros::ext_adi_port_tuple_t port_tuple
+                                       const bool reverse = false )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define PORT_TOP 'A'
+        #define PORT_BOTTOM 'B'
+        #define SMART_PORT 1
+
+        void opcontrol() {
+          pros::ADIEncoder sensor ({ SMART_PORT, PORT_TOP, PORT_BOTTOM }, false);
+          // Use the sensor
+        }
+
+============ ====================================================================================================================================
+ Parameters
+============ ====================================================================================================================================
+ port_tuple   A 3 value tuple in the form of (smart_port, port_top, port_bottom} where smart_port is the smart port where the ADI expander is
+              plugged in, port_top is the "top" wire from the encoder sensor with the removable cover side UP. This should be in port 1, 3, 5, 
+              or 7 ('A', 'C', 'E', 'G'), and port_bottom being the "bottom" wire from the encoder sensor.
  reverse      if "true", the sensor will count in the opposite direction. The default value is "false".
 ============ ====================================================================================================================================
 
@@ -672,6 +816,36 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
 ============ =================================================================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::ADIMotor::ADIMotor ( pros::ext_adi_port_pair_t port_pair )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define EXT_ADI_SMART_PORT 1
+        #define ADI_MOTOR_PORT 'a'
+
+        void opcontrol() {
+          pros::ADIMotor motor ( {{ EXT_ADI_SMART_PORT ,  ADI_MOTOR_PORT}} );
+          motor.set_value(127); // Go full speed forward
+          std::cout << "Commanded Motor Power: " << motor.get_value(); // Will display 127
+          delay(1000);
+          motor.set_value(0); // Stop the motor
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port_pair    2 value pair in the form of {{smart_port , adi_port}} for which to create an object, where smart_port is an 
+              ADI expander's smart port (1-22) and adi_port is ADI port number (from 1-8, 'a'-'h', 'A'-'H').
+============ =================================================================================================================
+
 
 ----
 
@@ -832,6 +1006,36 @@ This function uses the following values of ``errno`` when an error state is reac
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
  type         The `configuration <../c/adi.html#adi-port-config-e-t>`_ type for the port
 ============ =================================================================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::ADIPort::ADIPort ( pros::ext_adi_port_pair_t port_pair,
+                                 adi_port_config_e_t type = E_ADI_TYPE_UNDEFINED )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define ANALOG_SENSOR_PORT 'a'
+        #define EXT_ADI_SMART_PORT 1
+
+        void initialize() {
+          pros::ADIPort sensor ({{ EXT_ADI_SMART_PORT , ANALOG_SENSOR_PORT }}, E_ADI_ANALOG_IN);
+          // Displays the value of E_ADI_ANALOG_IN
+          std::cout << "Port Type: " << sensor.get_config();
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port_pair    2 value pair in the form of {{smart_port , adi_port}} for which to create an object, where smart_port is an 
+              ADI expander's smart port (1-22) and adi_port is ADI port number (from 1-8, 'a'-'h', 'A'-'H').
+ type         The `configuration <../c/adi.html#adi-port-config-e-t>`_ type for the port
+============ =================================================================================================================
+
 
 ----
 
@@ -1032,6 +1236,39 @@ This function uses the following values of ``errno`` when an error state is reac
  port_echo    the port connected to the yellow INPUT cable. This should be in the next highest port following port_ping.
 ============ =============================================================================================================
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::ADIUltrasonic::ADIUltrasonic ( pros::ext_adi_port_tuple_t port_tuple )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define PORT_PING 'A'
+        #define PORT_ECHO 'B'
+        #define SMART_PORT 1
+        
+        void opcontrol() {
+          pros::ADIUltrasonic sensor ( {{ SMART_PORT, PORT_PING, PORT_ECHO }} );
+          while (true) {
+            // Print the distance read by the ultrasonic
+            std::cout << "Distance: " << sensor.get_value();
+            pros::delay(10);
+          }
+        }
+
+============ ====================================================================================================================================
+ Parameters
+============ ====================================================================================================================================
+ port_tuple   A 3 value tuple in the form of {{smart_port, port_ping, port_bottom}} where smart_port is the smart port where the ADI expander is
+              plugged in, port_ping is the port connected to the orange OUTPUT cable and should be in port 1, 3, 5, or 7 ('A', 'C', 'E', 'G'),
+              and port_bottom being the port connected to the yellow INPUT cable in the next highest port following port_ping. Note the use of 
+              double paranthesis for this.
+============ ====================================================================================================================================
+
 ----
 
 Methods
@@ -1129,6 +1366,37 @@ Analogous to `adi_gyro_init <../c/adi.html#adi-gyro-init>`_.
  port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a gyro
  multiplier   A scalar value that will be mutliplied by the gyro heading value
 ============ =============================================================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::ADIGyro::ADIGyro ( pros::ext_adi_port_pair_t port_pair, 
+                                 double multiplier = 1 )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define ADI_GYRO_PORT 'a'
+        #define SMART_PORT 1
+
+        void opcontrol() {
+          pros::ADIGyro gyro ({{ SMART_PORT , ADI_GYRO_PORT }});
+          while (true) {
+            // Get the gyro heading
+            std::cout << "Distance: " << gyro.get_value();
+            pros::delay(10);
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port_pair    2 value pair in the form of {{smart_port , adi_port}} for which to create an object, where smart_port is an 
+              ADI expander's smart port (1-22) and adi_port is ADI port number (from 1-8, 'a'-'h', 'A'-'H').
+============ =================================================================================================================
 
 Methods 
 -------

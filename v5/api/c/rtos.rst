@@ -113,6 +113,46 @@ returned and ``errno`` can be checked for hints as to why `mutex_create`_ failed
 
 ----
 
+mutex_delete
+------------
+
+Deletes a `mutex_t`_.
+
+See :doc:`../../tutorials/topical/multitasking` for details.
+
+Analogous to `pros::Mutex::Mutex <../cpp/rtos.html#mutex>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         void mutex_delete( mutex_t mutex )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        mutex_t mutex = mutex_create();
+
+        // Acquire the mutex; other tasks using this command will wait until the mutex is released
+        // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
+        // If the timeout expires, "false" will be returned, otherwise "true"
+        mutex_take(mutex, MAX_DELAY);
+        // do some work
+        // Release the mutex for other tasks
+        mutex_give(mutex);
+        // Delete the mutex
+        mutex_delete(mutex);
+
+============ =====================
+ Parameters
+============ =====================
+ mutex        The mutex to delete
+============ =====================
+
+----
+
 mutex_give
 ----------
 

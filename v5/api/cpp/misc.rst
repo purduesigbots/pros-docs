@@ -674,7 +674,7 @@ Analogous to `controller_print <../c/misc.html#controller-print>`_.
  Parameters
 ============ ======================================================================================================
  line         The line number at which the text will be displayed [0-2].
- col          The column number at which the text will be displayed [0-14].
+ col          The column number at which the text will be displayed [0-18].
  fmt          The format string to print to the controller
  ...          The argument list for the format string
 ============ ======================================================================================================
@@ -758,6 +758,11 @@ Analogous to `controller_set_text <../c/misc.html#controller-set-text>`_.
                                                  std::uint8_t col,
                                                  const char* str )
 
+       std::int32_t pros::Controller::set_text ( std::uint8_t line, 
+                                                 std::uint8_t col, 
+                                                 const std::string& str )
+
+
    .. tab :: Example
       .. highlight:: c
       ::
@@ -780,7 +785,7 @@ Analogous to `controller_set_text <../c/misc.html#controller-set-text>`_.
  Parameters
 ============ ======================================================================================================
  line         The line number at which the text will be displayed [0-2]
- col          The column number at which the text will be displayed [0-14].
+ col          The column number at which the text will be displayed [0-18].
  str          The pre-formatted string to print to the controller.
 ============ ======================================================================================================
 
