@@ -360,7 +360,8 @@ Analogous to `pros::ADIDigitalOut::set_value <../cpp/adi.html#id8>`_.
           bool state = LOW;
           while (true) {
             state != state;
-            ext_adi_digital_write(ADI_EXPANDER_PORT ,DIGITAL_SENSOR_PORT, state);
+            ext_adi_digital_write(ADI_EXPANDER_PORT, DIGITAL_SENSOR_PORT, state);
+
             delay(5); // toggle the sensor value every 50ms
           }
         }
