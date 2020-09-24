@@ -207,7 +207,8 @@ Analogous to `pros::ADIAnalogIn::get_value_calibrated_HR <../cpp/adi.html#get-va
 
         void opcontrol() {
           while (true) {
-            ext_adi_analog_calibrate(ANALOG_SENSOR_PORT);
+            ext_adi_analog_calibrate(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT);
+
             printf("Sensor Reading: %d\n", ext_adi_analog_read_calibrated_HR(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT));
             delay(5);
           }
