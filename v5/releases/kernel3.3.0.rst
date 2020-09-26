@@ -18,7 +18,7 @@ Usability improvements:
 
 - Upgrade to vexOS 1.0.12
 - Add support for extra linker scripts (:code:`firmware/*.ld`)
-- Increase maximum string with on the controller screen from 15 to 19 characters
+- Increase maximum string length on the controller screen from 15 to 19 characters
 - Make :code:`pros::Task::notify_take` static
 - Make :code:`pros::Task::operator=` STL-compliant
 - Remove redundant library links to forestall linking issues with arm-none-eabi-gcc 10.x
