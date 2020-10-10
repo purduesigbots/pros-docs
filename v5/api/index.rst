@@ -10,6 +10,7 @@ This document covers the main PROS API, which is completely sufficient for most 
 
    ./c/adi
    ./c/adi_ext
+   ./c/distance
    ./c/imu
    ./c/llemu
    ./c/misc
@@ -23,6 +24,7 @@ This document covers the main PROS API, which is completely sufficient for most 
    :titlesonly:
 
    ./cpp/adi
+   ./cpp/distance
    ./cpp/imu
    ./cpp/llemu
    ./cpp/misc
