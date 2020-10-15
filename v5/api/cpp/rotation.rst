@@ -71,6 +71,7 @@ This function uses the following values of ``errno`` when an error state is reac
                 rotation_sensor.reverse(); //Rotation sensor recently reversed
                 rotation_sensor.reset(); //Reversal causes position to be multiplied by -1.
             }
+            pros::delay(20);
           }
         }
 
@@ -113,6 +114,7 @@ This function uses the following values of ``errno`` when an error state is reac
            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
                 rotation_sensor.set_reversed(true);
             }
+            pros::delay(20);
           }
         }
 
@@ -155,6 +157,7 @@ This function uses the following values of ``errno`` when an error state is reac
            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
                 rotation_sensor.set_position(0); //sets current position to 0
             }
+            pros::delay(20);
           }
         }
 
@@ -192,7 +195,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
           pros::Rotation rotation_sensor(ROTATION_PORT);
           while (true) {
-		        printf("Tick Position: %d \n", rotation_sensor.get_position());
+		        printf("Tick Position: %ld \n", rotation_sensor.get_position());
 		        pros::delay(20);
           }
         }
@@ -233,7 +236,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
           pros::Rotation rotation_sensor(ROTATION_PORT);
           while (true) {
-		        printf("Rotational Velocity: %d \n", rotation_sensor.get_velocity());
+		        printf("Rotational Velocity: %ld \n", rotation_sensor.get_velocity());
 		        pros::delay(20);
           }
         }
@@ -274,7 +277,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
           pros::Rotation rotation_sensor(ROTATION_PORT);
           while (true) {
-		        printf("Angle: %d \n", rotation_sensor.get_angle());
+		        printf("Angle: %ld \n", rotation_sensor.get_angle());
 		        pros::delay(20);
           }
         }
@@ -315,7 +318,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
           pros::Rotation rotation_sensor(ROTATION_PORT);
           while (true) {
-		        printf("Rotation Sensor Reversed: %d \n", rotation_sensor.get_reversed());
+		        printf("Rotation Sensor Reversed: %ld \n", rotation_sensor.get_reversed());
 		        pros::delay(20);
           }
         }
@@ -357,7 +360,7 @@ This function uses the following values of ``errno`` when an error state is reac
           pros::Rotation rotation_sensor(ROTATION_PORT);
           while (true) {
            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_sensor.reverse();
+              rotation_sensor.reverse();
             }
           }
         }
