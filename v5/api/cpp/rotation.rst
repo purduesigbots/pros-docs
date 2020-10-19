@@ -41,7 +41,7 @@ Constructor(s)
 Functions
 ---------
 
-reset ( )
+reset
 ~~~~~~~~~
 
 Resets rotation sensor by multiplying it by -1 only if the direction was recently reversed.
@@ -85,7 +85,50 @@ This function uses the following values of ``errno`` when an error state is reac
 
 ----
 
-set_reversed ( )
+reset_position
+~~~~~~~~~~~~~~~~~~
+
+Resets rotation sensor's position reading to 0 at its current position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t reset_position()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define ROTATION_PORT 1
+
+        void opcontrol() {
+          pros::Rotation rotation_sensor(ROTATION_PORT);
+          while (true) {
+           if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+                rotation_sensor.reset_position();
+            }
+            pros::delay(20);
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if operation successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+----
+
+set_reversed
 ~~~~~~~~~
 
 Sets if the rotational sensor's positive/negative direction is reversed or not.
@@ -333,7 +376,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 ----
 
-reverse ( )
+reverse
 ~~~~~~~~~
 
 Reverses the positive and negative direction of the rotation sensor.
