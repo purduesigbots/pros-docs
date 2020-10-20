@@ -10,6 +10,49 @@ VEX Rotation Sensor C API
 Functions
 =========
 
+rotation_reset_position
+----------------
+
+Resets rotation sensor's position reading to 0 at its current position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
+
+Analogous to `pros::Rotation::get <../cpp/rotation.html#reset>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t rotation_reset_position(uint8_t port);
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ROTATION_PORT 1
+
+        void opcontrol() {
+          while (true) {
+            
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+                rotation_reset_position(ROTATION_PORT); 
+            }
+            delay(20);
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if operation successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 rotation_reset
 ----------------
 
@@ -315,5 +358,48 @@ Analogous to `pros::Rotation::get <../cpp/rotation.html#get_velocity>`_.
 ============ =================================================================================================================
 
 **Returns:** Rotation sensor's rotational velocity or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+----
+
+rotation_reverse
+~~~~~~~~~
+
+Reverses the rotational sensor's positive counterclockwise/clockwise direction.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t rotation_reverse(uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ROTATION_PORT 1
+
+        void opcontrol() {
+          pros::Rotation rotation_sensor(ROTATION_PORT);
+          while (true) {
+           if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+                rotation_reverse(ROTATION_PORT);
+            }
+            pros::delay(20);
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if operation was successful or PROS_ERR if the operation failed, setting ``errno``.
 
 ----
