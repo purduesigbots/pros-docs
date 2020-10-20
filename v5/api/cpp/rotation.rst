@@ -45,6 +45,7 @@ reset ( )
 ~~~~~~~~~
 
 Resets rotation sensor by multiplying it by -1 only if the direction was recently reversed.
+Also subtracts 180 degrees from the angle reading.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
