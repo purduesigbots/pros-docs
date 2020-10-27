@@ -13,7 +13,7 @@ Functions
 rotation_reset_position
 ----------------
 
-Resets rotation sensor's position reading to 0 at its current position.
+Reset the current absolute position to be the same as the rotation sensor angle.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
