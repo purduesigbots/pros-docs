@@ -188,7 +188,7 @@ Analogous to `pros::Optical::get <../cpp/Optical.html#set_position>`_.
 optical_set_led_pwm
 ----------------
 
-Sets the pwm value of the White LED on the sensor.  Valid values are in the range ``0`` ``100``.
+Sets the pwm value of the White LED.  Valid values are in the range ``0`` ``100``.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -231,7 +231,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_position>`_.
 optical_get_led_pwm
 ----------------
 
-Get the pwm value of the White LED on the sensor.  PWM value ranges from 0 to 100.
+Get the pwm value of the White LED.  PWM value ranges from 0 to 100.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
