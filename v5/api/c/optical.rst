@@ -266,7 +266,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_angle>`_.
  port         The V5 port number from (1-21)
 ============ =================================================================================================================
 
-**Returns:** Optical sensor's current LED value or ``PROS_ERR`` if the operation failed, setting ``errno``.
+**Returns:** Optical sensor's current LED value (0 - 100) or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
