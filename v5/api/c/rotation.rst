@@ -10,54 +10,10 @@ VEX Rotation Sensor C API
 Functions
 =========
 
-rotation_reset_position
-----------------
-
-Reset the current absolute position to be the same as the rotation sensor angle.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
-- ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
-
-Analogous to `pros::Rotation::get <../cpp/rotation.html#reset>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        int32_t rotation_reset_position(uint8_t port);
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        #define ROTATION_PORT 1
-
-        void opcontrol() {
-          while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_reset_position(ROTATION_PORT); 
-            }
-            delay(20);
-          }
-        }
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
-
-**Returns:** ``1`` if operation successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
-
 rotation_reset
 ----------------
 
-Resets rotation sensor by multiplying it by -1 only if the direction was recently reversed.
-Also subtracts 180 degrees from the angle reading.
+Reset the current absolute position to be the same as the Rotation Sensor angle.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -83,9 +39,7 @@ Analogous to `pros::Rotation::get <../cpp/rotation.html#reset>`_.
           while (true) {
             
             if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_set_reversed(ROTATION_PORT, true);
-                rotation_reset(ROTATION_PORT);  // sets previously positive value to negative one as an extra step
-                                                // in the reversal if needed
+                rotation_reset(ROTATION_PORT);
             }
             delay(20);
           }
@@ -98,101 +52,13 @@ Analogous to `pros::Rotation::get <../cpp/rotation.html#reset>`_.
 ============ =================================================================================================================
 
 **Returns:** ``1`` if operation successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
-
-----
-
-rotation_set_reversed
-----------------
-
-Sets if the rotational sensor's positive/negative direction is reversed or not.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
-- ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
-
-Analogous to `pros::Rotation::get <../cpp/rotation.html#set_reversed>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-    int32_t rotation_set_reversed(uint8_t port, bool value);
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        #define ROTATION_PORT 1
-
-        void opcontrol() {
-          while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_set_reversed(ROTATION_PORT, true);
-            }
-            delay(20);
-          }
-        }
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
- value        True or false on whether the negative or positive directions are reversed for the rotation sensor.
-============ =================================================================================================================
-
-**Returns:** ``1`` if operation successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
-
-----
-
-rotation_get_reversed
-----------------
-
-Gets if the rotational sensor's positive/negative direction is reversed or not.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
-- ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
-
-Analogous to `pros::Rotation::get <../cpp/rotation.html#get_reversed>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-    int32_t rotation_get_reversed(uint8_t port);
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        #define ROTATION_PORT 1
-
-        void opcontrol() {
-          while (true) {
-            printf("Rotation Reversed?: %d \n", rotation_get_reversed(ROTATION_PORT));
-            delay(20);
-          }
-        }
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
-
-**Returns:** Whether the sensor is reversed or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
 rotation_set_position
 ----------------
 
-Set the Rotation sensor to a desired rotation value in terms of hundreths of degrees.
+Set the Rotation sensor to a desired rotation value.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -234,11 +100,56 @@ Analogous to `pros::Rotation::get <../cpp/rotation.html#set_position>`_.
 **Returns:** ``1``  if operation successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
+rotation_reset_position
+----------------
+
+Reset the Rotation Sensor position to 0.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
+
+Analogous to `pros::Rotation::get <../cpp/rotation.html#set_position>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+    int32_t rotation_set_position(uint8_t port, uint32_t position);
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ROTATION_PORT 1
+
+        void opcontrol() {
+          while (true) {
+            
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+                rotation_reset_position(ROTATION_PORT);
+            }
+            delay(20);
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ position     The desired position to be set in terms of hundreths of ticks
+============ =================================================================================================================
+
+**Returns:** ``1``  if operation successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+----
 
 rotation_get_position
 ----------------
 
-Get the Rotation sensor's current rotational position in terms of hundreths of degrees.
+Get the Rotation Sensor's current position in centidegrees
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -277,10 +188,53 @@ Analogous to `pros::Rotation::get <../cpp/rotation.html#get_position>`_.
 
 ----
 
+rotation_get_velocity
+----------------
+
+Get the Rotation Sensor's current velocity in centidegrees per second
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a Rotation Sensor.
+
+Analogous to `pros::Rotation::get <../cpp/rotation.html#get_velocity>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+    int32_t rotation_get_velocity(uint8_t port);
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ROTATION_PORT 1
+
+        void opcontrol() {
+          while (true) {
+            printf("Velocity: %d Ticks \n", rotation_get_velocity(ROTATION_PORT));
+            delay(20);
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** Rotation sensor's rotational velocity or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+----
+
+
 rotation_get_angle
 ----------------
 
-Get the Rotation sensor's current anglular position. In terms of hundreths of degrees.
+Get the Rotation Sensor's current position in centidegrees
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -319,24 +273,22 @@ Analogous to `pros::Rotation::get <../cpp/rotation.html#get_angle>`_.
 
 ----
 
-rotation_get_velocity
-----------------
+rotation_set_reversed
+~~~~~~~~~
 
-Get the Rotation sensor's current rotational velocity.
+Reverse the Rotation Sensor's direction
 
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
-- ``ENODEV`` - The port cannot be configured as a Rotation Sensor.
-
-Analogous to `pros::Rotation::get <../cpp/rotation.html#get_velocity>`_.
+- ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t rotation_get_velocity(uint8_t port);
+        int32_t rotation_reverse(uint8_t port)
 
    .. tab :: Example
       .. highlight:: c
@@ -345,9 +297,12 @@ Analogous to `pros::Rotation::get <../cpp/rotation.html#get_velocity>`_.
         #define ROTATION_PORT 1
 
         void opcontrol() {
+          pros::Rotation rotation_sensor(ROTATION_PORT);
           while (true) {
-            printf("Velocity: %d Ticks \n", rotation_get_velocity(ROTATION_PORT));
-            delay(20);
+           if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+                rotation_set_reversed(ROTATION_PORT);
+            }
+            pros::delay(20);
           }
         }
 
@@ -357,7 +312,7 @@ Analogous to `pros::Rotation::get <../cpp/rotation.html#get_velocity>`_.
  port         The V5 port number from (1-21)
 ============ =================================================================================================================
 
-**Returns:** Rotation sensor's rotational velocity or ``PROS_ERR`` if the operation failed, setting ``errno``.
+**Returns:** ``1`` if operation was successful or PROS_ERR if the operation failed, setting ``errno``.
 
 ----
 
@@ -401,5 +356,48 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
 
 **Returns:** ``1`` if operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+rotation_get_reversed
+~~~~~~~~~
+
+Get the Rotation Sensor's reversed flag
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t rotation_reverse(uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ROTATION_PORT 1
+
+        void opcontrol() {
+          pros::Rotation rotation_sensor(ROTATION_PORT);
+          while (true) {
+           if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+                rotation_get_reversed(ROTATION_PORT);
+            }
+            pros::delay(20);
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** Boolean value of Rotation Sensor's reversed flag or PROS_ERR if the operation failed, setting ``errno``.
 
 ----

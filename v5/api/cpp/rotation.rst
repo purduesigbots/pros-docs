@@ -44,7 +44,7 @@ Functions
 reset
 ~~~~~~~~~
 
-Reset the current absolute position to be the same as the rotation sensor angle.
+Reset the current absolute position to be the same as the Rotation Sensor angle.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -88,7 +88,7 @@ This function uses the following values of ``errno`` when an error state is reac
 reset_position
 ~~~~~~~~~~~~~~~~~~
 
-Resets rotation sensor's position reading to 0 at its current position.
+Reset the Rotation Sensor position to 0.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -131,7 +131,7 @@ This function uses the following values of ``errno`` when an error state is reac
 set_reversed
 ~~~~~~~~~
 
-Sets if the rotational sensor's positive/negative direction is reversed or not.
+Reverse the Rotation Sensor's direction
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -174,7 +174,7 @@ This function uses the following values of ``errno`` when an error state is reac
 set_position
 ~~~~~~~~~
 
-Get the Rotation sensor's current position in hundreths of ticks.
+Set the Rotation sensor to a desired rotation value.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -215,7 +215,7 @@ This function uses the following values of ``errno`` when an error state is reac
 get_position
 ~~~~~~~~~
 
-Get the Rotation sensor's current rotational position in tenths of degrees.
+Get the Rotation Sensor's current position in centidegrees
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -256,7 +256,7 @@ This function uses the following values of ``errno`` when an error state is reac
 get_velocity
 ~~~~~~~~~
 
-Get the Rotation sensor's current rotational velocity.
+Get the Rotation Sensor's current velocity in centidegrees per second
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -297,7 +297,7 @@ This function uses the following values of ``errno`` when an error state is reac
 get_angle
 ~~~~~~~~~
 
-Get the Rotation sensor's current angle in hundreths of degrees.
+Get the Rotation Sensor's current position in centidegrees
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -338,7 +338,7 @@ This function uses the following values of ``errno`` when an error state is reac
 get_reversed
 ~~~~~~~~~
 
-Returns if the rotation sensor is reversed or not.
+Get the Rotation Sensor's reversed flag
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -379,7 +379,7 @@ This function uses the following values of ``errno`` when an error state is reac
 reverse
 ~~~~~~~~~
 
-Reverses the positive and negative direction of the rotation sensor.
+Reverses the rotational sensor's positive counterclockwise/clockwise direction.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
