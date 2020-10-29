@@ -44,7 +44,7 @@ Functions
 get_hue ( )
 ~~~~~~~~~
 
-Get the detected color hue.  This is not avaliable if gestures are being detected. Hue has a range of ``0`` to ``359.999``.
+Get the detected color hue. This is not avaliable if gestures are being detected. Hue has a range of ``0`` to ``359.999``.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -85,7 +85,7 @@ This function uses the following values of ``errno`` when an error state is reac
 get_saturation ( )
 ~~~~~~~~~
 
-Get the detected color saturation. This is not avaliable if gestures are being detected. Saturation has a range of 0 to 1.0.
+Get the detected color saturation. This is not avaliable if gestures are being detected. Saturation has a range of ``0`` to ``1.0``.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -206,7 +206,7 @@ This function uses the following values of ``errno`` when an error state is reac
 set_led_pwm
 ~~~~~~~~~
 
-Set the pwm value of the White LED on the sensor.  Value ranges from 0 to 100
+Set the pwm value of the White LED on the sensor.  Value ranges from ``0`` to ``100``
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -247,7 +247,7 @@ This function uses the following values of ``errno`` when an error state is reac
 get_led_pwm
 ~~~~~~~~~
 
-Get the pwm value of the White LED on the sensor.  Values range from 0 to 100.
+Get the pwm value of the White LED on the sensor.  Values range from ``0`` to ``100``.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -382,12 +382,7 @@ get_gesture ( )
 
 Get the most recent gesture data from the sensor
 
- Gestures will be cleared after 500mS
- 0 = no gesture
- 1 = up (towards cable)
- 2 = down
- 3 = right
- 4 = left
+Gestures will be cleared after 500mS
 
 This function uses the following values of ``errno`` when an error state is reached:
 

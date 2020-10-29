@@ -13,8 +13,8 @@ Functions
 optical_get_hue
 ----------------
 
-Gets the hue that the optical sensor sees.  This function is not available if gestures
-are being detected.  Hue values are in range ``0`` ``359.999``.
+Get the detected color hue. This is not available if gestures
+are being detected.  Hue has a range of ``0`` ``359.999``.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -57,8 +57,8 @@ Analogous to `pros::Optical::get <../cpp/optical.html#reset>`_.
 optical_get_saturation
 ----------------
 
-Gets the saturation that the optical sensor sees.  This function is not available if gestures
-are being detected.  Saturation values are in range ``0`` ``1.0``.
+Gets the detected color saturation. This is not available if gestures
+are being detected.  Saturation has a range ``0`` ``1.0``.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -101,7 +101,7 @@ Analogous to `pros::Optical::get <../cpp/Optical.html#set_reversed>`_.
 optical_get_brightness
 ----------------
 
-Gets the brightness that the optical sensor sees.  This function is not available if gestures
+Get the detected color brightness. This is not available if gestures
 are being detected.  Brightness values are in range ``0`` ``1.0``.
 
 This function uses the following values of ``errno`` when an error state is reached:
@@ -144,8 +144,8 @@ Analogous to `pros::Optical::get <../cpp/Optical.html#get_reversed>`_.
 optical_get_proximity(uint8_t port)
 ----------------
 
-Gets the detected proximity value that the optical sensor sees in range ``0`` ``255``.
-This function is not available if gestures are being detected.
+Get the detected proximity value. This function is not available if gestures 
+are being detected. Proximity has a range of ``0`` ``255``.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -231,7 +231,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_position>`_.
 optical_get_led_pwm
 ----------------
 
-Get the pwm value of the White LED.  PWM value ranges from 0 to 100.
+Get the pwm value of the White LED.  PWM value ranges from ``0`` to ``100``.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -369,12 +369,7 @@ optical_get_gesture
 
 Get the most recent gesture data from the sensor.
 
- Gestures will be cleared after 500mS
- 0 = no gesture
- 1 = up (towards cable)
- 2 = down
- 3 = right
- 4 = left
+Gestures will be cleared after 500mS
 
 This function uses the following values of ``errno`` when an error state is reached:
 

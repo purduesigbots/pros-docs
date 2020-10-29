@@ -10,7 +10,10 @@ Changelog
 
 New features:
 
-- Fixed documentation in ADI file.
 - Added Support for Optical Sensor
 - Added Support for Rotation Sensor
 - Added Support for Distance Sensor
+
+Bugfixes:
+
+- Fixed documentation in ADI file.
