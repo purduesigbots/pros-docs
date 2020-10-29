@@ -15,6 +15,8 @@ This document covers the main PROS API, which is completely sufficient for most 
    ./c/llemu
    ./c/misc
    ./c/motors
+   ./c/optical
+   ./c/rotation
    ./c/rtos
    ./c/vision
 
@@ -29,6 +31,8 @@ This document covers the main PROS API, which is completely sufficient for most 
    ./cpp/llemu
    ./cpp/misc
    ./cpp/motors
+   ./cpp/optical
+   ./cpp/rotation
    ./cpp/rtos
    ./cpp/vision
 
