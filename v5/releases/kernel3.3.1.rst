@@ -1,5 +1,5 @@
 =========================
-PROS Kernel 3.3.0 Release
+PROS Kernel 3.3.1 Release
 =========================
 
 .. post:: 29 October, 2020
