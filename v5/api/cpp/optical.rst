@@ -8,7 +8,7 @@ VEX Optical Sensor C++ API
 .. contents:: :local:
 
 pros::Optical
-============
+=============
 
 Constructor(s)
 --------------

@@ -129,7 +129,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ----
 
 set_reversed
-~~~~~~~~~
+~~~~~~~~~~~~
 
 Reverse the Rotation Sensor's direction
 
@@ -143,7 +143,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        std::int32_t reverse(bool value)
+        std::int32_t set_reverse(bool value)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -172,7 +172,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ----
 
 set_position
-~~~~~~~~~
+~~~~~~~~~~~~
 
 Set the Rotation sensor to a desired rotation value.
 
@@ -186,7 +186,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        std::int32_t get_position(std::uint32_t position)
+        std::int32_t set_position(std::uint32_t position)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -213,7 +213,7 @@ This function uses the following values of ``errno`` when an error state is reac
 **Returns:** Rotation sensor position or PROS_ERR if the operation failed, setting ``errno``.
 
 get_position
-~~~~~~~~~
+~~~~~~~~~~~~
 
 Get the Rotation Sensor's current position in centidegrees
 
@@ -254,7 +254,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ----
 
 get_velocity
-~~~~~~~~~
+~~~~~~~~~~~~
 
 Get the Rotation Sensor's current velocity in centidegrees per second
 
