@@ -21,7 +21,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#reset>`_.
+Analogous to `pros::Optical::reset <../cpp/optical.html#reset>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -65,7 +65,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/Optical.html#set_reversed>`_.
+Analogous to `pros::Optical::set_reversed <../cpp/Optical.html#set_reversed>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -109,7 +109,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/Optical.html#get_reversed>`_.
+Analogous to `pros::Optical::get_brightness <../cpp/Optical.html#get_brightness>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -152,7 +152,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/Optical.html#set_position>`_.
+Analogous to `pros::Optical::get_proximity <../cpp/Optical.html#set_proximity>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -195,7 +195,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_position>`_.
+Analogous to `pros::Optical::get_led_pwm <../cpp/optical.html#get_led_pwm>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -238,7 +238,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_angle>`_.
+Analogous to `pros::Optical::get_led_pwm <../cpp/optical.html#get_led_pwm>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -280,7 +280,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::get_rgb <../cpp/optical.html#get_rgb>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -327,7 +327,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::get_raw <../cpp/optical.html#get_raw>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -376,7 +376,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::get_gesture <../cpp/optical.html#get_gesture>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -420,7 +420,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::get_gesture_raw <../cpp/optical.html#get_velocity>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -470,7 +470,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::enable_gesture <../cpp/optical.html#enable_gesture>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -512,7 +512,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::disable_gesture <../cpp/optical.html#disable_gesture>`_.
 
 .. tabs ::
    .. tab :: Prototype

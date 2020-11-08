@@ -20,7 +20,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
 
-Analogous to `pros::Rotation::get <../cpp/rotation.html#reset>`_.
+Analogous to `pros::Rotation::reset <../cpp/rotation.html#reset>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -65,14 +65,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
 
-Analogous to `pros::Rotation::get <../cpp/rotation.html#set_position>`_.
+Analogous to `pros::Rotation::set_position <../cpp/rotation.html#set_position>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t rotation_set_position(uint8_t port, uint32_t position);
+        int32_t rotation_set_position(uint8_t port, uint32_t position);
 
    .. tab :: Example
       .. highlight:: c
@@ -110,14 +110,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
 
-Analogous to `pros::Rotation::get <../cpp/rotation.html#set_position>`_.
+Analogous to `pros::Rotation::set_position <../cpp/rotation.html#set_position>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t rotation_set_position(uint8_t port, uint32_t position);
+        int32_t rotation_set_position(uint8_t port, uint32_t position);
 
    .. tab :: Example
       .. highlight:: c
@@ -156,14 +156,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a Rotation Sensor.
 
-Analogous to `pros::Rotation::get <../cpp/rotation.html#get_position>`_.
+Analogous to `pros::Rotation::get_position <../cpp/rotation.html#get_position>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t rotation_get_position(uint8_t port);
+       int32_t rotation_get_position(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -198,14 +198,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a Rotation Sensor.
 
-Analogous to `pros::Rotation::get <../cpp/rotation.html#get_velocity>`_.
+Analogous to `pros::Rotation::get_velocity <../cpp/rotation.html#get_velocity>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t rotation_get_velocity(uint8_t port);
+        int32_t rotation_get_velocity(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -241,14 +241,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a Rotation Sensor.
 
-Analogous to `pros::Rotation::get <../cpp/rotation.html#get_angle>`_.
+Analogous to `pros::Rotation::get_angle <../cpp/rotation.html#get_angle>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t rotation_get_angle(uint8_t port);
+        int32_t rotation_get_angle(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -282,6 +282,8 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
+
+Analogous to `pros::Rotation::set_reversed <../cpp/rotation.html#set_reversed>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -326,6 +328,8 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
 
+Analogous to `pros::Rotation::reverse <../cpp/rotation.html#reverse>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -368,6 +372,8 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
+
+Analogous to `pros::Rotation::get_reversed <../cpp/rotation.html#get_reversed>`_.
 
 .. tabs ::
    .. tab :: Prototype
