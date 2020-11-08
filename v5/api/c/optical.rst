@@ -72,7 +72,7 @@ Analogous to `pros::Optical::get <../cpp/Optical.html#set_reversed>`_.
       .. highlight:: c
       ::
 
-    double optical_get_saturation(uint8_t port);
+        double optical_get_saturation(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -116,7 +116,7 @@ Analogous to `pros::Optical::get <../cpp/Optical.html#get_reversed>`_.
       .. highlight:: c
       ::
 
-    double optical_get_brightness(uint8_t port);
+        double optical_get_brightness(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -159,7 +159,7 @@ Analogous to `pros::Optical::get <../cpp/Optical.html#set_position>`_.
       .. highlight:: c
       ::
 
-    int32_t optical_get_proximity(uint8_t port);
+        int32_t optical_get_proximity(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -202,7 +202,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_position>`_.
       .. highlight:: c
       ::
 
-    int32_t optical_set_led_pwm(uint8_t port, uint8_t value);
+        int32_t optical_set_led_pwm(uint8_t port, uint8_t value);
 
    .. tab :: Example
       .. highlight:: c
@@ -245,7 +245,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_angle>`_.
       .. highlight:: c
       ::
 
-    int32_t optical_get_led_pwm(uint8_t port);
+        int32_t optical_get_led_pwm(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -287,7 +287,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
       .. highlight:: c
       ::
 
-    optical_rgb_s_t optical_get_rgb(uint8_t port);
+        optical_rgb_s_t optical_get_rgb(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -334,7 +334,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
       .. highlight:: c
       ::
 
-    optical_raw_s_t optical_get_raw(uint8_t port);
+       optical_raw_s_t optical_get_raw(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -383,7 +383,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
       .. highlight:: c
       ::
 
-    optical_direction_e_t optical_get_gesture(uint8_t port);
+        optical_direction_e_t optical_get_gesture(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -427,7 +427,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
       .. highlight:: c
       ::
 
-    optical_gesture_s_t optical_get_gesture_raw(uint8_t port);
+        optical_gesture_s_t optical_get_gesture_raw(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -477,7 +477,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
       .. highlight:: c
       ::
 
-    int32_t optical_enable_gesture(uint8_t port);
+        int32_t optical_enable_gesture(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -519,7 +519,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
       .. highlight:: c
       ::
 
-    int32_t optical_disable_gesture(uint8_t port);
+        int32_t optical_disable_gesture(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
