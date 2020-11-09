@@ -11,7 +11,7 @@ Functions
 =========
 
 optical_get_hue
-----------------
+---------------
 
 Get the detected color hue. This is not available if gestures
 are being detected.  Hue has a range of ``0`` ``359.999``.
@@ -21,7 +21,7 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#reset>`_.
+Analogous to `pros::Optical::get_hue <../cpp/optical.html#get-hue>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -55,7 +55,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#reset>`_.
 ----
 
 optical_get_saturation
-----------------
+----------------------
 
 Gets the detected color saturation. This is not available if gestures
 are being detected.  Saturation has a range ``0`` ``1.0``.
@@ -65,14 +65,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/Optical.html#set_reversed>`_.
+Analogous to `pros::Optical::get_saturation <../cpp/Optical.html#get-saturation>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    double optical_get_saturation(uint8_t port);
+        double optical_get_saturation(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -99,7 +99,7 @@ Analogous to `pros::Optical::get <../cpp/Optical.html#set_reversed>`_.
 ----
 
 optical_get_brightness
-----------------
+----------------------
 
 Get the detected color brightness. This is not available if gestures
 are being detected.  Brightness values are in range ``0`` ``1.0``.
@@ -109,14 +109,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/Optical.html#get_reversed>`_.
+Analogous to `pros::Optical::get_brightness <../cpp/Optical.html#get-brightness>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    double optical_get_brightness(uint8_t port);
+        double optical_get_brightness(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -142,7 +142,7 @@ Analogous to `pros::Optical::get <../cpp/Optical.html#get_reversed>`_.
 ----
 
 optical_get_proximity(uint8_t port)
-----------------
+-----------------------------------
 
 Get the detected proximity value. This function is not available if gestures 
 are being detected. Proximity has a range of ``0`` ``255``.
@@ -152,14 +152,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/Optical.html#set_position>`_.
+Analogous to `pros::Optical::get_proximity <../cpp/Optical.html#get-proximity>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t optical_get_proximity(uint8_t port);
+        int32_t optical_get_proximity(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -186,7 +186,7 @@ Analogous to `pros::Optical::get <../cpp/Optical.html#set_position>`_.
 ----
 
 optical_set_led_pwm
-----------------
+-------------------
 
 Sets the pwm value of the White LED.  Valid values are in the range ``0`` ``100``.
 
@@ -195,14 +195,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_position>`_.
+Analogous to `pros::Optical::set_led_pwm <../cpp/optical.html#set-led-pwm>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t optical_set_led_pwm(uint8_t port, uint8_t value);
+        int32_t optical_set_led_pwm(uint8_t port, uint8_t value);
 
    .. tab :: Example
       .. highlight:: c
@@ -229,7 +229,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_position>`_.
 ----
 
 optical_get_led_pwm
-----------------
+-------------------
 
 Get the pwm value of the White LED.  PWM value ranges from ``0`` to ``100``.
 
@@ -238,14 +238,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_angle>`_.
+Analogous to `pros::Optical::get_led_pwm <../cpp/optical.html#get-led-pwm>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t optical_get_led_pwm(uint8_t port);
+        int32_t optical_get_led_pwm(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -271,7 +271,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_angle>`_.
 ----
 
 optical_get_rgb
-----------------
+---------------
 
 Get the processed RGBC data from the sensor.
 
@@ -280,14 +280,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::get_rgb <../cpp/optical.html#get-rgb>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    optical_rgb_s_t optical_get_rgb(uint8_t port);
+        optical_rgb_s_t optical_get_rgb(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -327,14 +327,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::get_raw <../cpp/optical.html#get-raw>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    optical_raw_s_t optical_get_raw(uint8_t port);
+       optical_raw_s_t optical_get_raw(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -365,7 +365,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
 ----
 
 optical_get_gesture
-----------------
+-------------------
 
 Get the most recent gesture data from the sensor.
 
@@ -376,14 +376,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::get_gesture <../cpp/optical.html#get-gesture>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    optical_direction_e_t optical_get_gesture(uint8_t port);
+        optical_direction_e_t optical_get_gesture(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -411,7 +411,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
 ----
 
 optical_get_gesture_raw
-----------------
+-----------------------
 
 Get the most recent raw gesture data from the sensor.
 
@@ -420,14 +420,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::get_gesture_raw <../cpp/optical.html#get-gesture-raw>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    optical_gesture_s_t optical_get_gesture_raw(uint8_t port);
+        optical_gesture_s_t optical_get_gesture_raw(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -461,7 +461,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
 ----
 
 optical_enable_gesture
-----------------
+----------------------
 
 Enable gesture detection on the sensor.
 
@@ -470,14 +470,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::enable_gesture <../cpp/optical.html#enable-gesture>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t optical_enable_gesture(uint8_t port);
+        int32_t optical_enable_gesture(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -503,7 +503,7 @@ Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
 ----
 
 optical_disable_gesture
-----------------
+-----------------------
 
 Disable gesture detection on the sensor.
 
@@ -512,14 +512,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Optical Sensor.
 
-Analogous to `pros::Optical::get <../cpp/optical.html#get_velocity>`_.
+Analogous to `pros::Optical::disable_gesture <../cpp/optical.html#disable-gesture>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-    int32_t optical_disable_gesture(uint8_t port);
+        int32_t optical_disable_gesture(uint8_t port);
 
    .. tab :: Example
       .. highlight:: c
@@ -548,7 +548,7 @@ Data Structures
 ===============
 
 optical_rgb_s_t
------------------
+---------------
 
 The RGB and Brightness values for the optical sensor.
 
@@ -562,7 +562,7 @@ The RGB and Brightness values for the optical sensor.
   } optical_raw_s_t;
 
 optical_raw_s_t
------------------
+---------------
 
 The RGB and clear values for the optical sensor.
 
@@ -576,7 +576,7 @@ The RGB and clear values for the optical sensor.
   } optical_raw_s_t;
 
 optical_gesture_s_t
------------------
+-------------------
 
 This structure contains the raw gesture data.
 

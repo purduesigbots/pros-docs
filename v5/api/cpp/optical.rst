@@ -8,7 +8,7 @@ VEX Optical Sensor C++ API
 .. contents:: :local:
 
 pros::Optical
-============
+=============
 
 Constructor(s)
 --------------
@@ -75,7 +75,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
-
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** The hue value the Optical sensor sees or PROS_ERR if the operation failed, setting ``errno``.
@@ -116,7 +116,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
-
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** The saturation value of the Optical sensor or PROS_ERR if the operation failed, setting ``errno``.
@@ -157,7 +157,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- 
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** Optical sensor's brightness value or PROS_ERR if the operation failed, setting ``errno``.
@@ -196,7 +196,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- 
+  port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** Optical sensor's proximity value or PROS_ERR if the operation failed, setting ``errno``.
@@ -278,7 +278,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
-
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** Optical sensor's LED PWM value or PROS_ERR if the operation failed, setting ``errno``.
@@ -324,7 +324,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
-
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** A struct of RGB values from the Optical Sensor or PROS_ERR if the operation failed, setting ``errno``.
@@ -370,7 +370,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
-
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** A struct of the raw rgb values from the Optical Sensor or PROS_ERR if the operation failed, setting ``errno``.
@@ -413,7 +413,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
-
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** The direction of the most recent gesture from the Optical Sensor or PROS_ERR if the operation failed, 
@@ -463,7 +463,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
-
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** A struct of the raw gesture values from the Optical Sensor or PROS_ERR if the operation failed, setting ``errno``.
@@ -504,7 +504,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
-
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** ``1`` if operation was successful or PROS_ERR if the operation failed, setting ``errno``.
@@ -545,7 +545,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
-
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** ``1`` if operation was successful or PROS_ERR if the operation failed, setting ``errno``.
@@ -586,7 +586,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
-
+ port         The V5 port number from 1-21
 ============ =================================================================================================================
 
 **Returns:** The port number of the Optical Sensor or PROS_ERR if the operation failed, setting ``errno``.
