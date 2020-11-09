@@ -71,7 +71,9 @@ This function uses the following values of ``errno`` when an error state is reac
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
-          
+        }
+
+        void opcontrol() {
           int time = pros::millis();
           int iter = 0;
           while (imu_sensor.is_calibrating()) {
@@ -512,6 +514,9 @@ This function uses the following values of ``errno`` when an error state is reac
         void initialize() {
         	pros::Imu imu_sensor (IMU_PORT);
 	        imu_sensor.reset();
+        }
+
+        void opcontrol() {
 	        int time = pros::millis();
 	        int iter = 0;
 	        while (imu_sensor.get_status() & pros::c::E_IMU_STATUS_CALIBRATING) {

@@ -52,6 +52,9 @@ print function, which is analogous to
 
          void initialize() {
            lcd_initialize();
+         }
+
+         void opcontrol() {
            while (true) {
              lcd_print(0, "Buttons Bitmap: %d\n", lcd_read_buttons());
              delay(20);
@@ -64,13 +67,16 @@ print function, which is analogous to
          :caption: initialize.cpp
          :linenos:
 
-         void initialize() {
+        void initialize() {
            pros::lcd::initialize();
-           while (true) {
+         }
+
+        void opcontrol() {
+          while (true) {
              pros::lcd::print(0, "Buttons Bitmap: %d\n", pros::lcd::read_buttons());
              delay(20);
            }
-         }
+        }
 
 Using the Buttons
 =================

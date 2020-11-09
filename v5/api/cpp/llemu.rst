@@ -169,6 +169,9 @@ Analogous to `lcd_print <../c/llemu.html#lcd-print>`_.
 
         void initialize() {
           pros::lcd::initialize();
+        }
+
+        void opcontrol {
           while (true) {
             pros::lcd::print(0, "Buttons Bitmap: %d\n", pros::lcd::read_buttons());
             delay(20);
@@ -217,6 +220,9 @@ Analogous to `lcd_read_buttons <../c/llemu.html#lcd-read-buttons>`_.
 
         void initialize() {
           pros::lcd::initialize();
+        }
+
+        void opcontrol() {
           while (true) {
             printf("Buttons Bitmap: %d\n", pros::lcd::read_buttons());
             delay(20);
