@@ -986,7 +986,7 @@ Analogous to `lcd_read_buttons <./c/llemu.html#lcd-read-buttons>`_.
 
         void opcontrol {
           while (true) {
-            lcdprint("Buttons Bitmap: %d\n", pros::lcd::read_buttons());
+            printf("Buttons Bitmap: %d\n", lcdReadButtons());
             delay(20);
           }
         }
