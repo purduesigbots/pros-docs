@@ -253,6 +253,9 @@ stick for simple opcontrol use. The actual behavior of the motor is analogous
 to use of `motor_move`_, or `motorSet <../../../cortex/api/index.html#motorSet>`_
 from the PROS 2 API.
 
+.. note:: This function will not respect brake modes, and simply sets the voltage
+          to the desired value.
+
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENODEV``  - The port cannot be configured as a motor
@@ -460,6 +463,9 @@ move_voltage
 ~~~~~~~~~~~~
 
 Sets the voltage for the motor from -12000 mV to 12000 mV.
+
+.. note:: This function will not respect brake modes, and simply sets the voltage
+          to the desired value.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
