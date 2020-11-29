@@ -55,7 +55,6 @@ for its ADI port.
 
          void initialize() {
            pros::ADIAnalogIn sensor (ANALOG_SENSOR_PORT);
-           // Use the sensor
          }
 
 Additionally, it is often worthwhile to calibrate analog sensors before using them
@@ -296,7 +295,6 @@ for its ADI port.
 
          void initialize() {
            pros::ADIDigitalIn sensor (DIGITAL_SENSOR_PORT);
-           // Use the sensor
          }
 
 From there, using a digital sensor is fairly straightforward. Digital Sensors
