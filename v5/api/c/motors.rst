@@ -239,6 +239,9 @@ motor_move_voltage
 
 Sets the voltage for the motor from -12000 mV to 12000 mV.
 
+.. note:: This function will not respect brake modes, and simply sets the voltage
+          to the desired value.
+
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
