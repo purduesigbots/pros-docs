@@ -23,6 +23,9 @@ stick for simple opcontrol use. The actual behavior of the motor is analogous
 to use of `motor_move_voltage`_, or `motorSet <../../../cortex/api/index.html#motorSet>`_
 from the PROS 2 API.
 
+.. note:: This function will not respect brake modes, and simply sets the voltage
+          to the desired value.
+
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
