@@ -59,7 +59,7 @@ Tasks in PROS are simple to create:
                 // ...
             }
             void initialize() {
-                task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+                task_t my_task = task_create(my_task_fn, (void*)"parameter(s) here", TASK_PRIORITY_DEFAULT,
                                             TASK_STACK_DEPTH_DEFAULT, "My Task");
             }
 
@@ -74,8 +74,8 @@ Tasks in PROS are simple to create:
                 // ...
             }
             void initialize() {
-                std::string text("PROS");
-                Task my_task(my_task_fn, &text, "");
+                std::string text("this is a parameter");
+                Task my_task(my_task_fn, (void*)"parameter(s) here", "");
             }
     .. tab :: API2
         .. highlight:: c
