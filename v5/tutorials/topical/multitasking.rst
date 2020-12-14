@@ -74,7 +74,6 @@ Tasks in PROS are simple to create:
                 // ...
             }
             void initialize() {
-                std::string text("this is a parameter");
                 Task my_task(my_task_fn, (void*)"parameter(s) here", "");
             }
     .. tab :: API2
