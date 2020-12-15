@@ -241,15 +241,3 @@ Denotes the kind of device that is being communicated with.
   	E_DEVICE_GENERIC = 129,
   	E_DEVICE_UNDEFINED = 255
   } v5_device_e_t;
-
-Typedefs
-========
-
-sem_t
------
-
-A `semaphore <../tutorials/topical/multitasking>`_.
-
-::
-
-  typedef void* sem_t;

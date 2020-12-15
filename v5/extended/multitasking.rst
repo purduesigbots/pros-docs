@@ -437,3 +437,12 @@ queue_t
 ::
 
   typedef void* queue_t;
+  
+sem_t
+-----
+
+A `semaphore <../tutorials/topical/multitasking>`_.
+
+::
+
+  typedef void* sem_t;
