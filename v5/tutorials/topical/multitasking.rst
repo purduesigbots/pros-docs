@@ -70,7 +70,7 @@ Tasks in PROS are simple to create:
            :linenos:
 
             void my_task_fn(void* param) {
-                std::cout << Hello << (char*)param << std::endl;
+                std::cout << "Function Parameters: " << (char*)param << std::endl;
                 // ...
             }
             void initialize() {
