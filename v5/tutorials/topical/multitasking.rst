@@ -76,18 +76,7 @@ Tasks in PROS are simple to create:
             void initialize() {
                 Task my_task(my_task_fn, (void*)"parameter(s) here", "");
             }
-    .. tab :: API2
-        .. highlight:: c
-        .. code-block:: c
-           :caption: initialize.c
-           :linenos:
 
-            void my_task_fn(void* param) {
-                printf("Hello %s\n", (char*)param);
-            }
-            void initialize() {
-                TaskHandle my_task = taskCreate(my_task_fn, TASK_DEFAULT_STACK_SIZE, "PROS", TASK_PRIORITY_DEFAULT);
-            }
 
 The `task_create <../../api/c/rtos.html#task_create>`_ function takes in a function where the task starts, an argument to the function,
 a priority for the task, and two new fields not yet discussed: stack size and name.
