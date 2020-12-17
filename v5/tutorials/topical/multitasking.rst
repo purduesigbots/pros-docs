@@ -46,6 +46,39 @@ Task Management
 
 Tasks in PROS are simple to create:
 
+.. tabs ::
+    .. tab :: C
+        .. highlight:: c
+        .. code-block:: c
+           :caption: initialize.c
+           :linenos:
+
+            void my_task_fn(void* param) {
+                printf("Function Parameters: %s\n", (char*)param);
+                // ...
+            }
+            void initialize() {
+                task_t my_task = task_create(my_task_fn, "parameter(s) here", TASK_PRIORITY_DEFAULT,
+                                            TASK_STACK_DEPTH_DEFAULT, "My Task");
+            }
+
+    .. tab :: C++
+        .. highlight:: cpp
+        .. code-block:: cpp
+           :caption: initialize.cpp
+           :linenos:
+
+            void my_task_fn(void* param) {
+                std::cout << "My task runs" << std::endl;
+                // ...
+            }
+            void initialize() {
+                Task my_task(my_task_fn);
+            }
+
+Passing parameters to tasks
+---
+Tasks can have parameters passed into them.
 
 .. tabs ::
     .. tab :: C
@@ -93,6 +126,29 @@ The last parameter is the task name. The task name allows you to give a task a h
 is primarily for debugging purposes and allows you (the human) to easily identify tasks if performing advanced task
 management. Task names may be up to 32 characters long, and you may pass NULL or an empty string into the function.
 In API2, `taskCreate <../../../cortex/api/index.html#taskCreate>`_ will automatically make the task name an empty string.
+
+Lambda Tasks
+===============
+Often times, tasks may be small sections of code that are not used anywhere else in the codebase.  In this 
+scenario, a Lambda function will be useful to limit the need for creating new functions.  A Lambda function
+is an inline function that does not require a name. Using lambda functions allows for the task's function to
+be created in the same place that the task is created so that the code is easier to maintain.  This constructor
+can also use any void callable.
+
+.. tabs ::
+    .. tab :: C++
+        .. highlight:: cpp
+        .. code-block:: cpp
+           :caption: initialize.cpp
+           :linenos:
+
+            void initialize() {
+                std::shared_ptr<int> data{new int(7)};
+                pros::Task task{[=] {
+                        pros::delay(1000);
+                        std::cout << *data << std::endl;
+                }};
+            }
 
 Synchronization
 ===============
