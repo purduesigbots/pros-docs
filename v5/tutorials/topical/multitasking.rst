@@ -131,7 +131,7 @@ Lambda Tasks
 ===============
 Tasks may sometimes be small sections of code that are not used anywhere else in the codebase. To help remedy this, a lambda function 
 (an inline function that does not require a name) allows for a task's function to be created in the same place that the task is created
-so that the code is easier to maintain. In the example below, a Lambda function is used limit the need for creating new functions.
+so that the code is easier to maintain. In the example below, a Lambda function is used to limit the need for creating a new function.
 This constructor can also use any void callable.
 
 .. tabs ::
