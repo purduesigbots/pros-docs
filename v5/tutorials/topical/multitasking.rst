@@ -129,11 +129,10 @@ In API2, `taskCreate <../../../cortex/api/index.html#taskCreate>`_ will automati
 
 Lambda Tasks
 ===============
-Often times, tasks may be small sections of code that are not used anywhere else in the codebase.  In this 
-scenario, a Lambda function will be useful to limit the need for creating new functions.  A Lambda function
-is an inline function that does not require a name. Using lambda functions allows for the task's function to
-be created in the same place that the task is created so that the code is easier to maintain.  This constructor
-can also use any void callable.
+Tasks may sometimes be small sections of code that are not used anywhere else in the codebase. To help remedy this, a lambda function 
+(an inline function that does not require a name) allows for a task's function to be created in the same place that the task is created
+so that the code is easier to maintain. In the example below, a Lambda function is used limit the need for creating new functions.
+This constructor can also use any void callable.
 
 .. tabs ::
     .. tab :: C++
