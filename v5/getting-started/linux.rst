@@ -7,6 +7,8 @@ Installing the toolchain
 
 The steps for installing the toolchain can differ greatly per distribution. The first step is to check whether your package manager offers the arm-none-eabi toolchain. If so, make sure that the version available is greater than or equal to 7.2 before installing.
 
+.. note:: For some distributions such as Arch and Fedora, :code:`arm-none-eabi-newlib` is not installed by the package manager and will need to be installed manually.
+
 If you're not sure whether your distribution's package manager has the toolchain available, or if you prefer to install things manually, follow the instructions below.
 
 .. note:: For users of Debian-based distributions, be aware that the toolchain available through Apt is out of date and likely will not work for PROS projects. For Ubuntu users, you may see references online to a PPA by team-gcc-arm-embedded, but that PPA does not seem to be updated any more. Therefore, if you are using a Debian-based distribution or Ubuntu, please follow the instructions below.
