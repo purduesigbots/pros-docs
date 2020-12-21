@@ -9,7 +9,8 @@ Setting Signatures
 ==================
 
 The first step to using the vision sensor is setting color signatures for the sensor
-to recognize as objects. This is done through the V5 Vision Utility program or programmticly.
+to recognize as objects. This is done through the V5 Vision Utility program or programmatically.
+
 
 .. tabs::
    .. group-tab :: C
