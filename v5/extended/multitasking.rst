@@ -8,7 +8,8 @@ task_abort_delay
 
 ::
 
-  bool task_abort_delay ( task_t task )
+  int32_t task_abort_delay ( task_t task )
+
 
 Unblocks a task in the Blocked state (e.g. waiting for a delay, on a semaphore, etc.)
 
