@@ -24,7 +24,8 @@ to recognize as objects. This is done through the V5 Vision Utility program or p
          void opcontrol() {
            // values acquired from the vision utility
            vision_signature_s_t RED_SIG =
-           vision_signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+             vision_signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+
          }
 
    .. group-tab :: C++
