@@ -127,7 +127,7 @@ is primarily for debugging purposes and allows you (the human) to easily identif
 management. Task names may be up to 32 characters long, and you may pass NULL or an empty string into the function.
 In API2, `taskCreate <../../../cortex/api/index.html#taskCreate>`_ will automatically make the task name an empty string.
 
-Lambda Tasks
+Lambda Tasks (C++ Only)
 ===============
 Tasks may sometimes be small sections of code that are not used anywhere else in the codebase. To help remedy this, a lambda function 
 (an inline function that does not require a name) allows for a task's function to be created in the same place that the task is created
