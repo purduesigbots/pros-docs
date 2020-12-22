@@ -41,7 +41,8 @@ to recognize as objects. This is done through the V5 Vision Utility program or p
            pros::Vision vision_sensor (VISION_PORT);
            
            pros::vision_signature_s_t RED_SIG =
-           pros::Vision::signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+             pros::Vision::signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+
 
            sensor.set_signature(EXAMPLE_SIG, &RED_SIG);
          }
