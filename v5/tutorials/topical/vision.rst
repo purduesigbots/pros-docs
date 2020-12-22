@@ -9,7 +9,77 @@ Setting Signatures
 ==================
 
 The first step to using the vision sensor is setting color signatures for the sensor
-to recognize as objects. This is done through the V5 Vision Utility program.
+to recognize as objects. This is done through the V5 Vision Utility program or programmatically.
+
+
+.. tabs::
+   .. group-tab :: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: opcontrol.c
+         :linenos:
+
+         #define VISION_PORT 1
+
+         void opcontrol() {
+           // values acquired from the vision utility
+           vision_signature_s_t RED_SIG =
+             vision_signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+
+         }
+
+   .. group-tab :: C++
+      .. highlight:: cpp
+      .. code-block:: cpp
+         :caption: opcontrol.cpp
+         :linenos:
+
+         #define VISION_PORT 1
+         #define EXAMPLE_SIG 1
+
+         void opcontrol() {
+           pros::Vision vision_sensor (VISION_PORT);
+           
+           pros::vision_signature_s_t RED_SIG =
+             pros::Vision::signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+
+
+           sensor.set_signature(EXAMPLE_SIG, &RED_SIG);
+         }
+
+Color Codes
+==================
+Color codes can also be created from multiple signatures.
+
+.. tabs::
+   .. group-tab :: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: opcontrol.c
+         :linenos:
+
+         #define VISION_PORT 1
+         #define EXAMPLE_SIG 1
+         #define OTHER_SIG 2
+
+         void opcontrol() {
+           vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG);
+         }
+
+   .. group-tab :: C++
+      .. highlight:: cpp
+      .. code-block:: cpp
+         :caption: opcontrol.cpp
+         :linenos:
+
+         #define VISION_PORT 1
+         #define EXAMPLE_SIG 1
+         #define OTHER_SIG 2
+
+         void opcontrol() {
+           pros::Vision vision_sensor (VISION_PORT);
+           pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+         }
 
 Retrieving Objects
 ==================
