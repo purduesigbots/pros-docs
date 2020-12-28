@@ -142,10 +142,9 @@ This constructor can also use any void callable.
            :linenos:
 
             void initialize() {
-                std::shared_ptr<int> data{new int(7)};
                 pros::Task task{[=] {
                         pros::delay(1000);
-                        std::cout << *data << std::endl;
+                        std::cout << "Task Called" << std::endl;
                 }};
             }
 
