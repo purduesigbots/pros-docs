@@ -21,7 +21,8 @@ See :doc:`./multitasking` for details.
  task         The handle of the task being unblocked
 ============ ========================================
 
-**Returns:** TO BE DECIDED
+**Returns:** If the task referenced by ``task`` was not in the Blocked state then
+``pdFAIL`` is returned.  Otherwise ``pdPASS`` is returned.
 
 Semaphore
 ======
