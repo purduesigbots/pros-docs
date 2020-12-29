@@ -123,7 +123,7 @@ the same variables or data. You may design your code to have each subsystem of y
 robot in its own task. Ensuring that tasks never write to the same variables is called
 division of responsibility or separation of domain.
 
-.. code-block:: c
+.. code-block:: C++
    :linenos:
 
     int task1_variable = 0;
