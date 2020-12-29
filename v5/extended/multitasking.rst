@@ -22,7 +22,8 @@ See :doc:`./multitasking` for details.
 ============ ========================================
 
 **Returns:** If the task referenced by ``task`` was not in the Blocked state then
-``pdFAIL`` is returned.  Otherwise ``pdPASS`` is returned.
+``pdFAIL`` (analogous to boolean false) is returned.  Otherwise ``pdPASS``
+(analogous to boolean true) is returned.
 
 Semaphore
 ======
