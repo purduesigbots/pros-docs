@@ -16,7 +16,8 @@ Unblocks a task in the Blocked state (e.g. waiting for a delay, on a semaphore, 
 See :doc:`./multitasking` for details.
 
 ============ ========================================
- Paramaters
+ Parameters
+
 ============ ========================================
  task         The handle of the task being unblocked
 ============ ========================================
