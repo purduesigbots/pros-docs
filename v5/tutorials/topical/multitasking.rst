@@ -53,8 +53,8 @@ Tasks in PROS are simple to create:
            :caption: initialize.c
            :linenos:
 
-            void my_task_fn(void* param) {
-                printf("Task Called\n", (char*)param);
+            void my_task_fn(void) {
+                printf("Task Called\n");
                 // ...
             }
             void initialize() {
@@ -92,7 +92,7 @@ Tasks can have parameters passed into them.
                 // ...
             }
             void initialize() {
-                task_t my_task = task_create(my_task_fn, "parameter(s) here", TASK_PRIORITY_DEFAULT,
+                task_t my_task = task_create(my_task_fn, (void*)"parameter(s) here", TASK_PRIORITY_DEFAULT,
                                             TASK_STACK_DEPTH_DEFAULT, "My Task");
             }
 
