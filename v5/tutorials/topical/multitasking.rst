@@ -53,7 +53,7 @@ Tasks in PROS are simple to create:
            :caption: initialize.c
            :linenos:
 
-            void my_task_fn(void) {
+            void my_task_fn(void* param) {
                 printf("Task Called\n");
                 // ...
             }
