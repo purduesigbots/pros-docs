@@ -46,7 +46,6 @@ Task Management
 
 Tasks in PROS are simple to create:
 
-
 .. tabs ::
     .. tab :: C
         .. highlight:: c
@@ -55,11 +54,11 @@ Tasks in PROS are simple to create:
            :linenos:
 
             void my_task_fn(void* param) {
-                printf("Hello %s\n", (char*)param);
+                printf("Task Called\n");
                 // ...
             }
             void initialize() {
-                task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
+                task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
                                             TASK_STACK_DEPTH_DEFAULT, "My Task");
             }
 
@@ -70,25 +69,47 @@ Tasks in PROS are simple to create:
            :linenos:
 
             void my_task_fn(void* param) {
-                std::cout << Hello << (char*)param << std::endl;
+                std::cout << "My task runs" << std::endl;
                 // ...
             }
             void initialize() {
-                std::string text("PROS");
-                Task my_task(my_task_fn, &text, "");
+                Task my_task(my_task_fn);
             }
-    .. tab :: API2
+
+Passing parameters to tasks
+---
+Tasks can have parameters passed into them.
+
+.. tabs ::
+    .. tab :: C
         .. highlight:: c
         .. code-block:: c
            :caption: initialize.c
            :linenos:
 
             void my_task_fn(void* param) {
-                printf("Hello %s\n", (char*)param);
+                printf("Function Parameters: %s\n", (char*)param);
+                // ...
             }
             void initialize() {
-                TaskHandle my_task = taskCreate(my_task_fn, TASK_DEFAULT_STACK_SIZE, "PROS", TASK_PRIORITY_DEFAULT);
+                task_t my_task = task_create(my_task_fn, (void*)"parameter(s) here", TASK_PRIORITY_DEFAULT,
+                                            TASK_STACK_DEPTH_DEFAULT, "My Task");
             }
+
+    .. tab :: C++
+        .. highlight:: cpp
+        .. code-block:: cpp
+           :caption: initialize.cpp
+           :linenos:
+
+            void my_task_fn(void* param) {
+                std::cout << "Function Parameters: " << (char*)param << std::endl;
+                // ...
+            }
+            void initialize() {
+                Task my_task(my_task_fn, (void*)"parameter(s) here", "My Task Name");
+            }
+
 
 The `task_create <../../api/c/rtos.html#task_create>`_ function takes in a function where the task starts, an argument to the function,
 a priority for the task, and two new fields not yet discussed: stack size and name.
@@ -105,6 +126,29 @@ The last parameter is the task name. The task name allows you to give a task a h
 is primarily for debugging purposes and allows you (the human) to easily identify tasks if performing advanced task
 management. Task names may be up to 32 characters long, and you may pass NULL or an empty string into the function.
 In API2, `taskCreate <../../../cortex/api/index.html#taskCreate>`_ will automatically make the task name an empty string.
+
+Lambda Tasks (C++ Only)
+===============
+Tasks may sometimes be small sections of code that are not used anywhere else in the codebase. To help remedy this, a `lambda function 
+<https://en.cppreference.com/w/cpp/language/lambda>`_ (an inline function that does not require a name) allows for a task's function 
+to be created in the same place that the task is created so that the code is easier to maintain. In the example below, a lambda function
+
+is used to limit the need for creating a new function. This constructor can also use any void `Callable <https://en.cppreference.com/w/cpp/named_req/Callable>`_.
+
+
+.. tabs ::
+    .. tab :: C++
+        .. highlight:: cpp
+        .. code-block:: cpp
+           :caption: initialize.cpp
+           :linenos:
+
+            void initialize() {
+                pros::Task task{[=] {
+                        pros::delay(1000);
+                        std::cout << "Task Called" << std::endl;
+                }};
+            }
 
 Synchronization
 ===============
