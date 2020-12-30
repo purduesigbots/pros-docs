@@ -107,7 +107,7 @@ Tasks can have parameters passed into them.
                 // ...
             }
             void initialize() {
-                Task my_task(my_task_fn, (void*)"parameter(s) here", "");
+                Task my_task(my_task_fn, (void*)"parameter(s) here", "My Task Name");
             }
 
 
