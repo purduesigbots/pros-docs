@@ -123,10 +123,13 @@ the same variables or data. You may design your code to have each subsystem of y
 robot in its own task. Ensuring that tasks never write to the same variables is called
 division of responsibility or separation of domain.
 
+If the responsibility can be divided so that one task will read the value while a separate
+task writes to the variable, then an `atomic variable <https://www.cplusplus.com/reference/atomic/atomic/>`_ can be used.
+
 .. code-block:: C++
    :linenos:
 
-    int task1_variable = 0;
+    std::atomic<int> task1_variable(0);
     void Task1(void * ignore) {
         // do things
         task1_variable = 4;
@@ -135,7 +138,7 @@ division of responsibility or separation of domain.
     void Task2(void * ignore) {
       // do things
       // I can read task1_variable, but NOT write to it
-      printf("%d\n", task1_variable);
+      printf("%d\n", task1_variable.load());
     }
 
 Sometimes this is impossible: suppose you wanted to write a PID
