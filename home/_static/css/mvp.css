@@ -520,6 +520,12 @@ footer {
   #feature-table {
     display: flex;
   }
+  #nav-lg {
+    display: flex;
+  }
+  #nav-sm {
+    display: none;
+  }
 }
 
 @media (max-width: 479px) {
@@ -533,6 +539,14 @@ footer {
     display: none;
   }
   #feature-table {
+    display: none;
+  }
+  #nav-sm {
+    display: block;
+    position: relative;
+    width: 70vw; /* This makes the element big enough to push the logo onto the next line */
+  }
+  #nav-lg {
     display: none;
   }
 }
