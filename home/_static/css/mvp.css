@@ -28,6 +28,20 @@
 .w-w {
   display: none;
 }
+/* Only use the hero logo with black text if sm and light theme */
+.black-hero {
+  display: none;
+}
+@media (prefers-color-scheme: light) {
+  @media (max-width: 479px) {
+    .black-hero {
+      display: inline-block;
+    }
+    .white-hero {
+      display: none;
+    }
+  }
+}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -482,10 +496,12 @@ footer {
 
 @media screen and (min-width: 480px) {
   .hero {
+    max-width: 100vw;
     margin: 0;
     height: var(--hero-video-height);
     padding-left: 1rem;
     padding-right: 1rem;
+    overflow: hidden;
     background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
       no-repeat center;
   }
@@ -496,7 +512,8 @@ footer {
     top: 0;
     left: 0;
     z-index: -100;
-    background-size: cover;
+    /* Keep the video content from spilling over on tablet */
+    clip: rect(0px, 100vw, var(--hero-video-height), 0px);
     overflow: hidden;
     height: var(--hero-video-height);
   }
