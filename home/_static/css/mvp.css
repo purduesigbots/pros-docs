@@ -25,6 +25,10 @@
   --width-content: 1080px;
 }
 
+.w-w {
+  display: none;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color: #cca352;
@@ -36,6 +40,12 @@
     --color-shadow: #bbbbbb20;
     --color-text: #f7f7f7;
     --color-text-secondary: #aaa;
+  }
+  .b-b {
+    display: none;
+  }
+  .w-w {
+    display: inline-block;
   }
 }
 
@@ -53,7 +63,6 @@ body {
   line-height: var(--line-height);
   margin: 0;
   overflow-x: hidden;
-  /* padding: 1rem 0; */
 }
 
 footer,
@@ -467,6 +476,10 @@ footer {
   text-align: center;
 }
 
+.footer-logo {
+  height: 6rem;
+}
+
 @media screen and (min-width: 480px) {
   .hero {
     margin: 0;
@@ -489,6 +502,9 @@ footer {
   }
   .hero header {
     padding-top: 1rem;
+  }
+  header p {
+    color: #fff; /* Keep the subtitle text white to stand out over the gif */
   }
   .post-hero {
     visibility: hidden;
