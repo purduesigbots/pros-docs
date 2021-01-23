@@ -16,7 +16,7 @@ The recommended method of installing PROS 3 for macOS involves using `Homebrew <
 5. (Optional) If you are planning to use the Vision Sensor, you will likely need to also install the VEX Vision Utility to set up signatures. Run :code:`brew install vcs-vision` to do this. Once installed, you'll be able to run the program by looking for "vcs_vision" in Spotlight.
 6. That's it! You can now start using PROS 3.
 
-.. note:: If you do not want to use the PROS Editor, and instead intend to use only the PROS CLI, substitute the command in step 3 with the following: :code:`brew install pros-cli`.
+.. note:: If you do not want to use the PROS Editor, and instead intend to use only the PROS CLI, substitute the command in step 4 with the following: :code:`brew install pros-cli`.
 
 Other Methods
 -------------
