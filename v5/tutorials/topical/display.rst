@@ -8,7 +8,7 @@ LVGL is a full-featured C graphics library (it's accessible in C++ projects too 
 The first step to getting started with LVGL is to include ``pros/apix.h`` in your ``main.h`` file or other header files.
 This includes the full LVGL feature set as described in their documentation: https://littlevgl.com/
 
-You can follow along with any of the LVGL `tutorials <https://github.com/littlevgl/lv_examples/tree/master/lv_tutorial>`_
+You can follow along with any of the LVGL `tutorials <https://github.com/lvgl/lv_examples/tree/v5.3>`_
 or `wiki <https://docs.littlevgl.com/#Objects>`_. There is no need to port or initialize LVGL, you can simply
 start creating objects.
 
