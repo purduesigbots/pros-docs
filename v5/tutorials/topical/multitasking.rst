@@ -126,7 +126,7 @@ division of responsibility or separation of domain.
 If the tasks can be designed so that different tasks will perform different operations on a variable, then an
 `atomic variable <https://www.cplusplus.com/reference/atomic/atomic/>`_ can be used to solve the problem of 
 synchronization. Atomic variables prevent race conditions by defining the order of what happens when two tasks try to
-use a variable at the same time.
+operate on a variable at the same time.
 
 .. code-block:: C++
    :linenos:
@@ -143,7 +143,7 @@ use a variable at the same time.
       printf("%d\n", task1_variable.load());
     }
 
-Sometimes this is impossible: suppose you wanted to write a PID
+Sometimes dividing responsibility is impossible: suppose you wanted to write a PID
 controller on its own task and you wanted to change the target of the
 PID controller. PROS features two types of synchronization structures,
 *mutexes* and *notifications* that can be used to coordinate tasks.
