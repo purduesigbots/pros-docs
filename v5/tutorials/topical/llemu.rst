@@ -15,16 +15,6 @@ function at whatever point in the program you would like the LLEMU to start disp
 Initialization is done as such:
 
 .. tabs::
-   .. group-tab:: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: initialize.c
-         :linenos:
-
-         void initialize() {
-           lcd_initialize();
-         }
-
    .. group-tab:: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -33,6 +23,16 @@ Initialization is done as such:
 
          void initializa() {
            pros::lcd::initialize();
+         }
+
+   .. group-tab:: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: initialize.c
+         :linenos:
+
+         void initialize() {
+           lcd_initialize();
          }
 
 Writing to the LLEMU
@@ -44,23 +44,6 @@ print function, which is analogous to
 `printf <http://www.cplusplus.com/reference/cstdio/printf/>`_.
 
 .. tabs::
-   .. group-tab:: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: initialize.c
-         :linenos:
-
-         void initialize() {
-           lcd_initialize();
-         }
-
-         void opcontrol() {
-           while (true) {
-             lcd_print(0, "Buttons Bitmap: %d\n", lcd_read_buttons());
-             delay(20);
-           }
-         }
-
    .. group-tab:: C++
       ..highlight:: cpp
       .. code-block:: cpp
@@ -78,6 +61,23 @@ print function, which is analogous to
            }
         }
 
+   .. group-tab:: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: initialize.c
+         :linenos:
+
+         void initialize() {
+           lcd_initialize();
+         }
+
+         void opcontrol() {
+           while (true) {
+             lcd_print(0, "Buttons Bitmap: %d\n", lcd_read_buttons());
+             delay(20);
+           }
+         }
+
 Using the Buttons
 =================
 
@@ -93,27 +93,6 @@ With these function you can assign a function to be called each time that the bu
 is pressed.
 
 .. tabs::
-   .. group-tab:: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: initialize.c
-         :linenos:
-
-         void on_center_button() {
-           static bool pressed = false;
-           pressed = !pressed;
-           if (pressed) {
-             lcd_set_text(2, "I was pressed!");
-           } else {
-             lcd_clear_line(2);
-           }
-         }
-
-         void initialize() {
-           lcd_initialize();
-           lcd_register_btn0_cb(on_center_button);
-         }
-
    .. group-tab:: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -133,6 +112,27 @@ is pressed.
          void initialize() {
            pros::lcd::initialize();
            pros::lcd::register_btn0_cb(on_center_button);
+         }
+
+   .. group-tab:: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: initialize.c
+         :linenos:
+
+         void on_center_button() {
+           static bool pressed = false;
+           pressed = !pressed;
+           if (pressed) {
+             lcd_set_text(2, "I was pressed!");
+           } else {
+             lcd_clear_line(2);
+           }
+         }
+
+         void initialize() {
+           lcd_initialize();
+           lcd_register_btn0_cb(on_center_button);
          }
 
 
