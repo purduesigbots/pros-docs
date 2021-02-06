@@ -120,13 +120,12 @@ and PROS has several facilities to help maintain thread safety.
 
 The simplest way to ensure thread safety is to design tasks which will never access
 the same variables or data. You may design your code to have each subsystem of your
-robot have its own task. Ensuring that tasks never write to the same variables is called
+robot has its own task. Ensuring that tasks never write to the same variables is called
+
 division of responsibility or separation of domain.
 
 If the tasks can be designed so that different tasks will perform different operations on a variable, then an
-`atomic variable <https://www.cplusplus.com/reference/atomic/atomic/>`_ can be used to solve the problem of 
-synchronization. Atomic variables prevent race conditions by defining the order of what happens when two tasks try to
-operate on a variable at the same time.
+`atomic variable <https://www.cplusplus.com/reference/atomic/atomic/>`_ can be used to help solve the problem of synchronization. Atomic variables prevent the wrapped variable from being observed in a partially set or invalid state when multiple tasks try to operate on a variable at the same time.
 
 .. code-block:: C++
    :linenos:
