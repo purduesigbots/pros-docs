@@ -169,7 +169,7 @@ mutex_recursive_create
 
   mutex_t mutex_recursive_create ( )
 
-Creates a recursive mutex which can be locked recursively by the owner.
+Creates a recursive mutex which can be locked recursively by the owner. This is deleted by `mutex_delete <../api/c/rtos.html#mutex-delete>`_.
 
 See :doc:`./multitasking` for details.
 
