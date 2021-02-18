@@ -259,10 +259,10 @@ To test this code, run the following commands in the terminal window to create, 
 
 .. code :: bash
 
-    prosv5 make
-    prosv5 upload
+    pros make
+    pros upload
 
-These 2 commands can be simplified to ```prosv5 mu``.
+These 2 commands can be simplified to ```pros mu``.
 
 Arcade Control
 ==============
@@ -327,7 +327,7 @@ wheels.
          }
 
 
-As with the tank drive code, this can be uploaded with the ``prosv5 mu`` command.
+As with the tank drive code, this can be uploaded with the ``pros mu`` command.
 
 Arm Control
 ===========

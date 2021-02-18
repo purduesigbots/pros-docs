@@ -90,13 +90,13 @@ To create, build, and upload a new project in PROS 3, run
 
 .. code :: bash
 
-    prosv5 conduct new <path_to_project>
-    prosv5 make
-    prosv5 upload
-    prosv5 terminal
+    pros conduct new <path_to_project>
+    pros make
+    pros upload
+    pros terminal
 
 
-The last 3 commands can be simplified to :code:`prosv5 mut`.
+The last 3 commands can be simplified to :code:`pros mut`.
 
 Tank/Arcade Control
 -------------------

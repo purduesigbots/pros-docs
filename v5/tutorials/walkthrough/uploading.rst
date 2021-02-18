@@ -15,7 +15,7 @@ Uploading from within the Editor
 Uploading through the PROS CLI
 ==============================
 
-1. Running ``prosv5 upload`` on the command line will upload your
+1. Running ``pros upload`` on the command line will upload your
    project to the V5 brain.
 
 Wireless Upload
