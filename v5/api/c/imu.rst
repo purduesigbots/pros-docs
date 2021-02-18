@@ -113,7 +113,7 @@ imu_get_heading
 
 Get the Inertial Sensor's heading relative to the initial direction of its x-axis.
 
-This value is bounded by (-360,360). Clockwise rotations are represented with positive
+This value is bounded by [0,360). Clockwise rotations are represented with positive
 degree values, while counterclockwise rotations are represented with negative ones.
 
 This function uses the following values of ``errno`` when an error state is reached:
@@ -247,7 +247,7 @@ filled with ``PROS_ERR_F`` and ``errno`` is set.
 imu_get_pitch
 -------------
 
-Get the Inertial Sensor's pitch angle.
+Get the Inertial Sensor's pitch angle bounded by (-180,180).
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -291,7 +291,7 @@ Analogous to `pros::Imu::get_pitch <../cpp/imu.html#get_pitch>`_.
 imu_get_roll
 ------------
 
-Get the Inertial Sensor's roll angle.
+Get the Inertial Sensor's roll angle bounded by (-180,180).
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -335,7 +335,7 @@ Analogous to `pros::Imu::get_roll <../cpp/imu.html#get_roll>`_.
 imu_get_yaw
 -----------
 
-Get the Inertial Sensor's yaw angle.
+Get the Inertial Sensor's yaw angle bounded by (-180,180).
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -514,6 +514,654 @@ Analogous to `pros::Imu::get_status <../cpp/imu.html#get_status>`_.
 **Returns:** The Inertial Sensor's status code, or ``PROS_ERR`` if the operation failed, setting ``errno``. 
 
 ---
+
+imu_tare_heading
+---------
+
+Resets the current reading of the Inertial Sensor's heading to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::tare_heading <../cpp/imu.html#tare_heading>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_tare_heading (uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_tare_rotation
+---------
+
+Resets the current reading of the Inertial Sensor's rotation to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::tare_rotation <../cpp/imu.html#tare_rotation>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_tare_rotation (uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_tare_pitch
+---------
+
+Resets the current reading of the Inertial Sensor's pitch to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is stil calibrating.
+
+Analogous to `pros::Imu::tare_pitch <../cpp/imu.html#tare_pitch>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_tare_pitch (uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_tare_roll
+---------
+
+Resets the current reading of the Inertial Sensor's roll to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::tare_roll <../cpp/imu.html#tare_roll>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_tare_roll (uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_tare_yaw
+---------
+
+Resets the current reading of the Inertial Sensor's yaw to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::tare_yaw <../cpp/imu.html#tare_yaw>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_tare_yaw (uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_tare_euler
+---------
+
+Reset all 3 euler values of the Inertial Sensor to 0.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::tare_euler <../cpp/imu.html#tare_euler>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_tare_euler (uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_tare
+---------
+
+Resets all 5 values of the Inertial Sensor to 0.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::tare <../cpp/imu.html#tare>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_tare (uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_set_euler
+---------
+
+Sets the current reading of the Inertial Sensor's euler values to
+target euler values. Will default to +/- 180 if target exceeds +/- 180.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::set_euler <../cpp/imu.html#set_euler>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_set_euler (uint8_t port, euler_s_t target)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target euler values for the euler values from 1-21
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_set_rotation
+---------
+
+Sets the current reading of the Inertial Sensor's rotation to target value.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::set_rotation <../cpp/imu.html#set_rotation>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_set_rotation (uint8_t port, double target)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target value for the rotation value to be set to
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_set_heading
+---------
+
+Sets the current reading of the Inertial Sensor's heading to target value
+Target will default to 360 if above 360 and default to 0 if below 0.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::set_heading <../cpp/imu.html#set_heading>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_set_heading (uint8_t port, double target)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target value for the heading value to be set to
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_set_pitch
+---------
+
+Sets the current reading of the Inertial Sensor's pitch to target value
+Will default to +/- 180 if target exceeds +/- 180.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::set_pitch <../cpp/imu.html#set_pitch>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_set_pitch (uint8_t port, double target)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target value for the pitch value to be set to
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_set_roll
+---------
+
+Sets the current reading of the Inertial Sensor's roll to target value
+Will default to +/- 180 if target exceeds +/- 180.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::set_roll <../cpp/imu.html#set_roll>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_set_roll (uint8_t port, double target)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target value for the roll value to be set to
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+imu_set_yaw
+---------
+
+Sets the current reading of the Inertial Sensor's yaw to target value
+Will default to +/- 180 if target exceeds +/- 180.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+Analogous to `pros::Imu::set_yaw <../cpp/imu.html#set_yaw>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_set_yaw (uint8_t port, double target)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+          int time = millis();
+          int iter = 0;
+          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
+            printf("IMU calibrating... %d\n", iter);
+            iter += 10;
+            delay(10);
+          }
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target value for the yaw value to be set to
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
 
 Enumerated Values
 =================
