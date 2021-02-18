@@ -262,7 +262,7 @@ To test this code, run the following commands in the terminal window to create, 
     pros make
     pros upload
 
-These 2 commands can be simplified to ```pros mu``.
+These 2 commands can be simplified to ``pros mu``.
 
 Arcade Control
 ==============
