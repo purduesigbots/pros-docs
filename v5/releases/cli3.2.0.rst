@@ -2,10 +2,23 @@
 PROS CLI 3.1.4 Release
 ======================
 
-.. post:: 17 February, 2021
+.. post:: 18 February, 2021
    :tags: blog, cli-release
 
-- WIP
+New features:
+
+- Added wireless terminal
+- Rename distribution from pros-cli-v5 to pros-cli
+- Both `pros` and `prosv5` work for the CLI now.
+
+Bugfixes:
+
+- Fixed terminal input
+- Fixed bug with channel switching for wireless uploads
+- Fixed UnicodeDecodeError in UI
+- Fix uploading to a slot specified in the project file
+- Fix issue with schema length for upcoming vexOS release
+- Fix uploading without a project
 
 Updating to the new version
 ===========================
