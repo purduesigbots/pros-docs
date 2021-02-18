@@ -541,17 +541,13 @@ Analogous to `pros::Imu::tare_heading <../cpp/imu.html#tare_heading>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_tare_heading(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -590,17 +586,13 @@ Analogous to `pros::Imu::tare_rotation <../cpp/imu.html#tare_rotation>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_tare_rotation(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -639,17 +631,13 @@ Analogous to `pros::Imu::tare_pitch <../cpp/imu.html#tare_pitch>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_tare_pitch(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -688,17 +676,13 @@ Analogous to `pros::Imu::tare_roll <../cpp/imu.html#tare_roll>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_tare_roll(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -737,17 +721,13 @@ Analogous to `pros::Imu::tare_yaw <../cpp/imu.html#tare_yaw>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_tare_yaw(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -786,17 +766,13 @@ Analogous to `pros::Imu::tare_euler <../cpp/imu.html#tare_euler>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_tare_euler(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -835,17 +811,13 @@ Analogous to `pros::Imu::tare <../cpp/imu.html#tare>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_tare(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -885,17 +857,13 @@ Analogous to `pros::Imu::set_euler <../cpp/imu.html#set_euler>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_set_euler(IMU_PORT, {45,45,45});
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -935,17 +903,13 @@ Analogous to `pros::Imu::set_rotation <../cpp/imu.html#set_rotation>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_set_rotation(IMU_PORT, 45);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -986,17 +950,13 @@ Analogous to `pros::Imu::set_heading <../cpp/imu.html#set_heading>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_set_heading(IMU_PORT, 45);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -1037,17 +997,13 @@ Analogous to `pros::Imu::set_pitch <../cpp/imu.html#set_pitch>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_set_pitch(IMU_PORT, 45);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -1088,17 +1044,13 @@ Analogous to `pros::Imu::set_roll <../cpp/imu.html#set_roll>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_set_roll(IMU_PORT, 45);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -1139,17 +1091,13 @@ Analogous to `pros::Imu::set_yaw <../cpp/imu.html#set_yaw>`_.
 
         #define IMU_PORT 1
 
-        void initialize() {
-          imu_reset(IMU_PORT);
-          int time = millis();
-          int iter = 0;
-          while (imu_get_status(IMU_PORT) & E_IMU_STATUS_CALIBRATING) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            delay(10);
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_set_yaw(IMU_PORT, 45);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================

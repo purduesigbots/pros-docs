@@ -469,19 +469,17 @@ This function uses the following values of ``errno`` when an error state is reac
 
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
-          imu_sensor.reset();
         }
 
         void opcontrol() {
           int time = pros::millis();
           int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare_rotation(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -526,13 +524,12 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
           int time = pros::millis();
           int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare_heading(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -577,13 +574,12 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
           int time = pros::millis();
           int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare_pitch(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -628,13 +624,12 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
           int time = pros::millis();
           int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare_yaw(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -679,13 +674,12 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
           int time = pros::millis();
           int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare_roll(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -728,15 +722,12 @@ This function uses the following values of ``errno`` when an error state is reac
         }
 
         void opcontrol() {
-          int time = pros::millis();
-          int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare(IMU_PORT);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -779,15 +770,12 @@ This function uses the following values of ``errno`` when an error state is reac
         }
 
         void opcontrol() {
-          int time = pros::millis();
-          int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu::tare(IMU_PORT);
+            }
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
+          pros::delay(20);
         }
 
 ============ =================================================================================================================
@@ -831,15 +819,12 @@ This function uses the following values of ``errno`` when an error state is reac
         }
 
         void opcontrol() {
-          int time = pros::millis();
-          int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_heading(IMU_PORT,45);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -883,15 +868,12 @@ This function uses the following values of ``errno`` when an error state is reac
         }
 
         void opcontrol() {
-          int time = pros::millis();
-          int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_rotation(IMU_PORT,45);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -935,15 +917,12 @@ This function uses the following values of ``errno`` when an error state is reac
         }
 
         void opcontrol() {
-          int time = pros::millis();
-          int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_yaw(IMU_PORT,45);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -987,15 +966,12 @@ This function uses the following values of ``errno`` when an error state is reac
         }
 
         void opcontrol() {
-          int time = pros::millis();
-          int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_pitch(IMU_PORT,45);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -1039,15 +1015,12 @@ This function uses the following values of ``errno`` when an error state is reac
         }
 
         void opcontrol() {
-          int time = pros::millis();
-          int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_roll(IMU_PORT,45);
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
@@ -1092,15 +1065,12 @@ This function uses the following values of ``errno`` when an error state is reac
         }
 
         void opcontrol() {
-          int time = pros::millis();
-          int iter = 0;
-          while (imu_sensor.is_calibrating()) {
-            printf("IMU calibrating... %d\n", iter);
-            iter += 10;
-            pros::delay(10);
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_euler(IMU_PORT,{45,45,45});
+            }
+            pros::delay(20);
           }
-          // should print about 2000 ms
-          printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
 ============ =================================================================================================================
