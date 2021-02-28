@@ -26,12 +26,12 @@ Updating to the new version
 Python PIP
 ----------
 
-Run ``pip install https://github.com/purduesigbots/pros-cli/releases/download/3.1.4/pros_cli_v5-3.1.4-py3-none-any.whl`` (or pip3, depending on your system)
+Run ``pip install https://github.com/purduesigbots/pros-cli/releases/download/3.2.0/pros_cli_v5-3.2.0-py3-none-any.whl`` (or pip3, depending on your system)
 
 Windows
 -------
 
-Download and run the appropriate (.exe) installer from `our release page <https://github.com/purduesigbots/pros-cli/releases/3.1.4>`_.
+Download and run the appropriate (.exe) installer from `our release page <https://github.com/purduesigbots/pros-cli/releases/3.2.0>`_.
 
 macOS
 -----
