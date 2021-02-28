@@ -1,5 +1,5 @@
 ======================
-PROS CLI 3.1.4 Release
+PROS CLI 3.2.0 Release
 ======================
 
 .. post:: 18 February, 2021
