@@ -21,7 +21,7 @@ Initialization is done as such:
          :caption: initialize.cpp
          :linenos:
 
-         void initializa() {
+         void initialize() {
            pros::lcd::initialize();
          }
 
@@ -45,21 +45,21 @@ print function, which is analogous to
 
 .. tabs::
    .. group-tab:: C++
-      ..highlight:: cpp
+      .. highlight:: cpp
       .. code-block:: cpp
          :caption: initialize.cpp
          :linenos:
 
-        void initialize() {
+         void initialize() {
            pros::lcd::initialize();
          }
 
-        void opcontrol() {
-          while (true) {
+         void opcontrol() {
+           while (true) {
              pros::lcd::print(0, "Buttons Bitmap: %d\n", pros::lcd::read_buttons());
              delay(20);
            }
-        }
+         }
 
    .. group-tab:: C
       .. highlight:: c
