@@ -46,8 +46,8 @@ Task Management
 
 Tasks in PROS are simple to create:
 
-.. tabs ::
-   .. tab :: C++
+.. tabs::
+   .. group-tab:: C++
        .. highlight:: cpp
        .. code-block:: cpp
           :caption: initialize.cpp
@@ -61,7 +61,7 @@ Tasks in PROS are simple to create:
                Task my_task(my_task_fn);
            }
 
-   .. tab :: C
+   .. group-tab:: C
        .. highlight:: c
        .. code-block:: c
           :caption: initialize.c
@@ -82,8 +82,8 @@ Passing parameters to tasks
 ---------------------------
 Tasks can have parameters passed into them.
 
-.. tabs ::
-   .. tab :: C++
+.. tabs::
+   .. group-tab:: C++
        .. highlight:: cpp
        .. code-block:: cpp
           :caption: initialize.cpp
@@ -97,7 +97,7 @@ Tasks can have parameters passed into them.
               Task my_task(my_task_fn, (void*)"parameter(s) here", "My Task Name");
           }
             
-   .. tab :: C
+   .. group-tab:: C
        .. highlight:: c
        .. code-block:: c
           :caption: initialize.c
@@ -138,8 +138,8 @@ to be created in the same place that the task is created so that the code is eas
 is used to limit the need for creating a new function. This constructor can also use any void `Callable <https://en.cppreference.com/w/cpp/named_req/Callable>`_.
 
 
-.. tabs ::
-   .. tab :: C++
+.. tabs::
+   .. group-tab:: C++
        .. highlight:: cpp
        .. code-block:: cpp
           :caption: initialize.cpp
@@ -152,7 +152,7 @@ is used to limit the need for creating a new function. This constructor can also
               }};
           }
 
-   .. tab :: C
+   .. group-tab:: C
        .. highlight:: c
        .. code-block:: c
           :linenos:
@@ -208,7 +208,7 @@ time. Other tasks must wait for the first task to finish (and release
 the mutex) before they may continue.
 
 .. tabs::
-   .. tab:: C++
+   .. group-tab:: C++
       .. highlight:: cpp
       .. code-block:: cpp
          :linenos:
@@ -222,7 +222,7 @@ the mutex) before they may continue.
          // Release the mutex for other tasks
          mutex.give();
 
-   .. tab:: C
+   .. group-tab:: C
       .. highlight:: c
       .. code-block:: c
          :linenos:
