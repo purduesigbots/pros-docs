@@ -195,6 +195,20 @@ time. Other tasks must wait for the first task to finish (and release
 the mutex) before they may continue.
 
 .. tabs::
+   .. tab:: C++
+      .. highlight:: cpp
+      .. code-block:: cpp
+         :linenos:
+
+         Mutex mutex;
+         // Acquire the mutex; other tasks using this command will wait until the mutex is released
+         // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
+         // If the timeout expires, "false" will be returned, otherwise "true"
+         mutex.take(timeout);
+         // do some work
+         // Release the mutex for other tasks
+         mutex.give();
+
    .. tab:: C
       .. highlight:: c
       .. code-block:: c
@@ -209,20 +223,6 @@ the mutex) before they may continue.
          // do some work
          // Release the mutex for other tasks
          mutex_give(mutex);
-
-   .. tab:: C++
-      .. highlight:: cpp
-      .. code-block:: cpp
-         :linenos:
-
-         Mutex mutex;
-         // Acquire the mutex; other tasks using this command will wait until the mutex is released
-         // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
-         // If the timeout expires, "false" will be returned, otherwise "true"
-         mutex.take(timeout);
-         // do some work
-         // Release the mutex for other tasks
-         mutex.give();
 
 Mutexes do not magically prevent concurrent writing, but provide the ability for tasks to
 create "contracts" with each other. You can write your code such that a variable is never
