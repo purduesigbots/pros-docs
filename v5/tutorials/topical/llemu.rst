@@ -32,7 +32,7 @@ Initialization is done as such:
          :linenos:
 
          void initialize() {
-           pros::lcd::initialize();
+           lcd_initialize();
          }
 
 Writing to the LLEMU
@@ -45,18 +45,18 @@ print function, which is analogous to
 
 .. tabs::
    .. group-tab:: C++
-      ..highlight:: cpp
+      .. highlight:: cpp
       .. code-block:: cpp
          :caption: initialize.cpp
          :linenos:
 
          void initialize() {
-           lcd_initialize();
+           pros::lcd::initialize();
          }
 
          void opcontrol() {
            while (true) {
-             lcd_print(0, "Buttons Bitmap: %d\n", lcd_read_buttons());
+             pros::lcd::print(0, "Buttons Bitmap: %d\n", pros::lcd::read_buttons());
              delay(20);
            }
          }

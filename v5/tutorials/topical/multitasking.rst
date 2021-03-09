@@ -79,7 +79,7 @@ Tasks in PROS are simple to create:
 
 
 Passing parameters to tasks
----
+---------------------------
 Tasks can have parameters passed into them.
 
 .. tabs ::
@@ -89,28 +89,28 @@ Tasks can have parameters passed into them.
           :caption: initialize.cpp
           :linenos:
 
-           void my_task_fn(void* param) {
-               std::cout << "Function Parameters: " << (char*)param << std::endl;
-               // ...
-           }
-           void initialize() {
-               Task my_task(my_task_fn, (void*)"parameter(s) here", "My Task Name");
-           }
+          void my_task_fn(void* param) {
+              std::cout << "Function Parameters: " << (char*)param << std::endl;
+              // ...
+          }
+          void initialize() {
+              Task my_task(my_task_fn, (void*)"parameter(s) here", "My Task Name");
+          }
             
    .. tab :: C
        .. highlight:: c
        .. code-block:: c
-           :caption: initialize.c
-           :linenos:
+          :caption: initialize.c
+          :linenos:
 
-           void my_task_fn(void* param) {
-               printf("Function Parameters: %s\n", (char*)param);
-               // ...
-           }
-           void initialize() {
-               task_t my_task = task_create(my_task_fn, (void*)"parameter(s) here", TASK_PRIORITY_DEFAULT,
-                                           TASK_STACK_DEPTH_DEFAULT, "My Task");
-           }
+          void my_task_fn(void* param) {
+              printf("Function Parameters: %s\n", (char*)param);
+              // ...
+          }
+          void initialize() {
+              task_t my_task = task_create(my_task_fn, (void*)"parameter(s) here", TASK_PRIORITY_DEFAULT,
+                                          TASK_STACK_DEPTH_DEFAULT, "My Task");
+          }
 
 
 The `task_create <../../api/c/rtos.html#task_create>`_ function takes in a function where the task starts, an argument to the function,
@@ -145,17 +145,19 @@ is used to limit the need for creating a new function. This constructor can also
           :caption: initialize.cpp
           :linenos:
 
-           void initialize() {
-               pros::Task task{[=] {
-                       pros::delay(1000);
-                       std::cout << "Task Called" << std::endl;
-               }};
-           }
+          void initialize() {
+              pros::Task task{[=] {
+                      pros::delay(1000);
+                      std::cout << "Task Called" << std::endl;
+              }};
+          }
 
    .. tab :: C
        .. highlight:: c
        .. code-block:: c
-              Lambda tasks are not supported in C.
+          :linenos:
+          
+          Lambda tasks are not supported in C.
 
 Synchronization
 ===============
@@ -181,17 +183,17 @@ If the tasks can be designed so that different tasks will perform different oper
 .. code-block:: C++
    :linenos:
 
-    std::atomic<int> task1_variable(0);
-    void Task1(void * ignore) {
-        // do things
-        task1_variable = 4;
-    }
+   std::atomic<int> task1_variable(0);
+   void Task1(void * ignore) {
+       // do things
+       task1_variable = 4;
+   }
 
-    void Task2(void * ignore) {
-      // do things
-      // I can read task1_variable, but NOT write to it
-      printf("%d\n", task1_variable.load());
-    }
+   void Task2(void * ignore) {
+     // do things
+     // I can read task1_variable, but NOT write to it
+     printf("%d\n", task1_variable.load());
+   }
 
 Sometimes dividing responsibility is impossible: suppose you wanted to write a PID
 controller on its own task and you wanted to change the target of the
