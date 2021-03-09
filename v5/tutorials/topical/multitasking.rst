@@ -171,13 +171,17 @@ and PROS has several facilities to help maintain thread safety.
 
 The simplest way to ensure thread safety is to design tasks which will never access
 the same variables or data. You may design your code to have each subsystem of your
-robot in its own task. Ensuring that tasks never write to the same variables is called
+robot has its own task. Ensuring that tasks never write to the same variables is called
+
 division of responsibility or separation of domain.
 
-.. code-block:: c
+If the tasks can be designed so that different tasks will perform different operations on a variable, then an
+`atomic variable <https://www.cplusplus.com/reference/atomic/atomic/>`_ can be used to help solve the problem of synchronization. Atomic variables prevent the wrapped variable from being observed in a partially set or invalid state when multiple tasks try to operate on a variable at the same time.
+
+.. code-block:: C++
    :linenos:
 
-    int task1_variable = 0;
+    std::atomic<int> task1_variable(0);
     void Task1(void * ignore) {
         // do things
         task1_variable = 4;
@@ -186,10 +190,10 @@ division of responsibility or separation of domain.
     void Task2(void * ignore) {
       // do things
       // I can read task1_variable, but NOT write to it
-      printf("%d\n", task1_variable);
+      printf("%d\n", task1_variable.load());
     }
 
-Sometimes this is impossible: suppose you wanted to write a PID
+Sometimes dividing responsibility is impossible: suppose you wanted to write a PID
 controller on its own task and you wanted to change the target of the
 PID controller. PROS features two types of synchronization structures,
 *mutexes* and *notifications* that can be used to coordinate tasks.

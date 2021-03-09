@@ -41,6 +41,34 @@ Analogous to `millis <../c/rtos.html#millis>`_.
 
 ----
 
+micros
+------
+
+Analogous to `micros <../c/rtos.html#micros>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::uint64_t pros::micros ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          std::uint64_t now = pros::micros();
+          while (true) {
+            // Do opcontrol things
+            pros::Task::delay_until(&now, 2000);
+          }
+        }
+
+**Returns:** Returns the number of microseconds since PROS initialized.
+
+----
+
 pros::Task
 ==========
 
