@@ -47,34 +47,34 @@ Task Management
 Tasks in PROS are simple to create:
 
 .. tabs ::
-    .. tab :: C++
-        .. highlight:: cpp
-        .. code-block:: cpp
-           :caption: initialize.cpp
-           :linenos:
+   .. tab :: C++
+       .. highlight:: cpp
+       .. code-block:: cpp
+          :caption: initialize.cpp
+          :linenos:
 
-            void my_task_fn(void* param) {
-                std::cout << "My task runs" << std::endl;
-                // ...
-            }
-            void initialize() {
-                Task my_task(my_task_fn);
-            }
+           void my_task_fn(void* param) {
+               std::cout << "My task runs" << std::endl;
+               // ...
+           }
+           void initialize() {
+               Task my_task(my_task_fn);
+           }
 
-    .. tab :: C
-        .. highlight:: c
-        .. code-block:: c
-           :caption: initialize.c
-           :linenos:
+   .. tab :: C
+       .. highlight:: c
+       .. code-block:: c
+          :caption: initialize.c
+          :linenos:
 
-            void my_task_fn(void* param) {
-                printf("Task Called\n");
-                // ...
-            }
-            void initialize() {
-                task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
-                                            TASK_STACK_DEPTH_DEFAULT, "My Task");
-            }
+           void my_task_fn(void* param) {
+               printf("Task Called\n");
+               // ...
+           }
+           void initialize() {
+               task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                                           TASK_STACK_DEPTH_DEFAULT, "My Task");
+           }
 
 
 
@@ -83,34 +83,34 @@ Passing parameters to tasks
 Tasks can have parameters passed into them.
 
 .. tabs ::
-    .. tab :: C++
-        .. highlight:: cpp
-        .. code-block:: cpp
-           :caption: initialize.cpp
+   .. tab :: C++
+       .. highlight:: cpp
+       .. code-block:: cpp
+          :caption: initialize.cpp
+          :linenos:
+
+           void my_task_fn(void* param) {
+               std::cout << "Function Parameters: " << (char*)param << std::endl;
+               // ...
+           }
+           void initialize() {
+               Task my_task(my_task_fn, (void*)"parameter(s) here", "My Task Name");
+           }
+            
+   .. tab :: C
+       .. highlight:: c
+       .. code-block:: c
+           :caption: initialize.c
            :linenos:
 
-            void my_task_fn(void* param) {
-                std::cout << "Function Parameters: " << (char*)param << std::endl;
-                // ...
-            }
-            void initialize() {
-                Task my_task(my_task_fn, (void*)"parameter(s) here", "My Task Name");
-            }
-            
-    .. tab :: C
-        .. highlight:: c
-        .. code-block:: c
-            :caption: initialize.c
-            :linenos:
-
-            void my_task_fn(void* param) {
-                printf("Function Parameters: %s\n", (char*)param);
-                // ...
-            }
-            void initialize() {
-                task_t my_task = task_create(my_task_fn, (void*)"parameter(s) here", TASK_PRIORITY_DEFAULT,
-                                            TASK_STACK_DEPTH_DEFAULT, "My Task");
-            }
+           void my_task_fn(void* param) {
+               printf("Function Parameters: %s\n", (char*)param);
+               // ...
+           }
+           void initialize() {
+               task_t my_task = task_create(my_task_fn, (void*)"parameter(s) here", TASK_PRIORITY_DEFAULT,
+                                           TASK_STACK_DEPTH_DEFAULT, "My Task");
+           }
 
 
 The `task_create <../../api/c/rtos.html#task_create>`_ function takes in a function where the task starts, an argument to the function,
@@ -139,18 +139,18 @@ is used to limit the need for creating a new function. This constructor can also
 
 
 .. tabs ::
-    .. tab :: C++
-        .. highlight:: cpp
-        .. code-block:: cpp
-           :caption: initialize.cpp
-           :linenos:
+   .. tab :: C++
+       .. highlight:: cpp
+       .. code-block:: cpp
+          :caption: initialize.cpp
+          :linenos:
 
-            void initialize() {
-                pros::Task task{[=] {
-                        pros::delay(1000);
-                        std::cout << "Task Called" << std::endl;
-                }};
-            }
+           void initialize() {
+               pros::Task task{[=] {
+                       pros::delay(1000);
+                       std::cout << "Task Called" << std::endl;
+               }};
+           }
 
 Synchronization
 ===============
