@@ -50,16 +50,16 @@ print function, which is analogous to
          :caption: initialize.cpp
          :linenos:
 
-        void initialize() {
+         void initialize() {
            pros::lcd::initialize();
          }
 
-        void opcontrol() {
-          while (true) {
+         void opcontrol() {
+           while (true) {
              pros::lcd::print(0, "Buttons Bitmap: %d\n", pros::lcd::read_buttons());
              delay(20);
            }
-        }
+         }
 
    .. group-tab:: C
       .. highlight:: c
@@ -78,6 +78,7 @@ print function, which is analogous to
            }
          }
 
+         
 Using the Buttons
 =================
 
