@@ -11,7 +11,7 @@ Changelog
 New features:
 
 - Add missing filesystem syscalls
-- Add Zeroing and Position Setting Functions for the `IMU <../cpp/imu.html>`_.
+- Add Zeroing and Position Setting Functions for the `IMU <../../v5/api/cpp/imu.html>`_.
 - Add pros::micros() to return the time since program start in microseconds.
 
 Bugfixes:
