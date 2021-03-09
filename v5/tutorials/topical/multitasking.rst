@@ -47,6 +47,20 @@ Task Management
 Tasks in PROS are simple to create:
 
 .. tabs ::
+    .. tab :: C++
+        .. highlight:: cpp
+        .. code-block:: cpp
+           :caption: initialize.cpp
+           :linenos:
+
+            void my_task_fn(void* param) {
+                std::cout << "My task runs" << std::endl;
+                // ...
+            }
+            void initialize() {
+                Task my_task(my_task_fn);
+            }
+
     .. tab :: C
         .. highlight:: c
         .. code-block:: c
@@ -62,40 +76,13 @@ Tasks in PROS are simple to create:
                                             TASK_STACK_DEPTH_DEFAULT, "My Task");
             }
 
-    .. tab :: C++
-        .. highlight:: cpp
-        .. code-block:: cpp
-           :caption: initialize.cpp
-           :linenos:
 
-            void my_task_fn(void* param) {
-                std::cout << "My task runs" << std::endl;
-                // ...
-            }
-            void initialize() {
-                Task my_task(my_task_fn);
-            }
 
 Passing parameters to tasks
 ---
 Tasks can have parameters passed into them.
 
 .. tabs ::
-    .. tab :: C
-        .. highlight:: c
-        .. code-block:: c
-           :caption: initialize.c
-           :linenos:
-
-            void my_task_fn(void* param) {
-                printf("Function Parameters: %s\n", (char*)param);
-                // ...
-            }
-            void initialize() {
-                task_t my_task = task_create(my_task_fn, (void*)"parameter(s) here", TASK_PRIORITY_DEFAULT,
-                                            TASK_STACK_DEPTH_DEFAULT, "My Task");
-            }
-
     .. tab :: C++
         .. highlight:: cpp
         .. code-block:: cpp
@@ -108,6 +95,21 @@ Tasks can have parameters passed into them.
             }
             void initialize() {
                 Task my_task(my_task_fn, (void*)"parameter(s) here", "My Task Name");
+            }
+            
+    .. tab :: C
+        .. highlight:: c
+        .. code-block:: c
+            :caption: initialize.c
+            :linenos:
+
+            void my_task_fn(void* param) {
+                printf("Function Parameters: %s\n", (char*)param);
+                // ...
+            }
+            void initialize() {
+                task_t my_task = task_create(my_task_fn, (void*)"parameter(s) here", TASK_PRIORITY_DEFAULT,
+                                            TASK_STACK_DEPTH_DEFAULT, "My Task");
             }
 
 

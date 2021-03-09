@@ -45,7 +45,7 @@ print function, which is analogous to
 
 .. tabs::
    .. group-tab:: C++
-      ..highlight:: cpp
+      .. highlight:: cpp
       .. code-block:: cpp
          :caption: initialize.cpp
          :linenos:
