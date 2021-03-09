@@ -152,6 +152,11 @@ is used to limit the need for creating a new function. This constructor can also
                }};
            }
 
+   .. tab :: C
+       .. highlight:: c
+       .. code-block:: c
+              Lambda tasks are not supported in C.
+
 Synchronization
 ===============
 
