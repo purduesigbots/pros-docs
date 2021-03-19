@@ -48,7 +48,7 @@ macOS
 -----
 
 To upgrade a previous installation, run ``brew upgrade pros-cli``.
-If you have the editor installed, you can also run ``brew cask upgrade pros-editor``.
+If you have the editor installed, you can also run ``brew upgrade pros-editor``.
 
 To install from scratch:
 
