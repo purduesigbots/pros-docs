@@ -36,7 +36,7 @@ Updating to the new version
 Python PIP
 ----------
 
-Run ``pip install --upgrade pros-cli` (or pip3, depending on your system)
+Run ``pip install --upgrade pros-cli`` (or pip3, depending on your system)
 
 Windows
 -------
