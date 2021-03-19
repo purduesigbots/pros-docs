@@ -36,7 +36,7 @@ Updating to the new version
 Python PIP
 ----------
 
-Run ``pip install https://github.com/purduesigbots/pros-cli/releases/download/3.2.0/pros_cli_v5-3.2.0-py3-none-any.whl`` (or pip3, depending on your system)
+Run ``pip install --upgrade pros-cli` (or pip3, depending on your system)
 
 Windows
 -------
