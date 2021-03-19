@@ -5,6 +5,18 @@ PROS CLI 3.2.0 Release
 .. post:: 18 February, 2021
    :tags: blog, cli-release
 
+At long last! the PROS CLI release 2+ years in the making
+
+.. note:: Important: in order to use PROS with vexOS 1.0.13, you MUST upgrade to this version!
+
+This release has a number of long-awaited features, not least of which is official support for the wireless terminal. Another notable change is that you can now (again) use the pros command to refer to the CLI! For those of you who have committed prosv5 to muscle memory over the last few years---don't worry, that command still exists.
+
+We are also pleased to announce that pros-cli is back on PyPi! Anyone who installed through pip should be able to run pip install --upgrade pros-cli and get this release.
+
+A number of other miscellaneous bugfixes and improvements were added, so feel free to browse the full changelog below.
+
+Special thanks to @3038922, @Sleuth56, @vexcat, @Bottersnike, and @Trimbell for their contributions!
+
 New features:
 
 - Added wireless terminal
