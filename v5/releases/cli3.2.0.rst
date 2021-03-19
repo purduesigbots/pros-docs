@@ -15,8 +15,6 @@ We are also pleased to announce that pros-cli is back on PyPi! Anyone who instal
 
 A number of other miscellaneous bugfixes and improvements were added, so feel free to browse the full changelog below.
 
-Special thanks to @3038922, @Sleuth56, @vexcat, @Bottersnike, and @Trimbell for their contributions!
-
 New features:
 
 - Added wireless terminal
