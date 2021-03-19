@@ -50,4 +50,4 @@ macOS
 To upgrade a previous installation, run ``brew upgrade pros-cli``.
 If you have the editor installed, you can also run ``brew upgrade pros-editor``.
 
-If you are installing for the first time, see `the getting started guide for macOS <https://pros.cs.purdue.edu/v5/getting-started/macos.html>` for instructions.
+If you are installing for the first time, see `the getting started guide for macOS <https://pros.cs.purdue.edu/v5/getting-started/macos.html>`_ for instructions.
