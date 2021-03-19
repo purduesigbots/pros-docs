@@ -50,8 +50,4 @@ macOS
 To upgrade a previous installation, run ``brew upgrade pros-cli``.
 If you have the editor installed, you can also run ``brew upgrade pros-editor``.
 
-To install from scratch:
-
-Install Homebrew if it's not already installed. This may take a while.
-Run ``brew tap osx-cross/arm && brew tap purduesigbots/pros``
-Run ``brew install gcc-arm-bin && brew --cask install pros-editor`` (if you want to install only the CLI, you can run ``brew install gcc-arm-bin pros-cli`` instead)
+If you are installing for the first time, see `the getting started guide for macOS <https://pros.cs.purdue.edu/v5/getting-started/macos.html>` for instructions.
