@@ -20,6 +20,7 @@ New features:
 - Added wireless terminal
 - Rename distribution from pros-cli-v5 to pros-cli
 - Both `pros` and `prosv5` work for the CLI now.
+- Compatibility with vexOS 1.0.13
 
 Bugfixes:
 
