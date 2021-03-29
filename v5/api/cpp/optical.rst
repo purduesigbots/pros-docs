@@ -312,7 +312,7 @@ This function uses the following values of ``errno`` when an error state is reac
           pros::Optical optical_sensor(OPTICAL_PORT);
           pros::c::optical_rgb_s_t rgb_value;
           while (true) {
-            rgb_value = optical_sensor.rgb_value();
+            rgb_value = optical_sensor.get_rgb();
 		        printf("Red value: %lf \n", rgb_value.red);
             printf("Green value: %lf \n", rgb_value.green);
             printf("Blue value: %lf \n", rgb_value.blue);
