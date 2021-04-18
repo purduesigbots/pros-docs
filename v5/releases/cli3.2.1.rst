@@ -15,7 +15,7 @@ Updating to the new version
 Windows
 -------
 
-Download and run the appropriate (.exe) installer from `our release page <https://github.com/purduesigbots/pros-cli/releases/3.2.0>`_.
+Download and run the appropriate (.exe) installer from `our release page <https://github.com/purduesigbots/pros-cli/releases/3.2.1>`_.
 
 Notes:
 
