@@ -19,7 +19,6 @@ Download and run the appropriate (.exe) installer from `our release page <https:
 Notes:
 
 - You may be stopped by Windows SmartScreen when running the installer. This is expected, and we are working to resolve this issue. In the meantime, click "more info" and "run anyway" (if your system is set to block unknown apps and programs, you'll have to change the SmartScreen settings to "warn" or disable checking entirely [which we don't recommend]).
-- If you applied the workaround detailed in the release notes for 3.2.0 (adding an entry to the PATH environment variable), you can go ahead and remove it if you wish.
 
 macOS
 -----
