@@ -8,6 +8,8 @@ PROS Kernel 3.5.0 Release
 Changelog
 ---------
 
+Our biggest feature this update is the lightweight screen API, which will act as a LVGL alternative.
+
 New features:
 
 - Added Simplified API for drawing objects on the `Screen <../../v5/api/cpp/screen.html>`_.
