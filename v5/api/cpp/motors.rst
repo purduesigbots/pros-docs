@@ -1927,3 +1927,8 @@ Indicates the internal gearing used by the motor.
 .. _motor_gearset_e_t: ../c/motors.html#motor-gearset-e-t
 .. _motor_encoder_units_e_t: ../c/motors.html#motor-encoder-units-e-t
 .. _motor_brake_mode_e_t: ../c/motors.html#motor-brake-mode-e-t
+
+Typedefs
+======
+
+None.
