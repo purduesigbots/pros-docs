@@ -15,7 +15,7 @@ imu_reset
 
 Calibrate IMU.
 
-This takes approximately 2 seconds, and is a non-blocking operation.
+This takes approximately 2 seconds, and is a blocking operation until the imu status flag is set correctly.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
