@@ -446,6 +446,6 @@ This function uses the following values of ``errno`` when an error state is reac
  rate         The data refresh interval in milliseconds
 ============ =================================================================================================================
 
-**Returns:** 1 if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
 
 ---
