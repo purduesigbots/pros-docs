@@ -420,6 +420,8 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
 
+Analogous to `pros::Rotation::get_reversed <../cpp/rotation.html#set-data-rate>`_.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -446,5 +448,3 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
 
 **Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
-
----

@@ -457,5 +457,3 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
 
 **Returns:** 1 if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
-
----
