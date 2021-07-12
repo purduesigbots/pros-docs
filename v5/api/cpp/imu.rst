@@ -445,6 +445,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 tare_rotation
 ~~~~~~~~~
+
 Resets the current reading of the Inertial Sensor's rotation to zero.
 
 This function uses the following values of ``errno`` when an error state is reached:
@@ -457,14 +458,19 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t tare_rotation( )
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
         }
+
         void opcontrol() {
           int time = pros::millis();
           int iter = 0;
@@ -475,6 +481,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -500,15 +507,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t tare_heading( )
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           int time = pros::millis();
           int iter = 0;
@@ -519,6 +531,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -544,15 +557,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t tare_pitch( )
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           int time = pros::millis();
           int iter = 0;
@@ -563,6 +581,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -588,15 +607,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t tare_yaw( )
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           int time = pros::millis();
           int iter = 0;
@@ -607,6 +631,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -632,15 +657,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t tare_roll( )
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           int time = pros::millis();
           int iter = 0;
@@ -651,6 +681,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -676,15 +707,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t tare( )
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           while (true) {
             if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
@@ -693,6 +729,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -718,15 +755,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t tare_euler( )
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           while (true) {
             if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
@@ -735,6 +777,7 @@ This function uses the following values of ``errno`` when an error state is reac
           }
           pros::delay(20);
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -761,15 +804,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t set_heading(const double target)
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           while (true) {
             if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
@@ -778,6 +826,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -804,15 +853,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t set_rotation(const double target)
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           while (true) {
             if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
@@ -821,6 +875,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -847,15 +902,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t set_yaw(const double target)
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           while (true) {
             if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
@@ -864,6 +924,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -890,15 +951,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t set_pitch(const double target )
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           while (true) {
             if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
@@ -907,6 +973,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -933,15 +1000,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t set_roll(const double target )
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           while (true) {
             if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
@@ -950,6 +1022,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
@@ -977,15 +1050,20 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Prototype
       .. highlight:: cpp
       ::
+
         std::int32_t set_euler(const pros::c::euler_s_t target )
+
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define IMU_PORT 1
+
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
+
         void opcontrol() {
           while (true) {
             if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
@@ -994,6 +1072,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::delay(20);
           }
         }
+
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
