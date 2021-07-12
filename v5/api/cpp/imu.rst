@@ -145,7 +145,7 @@ get_heading
 
 Get the Inertial Sensor's heading relative to the initial direction of its x-axis.
 
-This value is bounded by (-360,360). Clockwise rotations are represented with positive
+This value is bounded by [0,360). Clockwise rotations are represented with positive
 degree values, while counterclockwise rotations are represented with negative ones.
 
 This function uses the following values of ``errno`` when an error state is reached:
@@ -276,7 +276,7 @@ filled with ``PROS_ERR_F`` and ``errno`` is set.
 get_pitch
 ~~~~~~~~~
 
-Get the Inertial Sensor's pitch angle.
+Get the Inertial Sensor's pitch angle bounded by (-180,180).
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -318,7 +318,7 @@ This function uses the following values of ``errno`` when an error state is reac
 get_roll
 ~~~~~~~~
 
-Get the Inertial Sensor's roll angle.
+Get the Inertial Sensor's roll angle bounded by (-180,180).
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -360,7 +360,7 @@ This function uses the following values of ``errno`` when an error state is reac
 get_yaw
 ~~~~~~~
 
-Get the Inertial Sensor's yaw angle.
+Get the Inertial Sensor's yaw angle bounded by (-180,180).
 
 This function uses the following values of ``errno`` when an error state is reached:
 
