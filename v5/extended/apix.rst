@@ -33,12 +33,12 @@ Control settings of the way the file's driver treats the file.
 registry_bind_port
 ------------------
 
-Registers a device of the given type in the given port into the registry, if
+Registers a device of the given type in the given zero-indexed port into the registry, if
 that type of device is detected to be plugged in to that port.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``     - The given value is not within the range of V5 ports (1-21).
+- ``EINVAL``     - The given value is not within the range of V5 ports (0-20).
 - ``EINVAL``     - A different device than specified is plugged in
 - ``EADDRINUSE`` - The port is already registered to another device
 
@@ -61,11 +61,11 @@ This function uses the following values of ``errno`` when an error state is reac
 registry_unbind_port
 --------------------
 
-Removes the device registed in the given port, if there is one.
+Removes the device registed in the given zero-indexed port, if there is one.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
-- ``EINVAL``     - The given value is not within the range of V5 ports (1-21).
+- ``EINVAL``     - The given value is not within the range of V5 ports (0-20).
 
 ::
 
@@ -81,6 +81,51 @@ This function uses the following values of ``errno`` when an error state is reac
 
 ----
 
+registry_get_bound_type
+--------------------
+
+Returns the type of device registered to the zero-indexed port.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO``     - The given value is not within the range of V5 ports (0-20).
+
+::
+
+  v5_device_e_t registry_get_bound_type ( uint8_t port )
+
+============ ========================================
+ Parameters
+============ ========================================
+ port         The V5 port number from 0-20
+============ ========================================
+
+**Returns:** The type of device that is registered into the port (NOT what is plugged in)
+
+----
+
+registry_get_plugged_type
+--------------------
+
+Returns the type of the device plugged into the zero-indexed port.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO``     - The given value is not within the range of V5 ports (0-20).
+
+::
+
+  v5_device_e_t registry_get_plugged_type ( uint8_t port )
+
+============ ========================================
+ Parameters
+============ ========================================
+ port         The V5 port number from 0-20
+============ ========================================
+
+**Returns:** The type of device that is plugged into the port (NOT what is registered)
+
+----
 
 serctl
 ------
