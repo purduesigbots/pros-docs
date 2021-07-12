@@ -5,8 +5,6 @@
 VEX Inertial Sensor C API
 =========================
 
-.. note:: ``pros::IMU`` can also be used to refer ``pros::Imu``
-
 .. contents :: :local:
 
 Functions
