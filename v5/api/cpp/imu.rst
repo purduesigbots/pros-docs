@@ -10,9 +10,6 @@ VEX Inertial Sensor C++ API
 pros::Imu
 ============
 
-.. note::
-   pros::IMU is another option as an identical typedef of pros::Imu
-
 Constructor(s)
 --------------
 
@@ -50,7 +47,7 @@ reset
 
 Calibrate IMU.
 
-This takes approximately 2 seconds, and is a non-blocking operation.
+This takes approximately 2 seconds, and is blocking until the IMU status flag is set properly.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
