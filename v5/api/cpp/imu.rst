@@ -10,6 +10,9 @@ VEX Inertial Sensor C++ API
 pros::Imu
 ============
 
+.. note::
+   pros::IMU is another option as an identical typedef of pros::Imu
+
 Constructor(s)
 --------------
 
@@ -28,31 +31,6 @@ Constructor(s)
 
         void initialize() {
           pros::Imu imu_sensor(IMU_PORT);
-          imu_sensor.reset();
-        }
-
-pros::IMU
-============
-
-Constructor(s)
---------------
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        pros::IMU(const std::uint8_t port)
-        // Note: This is an typedef constructor
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        #define IMU_PORT 1
-
-        void initialize() {
-          pros::IMU imu_sensor(IMU_PORT);
           imu_sensor.reset();
         }
 
