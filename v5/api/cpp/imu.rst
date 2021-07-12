@@ -443,6 +443,568 @@ This function uses the following values of ``errno`` when an error state is reac
 
 ----
 
+tare_rotation
+~~~~~~~~~
+Resets the current reading of the Inertial Sensor's rotation to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t tare_rotation( )
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+        }
+        void opcontrol() {
+          int time = pros::millis();
+          int iter = 0;
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare_rotation(IMU_PORT);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+tare_heading
+~~~~~~~~~
+
+Resets the current reading of the Inertial Sensor's heading to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t tare_heading( )
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          int time = pros::millis();
+          int iter = 0;
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare_heading(IMU_PORT);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+tare_pitch
+~~~~~~~~~
+
+Resets the current reading of the Inertial Sensor's pitch to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t tare_pitch( )
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          int time = pros::millis();
+          int iter = 0;
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare_pitch(IMU_PORT);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+tare_yaw
+~~~~~~~~~
+
+Resets the current reading of the Inertial Sensor's yaw to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t tare_yaw( )
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          int time = pros::millis();
+          int iter = 0;
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare_yaw(IMU_PORT);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+tare_roll
+~~~~~~~~~
+
+Resets the current reading of the Inertial Sensor's roll to zero.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t tare_roll( )
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          int time = pros::millis();
+          int iter = 0;
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare_roll(IMU_PORT);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+tare
+~~~~~~~~~
+
+Resets all 5 values of the Inertial Sensor to 0.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t tare( )
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::tare(IMU_PORT);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+tare_euler
+~~~~~~~~~
+
+Reset all 3 euler values of the Inertial Sensor to 0.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t tare_euler( )
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu::tare(IMU_PORT);
+            }
+          }
+          pros::delay(20);
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+set_heading
+~~~~~~~~~
+
+Sets the current reading of the Inertial Sensor's heading to target value.  Target will default to 360 if above 360 and default
+to 0 if below 0.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is already calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t set_heading(const double target)
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_heading(IMU_PORT,45);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target value for the heading value to be set to.
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+set_rotation
+~~~~~~~~~
+
+Sets the current reading of the Inertial Sensor's rotation to target value.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t set_rotation(const double target)
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_rotation(IMU_PORT,45);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target value for the rotation value to be set to.
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+set_yaw
+~~~~~~~~~
+
+Sets the current reading of the Inertial Sensor's yaw to target value.  Will default to +/- 180 if target exceeds +/- 180.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t set_yaw(const double target)
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_yaw(IMU_PORT,45);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target value for yaw value to be set to.
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+set_pitch
+~~~~~~~~~
+
+Sets the current reading of the Inertial Sensor's pitch to target value.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t set_pitch(const double target )
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_pitch(IMU_PORT,45);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target value for the pitch value to be set to.
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+set_roll
+~~~~~~~~~
+
+Sets the current reading of the Inertial Sensor's roll to target value.  Will default to +/- 180 if target exceeds +/- 180.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t set_roll(const double target )
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_roll(IMU_PORT,45);
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target value for the roll to be set to.
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+set_euler
+~~~~~~~~~
+
+Sets the current reading of the Inertial Sensor's euler values to target euler values. Will default to +/- 180 if
+target exceeds +/- 180.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+        std::int32_t set_euler(const pros::c::euler_s_t target )
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define IMU_PORT 1
+        void initialize() {
+          pros::Imu imu_sensor(IMU_PORT);
+          imu_sensor.reset();
+        }
+        void opcontrol() {
+          while (true) {
+            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
+              imu_sensor::set_euler(IMU_PORT,{45,45,45});
+            }
+            pros::delay(20);
+          }
+        }
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ target       The target euler values for the euler values to be set to.
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
 get_accel
 ~~~~~~~~~
 
