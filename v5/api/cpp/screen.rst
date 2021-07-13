@@ -174,7 +174,7 @@ Clear entire display with eraser color
 
 ----
 
-eraser
+scroll
 ~~~~~~~~~
 
 Scroll lines on the display upwards.
@@ -201,6 +201,78 @@ Scroll lines on the display upwards.
 ============ =================================================================================================================
  start_line   The line from which scrolling will start
  lines        The number of lines to scroll up
+============ =================================================================================================================
+
+----
+
+scroll_area
+~~~~~~~~~
+
+Scroll lines within a region on the display
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void scroll_area(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1, std::int16_t lines);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+           pros::screen::print(TEXT_MEDIUM, 1, "Line Here");
+           // Scrolls area of screen upwards slightly. including line of text
+           pros::screen::scroll(0,0, 400, 200, 3);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x0           The x coordinate of the top left corner of the rectangular region
+ y0           The y coordinate of the top left corner of the rectangular region
+ x1           The x coordinate of the bottom right corner of the rectangular region
+ y1           The y coordinate of the bottom right corner of the rectangular region
+ lines        The number of lines to scroll up
+============ =================================================================================================================
+
+----
+
+copy_area
+~~~~~~~~~
+
+Copy a screen region (designated by a rectangle) to an off-screen buffer from the screen
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void copy_area(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1, uint32_t* buf, const std::int32_t stride);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+           uint32_t* buf = malloc(sizeof(uint32_t) * 400 * 200);
+           pros::screen::print(TEXT_MEDIUM, 1, "Line Here");
+
+           // Copies area of the screen including text
+           pros::screen::copy(0, 0, 400, 200, (uint32_t*)buf, 400 + 1);
+           // Equation for stride is x2 - x1 + 1
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x0           The x coordinate of the top left corner of the rectangular region
+ y0           The y coordinate of the top left corner of the rectangular region
+ x1           The x coordinate of the bottom right corner of the rectangular region
+ y1           The y coordinate of the bottom right corner of the rectangular region
+ buf		     Off-screen buffer containing screen data
+ stride	     Off-screen buffer width in pixels, such that image size is stride-padding
 ============ =================================================================================================================
 
 ----
