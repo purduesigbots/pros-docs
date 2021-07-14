@@ -12,6 +12,9 @@ pros::screen
 
 .. note:: The default color for the pen is white, while the default eraser color is black.
 
+Drawing Functions
+--------------
+
 set_pen
 ~~~~~~~~~
 
@@ -600,9 +603,9 @@ Fill a circular region of the screen using the current pen color
         void opcontrol() {
             pros::screen::set_pen(COLOR_RED);
             pros::screen::fill_rect(5,5,240,200);
-            // fILL a circlular area with radius of 100 in COLOR_BLUE
+            // Fill a circlular area with radius of 100 in COLOR_BLUE
             pros::screen::set_pen(COLOR_BLUE);
-            pros::screen::FILL_circle(240, 200, 100);
+            pros::screen::fill_circle(240, 200, 100);
         }
 
 ============ =================================================================================================================
@@ -612,5 +615,127 @@ Fill a circular region of the screen using the current pen color
  y            The y coordinate of the center of the circle
  radius       Radius of the circle
 ============ =================================================================================================================
+
+----
+
+Text Printing Functions
+--------------
+
+print
+~~~~~~~~~
+
+Print a formatted string to the screen, with a line and text style specifier.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void print(pros::text_format_e_t txt_fmt, const std::int16_t line, const char* text, Params... args);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            int i = 0;
+
+            pros::screen::set_pen(COLOR_BLUE);
+            while(1){
+               // Will print seconds started since program started on line 3
+               print(pros::TEXT_SMALL, 3, "Seconds Passed: %3d", i++);
+               pros::delay(1000);
+            }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ txt_fmt      Text format enum that determines if the text is medium, large, medium_center, or large_center.
+ line         The one indexed line number on which to print
+ text         Formatted string for printing variables and text
+ ...          Optional list of arguments for the format string
+============ =================================================================================================================
+
+----
+
+print
+~~~~~~~~~
+
+Print a formatted string to the screen at a coordinate location
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void print(pros::text_format_e_t txt_fmt, const std::int16_t x, const std::int16_t y, const char* text, Params... args);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            int i = 0;
+
+            pros::screen::set_pen(COLOR_BLUE);
+            while(1){
+               // Will print seconds started since program started.
+               print(pros::TEXT_SMALL, 3, "Seconds Passed: %3d", i++);
+               pros::delay(1000);
+            }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ txt_fmt      Text format enum that determines if the text is medium, large, medium_center, or large_center.
+ line         The one indexed line number on which to print
+ text         Formatted string for printing variables and text
+ ...          Optional list of arguments for the format string
+============ =================================================================================================================
+
+----
+
+Touch Related Functions
+--------------
+
+touch_status
+~~~~~~~~~
+
+Gets the touch status of the last touch of the screen.
+
+.. tabs ::
+   .. tab :: Prototypes
+      .. highlight:: cpp
+      ::
+
+        screen_touch_status_s_t touch_status();
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            int i = 0;
+
+            pros::screen::set_pen(COLOR_BLUE);
+            while(1){
+               // Will print seconds started since program started.
+               print(pros::TEXT_SMALL, 3, "Seconds Passed: %d", i++);
+               pros::delay(1000);
+            }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ txt_fmt      Text format enum that determines if the text is medium, large, medium_center, or large_center.
+ line         The one indexed line number on which to print
+ text         Formatted string for printing variables and text
+ ...          Optional list of arguments for the format string
+============ =================================================================================================================
+
+**Returns:** The current pen color of the screen object in the form of a value from the enum defined in colors.h.
 
 ----
