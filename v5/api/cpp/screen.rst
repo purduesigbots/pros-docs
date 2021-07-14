@@ -515,10 +515,10 @@ Fill a rectanglular region on the screen using the current pen color
 
 ----
 
-fill_rect
+draw_circle
 ~~~~~~~~~
 
-void draw_circle(const std::int16_t x, const std::int16_t y, const std::int16_t radius);
+Draw a circle on the screen using the current pen color
 
 .. tabs ::
    .. tab :: Prototype
@@ -534,7 +534,75 @@ void draw_circle(const std::int16_t x, const std::int16_t y, const std::int16_t 
         void opcontrol() {
             // Draw a circle with radius of 100 in red
             pros::screen::set_pen(COLOR_RED);
-            pros::screen::fill_rect(240, 200, 100);
+            pros::screen::draw_circle(240, 200, 100);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x            The x coordinate of the center of the circle
+ y            The y coordinate of the center of the circle
+ radius       Radius of the circle
+============ =================================================================================================================
+
+----
+
+erase_circle
+~~~~~~~~~
+
+Erase a circle on the screen using the current eraser color
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void erase_circle(const std::int16_t x, const std::int16_t y, const std::int16_t radius);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            pros::screen::set_pen(COLOR_RED);
+            pros::screen::fill_rect(5,5,240,200);
+            // Erase a circle with radius of 100 in COLOR_BLUE
+            pros::screen::set_pen(COLOR_BLUE);
+            pros::screen::erase_circle(240, 200, 100);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x            The x coordinate of the center of the circle
+ y            The y coordinate of the center of the circle
+ radius       Radius of the circle
+============ =================================================================================================================
+
+----
+
+fill_circle
+~~~~~~~~~
+
+Fill a circular region of the screen using the current pen color
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void fill_circle(const std::int16_t x, const std::int16_t y, const std::int16_t radius);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            pros::screen::set_pen(COLOR_RED);
+            pros::screen::fill_rect(5,5,240,200);
+            // fILL a circlular area with radius of 100 in COLOR_BLUE
+            pros::screen::set_pen(COLOR_BLUE);
+            pros::screen::FILL_circle(240, 200, 100);
         }
 
 ============ =================================================================================================================
