@@ -276,3 +276,273 @@ Copy a screen region (designated by a rectangle) to an off-screen buffer from th
 ============ =================================================================================================================
 
 ----
+
+draw_pixel
+~~~~~~~~~
+
+Draw a single pixel on the screen using the current pen color
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void draw_pixel(const std::int16_t x, const std::int16_t y);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        int i = 0;
+        void opcontrol() {
+            while(i < 200){
+               pros::screen::draw_pixel(100,i++);
+               // Draws a line at x = 100 gradually down the screen, pixel by pixel
+               pros::delay(200);
+            }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x            The x coordinate of the pixel
+ y            The y coordinate of the pixel
+============ =================================================================================================================
+
+----
+
+draw_pixel
+~~~~~~~~~
+
+Erase a pixel from the screen using the current eraser color
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void erase_pixel(const std::int16_t x, const std::int16_t y);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+         void opcontrol() {
+            // Color the Screen in Red
+            pros::screen::set_pen(COLOR_RED);
+            pros::screen::fill_rect(0,0,400,200);
+            int i = 0;
+            while(i < 200){
+               pros::screen::draw_pixel(100,i++);
+               // Erases a line at x = 100 gradually down the screen, pixel by pixel
+               pros::delay(200);
+            }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x            The x coordinate of the pixel
+ y            The y coordinate of the pixel
+============ =================================================================================================================
+
+----
+
+draw_line
+~~~~~~~~~
+
+Draw a line on the screen using the current pen color
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void draw_line(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            // Draw line down the screen at x = 100
+            pros::screen::draw_line(100,0,100,200);
+
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x0           The x coordinate of the first point of the line
+ y0           The y coordinate of the first point of the line
+ x1           The x coordinate of the second point of the line
+ y1           The y coordinate of the second point of the line
+============ =================================================================================================================
+
+----
+
+erase_line
+~~~~~~~~~
+
+Erase a line on the screen using the current eraser color
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void erase_line(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            // Color the Screen in Red
+            pros::screen::set_pen(COLOR_RED);
+            pros::screen::fill_rect(0,0,400,200);
+            // Erase line down the screen at x = 100
+            pros::screen::erase_line(100,0,100,200);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x0           The x coordinate of the first point of the line
+ y0           The y coordinate of the first point of the line
+ x1           The x coordinate of the second point of the line
+ y1           The y coordinate of the second point of the line
+============ =================================================================================================================
+
+----
+
+draw_rect
+~~~~~~~~~
+
+Draw a rectangle on the screen using the current pen color
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void draw_rect(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            // Color the Screen in Red
+            pros::screen::set_pen(COLOR_RED);
+            pros::screen::draw_rect(1,1,480,200);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x0           The x coordinate of the top left point of the line
+ y0           The y coordinate of the top left point of the line
+ x1           The x coordinate of the bottom right point of the line
+ y1           The y coordinate of the bottom right point of the line
+============ =================================================================================================================
+
+----
+
+erase_rect
+~~~~~~~~~
+
+Erase a rectangle on the screen using the current eraser color
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void erase_rect(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            // Draw Box Around Half the Screen in Red
+            pros::screen::set_eraser(COLOR_RED);
+            pros::screen::erase_rect(5,5,240,200);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x0           The x coordinate of the top left point of the line
+ y0           The y coordinate of the top left point of the line
+ x1           The x coordinate of the bottom right point of the line
+ y1           The y coordinate of the bottom right point of the line
+============ =================================================================================================================
+
+----
+
+fill_rect
+~~~~~~~~~
+
+Fill a rectanglular region on the screen using the current pen color
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void erase_rect(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            // Fill Around Half the Screen in Red
+            pros::screen::set_pen(COLOR_RED);
+            pros::screen::fill_rect(5,5,240,200);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x0           The x coordinate of the top left point of the line
+ y0           The y coordinate of the top left point of the line
+ x1           The x coordinate of the bottom right point of the line
+ y1           The y coordinate of the bottom right point of the line
+============ =================================================================================================================
+
+----
+
+fill_rect
+~~~~~~~~~
+
+void draw_circle(const std::int16_t x, const std::int16_t y, const std::int16_t radius);
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        void erase_rect(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+            // Draw a circle with radius of 100 in red
+            pros::screen::set_pen(COLOR_RED);
+            pros::screen::fill_rect(240, 200, 100);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ x            The x coordinate of the center of the circle
+ y            The y coordinate of the center of the circle
+ radius       Radius of the circle
+============ =================================================================================================================
+
+----
