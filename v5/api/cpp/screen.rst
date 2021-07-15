@@ -643,7 +643,7 @@ Print a formatted string to the screen, with a line and text style specifier.
             pros::screen::set_pen(COLOR_BLUE);
             while(1){
                // Will print seconds started since program started on line 3
-               print(pros::TEXT_SMALL, 3, "Seconds Passed: %3d", i++);
+               print(pros::TEXT_MEDIUM, 3, "Seconds Passed: %3d", i++);
                pros::delay(1000);
             }
         }
@@ -718,24 +718,60 @@ Gets the touch status of the last touch of the screen.
 
         void opcontrol() {
             int i = 0;
-
-            pros::screen::set_pen(COLOR_BLUE);
+            pros::screen_touch_status_s_t status;
             while(1){
-               // Will print seconds started since program started.
-               print(pros::TEXT_SMALL, 3, "Seconds Passed: %d", i++);
-               pros::delay(1000);
+               status = pros::screen_touch_status();
+
+               // Will print various information about the last touch
+               print(pros::TEXT_MEDIUM, 1, "Touch Status (Type): %d", status.touch_status);
+               print(pros::TEXT_MEDIUM, 2, "Last X: %d", status.x);
+               print(pros::TEXT_MEDIUM, 3, "Last Y: %d", status.y);
+               print(pros::TEXT_MEDIUM, 4, "Press Count: %d", status.press_count);
+               print(pros::TEXT_MEDIUM, 5, "Release Count: %d", status.release_count);
+               pros::delay(20);
             }
         }
+
+**Returns:** The screen_touch_status_s_t struct that indicates the last touch status of the screen.
+
+----
+
+touch_callback
+~~~~~~~~~
+
+Assigns a callback function to be called when a certain touch event happens.
+
+.. tabs ::
+   .. tab :: Prototypes
+      .. highlight:: cpp
+      ::
+
+        void touch_callback(touch_event_cb_fn_t cb, last_touch_e_t event_type);
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+            pros::touch_event_cb_fn_t changePixel(){
+               pros::screen_touch_status_s_t status = pros::screen::touch_status();
+               pros::screen::draw_pixel(status.x,status.y);
+               return NULL;
+            }
+
+            void opcontrol() {
+               pros::Controller master(pros::E_CONTROLLER_MASTER);
+               pros::Motor left_mtr(1);
+               pros::Motor right_mtr(2);
+
+               pros::screen::touch_callback(changePixel(), TOUCH_PRESSED);
+               while(1);
+            }
 
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- txt_fmt      Text format enum that determines if the text is medium, large, medium_center, or large_center.
- line         The one indexed line number on which to print
- text         Formatted string for printing variables and text
- ...          Optional list of arguments for the format string
+ cb           Function pointer to callback
+ event_type   The touch type for the callback to be triggered
 ============ =================================================================================================================
-
-**Returns:** The current pen color of the screen object in the form of a value from the enum defined in colors.h.
 
 ----
