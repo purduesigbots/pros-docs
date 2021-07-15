@@ -689,7 +689,7 @@ Print a formatted string to the screen at a coordinate location
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- txt_fmt      Text format enum that determines if the text is medium, large, medium_center, or large_center.
+ txt_fmt      Text format enum that determines if the text is small, medium, or large.
  line         The one indexed line number on which to print
  text         Formatted string for printing variables and text
  ...          Optional list of arguments for the format string
@@ -764,7 +764,7 @@ Assigns a callback function to be called when a certain touch event happens.
                pros::Motor right_mtr(2);
 
                pros::screen::touch_callback(changePixel(), TOUCH_PRESSED);
-               while(1);
+               while(1) delay(20);
             }
 
 ============ =================================================================================================================
