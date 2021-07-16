@@ -1833,8 +1833,3 @@ Indicates the internal gearing used by the motor.
  E_MOTOR_GEARSET_06                 6:1, 600 RPM, Blue Gear Set
  E_MOTOR_GEARSET_INVALID            Error return code
 ================================== ===========================================================
-
-Typedefs
-======
-
-None.
