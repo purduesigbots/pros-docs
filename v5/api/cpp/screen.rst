@@ -643,7 +643,7 @@ Print a formatted string to the screen, with a line and text style specifier.
             pros::screen::set_pen(COLOR_BLUE);
             while(1){
                // Will print seconds started since program started on line 3
-               print(pros::TEXT_MEDIUM, 3, "Seconds Passed: %3d", i++);
+               pros::screen::print(pros::TEXT_MEDIUM, 3, "Seconds Passed: %3d", i++);
                pros::delay(1000);
             }
         }
@@ -681,7 +681,7 @@ Print a formatted string to the screen at a coordinate location
             pros::screen::set_pen(COLOR_BLUE);
             while(1){
                // Will print seconds started since program started.
-               print(pros::TEXT_SMALL, 3, "Seconds Passed: %3d", i++);
+               pros::screen::print(pros::TEXT_SMALL, 3, "Seconds Passed: %3d", i++);
                pros::delay(1000);
             }
         }
@@ -723,11 +723,11 @@ Gets the touch status of the last touch of the screen.
                status = pros::screen_touch_status();
 
                // Will print various information about the last touch
-               print(pros::TEXT_MEDIUM, 1, "Touch Status (Type): %d", status.touch_status);
-               print(pros::TEXT_MEDIUM, 2, "Last X: %d", status.x);
-               print(pros::TEXT_MEDIUM, 3, "Last Y: %d", status.y);
-               print(pros::TEXT_MEDIUM, 4, "Press Count: %d", status.press_count);
-               print(pros::TEXT_MEDIUM, 5, "Release Count: %d", status.release_count);
+               pros::screen::print(pros::TEXT_MEDIUM, 1, "Touch Status (Type): %d", status.touch_status);
+               pros::screen::print(pros::TEXT_MEDIUM, 2, "Last X: %d", status.x);
+               pros::screen::print(pros::TEXT_MEDIUM, 3, "Last Y: %d", status.y);
+               pros::screen::print(pros::TEXT_MEDIUM, 4, "Press Count: %d", status.press_count);
+               pros::screen::print(pros::TEXT_MEDIUM, 5, "Release Count: %d", status.release_count);
                pros::delay(20);
             }
         }
@@ -779,7 +779,7 @@ Assigns a callback function to be called when a certain touch event happens.
 Enumerated Values
 =================
 
-text_format_e_t
+pros::text_format_e_t
 ---------------
 
 Different font sizes that can be used in printing text.
@@ -806,7 +806,7 @@ E_TEXT_LARGE_CENTER                 Large centered text (Only available in line 
 
 ---
 
-last_touch_e_t
+pros::last_touch_e_t
 --------------
 
 Enum indicating what the current touch status is for the touchscreen.
@@ -832,7 +832,7 @@ E_TOUCH_HELD                        User is holding screen down
 Structures
 ==========
 
-screen_touch_status_s_t
+pros::screen_touch_status_s_t
 -----------------------
 
 ::
