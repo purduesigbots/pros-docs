@@ -263,7 +263,7 @@ Copy a screen region (designated by a rectangle) to an off-screen buffer from th
            pros::screen::print(TEXT_MEDIUM, 1, "Line Here");
 
            // Copies area of the screen including text
-           pros::screen::copy(0, 0, 400, 200, (uint32_t*)buf, 400 + 1);
+           pros::screen::copy_area(0, 0, 400, 200, (uint32_t*)buf, 400 + 1);
            // Equation for stride is x2 - x1 + 1
         }
 
@@ -314,7 +314,7 @@ Draw a single pixel on the screen using the current pen color
 
 ----
 
-draw_pixel
+erase_pixel
 ~~~~~~~~~
 
 Erase a pixel from the screen using the current eraser color
@@ -336,7 +336,7 @@ Erase a pixel from the screen using the current eraser color
             pros::screen::fill_rect(0,0,400,200);
             int i = 0;
             while(i < 200){
-               pros::screen::draw_pixel(100,i++);
+               pros::screen::erase_pixel(100,i++);
                // Erases a line at x = 100 gradually down the screen, pixel by pixel
                pros::delay(200);
             }
@@ -495,7 +495,7 @@ Fill a rectanglular region on the screen using the current pen color
       .. highlight:: cpp
       ::
 
-        void erase_rect(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1);
+        void fill_rect(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1);
 
    .. tab :: Example
       .. highlight:: cpp
@@ -528,7 +528,7 @@ Draw a circle on the screen using the current pen color
       .. highlight:: cpp
       ::
 
-        void erase_rect(const std::int16_t x0, const std::int16_t y0, const std::int16_t x1, const std::int16_t y1);
+        void draw_circle(const std::int16_t x, const std::int16_t y, const std::int16_t radius);
 
    .. tab :: Example
       .. highlight:: cpp
@@ -775,3 +775,88 @@ Assigns a callback function to be called when a certain touch event happens.
 ============ =================================================================================================================
 
 ----
+
+Enumerated Values
+=================
+
+text_format_e_t
+---------------
+
+Different font sizes that can be used in printing text.
+
+::
+
+   typedef enum {
+      E_TEXT_SMALL = 0, 
+      E_TEXT_MEDIUM, 
+      E_TEXT_LARGE, 
+      E_TEXT_MEDIUM_CENTER, 
+      E_TEXT_LARGE_CENTER 
+   } text_format_e_t;
+
+================================== =====================================================================================
+ Value
+================================== =====================================================================================
+E_TEXT_SMALL                        Small text font size (Only available in coordinate printing)
+E_TEXT_MEDIUM                       Normal/Medium text font size 
+E_TEXT_LARGE                        Large text font size
+E_TEXT_MEDIUM_CENTER                Medium centered text (Only available in line printing)
+E_TEXT_LARGE_CENTER                 Large centered text (Only available in line printing)
+================================== =====================================================================================
+
+---
+
+last_touch_e_t
+--------------
+
+Enum indicating what the current touch status is for the touchscreen.
+
+::
+
+   typedef enum {
+      E_TOUCH_RELEASED = 0,
+      E_TOUCH_PRESSED,
+      E_TOUCH_HELD
+   } last_touch_e_t;
+
+================================== =====================================================================================
+ Value
+================================== =====================================================================================
+E_TOUCH_RELEASED                    Last interaction with screen was a quick press
+E_TOUCH_PRESSED                     Last interaction with screen was a release
+E_TOUCH_HELD                        User is holding screen down
+================================== =====================================================================================
+
+---
+
+Structures
+==========
+
+screen_touch_status_s_t
+-----------------------
+
+::
+
+   typedef struct screen_touch_status_s {
+      last_touch_e_t touch_status; ///< Represents if the screen is being held, released, or pressed.
+      int16_t x; ///< Represents the x value of the location of the touch.
+      int16_t y; ///< Represents the y value of the location of the touch.
+      int32_t press_count; ///< Represents how many times the screen has be pressed. 
+      int32_t release_count; ///< Represents how many times the user released after a touch on the screen.
+   } screen_touch_status_s_t;
+
+
+Typedefs
+========
+
+pros::touch_event_cb_fn_t
+-------------------------
+
+::
+
+  typedef void (*touch_event_cb_fn_t)(int16_t, int16_t);
+
+A callback function for a screen callback
+
+This will be called each time its corresponding touch type is happens.
+
