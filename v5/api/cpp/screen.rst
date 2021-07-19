@@ -61,7 +61,7 @@ Set the eraser color for subsequent graphics operations
       .. highlight:: cpp
       ::
 
-        void set_pen(const std::uint32_t color);
+        void set_eraser(const std::uint32_t color);
 
    .. tab :: Example
       .. highlight:: cpp
