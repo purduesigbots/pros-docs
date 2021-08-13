@@ -583,7 +583,9 @@ gps_raw_s
 	double x;
 	double y;
 	double z;
-};
+  };
+
+---
 
 Typedefs
 ==========
