@@ -579,6 +579,7 @@ gps_raw_s
 ---------
 
 ::
+
   struct gps_raw_s {
 	double x;
 	double y;
@@ -601,7 +602,7 @@ gps_status_s_t
 	double pitch;
 	double roll;
 	double yaw;
-} gps_status_s_t;
+  } gps_status_s_t;
 
 ---
 
