@@ -32,9 +32,15 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
+        #define X_OFFSET 0
+        #define Y_OFFSET 0
+        #define X_INITIAL 0
+        #define Y_INITIAL 0
+        #define HEADING_INITIAL 0
 
         void initialize() {
-            gps_initialize_full(1, 0, 0, 0, 0, 0);
+            gps_initialize_full(GPS_PORT, X_OFFSET, Y_OFFSET, X_INITIAL, Y_INITIAL, HEADING_INITIAL);
         }
 
 =============== =================================================================================================================
@@ -73,9 +79,12 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
+        #define X_OFFSET 0
+        #define Y_OFFSET 0
 
         void initialize() {
-            gps_set_offset(1, 0, 0);
+            gps_set_offset(GPS_PORT, X_OFFSET, Y_OFFSET);
         }
 
 =============== =================================================================================================================
@@ -111,13 +120,14 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
 
         void opcontrol() {
             int *x;
             int *y;
 
             while (true) {
-                gps_get_offset(1, x, y);
+                gps_get_offset(GPS_PORT, x, y);
                 printf("Offset- x: %d, y: %d", *x, *y);
             }
         }
@@ -155,9 +165,13 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
+        #define X_INITIAL 0
+        #define Y_INITIAL 0
+        #define HEADING_INITIAL 0
 
         void initialize() {
-            gps_set_position(1, 0, 0, 0);
+            gps_set_position(GPS_PORT, X_INITIAL, Y_INITIAL, HEADING_INITIAL);
         }
 
 =============== =================================================================================================================
@@ -194,9 +208,11 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
+        #define GPS_DATA_RATE 5
 
         void initialize() {
-            gps_set_data_rate(1, 5);
+            gps_set_data_rate(GPS_PORT, GPS_DATA_RATE);
         }
 
 =============== =================================================================================================================
@@ -231,10 +247,11 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
 
         void opcontrol() {
             double error;
-            error = gps_get_error(1);
+            error = gps_get_error(GPS_PORT);
         }
 
 =============== =================================================================================================================
@@ -268,12 +285,13 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #deifne GPS_PORT 1
 
         void opcontrol() {
             struct gps_status_s_t status;
 
             while (true) {
-                status = gps_get_status(1);
+                status = gps_get_status(GPS_PORT);
                 printf("x: %d, y: %d, pitch: %d, yaw: %d, roll: %d", status.x, status.y, status.pitch, status.yaw, status.roll);
             }
         }
@@ -309,12 +327,13 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
 
         void opcontrol() {
             double heading;
 
             while (true) {
-                heading = gps_get_heading(1);
+                heading = gps_get_heading(GPS_PORT);
             }
         }
 
@@ -349,12 +368,13 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
 
         void opcontrol() {
             double heading;
 
             while (true) {
-                heading = gps_get_heading_raw(1);
+                heading = gps_get_heading_raw(GPS_PORT);
             }
         }
 
@@ -389,11 +409,12 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
 
         void opcontrol() {
             double elapsed_rotation;
 
-            elapsed_rotation = gps_get_rotation(1);
+            elapsed_rotation = gps_get_rotation(GPS_PORT);
         }
 
 =============== =================================================================================================================
@@ -427,9 +448,10 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
 
         void opcontrol() {
-            gps_set_rotation(1, 60);
+            gps_set_rotation(GPS_PORT, 60);
         }
 
 =============== =================================================================================================================
@@ -464,9 +486,10 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
 
         void initialize() {
-            gps_tare_rotation(1);
+            gps_tare_rotation(GPS_PORT);
         }
 
 
@@ -502,11 +525,13 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
+        #define GPS_PORT 1
+
         void opcontrol() {
             struct gps_gyro_s_t gyro;
 
             while (true) {
-                gyro = gps_get_gyro_rate(1);
+                gyro = gps_get_gyro_rate(GPS_PORT);
                 printf("gyroscope- x: %d, y: %d, z: %d", gyro.x, gyro.y, gyro.z);
             }
         }
@@ -542,12 +567,13 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+        #define GPS_PORT 1
 
         void opcontrol() {
             struct gps_accel_s_t accel;
 
             while (true) {
-                accel = gps_get_accel(1);
+                accel = gps_get_accel(GPS_PORT);
                 printf("accleration- x: %d, y: %d, z: %d", accel.x, accel.y, accel.z);
             }
         }
