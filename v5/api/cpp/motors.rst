@@ -69,7 +69,7 @@ This function uses the following values of ``errno`` when an error state is reac
       ::
 
         void opcontrol() {
-          pros::Motor motor (1, E_MOTOR_GEARSET_18, falseS);
+          pros::Motor motor (1, E_MOTOR_GEARSET_18, false);
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
