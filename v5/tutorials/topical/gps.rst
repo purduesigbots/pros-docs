@@ -116,11 +116,11 @@ and access each member individually from that struct.
            pros::gps_status_s_t gpsData;
            while (true) {
              gpsData = gps1.get_status();
-             pros::screen::print(1, "X Position: %3f", gpsData.x);
-             pros::screen::print(2, "Y Position: %3f", gpsData.y);
-             pros::screen::print(3, "Pitch: %3f", gpsData.pitch);
-             pros::screen::print(4, "Roll: %3f", gpsData.roll);
-             pros::screen::print(5, "Yaw: %3f", gpsData.yaw);
+             pros::screen::print(TEXT_MEDIUM, 1, "X Position: %3f", gpsData.x);
+             pros::screen::print(TEXT_MEDIUM, 2, "Y Position: %3f", gpsData.y);
+             pros::screen::print(TEXT_MEDIUM, 3, "Pitch: %3f", gpsData.pitch);
+             pros::screen::print(TEXT_MEDIUM, 4, "Roll: %3f", gpsData.roll);
+             pros::screen::print(TEXT_MEDIUM, 5, "Yaw: %3f", gpsData.yaw);
              pros::delay(20);
            }
          }
@@ -137,11 +137,11 @@ and access each member individually from that struct.
            pros::gps_status_s_t gpsData;
            while (true) {
              gpsData = gps_get_status(GPS_PORT);
-             screen_print(1, "X Position: %3f", gpsData.x);
-             screen_print(2, "Y Position: %3f", gpsData.y);
-             screen_print(3, "Pitch: %3f", gpsData.pitch);
-             screen_print(4, "Roll: %3f", gpsData.roll);
-             screen_print(5, "Yaw: %3f", gpsData.yaw);
+             screen_print(TEXT_MEDIUM, 1, "X Position: %3f", gpsData.x);
+             screen_print(TEXT_MEDIUM, 2, "Y Position: %3f", gpsData.y);
+             screen_print(TEXT_MEDIUM, 3, "Pitch: %3f", gpsData.pitch);
+             screen_print(TEXT_MEDIUM, 4, "Roll: %3f", gpsData.roll);
+             screen_print(TEXT_MEDIUM, 5, "Yaw: %3f", gpsData.yaw);
              delay(20);
            }
          }
