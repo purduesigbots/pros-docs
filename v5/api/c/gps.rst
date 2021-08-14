@@ -5,8 +5,11 @@
 GPS C API
 =========
 
+.. note:: For a pros-specific usage guide on the GPS, please check out our article
+          `here <..\tutorials\topical\gps.rst>`_.
+
 .. note::
-   For the C++ API, check out 
+   For the C++ API, check out it `here<../cpp/gps.rst>`_.
 
 .. contents:: :local:
 

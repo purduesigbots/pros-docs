@@ -5,7 +5,130 @@
 GPS C++ API
 ===========
 
+.. note:: For a pros-specific usage guide on the GPS, please check out our article
+          `here <..\tutorials\topical\gps.rst>`_.
+
+.. note:: ``pros::GPS`` can also be used to refer ``pros::Gps``
+
 .. contents:: :local:
+
+pros::Gps
+============
+
+Constructors
+------------
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Gps(const std::uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define GPS_PORT 1
+
+        void initialize() {
+          pros::Gps gps1(GPS_PORT);
+        }
+
+============ =========================================================================
+ Parameters
+============ =========================================================================
+ port         The V5 port number from 1-21
+============ =========================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Gps(const std::uint8_t port, double xOffset, double yOffset)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define GPS_PORT 1
+        #define X_OFFSET -.225
+        #define Y_OFFSET .225
+        void initialize() {
+          pros::Gps gps1(GPS_PORT, X_OFFSET, Y_OFFSET);
+        }
+
+============ =========================================================================
+ Parameters
+============ =========================================================================
+ port             The V5 port number from 1-21
+ xOffset          Cartesian 4-Quadrant X offset from center of turning (meters)
+ yOffset          Cartesian 4-Quadrant Y offset from center of turning (meters)
+============ =========================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Gps(const std::uint8_t port, double xOffset, double yOffset)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define GPS_PORT 1
+        #define X_INITIAL -1.15
+        #define Y_INITIAL 1.45
+        #define HEADING_INITIAL 90
+        void initialize() {
+          pros::Gps gps1(GPS_PORT, X_INITIAL, Y_INITIAL, HEADING_INITIAL);
+        }
+
+============ =========================================================================
+ Parameters
+============ =========================================================================
+ port             The V5 port number from 1-21
+ xInitial         Initial 4-Quadrant X Position, with (0,0) being at the center of the field (meters)
+ yInitial         Initial 4-Quadrant Y Position, with (0,0) being at the center of the field (meters)
+ headingInitial   Heading with 0 being north on the field, in degrees [0,360) going clockwise
+============ =========================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Gps(const std::uint8_t port, double xInitial, double yInitial, double headingInitial, double xOffset,
+                            double yOffset)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        #define GPS_PORT 1
+        #define X_OFFSET .225
+        #define Y_OFFSET .223
+        #define X_INITIAL 1.54
+        #define Y_INITIAL 1.14
+        #define HEADING_INITIAL 90
+
+        void opcontrol() {
+            pros::Gps gps1(GPS_PORT, X_OFFSET, Y_OFFSET, X_INITIAL, Y_INITIAL, HEADING_INITIAL);
+            while(1) {
+                // Gps usage here
+            }
+        }
+
+=============== =================================================================================================================
+ Parameters
+=============== =================================================================================================================
+xOffset          Cartesian 4-Quadrant X offset from center of turning (meters)
+yOffset          Cartesian 4-Quadrant Y offset from center of turning (meters)
+xInitial         Initial 4-Quadrant X Position, with (0,0) being at the center of the field (meters)
+yInitial         Initial 4-Quadrant Y Position, with (0,0) being at the center of the field (meters)
+headingInitial   Heading with 0 being north on the field, in degrees [0,360) going clockwise
+=============== =================================================================================================================
 
 Functions
 =========
@@ -26,18 +149,18 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         int32_t initialize_full(double xInitial, double yInitial, double headingInitial, double xOffset,
+         std::int32_t initialize_full(double xInitial, double yInitial, double headingInitial, double xOffset,
                             double yOffset)
 
    .. tab :: Example
       .. highlight:: cpp
       ::
         #define GPS_PORT 1
-        #define X_OFFSET 0
-        #define Y_OFFSET 0
-        #define X_INITIAL 0
-        #define Y_INITIAL 0
-        #define HEADING_INITIAL 0
+        #define X_OFFSET .225
+        #define Y_OFFSET .223
+        #define X_INITIAL 1.54
+        #define Y_INITIAL 1.14
+        #define HEADING_INITIAL 90
 
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
@@ -77,15 +200,15 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         int32_t set_offset(double xOffset, double yOffset)
+         std::int32_t set_offset(double xOffset, double yOffset)
 
    .. tab :: Example
       .. highlight:: cpp
       ::
         
         #define GPS_PORT 1
-        #define X_OFFSET 0
-        #define Y_OFFSET 0
+        #define X_OFFSET -.225
+        #define Y_OFFSET .225
 
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
@@ -122,7 +245,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         int32_t get_offset(double* xOffset, double* yOffset)
+         std::int32_t get_offset(double* xOffset, double* yOffset)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -169,7 +292,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         int32_t set_position(double xInitial, double yInitial, double headingInitial)
+         std::int32_t set_position(double xInitial, double yInitial, double headingInitial)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -216,7 +339,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         int32_t set_data_rate(uint32_t rate)
+         std::int32_t set_data_rate(std::ustd::int32_t rate)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -461,7 +584,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         int32_t set_rotation(double target)
+         std::int32_t set_rotation(double target)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -504,7 +627,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         int32_t tare_rotation()
+         std::int32_t tare_rotation()
 
    .. tab :: Example
       .. highlight:: cpp
