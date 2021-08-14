@@ -1,6 +1,9 @@
-==========
-GPS Sensor
-==========
+=======================
+Using the GPS with PROS
+=======================
+
+.. note:: For a non-pros specific usage guide on GPS setup, please visit 
+          `the VEX Knowledgebase <https://kb.vex.com/hc/en-us/articles/360061932711-Using-the-V5-GPS-Sensor>`_.
 
 .. note:: For a full list of functions for interacting with the V5 GPS sensor, see its
           `C API <../../api/c/gps.html>`_ and `C++ API <../../api/cpp/gps.html>`_.
@@ -28,13 +31,13 @@ arbitrary starting location.
    .. group-tab:: C++
       .. highlight:: cpp
       .. code-block:: cpp
-         :caption: opcontrol.cpp
+         :caption: main.cpp
          :linenos:
 
          #define GPS_PORT 1
 
-         void opcontrol() {
-           pros::Motor gps1(GPS_PORT, -1.5, -1.14, 270);
+         void initialize() {
+           pros::Gps gps1(GPS_PORT, -1.5, -1.14, 270);
            // Center of the field is (0,0), uses 4 quadrant cartesian system for coordinates
            // This is another example where the position is set after the constructor is called:
            gps1.set_position(-1.5, -1.14, 270);
@@ -43,7 +46,7 @@ arbitrary starting location.
    .. group-tab:: C
       .. highlight:: c
       .. code-block:: c
-         :caption: initialize.c
+         :caption: main.cpp
          :linenos:
 
          #define GPS_PORT 1
@@ -52,139 +55,94 @@ arbitrary starting location.
            gps_set_position(GPS_PORT, -1.5, -1.14, 270);
          }
 
-Simple Usage (In progress)
-============
+To make sure that the robot position retains a consistent and accurate value between turns, the offset relative to
+the center of origin for the GPS has to be set properly. 
 
-The easiest way to interact with the motors is through the `motor_move <../../api/c/motors.html#motor-move>`_
-function. This is analogous to the `motorSet <../../../cortex/api/index.html#motorSet>`_
-function from PROS 2.
+.. note:: These numbers were recorded are most likely larger than the actual deadzone, and were found with a change-up field.
+
+.. image:: /images/tuts/gps_set_origin.jpg
 
 .. tabs::
    .. group-tab:: C++
       .. highlight:: cpp
       .. code-block:: cpp
-         :caption: opcontrol.cpp
+         :caption: main.cpp
          :linenos:
 
-         #define MOTOR_PORT 1
+         #define GPS_PORT 1
+
+         void initialize() {
+           // Note: 9 inches == .223 Meters
+           pros::Gps gps1(GPS_PORT, .223, -.223);
+           // Center of the field is (0,0), uses 4 quadrant cartesian system for coordinates
+           // Another example where the position and origin are both set in the constructor:
+           pros::Gps gps2(GPS_PORT, -1.5, -1.14, 90, .223, -.223);
+         }
+
+   .. group-tab:: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: main.cpp
+         :linenos:
+
+         #define GPS_PORT 1
+
+         void initialize() {
+           gps_set_origin(GPS_PORT, .223, -.223);
+         }
+
+Retrieving Data
+===============
+
+The meaning of the data retrieved by ``gps_get_status`` (C API) or ``.get_status()`` (C++ API) is 
+displayed below:
+
+.. image:: /images/tuts/gps_get_position.jpg
+
+Since the GPS data is returned in a struct, we must retrieve the data from the struct every iteration
+and access each member individually from that struct.
+
+.. tabs::
+   .. group-tab:: C++
+      .. highlight:: cpp
+      .. code-block:: cpp
+         :caption: main.cpp
+         :linenos:
+
+         #define GPS_PORT 1
 
          void opcontrol() {
-           pros::Motor drive_left (MOTOR_PORT);
-           pros::Controller master (E_CONTROLLER_MASTER);
+           pros::Gps gps1(GPS_PORT);
+           pros::gps_status_s_t gpsData;
            while (true) {
-             drive_left.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
-             pros::delay(2);
+             gpsData = gps1.get_status();
+             pros::screen::print(1, "X Position: %3f", gpsData.x);
+             pros::screen::print(2, "Y Position: %3f", gpsData.y);
+             pros::screen::print(3, "Pitch: %3f", gpsData.pitch);
+             pros::screen::print(4, "Roll: %3f", gpsData.roll);
+             pros::screen::print(5, "Yaw: %3f", gpsData.yaw);
+             pros::delay(20);
            }
          }
 
    .. group-tab:: C
       .. highlight:: c
       .. code-block:: c
-         :caption: opcontrol.c
+         :caption: main.cpp
          :linenos:
 
-         #define MOTOR_PORT 1
+         #define GPS_PORT 1
 
          void opcontrol() {
+           pros::gps_status_s_t gpsData;
            while (true) {
-             motor_move(MOTOR_PORT, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-             delay(2);
+             gpsData = gps_get_status(GPS_PORT);
+             screen_print(1, "X Position: %3f", gpsData.x);
+             screen_print(2, "Y Position: %3f", gpsData.y);
+             screen_print(3, "Pitch: %3f", gpsData.pitch);
+             screen_print(4, "Roll: %3f", gpsData.roll);
+             screen_print(5, "Yaw: %3f", gpsData.yaw);
+             delay(20);
            }
          }
 
-Autonomous Movement
-===================
-
-The V5 Motors can move in a number of different ways that are better suited towards
-autonomous movement than the simple ``motor_move()`` example shown above.
-
-Profile Movements
------------------
-
-Profile movements are movements to a given position that are executed by the motor's
-firmware. There are two functions that achieve this, ``motor_move_absolute()`` and
-``motor_move_relative()``. These two functions are practically similar, but
-``motor_move_relative()`` takes into account the zero position of the motor's encoder.
-
-These functions are very well suited to movement in autonomous.
-
-.. tabs::
-   .. group-tab:: C++
-      .. highlight:: cpp
-      .. code-block:: cpp
-         :caption: autonomous.cpp
-         :linenos:
-
-         #define MOTOR_PORT 1
-         #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
-
-         void autonomous() {
-           pros::Motor drive_left (MOTOR_PORT);
-           drive_left.move_relative(1000, MOTOR_MAX_SPEED);
-           // This will move 1000 ticks forward
-           drive_left.move_relative(1000, MOTOR_MAX_SPEED);
-           // This moves an additional 1000 ticks forward
-           drive_left.move_absolute(1000, MOTOR_MAX_SPEED);
-           // This moves 1000 ticks backwards to the 1000 tick position
-         }
-
-   .. group-tab:: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: autonomous.c
-         :linenos:
-
-         #define MOTOR_PORT 1
-         #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
-
-         void autonomous() {
-           motor_move_relative(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
-           // This will move 1000 ticks forward
-           motor_move_relative(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
-           // This moves an additional 1000 ticks forward
-           motor_move_absolute(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
-           // This moves 1000 ticks backwards to the 1000 tick position
-         }
-
-For further reading material on the algorithms that create these profiled movement,
-see `Mathematics of Motion Control Profiles <https://pdfs.semanticscholar.org/a229/fdba63d8d68abd09f70604d56cc07ee50f7d.pdf>`_
-for the `Feedforward <https://en.wikipedia.org/wiki/Feed_forward_(control)>`_ control,
-and `George Gillard's PID Explanation <http://georgegillard.com/documents/2-introduction-to-pid-controllers>`_
-for the `feedback <https://en.wikipedia.org/wiki/Control_theory#PID_feedback_control>`_ control.
-
-Velocity Controller Movement
-----------------------------
-
-The final ``move`` function available with the PROS Motor API is ``motor_move_velocity()``.
-This ensures consistent velocity output from the motor through the use of
-`PID <http://georgegillard.com/documents/2-introduction-to-pid-controllers>`_.
-
-.. tabs::
-   .. group-tab:: C++
-      .. highlight:: cpp
-      .. code-block:: cpp
-         :caption: autonomous.cpp
-         :linenos:
-
-         #define MOTOR_PORT 1
-         #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
-
-         void autonomous() {
-           pros::Motor drive_left (MOTOR_PORT);
-           drive_left.move_velocity(MOTOR_MAX_SPEED);
-           pros::delay(1000); // Move at full speed for 1 second
-         }
-
-   .. group-tab:: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: autonomous.c
-         :linenos:
-
-         #define MOTOR_PORT 1
-         #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
-
-         void autonomous() {
-           motor_move_velocity(MOTOR_PORT, MOTOR_MAX_SPEED);
-           delay(1000); // Move at full speed for 1 second
-         }
