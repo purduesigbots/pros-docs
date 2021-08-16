@@ -142,7 +142,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -155,6 +155,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: cpp
       ::
+
         #define GPS_PORT 1
         #define X_OFFSET .225
         #define Y_OFFSET .223
@@ -193,7 +194,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -238,7 +239,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -285,7 +286,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -332,7 +333,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -375,7 +376,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -415,7 +416,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -427,6 +428,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: cpp
       ::
+      
         #define GPS_PORT 1
 
         void opcontrol() {
@@ -457,7 +459,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -497,7 +499,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -537,7 +539,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -577,7 +579,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -620,7 +622,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -658,7 +660,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -699,7 +701,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -780,7 +782,6 @@ gps_raw_s
 	double z;
   };
 
----
 ================================== =====================================================================================
  Value
 ================================== =====================================================================================
@@ -788,6 +789,8 @@ x                                   Raw GPS Pitch
 y                                   Raw GPS Roll
 z                                   Raw GPS Yaw
 ================================== =====================================================================================
+
+---
 
 gps_accel_s_t
 -------------

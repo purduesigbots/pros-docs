@@ -8,9 +8,6 @@ GPS C API
 .. note:: For a pros-specific usage guide on the GPS, please check out our article
           `here <..\tutorials\topical\gps.rst>`_.
 
-.. note::
-   For the C++ API, check out it `here<../cpp/gps.rst>`_.
-
 .. contents:: :local:
 
 Functions
@@ -25,7 +22,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -38,6 +35,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
         #define X_OFFSET 0
         #define Y_OFFSET 0
@@ -73,7 +71,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -85,6 +83,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
         #define X_OFFSET 0
         #define Y_OFFSET 0
@@ -114,7 +113,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -126,6 +125,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
 
         void opcontrol() {
@@ -160,7 +160,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -172,6 +172,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
         #define X_INITIAL 0
         #define Y_INITIAL 0
@@ -203,7 +204,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -215,6 +216,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
         #define GPS_DATA_RATE 5
 
@@ -242,7 +244,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -254,6 +256,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
 
         void opcontrol() {
@@ -281,7 +284,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -293,6 +296,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
 
         void opcontrol() {
@@ -326,7 +330,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -338,6 +342,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
 
         void opcontrol() {
@@ -368,7 +373,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -380,6 +385,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
 
         void opcontrol() {
@@ -410,7 +416,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -422,6 +428,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
 
         void opcontrol() {
@@ -449,7 +456,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -461,6 +468,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
 
         void opcontrol() {
@@ -487,7 +495,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -499,6 +507,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+
         #define GPS_PORT 1
 
         void initialize() {
@@ -525,7 +534,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -570,7 +579,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as a GPS.
-- ``EAGAIN``` - The sensor is still calibrating.
+- ``EAGAIN`` - The sensor is still calibrating.
 
 .. tabs ::
    .. tab :: Prototype
@@ -582,6 +591,7 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: c
       ::
+      
         #define GPS_PORT 1
 
         void opcontrol() {
@@ -653,7 +663,6 @@ gps_raw_s
 	double z;
   };
 
----
 ================================== =====================================================================================
  Value
 ================================== =====================================================================================
@@ -661,6 +670,8 @@ x                                   Raw GPS Pitch
 y                                   Raw GPS Roll
 z                                   Raw GPS Yaw
 ================================== =====================================================================================
+
+---
 
 gps_accel_s_t
 -------------
