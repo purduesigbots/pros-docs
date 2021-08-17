@@ -340,7 +340,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         std::int32_t set_data_rate(std::ustd::int32_t rate)
+         std::int32_t set_data_rate(std::int32_t rate)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -605,7 +605,6 @@ This function uses the following values of ``errno`` when an error state is reac
 =============== =================================================================================================================
  Parameters
 =============== =================================================================================================================
-
 target           Target rotation value to set rotation value to
 =============== =================================================================================================================
 
@@ -667,7 +666,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         gyro_s_t get_gyro_rate()
+         gps_gyro_s_t get_gyro_rate()
 
    .. tab :: Example
       .. highlight:: cpp
@@ -769,7 +768,7 @@ roll                                Percieved Roll based on GPS and IMU
 yaw                                 Percieved Yaw based on GPS and IMU
 ================================== =====================================================================================
 
----
+----
 
 gps_raw_s
 ---------
@@ -790,7 +789,7 @@ y                                   Raw GPS Roll
 z                                   Raw GPS Yaw
 ================================== =====================================================================================
 
----
+----
 
 gps_accel_s_t
 -------------
@@ -799,7 +798,7 @@ gps_accel_s_t
 
   typedef struct gps_raw_s gps_accel_s_t;
 
----
+----
 
 gps_gyro_s_t
 ------------
@@ -808,4 +807,4 @@ gps_gyro_s_t
 
   typedef struct gps_raw_s gyro_s_t;
 
----
+----
