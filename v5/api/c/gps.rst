@@ -37,11 +37,11 @@ This function uses the following values of ``errno`` when an error state is reac
       ::
 
         #define GPS_PORT 1
-        #define X_OFFSET 0
-        #define Y_OFFSET 0
-        #define X_INITIAL 0
-        #define Y_INITIAL 0
-        #define HEADING_INITIAL 0
+        #define X_OFFSET .225
+        #define Y_OFFSET .223
+        #define X_INITIAL 1.54
+        #define Y_INITIAL 1.14
+        #define HEADING_INITIAL 90
 
         void initialize() {
             gps_initialize_full(GPS_PORT, X_OFFSET, Y_OFFSET, X_INITIAL, Y_INITIAL, HEADING_INITIAL);
@@ -85,8 +85,8 @@ This function uses the following values of ``errno`` when an error state is reac
       ::
 
         #define GPS_PORT 1
-        #define X_OFFSET 0
-        #define Y_OFFSET 0
+        #define X_OFFSET -.225
+        #define Y_OFFSET .225
 
         void initialize() {
             gps_set_offset(GPS_PORT, X_OFFSET, Y_OFFSET);
@@ -174,9 +174,9 @@ This function uses the following values of ``errno`` when an error state is reac
       ::
 
         #define GPS_PORT 1
-        #define X_INITIAL 0
-        #define Y_INITIAL 0
-        #define HEADING_INITIAL 0
+        #define X_INITIAL -1.15
+        #define Y_INITIAL 1.45
+        #define HEADING_INITIAL 90
 
         void initialize() {
             gps_set_position(GPS_PORT, X_INITIAL, Y_INITIAL, HEADING_INITIAL);
