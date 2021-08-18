@@ -6,7 +6,7 @@ VEX GPS Sensor C API
 ====================
 
 .. note:: For a pros-specific usage guide on the GPS, please check out our article
-          `here <..\tutorials\topical\gps.rst>`_.
+          `here <../../tutorials/topical/gps.html>`_.
 
 .. contents:: :local:
 
