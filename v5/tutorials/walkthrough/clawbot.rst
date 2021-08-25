@@ -435,10 +435,10 @@ is pressed on the controller, and move the lift in that direction if so.
              motor_move(LEFT_WHEELS_PORT, left);
              motor_move(RIGHT_WHEELS_PORT, right);
 
-             if (master.get_digital(DIGITAL_R1)) {
+             if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R1)) {
                motor_move_velocity(ARM_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(DIGITAL_R2)) {
+             else if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R2)) {
                motor_move_velocity(ARM_PORT, -100);
              }
              else {
