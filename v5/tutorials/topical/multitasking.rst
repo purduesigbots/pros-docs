@@ -124,7 +124,8 @@ opt to use ``TASK_STACK_DEPTH_DEFAULT``, which should provide ample stack space 
 rudimentary and simple tasks (e.g. not many nested functions, no floating point context, few variables, only C)
 may be able to use ``TASK_STACK_DEPTH_MIN``.
 
-The last parameter is the task name. The task name allows you to give a task a human-friendly name for the task. It
+The last parameter is the task name. The task name allows you to give a human-friendly name to the task. It
+
 is primarily for debugging purposes and allows you (the human) to easily identify tasks if performing advanced task
 management. Task names may be up to 32 characters long, and you may pass NULL or an empty string into the function.
 In API2, `taskCreate <../../../cortex/api/index.html#taskCreate>`_ will automatically make the task name an empty string.
