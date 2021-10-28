@@ -1808,8 +1808,8 @@ Indicates the current 'brake mode' of the motor.
 ::
 
   typedef enum motor_brake_mode_e {
-    E_MOTOR_BRAKE_COAST = 0, // Motor coasts when stopped, traditional behavior
-    E_MOTOR_BRAKE_BRAKE = 1, // Motor brakes when stopped
+    E_MOTOR_BRAKE_COAST = 0, // Motor coasts when stopped, default behavior
+    E_MOTOR_BRAKE_BRAKE = 1, // Motor short brakes when stopped 
     E_MOTOR_BRAKE_HOLD = 2, // Motor actively holds position when stopped
     E_MOTOR_BRAKE_INVALID = INT32_MAX
   } motor_brake_mode_e_t;
@@ -1817,8 +1817,9 @@ Indicates the current 'brake mode' of the motor.
 ================================== ===========================================================
  Value
 ================================== ===========================================================
- pros::E_MOTOR_BRAKE_COAST          Motor coasts when stopped, traditional behavior
- pros::E_MOTOR_BRAKE_BRAKE          Motor brakes when stopped 
+ pros::E_MOTOR_BRAKE_COAST          Motor coasts when stopped, default behavior
+ pros::E_MOTOR_BRAKE_BRAKE          Motor short brakes when stopped by shorting (directly connecting) the motor’s positive and negative lead
+                                    https://en.m.wikipedia.org/wiki/Dynamic_braking
  pros::E_MOTOR_BRAKE_HOLD           Motor actively holds position when stopped 
  pros::E_MOTOR_BRAKE_INVALID        Invalid brake mode
 ================================== ===========================================================
