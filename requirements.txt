@@ -1,3 +1,4 @@
+docutils<0.18
 Sphinx==1.8.5
 sphinx_tabs==1.1.10
 ablog==0.9.4
