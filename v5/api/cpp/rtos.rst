@@ -940,6 +940,39 @@ couldn't be taken.
 
 ----
 
+take
+~~~~
+
+Takes and locks a mutex, with an infinite timout.
+
+See :doc:`../../tutorials/topical/multitasking` for details.
+
+Analogous to `mutex_take <../c/rtos.html#mutex-take>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         bool pros::Mutex::take ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        Mutex mutex;
+
+        // Acquire the mutex; does not time out if parameter not specified.
+        mutex.take();
+        // do some work
+        // Release the mutex for other tasks
+        mutex.give();
+        
+**Returns:** True if the mutex was successfully taken, false otherwise. If false
+is returned, then ``errno`` is set with a hint about why the the mutex
+couldn't be taken.
+----
+
 Macros
 ======
 
