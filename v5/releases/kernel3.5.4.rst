@@ -12,12 +12,8 @@ This minor update features an important bug release and a parameterless take fun
 
 Bugfix:
 
-- Fix Reset IMU Function Timeout Logic 
-- Linked List TODO Comment Updates/Warnings 
-- Fix deleted VM Image for Azure Pipeline
-- Fix -nostartfiles issue with newer versions of GCC on mac/linux
+- Fix Digital Out Devices (Such as Pneumatics) on ADI Expanders
 
 New Feature: 
 
-- Add C style task create for any void() callable 
-- Newlib Stub Improvements (Added Usleep and Sleep) 
+- Define mutex_take() default parameter with an infinite timeout
