@@ -1528,7 +1528,7 @@ Analogous to `adi_potentiometer_init <../c/adi.html#adi-potentiometer-init>`_.
 ==================== =============================================================================================================
  Parameters
 ==================== =============================================================================================================
- port                 The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a gyro
+ port                 The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a potentiometer
  potentiometer_type   An adi_potentiometer_type_e_t enum value specifying the potentiometer version type
 ==================== =============================================================================================================
 
