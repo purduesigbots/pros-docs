@@ -1560,7 +1560,7 @@ Analogous to `adi_potentiometer_init <../c/adi.html#adi-potentiometer-init>`_.
 =================== =================================================================================================================
  port_pair           2 value pair in the form of {{smart_port , adi_port}} for which to create an object, where smart_port is an 
                      ADI expander's smart port (1-22) and adi_port is ADI port number (from 1-8, 'a'-'h', 'A'-'H').
- potentiometer_type   An adi_potentiometer_type_e_t enum value specifying the potentiometer version type
+ potentiometer_type  An adi_potentiometer_type_e_t enum value specifying the potentiometer version type
 =================== =================================================================================================================
 
 Methods 
@@ -1584,7 +1584,7 @@ Analogous to `adi_poteniometer_get <../c/adi.html#adi-potentiometer-get-angle>`_
       .. highlight:: cpp
       ::
 
-        double pros::ADIGyro::get_angle ( ) const
+        double pros::ADIPotentiometer::get_angle ( ) const
 
    .. tab :: Example
       .. highlight:: cpp

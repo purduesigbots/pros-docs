@@ -1310,7 +1310,7 @@ Potentiometer V2 rotates 330 degrees thus returning an angle between 0-330 degre
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENXIO`` - The given port is not within the range of ADI Ports
-- ``EADDRINUSE``  - The port is not configured as a gyro
+- ``EADDRINUSE``  - The port is not configured as a potnetiometer
 
 Analogous to `pros::ADIPotentiometer::get_angle <../cpp/adi.html#>`_.
 

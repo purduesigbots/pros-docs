@@ -1312,11 +1312,11 @@ Analogous to `pros::ADIPotentiometer::ADIPotentiometer <../cpp/adi.html#>`_.
  Parameters
 ==================== =============================================================================================================
  smart_port           The smart port number the ADI Expander is in
- adi_port             The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a gyro
+ adi_port             The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a potentiometer
  potentiometer_type   An `adi_potentiometer_type_e_t` enum value specifying the potentiometer version type
 ==================== =============================================================================================================
 
-**Returns:** An `ext_adi_potentiometer_t`_ object to be stored and used for later calls to gyro functions, or PROS_ERR if there was an error.
+**Returns:** An `ext_adi_potentiometer_t`_ object to be stored and used for later calls to potentiometer functions, or PROS_ERR if there was an error.
 
 ----
 
@@ -1365,7 +1365,7 @@ Analogous to `pros::ADIPotentiometer::get_angle <../cpp/adi.html#>`_.
  potentiometer   The adi_potentiometer_t object for which the angle will be returned
 =============== =============================================================================================================
 
-**Returns:** An `ext_adi_potentiometer_t`_ object to be stored and used for later calls to gyro functions, or PROS_ERR if there was an error.
+**Returns:** An `ext_adi_potentiometer_t`_ object to be stored and used for later calls to potentiometer functions, or PROS_ERR if there was an error.
 
 Macros
 ======
