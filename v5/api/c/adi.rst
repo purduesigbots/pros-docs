@@ -1212,6 +1212,138 @@ This function uses the following values of ``errno`` when an error state is reac
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+----
+
+adi_potentiometer_init
+----------------------
+
+Initializes a potentiometer on the given port of the original potentiometer.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a potentiometer
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        adi_potentiometer_t adi_potentiometer_init ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define POTENTIOMETER_PORT 1
+
+        void opcontrol() {
+          adi_potentiometer_t potentiometer = adi_potentiometer_init(POTENTIOMETER_PORT);
+          while (true) {
+            // Print the potentiometer's angle
+            printf("Angle: %lf\n", adi_potentiometer_get_angle(potentiometer));
+            delay(5);
+          }
+        }
+
+============ =============================================================================================================
+ Parameters
+============ =============================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a potentiometer
+============ =============================================================================================================
+
+**Returns:** An adi_potentiometer_t object containing the given port, or PROS_ERR if the initialization failed.
+
+----
+
+adi_potentiometer_type_init
+---------------------------
+
+Initializes a potentiometer on the given port.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a potentiometer
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        adi_potentiometer_t adi_potentiometer_type_init ( uint8_t port, adi_potentiometer_type_e_t potentiometer_type )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define POTENTIOMETER_PORT 1
+        #define POTENTIOMETER_TYPE E_ADI_POT_EDR
+
+        void opcontrol() {
+          adi_potentiometer_t potentiometer = adi_potentiometer_type_init(POTENTIOMETER_PORT, POTENTIOMETER_TYPE);
+          while (true) {
+            // Print the potentiometer's angle
+            printf("Angle: %lf\n", adi_potentiometer_get_angle(potentiometer));
+            delay(5);
+          }
+        }
+
+==================== =============================================================================================================
+ Parameters
+==================== =============================================================================================================
+ port                 The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a potentiometer
+ potentiometer_type   An `adi_potentiometer_type_e_t` enum value specifying the potentiometer version type
+==================== =============================================================================================================
+
+**Returns:** An adi_potentiometer_t object containing the given port, or PROS_ERR if the initialization failed.
+
+----
+
+adi_potentiometer_get_angle 
+---------------------------
+
+Gets the current potentiometer angle in tenths of a degree.
+
+The original potentiometer rotates 250 degrees thus returning an angle between 0-250 degrees.
+Potentiometer V2 rotates 330 degrees thus returning an angle between 0-330 degrees.
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a gyro
+
+Analogous to `pros::ADIPotentiometer::get_angle <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        double adi_potentiometer_get_angle ( adi_potentiometer_t potentiometer )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define POTENTIOMETER_PORT 1
+
+        void opcontrol() {
+          adi_potentiometer_t potentiometer = adi_potentiometer_t(POTENTIOMETER_PORT);
+          while (true) {
+            // Print the potnetiometer's angle
+            printf("Angle: %lf\n", adi_potentiometer_get_angle(potentiometer));
+            delay(5);
+          }
+        }
+
+================ =============================================================================================================
+ Parameters
+================ =============================================================================================================
+  potentiometer   The `adi_potentiometer_t` object for which the angle will be returned
+================ =============================================================================================================
+
+**Returns:** The potentiometer angle in degrees.
+
 Macros
 ======
 
@@ -1314,6 +1446,26 @@ adi_port_config_e_t
  E_ADI_ERR                     Error return value for ADI port configuration
 ============================= ================================================================
 
+----
+
+adi_potentiometer_type_e_t
+-------------------
+
+::
+
+typedef enum adi_potentiometer_type_e { 
+	E_ADI_POT_EDR = 0,
+	E_ADI_POT_V2
+} adi_potentiometer_type_e_t;
+
+================== ============================================================
+ Value
+================== ============================================================
+ E_ADI_POT_EDR                 Configures the potentiometer as the origonal potentiometer
+ E_ADI_ANALOG_OUT              Configures the potentiometer as the potentiometer
+================== ============================================================
+
+
 Typedefs
 ========
 
@@ -1352,3 +1504,15 @@ object to store ultrasonic data in PROS 2.
 ::
 
 	typedef int32_t adi_ultrasonic_t;
+
+adi_potentiometer_t
+-------------------
+
+Reference type for an initialized ultrasonic.
+
+This merely contains the port number for the potentiometer, unlike its use as an
+object to store potentiometer data in PROS 2.
+
+::
+
+	typedef int32_t adi_potentiometer_t;

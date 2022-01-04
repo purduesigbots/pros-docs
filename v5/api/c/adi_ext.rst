@@ -1268,6 +1268,105 @@ This function uses the following values of ``errno`` when an error state is reac
 
 **Returns:** 1 if the operation was successful, PROS_ERR otherwise.
 
+----
+
+ext_adi_potentiometer_init
+-------------
+
+Initializes a potentiometer on the given port. 
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a potentiometer
+
+Analogous to `pros::ADIPotentiometer::ADIPotentiometer <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+      ext_adi_potentiometer_t ext_adi_potentiometer_init ( uint8_t smart_port, 
+                                                         uint8_t adi_port, 
+                                                         adi_potentiometer_type_e_t potentiometer_type )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define POTENTIOMETER_PORT 1
+        #define POTENTIOMETER_TYPE E_ADI_POT_EDR
+        #define ADI_EXPANDER_PORT 20
+
+        void opcontrol() {
+          ext_adi_potentiometer_init potentiometer = ext_adi_potentiometer_init(ADI_EXPANDER_PORT, POTENTIOMETER_PORT, POTENTIOMETER_TYPE);
+          while (true) {
+            // Print the potentiometer's angle
+            printf("Angle: %lf\n", ext_adi_potentiometer_get_angle(potentiometer));
+            delay(5);
+          }
+        }
+
+==================== =============================================================================================================
+ Parameters
+==================== =============================================================================================================
+ smart_port           The smart port number the ADI Expander is in
+ adi_port             The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a gyro
+ potentiometer_type   An `adi_potentiometer_type_e_t` enum value specifying the potentiometer version type
+==================== =============================================================================================================
+
+**Returns:** An `ext_adi_potentiometer_t`_ object to be stored and used for later calls to gyro functions, or PROS_ERR if there was an error.
+
+----
+
+ext_adi_potentiometer_get_angle
+-------------
+
+Gets the current potentiometer angle in tenths of a degree.
+
+The original potentiometer rotates 250 degrees thus returning an angle between 0-250 degrees.
+Potentiometer V2 rotates 333 degrees thus returning an angle between 0-333 degrees.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EADDRINUSE``  - The port is not configured as a potentiometer
+
+Analogous to `pros::ADIPotentiometer::get_angle <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+      double ext_adi_potentiometer_get_angle ( ext_adi_potentiometer_t potentiometer )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define POTENTIOMETER_PORT 1
+        #define POTENTIOMETER_TYPE E_ADI_POT_EDR
+        #define ADI_EXPANDER_PORT 20
+
+        void opcontrol() {
+          ext_adi_potentiometer_init potentiometer = ext_adi_potentiometer_init(ADI_EXPANDER_PORT, POTENTIOMETER_PORT, POTENTIOMETER_TYPE);
+          while (true) {
+            // Print the potentiometer's angle
+            printf("Angle: %lf\n", ext_adi_potentiometer_get_angle(potentiometer));
+            delay(5);
+          }
+        }
+
+=============== =============================================================================================================
+ Parameters
+=============== =============================================================================================================
+ potentiometer   The adi_potentiometer_t object for which the angle will be returned
+=============== =============================================================================================================
+
+**Returns:** An `ext_adi_potentiometer_t`_ object to be stored and used for later calls to gyro functions, or PROS_ERR if there was an error.
+
 Macros
 ======
 
