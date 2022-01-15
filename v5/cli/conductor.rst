@@ -39,7 +39,7 @@ Creating a new project
 ^^^^^^^^^^^^^^^^^^^^^^
 
 .. tabs::
-	.. tab :: Terminal
+	.. tab:: Terminal
 
 		.. code-block:: console
 
@@ -115,22 +115,23 @@ files in your project, except for those listed in ``EXCLUDE_SRC_FROM_LIB``.
 Additionally, any header files which you have created will be bundled. More
 concisely, any header files which weren't added by a template are included.
 
-.. highlight:: Makefile
+.. tabs::
+	.. tab:: Makefile
+		.. highlight:: Makefile
+		.. code-block:: Makefile
 
-::
-
-	# Set this to 1 to add additional rules to compile your project as a PROS library template
-	IS_LIBRARY:=0
-	# TODO: CHANGE THIS!
-	LIBNAME:=libbest
-	VERSION:=1.0.0
-	# EXCLUDE_SRC_FROM_LIB= $(SRCDIR)/unpublishedfile.c
-	# this line excludes opcontrol.c and similar files
-	EXCLUDE_SRC_FROM_LIB+=$(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
-	# files that get distributed to every user (beyond your source archive) - add
-	# whatever files you want here. This line is configured to add all header files
-	# that are in the the include directory get exported
-	TEMPLATE_FILES=$(INCDIR)/**/*.h $(INCDIR)/**/*.hpp
+			# Set this to 1 to add additional rules to compile your project as a PROS library template
+			IS_LIBRARY:=0
+			# TODO: CHANGE THIS!
+			LIBNAME:=libbest
+			VERSION:=1.0.0
+			# EXCLUDE_SRC_FROM_LIB= $(SRCDIR)/unpublishedfile.c
+			# this line excludes opcontrol.c and similar files
+			EXCLUDE_SRC_FROM_LIB+=$(foreach file, $(SRCDIR)/opcontrol $(SRCDIR)/initialize $(SRCDIR)/autonomous,$(foreach cext,$(CEXTS),$(file).$(cext)) $(foreach cxxext,$(CXXEXTS),$(file).$(cxxext)))
+			# files that get distributed to every user (beyond your source archive) - add
+			# whatever files you want here. This line is configured to add all header files
+			# that are in the the include directory get exported
+			TEMPLATE_FILES=$(INCDIR)/**/*.h $(INCDIR)/**/*.hpp
 
 For advanced usage of creating templates, you can modify the ``Makefile`` with
 your own custom arguments to ``pros conduct create-template``
@@ -147,15 +148,17 @@ By default, new PROS projects ship with OkapiLib. If you want to change this, or
 
 Open conductor.pros (see above). Find the ``default_libraries`` key. Within this key, you can specify the names of templates included by default for each target (``v5`` or ``cortex``). For example, if you wanted to make sure that libhotel was added to new projects and not OkapiLib, you might end up with the following
 
-.. highlight:: json
+.. tabs::
+	.. tab:: conductor.pros
+		.. highlight:: json
+		.. code-block:: json
 
-::
-	"default_libraries": {
-            "cortex": [],
-            "v5": [
-                "libhotel"
-            ]
-        }
+			"default_libraries": {
+				"cortex": [],
+				"v5": [
+					"libhotel"
+				]
+			}
 
 Creating Remote Depots
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -170,31 +173,33 @@ Once you have a remote depot, you must tell your copy of the PROS CLI about it b
 
 Open conductor.pros (see above). To add a remote depot, look at the `depots` key. This is a python `dict` mapping a depot name to a remote depot object. Add a new entry that looks like the following:
 
-.. highlight:: json
+.. tabs::
+	.. tab:: conductor.pros
+		.. highlight:: json
+		.. code-block:: json
 
-::
-	"my-remote-depot": {
-		"config": {},
-		"config-schema": {},
-		"location": "https://my-username.github.io/my-remote-depot/my-remote-depot.json",
-		"name": "my-remote-depot",
-		"py/object": "pros.conductor.depots.http_depot.HttpDepot",
-		"remote_templates": [],
-		"update_frequency": {
-                    "py/reduce": [
-                        {
-                            "py/type": "datetime.timedelta"
-                        },
-                        {
-                            "py/tuple": [
-                                0,
-                                60,
-                                0
-                            ]
-                        }
-                    ]
-                }
-	}
+			"my-remote-depot": {
+				"config": {},
+				"config-schema": {},
+				"location": "https://my-username.github.io/my-remote-depot/my-remote-depot.json",
+				"name": "my-remote-depot",
+				"py/object": "pros.conductor.depots.http_depot.HttpDepot",
+				"remote_templates": [],
+				"update_frequency": {
+					"py/reduce": [
+						{
+							"py/type": "datetime.timedelta"
+						},
+						{
+							"py/tuple": [
+								0,
+								60,
+								0
+							]
+						}
+					]
+				}
+			}
 
 making sure to change the name and location to match the ones you set up in the above step. Save the file, and run ``pros conduct query --force-refresh`` to verify that it worked as expected.
 
