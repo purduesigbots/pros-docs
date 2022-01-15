@@ -73,7 +73,106 @@ Advanced task lifecycle control
 -------------------------------
 
 As mentioned above, task notifications are an extremely powerful tool once you get to know them
-better. In this section we describe some common problems and how task notifications can solve them.
+better. One group of use-cases in which task notifications are especially useful is controlling
+the lifecycle of tasks: how they start, how they end, how they can be paused and resumed.
+
+There are a set of functions already that can control tasks:
+
+- ``pros::Task::remove``/``task_remove`` for deleting tasks
+- ``pros::Task::suspend``/``task_suspend`` for pausing tasks
+- ``pros::Task::resume``/``task_resume`` for resuming paused tasks
+  
+However, these functions have some major caveats. A chief example is that you do not get to
+control *when* the task is removed, paused, etc. The most common side-effect of this lack
+of control can be seen when you pause or remove a task immediately after the task has sent
+a command to, for example, a motor. In these cases, the motor will continue operating per
+the last instruction which can lead to unpredictable behavior. Of course, you could mitigate
+this by ensuring all your motors are turned off after pausing or removing a task, but this
+makes those operations clunky when all you wanted was to stop or pause a task---something that
+should be straightforward.
+
+Another tricky situation is when you have task synchronization, e.g. using mutexes. If you
+remove a task while it holds a mutex, there is no way to then release that mutex, and the
+rest of your program is deadlocked. Similar situations arise when you have dynamically
+allocated memory: there is no straightforward way to make sure resources are freed when 
+a task is removed mid-operation.
+
+Solutions to all of these problems can be found in the use of task notifications. Instead of
+one-sidedly controlling the operation of a task externally, task notifications allow you to
+make tasks aware of such external signals and decide for themselves how to handle their own
+lifecycles and operations.
+
+Delaying the start of a task
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sometimes it may be desirable to control when a task begins, instead of allowing it to start
+immediately upon creation. Aside from using global flags, there aren't really any other ways
+to do this except task notifications.
+
+.. tabs::
+    .. group-tab:: C++
+        .. highlight:: cpp
+        .. code-block:: cpp
+            :linenos:
+
+            void opcontrol() {
+                pros::Task delayed_start_task{ [] {
+                    // block this task until signalled to begin
+                    while (pros::Task::notify_take(true, TIMEOUT_MAX)) ;
+
+                    while (true) {
+                        do_task_thing();
+                        do_another_task_thing();
+                        pros::delay(20);
+                    }
+                } };
+
+                pros::Controller master{ pros::E_CONTROLLER_MASTER };
+                pros::Motor left_motor{ LEFT_MOTOR_PORT };
+                pros::Motor right_motor{ RIGHT_MOTOR_PORT };
+                while (true) {
+                    // start the task when the A button is pressed
+                    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+                        delayed_start_task.notify();
+                    }
+
+                    left_motor.move(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y));
+                    right_motor.move(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
+
+                    pros::delay(20);
+                }
+            }
+
+    .. group-tab:: C
+        .. highlight:: c
+        .. code-block:: c
+            :linenos:
+
+            void delayed_start_task_fn(void*) {
+                while (task_notify_take(true, TIMEOUT_MAX)) ;
+
+                while (true) {
+                    do_task_thing();
+                    do_another_task_thing();
+                    task_delay(20);
+                }
+            }
+
+            void opcontrol() {
+                task_t delayed_start = task_create(delayed_start_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                                                   TASK_STACK_DEPTH_DEFAULT, "delayed start task");
+
+                while (true) {
+                    if (controller_get_digital_new_press(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A)) {
+                        task_notify(delayed_start_task);
+                    }
+
+                    motor_move(LEFT_MOTOR_PORT,  controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+                    motor_move(RIGHT_MOTOR_PORT, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_RIGHT_Y));
+
+                    task_delay(20);
+                }
+            }
 
 Ending tasks cleanly
 ^^^^^^^^^^^^^^^^^^^^
@@ -195,10 +294,7 @@ cleanest and most direct ways involves task notifications.
 Pausing and resuming tasks
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Another common use-case is pausing and resuming tasks at will. ``pros::Task::suspend``/``task_suspend``
-and ``pros::Task::resume``/``task_resume`` are options, but their semantics are tricky to master and
-so it is frequently preferred to use task notifications instead, and let the tasks themselves decide
-how best to pause and resume.
+Another common use-case is pausing and resuming tasks at will.
 
 .. tabs::
     .. group-tab:: C++
@@ -276,78 +372,6 @@ how best to pause and resume.
                 while (true) {
                     if (controller_get_digital_new_press(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A)) {
                         task_notify(automatic_grab_task);
-                    }
-
-                    motor_move(LEFT_MOTOR_PORT,  controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-                    motor_move(RIGHT_MOTOR_PORT, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_RIGHT_Y));
-
-                    task_delay(20);
-                }
-            }
-
-Delaying the start of a task
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Sometimes it may be desirable to control when a task begins, instead of allowing it to start
-immediately upon creation. Aside from using global flags, there aren't really any other ways
-to do this except task notifications.
-
-.. tabs::
-    .. group-tab:: C++
-        .. highlight:: cpp
-        .. code-block:: cpp
-            :linenos:
-
-            void opcontrol() {
-                pros::Task delayed_start_task{ [] {
-                    // block this task until signalled to begin
-                    while (pros::Task::notify_take(true, TIMEOUT_MAX)) ;
-
-                    while (true) {
-                        do_task_thing();
-                        do_another_task_thing();
-                        pros::delay(20);
-                    }
-                } };
-
-                pros::Controller master{ pros::E_CONTROLLER_MASTER };
-                pros::Motor left_motor{ LEFT_MOTOR_PORT };
-                pros::Motor right_motor{ RIGHT_MOTOR_PORT };
-                while (true) {
-                    // start the task when the A button is pressed
-                    if (master.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
-                        delayed_start_task.notify();
-                    }
-
-                    left_motor.move(master.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y));
-                    right_motor.move(master.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_Y));
-
-                    pros::delay(20);
-                }
-            }
-
-    .. group-tab:: C
-        .. highlight:: c
-        .. code-block:: c
-            :linenos:
-
-            void delayed_start_task_fn(void*) {
-                while (task_notify_take(true, TIMEOUT_MAX)) ;
-
-                while (true) {
-                    do_task_thing();
-                    do_another_task_thing();
-                    task_delay(20);
-                }
-            }
-
-            void opcontrol() {
-                task_t delayed_start = task_create(delayed_start_task_fn, NULL, TASK_PRIORITY_DEFAULT,
-                                                   TASK_STACK_DEPTH_DEFAULT, "delayed start task");
-
-                while (true) {
-                    if (controller_get_digital_new_press(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A)) {
-                        task_notify(delayed_start_task);
                     }
 
                     motor_move(LEFT_MOTOR_PORT,  controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
