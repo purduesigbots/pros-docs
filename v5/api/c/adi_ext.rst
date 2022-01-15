@@ -723,7 +723,7 @@ This function uses the following values of ``errno`` when an error state is reac
         #define ANALOG_SENSOR_PORT 1
 
         void initialize() {
-          ext_adi_pin_mode(ANALOG_SENSOR_PORT, INPUT_ANALOG);
+          ext_adi_pin_mode(ADI_EXPANDER_PORT, ANALOG_SENSOR_PORT, INPUT_ANALOG);
         }
 
 ============ =================================================================================================================
