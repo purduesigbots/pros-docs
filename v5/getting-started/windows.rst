@@ -13,7 +13,7 @@ Installing on Windows
    If you are an advanced user looking to install the PROS CLI through Python pip,
    check out the instructions on the :doc:`./linux` page instead.
 
-To start using PROS 3 on Windows, simply download the latest version of the
+To start using PROS on Windows, simply download the latest version of the
 installer (.exe file) from `here <https://github.com/purduesigbots/pros-cli3/releases/latest/>`_.
 You do not need to download any other files.
 

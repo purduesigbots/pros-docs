@@ -30,7 +30,7 @@ Homebrew method
    to also install the VEX Vision Utility to set up signatures. Run
    :code:`brew install vcs-vision` to do this. Once installed, you'll be able to
    run the program by looking for "vcs_vision" in Spotlight.
-6. That's it! You can now start using PROS 3.
+6. That's it! You can now start using PROS.
 
 
 .. note:: If you do not want to use the PROS Editor, and instead intend to use only the PROS CLI, substitute the command in step 4 with the following: :code:`brew install pros-cli`.
@@ -38,7 +38,7 @@ Homebrew method
 Other Methods
 -------------
 
-If you don't want to use Homebrew to install PROS 3, you can install all the
+If you don't want to use Homebrew to install PROS, you can install all the
 components manually.
 
 Install the toolchain
