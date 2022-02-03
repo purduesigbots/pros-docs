@@ -318,6 +318,47 @@ Analogous to `pros::Rotation::set_reversed <../cpp/rotation.html#set-reversed>`_
 
 ----
 
+rotation_init_reverse
+---------------------
+
+Reverse the Rotation Sensor's direction during initialization
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Rotation Sensor.
+
+Analogous to `pros::Rotation::set_reversed <../cpp/rotation.html#set-reversed>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t rotation_init_reverse(uint8_t port, bool reverse_flag)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define ROTATION_PORT 1
+
+        void opcontrol() {
+          pros::Rotation rotation_sensor(ROTATION_PORT, true);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ reverse_flag True or false on whether the positive direction is counter clockwise or not.
+============ =================================================================================================================
+
+**Returns:** ``1`` if operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+
+----
+
 rotation_reverse
 ----------------
 

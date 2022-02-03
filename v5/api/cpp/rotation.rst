@@ -38,6 +38,32 @@ Constructor(s)
 
 ----
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Rotation(const std::uint8_t port, const bool reverse_flag)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define ROTATION_PORT 1
+
+        void initialize() {
+          pros::Rotation rotation_sensor(ROTATION_PORT, true);
+        }
+
+============ =========================================================================
+ Parameters
+============ =========================================================================
+ port         The V5 port number from 1-21
+ reverse_flag True or false on whether the positive direction is counter clockwise or not.
+============ =========================================================================
+
+----
+
 Functions
 ---------
 
