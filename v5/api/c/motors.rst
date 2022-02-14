@@ -283,7 +283,7 @@ setting ``errno``.
 ----
 
 motor_stop
-------------------
+----------
 
 Sets the voltage for the motor to 0 mV.
 
@@ -301,8 +301,7 @@ Analogous to `pros::Motor::move_voltage <../cpp/motors.html#stop>`_.
       .. highlight:: c
       ::
 
-        int32_t motor_move_voltage ( uint8_t port,
-                                     int16_t voltage )
+        int32_t motor_stop ( uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
