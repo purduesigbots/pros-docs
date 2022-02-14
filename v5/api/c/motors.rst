@@ -294,7 +294,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENODEV``  - The port cannot be configured as a motor
 
-Analogous to `pros::Motor::move_voltage <../cpp/motors.html#move-voltage>`_.
+Analogous to `pros::Motor::move_voltage <../cpp/motors.html#stop>`_.
 
 .. tabs ::
    .. tab :: Prototype
