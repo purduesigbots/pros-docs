@@ -285,7 +285,11 @@ setting ``errno``.
 motor_brake
 -----------
 
-Sets the velocity for the motor to 0.
+Stops the motor using the currently configured brake mode.
+
+This function sets motor velocity to zero, which will cause it to act according to the
+set brake mode. If brake mode is set to MOTOR_BRAKE_HOLD, this function may behave
+differently than calling motor_move_absolute(0) or motor_move_relative(0).
 
 This function uses the following values of ``errno`` when an error state is reached:
 
