@@ -459,25 +459,23 @@ setting ``errno``.
 
 ----
 
-stop
-~~~~
+brake
+~~~~~
 
-Sets the voltage for the motor to 0.
-.. note:: This function will not respect brake modes, and simply sets the voltage
-          to the desired value.
+Sets the velocity for the motor to 0.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENODEV``  - The port cannot be configured as a motor
 
-Analogous to `motor_move_voltage <../c/motors.html#motor-stop>`_.
+Analogous to `motor_brake <../c/motors.html#motor-brake>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
       ::
 
-        std::int32_t pros::Motor::stop ( void )
+        std::int32_t pros::Motor::brake ( void )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -486,7 +484,7 @@ Analogous to `motor_move_voltage <../c/motors.html#motor-stop>`_.
         void autonomous() {
           motor.move_voltage(12000);
           pros::delay(1000); // Move at max voltage for 1 second
-          motor.stop(); // Stops motor
+          motor.brake(); // Brakes motor
         }
 
 ============ ===============================================================
