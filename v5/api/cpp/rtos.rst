@@ -537,50 +537,6 @@ Analogous to `task_notify <../c/rtos.html#task-notify>`_.
 
 ----
 
-join
-~~~~
-
-Utilizes task notifications to wait until specified task is complete and
-deleted, then continues to execute the program. Replicates the functionality
-of thread joining in C++.
-
-See :doc:`../../tutorials/topical/notifications` for details.
-
-Analogous to `task_join <../c/rtos.html#task-join>`_.
-
-.. warning:: verify this example code
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        std::void pros::Task::join ( )
-
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
-
-          void my_task(void* ign) {
-            std::cout << "Task running" <<
-            pros::Task::delay(1000);
-            std::cout << "End of task" <<
-          }
-
-          void opcontrol() {
-            Task my_task (my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
-                          TASK_STACK_DEPTH_DEFAULT, "Task One");
-            std::cout << "Before task" <<
-            my_task.join();
-            std::cout << "After task" <<
-              }
-            }
-          }
-
-**Returns:** void.
-
-----
-
 notify_clear
 ~~~~~~~~~~~~
 
@@ -692,6 +648,48 @@ Analogous to `task_notify_take <../c/rtos.html#task-notify-take>`_.
 =============== ================================================================================================================
 
 **Returns:** The value of the task's notification value before it is decremented or cleared.
+
+----
+
+join
+~~~~
+
+Utilizes task notifications to wait until specified task is complete and
+deleted, then continues to execute the program. Replicates the functionality
+of thread joining in C++.
+
+See :doc:`../../tutorials/topical/notifications` for details.
+
+Analogous to `task_join <../c/rtos.html#task-join>`_.
+
+.. warning:: verify this example code
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::void pros::Task::join ( )
+
+     .. tab :: Example
+        .. highlight:: cpp
+        ::
+
+          void my_task(void* ign) {
+            std::cout << "Task running" <<
+            pros::Task::delay(1000);
+            std::cout << "End of task" <<
+          }
+
+          void opcontrol() {
+            Task my_task (my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                          TASK_STACK_DEPTH_DEFAULT, "Task One");
+            std::cout << "Before task" <<
+            my_task.join();
+            std::cout << "After task" <<
+              }
+            }
+          }
 
 ----
 
