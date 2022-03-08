@@ -792,44 +792,6 @@ Analogous to `pros::Task::notify_take <../cpp/rtos.html#notify-take>`_.
 
 ----
 
-task_resume
------------
-
-Resumes the specified task, making it eligible to be scheduled.
-
-Analogous to `pros::Task::resume <../cpp/rtos.html#resume>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        void task_resume ( task_t task )
-
-     .. tab :: Example
-        .. highlight:: c
-        ::
-
-          void my_task_fn(void* ign) {
-            // Do things
-          }
-          void opcontrol() {
-            task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
-                                         TASK_STACK_DEPTH_DEFAULT, "Example Task");
-            // Do things
-            task_suspend(my_task); // The task will no longer execute
-            // Do other things
-            task_resume(my_task); // The task will resume execution
-          }
-
-============ ==================================
- Parameters
-============ ==================================
- task        The handle of the task to resume
-============ ==================================
-
-----
-
 task_join
 ---------
 
@@ -866,6 +828,44 @@ Analogous to `pros::Task::join <../cpp/rtos.html#join>`_.
  Parameters
 ============ ==================================
  task        The handle of the task to join
+============ ==================================
+
+----
+
+task_resume
+-----------
+
+Resumes the specified task, making it eligible to be scheduled.
+
+Analogous to `pros::Task::resume <../cpp/rtos.html#resume>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        void task_resume ( task_t task )
+
+     .. tab :: Example
+        .. highlight:: c
+        ::
+
+          void my_task_fn(void* ign) {
+            // Do things
+          }
+          void opcontrol() {
+            task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                                         TASK_STACK_DEPTH_DEFAULT, "Example Task");
+            // Do things
+            task_suspend(my_task); // The task will no longer execute
+            // Do other things
+            task_resume(my_task); // The task will resume execution
+          }
+
+============ ==================================
+ Parameters
+============ ==================================
+ task        The handle of the task to resume
 ============ ==================================
 
 ----
