@@ -511,6 +511,40 @@ Analogous to `pros::Task::get_count <../cpp/rtos.html#get-count>`_.
 
 ----
 
+task_get_current
+-------------
+
+Get a handle to the task which called this function.
+
+Analogous to `pros::Task::get_current <../cpp/rtos.html#current>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+          task_t task_get_current ( void )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void my_task_fn(void* param) {
+          task_t this_task = task_get_current();
+          if (task_get_state(this_take) == E_TASK_STATE_RUNNING) {
+            printf("This task is currently running\n");
+          }
+          // ...
+        }
+        void initialize() {
+          task_t my_task = task_create(my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
+                                      TASK_STACK_DEPTH_DEFAULT, "My Task");
+        }
+
+**Returns:** A handle to the currently running task.
+
+----
+
 task_get_name
 -------------
 
