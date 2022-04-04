@@ -26,11 +26,11 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        #define IMU_PORT 1
+        #define LINK_TRANSMITTER_PORT 1
 
-        void initialize() {
-          pros::Link optical_sensor(OPTICAL_PORT);
-        }
+         void initialize() {
+            pros::Link transmitter(LINK_TRANSMITTER_PORT);
+         }
 
 ============ =========================================================================
  Parameters
@@ -62,13 +62,24 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        bool connected( )
+        bool connected()
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        
+         #define LINK_TRANSMITTER_PORT 1
+
+         void opcontrol() {
+            pros::Link transmitter(LINK_TRANSMITTER_PORT);
+            
+            while (true) {
+               if (transmitter.connected) {
+                  pros::lcd::set_text(1, "Link connected!");
+               }
+               pros::delay(20);
+            }
+         }
 
 
 **Returns:** If a radio is connected to a port and it's connected to a link.
@@ -91,13 +102,21 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        std::uint32_t raw_receivable_size( )
+        std::uint32_t raw_receivable_size()
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        
+         #define LINK_RECIVER_PORT 1
+
+         void opcontrol() {
+            pros::Link reciever(LINK_RECIVER_PORT);
+
+            std::uint32_t recieveable_size = reciever.raw_receivable_size();
+            pros::lcd::set_text(1, "Link recieveable_size:"); 
+            pros::lcd::set_text(2, std::to_string(recieveable_size));
+         }
 
 **Returns:** PROS_ERR if port is not a link/radio, else the bytes available to be read by the user.
 
@@ -125,6 +144,15 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
+         #define LINK_TRANSMITTER_PORT 1
+
+         void opcontrol() {
+            pros::Link transmitter(LINK_RECIVER_PORT);
+
+            std::uint32_t transmittable_size = transmitter.raw_transmittable_size();
+            pros::lcd::set_text(1, "Link transmittable_size:"); 
+            pros::lcd::set_text(2, std::to_string(transmittable_size));
+         }
         
 
 **Returns:** ``PROS_ERR`` if port is not a link/radio.
@@ -155,7 +183,14 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        
+         #define LINK_TRANSMITTER_PORT 1
+
+         void opcontrol() {
+            pros::Link transmitter(LINK_RECIVER_PORT);
+            char* data = "Hello!";
+
+            transmitter.transmit_raw((void*)data, sizeof(*data) * sizeof(data));
+         }
 
 ============ =================================================================================================================
  Parameters
@@ -192,7 +227,15 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        
+         #define LINK_RECIVER_PORT 1
+
+         void opcontrol() {
+            char* result;
+            char* expected = "Hello!";
+            pros::Link reciever(LINK_RECIVER_PORT);
+
+            reciever.reciever_raw((void*)result, sizeof(*expected) * sizeof(expected));
+         }
 
 ============ =================================================================================================================
  Parameters
@@ -230,6 +273,14 @@ This function uses the following values of ``errno`` when an error state is reac
       ::
 
         
+         #define LINK_TRANSMITTER_PORT 1
+
+         void opcontrol() {
+            pros::Link transmitter(LINK_RECIVER_PORT);
+            char* data = "Hello!";
+
+            transmitter.transmit((void*)data, sizeof(*data) * sizeof(data));
+         }
 
 ============ =================================================================================================================
  Parameters
@@ -267,7 +318,15 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        
+         #define LINK_RECIVER_PORT 1
+
+         void opcontrol() {
+            char* result;
+            char* expected = "Hello!";
+            pros::Link reciever(LINK_RECIVER_PORT);
+
+            reciever.recieve((void*)result, sizeof(*expected) * sizeof(expected));
+         }
 
 ============ =================================================================================================================
  Parameters
@@ -296,12 +355,21 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        std::uint32_t clear_receive_buf( )
+        std::uint32_t clear_receive_buf()
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-        
+         #define LINK_TRANSMITTER_PORT 1
+
+         void opcontrol() {
+            pros::Link transmitter(LINK_RECIVER_PORT);
+            char* data = "Hello!";
+
+            transmitter.transmit((void*)data, sizeof(*data) * sizeof(data));
+
+            transmitter.clear_receive_buf();
+         }
 
 **Returns:** PROS_ERR if port is not a link, ``1`` if the operation succeeded.

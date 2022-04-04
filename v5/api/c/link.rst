@@ -32,10 +32,11 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define ROTATION_PORT 1
+        #define LINK_TRANSMITTER_PORT 1 
+        #define LINK_ID "ROBOT1"
 
-        void opcontrol() {
-          
+        void initialize() {
+          link_init(LINK_TRANSMITTER_PORT, LINK_ID, E_LINK_TRANSMITTER);          
         }
 
 ============ =================================================================================================================
@@ -72,17 +73,8 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define ROTATION_PORT 1
-
-        void opcontrol() {
-          while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_reset(ROTATION_PORT);
-            }
-            delay(20);
-          }
-        }
+        void initialize() {
+        } 
 
 ============ =================================================================================================================
  Parameters
@@ -118,13 +110,12 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define ROTATION_PORT 1
+        #define LINK_TRANSMITTER_PORT 1
 
         void opcontrol() {
           while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_reset(ROTATION_PORT);
+            if (link_connected(LINK_TRANSMITTER_PORT)) {
+              screen_print(TEXT_MEDIUM, 1, "Link connected!");
             }
             delay(20);
           }
@@ -162,14 +153,12 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define ROTATION_PORT 1
+        #define LINK_RECIVER_PORT 1
 
         void opcontrol() {
           while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_reset(ROTATION_PORT);
-            }
+            uint32_t receiveable_size = link_raw_receivable_size(LINK_RECIVER_PORT);
+            screen_print(TEXT_MEDIUM, 1, "link_raw_receiveable_size: %d", receiveable_size);
             delay(20);
           }
         }
@@ -206,14 +195,12 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define ROTATION_PORT 1
+        #define LINK_TRANSMITTER_PORT 1
 
         void opcontrol() {
           while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_reset(ROTATION_PORT);
-            }
+            uint32_t transmittable_size = link_raw_transmittable_size(LINK_TRANSMITTER_PORT);
+            screen_print(TEXT_MEDIUM, 1, "link_raw_transmittable_size: %d", transmittable_size);
             delay(20);
           }
         }
@@ -252,14 +239,12 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define ROTATION_PORT 1
+        #define LINK_TRANSMITTER_PORT 1
 
         void opcontrol() {
           while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_reset(ROTATION_PORT);
-            }
+            char* data = "Hello!";
+            link_transmit_raw(LINK_TRANSMITTER_PORT, (void*)data, sizeof(*data) * sizeof(data));
             delay(20);
           }
         }
@@ -299,14 +284,13 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define ROTATION_PORT 1
+        #define LINK_RECIVER_PORT 1
 
         void opcontrol() {
           while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_reset(ROTATION_PORT);
-            }
+            char* result;
+            char* expected = "Hello!";
+            link_receive_raw(LINK_RECIVER_PORT, (void*)result, sizeof(*expected) * sizeof(expected));
             delay(20);
           }
         }
@@ -347,14 +331,12 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define ROTATION_PORT 1
+        #define LINK_TRANSMITTER_PORT 1
 
         void opcontrol() {
           while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_reset(ROTATION_PORT);
-            }
+            char* data = "Hello!";
+            link_transmit(LINK_TRANSMITTER_PORT, (void*)data, sizeof(*data) * sizeof(data));
             delay(20);
           }
         }
@@ -395,14 +377,13 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define ROTATION_PORT 1
+        #define LINK_RECIVER_PORT 1
 
         void opcontrol() {
           while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_reset(ROTATION_PORT);
-            }
+            char* result;
+            char* expected = "Hello!";
+            link_receive(LINK_RECIVER_PORT, (void*)result, sizeof(*expected) * sizeof(expected));
             delay(20);
           }
         }
@@ -441,14 +422,13 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        #define ROTATION_PORT 1
+        #define LINK_TRANSMITTER_PORT 1
 
         void opcontrol() {
           while (true) {
-            
-            if(controller_get_digital(CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_X)){
-                rotation_reset(ROTATION_PORT);
-            }
+            char* data = "Hello!";
+            link_transmit(LINK_TRANSMITTER_PORT, (void*)data, sizeof(*data) * sizeof(data));
+            link_clear_receive_buf(LINK_TRANSMITTER_PORT);
             delay(20);
           }
         }
