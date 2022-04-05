@@ -424,7 +424,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         gps_status_s_t get_status()
+         pros::c::gps_status_s_t get_status()
 
    .. tab :: Example
       .. highlight:: cpp
@@ -667,7 +667,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         gps_gyro_s_t get_gyro_rate()
+         pros::c::gps_gyro_s_t get_gyro_rate()
 
    .. tab :: Example
       .. highlight:: cpp
@@ -708,7 +708,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         gps_accel_s_t get_accel()
+         pros::c::gps_accel_s_t get_accel()
 
    .. tab :: Example
       .. highlight:: cpp
