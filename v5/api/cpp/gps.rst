@@ -106,6 +106,7 @@ Constructors
    .. tab :: Example
       .. highlight:: cpp
       ::
+      
         #define GPS_PORT 1
         #define X_OFFSET .225
         #define Y_OFFSET .223
