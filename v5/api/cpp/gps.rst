@@ -106,6 +106,7 @@ Constructors
    .. tab :: Example
       .. highlight:: cpp
       ::
+      
         #define GPS_PORT 1
         #define X_OFFSET .225
         #define Y_OFFSET .223
@@ -423,7 +424,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         gps_status_s_t get_status()
+         pros::c::gps_status_s_t get_status()
 
    .. tab :: Example
       .. highlight:: cpp
@@ -437,7 +438,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
             while (true) {
                 status = gps1.get_status();
-                pros::screen::print(TEXT_MEDIUM, 1, "x: %3f, y: %3f, pitch: %3f, status.x, status.y);
+                pros::screen::print(TEXT_MEDIUM, 1, "x: %3f, y: %3f, pitch: %3f", status.x, status.y);
                 pros::screen::print(TEXT_MEDIUM, 2, "yaw: %3f, roll: %3f", status.pitch, status.yaw);
                 pros::screen::print(TEXT_MEDIUM, 3, "roll: %3f", status.roll);
                 pros::delay(20);
@@ -666,7 +667,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         gps_gyro_s_t get_gyro_rate()
+         pros::c::gps_gyro_s_t get_gyro_rate()
 
    .. tab :: Example
       .. highlight:: cpp
@@ -707,7 +708,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         gps_accel_s_t get_accel()
+         pros::c::gps_accel_s_t get_accel()
 
    .. tab :: Example
       .. highlight:: cpp
