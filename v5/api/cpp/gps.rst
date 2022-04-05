@@ -437,7 +437,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
             while (true) {
                 status = gps1.get_status();
-                pros::screen::print(TEXT_MEDIUM, 1, "x: %3f, y: %3f, pitch: %3f, status.x, status.y);
+                pros::screen::print(TEXT_MEDIUM, 1, "x: %3f, y: %3f, pitch: %3f", status.x, status.y);
                 pros::screen::print(TEXT_MEDIUM, 2, "yaw: %3f, roll: %3f", status.pitch, status.yaw);
                 pros::screen::print(TEXT_MEDIUM, 3, "roll: %3f", status.roll);
                 pros::delay(20);
