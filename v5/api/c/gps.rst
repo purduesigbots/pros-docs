@@ -304,7 +304,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
             while (true) {
                 status = gps_get_status(GPS_PORT);
-                screen_print(TEXT_MEDIUM, 1, "x: %3f, y: %3f, pitch: %3f", status.x, status.y);
+                screen_print(TEXT_MEDIUM, 1, "x: %3f, y: %3f, pitch: %3f, status.x, status.y);
                 screen_print(TEXT_MEDIUM, 2, "yaw: %3f, roll: %3f", status.pitch, status.yaw);
                 screen_print(TEXT_MEDIUM, 3, "roll: %3f", status.roll);
                 delay(20);
