@@ -13,7 +13,7 @@ VEX GPS Sensor C++ API
 .. contents:: :local:
 
 pros::Gps
-============
+=========
 
 Constructors
 ------------
@@ -55,6 +55,7 @@ Constructors
         #define GPS_PORT 1
         #define X_OFFSET -.225
         #define Y_OFFSET .225
+
         void initialize() {
           pros::Gps gps1(GPS_PORT, X_OFFSET, Y_OFFSET);
         }
@@ -82,6 +83,7 @@ Constructors
         #define X_INITIAL -1.15
         #define Y_INITIAL 1.45
         #define HEADING_INITIAL 90
+
         void initialize() {
           pros::Gps gps1(GPS_PORT, X_INITIAL, Y_INITIAL, HEADING_INITIAL);
         }
@@ -116,7 +118,7 @@ Constructors
 
         void opcontrol() {
             pros::Gps gps1(GPS_PORT, X_OFFSET, Y_OFFSET, X_INITIAL, Y_INITIAL, HEADING_INITIAL);
-            while(1) {
+            while(true) {
                 // Gps usage here
             }
         }
@@ -167,7 +169,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
             gps1.initialize_full(X_OFFSET, Y_OFFSET, X_INITIAL, Y_INITIAL, HEADING_INITIAL);
-            while(1) {
+            while(true) {
                 // Gps usage here
             }
         }
@@ -215,7 +217,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
             gps1.set_offset(X_OFFSET, Y_OFFSET);
-            while(1){
+            while(true){
                 // GPS Usage Here
             }
         }
@@ -308,7 +310,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
             gps1.set_position(X_INITIAL, Y_INITIAL, HEADING_INITIAL);
-            while(1) {
+            while(true) {
                 // GPS usage here
             }
         }
@@ -353,7 +355,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
             gps1.set_data_rate(DATA_RATE);
-            while(1) {
+            while(true) {
                 // GPS Usage Here
             }
         }
@@ -395,7 +397,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
             double error;
-            while(1) {
+            while(true) {
                 error = gps1.get_error();
                 pros::screen::print(pros::TEXT_MEDIUM, 1, "Error (RMS): %f", error);
                 pros::delay(20);
@@ -558,7 +560,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
             double elapsed_rotation;
-            while(1) {
+            while(true) {
                 elapsed_rotation = gps1.get_rotation();
                 pros::screen::print(TEXT_MEDIUM, 1, "Rotation: %3f", elapsed_rotation);
                 pros::delay(20);
@@ -598,7 +600,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
             gps1.set_rotation(60);
-            while(1) {
+            while(true) {
                 // GPS Usage Here
             }
         }
@@ -640,7 +642,7 @@ This function uses the following values of ``errno`` when an error state is reac
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
             gps1.tare_rotation(); // Initial Tare (unecessary)
-            while(1) {
+            while(true) {
                 // GPS Usage Here
             }
         }
