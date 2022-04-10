@@ -303,6 +303,10 @@ Draw a single pixel on the screen using the current pen color
 
 Analogous to `pros::screen::draw_pixel <../cpp/screen.html#draw_pixel>`_.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -338,6 +342,10 @@ screen_erase_pixel
 Erase a pixel from the screen using the current eraser color
 
 Analogous to `pros::screen::erase_pixel <../cpp/screen.html#erase_pixel>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -376,6 +384,10 @@ screen_draw_line
 
 Draw a line on the screen using the current pen color
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 Analogous to `pros::screen::draw_line <../cpp/screen.html#draw_line>`_.
 
 .. tabs ::
@@ -412,6 +424,10 @@ screen_erase_line
 Erase a line on the screen using the current eraser color
 
 Analogous to `pros::screen::erase_line <../cpp/screen.html#erase_line>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -450,6 +466,10 @@ Draw a rectangle on the screen using the current pen color
 
 Analogous to `pros::screen::draw_rect <../cpp/screen.html#draw_rect>`_.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -484,6 +504,10 @@ screen_erase_rect
 Erase a rectangle on the screen using the current eraser color
 
 Analogous to `pros::screen::erase_rect <../cpp/screen.html#erase_rect>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -520,6 +544,10 @@ Fill a rectanglular region on the screen using the current pen color
 
 Analogous to `pros::screen::fill_rect <../cpp/screen.html#fill_rect>`_.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -555,6 +583,10 @@ Draw a circle on the screen using the current pen color
 
 Analogous to `pros::screen::draw_circle <../cpp/screen.html#draw_circle>`_.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -589,6 +621,10 @@ Erase a circle on the screen using the current eraser color
 
 Analogous to `pros::screen::erase_circle <../cpp/screen.html#erase_circle>`_.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
@@ -622,6 +658,10 @@ screen_fill_circle
 ~~~~~~~~~
 
 Fill a circular region of the screen using the current pen color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 Analogous to `pros::screen::fill_circle <../cpp/screen.html#fill_circle>`_.
 
@@ -782,6 +822,10 @@ screen_touch_callback
 ~~~~~~~~~
 
 Assigns a callback function to be called when a certain touch event happens.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 Analogous to `pros::screen::touch_callback <../cpp/screen.html#touch_callback>`_.
 

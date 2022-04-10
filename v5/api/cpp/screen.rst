@@ -20,6 +20,10 @@ set_pen
 
 Set the pen color for subsequent graphics operations
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -56,6 +60,10 @@ set_eraser
 
 Set the eraser color for subsequent graphics operations
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -91,6 +99,10 @@ get_pen
 
 Get the current pen color.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -121,6 +133,10 @@ get_eraser
 ~~~~~~~~~
 
 Get the current eraser color.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -153,6 +169,10 @@ erase
 
 Clear entire display with eraser color
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -181,6 +201,10 @@ scroll
 ~~~~~~~~~
 
 Scroll lines on the display upwards.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -212,6 +236,10 @@ scroll_area
 ~~~~~~~~~
 
 Scroll lines within a region on the display
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -246,6 +274,10 @@ copy_area
 ~~~~~~~~~
 
 Copy a screen region (designated by a rectangle) to an off-screen buffer from the screen
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -285,6 +317,10 @@ draw_pixel
 
 Draw a single pixel on the screen using the current pen color
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -318,6 +354,10 @@ erase_pixel
 ~~~~~~~~~
 
 Erase a pixel from the screen using the current eraser color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -356,6 +396,10 @@ draw_line
 
 Draw a line on the screen using the current pen color
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -388,6 +432,10 @@ erase_line
 ~~~~~~~~~
 
 Erase a line on the screen using the current eraser color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -424,6 +472,10 @@ draw_rect
 
 Draw a rectangle on the screen using the current pen color
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -456,6 +508,10 @@ erase_rect
 ~~~~~~~~~
 
 Erase a rectangle on the screen using the current eraser color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -490,6 +546,10 @@ fill_rect
 
 Fill a rectanglular region on the screen using the current pen color
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -523,6 +583,10 @@ draw_circle
 
 Draw a circle on the screen using the current pen color
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
@@ -554,6 +618,10 @@ erase_circle
 ~~~~~~~~~
 
 Erase a circle on the screen using the current eraser color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -588,6 +656,10 @@ fill_circle
 ~~~~~~~~~
 
 Fill a circular region of the screen using the current pen color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -740,6 +812,10 @@ touch_callback
 ~~~~~~~~~
 
 Assigns a callback function to be called when a certain touch event happens.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototypes
