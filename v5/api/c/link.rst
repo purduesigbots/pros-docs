@@ -73,8 +73,13 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
+        #define LINK_PORT 1 
+        #define LINK_ID "ROBOT1"
+
         void initialize() {
-        } 
+          link_init(LINK_PORT, LINK_ID, E_LINK_TRANSMITTER);          
+          link_init_override(LINK_PORT, LINK_ID, E_LINK_TRANSMITTER);
+        }
 
 ============ =================================================================================================================
  Parameters
