@@ -51,6 +51,8 @@ Analogous to `pros::screen::set_pen <../cpp/screen.html#set_pen>`_.
  color        The pen color to set (it is recommended to use values from the enum defined in colors.h)
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_set_eraser
@@ -87,6 +89,8 @@ Analogous to `pros::screen::set_eraser <../cpp/screen.html#set_eraser>`_.
 ============ =================================================================================================================
  color        The background color to set (it is recommended to use values from the enum defined in colors.h)
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -185,6 +189,8 @@ Analogous to `pros::screen::erase <../cpp/screen.html#erase>`_.
            }
         }
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_scroll
@@ -217,6 +223,8 @@ Analogous to `pros::screen::scroll <../cpp/screen.html#scroll>`_.
  start_line   The line from which scrolling will start
  lines        The number of lines to scroll up
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -253,6 +261,8 @@ Analogous to `pros::screen::scroll_area <../cpp/screen.html#scroll_area>`_.
  y1           The y coordinate of the bottom right corner of the rectangular region
  lines        The number of lines to scroll up
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -294,6 +304,8 @@ Analogous to `pros::screen::copy_area <../cpp/screen.html#copy_area>`_.
  stride	     Off-screen buffer width in pixels, such that image size is stride-padding
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_draw_pixel
@@ -333,6 +345,8 @@ This function uses the following values of ``errno`` when an error state is reac
  x            The x coordinate of the pixel
  y            The y coordinate of the pixel
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -377,6 +391,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y            The y coordinate of the pixel
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_draw_line
@@ -415,6 +431,8 @@ Analogous to `pros::screen::draw_line <../cpp/screen.html#draw_line>`_.
  x1           The x coordinate of the second point of the line
  y1           The y coordinate of the second point of the line
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -457,6 +475,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y1           The y coordinate of the second point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_draw_rect
@@ -495,6 +515,8 @@ This function uses the following values of ``errno`` when an error state is reac
  x1           The x coordinate of the bottom right point of the line
  y1           The y coordinate of the bottom right point of the line
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -535,6 +557,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y1           The y coordinate of the bottom right point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_fill_rect
@@ -574,6 +598,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y1           The y coordinate of the bottom right point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_draw_circle
@@ -611,6 +637,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y            The y coordinate of the center of the circle
  radius       Radius of the circle
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -652,6 +680,8 @@ This function uses the following values of ``errno`` when an error state is reac
  radius       Radius of the circle
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_fill_circle
@@ -691,6 +721,8 @@ Analogous to `pros::screen::fill_circle <../cpp/screen.html#fill_circle>`_.
  y            The y coordinate of the center of the circle
  radius       Radius of the circle
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -734,6 +766,8 @@ Print a formatted string to the screen, with a line and text style specifier.
  text         Formatted string for printing variables and text
  ...          Optional list of arguments for the format string
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -857,6 +891,8 @@ Analogous to `pros::screen::touch_callback <../cpp/screen.html#touch_callback>`_
  cb           Function pointer to callback
  event_type   The touch type for the callback to be triggered
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 

@@ -53,6 +53,8 @@ This function uses the following values of ``errno`` when an error state is reac
  color        The pen color to set (it is recommended to use values from the enum defined in colors.h)
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 set_eraser
@@ -91,6 +93,8 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  color        The background color to set (it is recommended to use values from the enum defined in colors.h)
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -195,6 +199,8 @@ This function uses the following values of ``errno`` when an error state is reac
            }
         }
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 scroll
@@ -229,6 +235,8 @@ This function uses the following values of ``errno`` when an error state is reac
  start_line   The line from which scrolling will start
  lines        The number of lines to scroll up
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -267,6 +275,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y1           The y coordinate of the bottom right corner of the rectangular region
  lines        The number of lines to scroll up
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -310,6 +320,8 @@ This function uses the following values of ``errno`` when an error state is reac
  stride	     Off-screen buffer width in pixels, such that image size is stride-padding
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 draw_pixel
@@ -347,6 +359,8 @@ This function uses the following values of ``errno`` when an error state is reac
  x            The x coordinate of the pixel
  y            The y coordinate of the pixel
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -389,6 +403,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y            The y coordinate of the pixel
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 draw_line
@@ -425,6 +441,8 @@ This function uses the following values of ``errno`` when an error state is reac
  x1           The x coordinate of the second point of the line
  y1           The y coordinate of the second point of the line
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -465,6 +483,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y1           The y coordinate of the second point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 draw_rect
@@ -501,6 +521,8 @@ This function uses the following values of ``errno`` when an error state is reac
  x1           The x coordinate of the bottom right point of the line
  y1           The y coordinate of the bottom right point of the line
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -539,6 +561,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y1           The y coordinate of the bottom right point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 fill_rect
@@ -576,6 +600,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y1           The y coordinate of the bottom right point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 draw_circle
@@ -611,6 +637,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y            The y coordinate of the center of the circle
  radius       Radius of the circle
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -650,6 +678,8 @@ This function uses the following values of ``errno`` when an error state is reac
  radius       Radius of the circle
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 fill_circle
@@ -687,6 +717,8 @@ This function uses the following values of ``errno`` when an error state is reac
  y            The y coordinate of the center of the circle
  radius       Radius of the circle
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -729,6 +761,8 @@ Print a formatted string to the screen, with a line and text style specifier.
  ...          Optional list of arguments for the format string
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 print
@@ -766,6 +800,8 @@ Print a formatted string to the screen at a coordinate location
  text         Formatted string for printing variables and text
  ...          Optional list of arguments for the format string
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -849,6 +885,8 @@ This function uses the following values of ``errno`` when an error state is reac
  cb           Function pointer to callback
  event_type   The touch type for the callback to be triggered
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
