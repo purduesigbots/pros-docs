@@ -1486,6 +1486,124 @@ Analogous to `adi_gyro_reset <../c/adi.html#adi-gyro-reset>`_.
 
 **Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
+----
+
+pros::ADIPotentiometer 
+=============
+
+Constructor(s) 
+--------------
+
+Configures an ADI port to act as a Potentiometer.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+
+Analogous to `adi_potentiometer_init <../c/adi.html#adi-potentiometer-init>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::ADIPotentiometer::ADIPotentiometer ( std::uint8_t adi_port, adi_potentiometer_type_e_t potentiometer_type = E_ADI_POT_EDR )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define POTENTIOMETER_PORT 1
+        #define POTENTIOMETER_TYPE pros::E_ADI_POT_EDR
+
+        void opcontrol() {
+          pros::ADIPotentiometer potentiometer (POTENTIOMETER_PORT, POTENTIOMETER_TYPE);
+          while (true) {
+            // Get the potentiometer angle
+            std::cout << "Angle: " << potnetiometer.get_angle();
+            pros::delay(10);
+          }
+        }
+
+==================== =============================================================================================================
+ Parameters
+==================== =============================================================================================================
+ port                 The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as a potentiometer
+ potentiometer_type   An adi_potentiometer_type_e_t enum value specifying the potentiometer version type
+==================== =============================================================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::ADIPotentiometer::ADIPotentiometer ( ext_adi_port_pair_t port_pair, adi_potentiometer_type_e_t potentiometer_type = E_ADI_POT_EDR )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define ADI_POTENTIOMETER_PORT 'a'
+        #define SMART_PORT 1
+
+        void opcontrol() {
+          pros::ADIPotentiometer potentiometer ({{ SMART_PORT , ADI_POTENTIOMETER_PORT }});
+          while (true) {
+            // Get the potentiometer angle
+            std::cout << "Angle: " << potentiometer.get_angle();
+            pros::delay(10);
+          }
+        }
+
+=================== =================================================================================================================
+ Parameters
+=================== =================================================================================================================
+ port_pair           2 value pair in the form of {{smart_port , adi_port}} for which to create an object, where smart_port is an 
+                     ADI expander's smart port (1-22) and adi_port is ADI port number (from 1-8, 'a'-'h', 'A'-'H').
+ potentiometer_type  An adi_potentiometer_type_e_t enum value specifying the potentiometer version type
+=================== =================================================================================================================
+
+Methods 
+-------
+
+get_angle 
+~~~~~~~~~
+
+Gets the current potentiometer angle in tenths of a degree.
+
+The original potentiometer rotates 250 degrees thus returning an angle between 0-250 degrees.
+Potentiometer V2 rotates 330 degrees thus returning an angle between 0-330 degrees.
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EADDRINUSE``  - The port is not configured as a potentiometer (e.g. the port has been reconfigured)
+
+Analogous to `adi_poteniometer_get <../c/adi.html#adi-potentiometer-get-angle>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        double pros::ADIPotentiometer::get_angle ( ) const
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define ADI_POTENTIOMETER_PORT 'a'
+        #define SMART_PORT 1
+
+        void opcontrol() {
+          pros::ADIPotentiometer potentiometer ({{ SMART_PORT , ADI_POTENTIOMETER_PORT }});
+          while (true) {
+            // Get the potentiometer angle
+            std::cout << "Angle: " << potentiometer.get_angle();
+            pros::delay(10);
+          }
+        }
+
+**Returns:**  The potentiometer angle in tenths of a degree.
+
 Macros
 ======
 
@@ -1566,6 +1684,25 @@ pros::adi_port_config_e_t
  pros::E_ADI_TYPE_UNDEFINED          The default value for an uninitialized ADI port
  pros::E_ADI_ERR                     Error return value for ADI port configuration
 ================================== ================================================================
+
+----
+
+pros::adi_potentiometer_type_e_t
+-------------------
+
+::
+
+typedef enum adi_potentiometer_type_e { 
+	E_ADI_POT_EDR = 0,
+	E_ADI_POT_V2
+} adi_potentiometer_type_e_t;
+
+================== ============================================================
+ Value
+================== ============================================================
+ pros::E_ADI_POT_EDR                 Configures the potentiometer as the origonal potentiometer
+ pros::E_ADI_ANALOG_OUT              Configures the potentiometer as the potentiometer
+================== ============================================================
 
 Typedefs
 ========
