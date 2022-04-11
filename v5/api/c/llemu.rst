@@ -442,6 +442,38 @@ Analogous to `pros::lcd::shutdown <../cpp/llemu.html#shutdown>`_.
 
 ----
 
+lcd_set_background_color
+------------------------
+
+Changes the color of the LCD background to a provided color expressed in
+ * type lv_color_t.
+
+Analogous to `pros::lcd::shutdown <../cpp/llemu.html#set_background_color>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         void lcd_set_background_color( lv_color_t color )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          lcd_initialize();
+          lcd_set_background_color(COLOR_GOLD);
+        }
+        
+============ =============================================
+ Parameters
+============ =============================================
+ color        A color of type lv_color_t
+============ =============================================
+
+----
+
 Macros
 ======
 
