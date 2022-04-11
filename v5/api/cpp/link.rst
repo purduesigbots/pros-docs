@@ -30,7 +30,7 @@ Constructor(s)
         #define LINK_ID "ROBOT1"
 
          void initialize() {
-            pros::Link transmitter(LINK_TRANSMITTER_PORT, LINK_ID, E_LINK_TRANSMITTER);
+            pros::Link transmitter(LINK_TRANSMITTER_PORT, LINK_ID, pros::E_LINK_TRANSMITTER);
          }
 
 ============ =========================================================================
@@ -75,7 +75,7 @@ This function uses the following values of ``errno`` when an error state is reac
             pros::Link transmitter(LINK_TRANSMITTER_PORT);
             
             while (true) {
-               if (transmitter.connected) {
+               if (transmitter.connected()) {
                   pros::lcd::set_text(1, "Link connected!");
                }
                pros::delay(20);
