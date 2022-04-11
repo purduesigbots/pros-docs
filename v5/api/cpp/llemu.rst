@@ -440,6 +440,91 @@ Analogous to `lcd_shutdown <../c/llemu.html#lcd-shutdown>`_.
 **Returns:** ``true`` if the operation was successful, or ``false`` otherwise, setting
 ``errno`` values as specified above.
 
+----
+
+set_background_color
+--------------------
+
+Changes the color of the LCD background to a provided color expressed in type lv_color_t, or as three values of type uint8_t.
+
+Analogous to `lcd_set_background_color <../c/llemu.html#lcd-set-background-color>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         void set_background_color( lv_color_t color )
+         set_background_color( std::uint8_t r, std::uint8_t g, std::uint8_t b )
+         
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          pros::lcd::initialize();
+          pros::lcd::set_background_color(COLOR_GOLD);
+        }
+
+============ =============================================
+ Parameters
+============ =============================================
+ color        A color of type lv_color_t
+ r            A value of type uint8_t, with a range of 0
+              to 255, representing the red value of a
+              color
+ g            A value of type uint8_t, with a range of 0
+              to 255, representing the green value of a
+              color
+ b            A value of type uint8_t, with a range of 0
+              to 255, representing the blue value of a
+              color
+============ =============================================
+
+----
+
+set_text_color
+--------------
+
+Changes the text color of the LCD to a provided color expressed in type lv_color_t, or as three values of type uint8_t.
+
+Analogous to `lcd_set_text_color <../c/llemu.html#lcd-set-text-color>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         void set_text_color( lv_color_t color )
+         set_text_color( std::uint8_t r, std::uint8_t g, std::uint8_t b )
+         
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          pros::lcd::initialize();
+          pros::lcd::set_text_color(COLOR_GOLD);
+          pros::lcd::set_text(1, "Hello World!");
+        }
+
+============ =============================================
+ Parameters
+============ =============================================
+ color        A color of type lv_color_t
+ r            A value of type uint8_t, with a range of 0
+              to 255, representing the red value of a
+              color
+ g            A value of type uint8_t, with a range of 0
+              to 255, representing the green value of a
+              color
+ b            A value of type uint8_t, with a range of 0
+              to 255, representing the blue value of a
+              color
+============ =============================================
+
 Macros
 ======
 
