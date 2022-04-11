@@ -1,5 +1,5 @@
 =========================
-PROS Kernel 3.5.0 Release
+PROS Kernel 3.6.0 Release
 =========================
 
 .. post:: 11 April, 2022
@@ -12,11 +12,11 @@ This update brings support for VEXLink
 
 New Features:
 
-- Add Dedicated ADI Potentiometer Class
-- Add ability to change LLEMU text/background color
-- Add VEXLink Support
-- Add Motor Stop Function
-- Add Task Join Method
+- Add Dedicated ADI Potentiometer Class `ADI Potentiometer <../../v5/api/c/adi.html>`_.
+- Add ability to change LLEMU text/background color `LLEMU <../../v5/api/cpp/llemu.html>`_.
+- Add VEXLink Support `VEXLink <../../v5/api/cpp/link.html>`_.
+- Add Motor Stop Function `Motors <../../v5/api/cpp/motors.html>`_.
+- Add Task Join Method `RTOS <../../v5/api/cpp/rtos.html>`_.
 
 Quality of Life and Bugfixes:
 
