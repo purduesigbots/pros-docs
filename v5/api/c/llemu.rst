@@ -447,7 +447,7 @@ lcd_set_background_color
 
 Changes the color of the LCD background to a provided color expressed in type lv_color_t.
 
-Analogous to `pros::lcd::shutdown <../cpp/llemu.html#set_background_color>`_.
+Analogous to `pros::lcd::set_background_color <../cpp/llemu.html#set_background_color>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -478,7 +478,7 @@ lcd_set_text_color
 
 Changes the text color of the LCD to a provided color expressed in type lv_color_t.
 
-Analogous to `pros::lcd::shutdown <../cpp/llemu.html#set_text_color>`_.
+Analogous to `pros::lcd::set_text_color <../cpp/llemu.html#set_text_color>`_.
 
 .. tabs ::
    .. tab :: Prototype
