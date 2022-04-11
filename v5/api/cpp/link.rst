@@ -27,9 +27,10 @@ Constructor(s)
       ::
 
         #define LINK_TRANSMITTER_PORT 1
+        #define LINK_ID "ROBOT1"
 
          void initialize() {
-            pros::Link transmitter(LINK_TRANSMITTER_PORT);
+            pros::Link transmitter(LINK_TRANSMITTER_PORT, LINK_ID, E_LINK_TRANSMITTER);
          }
 
 ============ =========================================================================
@@ -373,3 +374,22 @@ This function uses the following values of ``errno`` when an error state is reac
          }
 
 **Returns:** PROS_ERR if port is not a link, ``1`` if the operation succeeded.
+
+----
+
+Enumerated Values
+=================
+
+::
+
+  typedef enum link_type_e {
+    E_LINK_RECIEVER = 0,
+    E_LINK_TRANSMITTER
+  } link_type_e_t;
+
+============================= =============================================================
+ Value
+============================= =============================================================
+ E_LINK_RECIEVER               Indicating that the radio is a reciever.
+ E_LINK_TRANSMITTER            Indicating that the radio is a transmitter.
+============================= =============================================================
