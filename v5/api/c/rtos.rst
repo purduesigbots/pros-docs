@@ -1,6 +1,6 @@
 .. highlight:: c
    :linenothreshold: 5
-
+ 
 =====================
 RTOS Facilities C API
 =====================
