@@ -4,10 +4,9 @@ PROS First Time Users Guide
 
 The most important characteristic of PROS to note when getting started
 is that PROS is just standard C or C++ programming. Anything that works in
-standard C/C++ will work as a
-part of a PROS project, and similarly the errors given for code that
-doesn't work will match errors given for any similar C/C++ code. Learning C/C++
-is essential for using PROS.
+standard C/C++ will work as a part of a PROS project, and similarly the errors
+given for code that doesn't work will match errors given for any similar C/C++
+code. Learning C/C++ is essential for using PROS.
 
 I've never used PROS or written C/C++ code before, how do I start?
 ------------------------------------------------------------------
