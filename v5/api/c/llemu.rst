@@ -446,7 +446,7 @@ lcd_set_background_color
 ------------------------
 
 Changes the color of the LCD background to a provided color expressed in
- * type lv_color_t.
+ \* type lv_color_t.
 
 Analogous to `pros::lcd::shutdown <../cpp/llemu.html#set_background_color>`_.
 
