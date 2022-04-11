@@ -503,8 +503,6 @@ Analogous to `pros::lcd::set_text_color <../cpp/llemu.html#set_text_color>`_.
  color        A color of type lv_color_t
 ============ =============================================
 
-----
-
 Macros
 ======
 
