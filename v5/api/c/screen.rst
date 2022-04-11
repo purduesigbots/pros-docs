@@ -51,6 +51,8 @@ Analogous to `pros::screen::set_pen <../cpp/screen.html#set_pen>`_.
  color        The pen color to set (it is recommended to use values from the enum defined in colors.h)
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_set_eraser
@@ -87,6 +89,8 @@ Analogous to `pros::screen::set_eraser <../cpp/screen.html#set_eraser>`_.
 ============ =================================================================================================================
  color        The background color to set (it is recommended to use values from the enum defined in colors.h)
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -185,6 +189,8 @@ Analogous to `pros::screen::erase <../cpp/screen.html#erase>`_.
            }
         }
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_scroll
@@ -217,6 +223,8 @@ Analogous to `pros::screen::scroll <../cpp/screen.html#scroll>`_.
  start_line   The line from which scrolling will start
  lines        The number of lines to scroll up
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -253,6 +261,8 @@ Analogous to `pros::screen::scroll_area <../cpp/screen.html#scroll_area>`_.
  y1           The y coordinate of the bottom right corner of the rectangular region
  lines        The number of lines to scroll up
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -294,6 +304,8 @@ Analogous to `pros::screen::copy_area <../cpp/screen.html#copy_area>`_.
  stride	     Off-screen buffer width in pixels, such that image size is stride-padding
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_draw_pixel
@@ -302,6 +314,10 @@ screen_draw_pixel
 Draw a single pixel on the screen using the current pen color
 
 Analogous to `pros::screen::draw_pixel <../cpp/screen.html#draw_pixel>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -330,6 +346,8 @@ Analogous to `pros::screen::draw_pixel <../cpp/screen.html#draw_pixel>`_.
  y            The y coordinate of the pixel
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_erase_pixel
@@ -338,6 +356,10 @@ screen_erase_pixel
 Erase a pixel from the screen using the current eraser color
 
 Analogous to `pros::screen::erase_pixel <../cpp/screen.html#erase_pixel>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -369,12 +391,18 @@ Analogous to `pros::screen::erase_pixel <../cpp/screen.html#erase_pixel>`_.
  y            The y coordinate of the pixel
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_draw_line
 ~~~~~~~~~
 
 Draw a line on the screen using the current pen color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 Analogous to `pros::screen::draw_line <../cpp/screen.html#draw_line>`_.
 
@@ -404,6 +432,8 @@ Analogous to `pros::screen::draw_line <../cpp/screen.html#draw_line>`_.
  y1           The y coordinate of the second point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_erase_line
@@ -412,6 +442,10 @@ screen_erase_line
 Erase a line on the screen using the current eraser color
 
 Analogous to `pros::screen::erase_line <../cpp/screen.html#erase_line>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -441,6 +475,8 @@ Analogous to `pros::screen::erase_line <../cpp/screen.html#erase_line>`_.
  y1           The y coordinate of the second point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_draw_rect
@@ -449,6 +485,10 @@ screen_draw_rect
 Draw a rectangle on the screen using the current pen color
 
 Analogous to `pros::screen::draw_rect <../cpp/screen.html#draw_rect>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -476,6 +516,8 @@ Analogous to `pros::screen::draw_rect <../cpp/screen.html#draw_rect>`_.
  y1           The y coordinate of the bottom right point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_erase_rect
@@ -484,6 +526,10 @@ screen_erase_rect
 Erase a rectangle on the screen using the current eraser color
 
 Analogous to `pros::screen::erase_rect <../cpp/screen.html#erase_rect>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -511,6 +557,8 @@ Analogous to `pros::screen::erase_rect <../cpp/screen.html#erase_rect>`_.
  y1           The y coordinate of the bottom right point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_fill_rect
@@ -519,6 +567,10 @@ screen_fill_rect
 Fill a rectanglular region on the screen using the current pen color
 
 Analogous to `pros::screen::fill_rect <../cpp/screen.html#fill_rect>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -546,6 +598,8 @@ Analogous to `pros::screen::fill_rect <../cpp/screen.html#fill_rect>`_.
  y1           The y coordinate of the bottom right point of the line
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_draw_circle
@@ -554,6 +608,10 @@ screen_draw_circle
 Draw a circle on the screen using the current pen color
 
 Analogous to `pros::screen::draw_circle <../cpp/screen.html#draw_circle>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -580,6 +638,8 @@ Analogous to `pros::screen::draw_circle <../cpp/screen.html#draw_circle>`_.
  radius       Radius of the circle
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_erase_circle
@@ -588,6 +648,10 @@ screen_erase_circle
 Erase a circle on the screen using the current eraser color
 
 Analogous to `pros::screen::erase_circle <../cpp/screen.html#erase_circle>`_.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 .. tabs ::
    .. tab :: Prototype
@@ -616,12 +680,18 @@ Analogous to `pros::screen::erase_circle <../cpp/screen.html#erase_circle>`_.
  radius       Radius of the circle
 ============ =================================================================================================================
 
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
 ----
 
 screen_fill_circle
 ~~~~~~~~~
 
 Fill a circular region of the screen using the current pen color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
 
 Analogous to `pros::screen::fill_circle <../cpp/screen.html#fill_circle>`_.
 
@@ -651,6 +721,8 @@ Analogous to `pros::screen::fill_circle <../cpp/screen.html#fill_circle>`_.
  y            The y coordinate of the center of the circle
  radius       Radius of the circle
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -694,6 +766,8 @@ Print a formatted string to the screen, with a line and text style specifier.
  text         Formatted string for printing variables and text
  ...          Optional list of arguments for the format string
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -783,6 +857,10 @@ screen_touch_callback
 
 Assigns a callback function to be called when a certain touch event happens.
 
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EACCESS`` - Another resource is currently trying to access the screen mutex.
+
 Analogous to `pros::screen::touch_callback <../cpp/screen.html#touch_callback>`_.
 
 .. tabs ::
@@ -813,6 +891,8 @@ Analogous to `pros::screen::touch_callback <../cpp/screen.html#touch_callback>`_
  cb           Function pointer to callback
  event_type   The touch type for the callback to be triggered
 ============ =================================================================================================================
+
+**Returns:** 1 if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
