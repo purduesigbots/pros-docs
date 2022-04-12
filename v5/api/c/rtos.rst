@@ -762,9 +762,9 @@ Analogous to `pros::Task::notify_take <../cpp/rtos.html#notify-take>`_.
         uint32_t task_notify_take ( bool clear_on_exit,
                                     uint32_t timeout )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
           void my_task_fn(void* ign) {
             while(task_notify_take(true, TIMEOUT_MAX)) {
@@ -807,9 +807,9 @@ Analogous to `pros::Task::join <../cpp/rtos.html#join>`_.
 
         void task_join ( task_t task )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
           void my_task_fn(void* ign) {
             lcd_print(1, "%s running", task_get_name(NULL));
@@ -846,9 +846,9 @@ Analogous to `pros::Task::resume <../cpp/rtos.html#resume>`_.
 
         void task_resume ( task_t task )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
@@ -889,9 +889,9 @@ Analogous to `pros::Task::set_priority <../cpp/rtos.html#set-priority>`_.
         void task_set_priority ( task_t task,
                                  uint32_t prio )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
@@ -925,9 +925,9 @@ Analogous to `pros::Task::suspend <../cpp/rtos.html#suspend>`_.
 
         void task_suspend ( task_t task )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
