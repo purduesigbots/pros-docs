@@ -513,9 +513,9 @@ Analogous to `task_notify <../c/rtos.html#task-notify>`_.
 
         std::uint32_t pros::Task::notify ( )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task_fn(void* ign) {
             while(my_task.notify_take(true, TIMEOUT_MAX)) {
@@ -553,9 +553,9 @@ Analogous to `task_notify_clear <../c/rtos.html#task-notify-clear>`_.
 
         bool pros::Task::notify_clear ( )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           TO BE ADDED
 
@@ -583,9 +583,9 @@ Analogous to `task_notify_ext <../c/rtos.html#task-notify-ext>`_.
                                                       notify_action_e_t action,
                                                       std::uint32_t* prev_value )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           TO BE ADDED
 
@@ -620,9 +620,9 @@ Analogous to `task_notify_take <../c/rtos.html#task-notify-take>`_.
         std::uint32_t pros::Task::notify_take ( bool clear_on_exit,
                                            std::uint32_t timeout )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task_fn(void* ign) {
             while(my_task.notify_take(true, TIMEOUT_MAX)) {
@@ -671,9 +671,9 @@ Analogous to `task_join <../c/rtos.html#task-join>`_.
 
         std::void pros::Task::join ( )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task(void* ign) {
             std::cout << "Task running" <<
@@ -712,7 +712,7 @@ Analogous to `task_delete <../c/rtos.html#task-delete>`_.
         void pros::Task::remove ( )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void my_task_fn(void* ign) {
@@ -743,9 +743,9 @@ Analogous to `task_resume <../c/rtos.html#task-resume>`_.
 
         void pros::Task::resume ( )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
@@ -779,9 +779,9 @@ Analogous to `task_set_priority <../c/rtos.html#task-set-priority>`_.
 
         void pros::Task::set_priority ( std::uint32_t prio )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
@@ -814,9 +814,9 @@ Analogous to `task_suspend <../c/rtos.html#task_suspend>`_.
 
         void pros::Task::suspend ( )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
