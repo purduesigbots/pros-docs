@@ -796,9 +796,9 @@ Analogous to `pros::Task::notify_take <../cpp/rtos.html#notify-take>`_.
         uint32_t task_notify_take ( bool clear_on_exit,
                                     uint32_t timeout )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
           void my_task_fn(void* ign) {
             while(task_notify_take(true, TIMEOUT_MAX)) {
@@ -826,6 +826,46 @@ Analogous to `pros::Task::notify_take <../cpp/rtos.html#notify-take>`_.
 
 ----
 
+task_join
+---------
+
+Utilizes task notifications to wait until specified task is complete and deleted,
+then continues to execute the program. Replicates the functionality of thread joining in C++.
+
+Analogous to `pros::Task::join <../cpp/rtos.html#join>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        void task_join ( task_t task )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+          void my_task_fn(void* ign) {
+            lcd_print(1, "%s running", task_get_name(NULL));
+	         task_delay(1000);
+	         lcd_print(2, "End of %s", task_get_name(NULL));
+          }
+          void opcontrol() {
+            task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                                         TASK_STACK_DEPTH_DEFAULT, "Example Task");
+            lcd_set_text(0, "Running task.");
+            task_join(my_task);
+            lcd_set_text(3, "Task completed.");
+          }
+
+============ ==================================
+ Parameters
+============ ==================================
+ task        The handle of the task to join
+============ ==================================
+
+----
+
 task_resume
 -----------
 
@@ -840,9 +880,9 @@ Analogous to `pros::Task::resume <../cpp/rtos.html#resume>`_.
 
         void task_resume ( task_t task )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
@@ -883,9 +923,9 @@ Analogous to `pros::Task::set_priority <../cpp/rtos.html#set-priority>`_.
         void task_set_priority ( task_t task,
                                  uint32_t prio )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
@@ -919,9 +959,9 @@ Analogous to `pros::Task::suspend <../cpp/rtos.html#suspend>`_.
 
         void task_suspend ( task_t task )
 
-     .. tab :: Example
-        .. highlight:: c
-        ::
+   .. tab :: Example
+      .. highlight:: c
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
