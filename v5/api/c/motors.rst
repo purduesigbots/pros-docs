@@ -282,6 +282,49 @@ setting ``errno``.
 
 ----
 
+motor_brake
+-----------
+
+Stops the motor using the currently configured brake mode.
+
+This function sets motor velocity to zero, which will cause it to act according to the
+set brake mode. If brake mode is set to MOTOR_BRAKE_HOLD, this function may behave
+differently than calling motor_move_absolute(0) or motor_move_relative(0).
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+
+Analogous to `pros::Motor::brake <../cpp/motors.html#brake>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t motor_brake ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void autonomous() {
+          motor_move_voltage(1, 12000);
+          delay(1000); // Move at max voltage for 1 second
+          motor_brake(1); // Brakes motor
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ port         The V5 port number from 1-21
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
 motor_modify_profiled_velocity
 ------------------------------
 
