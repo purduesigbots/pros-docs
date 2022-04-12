@@ -442,6 +442,67 @@ Analogous to `pros::lcd::shutdown <../cpp/llemu.html#shutdown>`_.
 
 ----
 
+lcd_set_background_color
+------------------------
+
+Changes the color of the LCD background to a provided color expressed in type lv_color_t.
+
+Analogous to `pros::lcd::set_background_color <../cpp/llemu.html#set_background_color>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         void lcd_set_background_color( lv_color_t color )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          lcd_initialize();
+          lcd_set_background_color(COLOR_GOLD);
+        }
+        
+============ =============================================
+ Parameters
+============ =============================================
+ color        A color of type lv_color_t
+============ =============================================
+
+----
+
+lcd_set_text_color
+------------------
+
+Changes the text color of the LCD to a provided color expressed in type lv_color_t.
+
+Analogous to `pros::lcd::set_text_color <../cpp/llemu.html#set_text_color>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         void lcd_set_text_color( lv_color_t color )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        void initialize() {
+          lcd_initialize();
+          lcd_set_text_color(COLOR_GOLD);
+          lcd_set_text(1, "Hello World!");
+        }
+        
+============ =============================================
+ Parameters
+============ =============================================
+ color        A color of type lv_color_t
+============ =============================================
+
 Macros
 ======
 
