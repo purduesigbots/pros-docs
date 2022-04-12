@@ -491,16 +491,11 @@ Analogous to `motor_brake <../c/motors.html#motor-brake>`_.
           motor.brake(); // Brakes motor
         }
 
-============ ===============================================================
- Parameters
-============ ===============================================================
- void
-============ ===============================================================
-
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
 ----
+
 move_voltage
 ~~~~~~~~~~~~
 
