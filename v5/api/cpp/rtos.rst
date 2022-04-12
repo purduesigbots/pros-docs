@@ -662,8 +662,6 @@ See :doc:`../../tutorials/topical/notifications` for details.
 
 Analogous to `task_join <../c/rtos.html#task-join>`_.
 
-.. warning:: verify this example code
-
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: cpp
