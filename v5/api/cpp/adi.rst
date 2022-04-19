@@ -1688,14 +1688,14 @@ pros::adi_port_config_e_t
 ----
 
 pros::adi_potentiometer_type_e_t
--------------------
+--------------------------------
 
 ::
 
-typedef enum adi_potentiometer_type_e { 
-	E_ADI_POT_EDR = 0,
-	E_ADI_POT_V2
-} adi_potentiometer_type_e_t;
+	typedef enum adi_potentiometer_type_e { 
+		E_ADI_POT_EDR = 0,
+		E_ADI_POT_V2
+	} adi_potentiometer_type_e_t;
 
 ===================== ============================================================
  Value
