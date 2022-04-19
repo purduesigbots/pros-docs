@@ -1461,8 +1461,8 @@ typedef enum adi_potentiometer_type_e {
 ================== ============================================================
  Value
 ================== ============================================================
- E_ADI_POT_EDR                 Configures the potentiometer as the origonal potentiometer
- E_ADI_ANALOG_OUT              Configures the potentiometer as the potentiometer
+ E_ADI_POT_EDR                 Configures the potentiometer as the original potentiometer
+ E_ADI_ANALOG_OUT              Configures the potentiometer as the new potentiometer (potentiometer V2)
 ================== ============================================================
 
 
