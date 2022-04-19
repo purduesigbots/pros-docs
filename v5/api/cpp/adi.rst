@@ -1697,12 +1697,12 @@ typedef enum adi_potentiometer_type_e {
 	E_ADI_POT_V2
 } adi_potentiometer_type_e_t;
 
-================== ============================================================
+===================== ============================================================
  Value
-================== ============================================================
- pros::E_ADI_POT_EDR                 Configures the potentiometer as the original potentiometer
- pros::E_ADI_POT_V2                  Configures the potentiometer as the V2 potentiometer
-================== ============================================================
+===================== ============================================================
+ pros::E_ADI_POT_EDR  Configures the potentiometer as the original potentiometer
+ pros::E_ADI_POT_V2   Configures the potentiometer as the V2 potentiometer
+===================== ============================================================
 
 Typedefs
 ========
