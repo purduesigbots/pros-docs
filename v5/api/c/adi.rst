@@ -1452,7 +1452,8 @@ adi_potentiometer_type_e_t
 --------------------------
 
 ::
-	:lineos:
+:lineos:
+
 	typedef enum adi_potentiometer_type_e { 
 		E_ADI_POT_EDR = 0,
 		E_ADI_POT_V2
