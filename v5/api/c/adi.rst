@@ -1465,6 +1465,7 @@ adi_potentiometer_type_e_t
  E_ADI_POT_V2     Configures the potentiometer as the V2 potentiometer
 ================ ============================================================
 
+----
 
 Typedefs
 ========
