@@ -1451,8 +1451,8 @@ adi_port_config_e_t
 adi_potentiometer_type_e_t
 --------------------------
 
-.. code-block::
-	:lineos:
+::
+	:linenos:
 
 	typedef enum adi_potentiometer_type_e { 
 		E_ADI_POT_EDR = 0,
