@@ -1704,6 +1704,8 @@ pros::adi_potentiometer_type_e_t
  pros::E_ADI_POT_V2   Configures the potentiometer as the V2 potentiometer
 ===================== ============================================================
 
+----
+
 Typedefs
 ========
 
