@@ -1688,21 +1688,23 @@ pros::adi_port_config_e_t
 ----
 
 pros::adi_potentiometer_type_e_t
--------------------
+--------------------------------
 
 ::
 
-typedef enum adi_potentiometer_type_e { 
-	E_ADI_POT_EDR = 0,
-	E_ADI_POT_V2
-} adi_potentiometer_type_e_t;
+	typedef enum adi_potentiometer_type_e { 
+		E_ADI_POT_EDR = 0,
+		E_ADI_POT_V2
+	} adi_potentiometer_type_e_t;
 
-================== ============================================================
+===================== ============================================================
  Value
-================== ============================================================
- pros::E_ADI_POT_EDR                 Configures the potentiometer as the origonal potentiometer
- pros::E_ADI_ANALOG_OUT              Configures the potentiometer as the potentiometer
-================== ============================================================
+===================== ============================================================
+ pros::E_ADI_POT_EDR  Configures the potentiometer as the original potentiometer
+ pros::E_ADI_POT_V2   Configures the potentiometer as the V2 potentiometer
+===================== ============================================================
+
+----
 
 Typedefs
 ========
