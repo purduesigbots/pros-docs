@@ -18,7 +18,8 @@ to 7.2 before installing.
 
 .. note::
     For some distributions such as Arch and Fedora, :code:`arm-none-eabi-newlib`
-    is not installed by the package manager and will need to be installed manually.
+    is not automatically installed by the package manager and will need to be
+    installed manually, in addition to the compiler package.
 
 If you're not sure whether your distribution's package manager has the toolchain
 available, or if you prefer to install things manually, follow the instructions
