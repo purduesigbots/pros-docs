@@ -48,15 +48,6 @@ PROS: Documentation Home
 .. toctree::
    :hidden:
    :maxdepth: -1
-   :caption: OkapiLib
-
-   ./okapi/index
-   ./okapi/tutorials/index
-   ./okapi/api/index
-
-.. toctree::
-   :hidden:
-   :maxdepth: -1
    :caption: Extended (Advanced Users)
 
    ./extended/index
@@ -80,10 +71,6 @@ We're proud to support **OkapiLib**, a library designed to make it easier to inc
 in your PROS project. For documentation on the latest OkapiLib version, go here:
 
 `Latest OkapiLib documentation <https://okapilib.github.io/OkapiLib/index.html>`_
-
-For documentation on OkapiLib version 3.x.x, see its Docs section:
-
-:doc:`okapi/index`
 
 Additional features of FreeRTOS that are intended for **advanced users** can be found in the `Extended API <./extended/apix.html>`_.
 Tutorials on these features can be found in the **Extended** section:
