@@ -1094,7 +1094,7 @@ Analogous to `motor_get_voltage <../c/motors.html#motor-get-voltage>`_.
       .. highlight:: cpp
       ::
 
-        double pros::Motor::get_voltage ( )
+        int32_t pros::Motor::get_voltage ( )
 
    .. tab :: Example
       .. highlight:: cpp

@@ -947,7 +947,7 @@ Analogous to `pros::Motor::get_voltage <../cpp/motors.html#get-voltage>`_.
       .. highlight:: c
       ::
 
-        double motor_get_voltage ( uint8_t port )
+        int32_t motor_get_voltage ( uint8_t port )
 
    .. tab :: Example
       .. highlight:: c
@@ -956,7 +956,7 @@ Analogous to `pros::Motor::get_voltage <../cpp/motors.html#get-voltage>`_.
         void opcontrol() {
           while (true) {
             motor_move(1, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            printf("Motor Voltage: %lf\n", motor_get_voltage(1));
+            printf("Motor Voltage: %i\n", motor_get_voltage(1));
             delay(2);
           }
         }
