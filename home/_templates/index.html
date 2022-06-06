@@ -170,12 +170,8 @@
         <p>Open Source C/C++ Development for VEX V5 and VEX Cortex</p>
         <br />
         <p>
-          <a
-            id="header-dl"
-            href="https://github.com/purduesigbots/pros-cli/releases/latest"
-            ><b>DOWNLOAD</b></a
-          >
-          <a id="header-gs" href="v5/getting-started/"
+          <a id="header-dl" href="v5/getting-started/"><b>DOWNLOAD</b></a>
+          <a id="header-gs" href="v5/getting-started/new-users.html"
             ><i>Getting Started &rarr;</i></a
           >
         </p>
@@ -374,12 +370,8 @@
         </p>
         <br />
         <p class="dl-buttons">
-          <a
-            id="main-dl"
-            href="https://github.com/purduesigbots/pros-cli/releases/latest"
-            ><b>DOWNLOAD</b></a
-          >
-          <a id="main-gs" href="v5/getting-started/"
+          <a id="main-dl" href="v5/getting-started"><b>DOWNLOAD</b></a>
+          <a id="main-gs" href="v5/getting-started/new-users.html"
             ><i>Getting Started &rarr;</i></a
           >
         </p>
@@ -458,65 +450,6 @@
           ga("send", "pageview", path + "?q=" + this.value);
         }
       });
-    </script>
-    <script>
-      if (
-        navigator.userAgent.includes("Android") ||
-        navigator.userAgent.includes("iPhone")
-      ) {
-        // User is on mobile, don't actually download anything
-        document.getElementById("header-dl").href =
-          "v5/getting-started/index.html";
-        document.getElementById("main-dl").href =
-          "v5/getting-started/index.html";
-        document.getElementById("header-gs").href =
-          "v5/getting-started/index.html";
-        document.getElementById("main-gs").href =
-          "v5/getting-started/index.html";
-      } else if (
-        navigator.userAgent.includes("Windows") &&
-        (navigator.userAgent.includes("x64") ||
-          navigator.userAgent.include("Win64"))
-      ) {
-        var url =
-          "https://api.github.com/repos/purduesigbots/pros-cli/releases";
-        fetch(url, {
-          method: "GET",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            var version = data[0].tag_name;
-            var dl_link = `https://github.com/purduesigbots/pros-cli/releases/latest/download/pros-windows-${version}.0-64bit.exe`;
-            document.getElementById("header-dl").href = dl_link;
-            document.getElementById("main-dl").href = dl_link;
-          });
-
-        document.getElementById("header-gs").href =
-          "v5/getting-started/windows.html";
-        document.getElementById("main-gs").href =
-          "v5/getting-started/windows.html";
-      } else if (
-        navigator.userAgent.includes("Mac OS") ||
-        navigator.userAgent.includes("Macintosh")
-      ) {
-        document.getElementById("header-dl").href =
-          "v5/getting-started/macos.html";
-        document.getElementById("main-dl").href =
-          "v5/getting-started/macos.html";
-        document.getElementById("header-gs").href =
-          "v5/getting-started/macos.html";
-        document.getElementById("main-gs").href =
-          "v5/getting-started/macos.html";
-      } else if (navigator.userAgent.includes("Linux")) {
-        document.getElementById("header-dl").href =
-          "v5/getting-started/linux.html";
-        document.getElementById("main-dl").href =
-          "v5/getting-started/linux.html";
-        document.getElementById("header-gs").href =
-          "v5/getting-started/linux.html";
-        document.getElementById("main-gs").href =
-          "v5/getting-started/linux.html";
-      }
     </script>
     <script src="//localhost:35729/livereload.js"></script>
   </body>
