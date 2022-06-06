@@ -280,7 +280,7 @@
           <footer><i>- Theo | 7842F</i></footer>
         </blockquote>
         <blockquote>
-          "I loved using the beta. I’ve convinced my HS teams to use PROS this
+          "I loved using the beta. I've convinced my HS teams to use PROS this
           year. You guys do awesome, quality work."
           <footer><i>- Oscar | MASON1</i></footer>
         </blockquote>
@@ -296,16 +296,36 @@
           autonomous period. We created PROS to leverage this opportunity.
         </p>
         <figure>
-          <img
+          <!-- <img
             alt="SIGBots 2019 Vex U Tournament"
             srcset="
-              _static/img/360/sigbots-2019-commons.jpeg 360w,
-              _static/img/480/sigbots-2019-commons.jpeg 480w,
-              _static/img/640/sigbots-2019-commons.jpeg 640w
+              _static/img/360/sigbots-2019-commons.jpg   360w,
+              _static/img/480/sigbots-2019-commons.jpg   480w,
+              _static/img/640/sigbots-2019-commons.jpg   640w,
+              _static/img/1080/sigbots-2019-commons.jpg 1080w
             "
-            sizes="(max-width: 480px) 360px, (max-width: 640px) 480px, 640px,"
-            src="_static/img/sigbots-2019-commons.jpeg"
-          />
+            sizes="(min-width: 479px) 1080px, 480px"
+            src="_static/img/1080/sigbots-2019-commons.jpg"
+          /> -->
+          <picture>
+            <source
+              media="(min-width: 640px)"
+              srcset="_static/img/1080/sigbots-2019-commons.jpg"
+            />
+            <source
+              media="(min-width: 480px)"
+              srcset="_static/img/640/sigbots-2019-commons.jpg"
+            />
+            <source
+              media="(min-width: 360px)"
+              srcset="_static/img/480/sigbots-2019-commons.jpg"
+            />
+            <img
+              src="_static/img/360/sigbots-2019-commons.jpg"
+              alt="Flowers"
+              style="width: auto"
+            />
+          </picture>
           <figcaption>
             <i
               >One of the Vex U tournaments staffed by PROS members at Purdue</i
