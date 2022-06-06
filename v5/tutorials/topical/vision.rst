@@ -9,7 +9,76 @@ Setting Signatures
 ==================
 
 The first step to using the vision sensor is setting color signatures for the sensor
-to recognize as objects. This is done through the V5 Vision Utility program.
+to recognize as objects. This is done through the V5 Vision Utility program or programmatically.
+
+
+.. tabs::
+   .. group-tab :: C++
+      .. highlight:: cpp
+      .. code-block:: cpp
+         :caption: opcontrol.cpp
+         :linenos:
+
+         #define VISION_PORT 1
+         #define EXAMPLE_SIG 1
+
+         void opcontrol() {
+           pros::Vision vision_sensor (VISION_PORT);
+           
+           pros::vision_signature_s_t RED_SIG =
+             pros::Vision::signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+
+
+           sensor.set_signature(EXAMPLE_SIG, &RED_SIG);
+         }
+
+   .. group-tab :: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: opcontrol.c
+         :linenos:
+
+         #define VISION_PORT 1
+
+         void opcontrol() {
+           // values acquired from the vision utility
+           vision_signature_s_t RED_SIG =
+             vision_signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
+         }
+
+Color Codes
+==================
+Color codes can also be created from multiple signatures.
+
+.. tabs::
+   .. group-tab :: C++
+      .. highlight:: cpp
+      .. code-block:: cpp
+         :caption: opcontrol.cpp
+         :linenos:
+
+         #define VISION_PORT 1
+         #define EXAMPLE_SIG 1
+         #define OTHER_SIG 2
+
+         void opcontrol() {
+           pros::Vision vision_sensor (VISION_PORT);
+           pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+         }
+
+   .. group-tab :: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: opcontrol.c
+         :linenos:
+
+         #define VISION_PORT 1
+         #define EXAMPLE_SIG 1
+         #define OTHER_SIG 2
+
+         void opcontrol() {
+           vision_color_code_t code1 = vision_create_color_code(VISION_PORT, EXAMPLE_SIG, OTHER_SIG);
+         }
 
 Retrieving Objects
 ==================
@@ -25,23 +94,6 @@ The simplest way to interact with the vision sensor is to get an object by its s
 0 is the largest object detected by the sensor.
 
 .. tabs::
-   .. group-tab :: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: opcontrol.c
-         :linenos:
-
-         #define VISION_PORT 1
-
-         void opcontrol() {
-           while (true) {
-             vision_object_s_t rtn = vision_get_by_size(VISION_PORT, 0);
-             // Gets the largest object
-             printf("sig: %d", rtn.signature);
-             delay(2);
-           }
-         }
-
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -61,6 +113,23 @@ The simplest way to interact with the vision sensor is to get an object by its s
            }
          }
 
+   .. group-tab :: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: opcontrol.c
+         :linenos:
+
+         #define VISION_PORT 1
+
+         void opcontrol() {
+           while (true) {
+             vision_object_s_t rtn = vision_get_by_size(VISION_PORT, 0);
+             // Gets the largest object
+             printf("sig: %d", rtn.signature);
+             delay(2);
+           }
+         }
+
 
 By Signature
 ------------
@@ -70,25 +139,6 @@ want to only look for objects of a particular signature. The ``get_by_sig()`` fu
 implements this functionality.
 
 .. tabs::
-   .. group-tab :: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: opcontrol.c
-         :linenos:
-
-         #define VISION_PORT 1
-         #define EXAMPLE_SIG 1
-
-         void opcontrol() {
-           while (true) {
-             vision_object_s_t rtn = vision_get_by_sig(VISION_PORT, 0, EXAMPLE_SIG);
-             // Gets the largest object of the EXAMPLE_SIG signature
-             printf("sig: %d", rtn.signature);
-             // Prints "sig: 1"
-             delay(2);
-           }
-         }
-
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -109,6 +159,25 @@ implements this functionality.
            }
          }
 
+   .. group-tab :: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: opcontrol.c
+         :linenos:
+
+         #define VISION_PORT 1
+         #define EXAMPLE_SIG 1
+
+         void opcontrol() {
+           while (true) {
+             vision_object_s_t rtn = vision_get_by_sig(VISION_PORT, 0, EXAMPLE_SIG);
+             // Gets the largest object of the EXAMPLE_SIG signature
+             printf("sig: %d", rtn.signature);
+             // Prints "sig: 1"
+             delay(2);
+           }
+         }
+
 Changing the Object Coordinates
 ===============================
 
@@ -122,18 +191,6 @@ x is still right, but negative y is upward of center and negative x is left of c
 in this configuration.
 
 .. tabs::
-   .. group-tab :: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: initialize.c
-         :linenos:
-
-         #define VISION_PORT 1
-
-         void initialize() {
-           vision_set_zero_point(VISION_PORT, E_VISION_ZERO_CENTER);
-         }
-
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -144,6 +201,18 @@ in this configuration.
 
          void initialize() {
            pros::Vision vision_sensor (VISION_PORT, pros::c::E_VISION_ZERO_CENTER);
+         }
+
+   .. group-tab :: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: initialize.c
+         :linenos:
+
+         #define VISION_PORT 1
+
+         void initialize() {
+           vision_set_zero_point(VISION_PORT, E_VISION_ZERO_CENTER);
          }
 
 Exposure Setting

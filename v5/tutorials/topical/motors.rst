@@ -18,20 +18,6 @@ with its constructor (beyond its port number) more than once for the given port.
 An example of this is given below.
 
 .. tabs::
-   .. group-tab:: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: initialize.c
-         :linenos:
-
-         #define MOTOR_PORT 1
-
-         void initialize() {
-           motor_set_gearing(MOTOR_PORT, E_MOTOR_GEARSET_18);
-           motor_set_reversed(MOTOR_PORT, true);
-           motor_set_encoder_units(MOTOR_PORT, E_MOTOR_ENCODER_DEGREES);
-         }
-
    .. group-tab:: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -55,6 +41,20 @@ An example of this is given below.
            // drive_left will have the same configuration as drive_left_initializer
          }
 
+   .. group-tab:: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: initialize.c
+         :linenos:
+
+         #define MOTOR_PORT 1
+
+         void initialize() {
+           motor_set_gearing(MOTOR_PORT, E_MOTOR_GEARSET_18);
+           motor_set_reversed(MOTOR_PORT, true);
+           motor_set_encoder_units(MOTOR_PORT, E_MOTOR_ENCODER_DEGREES);
+         }
+
 Simple Usage
 ============
 
@@ -63,21 +63,6 @@ function. This is analogous to the `motorSet <../../../cortex/api/index.html#mot
 function from PROS 2.
 
 .. tabs::
-   .. group-tab:: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: opcontrol.c
-         :linenos:
-
-         #define MOTOR_PORT 1
-
-         void opcontrol() {
-           while (true) {
-             motor_move(MOTOR_PORT, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-             delay(2);
-           }
-         }
-
    .. group-tab:: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -92,6 +77,21 @@ function from PROS 2.
            while (true) {
              drive_left.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
              pros::delay(2);
+           }
+         }
+
+   .. group-tab:: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: opcontrol.c
+         :linenos:
+
+         #define MOTOR_PORT 1
+
+         void opcontrol() {
+           while (true) {
+             motor_move(MOTOR_PORT, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
+             delay(2);
            }
          }
 
@@ -112,24 +112,6 @@ firmware. There are two functions that achieve this, ``motor_move_absolute()`` a
 These functions are very well suited to movement in autonomous.
 
 .. tabs::
-   .. group-tab:: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: autonomous.c
-         :linenos:
-
-         #define MOTOR_PORT 1
-         #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
-
-         void autonomous() {
-           motor_move_relative(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
-           // This will move 1000 ticks forward
-           motor_move_relative(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
-           // This moves an additional 1000 ticks forward
-           motor_move_absolute(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
-           // This moves 1000 ticks backwards to the 1000 tick position
-         }
-
    .. group-tab:: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -149,6 +131,24 @@ These functions are very well suited to movement in autonomous.
            // This moves 1000 ticks backwards to the 1000 tick position
          }
 
+   .. group-tab:: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: autonomous.c
+         :linenos:
+
+         #define MOTOR_PORT 1
+         #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
+
+         void autonomous() {
+           motor_move_relative(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
+           // This will move 1000 ticks forward
+           motor_move_relative(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
+           // This moves an additional 1000 ticks forward
+           motor_move_absolute(MOTOR_PORT, 1000, MOTOR_MAX_SPEED);
+           // This moves 1000 ticks backwards to the 1000 tick position
+         }
+
 For further reading material on the algorithms that create these profiled movement,
 see `Mathematics of Motion Control Profiles <https://pdfs.semanticscholar.org/a229/fdba63d8d68abd09f70604d56cc07ee50f7d.pdf>`_
 for the `Feedforward <https://en.wikipedia.org/wiki/Feed_forward_(control)>`_ control,
@@ -163,20 +163,6 @@ This ensures consistent velocity output from the motor through the use of
 `PID <http://georgegillard.com/documents/2-introduction-to-pid-controllers>`_.
 
 .. tabs::
-   .. group-tab:: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: autonomous.c
-         :linenos:
-
-         #define MOTOR_PORT 1
-         #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
-
-         void autonomous() {
-           motor_move_velocity(MOTOR_PORT, MOTOR_MAX_SPEED);
-           delay(1000); // Move at full speed for 1 second
-         }
-
    .. group-tab:: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -190,6 +176,20 @@ This ensures consistent velocity output from the motor through the use of
            pros::Motor drive_left (MOTOR_PORT);
            drive_left.move_velocity(MOTOR_MAX_SPEED);
            pros::delay(1000); // Move at full speed for 1 second
+         }
+
+   .. group-tab:: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: autonomous.c
+         :linenos:
+
+         #define MOTOR_PORT 1
+         #define MOTOR_MAX_SPEED 100 // The motor has the 36 Gearset
+
+         void autonomous() {
+           motor_move_velocity(MOTOR_PORT, MOTOR_MAX_SPEED);
+           delay(1000); // Move at full speed for 1 second
          }
 
 Telemetry

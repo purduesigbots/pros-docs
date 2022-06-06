@@ -259,10 +259,10 @@ To test this code, run the following commands in the terminal window to create, 
 
 .. code :: bash
 
-    prosv5 make
-    prosv5 upload
+    pros make
+    pros upload
 
-These 2 commands can be simplified to ```prosv5 mu``.
+These 2 commands can be simplified to ``pros mu``.
 
 Arcade Control
 ==============
@@ -327,7 +327,7 @@ wheels.
          }
 
 
-As with the tank drive code, this can be uploaded with the ``prosv5 mu`` command.
+As with the tank drive code, this can be uploaded with the ``pros mu`` command.
 
 Arm Control
 ===========
@@ -435,10 +435,10 @@ is pressed on the controller, and move the lift in that direction if so.
              motor_move(LEFT_WHEELS_PORT, left);
              motor_move(RIGHT_WHEELS_PORT, right);
 
-             if (master.get_digital(DIGITAL_R1)) {
+             if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R1)) {
                motor_move_velocity(ARM_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(DIGITAL_R2)) {
+             else if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R2)) {
                motor_move_velocity(ARM_PORT, -100);
              }
              else {

@@ -1,0 +1,3 @@
+[console_scripts]
+ablog = ablog.commands:ablog_main
+

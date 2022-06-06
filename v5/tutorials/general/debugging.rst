@@ -16,7 +16,7 @@ To view a robot's output, there are two officially supported methods:
 
 1. Through the PROS CLI:
 
-   Running ``prosv5 terminal`` on the command line will open an output
+   Running ``pros terminal`` on the command line will open an output
    stream from a robot connected over a direct USB connection.
 
 2. From within Atom:

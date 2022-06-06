@@ -1,0 +1,6 @@
+werkzeug
+sphinx>=1.6
+alabaster
+invoke
+python-dateutil
+sphinx-automodapi

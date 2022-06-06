@@ -1,0 +1,9 @@
+[console_scripts]
+analyze-build = libscanbuild.analyze:analyze_build
+analyze-c++ = libscanbuild.analyze:analyze_compiler_wrapper
+analyze-cc = libscanbuild.analyze:analyze_compiler_wrapper
+intercept-build = libscanbuild.intercept:intercept_build
+intercept-c++ = libscanbuild.intercept:intercept_compiler_wrapper
+intercept-cc = libscanbuild.intercept:intercept_compiler_wrapper
+scan-build = libscanbuild.analyze:scan_build
+

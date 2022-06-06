@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: pros-cli
+Version: 3.3.3
+Summary: Command Line Interface for managing PROS projects
+Home-page: https://github.com/purduesigbots/pros-cli
+Author: Purdue ACM SIGBots
+Author-email: pros_development@cs.purdue.edu
+License: MPL-2.0
+Platform: UNKNOWN
+License-File: LICENSE
+Requires-Dist: click (<7,>=6)
+Requires-Dist: pyserial
+Requires-Dist: cachetools
+Requires-Dist: requests
+Requires-Dist: tabulate
+Requires-Dist: jsonpickle
+Requires-Dist: semantic-version
+Requires-Dist: colorama
+Requires-Dist: pyzmq
+Requires-Dist: cobs
+Requires-Dist: scan-build (==2.0.13)
+Requires-Dist: sentry-sdk
+Requires-Dist: observable
+Requires-Dist: pypng (==0.0.20)
+
+UNKNOWN
+

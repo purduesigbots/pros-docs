@@ -18,21 +18,6 @@ Analog Data
 Retrieve analog values from the V5 Controller in the following manner:
 
 .. tabs::
-   .. group-tab :: C
-      .. highlight:: c
-      .. code-block:: c
-         :caption: opcontrol.c
-         :linenos:
-
-         #define MOTOR_PORT 1
-
-         void opcontrol() {
-          while (true) {
-            motor_move(MOTOR_PORT, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
-            delay(2);
-          }
-         }
-
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -50,16 +35,6 @@ Retrieve analog values from the V5 Controller in the following manner:
            }
          }
 
-The controller returns a range of [-127,127] for analog data, which is why the
-`motor_move <../../api/c/motors.html#motor-move>`_ function is appropriate for easy
-use with the controllers.
-
-Digital Data
-============
-
-Retrieve Digital Values from the V5 Controller in the following manner:
-
-.. tabs::
    .. group-tab :: C
       .. highlight:: c
       .. code-block:: c
@@ -70,17 +45,21 @@ Retrieve Digital Values from the V5 Controller in the following manner:
 
          void opcontrol() {
           while (true) {
-            if (controller_get_digital(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A)) {
-              motor_move(MOTOR_PORT, 127);
-            }
-            else {
-              motor_move(MOTOR_PORT, 0);
-            }
-
+            motor_move(MOTOR_PORT, controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y));
             delay(2);
           }
          }
 
+The controller returns a range of [-127,127] for analog data, which is why the
+`motor_move <../../api/c/motors.html#motor-move>`_ function is appropriate for easy
+use with the controllers.
+
+Digital Data
+============
+
+Retrieve Digital Values from the V5 Controller in the following manner:
+
+.. tabs::
    .. group-tab :: C++
       .. highlight:: cpp
       .. code-block:: cpp
@@ -102,4 +81,25 @@ Retrieve Digital Values from the V5 Controller in the following manner:
 
              pros::delay(2);
            }
+         }
+
+   .. group-tab :: C
+      .. highlight:: c
+      .. code-block:: c
+         :caption: opcontrol.c
+         :linenos:
+
+         #define MOTOR_PORT 1
+
+         void opcontrol() {
+          while (true) {
+            if (controller_get_digital(E_CONTROLLER_MASTER, E_CONTROLLER_DIGITAL_A)) {
+              motor_move(MOTOR_PORT, 127);
+            }
+            else {
+              motor_move(MOTOR_PORT, 0);
+            }
+
+            delay(2);
+          }
          }

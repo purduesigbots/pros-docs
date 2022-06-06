@@ -5,24 +5,28 @@ Wireless Upload and Hot/Cold Linking
 .. note:: Wireless Upload requires at least CLI 3.1.4, Kernel 3.1.6, VEXos 1.0.5, and OkapiLib 3.3.12 (if used).
 
 PROS supports wireless upload to the V5 Brain via a V5 Controller. Although there are no special requirements to 
-enable PROS to do this, file transfer speeds are typically unacceptably slow. To make them more reasonable, PROS
+enable PROS to do this, file transfer speeds are typically unacceptably slow. To solve this issue, PROS
 has a different method of compiling your project so that the PROS kernel and other infrequently modified code
 are uploaded once and only the code you regularly modify (e.g. opcontrol.cpp, autonomous.cpp, and initialize.cpp)
 gets transferred to the V5 wirelessly. We call the code you upload once and never change the "cold image" and the
 code that changes frequently and gets uploaded every time the "hot image."
 
-To enable this compilation mode, you should open your project's Makefile and edit the line:
+By default, this feature is already enabled in your project's Makefile:
 
 .. highlight: Makefile
 .. code-block:: Makefile
 
    # Set to 1 to enable hot/cold linking
-   USE_PACKAGE:=0
+   USE_PACKAGE:=1
 
-so that ``USE_PACKAGE:=1``. Re-build and upload your project and PROS will automatically use the new files. PROS
-will automatically detect when you're using the same combination of libraries and decide not to re-upload the
+PROS will automatically detect when you're using the same combination of libraries and decide not to re-upload the
 "cold" code. Verification that the library is present is done with filename and checksum of the file. As a result,
 if you use the same combination of libraries (cold image), only one copy of the cold image is uploaded to the V5.
+
+.. warning:: Building with hot/cold linking will prevent you from uploading several programs with mismatched kernel 
+    versions. If you attempt to do so, the previously uploaded programs will be deleted from the brain when a different 
+    cold package is uploaded. To fix this issue, you can either upgrade the kernel of the non-compatible projects to the 
+    one on the V5 Brain or disable hot/cold linking in those other projects by changing line above to ``USE_PACKAGE:=0``. 
 
 Large Projects
 --------------

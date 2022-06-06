@@ -773,7 +773,7 @@ Analogous to `controller_set_text <../c/misc.html#controller-set-text>`_.
           while (true) {
             if (!(count % 25)) {
               // Only print every 50ms, the controller text update rate is slow
-              master.set_text(E_CONTROLLER_MASTER, 0, 0, "Example text");
+              master.set_text(0, 0, "Example text");
             }
             count++;
             pros::delay(2);

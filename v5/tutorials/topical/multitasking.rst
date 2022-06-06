@@ -46,49 +46,72 @@ Task Management
 
 Tasks in PROS are simple to create:
 
+.. tabs::
+   .. group-tab:: C++
+       .. highlight:: cpp
+       .. code-block:: cpp
+          :caption: initialize.cpp
+          :linenos:
 
-.. tabs ::
-    .. tab :: C
-        .. highlight:: c
-        .. code-block:: c
-           :caption: initialize.c
-           :linenos:
+           void my_task_fn(void* param) {
+               std::cout << "My task runs" << std::endl;
+               // ...
+           }
+           void initialize() {
+               Task my_task(my_task_fn);
+           }
 
-            void my_task_fn(void* param) {
-                printf("Hello %s\n", (char*)param);
-                // ...
-            }
-            void initialize() {
-                task_t my_task = task_create(my_task_fn, "PROS", TASK_PRIORITY_DEFAULT,
-                                            TASK_STACK_DEPTH_DEFAULT, "My Task");
-            }
+   .. group-tab:: C
+       .. highlight:: c
+       .. code-block:: c
+          :caption: initialize.c
+          :linenos:
 
-    .. tab :: C++
-        .. highlight:: cpp
-        .. code-block:: cpp
-           :caption: initialize.cpp
-           :linenos:
+           void my_task_fn(void* param) {
+               printf("Task Called\n");
+               // ...
+           }
+           void initialize() {
+               task_t my_task = task_create(my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                                           TASK_STACK_DEPTH_DEFAULT, "My Task");
+           }
 
-            void my_task_fn(void* param) {
-                std::cout << Hello << (char*)param << std::endl;
-                // ...
-            }
-            void initialize() {
-                std::string text("PROS");
-                Task my_task(my_task_fn, &text, "");
-            }
-    .. tab :: API2
-        .. highlight:: c
-        .. code-block:: c
-           :caption: initialize.c
-           :linenos:
 
-            void my_task_fn(void* param) {
-                printf("Hello %s\n", (char*)param);
-            }
-            void initialize() {
-                TaskHandle my_task = taskCreate(my_task_fn, TASK_DEFAULT_STACK_SIZE, "PROS", TASK_PRIORITY_DEFAULT);
-            }
+
+Passing parameters to tasks
+---------------------------
+Tasks can have parameters passed into them.
+
+.. tabs::
+   .. group-tab:: C++
+       .. highlight:: cpp
+       .. code-block:: cpp
+          :caption: initialize.cpp
+          :linenos:
+
+          void my_task_fn(void* param) {
+              std::cout << "Function Parameters: " << (char*)param << std::endl;
+              // ...
+          }
+          void initialize() {
+              Task my_task(my_task_fn, (void*)"parameter(s) here", "My Task Name");
+          }
+            
+   .. group-tab:: C
+       .. highlight:: c
+       .. code-block:: c
+          :caption: initialize.c
+          :linenos:
+
+          void my_task_fn(void* param) {
+              printf("Function Parameters: %s\n", (char*)param);
+              // ...
+          }
+          void initialize() {
+              task_t my_task = task_create(my_task_fn, (void*)"parameter(s) here", TASK_PRIORITY_DEFAULT,
+                                          TASK_STACK_DEPTH_DEFAULT, "My Task");
+          }
+
 
 The `task_create <../../api/c/rtos.html#task_create>`_ function takes in a function where the task starts, an argument to the function,
 a priority for the task, and two new fields not yet discussed: stack size and name.
@@ -101,10 +124,41 @@ opt to use ``TASK_STACK_DEPTH_DEFAULT``, which should provide ample stack space 
 rudimentary and simple tasks (e.g. not many nested functions, no floating point context, few variables, only C)
 may be able to use ``TASK_STACK_DEPTH_MIN``.
 
-The last parameter is the task name. The task name allows you to give a task a human-friendly name for the task. It
+The last parameter is the task name. The task name allows you to give a human-friendly name to the task. It
+
 is primarily for debugging purposes and allows you (the human) to easily identify tasks if performing advanced task
 management. Task names may be up to 32 characters long, and you may pass NULL or an empty string into the function.
 In API2, `taskCreate <../../../cortex/api/index.html#taskCreate>`_ will automatically make the task name an empty string.
+
+Lambda Tasks (C++ Only)
+===============
+Tasks may sometimes be small sections of code that are not used anywhere else in the codebase. To help remedy this, a `lambda function 
+<https://en.cppreference.com/w/cpp/language/lambda>`_ (an inline function that does not require a name) allows for a task's function 
+to be created in the same place that the task is created so that the code is easier to maintain. In the example below, a lambda function
+
+is used to limit the need for creating a new function. This constructor can also use any void `Callable <https://en.cppreference.com/w/cpp/named_req/Callable>`_.
+
+
+.. tabs::
+   .. group-tab:: C++
+       .. highlight:: cpp
+       .. code-block:: cpp
+          :caption: initialize.cpp
+          :linenos:
+
+          void initialize() {
+              pros::Task task{[=] {
+                      pros::delay(1000);
+                      std::cout << "Task Called" << std::endl;
+              }};
+          }
+
+   .. group-tab:: C
+       .. highlight:: c
+       .. code-block:: c
+          :linenos:
+          
+          Lambda tasks are not supported in C.
 
 Synchronization
 ===============
@@ -120,25 +174,29 @@ and PROS has several facilities to help maintain thread safety.
 
 The simplest way to ensure thread safety is to design tasks which will never access
 the same variables or data. You may design your code to have each subsystem of your
-robot in its own task. Ensuring that tasks never write to the same variables is called
+robot has its own task. Ensuring that tasks never write to the same variables is called
+
 division of responsibility or separation of domain.
 
-.. code-block:: c
+If the tasks can be designed so that different tasks will perform different operations on a variable, then an
+`atomic variable <https://www.cplusplus.com/reference/atomic/atomic/>`_ can be used to help solve the problem of synchronization. Atomic variables prevent the wrapped variable from being observed in a partially set or invalid state when multiple tasks try to operate on a variable at the same time.
+
+.. code-block:: C++
    :linenos:
 
-    int task1_variable = 0;
-    void Task1(void * ignore) {
-        // do things
-        task1_variable = 4;
-    }
+   std::atomic<int> task1_variable(0);
+   void Task1(void * ignore) {
+       // do things
+       task1_variable = 4;
+   }
 
-    void Task2(void * ignore) {
-      // do things
-      // I can read task1_variable, but NOT write to it
-      printf("%d\n", task1_variable);
-    }
+   void Task2(void * ignore) {
+     // do things
+     // I can read task1_variable, but NOT write to it
+     printf("%d\n", task1_variable.load());
+   }
 
-Sometimes this is impossible: suppose you wanted to write a PID
+Sometimes dividing responsibility is impossible: suppose you wanted to write a PID
 controller on its own task and you wanted to change the target of the
 PID controller. PROS features two types of synchronization structures,
 *mutexes* and *notifications* that can be used to coordinate tasks.
@@ -151,7 +209,21 @@ time. Other tasks must wait for the first task to finish (and release
 the mutex) before they may continue.
 
 .. tabs::
-   .. tab:: C
+   .. group-tab:: C++
+      .. highlight:: cpp
+      .. code-block:: cpp
+         :linenos:
+
+         Mutex mutex;
+         // Acquire the mutex; other tasks using this command will wait until the mutex is released
+         // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
+         // If the timeout expires, "false" will be returned, otherwise "true"
+         mutex.take(timeout);
+         // do some work
+         // Release the mutex for other tasks
+         mutex.give();
+
+   .. group-tab:: C
       .. highlight:: c
       .. code-block:: c
          :linenos:
@@ -165,20 +237,6 @@ the mutex) before they may continue.
          // do some work
          // Release the mutex for other tasks
          mutex_give(mutex);
-
-   .. tab:: C++
-      .. highlight:: cpp
-      .. code-block:: cpp
-         :linenos:
-
-         Mutex mutex;
-         // Acquire the mutex; other tasks using this command will wait until the mutex is released
-         // timeout can specify the maximum time to wait, or MAX_DELAY to wait forever
-         // If the timeout expires, "false" will be returned, otherwise "true"
-         mutex.take(timeout);
-         // do some work
-         // Release the mutex for other tasks
-         mutex.give();
 
 Mutexes do not magically prevent concurrent writing, but provide the ability for tasks to
 create "contracts" with each other. You can write your code such that a variable is never

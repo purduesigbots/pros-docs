@@ -184,9 +184,9 @@ reached:
 ============ ===============================================================
  sig_id1      The first signature id [1-7] to add to the color code
  sig_id2      The second signature id [1-7] to add to the color code
- sig_id3      The third signature id [1-7] to add to the color code
- sig_id4      The fourth signature id [1-7] to add to the color code
- sig_id5      The fifth signature id [1-7] to add to the color code
+ sig_id3      The third signature id [1-7] to add to the color code (0 by default if none provided)
+ sig_id4      The fourth signature id [1-7] to add to the color code (0 by default if none provided)
+ sig_id5      The fifth signature id [1-7] to add to the color code (0 by default if none provided)
 ============ ===============================================================
 
 **Returns:** A ``pros::vision_color_code_t`` object containing the color code information.

@@ -69,7 +69,7 @@ This function uses the following values of ``errno`` when an error state is reac
       ::
 
         void opcontrol() {
-          pros::Motor motor (1, E_MOTOR_GEARSET_18, falseS);
+          pros::Motor motor (1, E_MOTOR_GEARSET_18, false);
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             motor.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
@@ -453,6 +453,43 @@ Analogous to `motor_move_velocity <../c/motors.html#motor-move-velocity>`_.
  velocity     The new motor velocity from +-100, +-200, or +-600 depending
               on the motor's `gearset <motor_gearset_e_t_>`_
 ============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+brake
+~~~~~
+
+Stops the motor using the currently configured brake mode.
+
+This function sets motor velocity to zero, which will cause it to act according to the
+set brake mode. If brake mode is set to MOTOR_BRAKE_HOLD, this function may behave
+differently than calling motor_move_absolute(0) or motor_move_relative(0).
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+
+Analogous to `motor_brake <../c/motors.html#motor-brake>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor::brake ( void )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+          motor.move_voltage(12000);
+          pros::delay(1000); // Move at max voltage for 1 second
+          motor.brake(); // Brakes motor
+        }
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
@@ -1057,7 +1094,7 @@ Analogous to `motor_get_voltage <../c/motors.html#motor-get-voltage>`_.
       .. highlight:: cpp
       ::
 
-        double pros::Motor::get_voltage ( )
+        int32_t pros::Motor::get_voltage ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1237,121 +1274,6 @@ setting ``errno``.
 
 Configuration Functions
 -----------------------
-
-convert_pid
-~~~~~~~~~~~
-
-Takes in floating point values and returns a properly formatted pid struct.
-The ``pros::motor_pid_s_t`` struct is in 4.4 format, i.e. 0x20 is 2.0, 0x21 is 2.0625,
-etc.
-
-This function will convert the floating point values to the nearest 4.4
-value.
-
-Analogous to `motor_convert_pid <../c/motors.html#motor-convert-pid>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        pros::motor_pid_s_t pros::Motor::convert_pid ( double kf,
-                                                       double kp,
-                                                       double ki,
-                                                       double kd )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        #define KF 0
-        #define KP 1.0f
-        #define KI 0.001f
-        #define KD 0.1f
-
-        void initialize() {
-          pros::Motor motor (1);
-          pros:motor_pid_s_t pid = pros::Motor::convert_pid(KF, KP, KI, KD);
-          motor.set_pos_pid(pid);
-        }
-
-============ ==============================
- Parameters
-============ ==============================
- kf           The feedforward constant
- kp           The proportional constant
- ki           The integral constant
- kd           The derivative constant
-============ ==============================
-
-**Returns:** A ``pros::motor_pid_s_t`` struct formatted properly in 4.4.
-
-----
-
-convert_pid_full
-~~~~~~~~~~~~~~~~
-
-Takes in floating point values and returns a properly formatted pid struct.
-The ``pros::motor_pid_full_s_t`` struct is in 4.4 format, i.e. 0x20 is 2.0, 0x21 is 2.0625,
-etc.
-
-This function will convert the floating point values to the nearest 4.4
-value.
-
-Analogous to `motor_convert_pid_full <../c/motors.html#motor-convert-pid-full>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        pros::motor_pid_full_s_t pros::Motor::convert_pid_full ( double kf,
-                                                                 double kp,
-                                                                 double ki,
-                                                                 double kd,
-                                                                 double filter,
-                                                                 double limit,
-                                                                 double threshold,
-                                                                 double loopspeed )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        #define KF 0
-        #define KP 1.0f
-        #define KI 0.001f
-        #define KD 0.1f
-        #define FILTER 1.0f
-        #define LIMIT 1.0f
-        #define THRESHOLD 1.0f
-        #define LOOPSPEED 10
-
-        void initialize() {
-          pros::Motor motor (1);
-          pros::motor_pid_full_s_t pid = pros::Motor::convert_pid_full(KF, KP, KI, KD,
-                                         FILTER, LIMIT, THRESHOLD, LOOPSPEED);
-          motor.set_pos_pid_full(1, pid);
-        }
-
-============ =============================================================================
- Parameters
-============ =============================================================================
- kf           The feedforward constant
- kp           The proportional constant
- ki           The integral constant
- kd           The derivative constant
- filter       A constant used for filtering the profile acceleration
- limit        The integral limit
- threshold    The threshold for determining if a position movement has reached its goal.
-
-              This has no effect for velocity PID controllers.
- loopspeed    The rate at which the PID computation is run (in ms)
-============ =============================================================================
-
-**Returns:** A ``pros::motor_pid_s_t`` struct formatted properly in 4.4.
-
-----
 
 get_brake_mode
 ~~~~~~~~~~~~~~
@@ -1541,106 +1463,6 @@ Analogous to `motor_get_voltage_limit <../c/motors.html#motor-get-voltage-limit>
 
 **Returns:** The motor's voltage limit in V or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
-
-----
-
-motor_get_pos_pid
------------------
-
-Gets the position PID that was set for the motor. This function will return
-zero for all of the parameters if the pros::Motor::set_pos_pid() or
-pros::Motor::set_pos_pid_full() functions have not been used.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-
-Additionally, in an error state all values of the returned struct are set
-to their negative maximum values.
-
-Analogous to `motor_get_pos_pid <../c/motors.html#motor-get-pos-pid>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        pros::motor_pid_full_s_t pros::Motor::get_pos_pid ( )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        #define KF 0
-        #define KP 1.0f
-        #define KI 0.001f
-        #define KD 0.1f
-        #define FILTER 1.0f
-        #define LIMIT 1.0f
-        #define THRESHOLD 1.0f
-        #define LOOPSPEED 10
-
-        void initialize() {
-          pros::Motor motor (1);
-          pros::motor_pid_full_s_t pid = pros::Motor::convert_pid_full(KF, KP, KI, KD,
-                                         FILTER, LIMIT, THRESHOLD, LOOPSPEED);
-          motor.set_pos_pid_full(pid);
-          pros::motor_pid_full_s_t pid_returned = motor.get_pos_pid();
-          // pid_returned will be equal to pid
-        }
-
-**Returns:** A ``pros::motor_pid_full_s_t`` containing the position PID constants last set
-* to the given motor
-
-----
-
-motor_get_vel_pid
------------------
-
-Gets the velocity PID that was set for the motor. This function will return
-zero for all of the parameters if the pros::Motor::set_vel_pid() or
-pros::Motor::set_vel_pid_full() functions have not been used.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-
-Additionally, in an error state all values of the returned struct are set
-to their negative maximum values.
-
-Analogous to `motor_get_vel_pid <../c/motors.html#motor-get-vel-pid>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        pros::motor_pid_full_s_t pros::Motor::get_vel_pid ( )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        #define KF 0
-        #define KP 1.0f
-        #define KI 0.001f
-        #define KD 0.1f
-        #define FILTER 1.0f
-        #define LIMIT 1.0f
-        #define THRESHOLD 1.0f
-        #define LOOPSPEED 10
-
-        void initialize() {
-          pros::Motor motor (1);
-          pros::motor_pid_full_s_t pid = pros::Motor::convert_pid_full(KF, KP, KI, KD,
-                                         FILTER, LIMIT, THRESHOLD, LOOPSPEED);
-          motor.set_vel_pid_full(pid);
-          pros::motor_pid_full_s_t pid_returned = motor.get_vel_pid();
-          // pid_returned will be equal to pid
-        }
-
-**Returns:** A ``pros::motor_pid_full_s_t`` containing the velocity PID constants last set
-to the given motor
 
 ----
 
@@ -1841,110 +1663,6 @@ setting ``errno``.
 
 ----
 
-set_pos_pid
-~~~~~~~~~~~
-
-Sets one of ``pros::motor_pid_s_t`` for the motor. This intended to just modify the
-main PID constants.
-
-Only non-zero values of the struct will change the existing motor constants.
-
-.. warning:: This feature is in beta, it is advised to use caution when modifying
-             the PID values. The motor could be damaged by particularly large constants.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-
-Analogous to `motor_set_pos_pid <../c/motors.html#motor-set-pos-pid>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        std::int32_t pros::Motor::set_pos_pid ( const pros::motor_pid_s_t pid )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        #define KF 0
-        #define KP 1.0f
-        #define KI 0.001f
-        #define KD 0.1f
-
-        void initialize() {
-          pros::Motor motor (1);
-          pros::motor_pid_s_t pid = pros::Motor::convert_pid(KF, KP, KI, KD);
-          motor.set_pos_pid(pid);
-        }
-
-============ ===============================================================
- Parameters
-============ ===============================================================
- pid          The new motor PID constants
-============ ===============================================================
-
-**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
-setting ``errno``.
-
-----
-
-set_pos_pid_full
-~~~~~~~~~~~~~~~~
-
-Sets one of ``pros::motor_pid_full_s_t`` for the motor.
-
-Only non-zero values of the struct will change the existing motor constants.
-
-.. warning:: This feature is in beta, it is advised to use caution when modifying
-             the PID values. The motor could be damaged by particularly large constants.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-
-Analogous to `motor_set_pos_pid_full <../c/motors.html#motor-set-pos-pid-full>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        std::int32_t pros::Motor::set_pos_pid_full ( const pros::motor_pid_full_s_t pid )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        #define KF 0
-        #define KP 1.0f
-        #define KI 0.001f
-        #define KD 0.1f
-        #define FILTER 1.0f
-        #define LIMIT 1.0f
-        #define THRESHOLD 1.0f
-        #define LOOPSPEED 10
-
-        void initialize() {
-          pros::Motor motor (1);
-          pros::motor_pid_full_s_t pid = pros::Motor::convert_pid_full(KF, KP, KI, KD,
-                                         FILTER, LIMIT, THRESHOLD, LOOPSPEED);
-          motor.set_pos_pid_full(pid);
-        }
-
-============ ===============================================================
- Parameters
-============ ===============================================================
- pid          The new motor PID constants
-============ ===============================================================
-
-**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
-setting ``errno``.
-
-----
-
 set_reversed
 ~~~~~~~~~~~~
 
@@ -1979,110 +1697,6 @@ Analogous to `motor_set_reversed <../c/motors.html#motor-set-reversed>`_.
  Parameters
 ============ ===============================================================
  reverse      ``1`` reverses the motor, ``0`` is default
-============ ===============================================================
-
-**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
-setting ``errno``.
-
-----
-
-set_vel_pid
-~~~~~~~~~~~
-
-Sets one of ``pros::motor_pid_s_t`` for the motor. This intended to just modify the
-main PID constants.
-
-Only non-zero values of the struct will change the existing motor constants.
-
-.. warning:: This feature is in beta, it is advised to use caution when modifying
-             the PID values. The motor could be damaged by particularly large constants.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-
-Analogous to `motor_set_vel_pid <../c/motors.html#motor-set-vel-pid>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        std::int32_t pros::Motor::set_vel_pid ( const pros::motor_pid_s_t pid )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        #define KF 0
-        #define KP 1.0f
-        #define KI 0.001f
-        #define KD 0.1f
-
-        void initialize() {
-          pros::Motor motor (1);
-          pros::motor_pid_s_t pid = pros::Motor::convert_pid(KF, KP, KI, KD);
-          motor.set_vel_pid(pid);
-        }
-
-============ ===============================================================
- Parameters
-============ ===============================================================
- pid          The new motor PID constants
-============ ===============================================================
-
-**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
-setting ``errno``.
-
-----
-
-set_vel_pid_full
-~~~~~~~~~~~~~~~~
-
-Sets one of ``pros::motor_pid_full_s_t`` for the motor.
-
-Only non-zero values of the struct will change the existing motor constants.
-
-.. warning:: This feature is in beta, it is advised to use caution when modifying
-             the PID values. The motor could be damaged by particularly large constants.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-
-Analogous to `motor_set_vel_pid_full <../c/motors.html#motor-set-vel-pid-full>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        std::int32_t pros::Motor::set_vel_pid_full ( const pros::motor_pid_full_s_t pid )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        #define KF 0
-        #define KP 1.0f
-        #define KI 0.001f
-        #define KD 0.1f
-        #define FILTER 1.0f
-        #define LIMIT 1.0f
-        #define THRESHOLD 1.0f
-        #define LOOPSPEED 10
-
-        void initialize() {
-          pros::Motor motor (1);
-          pros::motor_pid_full_s_t pid = pros::Motor::convert_pid_full(KF, KP, KI, KD,
-                                         FILTER, LIMIT, THRESHOLD, LOOPSPEED);
-          motor.set_vel_pid_full(pid);
-        }
-
-============ ===============================================================
- Parameters
-============ ===============================================================
- pid          The new motor PID constants
 ============ ===============================================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
@@ -2231,8 +1845,8 @@ Indicates the current 'brake mode' of the motor.
 ::
 
   typedef enum motor_brake_mode_e {
-    E_MOTOR_BRAKE_COAST = 0, // Motor coasts when stopped, traditional behavior
-    E_MOTOR_BRAKE_BRAKE = 1, // Motor brakes when stopped
+    E_MOTOR_BRAKE_COAST = 0, // Motor coasts when stopped, default behavior
+    E_MOTOR_BRAKE_BRAKE = 1, // Motor short brakes when stopped 
     E_MOTOR_BRAKE_HOLD = 2, // Motor actively holds position when stopped
     E_MOTOR_BRAKE_INVALID = INT32_MAX
   } motor_brake_mode_e_t;
@@ -2240,8 +1854,9 @@ Indicates the current 'brake mode' of the motor.
 ================================== ===========================================================
  Value
 ================================== ===========================================================
- pros::E_MOTOR_BRAKE_COAST          Motor coasts when stopped, traditional behavior
- pros::E_MOTOR_BRAKE_BRAKE          Motor brakes when stopped 
+ pros::E_MOTOR_BRAKE_COAST          Motor coasts when stopped, default behavior
+ pros::E_MOTOR_BRAKE_BRAKE          Motor short brakes when stopped by shorting (directly connecting) the motor’s positive and negative lead
+                                    https://en.m.wikipedia.org/wiki/Dynamic_braking
  pros::E_MOTOR_BRAKE_HOLD           Motor actively holds position when stopped 
  pros::E_MOTOR_BRAKE_INVALID        Invalid brake mode
 ================================== ===========================================================
@@ -2346,52 +1961,6 @@ Indicates the internal gearing used by the motor.
  pros::E_MOTOR_GEARSET_06           6:1, 600 RPM, Blue Gear Set
  pros::E_MOTOR_GEARSET_INVALID      Error return code
 ================================== ===========================================================
-
-Typedefs
-========
-
-motor_pid_full_s_t
-------------------
-
-Holds the information about a Motor's position or velocity PID controls.
-
-These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
-0x21 represents 2.0625, 0x22 represents 2.125, etc.
-
-::
-
-  typedef struct motor_pid_full_s {
-    uint8_t kf;        // The feedforward constant
-    uint8_t kp;        // The proportional constant
-    uint8_t ki;        // The integral constants
-    uint8_t kd;        // The derivative constant
-    uint8_t filter;    // A constant used for filtering the profile acceleration
-    uint16_t limit;    // The integral limit
-    uint8_t threshold; // The threshold for determining if a position movement has
-                       // reached its goal. This has no effect for velocity PID
-                       // calculations.
-    uint8_t loopspeed; // The rate at which the PID computation is run in ms
-  } motor_pid_full_s_t;
-
-----
-
-motor_pid_s_t
--------------
-
-Holds just the constants for a Motor's position or velocity PID controls.
-
-These values are in 4.4 format, meaning that a value of 0x20 represents 2.0,
-0x21 represents 2.0625, 0x22 represents 2.125, etc.
-
-::
-
-  typedef struct motor_pid_s {
-    uint8_t kf;        // The feedforward constant
-    uint8_t kp;        // The proportional constant
-    uint8_t ki;        // The integral constants
-    uint8_t kd;        // The derivative constant
-  } motor_pid_s_t;
-
 
 .. _motor_gearset_e_t: ../c/motors.html#motor-gearset-e-t
 .. _motor_encoder_units_e_t: ../c/motors.html#motor-encoder-units-e-t

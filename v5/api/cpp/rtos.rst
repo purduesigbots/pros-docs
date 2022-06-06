@@ -41,6 +41,34 @@ Analogous to `millis <../c/rtos.html#millis>`_.
 
 ----
 
+micros
+------
+
+Analogous to `micros <../c/rtos.html#micros>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::uint64_t pros::micros ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          std::uint64_t now = pros::micros();
+          while (true) {
+            // Do opcontrol things
+            pros::Task::delay_until(&now, 2000);
+          }
+        }
+
+**Returns:** Returns the number of microseconds since PROS initialized.
+
+----
+
 pros::Task
 ==========
 
@@ -371,6 +399,40 @@ Analogous to `Task_get_count <../c/rtos.html#task-get-count>`_.
 
 ----
 
+current
+~~~~~~~~~
+
+Get a handle to the task which called this function.
+
+Analogous to `task_get_current <../c/rtos.html#task-get-current>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+          Task pros::Task::current ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void my_task_fn(void* param) {
+          Task this_task = pros::Task::current();
+          if (this_task.get_state() == pros::E_TASK_STATE_RUNNING) {
+            std::cout << "This task is currently running" std::endl;
+          }
+          // ...
+        }
+        void initialize() {
+          Task my_task (my_task_fn, (void*)"PROS", TASK_PRIORITY_DEFAULT,
+                        TASK_STACK_DEPTH_DEFAULT, "My Task");
+        }
+
+**Returns:** The currently running task.
+
+----
+
 get_name
 ~~~~~~~~
 
@@ -485,9 +547,9 @@ Analogous to `task_notify <../c/rtos.html#task-notify>`_.
 
         std::uint32_t pros::Task::notify ( )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task_fn(void* ign) {
             while(my_task.notify_take(true, TIMEOUT_MAX)) {
@@ -525,9 +587,9 @@ Analogous to `task_notify_clear <../c/rtos.html#task-notify-clear>`_.
 
         bool pros::Task::notify_clear ( )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           TO BE ADDED
 
@@ -555,9 +617,9 @@ Analogous to `task_notify_ext <../c/rtos.html#task-notify-ext>`_.
                                                       notify_action_e_t action,
                                                       std::uint32_t* prev_value )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           TO BE ADDED
 
@@ -592,9 +654,9 @@ Analogous to `task_notify_take <../c/rtos.html#task-notify-take>`_.
         std::uint32_t pros::Task::notify_take ( bool clear_on_exit,
                                            std::uint32_t timeout )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task_fn(void* ign) {
             while(my_task.notify_take(true, TIMEOUT_MAX)) {
@@ -623,6 +685,46 @@ Analogous to `task_notify_take <../c/rtos.html#task-notify-take>`_.
 
 ----
 
+join
+~~~~
+
+Utilizes task notifications to wait until specified task is complete and
+deleted, then continues to execute the program. Replicates the functionality
+of thread joining in C++.
+
+See :doc:`../../tutorials/topical/notifications` for details.
+
+Analogous to `task_join <../c/rtos.html#task-join>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::void pros::Task::join ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+          void my_task(void* ign) {
+            std::cout << "Task running" <<
+            pros::Task::delay(1000);
+            std::cout << "End of task" <<
+          }
+
+          void opcontrol() {
+            Task my_task (my_task_fn, NULL, TASK_PRIORITY_DEFAULT,
+                          TASK_STACK_DEPTH_DEFAULT, "Task One");
+            std::cout << "Before task" <<
+            my_task.join();
+            std::cout << "After task" <<
+              }
+            }
+          }
+
+----
+
 remove
 ~~~~~~
 
@@ -642,7 +744,7 @@ Analogous to `task_delete <../c/rtos.html#task-delete>`_.
         void pros::Task::remove ( )
 
    .. tab :: Example
-      .. highlight:: c
+      .. highlight:: cpp
       ::
 
         void my_task_fn(void* ign) {
@@ -673,9 +775,9 @@ Analogous to `task_resume <../c/rtos.html#task-resume>`_.
 
         void pros::Task::resume ( )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
@@ -709,9 +811,9 @@ Analogous to `task_set_priority <../c/rtos.html#task-set-priority>`_.
 
         void pros::Task::set_priority ( std::uint32_t prio )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
@@ -744,9 +846,9 @@ Analogous to `task_suspend <../c/rtos.html#task_suspend>`_.
 
         void pros::Task::suspend ( )
 
-     .. tab :: Example
-        .. highlight:: cpp
-        ::
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
 
           void my_task_fn(void* ign) {
             // Do things
@@ -910,6 +1012,39 @@ Analogous to `mutex_take <../c/rtos.html#mutex-take>`_.
 is returned, then ``errno`` is set with a hint about why the the mutex
 couldn't be taken.
 
+----
+
+take
+~~~~
+
+Takes and locks a mutex, with an infinite timout.
+
+See :doc:`../../tutorials/topical/multitasking` for details.
+
+Analogous to `mutex_take <../c/rtos.html#mutex-take>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         bool pros::Mutex::take ( )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        Mutex mutex;
+
+        // Acquire the mutex; does not time out if parameter not specified.
+        mutex.take();
+        // do some work
+        // Release the mutex for other tasks
+        mutex.give();
+        
+**Returns:** True if the mutex was successfully taken, false otherwise. If false
+is returned, then ``errno`` is set with a hint about why the the mutex
+couldn't be taken.
 ----
 
 Macros

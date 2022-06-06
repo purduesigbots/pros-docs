@@ -568,11 +568,11 @@ The RGB and clear values for the optical sensor.
 
 ::
 
-  typedef struct __attribute__((__packed__)) optical_raw_s {
-    double red;
-    double green;
-    double blue;
-    double clear;
+  typedef struct optical_raw_s {
+    uint32_t clear;
+    uint32_t red;
+    uint32_t green;
+    uint32_t blue;
   } optical_raw_s_t;
 
 optical_gesture_s_t

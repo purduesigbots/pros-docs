@@ -2,8 +2,7 @@
 
 [![Build Status](https://dev.azure.com/purdue-acm-sigbots/Docs/_apis/build/status/purduesigbots.pros-docs?branchName=master)](https://dev.azure.com/purdue-acm-sigbots/Docs/_build/latest?definitionId=2&branchName=master)
 
-This repository hosts the documentation for [PROS for V5](https://github.com/purduesigbots/pros3)
-and [PROS for Cortex](https://github.com/purduesigbots/pros). These docs are hosted
+This repository hosts the documentation for [PROS for V5 and Cortex](https://github.com/purduesigbots/pros). These docs are hosted
 at https://pros.cs.purdue.edu/.
 
 ## How are these docs built?
@@ -39,11 +38,6 @@ To install all of the dependencies for building the PROS Documentation, run
 > pip3 install -r requirements.txt
 ```
 
-### Building the Docs
-
-Once you have installed the requirements, building is very straightforward. Just
-run `make` in the root directory.
-
 ### Git Submodules
 
 The `sphinx_rtd_theme` and `sphinx-tabs` folders within the documentation are
@@ -51,10 +45,32 @@ The `sphinx_rtd_theme` and `sphinx-tabs` folders within the documentation are
 you need to initialize these submodules and pull them separately when updating the docs.
 
 ```
-# Repeat this in both the sphinx_rtd_theme and sphinx-tabs directories
 > git submodule init
-> git submodule update
+> git submodule update --recursive
 ```
+
+### Building the Docs
+
+Once you have installed the requirements and cloned the submodules, building is
+very straightforward. Just run `make` in the root directory.
+
+### Testing the Docs
+
+One viable option for testing the docs is running `make` as specified above and
+serving the build directory. However, for testing changes iteratively the process
+of saving, building, and reloading the page can be cumbersome. To this end, we
+recommend you use the `sphinx-autobuild` package:
+
+```
+# install the package (e.g. in the virtual environment)
+> pip3 install sphinx-autobuild
+# build and serve the v5 site, watching files for changes and hot-reloading
+> sphinx-autobuild v5 build
+```
+
+A downside of this is that it seems you can only serve one of the three sites
+in this repository at once (v5, cortex, home), but most of the time that is
+sufficient.
 
 ### Modifying the tabs theming
 

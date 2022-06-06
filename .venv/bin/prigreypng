@@ -1,0 +1,71 @@
+#!/Users/computer3303/Documents/git/pros-docs/.venv/bin/python
+
+# prigreypng
+
+# Convert image to grey (L, or LA), but only if that involves no colour
+# change.
+
+import argparse
+import sys
+
+from array import array
+
+import png
+
+
+def as_grey(out, inp):
+    """
+    Convert image to greyscale, but only when no colour change.
+    This works by using the input G channel (green) as
+    the output L channel (luminance) and
+    checking that every pixel is grey as we go.
+    A non-grey pixel will raise an error.
+    """
+
+    r = png.Reader(file=inp)
+    _, _, rows, info = r.asDirect()
+    if info["greyscale"]:
+        w = png.Writer(**info)
+        return w.write(out, rows)
+
+    planes = info["planes"]
+    targetplanes = planes - 2
+    alpha = info["alpha"]
+    width, height = info["size"]
+    typecode = "BH"[info["bitdepth"] > 8]
+
+    # Values per target row
+    vpr = width * targetplanes
+
+    def iterasgrey():
+        for i, row in enumerate(rows):
+            row = array(typecode, row)
+            targetrow = array(typecode, [0] * vpr)
+            # Copy G (and possibly A) channel.
+            green = row[0::planes]
+            if alpha:
+                targetrow[0::2] = green
+                targetrow[1::2] = row[3::4]
+            else:
+                targetrow = green
+            # Check R and B channel match.
+            if green != row[0::planes] or green != row[2::planes]:
+                raise ValueError("Row %i contains non-grey pixel." % i)
+            yield targetrow
+
+    info["greyscale"] = True
+    del info["planes"]
+    w = png.Writer(**info)
+    return w.write(out, iterasgrey())
+
+
+def main(argv=None):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("png", nargs="?", default="-")
+    args = parser.parse_args()
+    inp = png.cli_open(args.png)
+    return as_grey(png.binary_stdout(), inp)
+
+
+if __name__ == "__main__":
+    sys.exit(main())
