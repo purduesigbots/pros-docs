@@ -8,7 +8,7 @@ PROS Kernel 3.6.2 Release
 Changelog
 ---------
 
-This update brings bugfixes across the platform for different bugfixes.
+This update brings bugfixes across the kernel for different issues.
 
 Quality of Life and Bugfixes:
 
