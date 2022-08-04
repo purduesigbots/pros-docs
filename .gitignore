@@ -6,3 +6,4 @@ build/
 myenv/
 pros-docs.tar.gz
 venv/
+node_modules/
