@@ -47,7 +47,7 @@ For instance, you can write to ``stderr`` in the following manner:
 
    FILE* stderr = fopen("serr", "w");
    fputs("Example text", stderr);
-   fclose(usd_file_write);
+   fclose(stderr);
 
 There are also a number of methods for controlling serial communication behavior
 exposed in `apix.h <../../extended/apix.html>`_. These methods can be accessed
