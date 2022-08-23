@@ -2,10 +2,10 @@
 Filesystem
 ==========
 
-You can interact with files on the microSD card (you can **not** interact with files on the V5
-brain's flash) through standard C/C++ file I/O methods. For the most part, you can follow along with
-any standard C tutorial for file I/O and it will work with PROS. Here are a couple of recommended
-tutorials:
+You can interact with files on a microSD card (you can **not** interact with files on the V5 brain's 
+flash) through standard C/C++ file I/O methods. You **must** connect this to the brain through the 
+microSD card slot. For the most part, you can follow along with any standard C tutorial for file I/O and 
+it will work with PROS. Here are a couple of recommended tutorials:
 
 - https://www.cprogramming.com/tutorial/cfileio.html
 - https://www.tutorialspoint.com/cprogramming/c_file_io.htm
