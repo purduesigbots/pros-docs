@@ -62,7 +62,6 @@ Analogous to `pros::Imu::reset <../cpp/imu.html#reset>`_.
 ----
 
 imu_reset_blocking
-
 ---------
 
 Calibrate IMU.
