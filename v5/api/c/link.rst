@@ -5,7 +5,7 @@
 VEX Link C API
 ================
 
-.. note:: PROS currently officially supports the use of one Vex Radio per brain for Vex Link.
+.. note:: PROS currently officially supports the use of one VEX Radio per brain for VEXLink.
 
 .. contents:: :local:
 
