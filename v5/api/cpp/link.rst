@@ -7,7 +7,7 @@ VEX Link C++ API
 
 .. note:: ``pros::Link`` can also be used to refer ``pros::Link``
 
-.. note:: PROS currently officially supports the use of one Vex Radio per brain for Vex Link.
+.. note:: PROS currently officially supports the use of one VEX Radio per brain for VEXLink.
 
 .. contents:: :local:
 
