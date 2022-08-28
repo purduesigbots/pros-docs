@@ -881,7 +881,7 @@ Analogous to `pros::screen::touch_callback <../cpp/screen.html#touch_callback>`_
             }
 
             void opcontrol() {
-               screen_touch_callback(changePixel(), TOUCH_PRESSED);
+               screen_touch_callback(changePixel, TOUCH_PRESSED);
                while(1) delay(20);
             }
 
@@ -974,7 +974,7 @@ touch_event_cb_fn_t
 
 ::
 
-  typedef void (*touch_event_cb_fn_t)(int16_t, int16_t);
+  typedef void (*touch_event_cb_fn_t)();
 
 A callback function for a screen callback
 
