@@ -1829,6 +1829,374 @@ setting ``errno``.
 
 ----
 
+pros::Motor_Group
+=================
+
+Constructor(s)
+--------------
+ This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO``  - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+.. tabs ::
+   .. tab ::Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Motor_Group::Motor_Group(const std::initializer_list<Motor> motors)
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+      void opcontrol(){
+        pros::Motor motor_1 (1);
+        pros::Motor motor_2 (2);
+
+        pros::Motor_Group motor_group ({motor_1, motor_2});
+        pros::Controller master (E_CONTROLLER_MASTER);
+        while (true) {
+          motor_group.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+          pros::delay(2);
+        }
+      }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ motors            An initializer_list of motors to be in the motor group
+=============== ===================================================================
+
+----
+
+.. tabs ::
+   .. tab ::Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Motor_Group::Motor_Group(const std::vector<std::int8_t> motor_ports)
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+      void opcontrol(){
+        pros::Motor_Group motor_group ({1, 2});
+        pros::Controller master (E_CONTROLLER_MASTER);
+        while (true) {
+          motor_group.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+          pros::delay(2);
+        }
+      }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ motors         A Vector with the ports of the motors. Negative ports indicate
+                that the motor is reversed
+=============== ===================================================================
+
+----
+
+Operator Overloads
+------------------
+Sets the voltage for all the motors in the motor group from -128 to 127.
+	
+	This is designed to map easily to the input from the controller's analog
+	stick for simple opcontrol use. The actual behavior of the motor is
+  analogous to use of `pros::Motor::move()` on each motor individually
+	This function uses the following values of errno when an error state is
+	reached:
+	ENODEV - One of the ports cannot be configured as a motor
+	EACCESS - The Motor group mutex can't be taken or given
+	
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        virtual std::int32_t operator= ( std::int8_t voltage ) const
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            pros::delay(2);
+          }
+        }
+
+=============== ===================================================================
+ Parameters
+=============== ===================================================================
+ voltage          The new motor voltage from -127 to 127
+=============== ===================================================================
+
+----
+
+move
+~~~~
+
+Sets the voltage for the motors in the motor group from -127 to 127.
+
+This is designed to map easily to the input from the controller's analog
+stick for simple opcontrol use. The actual behavior of the motor is
+analogous to use of `motor_move()`, or `motorSet()`` from the 
+PROS 2 API on each motor.
+
+This function uses the following values of errno when an error state is
+reached:
+ENODEV - The port cannot be configured as a motor
+EACCESS - The Motor group mutex can't be taken or given
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::int32_t pros::Motor_Group::move ( std::int32_t voltage )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor_group.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            pros::delay(2);
+          }
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ voltage      The new motor voltage from -127 to 127
+============ ===============================================================
+
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation
+failed, setting ``errno``.
+
+----
+
+move_absolute
+~~~~~~~~~~~~~
+
+Sets the target absolute position for the motors to move to.
+	
+This movement is relative to the position of the motors when initialized or
+the position when it was most recently reset with	pros::Motor::set_zero_position().
+	.. note:: This function simply sets the target for the motors, it does not block
+	          program execution until the movement finishes.
+	
+  This function uses the following values of errno when an error state is
+	reached:
+	ENODEV - The port cannot be configured as a motor
+ 	EACCESS - The Motor group mutex can't be taken or given
+	
+  .. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor_Group::move_absolute ( double position,
+                                                  std::int32_t velocity )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+          pros::Motor_Group motor_group ({1, 2});
+          motor_group.move_absolute(100, 100); // Moves 100 units forward
+          //Motor_Group::get_positions() does not exist yet. TODO
+          while (!((motor_group.get_positions() < 105) && (motor_group.get_positions() > 95))) {
+            // Continue running this loop as long as the motor is not within +-5 units of its goal
+            pros::delay(2);
+          }
+          motor_group.move_absolute(100, 100); // This does not cause a movement
+          while (!((motor_group.get_positions() < 105) && (motor_group.get_positions() > 95))) {
+            pros::delay(2);
+          }
+          //ALSO TODO for motor groups
+          motor_group.tare_positions();
+          motor_group.move_absolute(100, 100); // Moves 100 units forward
+          while (!((motor_group.get_positions() < 105) && (motor_group.get_positions() > 95))) {
+            pros::delay(2);
+          }
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ position     The absolute position to move to in the motors' encoder units
+ velocity     The maximum allowable velocity for the movement
+============ ===============================================================
+
+	
+  **Returns** ``1`` if the operation was successful or ``PROS_ERR`` if the operation
+	failed, setting ``errno``.
+	
+----
+move_relative
+~~~~~~~~~~~~~
+
+Sets the relative target position for the motors to move to.
+
+This movement is relative to the current position of the motor as given in
+`get_position`_.
+
+.. note:: This function simply sets the target for the motor, it does not block program
+          execution until the movement finishes. The example code shows how to block
+          until a movement is finished.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_move_relative <../c/motors.html#motor-move-relative>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor_Group::move_relative ( double position,
+                                                  std::int32_t velocity )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+          pros::Motor_Group motor_group ({1, 2});
+          motor_group.move_relative(100, 100); // Moves 100 units forward
+          while (!((motor_group.get_positions() < 105) && (motor_group.get_positions() > 95))) {
+            // Continue running this loop as long as the motor_group is not within +-5 units of its goal
+            pros::delay(2);
+          }
+          motor_group.move_relative(100, 100); // Also moves 100 units forward
+          while (!((motor_group.get_positions() < 205) && (motor_group.get_positions() > 195))) {
+            pros::delay(2);
+          }
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ position     The relative position to move to in the motor's encoder units
+ velocity     The maximum allowable velocity for the movement
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+move_velocity
+~~~~~~~~~~~~~
+
+Sets the velocity for the motor.
+
+This velocity corresponds to different actual speeds depending on the gearset
+used for the motor. This results in a range of +-100 for
+`E_MOTOR_GEARSET_36 <motor_gearset_e_t_>`_,
++-200 for `E_MOTOR_GEARSET_18 <motor_gearset_e_t_>`_, and +-600 for
+`blue <motor_gearset_e_t_>`_. The velocity
+is held with PID to ensure consistent speed, as opposed to setting the motor's
+voltage.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+
+Analogous to `motor_move_velocity <../c/motors.html#motor-move-velocity>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor_Group::move_velocity ( std::uint8_t port,
+                                                  std::int16_t velocity )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+          pros::Motor_Group motor_group ({1, 2});
+          motor_group.move_velocity(100);
+          pros::delay(1000); // Move at 100 RPM for 1 second
+          motor_group.move_velocity(0);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ velocity     The new motor velocity from +-100, +-200, or +-600 depending
+              on the motor's `gearset <motor_gearset_e_t_>`_
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+move_voltage
+~~~~~~~~~~~~
+
+Sets the voltage for the motor from -12000 mV to 12000 mV.
+
+.. note:: This function will not respect brake modes, and simply sets the voltage
+          to the desired value.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+
+Analogous to `motor_move_voltage <../c/motors.html#motor-move-voltage>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor_Group::move_voltage ( std::int16_t voltage )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+        pros::Motor_Group motor_group ({1,2});
+          motor_group.move_voltage(12000);
+          pros::delay(1000); // Move at max voltage for 1 second
+          motor_group.move_voltage(0);
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ voltage      The new voltage for the motor from -12000 mV to 12000 mV
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
 Macros
 ======
 
