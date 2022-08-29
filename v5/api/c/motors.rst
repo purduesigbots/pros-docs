@@ -1862,7 +1862,7 @@ Indicates the internal gearing used by the motor.
 ::
 
   typedef enum motor_gearset_e {
-  	E_MOTOR_GEARSET_36 = 0, // 36:1
+    E_MOTOR_GEARSET_36 = 0, // 36:1
     E_MOTOR_GEAR_RED = E_MOTOR_GEARSET_36, // Red gear set
     E_MOTOR_GEAR_100 = E_MOTOR_GEARSET_36, // 100 RPM
     E_MOTOR_GEARSET_18 = 1, // 18:1
