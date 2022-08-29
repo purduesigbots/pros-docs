@@ -223,6 +223,7 @@ the position when it was most recently reset with	pros::Motor::set_zero_position
 	failed, setting ``errno``.
 	
 ----
+
 move_relative
 ~~~~~~~~~~~~~
 
@@ -377,6 +378,7 @@ setting ``errno``.
 ----
 
 brake
+~~~~~
 
 Changes the output velocity for a profiled movement (motor_move_absolute()
 or motor_move_relative()). This will have no effect if the motor is not
