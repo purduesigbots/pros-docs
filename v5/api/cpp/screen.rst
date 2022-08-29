@@ -875,8 +875,8 @@ This function uses the following values of ``errno`` when an error state is reac
                pros::Motor left_mtr(1);
                pros::Motor right_mtr(2);
 
-               pros::screen::touch_callback(changePixel(), TOUCH_PRESSED);
-               while(1) delay(20);
+               pros::screen::touch_callback(changePixel, TOUCH_PRESSED);
+               while(1) pros::delay(20);
             }
 
 ============ =================================================================================================================
@@ -968,7 +968,7 @@ pros::touch_event_cb_fn_t
 
 ::
 
-  typedef void (*touch_event_cb_fn_t)(int16_t, int16_t);
+  typedef void (*touch_event_cb_fn_t)();
 
 A callback function for a screen callback
 

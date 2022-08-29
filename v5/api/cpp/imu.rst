@@ -49,7 +49,8 @@ reset
 
 Calibrate IMU.
 
-This takes approximately 2 seconds, and is blocking until the IMU status is set properly.
+This takes approximately 2 seconds, and is blocking until the IMU status is set properly if "blocking" is false (by default).
+By default, this function will only block until IMU status is set, and not blocking while the IMU is resetting if "blocking" is false.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -62,7 +63,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        std::int32_t reset( )
+        std::int32_t reset(bool blocking = false)
 
    .. tab :: Example
       .. highlight:: cpp
@@ -83,6 +84,12 @@ This function uses the following values of ``errno`` when an error state is reac
             iter += 10;
             pros::delay(10);
           }
+          /*
+            to avoid the while loop use this:
+            imu_sensor.reset(true);
+            (the print statement below won't print right value if this was used)
+          */
+
           // should print about 2000 ms
           printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
@@ -90,7 +97,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
  Parameters
 ============ =================================================================================================================
- port         The V5 port number from (1-21)
+ blocking     If true, the function is blocking during the reset phase. (optional, will be false by default)
 ============ =================================================================================================================
 
 **Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
@@ -132,12 +139,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
-
 **Returns:** The degree value or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
 ----
@@ -177,12 +178,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
-
 **Returns:** The degree value or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
 ----
@@ -219,12 +214,6 @@ This function uses the following values of ``errno`` when an error state is reac
 		        pros::delay(20);
           }
         }
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** The quaternion representing the sensor's orientation. If the operation failed, all the quaternion's members are
 filled with ``PROS_ERR_F`` and ``errno`` is set.
@@ -264,12 +253,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
-
 **Returns:** The Euler angles representing the sensor's orientation. If the operation failed, all the structure's members are
 filled with ``PROS_ERR_F`` and ``errno`` is set.
 
@@ -307,12 +290,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
-
 **Returns:** The pitch angle, or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
 ----
@@ -348,12 +325,6 @@ This function uses the following values of ``errno`` when an error state is reac
 		        pros::delay(20);
           }
         }
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** The roll angle, or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
@@ -391,12 +362,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
-
 **Returns:** The yaw angle, or ``PROS_ERR_F`` if the operation failed, setting ``errno``.
 
 ----
@@ -433,12 +398,6 @@ This function uses the following values of ``errno`` when an error state is reac
 		        pros::delay(20);
           }
         }
-
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** The raw gyroscope values. If the operation failed, all the structure's members are filled with ``PROS_ERR_F`` and
 ``errno`` is set.
@@ -484,11 +443,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
 
@@ -534,11 +488,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
 
@@ -584,11 +533,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
 
@@ -634,11 +578,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
 
@@ -684,11 +623,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
 
@@ -732,11 +666,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
 
@@ -780,11 +709,6 @@ This function uses the following values of ``errno`` when an error state is reac
           pros::delay(20);
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
 
@@ -1119,11 +1043,6 @@ This function uses the following values of ``errno`` when an error state is reac
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** The raw accelerometer values. If the operation failed, all the structure's members are filled with ``PROS_ERR_F`` and
 ``errno`` is set.
@@ -1171,11 +1090,6 @@ This function uses the following values of ``errno`` when an error state is reac
           printf("IMU is done calibrating (took %d ms)\n", iter - time);
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** The Inertial Sensor's status code, or ``PROS_ERR`` if the operation failed, setting ``errno``. 
 
@@ -1206,11 +1120,6 @@ Check whether the IMU is calibrating
           }
         }
 
-============ =================================================================================================================
- Parameters
-============ =================================================================================================================
- port         The V5 port number from (1-21)
-============ =================================================================================================================
 
 **Returns:** ``true`` if the if the V5 Inertial Sensor is calibrating or ``false`` if it is not.
 
