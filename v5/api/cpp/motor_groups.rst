@@ -376,6 +376,28 @@ setting ``errno``.
 
 ----
 
+brake
+
+Changes the output velocity for a profiled movement (motor_move_absolute()
+or motor_move_relative()). This will have no effect if the motor is not
+following a profiled movement.
+
+This function uses the following values of ``errno`` when an error state is reached:
+  
+- ``ENODEV``  - The port cannot be configured as a motor
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ velocity      The new motor velocity from +-100, +-200, or +-600 depending on the 
+                motor's gearset
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
 Macros
 ======
 
