@@ -2315,10 +2315,16 @@ Indicates the internal gearing used by the motor.
 ::
 
   typedef enum motor_gearset_e {
-  	E_MOTOR_GEARSET_36 = 0, // 36:1, 100 RPM, Red gear set
-  	E_MOTOR_GEARSET_18 = 1, // 18:1, 200 RPM, Green gear set
-  	E_MOTOR_GEARSET_06 = 2, // 6:1, 600 RPM, Blue gear set
-  	E_MOTOR_GEARSET_INVALID = INT32_MAX
+    E_MOTOR_GEARSET_36 = 0, // 36:1
+    E_MOTOR_GEAR_RED = E_MOTOR_GEARSET_36, // Red gear set
+    E_MOTOR_GEAR_100 = E_MOTOR_GEARSET_36, // 100 RPM
+    E_MOTOR_GEARSET_18 = 1, // 18:1
+    E_MOTOR_GEAR_GREEN = E_MOTOR_GEARSET_18, // Green gear set
+    E_MOTOR_GEAR_200 = E_MOTOR_GEARSET_18, // 200 RPM
+    E_MOTOR_GEARSET_06 = 2, // 6:1
+    E_MOTOR_GEAR_BLUE  = E_MOTOR_GEARSET_06, // Blue gear set
+    E_MOTOR_GEAR_600 = E_MOTOR_GEARSET_06, // 600 RPM
+    E_MOTOR_GEARSET_INVALID = INT32_MAX
   } motor_gearset_e_t;
 
 ================================== ===========================================================
