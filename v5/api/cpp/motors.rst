@@ -1962,9 +1962,15 @@ Indicates the internal gearing used by the motor.
 ================================== ===========================================================
  Value
 ================================== ===========================================================
- pros::E_MOTOR_GEARSET_36           36:1, 100 RPM, Red gear set
- pros::E_MOTOR_GEARSET_18           18:1, 200 RPM, Green gear set
- pros::E_MOTOR_GEARSET_06           6:1, 600 RPM, Blue Gear Set
+ pros::E_MOTOR_GEARSET_36           36:1 
+ pros::E_MOTOR_GEAR_RED             Red gear set
+ pros::E_MOTOR_GEAR_100             100 RPM
+ pros::E_MOTOR_GEARSET_18           18:1
+ pros::E_MOTOR_GEAR_GREEN           Green gear set
+ pros::E_MOTOR_GEAR_200             200 RPM
+ pros::E_MOTOR_GEARSET_06           6:1
+ pros::E_MOTOR_GEAR_BLUE            Blue Gear Set
+ pros::E_MOTOR_GEAR_600             200 RPM
  pros::E_MOTOR_GEARSET_INVALID      Error return code
 ================================== ===========================================================
 
