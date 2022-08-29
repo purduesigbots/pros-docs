@@ -61,6 +61,52 @@ Analogous to `pros::Imu::reset <../cpp/imu.html#reset>`_.
 
 ----
 
+imu_reset_blocking
+---------
+
+Calibrate IMU.
+
+This takes approximately 2 seconds, and is blocking until the IMU status flag is set properly.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+- ``EAGAIN`` - The sensor is already calibrating.
+
+Analogous to `pros::Imu::reset <../cpp/imu.html#reset>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t imu_reset_blocking (uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset_blocking(IMU_PORT);
+          int time = millis();
+          
+          // should print about 2000 ms
+          printf("IMU is done calibrating (took %d ms)\n", time);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
 imu_get_rotation
 ----------------
 
