@@ -5,8 +5,6 @@
 VEX Link C++ API
 =====================
 
-.. note:: ``pros::Link`` can also be used to refer ``pros::Link``
-
 .. note:: PROS currently officially supports the use of one VEX Radio per brain for VEXLink.
 
 .. contents:: :local:
@@ -386,12 +384,16 @@ Enumerated Values
 
   typedef enum link_type_e {
     E_LINK_RECIEVER = 0,
-    E_LINK_TRANSMITTER
+    E_LINK_TRANSMITTER,
+    E_LINK_RX = E_LINK_RECIEVER,
+    E_LINK_TX = E_LINK_TRANSMITTER
   } link_type_e_t;
 
 ============================= =============================================================
  Value
 ============================= =============================================================
  E_LINK_RECIEVER               Indicating that the radio is a reciever.
+ E_LINK_RX                     Indicating that the radio is a reciever.
  E_LINK_TRANSMITTER            Indicating that the radio is a transmitter.
+ E_LINK_TX                     Indicating that the radio is a transmitter.
 ============================= =============================================================
