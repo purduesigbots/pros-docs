@@ -410,7 +410,258 @@ Analogous to `motor_brake <../c/motors.html#motor-brake>`_ on each motor.
           pros::Motor_Group motor_group ({1,2});
           motor_group.move_voltage(12000);
           pros::delay(1000); // Move at max voltage for 1 second
-          mg.brake(); // Brakes all motor
+          motor_group.brake(); // Brakes all motor
+        }
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+set_zero_position
+~~~~~~~~~~~~~~~~~
+
+Sets the position for the motor in its encoder units.
+
+This will be the future reference point for the motors' "absolute"
+position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_set_zero_position <../c/motors.html#motor-set-zero-position>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor_Group::set_zero_position ( double position )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+          pros::Motor_Group motor_group ({1,2});
+          motor_group.move_absolute(100, 100); // Moves 100 units forward
+          motor_group.move_absolute(100, 100); // This does not cause a movement
+
+          motor_group.set_zero_position(80);
+          motor_group.move_absolute(100, 100); // Moves 80 units forward
+        }
+
+============ =================================================
+ Parameters
+============ =================================================
+ position     The new reference position in its encoder units
+============ =================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+set_reversed
+~~~~~~~~~~~~
+
+Sets the reverse flag for all the motors in the motor group.
+
+This will invert its movements and the values returned for its position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_set_reversed <../c/motors.html#motor-set-reversed>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor_Group::set_reversed ( bool reverse )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          pros::Motor_Group motor_group ({1,2});
+          motor_group.set_reversed(true);
+          std::cout << "Is this motor group reversed? " << motor_group.is_reversed();
+        }
+
+============ ============================================
+ Parameters
+============ ============================================
+ reverse      ``1`` reverses the motor, ``0`` is default
+============ ============================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+set_voltage_limit
+~~~~~~~~~~~~~~~~~
+
+Sets the voltage limit for all the motors in Volts.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_set_voltage_limit <../c/motors.html#motor-set-voltage-limit>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor_Group::set_voltage_limit ( std::int32_t limit )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+          pros::Motor_Group motor_group ({1,2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+
+          motor_group.set_voltage_limit(10000);
+          while (true) {
+            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            // The motor will not output more than 10 V
+            pros::delay(2);
+          }
+        }
+
+============ ================================
+ Parameters
+============ ================================
+ limit        The new voltage limit in Volts
+============ ================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+set_gearing
+~~~~~~~~~~~
+
+Sets one of `motor_gearset_e_t <motor_gearset_e_t_>`_ for all the motors in the motor group.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_set_gearing <../c/motors.html#motor-set-gearing>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor_Group::set_gearing ( pros::motor_gearset_e_t_ gearset )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          pros::Motor_Group motor_group ({1,2});
+          motor_group.set_gearing(E_MOTOR_GEARSET_06);
+          std::cout << "Motor group gearing: " << motor_group.get_gearing();
+        }
+
+============ =======================
+ Parameters
+============ =======================
+ gearset      The new motor gearset
+============ =======================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+set_encoder_units
+~~~~~~~~~~~~~~~~~
+
+Sets one of `motor_encoder_units_e_t`_ for the all the motor encoders in the motor group.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_set_encoder_units <../c/motors.html#motor-set-encoder-units>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor_Group::set_encoder_units ( pros::motor_encoder_units_e_t units )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          pros::Motor_Group motor_group ({1,2});
+          motor_group.set_encoder_units(E_MOTOR_ENCODER_DEGREES);
+          std::cout << "Encoder Units: " << motor_group.get_encoder_units();
+        }
+
+============ ===============================================================
+ Parameters
+============ ===============================================================
+ units        The new `motor encoder units <motor_encoder_units_e_t_>`_
+============ ===============================================================
+
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
+setting ``errno``.
+
+----
+
+tare_position
+~~~~~~~~~~~~~
+
+Sets the "absolute" zero position of the motor group to its current position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_tare_position <../c/motors.html#motor-tare-position>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::int32_t pros::Motor_Group::tare_position ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+          pros::Motor_Group motor_group ({1,2});
+          motor_group.move_absolute(100, 100); // Moves 100 units forward
+          motor_group.move_absolute(100, 100); // This does not cause a movement
+
+          motor_group.tare_position();
+          motor_group.move_absolute(100, 100); // Moves 100 units forward
         }
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
