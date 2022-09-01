@@ -9,8 +9,8 @@ Motor Groups C++ API
 
 .. contents:: :local:
 
-Functions
-=========
+pros::Motor_Group
+=================
 
 Constructor(s)
 --------------
@@ -121,6 +121,9 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ ========================================
 
 ----
+
+Functions
+---------
 
 move
 ~~~~
