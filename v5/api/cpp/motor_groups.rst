@@ -26,27 +26,28 @@ Constructor(s)
       ::
 
         pros::Motor_Group::Motor_Group(const std::initializer_list<Motor> motors)
+
    .. tab :: Example
      .. highlight:: cpp
      ::
 
-      void opcontrol(){
+      void opcontrol() {
         pros::Motor motor_1 (1);
         pros::Motor motor_2 (2);
-
         pros::Motor_Group motor_group ({motor_1, motor_2});
         pros::Controller master (E_CONTROLLER_MASTER);
+
         while (true) {
           motor_group.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
           pros::delay(5);
         }
       }
 
-=============== ===================================================================
+============ ========================================================
  Parameters
-=============== ===================================================================
- motors            An initializer_list of motors to be in the motor group
-=============== ===================================================================
+============ ========================================================
+ motors       An initializer_list of motors to be in the motor group
+============ ========================================================
 
 ----
 
@@ -56,6 +57,7 @@ Constructor(s)
       ::
 
         pros::Motor_Group::Motor_Group(const std::vector<std::int8_t> motor_ports)
+
    .. tab :: Example
      .. highlight:: cpp
      ::
@@ -69,12 +71,12 @@ Constructor(s)
         }
       }
 
-=============== ===================================================================
+============ ================================================================
  Parameters
-=============== ===================================================================
- motors         A Vector with the ports of the motors. Negative ports indicate
-                that the motor is reversed
-=============== ===================================================================
+============ ================================================================
+ motors       A Vector with the ports of the motors. Negative ports indicate
+              that the motor is reversed
+============ ================================================================
 
 ----
 
@@ -82,13 +84,14 @@ Operator Overloads
 ------------------
 Sets the voltage for all the motors in the motor group from -128 to 127.
 	
-	This is designed to map easily to the input from the controller's analog
-	stick for simple opcontrol use. The actual behavior of the motor is
-  analogous to use of `pros::Motor::move()` on each motor individually
-	This function uses the following values of errno when an error state is
-	reached:
-	ENODEV - One of the ports cannot be configured as a motor
-	EACCESS - The Motor group mutex can't be taken or given
+This is designed to map easily to the input from the controller's analog
+stick for simple opcontrol use. The actual behavior of the motor is
+analogous to use of `pros::Motor::move()` on each motor individually
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+ - ``ENODEV`` - One of the ports cannot be configured as a motor
+ - ``EACCESS`` - The Motor group mutex can't be taken or given
 	
 .. tabs ::
    .. tab :: Prototype
@@ -110,11 +113,11 @@ Sets the voltage for all the motors in the motor group from -128 to 127.
           }
         }
 
-=============== ===================================================================
+============ ========================================
  Parameters
-=============== ===================================================================
- voltage          The new motor voltage from -127 to 127
-=============== ===================================================================
+============ ========================================
+ voltage      The new motor voltage from -127 to 127
+============ ========================================
 
 ----
 
@@ -128,10 +131,10 @@ stick for simple opcontrol use. The actual behavior of the motor is
 analogous to use of `motor_move()`, or `motorSet()`` from the 
 PROS 2 API on each motor.
 
-This function uses the following values of errno when an error state is
-reached:
-ENODEV - The port cannot be configured as a motor
-EACCESS - The Motor group mutex can't be taken or given
+This function uses the following values of ``errno`` when an error state is reached:
+
+ - ``ENODEV`` - The port cannot be configured as a motor
+ - ``EACCESS`` - The Motor group mutex can't be taken or given
 
 .. tabs ::
    .. tab :: Prototype
@@ -153,12 +156,11 @@ EACCESS - The Motor group mutex can't be taken or given
           }
         }
 
-============ ===============================================================
+============ ========================================
  Parameters
-============ ===============================================================
+============ ========================================
  voltage      The new motor voltage from -127 to 127
-============ ===============================================================
-
+============ ========================================
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation
 failed, setting ``errno``.
@@ -172,13 +174,15 @@ Sets the target absolute position for the motors to move to.
 	
 This movement is relative to the position of the motors when initialized or
 the position when it was most recently reset with	pros::Motor::set_zero_position().
-	.. note:: This function simply sets the target for the motors, it does not block
-	          program execution until the movement finishes.
+
+.. note:: This function simply sets the target for the motors, it does not block
+	          program execution until the movement finishes. The example code shows how to block
+            until a movement is finished.
 	
-  This function uses the following values of errno when an error state is
-	reached:
-	ENODEV - The port cannot be configured as a motor
- 	EACCESS - The Motor group mutex can't be taken or given
+This function uses the following values of ``errno`` when an error state is reached:
+
+ - ``ENODEV`` - The port cannot be configured as a motor
+ - ``EACCESS`` - The Motor group mutex can't be taken or given
 	
   .. tabs ::
    .. tab :: Prototype
@@ -217,10 +221,9 @@ the position when it was most recently reset with	pros::Motor::set_zero_position
  position     The absolute position to move to in the motors' encoder units
  velocity     The maximum allowable velocity for the movement
 ============ ===============================================================
-
 	
-  **Returns** ``1`` if the operation was successful or ``PROS_ERR`` if the operation
-	failed, setting ``errno``.
+**Returns** ``1`` if the operation was successful or ``PROS_ERR`` if the operation
+failed, setting ``errno``.
 	
 ----
 
@@ -360,7 +363,7 @@ Analogous to `motor_move_voltage <../c/motors.html#motor-move-voltage>`_ on each
       ::
 
         void autonomous() {
-        pros::Motor_Group motor_group ({1,2});
+          pros::Motor_Group motor_group ({1,2});
           motor_group.move_voltage(12000);
           pros::delay(1000); // Move at max voltage for 1 second
           motor_group.move_voltage(0);
@@ -404,7 +407,8 @@ Analogous to `motor_brake <../c/motors.html#motor-brake>`_ on each motor.
       ::
 
         void autonomous() {
-          mg.move_voltage(12000);
+          pros::Motor_Group motor_group ({1,2});
+          motor_group.move_voltage(12000);
           pros::delay(1000); // Move at max voltage for 1 second
           mg.brake(); // Brakes all motor
         }
@@ -436,15 +440,15 @@ Indicates the current 'brake mode' of the motor.
     E_MOTOR_BRAKE_INVALID = INT32_MAX
   } motor_brake_mode_e_t;
 
-================================== ===========================================================
+============================= ===========================================================
  Value
-================================== ===========================================================
- pros::E_MOTOR_BRAKE_COAST          Motor coasts when stopped, default behavior
- pros::E_MOTOR_BRAKE_BRAKE          Motor short brakes when stopped by shorting (directly connecting) the motor’s positive and negative lead
-                                    https://en.m.wikipedia.org/wiki/Dynamic_braking
- pros::E_MOTOR_BRAKE_HOLD           Motor actively holds position when stopped 
- pros::E_MOTOR_BRAKE_INVALID        Invalid brake mode
-================================== ===========================================================
+============================= ===========================================================
+ pros::E_MOTOR_BRAKE_COAST     Motor coasts when stopped, default behavior
+ pros::E_MOTOR_BRAKE_BRAKE     Motor short brakes when stopped by shorting (directly connecting) the motor’s positive and negative lead
+                               https://en.m.wikipedia.org/wiki/Dynamic_braking
+ pros::E_MOTOR_BRAKE_HOLD      Motor actively holds position when stopped 
+ pros::E_MOTOR_BRAKE_INVALID   Invalid brake mode
+============================= ===========================================================
 
 ----
 
