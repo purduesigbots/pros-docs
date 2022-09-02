@@ -10,7 +10,7 @@ Motors C++ API
 
 .. contents:: :local:
 
-pros::Motor
+Functions
 ===========
 
 Constructor(s)
