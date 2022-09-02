@@ -433,8 +433,7 @@ Analogous to `motor_move_velocity <../c/motors.html#motor-move-velocity>`_.
       .. highlight:: cpp
       ::
 
-        std::int32_t pros::Motor::move_velocity ( std::uint8_t port,
-                                                  std::int16_t velocity )
+        std::int32_t pros::Motor::move_velocity ( std::int16_t velocity )
 
    .. tab :: Example
       .. highlight:: cpp
