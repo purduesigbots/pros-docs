@@ -11,6 +11,7 @@ Changelog
 This update brings a large amount of features and bugfixes across the kernel. Native motor group support being a major addition to help with library development.
 
 Features:
+
 - Add Native :code:`pros::Motor_Group` Support, see `Motor_Group <../../v5/api/cpp/motor_groups.html>`_ docs.
 - Add MutexVar for mutex protected variables.
 - Add simple name enum support for `VEXLink <../../v5/api/cpp/link.html>`_ and `IMU <../../v5/api/cpp/imu.html>`_.
