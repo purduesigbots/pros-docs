@@ -109,14 +109,14 @@ vision signatures.
         #define EXAMPLE_SIG 1
 
         void opcontrol() {
-          pros::Vision sensor(VISION_PORT);
+          pros::Vision vision_sensor (VISION_PORT);
           // values acquired from the vision utility
           pros::vision_signature_s_t RED_SIG =
             pros::Vision::signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
 
           sensor.set_signature(EXAMPLE_SIG, &RED_SIG);
           while (true) {
-            pros::vision_signature_s_t rtn = sensor.get_by_sig(VISION_PORT, 0, EXAMPLE_SIG);
+            pros::vision_signature_s_t rtn = vision_sensor.get_by_sig(VISION_PORT, 0, EXAMPLE_SIG);
             // Gets the largest object of the EXAMPLE_SIG signature
             std::cout << "sig: " << rtn.signature << std::endl;
             // Prints "sig: 1"
@@ -175,8 +175,8 @@ reached:
 				#define OTHER_SIG 2
 
         void opcontrol() {
-          pros::Vision vis (VISION_PORT);
-          pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+          pros::Vision vision_sensor (VISION_PORT);
+          pros::vision_color_code_t code1 = vision_sensor.create_color_code(EXAMPLE_SIG, OTHER_SIG);
         }
 
 ============ ===============================================================
@@ -321,10 +321,10 @@ reached:
         #define OTHER_SIG 2
 
         void opcontrol() {
-          pros::Vision vis (VISION_PORT);
-          pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+          pros::Vision vision_sensor (VISION_PORT);
+          pros::vision_color_code_t code1 = vision_sensor.create_color_code(EXAMPLE_SIG, OTHER_SIG);
           while (true) {
-            pros::vision_object_s_t rtn = vis.get_by_code(0, code1);
+            pros::vision_object_s_t rtn = vision_sensor.get_by_code(0, code1);
             // Gets the largest object
             printf("sig: %d", rtn.signature);
             delay(2);
@@ -437,8 +437,8 @@ reached:
         #define EXAMPLE_SIG 1
 
 				void opcontrol() {
-          pros::Vision vis (VISION_PORT);
-          pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+          pros::Vision vision_sensor (VISION_PORT);
+          pros::vision_signature_s_t sig = vision_sensor.get_signature(EXAMPLE_SIG);
           pros::Vision::print_signature(sig);
 				}
 
@@ -533,8 +533,8 @@ Prints the contents of the signature as an initializer list to the terminal.
         #define EXAMPLE_SIG 1
 
         void opcontrol() {
-					pros::Vision vis (VISION_PORT);
-					pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+					pros::Vision vision_sensor (VISION_PORT);
+					pros::vision_signature_s_t sig = vision_sensor.get_signature(EXAMPLE_SIG);
           pros::Vision::print_signature(sig);
         }
 
@@ -699,10 +699,10 @@ reached:
 
         void opcontrol() {
           pros::vision_object_s_t object_arr[NUM_VISION_OBJECTS];
-          pros::Vision vis (VISION_PORT);
-          pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+          pros::Vision vision_sensor (VISION_PORT);
+          pros::vision_color_code_t code1 = vision_sensor.create_color_code(EXAMPLE_SIG, OTHER_SIG);
           while (true) {
-            vis.read_by_code(0, code1, NUM_VISION_OBJECTS, object_arr);
+            vision_sensor.read_by_code(0, code1, NUM_VISION_OBJECTS, object_arr);
             printf("sig: %d", object_arr[0].signature);
             // Prints the signature of the largest object found
             delay(2);
@@ -875,10 +875,10 @@ reached:
         #define EXAMPLE_SIG 1
 
         void opcontrol() {
-          pros::Vision vis (VISION_PORT);
-          pros::vision_signature_s_t sig = vis.get_signature(EXAMPLE_SIG);
+          pros::Vision vision_sensor (VISION_PORT);
+          pros::vision_signature_s_t sig = vision_sensor.get_signature(EXAMPLE_SIG);
           sig.range = 10.0;
-          vis.set_signature(EXAMPLE_SIG, &sig);
+          vision_sensor.set_signature(EXAMPLE_SIG, &sig);
         }
 
 ================ ===================================
