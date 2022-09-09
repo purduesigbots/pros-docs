@@ -864,10 +864,10 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-            pros::touch_event_cb_fn_t changePixel(){
+            void changePixel() {
                pros::screen_touch_status_s_t status = pros::screen::touch_status();
-               pros::screen::draw_pixel(status.x,status.y);
-               return NULL;
+               pros::screen::draw_pixel(status.x, status.y);
+               printf("Touch callback executed!   x = %i, y = %i \n", status.x, status.y);
             }
 
             void opcontrol() {
@@ -876,7 +876,9 @@ This function uses the following values of ``errno`` when an error state is reac
                pros::Motor right_mtr(2);
 
                pros::screen::touch_callback(changePixel, TOUCH_PRESSED);
-               while(1) pros::delay(20);
+               while(1) {
+                  pros::delay(20);
+               }
             }
 
 ============ =================================================================================================================
