@@ -463,8 +463,7 @@ Analogous to `motor_set_zero_position <../c/motors.html#motor-set-zero-position>
  position     The new reference position in its encoder units
 ============ =================================================
 
-**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
-setting ``errno``.
+**Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -1028,15 +1027,14 @@ This function uses the following values of ``errno`` when an error state is reac
    .. tab :: Example
       .. highlight:: cpp
       ::
-
+        
         void initialize() {
           pros::Motor_Group motor_group ({1,2});
           motor_group.set_gearing(E_MOTOR_GEARSET_06);
           std::cout << "Motor group gearing: " << motor_group.get_gearing();
         }
 
-**Returns:** A Vector with a ``motor_gearset_e_t`` for each motor according to what is set for the motor,
-  or ``E_GEARSET_INVALID`` if the operation failed for that motor.
+**Returns:** A Vector with a ``motor_gearset_e_t`` for each motor according to what is set for the motor, or ``E_GEARSET_INVALID`` if the operation failed for that motor.
 
 ----
 
