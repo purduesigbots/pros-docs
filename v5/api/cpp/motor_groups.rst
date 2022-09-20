@@ -467,6 +467,7 @@ Analogous to `motor_set_zero_position <../c/motors.html#motor-set-zero-position>
 setting ``errno``.
 
 ----
+
 set_brake_modes
 ~~~~~~~~~~~~~~~
 
@@ -497,7 +498,9 @@ This function uses the following values of errno when an error state is reached:
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
+
 ----
+
 set_reversed
 ~~~~~~~~~~~~
 
@@ -999,12 +1002,14 @@ Analogous to `motor_get_brake_mode <../c/motors.html#motor-get-brake-mode>`_ on 
           std::cout << "Brake Modes: " << motor_group.get_brake_modes();
         }
 
-**Returns:** A Vector with for each motor one of `motor_brake_mode_e_t <motor_brake_mode_e_t_>`_,
+**Returns:** A vector with for each motor one of `motor_brake_mode_e_t <motor_brake_mode_e_t_>`_,
 according to what was set for the motor, or a vector filled with
 ``E_MOTOR_BRAKE_INVALID`` if the operation failed, setting ``errno``.
 
 ----
+
 get_gearing
+~~~~~~~~~~~
 
 Gets the gearset that was set for the motor.
 
@@ -1032,6 +1037,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 **Returns:** A Vector with a ``motor_gearset_e_t`` for each motor according to what is set for the motor,
   or ``E_GEARSET_INVALID`` if the operation failed for that motor.
+
 ----
 
 get_current_draws
