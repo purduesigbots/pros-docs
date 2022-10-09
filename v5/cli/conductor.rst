@@ -146,7 +146,7 @@ Editing Default Templates For New Projects
 
 By default, new PROS projects ship with OkapiLib. If you want to change this, or add other templates of your own automatically when creating new projects, you can do so as follows.
 
-Open conductor.pros (see above). Find the ``default_libraries`` key. Within this key, you can specify the names of templates included by default for each target (``v5`` or ``cortex``). For example, if you wanted to make sure that libhotel was added to new projects and not OkapiLib, you might end up with the following
+Open conductor.pros (see above). Find the ``default_libraries`` key. Within this key, you can specify the names of templates included by default for each target (``v5`` or ``cortex``). For example, if you wanted to make sure that `ARMS <https://github.com/purduesigbots/arms>`_ was added to new projects and not OkapiLib, you might end up with the following
 
 .. tabs::
 	.. tab:: conductor.pros
@@ -156,7 +156,7 @@ Open conductor.pros (see above). Find the ``default_libraries`` key. Within this
 			"default_libraries": {
 				"cortex": [],
 				"v5": [
-					"libhotel"
+					"ARMS"
 				]
 			}
 
