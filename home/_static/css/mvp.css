@@ -527,7 +527,6 @@ footer {
     display: none;
   }
   .nav-logo-lg {
-    image-rendering: auto;
     display: block;
   }
   #feature-table {
