@@ -11,10 +11,13 @@
     <link href="_static/css/mvp.css" rel="stylesheet" />
     <link href="_static/css/menu.css" rel="stylesheet" />
     <link href="_static/fontawesome/css/all.min.css" rel="stylesheet" />
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;900&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="shortcut icon" type="image/x-icon" href="{{index}}{{""}}{{""}}{{
     else }}/_static/favicon.ico{{ end }}"> <link rel="icon" type="image/x-icon"
@@ -103,7 +106,7 @@
               class="nav-logo-lg"
               id="nav-logo"
               alt="Logo"
-              src="_static/img/pros-header-w-70.png"
+              src="_static/img/pros-header-w-140.png"
               height="70"
             />
           </a>
@@ -118,7 +121,10 @@
             </li>
             <li><a class="white-bar" href="./v5/blog/index.html">BLOG</a></li>
             <li>
-              <a class="white-bar" href="https://github.com/purduesigbots" target="_blank"
+              <a
+                class="white-bar"
+                href="https://github.com/purduesigbots"
+                target="_blank"
                 >GITHUB ↗</a
               >
             </li>
@@ -160,18 +166,15 @@
             </ul>
           </div>
         </nav>
-        <img
-          class="white-hero"
-          src="_static/img/pros-tux.png"
-          alt="PROS"
-          height="300"
-        />
-        <img
-          class="black-hero"
-          src="_static/img/pros-tux-fc-b.png"
-          alt="PROS"
-          height="300"
-        />
+        <picture>
+          <source
+            srcset="_static/img/pros-tux-fc-b.png"
+            media="(prefers-color-scheme: light) and (max-width: 479px)"
+            alt="PROS"
+            height="300"
+          />
+          <img src="_static/img/pros-tux.png" alt="PROS" height="300" />
+        </picture>
         <p>Open Source C/C++ Development for VEX V5 and VEX Cortex</p>
         <br />
         <p>
@@ -450,12 +453,14 @@
       });
 
       var query = document.querySelector(".query");
-      query.addEventListener("blur", function () {
-        if (this.value) {
-          var path = document.location.pathname;
-          ga("send", "pageview", path + "?q=" + this.value);
-        }
-      });
+      if (query !== null) {
+        query.addEventListener("blur", function () {
+          if (this.value) {
+            var path = document.location.pathname;
+            ga("send", "pageview", path + "?q=" + this.value);
+          }
+        });
+      }
     </script>
     <script src="//localhost:35729/livereload.js"></script>
   </body>

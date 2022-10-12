@@ -12,7 +12,7 @@
   --color-shadow: #f4f4f4;
   --color-text: #000;
   --color-text-secondary: #999;
-  --font-family: 'Montserrat', sans-serif;
+  --font-family: "Montserrat", sans-serif;
   /* --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif; */
   --hero-video-height: 950px;
@@ -28,20 +28,6 @@
 
 .w-w {
   display: none;
-}
-/* Only use the hero logo with black text if sm and light theme */
-.black-hero {
-  display: none;
-}
-@media (prefers-color-scheme: light) {
-  @media (max-width: 479px) {
-    .black-hero {
-      display: inline-block;
-    }
-    .white-hero {
-      display: none;
-    }
-  }
 }
 
 @media (prefers-color-scheme: dark) {
