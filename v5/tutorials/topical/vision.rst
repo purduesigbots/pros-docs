@@ -29,7 +29,7 @@ to recognize as objects. This is done through the V5 Vision Utility program or p
              pros::Vision::signature_from_utility(EXAMPLE_SIG, 8973, 11143, 10058, -2119, -1053, -1586, 5.4, 0);
 
 
-           sensor.set_signature(EXAMPLE_SIG, &RED_SIG);
+           vision_sensor.set_signature(EXAMPLE_SIG, &RED_SIG);
          }
 
    .. group-tab :: C
@@ -63,7 +63,7 @@ Color codes can also be created from multiple signatures.
 
          void opcontrol() {
            pros::Vision vision_sensor (VISION_PORT);
-           pros::vision_color_code_t code1 = vis.create_color_code(EXAMPLE_SIG, OTHER_SIG);
+           pros::vision_color_code_t code1 = vision_sensor.create_color_code(EXAMPLE_SIG, OTHER_SIG);
          }
 
    .. group-tab :: C
