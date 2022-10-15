@@ -1310,7 +1310,7 @@ Potentiometer V2 rotates 330 degrees thus returning an angle between 0-330 degre
 This function uses the following values of ``errno`` when an error state is reached:
 
 - ``ENXIO`` - The given port is not within the range of ADI Ports
-- ``EADDRINUSE``  - The port is not configured as a potnetiometer
+- ``EADDRINUSE``  - The port is not configured as a potentiometer
 
 Analogous to `pros::ADIPotentiometer::get_angle <../cpp/adi.html#>`_.
 
@@ -1343,6 +1343,246 @@ Analogous to `pros::ADIPotentiometer::get_angle <../cpp/adi.html#>`_.
 ================ =============================================================================================================
 
 **Returns:** The potentiometer angle in degrees.
+
+----
+
+adi_led_clear_all 
+-----------------
+
+Clear the entire led strip of color.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::clear_all <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t adi_led_clear_all ( adi_led_t led, uint32_t* buffer, uint32_t buffer_length )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+            adi_led_t led = adi_led_init(LED_PORT);
+	    //Set led colors
+	    uint32_t buffer[LED_SIZE];
+	    for (int i = 0; i < LED_SIZE; i++) {
+	      buffer[i] = 0x808080;
+	    }
+	    adi_led_clear_all(led, buffer, LED_SIZE);
+          }
+        }
+
+================ =============================================================================================================
+ Parameters
+================ =============================================================================================================
+  led            Port of type adi_led_t
+  buffer         Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+  buffer_length  Length of buffer to clear
+================ =============================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+adi_led_init 
+------------
+
+Initializes a led on the given port of the original led.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - The ADI port given is not a valid port as defined below
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::ADILed <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        adi_led_t adi_led_init ( uint8_t port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+
+        void initalize() {
+            adi_led_t led = adi_led_init(LED_PORT);
+          }
+        }
+
+================ =============================================================================================================
+ Parameters
+================ =============================================================================================================
+  port            The ADI port to initialize as a led (from 1-8, 'a'-'h', 'A'-'H')
+================ =============================================================================================================
+
+**Returns:** An adi_led_t object containing the given port, or PROS_ERR if the
+initialization failed, setting errno
+
+----
+
+adi_led_set
+-----------
+
+Set the entire led strip using the colors contained in the buffer
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::operator[] <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        adi_led_set ( adi_led_t led, uint32_t* buffer, uint32_t buffer_length )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+            adi_led_t led = adi_led_init(LED_PORT);
+	    //Set led colors
+	    uint32_t buffer[LED_SIZE];
+	    for (int i = 0; i < LED_SIZE; i++) {
+	      buffer[i] = 0x808080;
+	    }
+	    adi_led_set(led, buffer, LED_SIZE);
+          }
+        }
+
+================ =============================================================================================================
+ Parameters
+================ =============================================================================================================
+  led            Port of type adi_led_t
+  buffer         Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+  buffer_length  Length of buffer to change color
+================ =============================================================================================================
+
+----
+
+adi_led_set_all
+---------------
+
+Set the entire led strip to one color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::set_all <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        adi_led_set_all ( adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+            adi_led_t led = adi_led_init(LED_PORT);
+	    //Set led colors
+	    uint32_t buffer[LED_SIZE];
+	    adi_led_set_all(led, buffer, LED_SIZE, 0x800000);
+          }
+        }
+
+================ =============================================================================================================
+ Parameters
+================ =============================================================================================================
+  led            Port of type adi_led_t
+  buffer         Array that is of size buffer_length
+  buffer_length  Length of buffer to change color
+  color          Color to set all the led strip values to
+================ =============================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+adi_led_set_pixel
+-----------------
+
+Set one pixel on the led strip
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::set_pixel <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        adi_led_set_pixel ( adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color, uint32_t pixel_position )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+            adi_led_t led = adi_led_init(LED_PORT);
+	    //Set led colors
+	    uint32_t buffer[LED_SIZE];
+	    for (int i = 0; i < LED_SIZE; i++) {
+	      buffer[i] = 0x808080;
+	    }
+	    adi_led_set_pixel(led, buffer, LED_SIZE, 0x808080, 0);
+          }
+        }
+
+================ =============================================================================================================
+ Parameters
+================ =============================================================================================================
+  led            Port of type adi_led_t
+  buffer         Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+  buffer_length  Length of buffer to clear
+  color          Color to set pixel to
+  pixel_position Position of the pixel to set
+================ =============================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
 
 Macros
 ======
@@ -1517,3 +1757,15 @@ object to store potentiometer data in PROS 2.
 ::
 
 	typedef int32_t adi_potentiometer_t;
+
+adi_led_t
+---------
+
+Reference type for an initialized ultrasonic.
+
+This merely contains the port number for the led, unlike its use as an object to
+store led data in PROS 2.
+
+::
+
+	typedef int32_t adi_led_t;
