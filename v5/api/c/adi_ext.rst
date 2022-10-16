@@ -1480,7 +1480,7 @@ Analogous to `pros::ADILed::ADILed <../cpp/adi.html#>`_.
       .. highlight:: c
       ::
 
-        ext_adi_led_init ( uint8_t smart_port, uint8_t adi_port )
+        ext_adi_led_t ext_adi_led_init ( uint8_t smart_port, uint8_t adi_port )
 
    .. tab :: Example
       .. highlight:: c
@@ -1500,7 +1500,7 @@ Analogous to `pros::ADILed::ADILed <../cpp/adi.html#>`_.
  adi_port     The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as an led
 ============ =============================================================================================================
 
-**Returns:** An `ext_adi_led_t` object containing the given port, or PROS_ERR if the initialization failed.
+**Returns:** An ``ext_adi_led_t`` object containing the given port, or PROS_ERR if the initialization failed.
 
 ----
 
@@ -1520,7 +1520,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        ext_adi_led_set ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length )
+        int32_t ext_adi_led_set ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length )
 
    .. tab :: Example
       .. highlight:: c
@@ -1569,7 +1569,7 @@ Analogous to `pros::ADILed::set_all <../cpp/adi.html#>`_.
       .. highlight:: c
       ::
 
-        ext_adi_led_set_all ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color )
+        int32_t ext_adi_led_set_all ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color )
 
    .. tab :: Example
       .. highlight:: c
@@ -1614,7 +1614,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        ext_adi_led_set_pixel ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color, uint32_t pixel_position )
+        int32_t ext_adi_led_set_pixel ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color, uint32_t pixel_position )
 
    .. tab :: Example
       .. highlight:: c
