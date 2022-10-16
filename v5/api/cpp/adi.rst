@@ -1623,7 +1623,8 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         pros::ADILed::ADILed ( std::uint8_t adi_port, std::uint32_t length )
+         pros::ADILed::ADILed ( std::uint8_t adi_port,
+	                        std::uint32_t length )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1649,7 +1650,8 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         pros::ADILed::ADILed ( ext_adi_port_pair_t port_pair, std::uint32_t length )
+         pros::ADILed::ADILed ( ext_adi_port_pair_t port_pair,
+	                        std::uint32_t length )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1712,6 +1714,41 @@ Operator overload to access the buffer in the ADILed class, it is recommended th
 
 ----
 
+clear
+~~~~~~~~~
+
+Clear the entire led strip of color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A parameter is out of bounds/incorrect
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+	 std::int32_t pros::ADILed::clear ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+          pros::ADILed led (LED_PORT, LED_SIZE);
+          //Set colors
+	  led.clear();
+        }
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
 clear_all
 ~~~~~~~~~
 
@@ -1728,8 +1765,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         std::int32_t pros::ADILed::clear_all()
-	 std::int32_t pros::ADILed::clear()
+         std::int32_t pros::ADILed::clear_all ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1803,7 +1839,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         std::int32_t pros::ADILed::length()
+         std::int32_t pros::ADILed::length ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1876,7 +1912,8 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         std::int32_t pros::ADILed::set_pixel ( uint32_t color, uint32_t pixel_position )
+         std::int32_t pros::ADILed::set_pixel ( uint32_t color,
+	                                        uint32_t pixel_position )
 
    .. tab :: Example
       .. highlight:: cpp
