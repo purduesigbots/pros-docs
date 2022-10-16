@@ -1369,48 +1369,6 @@ Analogous to `pros::ADIPotentiometer::get_angle <../cpp/adi.html#>`_.
 
 ----
 
-ext_adi_led_init
-----------------
-
-Initializes a led on the given port.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENXIO`` - The given port is not within the range of ADI Ports
-- ``EINVAL`` - A given value is not correct, or the buffer is null
-- ``EADDRINUSE``  - The port is not configured for ADI output
-
-Analogous to `pros::ADILed::ADILed <../cpp/adi.html#>`_.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: c
-      ::
-
-        ext_adi_led_init ( uint8_t smart_port, uint8_t adi_port )
-
-   .. tab :: Example
-      .. highlight:: c
-      ::
-
-        #define LED_PORT 1
-        #define ADI_EXPANDER_PORT 20
-
-        void initialize() {
-          ext_adi_led_t led = ext_adi_led_init(ADI_EXPANDER_PORT, LED_PORT);
-        }
-
-============ =============================================================================================================
- Parameters
-============ =============================================================================================================
- smart_port   The smart port number the ADI Expander is in
- adi_port     The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as an led
-============ =============================================================================================================
-
-**Returns:** An `ext_adi_led_t` object containing the given port, or PROS_ERR if the initialization failed.
-
-----
-
 ext_adi_led_clear_all
 ---------------------
 
@@ -1501,6 +1459,48 @@ Analogous to `pros::ADILed::clear_pixel <../cpp/adi.html#>`_.
 ================== =====================================================================================================================
 
 **Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+ext_adi_led_init
+----------------
+
+Initializes a led on the given port.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE``  - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::ADILed <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        ext_adi_led_init ( uint8_t smart_port, uint8_t adi_port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+        #define ADI_EXPANDER_PORT 20
+
+        void initialize() {
+          ext_adi_led_t led = ext_adi_led_init(ADI_EXPANDER_PORT, LED_PORT);
+        }
+
+============ =============================================================================================================
+ Parameters
+============ =============================================================================================================
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as an led
+============ =============================================================================================================
+
+**Returns:** An `ext_adi_led_t` object containing the given port, or PROS_ERR if the initialization failed.
 
 ----
 
