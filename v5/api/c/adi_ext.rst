@@ -1445,13 +1445,13 @@ Analogous to `pros::ADILed::clear_all <../cpp/adi.html#>`_.
 	  ext_adi_led_clear_all(led, buffer, LED_SIZE);
         }
 
-============ =============================================================================================================
+=============== =================================================================================================================
  Parameters
-============ =============================================================================================================
- led            Port of type ext_adi_led_t
- buffer         Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
- buffer_length  Length of buffer to clear
-============ =============================================================================================================
+=============== =================================================================================================================
+ led             Port of type ext_adi_led_t
+ buffer          Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ buffer_length   Length of buffer to clear
+=============== =================================================================================================================
 
 **Returns:** PROS_SUCCESS if successful, PROS_ERR if not
 
@@ -1467,6 +1467,8 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given port is not within the range of ADI Ports
 - ``EINVAL`` - A given value is not correct, or the buffer is null
 - ``EADDRINUSE``  - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::clear_pixel <../cpp/adi.html#>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -1489,14 +1491,14 @@ This function uses the following values of ``errno`` when an error state is reac
 	  ext_adi_led_set_all(led, buffer, LED_SIZE, 0);
         }
 
-============ =============================================================================================================
+================== =====================================================================================================================
  Parameters
-============ =============================================================================================================
- led             Port of type ext_adi_led_t
- buffer          Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
- buffer_length   Length of buffer to set
- pixel_position  Position of the pixel to clear (0 indexed)
-============ =============================================================================================================
+================== =====================================================================================================================
+ led                Port of type ext_adi_led_t
+ buffer             Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ buffer_length      Length of buffer to set
+ pixel_position     Position of the pixel to clear (0 indexed)
+================== =====================================================================================================================
 
 **Returns:** PROS_SUCCESS if successful, PROS_ERR if not
 
@@ -1537,13 +1539,13 @@ This function uses the following values of ``errno`` when an error state is reac
 	  ext_adi_led_set(led, buffer, LED_SIZE);
         }
 
-============ =============================================================================================================
+=============== ===================================================================================================================
  Parameters
-============ =============================================================================================================
- led            Port of type ext_adi_led_t
- buffer         Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
- buffer_length  Length of buffer to set
-============ =============================================================================================================
+=============== ===================================================================================================================
+ led             Port of type ext_adi_led_t
+ buffer          Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ buffer_length   Length of buffer to set
+=============== ===================================================================================================================
 
 **Returns:** PROS_SUCCESS if successful, PROS_ERR if not
 
@@ -1559,6 +1561,8 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given port is not within the range of ADI Ports
 - ``EINVAL`` - A given value is not correct, or the buffer is null
 - ``EADDRINUSE``  - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::set_all <../cpp/adi.html#>`_.
 
 .. tabs ::
    .. tab :: Prototype
@@ -1581,14 +1585,14 @@ This function uses the following values of ``errno`` when an error state is reac
 	  ext_adi_led_set_all(led, buffer, LED_SIZE, 0x808080);
         }
 
-============ =============================================================================================================
+=============== =================================================================================================================
  Parameters
-============ =============================================================================================================
- led            Port of type ext_adi_led_t
- buffer         Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
- buffer_length  Length of buffer to set
- color          Color to set the entire led to
-============ =============================================================================================================
+=============== =================================================================================================================
+ led             Port of type ext_adi_led_t
+ buffer          Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ buffer_length   Length of buffer to set
+ color           Color to set the entire led to
+=============== =================================================================================================================
 
 **Returns:** PROS_SUCCESS if successful, PROS_ERR if not
 
@@ -1626,15 +1630,15 @@ This function uses the following values of ``errno`` when an error state is reac
 	  ext_adi_led_set_all(led, buffer, LED_SIZE, 0x808080, 0);
         }
 
-============ =============================================================================================================
+=============== =================================================================================================================
  Parameters
-============ =============================================================================================================
+=============== =================================================================================================================
  led             Port of type ext_adi_led_t
  buffer          Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
  buffer_length   Length of buffer to set
- color          Color to set the entire led to
+ color           Color to set the entire led to
  pixel_position  Position of the pixel to set (0 indexed)
-============ =============================================================================================================
+=============== =================================================================================================================
 
 **Returns:** PROS_SUCCESS if successful, PROS_ERR if not
 
