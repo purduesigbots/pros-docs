@@ -4,6 +4,12 @@ Extended API
 
 .. note:: Also included in the Extended API is `LVGL <https://littlevgl.com/>`_.
 
+.. note:: PROS supports a simple implementation of the 
+  `POSIX clock_gettime() and clock_settime() 
+  <https://pubs.opengroup.org/onlinepubs/000095399/functions/clock_getres.html>`_
+  functionality. Currently only CLOCK_REALTIME and CLOCK_MONOTONIC are supported
+  for these functions.
+  
 Functions
 =========
 
@@ -145,8 +151,6 @@ Control settings of the serial driver.
 ============ ==========================================================================================================
 
 ----
-
-
 
 Macros
 ======
