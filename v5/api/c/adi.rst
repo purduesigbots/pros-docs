@@ -1454,7 +1454,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: c
       ::
 
-        adi_led_set ( adi_led_t led, uint32_t* buffer, uint32_t buffer_length )
+        int32_t adi_led_set ( adi_led_t led, uint32_t* buffer, uint32_t buffer_length )
 
    .. tab :: Example
       .. highlight:: c
@@ -1502,7 +1502,7 @@ Analogous to `pros::ADILed::set_all <../cpp/adi.html#>`_.
       .. highlight:: c
       ::
 
-        adi_led_set_all ( adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color )
+        int32_t adi_led_set_all ( adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color )
 
    .. tab :: Example
       .. highlight:: c
@@ -1550,7 +1550,7 @@ Analogous to `pros::ADILed::set_pixel <../cpp/adi.html#>`_.
       .. highlight:: c
       ::
 
-        adi_led_set_pixel ( adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color, uint32_t pixel_position )
+        int32_t adi_led_set_pixel ( adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color, uint32_t pixel_position )
 
    .. tab :: Example
       .. highlight:: c
