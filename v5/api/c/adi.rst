@@ -1449,8 +1449,6 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``EINVAL`` - A given value is not correct, or the buffer is null
 - ``EADDRINUSE`` - The port is not configured for ADI output
 
-Analogous to `pros::ADILed::operator[] <../cpp/adi.html#>`_.
-
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
