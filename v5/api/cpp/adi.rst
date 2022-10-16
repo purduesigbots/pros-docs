@@ -1604,6 +1604,335 @@ Analogous to `adi_poteniometer_get <../c/adi.html#adi-potentiometer-get-angle>`_
 
 **Returns:**  The potentiometer angle in tenths of a degree.
 
+----
+
+pros::ADILed
+============
+
+.. note:: ``pros::ADILed`` and ``pros::ADILED`` are synonymous.
+
+Constructor(s)
+--------------
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         pros::ADILed::ADILed ( std::uint8_t adi_port, std::uint32_t length )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+          pros::ADILed led (LED_PORT, LED_SIZE);
+          // Use the led
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The ADI port number (from 1-8, 'a'-'h', 'A'-'H') for which to create an object
+ length       The number of LEDs in the chain
+============ =================================================================================================================
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         pros::ADILed::ADILed ( ext_adi_port_pair_t port_pair, std::uint32_t length )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define EXT_ADI_SMART_PORT 1
+        #define ADI_PORT 'a'
+	#define LED_SIZE 64
+
+        void initalize() {
+          pros::ADILed led ({{EXT_ADI_SMART_PORT,ADI_PORT}}, LED_SIZE);
+          // Use the led
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port_pair    2 value pair in the form of {{smart_port , adi_port}} for which to create an object, where smart_port is an 
+              ADI expander's smart port (1-22) and adi_port is ADI port number (from 1-8, 'a'-'h', 'A'-'H').
+ length       The number of LEDs in the chain
+============ =================================================================================================================
+
+----
+
+Methods
+-------
+
+operator[] 
+~~~~~~~~~~
+
+Operator overload to access the buffer in the ADILed class, it is recommended that you call .update(); after doing any operations with this.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::uint32_t& pros::ADILed::operator[] ( size_t i )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+          pros::ADILed led (LED_PORT, LED_SIZE);
+          led[0] = 0x808080;
+	  led.update();
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ i    0 indexed pixel of the lED
+============ =================================================================================================================
+
+**Returns:** The address of the buffer at i to modify as a uint32_t&
+
+----
+
+clear_all
+~~~~~~~~~
+
+Clear the entire led strip of color
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A parameter is out of bounds/incorrect
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::int32_t pros::ADILed::clear_all()
+	 std::int32_t pros::ADILed::clear()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+          pros::ADILed led (LED_PORT, LED_SIZE);
+          //Set colors
+	  led.clear_all();
+        }
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+update
+~~~~~~
+
+Force the LED strip to update with the current buffered values, this should be called after any changes to the buffer using the [] operator.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL`` - A parameter is out of bounds/incorrect
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::uint32_t& pros::ADILed::update() const
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+          pros::ADILed led (LED_PORT, LED_SIZE);
+          led[0] = 0x808080;
+	  led.update();
+        }
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+set_all
+~~~~~~~
+
+Set the entire led strip to one color.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL`` - A parameter is out of bounds/incorrect
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::int32_t pros::ADILed::set_all ( uint32_t color )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+          pros::ADILed led (LED_PORT, LED_SIZE);
+          led.set_all(0x808080);
+	  led.update();
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ color    Color to set the entire led to
+============ =================================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+set_pixel
+~~~~~~~~~
+
+Set one pixel on the led strip.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL`` - A parameter is out of bounds/incorrect
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::int32_t pros::ADILed::set_pixel ( uint32_t color, uint32_t pixel_position )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+          pros::ADILed led (LED_PORT, LED_SIZE);
+          led.set_pixel(0x808080, 0);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ color          Color to set a pixel to
+ pixel_position Position of the pixel to set
+============ =================================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+clear_pixel
+~~~~~~~~~~~
+
+Clear one pixel on the led strip.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL`` - A parameter is out of bounds/incorrect
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::int32_t pros::ADILed::clear_pixel ( uint32_t pixel_position )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+          pros::ADILed led (LED_PORT, LED_SIZE);
+          //Set led colors
+	  led.clear_pixel(0);
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ pixel_position Position of the pixel to set
+============ =================================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+length
+~~~~~~
+
+Get the length of the led strip.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``EINVAL`` - A parameter is out of bounds/incorrect
+- ``EADDRINUSE`` - The port is not configured for ADI output
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::int32_t pros::ADILed::length()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+
+        void initalize() {
+          pros::ADILed led (LED_PORT, LED_SIZE);
+          std::cout << "Led size: " << led.length(); //Prints out led length
+        }
+
+**Returns:** The length (in pixels) of the LED strip
+
 Macros
 ======
 
