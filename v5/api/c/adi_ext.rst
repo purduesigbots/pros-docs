@@ -1367,6 +1367,281 @@ Analogous to `pros::ADIPotentiometer::get_angle <../cpp/adi.html#>`_.
 
 **Returns:** An `ext_adi_potentiometer_t`_ object to be stored and used for later calls to potentiometer functions, or PROS_ERR if there was an error.
 
+----
+
+ext_adi_led_clear_all
+---------------------
+
+Clear the entire led strip of color.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE``  - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::clear_all <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        ext_adi_led_clear_all ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+        #define ADI_EXPANDER_PORT 20
+
+        void initialize() {
+          ext_adi_led_t led = ext_adi_led_init(ADI_EXPANDER_PORT, LED_PORT);
+	  uint32_t buffer[LED_SIZE];
+	  ext_adi_led_clear_all(led, buffer, LED_SIZE);
+        }
+
+=============== =================================================================================================================
+ Parameters
+=============== =================================================================================================================
+ led             Port of type ext_adi_led_t
+ buffer          Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ buffer_length   Length of buffer to clear
+=============== =================================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+ext_adi_led_clear_pixel
+-----------------------
+
+Set the entire led strip using the colors contained in the buffer.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE``  - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::clear_pixel <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        ext_adi_led_clear_pixel ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t pixel_position )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+        #define ADI_EXPANDER_PORT 20
+
+        void initialize() {
+          ext_adi_led_t led = ext_adi_led_init(ADI_EXPANDER_PORT, LED_PORT);
+	  uint32_t buffer[LED_SIZE];
+	  ext_adi_led_set_all(led, buffer, LED_SIZE, 0);
+        }
+
+================== =====================================================================================================================
+ Parameters
+================== =====================================================================================================================
+ led                Port of type ext_adi_led_t
+ buffer             Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ buffer_length      Length of buffer to set
+ pixel_position     Position of the pixel to clear (0 indexed)
+================== =====================================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+ext_adi_led_init
+----------------
+
+Initializes a led on the given port.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE``  - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::ADILed <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        ext_adi_led_t ext_adi_led_init ( uint8_t smart_port, uint8_t adi_port )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+        #define ADI_EXPANDER_PORT 20
+
+        void initialize() {
+          ext_adi_led_t led = ext_adi_led_init(ADI_EXPANDER_PORT, LED_PORT);
+        }
+
+============ =============================================================================================================
+ Parameters
+============ =============================================================================================================
+ smart_port   The smart port number the ADI Expander is in
+ adi_port     The ADI port number (from 1-8, 'a'-'h', 'A'-'H') to initialize as an led
+============ =============================================================================================================
+
+**Returns:** An ``ext_adi_led_t`` object containing the given port, or PROS_ERR if the initialization failed.
+
+----
+
+ext_adi_led_set
+---------------
+
+Set the entire led strip using the colors contained in the buffer.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE``  - The port is not configured for ADI output
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t ext_adi_led_set ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+        #define ADI_EXPANDER_PORT 20
+
+        void initialize() {
+          ext_adi_led_t led = ext_adi_led_init(ADI_EXPANDER_PORT, LED_PORT);
+	  uint32_t buffer[LED_SIZE];
+	  for (int i = 0; i < LED_SIZE; i++) {
+	    buffer[i] = 0x808080;
+	  }
+	  ext_adi_led_set(led, buffer, LED_SIZE);
+        }
+
+=============== ===================================================================================================================
+ Parameters
+=============== ===================================================================================================================
+ led             Port of type ext_adi_led_t
+ buffer          Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ buffer_length   Length of buffer to set
+=============== ===================================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+ext_adi_led_set_all
+-------------------
+
+Set the entire led strip using the colors contained in the buffer.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE``  - The port is not configured for ADI output
+
+Analogous to `pros::ADILed::set_all <../cpp/adi.html#>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t ext_adi_led_set_all ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+        #define ADI_EXPANDER_PORT 20
+
+        void initialize() {
+          ext_adi_led_t led = ext_adi_led_init(ADI_EXPANDER_PORT, LED_PORT);
+	  uint32_t buffer[LED_SIZE];
+	  ext_adi_led_set_all(led, buffer, LED_SIZE, 0x808080);
+        }
+
+=============== =================================================================================================================
+ Parameters
+=============== =================================================================================================================
+ led             Port of type ext_adi_led_t
+ buffer          Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ buffer_length   Length of buffer to set
+ color           Color to set the entire led to
+=============== =================================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
+----
+
+ext_adi_led_set_pixel
+---------------------
+
+Set the entire led strip using the colors contained in the buffer.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given port is not within the range of ADI Ports
+- ``EINVAL`` - A given value is not correct, or the buffer is null
+- ``EADDRINUSE``  - The port is not configured for ADI output
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t ext_adi_led_set_pixel ( ext_adi_led_t led, uint32_t* buffer, uint32_t buffer_length, uint32_t color, uint32_t pixel_position )
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define LED_PORT 1
+	#define LED_SIZE 64
+        #define ADI_EXPANDER_PORT 20
+
+        void initialize() {
+          ext_adi_led_t led = ext_adi_led_init(ADI_EXPANDER_PORT, LED_PORT);
+	  uint32_t buffer[LED_SIZE];
+	  ext_adi_led_set_all(led, buffer, LED_SIZE, 0x808080, 0);
+        }
+
+=============== =================================================================================================================
+ Parameters
+=============== =================================================================================================================
+ led             Port of type ext_adi_led_t
+ buffer          Array of colors in format 0xRRGGBB, recommended that individual RGB value not to exceed 0x80 due to current draw
+ buffer_length   Length of buffer to set
+ color           Color to set the entire led to
+ pixel_position  Position of the pixel to set (0 indexed)
+=============== =================================================================================================================
+
+**Returns:** PROS_SUCCESS if successful, PROS_ERR if not
+
 Macros
 ======
 
