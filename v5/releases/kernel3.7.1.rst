@@ -1,5 +1,5 @@
 =========================
-PROS Kernel 3.7.0 Release
+PROS Kernel 3.7.1 Release
 =========================
 
 .. post:: 20 September, 2022
