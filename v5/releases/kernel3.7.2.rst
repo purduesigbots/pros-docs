@@ -14,6 +14,7 @@ Features:
 
 - Passing a negative port number to :code:`pros::Motor` or :code:`pros::Motor_Group` will automatically initialize
   the motor with the reversed flag set
+- Added :code:`pros::MotorGroup`` as an alias for :code:`pros::Motor_Group`
 - Adressable LED strips can now be used with :code:`pros::ADILed` objects. 
   See the `ADILed <../../v5/api/cpp/adi.html>`_ docs.
 - Timekeeping functionality is now somewhat working. Programs are stamped with the time they are compiled and this is

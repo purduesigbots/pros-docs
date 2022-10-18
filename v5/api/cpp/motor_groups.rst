@@ -7,6 +7,8 @@ Motor Groups C++ API
 
 .. note:: Motor Groups function similar to motors but with multiple motors, and there is a C++ API for them.
 
+.. note:: :code:`pros::MotorGroup` is an alias for :code:`pros::Motor_Group`
+
 .. contents:: :local:
 
 pros::Motor_Group
@@ -313,8 +315,7 @@ Analogous to `motor_move_velocity <../c/motors.html#motor-move-velocity>`_ on ea
       .. highlight:: cpp
       ::
 
-        std::int32_t pros::Motor_Group::move_velocity ( std::uint8_t port,
-                                                  std::int16_t velocity )
+        std::int32_t pros::Motor_Group::move_velocity ( cosnt std::int16_t velocity )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1124,7 +1125,7 @@ Gets the port number of each motor.
       .. highlight:: cpp
       ::
 
-         std::int32_t pros::Motor_Group::get_ports ( )
+        std::vector<std::uint8_t> pros::Motor_Group::get_ports ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1132,7 +1133,7 @@ Gets the port number of each motor.
 
         void autonomous() {
           pros::Motor_Group motor_group ({1, 2});
-          std::uint8_t port = motor_group.get_ports(); // Returns {1, 2}
+          std::vector<std::uint8_t> ports = motor_group.get_ports(); // Returns {1, 2}
         }
 
 **Returns:** A vector with each motor's port number.

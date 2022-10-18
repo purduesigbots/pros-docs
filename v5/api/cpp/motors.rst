@@ -26,7 +26,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        pros::Motor::Motor ( const std::uint8_t port,
+        pros::Motor::Motor ( const std::int8_t port,
                              const pros::motor_gearset_e_t gearset,
                              const bool reverse,
                              const pros::motor_encoder_units_e_t encoder_units )
@@ -47,7 +47,8 @@ This function uses the following values of ``errno`` when an error state is reac
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- port            The V5 port number from 1-21
+ port            The V5 port number from 1-21. Passing a negative port number
+                 automatically initializes the motor with the reversed flag set
  gearset         The new motor `gearset <motor_gearset_e_t_>`_
  reverse         ``1`` reverses the motor, ``0`` is default
  encoder_units   The new `motor encoder units <motor_encoder_units_e_t_>`_
@@ -60,7 +61,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        pros::Motor::Motor ( const std::uint8_t port,
+        pros::Motor::Motor ( const std::int8_t port,
                              const pros::motor_gearset_e_t gearset,
                              const bool reverse )
 
@@ -80,7 +81,8 @@ This function uses the following values of ``errno`` when an error state is reac
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- port            The V5 port number from 1-21
+ port            The V5 port number from 1-21. Passing a negative port number
+                 automatically initializes the motor with the reversed flag set
  gearset         The new motor `gearset <motor_gearset_e_t_>`_
  reverse         ``1`` reverses the motor, ``0`` is default
 =============== ===================================================================
@@ -92,7 +94,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        pros::Motor::Motor ( const std::uint8_t port,
+        pros::Motor::Motor ( const std::int8_t port,
                              const pros::motor_gearset_e_t gearset )
 
    .. tab :: Example
@@ -111,7 +113,8 @@ This function uses the following values of ``errno`` when an error state is reac
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- port            The V5 port number from 1-21
+ port            The V5 port number from 1-21. Passing a negative port number
+                 automatically initializes the motor with the reversed flag set
  gearset         The new motor `gearset <motor_gearset_e_t_>`_
 =============== ===================================================================
 
@@ -122,7 +125,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        pros::Motor::Motor ( const std::uint8_t port,
+        pros::Motor::Motor ( const std::int8_t port,
                              const bool reverse )
 
    .. tab :: Example
@@ -141,7 +144,8 @@ This function uses the following values of ``errno`` when an error state is reac
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- port            The V5 port number from 1-21
+ port            The V5 port number from 1-21. Passing a negative port number
+                 automatically initializes the motor with the reversed flag set
  reverse         ``1`` reverses the motor, ``0`` is default
 =============== ===================================================================
 
@@ -152,7 +156,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        pros::Motor::Motor ( const std::uint8_t port )
+        pros::Motor::Motor ( const std::int8_t port )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -170,7 +174,8 @@ This function uses the following values of ``errno`` when an error state is reac
 =============== ===================================================================
  Parameters
 =============== ===================================================================
- port            The V5 port number from 1-21
+ port            The V5 port number from 1-21. Passing a negative port number
+                 automatically initializes the motor with the reversed flag set
 =============== ===================================================================
 
 ----
@@ -1426,7 +1431,7 @@ Return the port the motor was constructed with.
 
         void autonomous() {
           pros::Motor motor (1);
-          std::uint8_t port = motor.get_port(); // Returns 1
+          std::int8_t port = motor.get_port(); // Returns 1
         }
 
 **Returns:** the port number of the constructed motor.
