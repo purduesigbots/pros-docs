@@ -8,7 +8,7 @@ PROS Kernel 3.7.2 Release
 Changelog
 ---------
 
-This update adds adressable LED support, motors reversible by negative port numbers, and date/time keeping features.
+This update adds addressable LED support, motors reversible by passing negative port numbers, and date/time keeping features.
 
 Features:
 
