@@ -84,7 +84,7 @@ Fetching a remote template
 
 		.. code-block:: console
 
-			> pros conduct fetch kernel 3.1.0
+			> pros conduct fetch kernel@3.1.0
 
 Fetching a local template archive
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
