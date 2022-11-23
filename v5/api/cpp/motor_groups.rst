@@ -808,7 +808,7 @@ Analogous to `motor_get_target_position <../c/motors.html#motor-get-target-posit
         void autonomous() {
           pros::Motor_Group motor_group ({1, 2});
           motor_group.move_absolute(100, 100);
-          std::cout << "Motor Target: " << motor_group.get_target_position();
+          std::cout << "Motor Target: " << motor_group.get_target_positions();
           // Prints 100
         }
 
@@ -844,7 +844,7 @@ Analogous to `motor_get_position <../c/motors.html#motor-get-position>`_ on each
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::cout << "Motor Positions: " << motor_group.get_position();
+            std::cout << "Motor Positions: " << motor_group.get_positions();
             pros::delay(2);
           }
         }
@@ -875,7 +875,7 @@ Analogous to `motor_get_efficiency <../c/motors.html#motor-get-efficiency>`_ on 
       .. highlight:: cpp
       ::
 
-         std::int32_t pros::Motor_Group::get_efficiency ( )
+         std::int32_t pros::Motor_Group::get_efficiencies ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -998,7 +998,7 @@ Analogous to `motor_get_brake_mode <../c/motors.html#motor-get-brake-mode>`_ on 
 
         void initialize() {
           pros::Motor_Group motor_group ({1, 2});
-          motor_group.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+          motor_group.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
           std::cout << "Brake Modes: " << motor_group.get_brake_modes();
         }
 
@@ -1201,7 +1201,8 @@ Analogous to `motor_get_encoder_units <../c/motors.html#motor-get-encoder-units>
       ::
 
         void initialize() {
-          pros::Motor_Group motor_group (1, E_MOTOR_GEARSET_06, false, E_MOTOR_ENCODER_COUNTS);
+          pros::Motor motor (1, E_MOTOR_GEARSET_06, false, E_MOTOR_ENCODER_COUNTS);
+          pros::Motor_Group motor_group ({motor});
           std::cout << "Motor Group Encoder Units: " << motor_group.get_encoder_units();
         }
 
