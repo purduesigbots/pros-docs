@@ -492,7 +492,7 @@ This function uses the following values of errno when an error state is reached:
 
         void initialize() {
           pros::Motor_Group motor_group ({1, 2});
-          motor_group.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+          motor_group.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
           std::cout << "Brake Modes: " << motor_group.get_brake_modes();
         }
 
