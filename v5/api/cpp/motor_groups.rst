@@ -723,7 +723,7 @@ Analogous to `motor_get_actual_velocity <../c/motors.html#motor-get-actual-veloc
       .. highlight:: cpp
       ::
 
-         double pros::Motor_Group::get_actual_velocities ( )
+         std::vector<double> pros::Motor_Group::get_actual_velocities ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -759,7 +759,7 @@ Analogous to `motor_get_target_velocity <../c/motors.html#motor-get-target-veloc
       .. highlight:: cpp
       ::
 
-        std::int32_t pros::Motor_Group::get_target_velocities ( )
+        std::vector<std::int32_t> pros::Motor_Group::get_target_velocities ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -770,7 +770,8 @@ Analogous to `motor_get_target_velocity <../c/motors.html#motor-get-target-veloc
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             motor_group.move_velocity(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
-            std::cout << "Motor Velocities: " << motor.get_target_velocities();
+            std::vector<std::int32_t> targets = motor_group.get_target_velocities();
+            std::cout << "Motor Velocities: " << targets[0] << ", " << targets[1];
             // Prints the value of E_CONTROLLER_ANALOG_LEFT_Y
             pros::delay(2);
           }
@@ -799,7 +800,7 @@ Analogous to `motor_get_target_position <../c/motors.html#motor-get-target-posit
       .. highlight:: cpp
       ::
 
-        double pros::Motor_Group::get_target_positions ( )
+        std::vector<double> pros::Motor_Group::get_target_positions ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -808,8 +809,9 @@ Analogous to `motor_get_target_position <../c/motors.html#motor-get-target-posit
         void autonomous() {
           pros::Motor_Group motor_group ({1, 2});
           motor_group.move_absolute(100, 100);
-          std::cout << "Motor Target: " << motor_group.get_target_positions();
-          // Prints 100
+          std::vector<double> targets = motor_group.get_target_positions()
+          std::cout << "Motor Targets: " << targets[0] << ", " << targets[1];
+          
         }
 
 **Returns:** A vector filled with the target position in its encoder units
@@ -833,7 +835,7 @@ Analogous to `motor_get_position <../c/motors.html#motor-get-position>`_ on each
       .. highlight:: cpp
       ::
 
-        double pros::Motor_Group::get_positions ( )
+        std::vector<double> pros::Motor_Group::get_positions ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -844,12 +846,13 @@ Analogous to `motor_get_position <../c/motors.html#motor-get-position>`_ on each
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::cout << "Motor Positions: " << motor_group.get_positions();
+            std::vector<double> positions = motor_group.get_positions();
+            std::cout << "Motor Positions: " << positions[0] << ", " << positions[1];
             pros::delay(2);
           }
         }
 
-**Return:** The motors' absolute position in its encoder units or PROS_ERR_F
+**Return:** A vector with the motors' absolute position in its encoder units or PROS_ERR_F
 if the operation failed, setting errno.
 
 ----
@@ -875,7 +878,7 @@ Analogous to `motor_get_efficiency <../c/motors.html#motor-get-efficiency>`_ on 
       .. highlight:: cpp
       ::
 
-         std::int32_t pros::Motor_Group::get_efficiencies ( )
+         std::vector<std::int32_t> pros::Motor_Group::get_efficiencies ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -885,8 +888,9 @@ Analogous to `motor_get_efficiency <../c/motors.html#motor-get-efficiency>`_ on 
           pros::Motor_Group motor_group ({1, 2});
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
-            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::cout << "Motor Efficiencies: " << motor_group.get_efficiencies();
+            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::vector<std::int32_t> efficiencies = motor_group.get_efficiencies();
+            std::cout << "Motor Efficiencies: " << efficiencies[0] << ", " << efficiencies[1];
             pros::delay(2);
           }
         }
@@ -913,7 +917,7 @@ Analogous to `motor_is_over_current <../c/motors.html#motor-is-over-current>`_ o
       .. highlight:: cpp
       ::
 
-         std::int32_t pros::Motor_Group::are_over_current ( )
+         std::vector<std::int32_t> pros::Motor_Group::are_over_current ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -924,7 +928,8 @@ Analogous to `motor_is_over_current <../c/motors.html#motor-is-over-current>`_ o
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::cout << "Are the motors over their current limits?: " << motor_group.are_over_current();
+            std::vector<std::int32_t> currents = motor_group.are_over_current();
+            std::cout << "Are the motors over their current limits?: " << currents[0] << ", " << currents[1];
             pros::delay(2);
           }
         }
@@ -951,7 +956,7 @@ Analogous to `motor_is_over_temp <../c/motors.html#motor-is-over-temp>`_ on each
       .. highlight:: cpp
       ::
 
-        std::int32_t pros::Motor_Group::are_over_temp ( )
+       std::vector<std::int32_t> pros::Motor_Group::are_over_temp ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -962,7 +967,8 @@ Analogous to `motor_is_over_temp <../c/motors.html#motor-is-over-temp>`_ on each
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::cout << "Are the motors over their temperature limits?: " << motor_group.are_over_temp();
+            std::vector<std::int32_t> temps = motor_group.are_over_temp();
+            std::cout << "Are the motors over their temperature limits?: " << temps[0] << ", " << temps[1];
             pros::delay(2);
           }
         }
@@ -990,7 +996,7 @@ Analogous to `motor_get_brake_mode <../c/motors.html#motor-get-brake-mode>`_ on 
       .. highlight:: cpp
       ::
 
-        pros::motor_brake_mode_e_t pros::Motor_Group::get_brake_modes ( )
+        std::vector<pros::motor_brake_mode_e_t> pros::Motor_Group::get_brake_modes ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -999,7 +1005,8 @@ Analogous to `motor_get_brake_mode <../c/motors.html#motor-get-brake-mode>`_ on 
         void initialize() {
           pros::Motor_Group motor_group ({1, 2});
           motor_group.set_brake_modes(pros::E_MOTOR_BRAKE_HOLD);
-          std::cout << "Brake Modes: " << motor_group.get_brake_modes();
+          std::vector<pros::motor_brake_mode_e_t> brake_modes = motor_group.get_brake_modes();
+          std::cout << "Brake Modes: " << brake_modes[0] << ", " << brake_modes[1];
         }
 
 **Returns:** A vector with for each motor one of `motor_brake_mode_e_t <motor_brake_mode_e_t_>`_,
@@ -1032,7 +1039,8 @@ This function uses the following values of ``errno`` when an error state is reac
         void initialize() {
           pros::Motor_Group motor_group ({1,2});
           motor_group.set_gearing(E_MOTOR_GEARSET_06);
-          std::cout << "Motor group gearing: " << motor_group.get_gearing();
+          std::vector<pros::motor_gearset_e_t> gearing = motor_group.get_gearing();
+          std::cout << "Motor group gearing: " << gearing[0] << ", " << gearing[1];
         }
 
 **Returns:** A Vector with a ``motor_gearset_e_t`` for each motor according to what is set for the motor, or ``E_GEARSET_INVALID`` if the operation failed for that motor.
@@ -1056,7 +1064,7 @@ Analogous to `motor_get_current_draw <../c/motors.html#motor-get-current-draw>`_
       .. highlight:: cpp
       ::
 
-         std::int32_t pros::Motor_Group::get_current_draws ( )
+         std::vector<std::int32_t> pros::Motor_Group::get_current_draws ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1067,7 +1075,8 @@ Analogous to `motor_get_current_draw <../c/motors.html#motor-get-current-draw>`_
           pros::Controller master (E_CONTROLLER_MASTER);
           while (true) {
             motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::cout << "Motor Current Draws: " << motor_group.get_current_draw();
+            std::vector<std::int32_t> currents = motor_group.get_current_draw();
+            std::cout << "Motor Current Draws: " << currents[0] << ", " currents[1];
             pros::delay(2);
           }
         }
@@ -1096,7 +1105,7 @@ Analogous to `motor_get_current_limit <../c/motors.html#motor-get-current-limit>
       .. highlight:: cpp
       ::
 
-         std::int32_t pros::Motor_Group::get_current_limits ( )
+         std::vector<std::int32_t> pros::Motor_Group::get_current_limits ( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1105,7 +1114,8 @@ Analogous to `motor_get_current_limit <../c/motors.html#motor-get-current-limit>
         void opcontrol() {
           pros::Motor_Group motor_group ({1, 2});
           while (true) {
-            std::cout << "Motor Current Limits: " << motor_group.get_current_limits();
+          std::vector<std::int32_t> limits = motor_group.get_current_limits();
+            std::cout << "Motor Current Limits: " << limits[0] << ", " << limits[1];
             pros::delay(2);
           }
         }
