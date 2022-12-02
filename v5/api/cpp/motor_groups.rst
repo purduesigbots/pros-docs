@@ -85,6 +85,10 @@ Constructor(s)
 Operator Overloads
 ------------------
 
+
+operator=
+~~~~
+
 Sets the voltage for all the motors in the motor group from -128 to 127.
 	
 This is designed to map easily to the input from the controller's analog
@@ -121,6 +125,44 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ ========================================
  voltage      The new motor voltage from -127 to 127
 ============ ========================================
+
+----
+
+operator[]
+~~~~
+Indexes Motor in the Motor_Group in the same way as an array.
+
+This function uses the following values of ```errno`` when an error state is reached:
+	 - ``ENXIO`` - Out of bounds on indexing the motor groups.
+
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Motor& operator[] ( int index ) const
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor_group[0] = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            pros::delay(5);
+          }
+        }
+
+============ ===========================================
+ Parameters
+============ ===========================================
+ index        The index of the motor in the motor group
+============ ===========================================
+
+**Returns:**  The appropriate Motor reference or sets ``erno`` if the operation failed
 
 ----
 
@@ -667,6 +709,29 @@ Analogous to `motor_set_encoder_units <../c/motors.html#motor-set-encoder-units>
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
 
+----
+size
+~~~~
+
+Gets the number of motors in the motor group;
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::int32_t pros::Motor_Group::size ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void initialize() {
+          pros::Motor_Group motor_group ({1,2});
+          std::cout << "Number of Motors: " << motor_group.size();
+        }
+
+**Returns:** The number of Motors in the motor group. 
 ----
 
 tare_position
