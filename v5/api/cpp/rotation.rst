@@ -82,7 +82,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        std::int32_t reverse( )
+        std::int32_t reset( )
 
    .. tab :: Example
       .. highlight:: cpp
