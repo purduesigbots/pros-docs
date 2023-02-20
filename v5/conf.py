@@ -48,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'PROS for V5'
-copyright = u'2022, Purdue ACM SIGBots. Released under the MPL 2.0 license'
+copyright = u'2023, Purdue ACM SIGBots. Released under the MPL 2.0 license'
 author = u'Purdue ACM SIGBots'
 
 # The version info for the project you're documenting, acts as replacement for
