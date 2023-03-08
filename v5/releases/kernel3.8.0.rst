@@ -5,7 +5,7 @@ PROS Kernel 3.8.0 Release
 .. post:: 7 March, 2023
    :tags: blog, kernel-release
 
-This update fixes several bugs discoverd in 3.8.0 and missing features for motor groups and optical sensors.
+This update fixes several bugs discovered in 3.7.3 and missing features for motor groups and optical sensors.
 The most major bug being not being able to use spaces and parenthesis in project paths. 
 
 Changelog
