@@ -6,7 +6,7 @@ PROS Kernel 3.8.0 Release
    :tags: blog, kernel-release
 
 This update fixes several bugs discoverd in 3.8.0 and missing features for motor groups and optical sensors.
-The most major bug being not being able to use spaces and paranthesis in project paths. 
+The most major bug being not being able to use spaces and parenthesis in project paths. 
 
 Changelog
 ---------
@@ -26,5 +26,5 @@ Updates:
 
 Bugfixes:
  - Fixed ambiguity with the default constructor on ADI Encoders.
- - Paths with parenthesis no longer break the build system.
+ - Paths with spaces and parenthesis no longer break the build system.
  - Fixed the return_port on Motor objects breaking a function.
