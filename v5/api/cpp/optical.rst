@@ -36,7 +36,38 @@ Constructor(s)
  port         The V5 port number from 1-21
 ============ =========================================================================
 
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Optical(const std::uint8_t port, double time)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define OPTICAL_PORT 1
+
+        void initialize() {
+          pros::Optical optical_sensor(OPTICAL_PORT, 50);
+        }
+
+============ =========================================================================
+ Parameters
+============ =========================================================================
+ port         The V5 port number from 1-21
+ time         The integration time (update rate) to set for the optical sensor, clamped to the range
+              3ms - 712ms. The default is 100 ms, with the optical sensor communciating with the V5 brain every 20 ms.
+============ =========================================================================
+
+This function uses the following values of ``errno`` when an error state is reached:
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Optical Sensor
+
 ----
+
+
 
 Functions
 ---------
@@ -549,6 +580,89 @@ This function uses the following values of ``errno`` when an error state is reac
 ============ =================================================================================================================
 
 **Returns:** ``1`` if operation was successful or PROS_ERR if the operation failed, setting ``errno``.
+
+----
+
+set_integration_time
+~~~~~~~~~~~~~~~~~~~~
+
+Sets the integration time (update rate) for the optical sensor in milliseconds.
+The minimum integration time is 3 milliseconds.
+The maximum integration time is 712 milliseconds.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Optical Sensor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        int32_t set_integration_time(double time)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define OPTICAL_PORT 1
+        #define OPTICAL_INTEGRATION_TIME 50
+
+        void opcontrol() {
+          pros::Optical optical_sensor(OPTICAL_PORT);
+          optical_sensor.set_integration_time(OPTICAL_INTEGRATION_TIME);
+
+          while (true) {
+            pros::delay(20);
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ time         The integration time (update rate) to set for the optical sensor, clamped to the range
+              3ms - 712ms. The default is 100 ms, with the optical sensor communciating with the V5 brain every 20 ms.
+============ =================================================================================================================
+
+**Returns:** ``1`` if the operation was successful or PROS_ERR if the operation
+failed, setting ``errno``.
+
+----
+
+get_integration_time
+~~~~~~~~~~~~~~~~~~~~
+
+Gets the integration time (update rate) of the optical sensor in milliseconds.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Optical Sensor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        double get_integration_time()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        #define OPTICAL_PORT 1
+
+        void opcontrol() {
+          pros::Optical optical_sensor(OPTICAL_PORT);
+          while (true) {
+            printf("Integration time: %u\n", optical_sensor.get_integration_time());
+            pros::delay(20);
+          }
+        }
+
+**Returns:** The integration time of the optical sensor in milliseconds, or 
+PROS_ERR_F if the operation failed, setting ``errno``.
 
 ----
 
