@@ -87,7 +87,7 @@ Operator Overloads
 
 
 operator=
-~~~~
+~~~~~~~~~
 
 Sets the voltage for all the motors in the motor group from -128 to 127.
 	
@@ -129,7 +129,8 @@ This function uses the following values of ``errno`` when an error state is reac
 ----
 
 operator[]
-~~~~
+~~~~~~~~~~
+
 Indexes Motor in the Motor_Group in the same way as an array.
 
 This function uses the following values of ```errno`` when an error state is reached:
@@ -166,8 +167,8 @@ This function uses the following values of ```errno`` when an error state is rea
 
 ----
 
-Functions
----------
+Movement Functions
+------------------
 
 move
 ~~~~
@@ -247,7 +248,7 @@ This function uses the following values of ``errno`` when an error state is reac
       void autonomous() {
         pros::Motor_Group motor_group ({1, 2});
         motor_group.move_absolute(100, 100); // Moves 100 units forward
-        Motor_Group::get_positions() 
+        Motor_Group::get_position() 
         while (!((motor_group.get_positions() < 105) && (motor_group.get_positions() > 95))) {
           // Continue running this loop as long as the motor is not within +-5 units of its goal
           pros::delay(5);
@@ -256,7 +257,7 @@ This function uses the following values of ``errno`` when an error state is reac
         while (!((motor_group.get_positions() < 105) && (motor_group.get_positions() > 95))) {
           pros::delay(5);
         }
-        motor_group.tare_positions();
+        motor_group.tare_position();
         motor_group.move_absolute(100, 100); // Moves 100 units forward
         while (!((motor_group.get_positions() < 105) && (motor_group.get_positions() > 95))) {
           pros::delay(5);
@@ -464,6 +465,404 @@ Analogous to `motor_brake <../c/motors.html#motor-brake>`_ on each motor.
 setting ``errno``.
 
 ----
+
+get_target_velocities
+~~~~~~~~~~~~~~~~~~~~~
+
+Gets the velocity commanded to the motor by the user.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+
+Analogous to `motor_get_target_velocity <../c/motors.html#motor-get-target-velocity>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::vector<std::int32_t> pros::Motor_Group::get_target_velocities ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor_group.move_velocity(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+            std::vector<std::int32_t> targets = motor_group.get_target_velocities();
+            std::cout << "Motor Velocities: " << targets[0] << ", " << targets[1];
+            // Prints the value of E_CONTROLLER_ANALOG_LEFT_Y
+            pros::delay(2);
+          }
+        }
+
+**Returns:** A vector filled with The commanded motor velocities from
++-100, +-200, or +-600, or a vector filled with ``PROS_ERR`` if the operation
+failed, setting ``errno``.
+
+----
+
+get_target_positions
+~~~~~~~~~~~~~~~~~~~~
+
+Gets the target position set for the motor by the user.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_get_target_position <../c/motors.html#motor-get-target-position>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::vector<double> pros::Motor_Group::get_target_positions ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void autonomous() {
+          pros::Motor_Group motor_group ({1, 2});
+          motor_group.move_absolute(100, 100);
+          std::vector<double> targets = motor_group.get_target_positions()
+          std::cout << "Motor Targets: " << targets[0] << ", " << targets[1];
+          
+        }
+
+**Returns:** A vector filled with the target position in its encoder units
+or a vector filled with ``PROS_ERR_F`` if the operation failed, setting ``errno``.
+
+----
+
+Telemetry Functions
+-------------------
+
+
+get_actual_velocities
+~~~~~~~~~~~~~~~~~~~~~
+
+Gets the actual velocity of each motor.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_get_actual_velocity <../c/motors.html#motor-get-actual-velocity>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::vector<double> pros::Motor_Group::get_actual_velocities ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          while (true) {
+            motor_group = controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y);
+            printf("Actual velocities: %lf\n", motor_group.get_actual_velocities());
+            pros::delay(2);
+          }
+        }
+
+**Returns:** A vector with the each motor's actual velocity in RPM in the order
+or a vector filled with ``PROS_ERR_F`` if the operation failed, setting errno.
+
+----
+
+get_positions
+~~~~~~~~~~~~~
+
+Gets the absolute position of the motor in its encoder units.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+
+Analogous to `motor_get_position <../c/motors.html#motor-get-position>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        std::vector<double> pros::Motor_Group::get_positions ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::vector<double> positions = motor_group.get_positions();
+            std::cout << "Motor Positions: " << positions[0] << ", " << positions[1];
+            pros::delay(2);
+          }
+        }
+
+**Return:** A vector with the motors' absolute position in its encoder units or PROS_ERR_F
+if the operation failed, setting errno.
+
+----
+
+
+get_raw_positions
+~~~~~~~~~~~~~~~~~
+
+Gets the raw positions for a motor group given the timestamps for the motors
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_get_raw_position <../c/motors.html#motor-get-raw-position>`_ on each motor.
+
+.. tabs ::
+  .. tab :: Prototype
+    .. highlight:: cpp
+      ::
+
+        std::vector<std::int32_t> pros::Motor_Group::get_raw_positions(std::vector<std::uint32_t*> &timestamps)
+
+  .. tab :: Example
+    .. highlight:: cpp
+    :: 
+
+      void opcontrol() {
+	      pros::Motor_Group motors({1, 2});
+	      while (true) {
+          uint32_t timestamp1 = pros::millis();
+          uint32_t timestamp2 = timestamp1;
+          std::vector<std::uint32_t*> timestamps = {&timestamp1, &timestamp2};
+          std::vector<std::int32_t> raw_positions = motors.get_raw_positions(timestamps);
+          std::cout << "Raw positions: " << raw_positions[0] << ", " raw_positions[1] << std::endl;
+	        pros::delay(20);
+	      }
+	    }
+
+**Returns:** A vector with the raw positions of each motor for the given, or a
+vector filled with ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+----
+
+
+get_temperatures
+~~~~~~~~~~~~~~~~
+
+Gets the temperatrues of the motors in the group in degrees Celcius. 
+The resolution of this reading is 5 degrees Celsius. 
+The motor will start to reduce its power when the temperature reading is greater than or equal to 55 C.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+ - ``ENODEV`` - The port cannot be configured as a motor
+
+Analogous to `motor_get_temperature <../c/motors.html#motor-get-temperature>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::vector<double> pros::Motor_Group::get_temperatures(void)
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::vector<double> temperaturess = motor_group.get_temperatures();
+            std::cout << "Motor Temperatures: " << temperaturess[0] << ", " << temperaturess[1];
+            pros::delay(2);
+          }
+        }
+
+**Returns:** A vector filled with the motor's temperatures in degrees Celcius,
+or a vector filled with ``PROS_ERR_F`` if the operation failed, setting ``errno``.
+
+get_voltages
+~~~~~~~~~~~~
+
+Gets the voltage of the motors in the group in mV.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+
+.. tabs ::
+  .. tab :: Prototype
+    .. highlight:: cpp
+      ::
+        
+        std::vector<std::uint32_t> pros::Motor_Group::get_voltages(void);
+
+  .. tab :: Example
+    .. highlight:: cpp
+    :: 
+
+      void opcontrol() {
+        pros::Motor_Group motors({1, 2});
+        std::vector<std::uint32_t> voltages;
+        while (true) {
+          voltage = motors.get_voltages();
+          for (uint32_t i = 0; i < voltages.size(); i++) {
+            printf("Voltages: %ld\n", voltages[i]);
+          }
+          pros::delay(20);
+        }
+      }
+
+**Returns:** A vector with each motors' voltage limits in V or a vector filled
+with ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+get_efficiencies
+~~~~~~~~~~~~~~~~
+
+Gets the efficiency of the motors in percent.
+
+An efficiency of 100% means that the motor is moving electrically while
+drawing no electrical power, and an efficiency of 0% means that the motor
+is drawing power but not moving.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_get_efficiency <../c/motors.html#motor-get-efficiency>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::vector<std::int32_t> pros::Motor_Group::get_efficiencies ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::vector<std::int32_t> efficiencies = motor_group.get_efficiencies();
+            std::cout << "Motor Efficiencies: " << efficiencies[0] << ", " << efficiencies[1];
+            pros::delay(2);
+          }
+        }
+
+**Returns:** A vector filled with the motor's efficiency in percent
+or a vector filled with ``PROS_ERR_F`` if the operation failed, setting ``errno``.
+
+----
+
+are_over_current
+~~~~~~~~~~~~~~~~
+
+Checks if the motors are drawing over its current limit.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_is_over_current <../c/motors.html#motor-is-over-current>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::vector<std::int32_t> pros::Motor_Group::are_over_current ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::vector<std::int32_t> currents = motor_group.are_over_current();
+            std::cout << "Are the motors over their current limits?: " << currents[0] << ", " << currents[1];
+            pros::delay(2);
+          }
+        }
+
+**Returns:** ``1`` if the motor's current limit is being exceeded and ``0`` if the
+current limit is not exceeded, or ``PROS_ERR`` if the operation failed, setting
+``errno``.
+
+----
+
+are_over_temp
+~~~~~~~~~~~~~
+
+Gets the temperature limit flag for the motors.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+
+Analogous to `motor_is_over_temp <../c/motors.html#motor-is-over-temp>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+       std::vector<std::int32_t> pros::Motor_Group::are_over_temp ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::vector<std::int32_t> temps = motor_group.are_over_temp();
+            std::cout << "Are the motors over their temperature limits?: " << temps[0] << ", " << temps[1];
+            pros::delay(2);
+          }
+        }
+
+**Returns:** A vector with for each motor a ``1`` if the temperature limit is
+exceeded and ``0`` if the temperature is below the limit,
+or a vector filled with ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+----
+
+
+Configuration Functions
+-----------------------
 
 set_zero_position
 ~~~~~~~~~~~~~~~~~
@@ -732,6 +1131,7 @@ Gets the number of motors in the motor group;
         }
 
 **Returns:** The number of Motors in the motor group. 
+
 ----
 
 tare_position
@@ -768,279 +1168,6 @@ Analogous to `motor_tare_position <../c/motors.html#motor-tare-position>`_ on ea
 
 **Returns:** ``1`` if the operation was successful or ``PROS_ERR`` if the operation failed,
 setting ``errno``.
-
-----
-
-get_actual_velocities
-~~~~~~~~~~~~~~~~~~~~~
-
-Gets the actual velocity of each motor.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-- ``EACCESS`` - The Motor group mutex can't be taken or given
-
-Analogous to `motor_get_actual_velocity <../c/motors.html#motor-get-actual-velocity>`_ on each motor.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-         std::vector<double> pros::Motor_Group::get_actual_velocities ( )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          pros::Motor_Group motor_group ({1, 2});
-          while (true) {
-            motor_group = controller_get_analog(E_CONTROLLER_MASTER, E_CONTROLLER_ANALOG_LEFT_Y);
-            printf("Actual velocities: %lf\n", motor_group.get_actual_velocities());
-            pros::delay(2);
-          }
-        }
-
-**Returns:** A vector with the each motor's actual velocity in RPM in the order
-or a vector filled with ``PROS_ERR_F`` if the operation failed, setting errno.
-
-----
-
-get_target_velocities
-~~~~~~~~~~~~~~~~~~~~~
-
-Gets the velocity commanded to the motor by the user.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-
-Analogous to `motor_get_target_velocity <../c/motors.html#motor-get-target-velocity>`_ on each motor.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        std::vector<std::int32_t> pros::Motor_Group::get_target_velocities ( )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          pros::Motor_Group motor_group ({1, 2});
-          pros::Controller master (E_CONTROLLER_MASTER);
-          while (true) {
-            motor_group.move_velocity(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
-            std::vector<std::int32_t> targets = motor_group.get_target_velocities();
-            std::cout << "Motor Velocities: " << targets[0] << ", " << targets[1];
-            // Prints the value of E_CONTROLLER_ANALOG_LEFT_Y
-            pros::delay(2);
-          }
-        }
-
-**Returns:** A vector filled with The commanded motor velocities from
-+-100, +-200, or +-600, or a vector filled with ``PROS_ERR`` if the operation
-failed, setting ``errno``.
-
-----
-
-get_target_positions
-~~~~~~~~~~~~~~~~~~~~
-
-Gets the target position set for the motor by the user.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-- ``EACCESS`` - The Motor group mutex can't be taken or given
-
-Analogous to `motor_get_target_position <../c/motors.html#motor-get-target-position>`_ on each motor.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        std::vector<double> pros::Motor_Group::get_target_positions ( )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void autonomous() {
-          pros::Motor_Group motor_group ({1, 2});
-          motor_group.move_absolute(100, 100);
-          std::vector<double> targets = motor_group.get_target_positions()
-          std::cout << "Motor Targets: " << targets[0] << ", " << targets[1];
-          
-        }
-
-**Returns:** A vector filled with the target position in its encoder units
-or a vector filled with ``PROS_ERR_F`` if the operation failed, setting ``errno``.
-
-----
-
-get_positions
-~~~~~~~~~~~~~
-
-Gets the absolute position of the motor in its encoder units.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-
-Analogous to `motor_get_position <../c/motors.html#motor-get-position>`_ on each motor.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-        std::vector<double> pros::Motor_Group::get_positions ( )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          pros::Motor_Group motor_group ({1, 2});
-          pros::Controller master (E_CONTROLLER_MASTER);
-          while (true) {
-            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::vector<double> positions = motor_group.get_positions();
-            std::cout << "Motor Positions: " << positions[0] << ", " << positions[1];
-            pros::delay(2);
-          }
-        }
-
-**Return:** A vector with the motors' absolute position in its encoder units or PROS_ERR_F
-if the operation failed, setting errno.
-
-----
-
-get_efficiencies
-~~~~~~~~~~~~~~~~
-
-Gets the efficiency of the motors in percent.
-
-An efficiency of 100% means that the motor is moving electrically while
-drawing no electrical power, and an efficiency of 0% means that the motor
-is drawing power but not moving.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-- ``EACCESS`` - The Motor group mutex can't be taken or given
-
-Analogous to `motor_get_efficiency <../c/motors.html#motor-get-efficiency>`_ on each motor.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-         std::vector<std::int32_t> pros::Motor_Group::get_efficiencies ( )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          pros::Motor_Group motor_group ({1, 2});
-          pros::Controller master (E_CONTROLLER_MASTER);
-          while (true) {
-            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::vector<std::int32_t> efficiencies = motor_group.get_efficiencies();
-            std::cout << "Motor Efficiencies: " << efficiencies[0] << ", " << efficiencies[1];
-            pros::delay(2);
-          }
-        }
-
-**Returns:** A vector filled with the motor's efficiency in percent
-or a vector filled with ``PROS_ERR_F`` if the operation failed, setting ``errno``.
-
-----
-
-are_over_current
-~~~~~~~~~~~~~~~~
-
-Checks if the motors are drawing over its current limit.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-- ``EACCESS`` - The Motor group mutex can't be taken or given
-
-Analogous to `motor_is_over_current <../c/motors.html#motor-is-over-current>`_ on each motor.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-         std::vector<std::int32_t> pros::Motor_Group::are_over_current ( )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          pros::Motor_Group motor_group ({1, 2});
-          pros::Controller master (E_CONTROLLER_MASTER);
-          while (true) {
-            motor = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::vector<std::int32_t> currents = motor_group.are_over_current();
-            std::cout << "Are the motors over their current limits?: " << currents[0] << ", " << currents[1];
-            pros::delay(2);
-          }
-        }
-
-**Returns:** ``1`` if the motor's current limit is being exceeded and ``0`` if the
-current limit is not exceeded, or ``PROS_ERR`` if the operation failed, setting
-``errno``.
-
-----
-
-are_over_temp
-~~~~~~~~~~~~~
-
-Gets the temperature limit flag for the motors.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-
-Analogous to `motor_is_over_temp <../c/motors.html#motor-is-over-temp>`_ on each motor.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-       std::vector<std::int32_t> pros::Motor_Group::are_over_temp ( )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          pros::Motor_Group motor_group ({1, 2});
-          pros::Controller master (E_CONTROLLER_MASTER);
-          while (true) {
-            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::vector<std::int32_t> temps = motor_group.are_over_temp();
-            std::cout << "Are the motors over their temperature limits?: " << temps[0] << ", " << temps[1];
-            pros::delay(2);
-          }
-        }
-
-**Returns:** A vector with for each motor a ``1`` if the temperature limit is
-exceeded and ``0`` if the temperature is below the limit,
-or a vector filled with ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
@@ -1212,6 +1339,46 @@ Gets the port number of each motor.
         }
 
 **Returns:** A vector with each motor's port number.
+
+----
+
+get_voltage_limits
+~~~~~~~~~~~~~~~~~~
+
+Gets the current limit for each motor in V.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+
+.. tabs ::
+  .. tab :: Prototype
+    .. highlight:: cpp
+      ::
+
+        std::vector<std::uint32_t> pros::Motor_Group::get_voltage_limits(void);
+
+  .. tab :: Example
+    .. highlight:: cpp
+    :: 
+
+      void opcontrol() {
+	      pros::Motor_Group motors({1, 2});
+	      std::vector<std::uint32_t> voltage_limits;
+	      while (true) {
+	 	      voltage_limits = motors.get_voltage_limits();
+	 
+	        for (uint32_t i = 0; i < voltage_limits.size(); i++) {
+	 	        printf("Voltage Limits: %ld\n", voltage_limits[i]);
+	        }
+	        pros::delay(20);
+	      }
+	    }
+
+**Returns:** A vector with each motors' voltage limits in V or a vector filled
+with ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
