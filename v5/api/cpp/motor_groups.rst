@@ -58,7 +58,37 @@ Constructor(s)
       .. highlight:: cpp
       ::
 
-        pros::Motor_Group::Motor_Group(const std::vector<std::int8_t> motor_ports)
+        pros::Motor_Group::Motor_Group(const std::vector<pros::Motor>& motor)
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+      void opcontrol(){
+        std::vector<Motor> motors{pros::Motor(1), pros::Motor(2)};
+        pros::Motor_Group motor_group (motors);
+        pros::Controller master (E_CONTROLLER_MASTER);
+        while (true) {
+          motor_group.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+          pros::delay(5);
+        }
+      }
+
+============ ================================================================
+ Parameters
+============ ================================================================
+ motors       A Vector with the ports of the motors. Negative ports indicate
+              that the motor is reversed
+============ ================================================================
+
+----
+
+.. tabs ::
+   .. tab ::Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Motor_Group::Motor_Group(const std::initializer_list<std::int8_t> motor_ports)
 
    .. tab :: Example
      .. highlight:: cpp
@@ -76,7 +106,37 @@ Constructor(s)
 ============ ================================================================
  Parameters
 ============ ================================================================
- motors       A Vector with the ports of the motors. Negative ports indicate
+ motor_ports  An initializer list with the ports of the motors. 
+              Negative ports indicate that the motor is reversed
+============ ================================================================
+
+----
+
+.. tabs ::
+   .. tab ::Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Motor_Group::Motor_Group(const std::vector<std::int8_t> motor_ports)
+
+   .. tab :: Example
+     .. highlight:: cpp
+     ::
+
+      void opcontrol(){
+        std::vector<std::int8_t> ports = {1, 2};
+        pros::Motor_Group motor_group (ports);
+        pros::Controller master (E_CONTROLLER_MASTER);
+        while (true) {
+          motor_group.move(master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y));
+          pros::delay(5);
+        }
+      }
+
+============ ================================================================
+ Parameters
+============ ================================================================
+ motor_ports  A Vector with the ports of the motors. Negative ports indicate
               that the motor is reversed
 ============ ================================================================
 
@@ -162,6 +222,49 @@ This function uses the following values of ```errno`` when an error state is rea
 ============ ===========================================
  index        The index of the motor in the motor group
 ============ ===========================================
+
+**Returns:**  The appropriate Motor reference or sets ``errno`` if the operation failed
+
+----
+
+Other Functions:
+------------------
+
+at
+~~~~
+
+Indexes the motor group in the same way as an array. This function is provided
+for cases where the [] operator syntax does not play nicely with C++ types such
+as smart points.
+
+This function uses the following values of ```errno`` when an error state is reached:
+	 - ``ENXIO`` - Out of bounds on indexing the motor groups.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+        pros::Motor& pros::Motor_Group::at( int index );
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor_group.at(0) = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            pros::delay(5);
+          }
+        }
+
+============ =========================================================================
+ Parameters
+============ =========================================================================
+ index         The index of the motor in the motor group
+============ =========================================================================
 
 **Returns:**  The appropriate Motor reference or sets ``erno`` if the operation failed
 
@@ -659,6 +762,13 @@ Analogous to `motor_get_raw_position <../c/motors.html#motor-get-raw-position>`_
 
 **Returns:** A vector with the raw positions of each motor for the given, or a
 vector filled with ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+============ =========================================================================
+ Parameters
+============ =========================================================================
+ timestamps   A refernece to a vector containing pointers to the timestamps
+              corresponding to each motor. 
+============ =========================================================================
 
 ----
 

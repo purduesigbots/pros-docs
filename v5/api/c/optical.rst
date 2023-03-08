@@ -544,6 +544,99 @@ Analogous to `pros::Optical::disable_gesture <../cpp/optical.html#disable-gestur
 
 ----
 
+optical_set_integration_time
+----------------------------
+
+Sets the integration time (update rate) for the optical sensor in milliseconds.
+The minimum integration time is 3 milliseconds.
+The maximum integration time is 712 milliseconds
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Optical Sensor.
+
+Analogous to `pros::Optical::set_integration_time <../cpp/optical.html#set-integration-time>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        int32_t optical_set_integration_time(uint8_t port, double time);
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define OPTICAL_PORT 1
+        #define OPTICAL_INTEGRATION_TIME 50
+
+        void opcontrol() {
+          while (true) {
+            optical_set_integration_time(OPTICAL_PORT, OPTICAL_INTEGRATION_TIME);
+            delay(20);
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+ time         The integration time (update rate) to set for the optical sensor, clamped to the range
+              3ms - 712ms. The default is 100 ms, with the optical sensor communciating with the V5 brain every 20 ms.
+============ =================================================================================================================
+
+**Returns:** ``1``  if operation successful or ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+----
+
+----
+
+optical_get_integration_time
+----------------------------
+
+Gets the integration time (update rate) of the optical sensor in milliseconds.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Optical Sensor.
+
+Analogous to `pros::Optical::get_integration_time <../cpp/optical.html#set-integration-time>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        double optical_set_integration_time(uint8_t port.);
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define OPTICAL_PORT 1
+        #define OPTICAL_INTEGRATION_TIME 50
+
+        void opcontrol() {
+          while (true) {
+            optical_set_integration_time(OPTICAL_PORT, OPTICAL_INTEGRATION_TIME);
+            delay(20);
+          }
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** The integration time of the optical sensor in milliseconds, or 
+PROS_ERR_F if the operation failed, setting ``errno``.
+
+----
+
 Data Structures
 ===============
 
