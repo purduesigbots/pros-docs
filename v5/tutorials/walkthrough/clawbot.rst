@@ -88,15 +88,15 @@ For the ADI:
 Creating the Project
 ====================
 
-With Atom started, you can create a new PROS project by clicking the
-``PROS`` menu, then click ``Create new Project``.
+With VSCode started, you can create a new PROS project by clicking the
+``PROS`` menu, then click ``Create Project``.
 
 Create a directory that you'd like to keep the source files for your
 Clawbot project.
 
 Pick a directory to create the new project in and click Create. The PROS
 CLI will now copy the latest kernel template into the specified
-directory and Atom will open it.
+directory and VSCode will open it.
 
 PROS Project Structure
 ======================
