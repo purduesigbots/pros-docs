@@ -45,7 +45,7 @@ we recommend that you check out C tutorials on the following topics:
   (this includes ``opcontrol()`` too), starving the processor of resources and
   preventing the PROS kernel from running properly. Every infinite loop, like
   the one in ``opcontrol()``, needs to have a delay statement. We recommend at least
-  2ms.
+  10ms.
 
 And then for additional C tutorial topics, visit
 `CProgramming.com <https://www.cprogramming.com/tutorial/c-tutorial.html>`__
