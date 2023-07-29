@@ -45,7 +45,7 @@ Install the toolchain
 ^^^^^^^^^^^^^^^^^^^^^
 
 1. Download the latest version of the GNU Arm Embedded Toolchain for macOS from
-   `their site <https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain>`_.
+   `their site <https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads>`_.
 2. Once you have downloaded the toolchain, double click the file to extract its
    contents.
 3. Copy the contents of the :code:`gcc-arm-none-eabi-X-20XX-qX-update` folder
