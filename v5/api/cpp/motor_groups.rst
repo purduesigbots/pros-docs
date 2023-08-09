@@ -686,6 +686,46 @@ or a vector filled with ``PROS_ERR_F`` if the operation failed, setting errno.
 
 ----
 
+get_current_draws
+~~~~~~~~~~~~~~~~~
+
+Gets the current drawn by each motor in mA.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENODEV``  - The port cannot be configured as a motor
+- ``EACCESS`` - The Motor group mutex can't be taken or given
+
+Analogous to `motor_get_current_draw <../c/motors.html#motor-get-current-draw>`_ on each motor.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         std::vector<std::int32_t> pros::Motor_Group::get_current_draws ( )
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+
+        void opcontrol() {
+          pros::Motor_Group motor_group ({1, 2});
+          pros::Controller master (E_CONTROLLER_MASTER);
+          while (true) {
+            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
+            std::vector<std::int32_t> currents = motor_group.get_current_draw();
+            std::cout << "Motor Current Draws: " << currents[0] << ", " currents[1];
+            pros::delay(2);
+          }
+        }
+
+**Returns:** A vector containing each motor's current in mA
+or a vector filled with ``PROS_ERR`` if the operation failed, setting ``errno``.
+
+
+----
+
 get_positions
 ~~~~~~~~~~~~~
 
@@ -1347,44 +1387,6 @@ This function uses the following values of ``errno`` when an error state is reac
 
 **Returns:** A Vector with a ``motor_gearset_e_t`` for each motor according to what is set for the motor, or ``E_GEARSET_INVALID`` if the operation failed for that motor.
 
-----
-
-get_current_draws
-~~~~~~~~~~~~~~~~~
-
-Gets the current drawn by each motor in mA.
-
-This function uses the following values of ``errno`` when an error state is reached:
-
-- ``ENODEV``  - The port cannot be configured as a motor
-- ``EACCESS`` - The Motor group mutex can't be taken or given
-
-Analogous to `motor_get_current_draw <../c/motors.html#motor-get-current-draw>`_ on each motor.
-
-.. tabs ::
-   .. tab :: Prototype
-      .. highlight:: cpp
-      ::
-
-         std::vector<std::int32_t> pros::Motor_Group::get_current_draws ( )
-
-   .. tab :: Example
-      .. highlight:: cpp
-      ::
-
-        void opcontrol() {
-          pros::Motor_Group motor_group ({1, 2});
-          pros::Controller master (E_CONTROLLER_MASTER);
-          while (true) {
-            motor_group = master.get_analog(E_CONTROLLER_ANALOG_LEFT_Y);
-            std::vector<std::int32_t> currents = motor_group.get_current_draw();
-            std::cout << "Motor Current Draws: " << currents[0] << ", " currents[1];
-            pros::delay(2);
-          }
-        }
-
-**Returns:** A vector containing each motor's current in mA
-or a vector filled with ``PROS_ERR`` if the operation failed, setting ``errno``.
 
 ----
 
