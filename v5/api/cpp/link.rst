@@ -109,14 +109,14 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         #define LINK_RECIVER_PORT 1
+         #define LINK_RECEIVER_PORT 1
 
          void opcontrol() {
-            pros::Link reciever(LINK_RECIVER_PORT);
+            pros::Link receiver(LINK_RECEIVER_PORT);
 
-            std::uint32_t recieveable_size = reciever.raw_receivable_size();
-            pros::lcd::set_text(1, "Link recieveable_size:"); 
-            pros::lcd::set_text(2, std::to_string(recieveable_size));
+            std::uint32_t receivable_size = receiver.raw_receivable_size();
+            pros::lcd::set_text(1, "Link receivable_size:"); 
+            pros::lcd::set_text(2, std::to_string(receivable_size));
          }
 
 **Returns:** PROS_ERR if port is not a link/radio, else the bytes available to be read by the user.
@@ -148,7 +148,7 @@ This function uses the following values of ``errno`` when an error state is reac
          #define LINK_TRANSMITTER_PORT 1
 
          void opcontrol() {
-            pros::Link transmitter(LINK_RECIVER_PORT);
+            pros::Link transmitter(LINK_TRANSMITTER_PORT);
 
             std::uint32_t transmittable_size = transmitter.raw_transmittable_size();
             pros::lcd::set_text(1, "Link transmittable_size:"); 
@@ -187,7 +187,7 @@ This function uses the following values of ``errno`` when an error state is reac
          #define LINK_TRANSMITTER_PORT 1
 
          void opcontrol() {
-            pros::Link transmitter(LINK_RECIVER_PORT);
+            pros::Link transmitter(LINK_TRANSMITTER_PORT);
             char* data = "Hello!";
 
             transmitter.transmit_raw((void*)data, sizeof(*data) * sizeof(data));
@@ -222,20 +222,20 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-        std::uint32_t transmit_raw( void* data, std::uint16_t data_size )
+        std::uint32_t receive_raw( void* data, std::uint16_t data_size )
 
    .. tab :: Example
       .. highlight:: cpp
       ::
 
-         #define LINK_RECIVER_PORT 1
+         #define LINK_RECEIVER_PORT 1
 
          void opcontrol() {
             char* result;
             char* expected = "Hello!";
-            pros::Link reciever(LINK_RECIVER_PORT);
+            pros::Link receiver(LINK_RECEIVER_PORT);
 
-            reciever.reciever_raw((void*)result, sizeof(*expected) * sizeof(expected));
+            receiver.receive_raw((void*)result, sizeof(*expected) * sizeof(expected));
          }
 
 ============ =================================================================================================================
@@ -277,7 +277,7 @@ This function uses the following values of ``errno`` when an error state is reac
          #define LINK_TRANSMITTER_PORT 1
 
          void opcontrol() {
-            pros::Link transmitter(LINK_RECIVER_PORT);
+            pros::Link transmitter(LINK_TRANSMITTER_PORT);
             char* data = "Hello!";
 
             transmitter.transmit((void*)data, sizeof(*data) * sizeof(data));
@@ -319,14 +319,14 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-         #define LINK_RECIVER_PORT 1
+         #define LINK_RECEIVER_PORT 1
 
          void opcontrol() {
             char* result;
             char* expected = "Hello!";
-            pros::Link reciever(LINK_RECIVER_PORT);
+            pros::Link receiver(LINK_RECEIVER_PORT);
 
-            reciever.recieve((void*)result, sizeof(*expected) * sizeof(expected));
+            receiver.receive((void*)result, sizeof(*expected) * sizeof(expected));
          }
 
 ============ =================================================================================================================
@@ -365,7 +365,7 @@ This function uses the following values of ``errno`` when an error state is reac
          #define LINK_TRANSMITTER_PORT 1
 
          void opcontrol() {
-            pros::Link transmitter(LINK_RECIVER_PORT);
+            pros::Link transmitter(LINK_TRANSMITTER_PORT);
             char* data = "Hello!";
 
             transmitter.transmit((void*)data, sizeof(*data) * sizeof(data));
@@ -383,17 +383,17 @@ Enumerated Values
 ::
 
   typedef enum link_type_e {
-    E_LINK_RECIEVER = 0,
+    E_LINK_RECEIVER = 0,
     E_LINK_TRANSMITTER,
-    E_LINK_RX = E_LINK_RECIEVER,
+    E_LINK_RX = E_LINK_RECEIVER,
     E_LINK_TX = E_LINK_TRANSMITTER
   } link_type_e_t;
 
 ============================= =============================================================
  Value
 ============================= =============================================================
- E_LINK_RECIEVER               Indicating that the radio is a reciever.
- E_LINK_RX                     Indicating that the radio is a reciever.
+ E_LINK_RECEIVER               Indicating that the radio is a receiver.
+ E_LINK_RX                     Indicating that the radio is a receiver.
  E_LINK_TRANSMITTER            Indicating that the radio is a transmitter.
  E_LINK_TX                     Indicating that the radio is a transmitter.
 ============================= =============================================================
