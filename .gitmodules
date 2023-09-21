@@ -6,6 +6,4 @@
 	url = https://github.com/purduesigbots/sphinx-tabs.git
 	branch = master
 	ignore = dirty
-[submodule "pros-mainline"]
-	path = pros-mainline
-	url = https://github.com/purduesigbots/pros-mainline.git
+
