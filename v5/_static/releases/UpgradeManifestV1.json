@@ -1,0 +1,1 @@
+{"py/object": "pros.upgrade.manifests.upgrade_manifest_v1.UpgradeManifestV1", "info_url": "https://pros.cs.purdue.edu/v5/releases/cli3.4.3.html", "version": {"py/object": "semantic_version.base.Version", "build": {"py/tuple": []}, "major": 3, "minor": 4, "partial": false, "patch": 3, "prerelease": {"py/tuple": []}}}
