@@ -18,6 +18,7 @@ home:
 	mv ./build/_static/windows-updates.txt ./build || true
 
 v5:
+	git submodule init
 	git submodule update --remote
 	sphinx-build ./v5/ ./build/v5/
 	cp -r pros-doxygen-docs/ ./build/v5/pros-4
