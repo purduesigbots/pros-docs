@@ -7,3 +7,7 @@
 	branch = master
 	ignore = dirty
 
+[submodule "pros-doxygen-docs"]
+	path = pros-doxygen-docs
+	url = https://github.com/purduesigbots/pros-doxygen-docs.git
+	branch = gh-pages
