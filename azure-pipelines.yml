@@ -5,6 +5,8 @@ jobs:
     vmImage: ubuntu-latest
 
   steps:
+  - checkout: self
+    submodules: true
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '3'
@@ -15,7 +17,9 @@ jobs:
 
   - script: ./scripts/build.sh
     displayName: 'Build Documentation'
-
+  - task: CmdLine@2
+    inputs:
+      script: 'cp -r pros-doxygen-docs/ ./build/v5/pros-4'
   - task: PublishPipelineArtifact@0
     inputs:
       targetPath: artifacts
