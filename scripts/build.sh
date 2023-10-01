@@ -14,6 +14,8 @@ $python -m pip install -r requirements.txt
 echo Building project
 make clean all
 
+cp -r pros-doxygen-docs/ ./build/v5/pros-4
+
 mkdir artifacts
 pushd build
 tar -zcf ../artifacts/pros-docs.tar.gz *
