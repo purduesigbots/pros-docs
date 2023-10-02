@@ -576,7 +576,8 @@
         "supported_kernels": null,
         "target": "v5",
         "version": "3.8.0"
-    }{
+    },
+    {
         "metadata": {
             "location": "https://github.com/purduesigbots/ARMS/releases/download/v3.1.1/ARMS@3.1.1.zip"
         },
@@ -585,5 +586,5 @@
         "supported_kernels": ">=3.8.0",
         "target": "v5",
         "version": "3.1.1"
-    },
+    }
 ]
