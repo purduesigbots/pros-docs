@@ -796,7 +796,8 @@ Print a formatted string to the screen at a coordinate location
  Parameters
 ============ =================================================================================================================
  txt_fmt      Text format enum that determines if the text is small, medium, or large.
- line         The one indexed line number on which to print
+ x            The x-coordinate to display the string
+ y            The y-coordinate to display the string
  text         Formatted string for printing variables and text
  ...          Optional list of arguments for the format string
 ============ =================================================================================================================
