@@ -24,13 +24,11 @@ Homebrew method
    build PROS projects, and then install the toolchain.
 3. Run :code:`brew tap purduesigbots/pros` to register the PROS Homebrew
    repository with Homebrew.
-4. Run :code:`brew install --cask pros-editor` to install the PROS Editor
-   (the CLI will also be installed). This may also take a while.
-5. (Optional) If you are planning to use the Vision Sensor, you will likely need
+4. (Optional) If you are planning to use the Vision Sensor, you will likely need
    to also install the VEX Vision Utility to set up signatures. Run
    :code:`brew install vcs-vision` to do this. Once installed, you'll be able to
    run the program by looking for "vcs_vision" in Spotlight.
-6. That's it! You can now start using PROS.
+5. That's it! You can now start using PROS.
 
 
 .. note:: If you do not want to use the PROS Editor, and instead intend to use only the PROS CLI, substitute the command in step 4 with the following: :code:`brew install pros-cli`.
