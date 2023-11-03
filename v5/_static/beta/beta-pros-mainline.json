@@ -111,12 +111,12 @@
     },
   {
     "metadata": {
-      "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.6.zip"
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.7.zip"
     },
     "name": "liblvgl",
     "py/object": "pros.conductor.templates.base_template.BaseTemplate",
     "supported_kernels": ">=4.0.3",
     "target": "v5",
-    "version": "8.3.6"
+    "version": "8.3.7"
   }
   ]
