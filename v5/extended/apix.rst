@@ -2,7 +2,7 @@
 Extended API
 ============
 
-.. note:: Also included in the Extended API is `LVGL <https://littlevgl.com/>`_.
+.. note:: Also included in the Extended API is `LVGL <https://lvgl.io/>`_.
 
 .. note:: PROS supports a simple implementation of the 
   `POSIX clock_gettime() and clock_settime() 
