@@ -13,7 +13,7 @@ $python -m pip install -r requirements.txt
 
 echo Building project
 make clean all
-
+rm -r ./build/v5/pros-4
 cp -r pros-doxygen-docs/ ./build/v5/pros-4
 
 mkdir artifacts
