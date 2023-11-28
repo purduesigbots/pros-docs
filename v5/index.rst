@@ -10,6 +10,7 @@ PROS: Documentation Home
    self
    ./blog/index
    ./releases/index
+   ./pros-4/index
    ./contact
 
 .. toctree::
