@@ -529,20 +529,20 @@ We will control the claw in the same manner as the lift, by toggling its movemen
              motor_move(LEFT_WHEELS_PORT, left);
              motor_move(RIGHT_WHEELS_PORT, right);
 
-             if (master.get_digital(DIGITAL_R1)) {
+             if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R1)) {
                motor_move_velocity(ARM_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(DIGITAL_R2)) {
+             else if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R2)) {
                motor_move_velocity(ARM_PORT, -100);
              }
              else {
                motor_move_velocity(ARM_PORT, 0);
              }
 
-             if (master.get_digital(DIGITAL_R1)) {
+             if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R1)) {
                motor_move_velocity(CLAW_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(DIGITAL_R2)) {
+             else if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R2)) {
                motor_move_velocity(CLAW_PORT, -100);
              }
              else {
@@ -686,20 +686,20 @@ And here is the updated code:
              motor_move(LEFT_WHEELS_PORT, left);
              motor_move(RIGHT_WHEELS_PORT, right);
 
-             if (master.get_digital(DIGITAL_R1)) {
+             if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R1)) {
                motor_move_velocity(ARM_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(DIGITAL_R2)) {
+             else if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R2)) {
                motor_move_velocity(ARM_PORT, -100);
              }
              else {
                motor_move_velocity(ARM_PORT, 0);
              }
 
-             if (master.get_digital(DIGITAL_R1)) {
+             if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R1)) {
                motor_move_velocity(CLAW_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(DIGITAL_R2)) {
+             else if (controller_get_digital(CONTROLLER_MASTER, DIGITAL_R2)) {
                motor_move_velocity(CLAW_PORT, -100);
              }
              else {
@@ -825,20 +825,20 @@ we will prevent the lift from being driven down further.
              motor_move(LEFT_WHEELS_PORT, left);
              motor_move(RIGHT_WHEELS_PORT, right);
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (controller_get_digital(CONTROLLER_MASTER, CONTROLLER_DIGITAL_R1)) {
                motor_move_velocity(ARM_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2) && !adi_port_get_value(ARM_LIMIT_SWITCH_PORT)) {
+             else if (controller_get_digital(CONTROLLER_MASTER, CONTROLLER_DIGITAL_R2) && !adi_port_get_value(ARM_LIMIT_SWITCH_PORT)) {
                motor_move_velocity(ARM_PORT, -100);
              }
              else {
                motor_move_velocity(ARM_PORT, 0);
              }
 
-             if (master.get_digital(CONTROLLER_DIGITAL_R1)) {
+             if (controller_get_digital(CONTROLLER_MASTER, CONTROLLER_DIGITAL_R1)) {
                motor_move_velocity(CLAW_PORT, 100); // This is 100 because it's a 100rpm motor
              }
-             else if (master.get_digital(CONTROLLER_DIGITAL_R2)) {
+             else if (controller_get_digital(CONTROLLER_MASTER, CONTROLLER_DIGITAL_R2)) {
                motor_move_velocity(CLAW_PORT, -100);
              }
              else {
