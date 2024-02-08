@@ -5,7 +5,7 @@
 VEX Inertial Sensor C++ API
 =====================
 
-.. note:: ``pros::IMU`` can also be used to refer ``pros::Imu``
+.. note:: ``pros::IMU`` can also be used to refer to ``pros::Imu``
 
 .. contents:: :local:
 
