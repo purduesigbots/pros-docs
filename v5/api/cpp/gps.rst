@@ -8,7 +8,7 @@ VEX GPS Sensor C++ API
 .. note:: For a pros-specific usage guide on the GPS, please check out our article
           `here <../../tutorials/topical/gps.html>`_.
 
-.. note:: ``pros::GPS`` can also be used to refer ``pros::Gps``
+.. note:: ``pros::GPS`` can also be used to refer to ``pros::Gps``
 
 .. contents:: :local:
 
