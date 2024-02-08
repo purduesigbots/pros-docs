@@ -257,8 +257,8 @@ This function uses the following values of ``errno`` when an error state is reac
 
         void opcontrol() {
             pros::Gps gps1(GPS_PORT);
-            int *x;
-            int *y;
+            double *x;
+            double *y;
 
             while (true) {
                 gps1.get_offset(x, y);
