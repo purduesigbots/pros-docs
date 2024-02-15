@@ -1772,7 +1772,8 @@ Indicates the current 'brake mode' of the motor.
  Value
 ================================== ===========================================================
  E_MOTOR_BRAKE_COAST                Motor coasts when stopped, traditional behavior
- E_MOTOR_BRAKE_BRAKE                Motor brakes when stopped 
+ E_MOTOR_BRAKE_BRAKE                Motor short brakes when stopped by shorting (directly connecting) the motor’s positive and negative lead
+                                    https://en.m.wikipedia.org/wiki/Dynamic_braking
  E_MOTOR_BRAKE_HOLD                 Motor actively holds position when stopped 
  E_MOTOR_BRAKE_INVALID              Invalid brake mode
 ================================== ===========================================================
