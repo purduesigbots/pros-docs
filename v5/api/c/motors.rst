@@ -1823,10 +1823,11 @@ motor_fault_e_t
 ================================== ===========================================================
  Value
 ================================== ===========================================================
- E_MOTOR_FAULT_NO_FAULTS            No faults
- E_MOTOR_BRAKE_BRAKE                Motor brakes when stopped 
- E_MOTOR_BRAKE_HOLD                 Motor actively holds position when stopped 
- E_MOTOR_BRAKE_INVALID              Invalid brake mode
+ E_MOTOR_FAULT_NO_FAULTS                 No faults
+ E_MOTOR_FAULT_MOTOR_OVER_TEMP           Analogous to motor_is_over_temp()
+ E_MOTOR_FAULT_DRIVER_FAULT              Indicates a motor h-bridge fault
+ E_MOTOR_FAULT_OVER_CURRENT              Analogous to motor_is_over_current()
+ E_MOTOR_FAULT_DRV_OVER_CURRENT          Indicates an h-bridge over current
 ================================== ===========================================================
 
 ----
