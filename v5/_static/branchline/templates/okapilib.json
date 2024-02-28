@@ -1,0 +1,9 @@
+[
+    {
+        "metadata": {
+            "location": "https://github.com/OkapiLib/OkapiLib/releases/download/v4.1.0/okapilib@4.1.0.zip"
+        },
+        "supported_kernels": ">=3.3.1",
+        "version": "4.1.0"
+    }
+]
