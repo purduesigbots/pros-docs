@@ -321,6 +321,135 @@ port             The V5 GPS port number from (1-21)
 
 ----
 
+gps_get_pitch
+----------------
+
+Gets the GPS pitch in [0,360) degree values.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a GPS.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         double gps_get_pitch(uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define GPS_PORT 1
+
+        void opcontrol() {
+            double pitch;
+
+            while (true) {
+                pitch = gps_get_pitch(GPS_PORT);
+                delay(20);
+            }
+        }
+
+=============== =================================================================================================================
+ Parameters
+=============== =================================================================================================================
+port             The V5 GPS port number from (1-21)
+=============== =================================================================================================================
+
+**Returns:** The pitch in [0,360) degree values. If the operation failed, returns ``PROS_ERR_F`` and ``errno`` is set.
+
+----
+
+gps_get_roll
+----------------
+
+Gets the GPS roll in [0,360) degree values.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a GPS.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         double gps_get_roll(uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define GPS_PORT 1
+
+        void opcontrol() {
+            double roll;
+
+            while (true) {
+                roll = gps_get_roll(GPS_PORT);
+                delay(20);
+            }
+        }
+
+=============== =================================================================================================================
+ Parameters
+=============== =================================================================================================================
+port             The V5 GPS port number from (1-21)
+=============== =================================================================================================================
+
+**Returns:** The roll in [0,360) degree values. If the operation failed, returns ``PROS_ERR_F`` and ``errno`` is set.
+
+----
+
+gps_get_yaw
+----------------
+
+Gets the GPS yaw in [0,360) degree values.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a GPS.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         double gps_get_yaw(uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define GPS_PORT 1
+
+        void opcontrol() {
+            double yaw;
+
+            while (true) {
+                yaw = gps_get_yaw(GPS_PORT);
+                delay(20);
+            }
+        }
+
+=============== =================================================================================================================
+ Parameters
+=============== =================================================================================================================
+port             The V5 GPS port number from (1-21)
+=============== =================================================================================================================
+
+**Returns:** The yaw in [0,360) degree values. If the operation failed, returns ``PROS_ERR_F`` and ``errno`` is set.
+
+----
+
 gps_get_heading
 ----------------
 
