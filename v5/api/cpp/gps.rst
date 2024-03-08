@@ -451,6 +451,126 @@ filled with ``PROS_ERR_F`` and ``errno`` is set.
 
 ----
 
+get_pitch
+-----------
+
+Gets the pitch of the GPS in degrees relative to the starting orientation.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a GPS.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         double get_pitch()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        
+        #define GPS_PORT 1
+
+        void opcontrol() {
+            pros::Gps gps1(GPS_PORT);
+            double pitch;
+
+            while (true) {
+                yaw = gps1.get_yaw();
+                pros::screen::print(TEXT_MEDIUM, 1, "Pitch: %3f", pitch);
+                pros::delay(20);
+            }
+        }
+
+
+**Returns:** The pitch in [0,360) degree values. If the operation failed, returns ``PROS_ERR_F`` and ``errno`` is set.
+
+----
+
+get_roll
+-----------
+
+Gets the roll of the GPS in degrees relative to the starting orientation.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a GPS.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         double get_roll()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        
+        #define GPS_PORT 1
+
+        void opcontrol() {
+            pros::Gps gps1(GPS_PORT);
+            double roll;
+
+            while (true) {
+                roll = gps1.get_roll();
+                pros::screen::print(TEXT_MEDIUM, 1, "Roll: %3f", roll);
+                pros::delay(20);
+            }
+        }
+
+
+**Returns:** The roll in [0,360) degree values. If the operation failed, returns ``PROS_ERR_F`` and ``errno`` is set.
+
+----
+
+get_yaw
+-----------
+
+Gets the yaw of the GPS in degrees relative to the starting orientation.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a GPS.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         double get_yaw()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+        
+        #define GPS_PORT 1
+
+        void opcontrol() {
+            pros::Gps gps1(GPS_PORT);
+            double yaw;
+
+            while (true) {
+                yaw = gps1.get_yaw();
+                pros::screen::print(TEXT_MEDIUM, 1, "Yaw: %3f", yaw);
+                pros::delay(20);
+            }
+        }
+
+
+**Returns:** The yaw in [0,360) degree values. If the operation failed, returns ``PROS_ERR_F`` and ``errno`` is set.
+
+----
+
 get_heading
 -----------
 
