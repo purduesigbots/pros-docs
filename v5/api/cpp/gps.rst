@@ -451,6 +451,84 @@ filled with ``PROS_ERR_F`` and ``errno`` is set.
 
 ----
 
+gps_get_x_position
+----------
+
+Gets the X position in meters of the GPS relative to the starting position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a GPS.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         double get_x_position()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+      
+        #define GPS_PORT 1
+
+        void opcontrol() {
+            pros::Gps gps1(GPS_PORT);
+            double x_pos;
+
+            while (true) {
+                x_pos = gps1.get_x_position();
+                pros::delay(20);
+            }
+        }
+
+
+**Returns:**  The X position in meters. If the operation failed, returns ``PROS_ERR_F`` and ``errno`` is set.
+
+----
+
+gps_get_y_position
+----------
+
+Gets the Y position in meters of the GPS relative to the starting position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a GPS.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: cpp
+      ::
+
+         double get_y_position()
+
+   .. tab :: Example
+      .. highlight:: cpp
+      ::
+      
+        #define GPS_PORT 1
+
+        void opcontrol() {
+            pros::Gps gps1(GPS_PORT);
+            double y_pos;
+
+            while (true) {
+                y_pos = gps1.get_y_position();
+                pros::delay(20);
+            }
+        }
+
+
+**Returns:**  The Y position in meters. If the operation failed, returns ``PROS_ERR_F`` and ``errno`` is set.
+
+----
+
 get_pitch
 -----------
 
