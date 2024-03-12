@@ -321,6 +321,92 @@ port             The V5 GPS port number from (1-21)
 
 ----
 
+gps_get_x_position
+----------------
+
+Gets the X position in meters of the GPS relative to the starting position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a GPS.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         double gps_get_x_position(uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define GPS_PORT 1
+
+        void opcontrol() {
+	    double x_pos;
+
+            while (true) {
+                x_pos = gps_get_x_position(GPS_PORT);
+                delay(20);
+            }
+        }
+
+=============== =================================================================================================================
+ Parameters
+=============== =================================================================================================================
+port             The V5 GPS port number from (1-21)
+=============== =================================================================================================================
+
+**Returns:**  The X position in meters. If the operation failed, returns ``PROS_ERR_F`` and ``errno`` is set.
+
+----
+
+gps_get_y_position
+----------------
+
+Gets the Y position in meters of the GPS relative to the starting position.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as a GPS.
+- ``EAGAIN`` - The sensor is still calibrating.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+         double gps_get_y_position(uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define GPS_PORT 1
+
+        void opcontrol() {
+	    double y_pos;
+
+            while (true) {
+                y_pos = gps_get_y_position(GPS_PORT);
+                delay(20);
+            }
+        }
+
+=============== =================================================================================================================
+ Parameters
+=============== =================================================================================================================
+port             The V5 GPS port number from (1-21)
+=============== =================================================================================================================
+
+**Returns:**  The Y position in meters. If the operation failed, returns ``PROS_ERR_F`` and ``errno`` is set.
+
+----
+
 gps_get_pitch
 ----------------
 
