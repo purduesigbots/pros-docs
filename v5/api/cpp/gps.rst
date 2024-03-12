@@ -451,7 +451,7 @@ filled with ``PROS_ERR_F`` and ``errno`` is set.
 
 ----
 
-gps_get_x_position
+get_x_position
 ----------
 
 Gets the X position in meters of the GPS relative to the starting position.
@@ -490,7 +490,7 @@ This function uses the following values of ``errno`` when an error state is reac
 
 ----
 
-gps_get_y_position
+get_y_position
 ----------
 
 Gets the Y position in meters of the GPS relative to the starting position.
