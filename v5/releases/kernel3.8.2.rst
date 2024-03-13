@@ -6,7 +6,7 @@ PROS Kernel 3.8.2 Release
    :tags: blog, kernel-release
 
 This update fixes several bugs discovered since 3.8.0 and missing features for LEDs, GPS sensor and IMUs.
-The most major featue is the new GPS functions. 
+The most major feature is the new GPS functions. 
 
 Changelog
 ---------
