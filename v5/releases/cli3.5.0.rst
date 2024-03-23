@@ -7,25 +7,25 @@ PROS CLI 3.5.0 Release
 
 What's new:
 -----------
-✨ Add rich click #307
-✨ Move PROS 4 to early access #296
-✨ Added port to project.pros #292
-✨ Adding and removing depots #299
+* Add rich click
+* Move PROS 4 to early access
+* Added port to project.pros
+* Adding and removing depots
 
 What's changed:
 ---------------
-🚸 Unique error for kernel mismatch when applying a template #276
+* Unique error for kernel mismatch when applying a template
 
 Bugfixes:
 ---------
-🐛 Fix fat binary error in CI #293
-🐛 Deprecate pros upgrade #297
-🐛 Resolve Python 3.11.6_1 Enum changes #302
-🐛 Fix dirty version name #309
-🐛 Fix exit code click bug #310
-🐛 Phantom Multiple Port selection #255
-🐛 Disable windows_expand_args #315
-🐛 Fix default template selection #318
+* Fix fat binary error in CI
+* Deprecate pros upgrade
+* Resolve Python 3.11.6_1 Enum changes
+* Fix dirty version name
+* Fix exit code click bug
+* Phantom Multiple Port selection
+* Disable windows_expand_args
+* Fix default template selection
 
 If there are any problems encountered with this release, please make a post in the help section of VTOW, or a new issue on the [CLI github](https://github.com/purduesigbots/pros-cli/issues).
 
