@@ -560,7 +560,7 @@ Analogous to `pros::Imu::get_status <../cpp/imu.html#get_status>`_.
 
 ---
 
-imu_get_orientation
+imu_get_physical_orientation
 -------------------
 
 Get the Inertial Sensor's physical orientation.
@@ -570,14 +570,14 @@ This function uses the following values of ``errno`` when an error state is reac
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
 
-Analogous to `pros::Imu::get_status <../cpp/imu.html#get_orientation>`_.
+Analogous to `pros::Imu::get_status <../cpp/imu.html#get_physical_orientation>`_.
 
 .. tabs ::
    .. tab :: Prototype
       .. highlight:: c
       ::
 
-        imu_orientation_e_t imu_get_orientation (uint8_t port)
+        imu_orientation_e_t imu_get_physical_orientation (uint8_t port)
 
    .. tab :: Example
       .. highlight:: c
@@ -587,7 +587,7 @@ Analogous to `pros::Imu::get_status <../cpp/imu.html#get_orientation>`_.
 
         void initialize() {
           imu_reset(IMU_PORT);
-            printf("IMU orientation %d\n", imu_get_orientation);
+            printf("IMU orientation %d\n", imu_get_physical_orientation(IMU_PORT));
 
         }
 
@@ -597,7 +597,7 @@ Analogous to `pros::Imu::get_status <../cpp/imu.html#get_orientation>`_.
  port         The V5 port number from (1-21)
 ============ =================================================================================================================
 
-**Returns:** The Inertial Sensor's orientation, or ``PROS_ERR`` if the operation failed, setting ``errno``. 
+**Returns:** The Inertial Sensor's physical orientation, or ``PROS_ERR`` if the operation failed, setting ``errno``. 
 
 ---
 
