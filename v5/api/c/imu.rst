@@ -561,7 +561,7 @@ Analogous to `pros::Imu::get_status <../cpp/imu.html#get_status>`_.
 ---
 
 imu_get_physical_orientation
--------------------
+----------------------------
 
 Get the Inertial Sensor's physical orientation.
 
