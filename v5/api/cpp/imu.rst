@@ -405,7 +405,7 @@ This function uses the following values of ``errno`` when an error state is reac
 ----
 
 tare_rotation
-~~~~~~~~~
+~~~~~~~~~~~~~
 
 Resets the current reading of the Inertial Sensor's rotation to zero.
 
@@ -1094,10 +1094,10 @@ This function uses the following values of ``errno`` when an error state is reac
 
 ----
 
-get_orientation
-~~~~~~~~~~
+get_physical_orientation
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-Get the Inertial Sensor's orientation.
+Get the Inertial Sensor's physical orientation.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -1109,7 +1109,7 @@ This function uses the following values of ``errno`` when an error state is reac
       .. highlight:: cpp
       ::
 
-	      pros::c::imu_orientation_e_t get_orientation( )
+	      pros::c::imu_orientation_e_t get_physical_orientation( )
 
    .. tab :: Example
       .. highlight:: cpp
@@ -1120,12 +1120,12 @@ This function uses the following values of ``errno`` when an error state is reac
         void initialize() {
         	pros::Imu imu_sensor (IMU_PORT);
 	        imu_sensor.reset();
-		printf("IMU Orinetation %d", imu_sensor.get_orientation());
+		printf("IMU Orinetation %d", imu_sensor.get_physical_orientation());
         }
 
 
 
-**Returns:** The Inertial Sensor's orientation, or ``PROS_ERR`` if the operation failed, setting ``errno``.
+**Returns:** The Inertial Sensor's physical orientation, or ``PROS_ERR`` if the operation failed, setting ``errno``.
 ----
 
 is_calibrating
