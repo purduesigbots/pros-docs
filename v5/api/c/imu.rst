@@ -521,7 +521,6 @@ This function uses the following values of ``errno`` when an error state is reac
 
 - ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
 - ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
-- ``EAGAIN`` - The sensor is already calibrating.
 
 Analogous to `pros::Imu::get_status <../cpp/imu.html#get_status>`_.
 
@@ -558,6 +557,47 @@ Analogous to `pros::Imu::get_status <../cpp/imu.html#get_status>`_.
 ============ =================================================================================================================
 
 **Returns:** The Inertial Sensor's status code, or ``PROS_ERR`` if the operation failed, setting ``errno``. 
+
+---
+
+imu_get_physical_orientation
+----------------------------
+
+Get the Inertial Sensor's physical orientation.
+
+This function uses the following values of ``errno`` when an error state is reached:
+
+- ``ENXIO`` - The given value is not within the range of V5 ports (1-21).
+- ``ENODEV`` - The port cannot be configured as an Inertial Sensor.
+
+Analogous to `pros::Imu::get_status <../cpp/imu.html#get_physical_orientation>`_.
+
+.. tabs ::
+   .. tab :: Prototype
+      .. highlight:: c
+      ::
+
+        imu_orientation_e_t imu_get_physical_orientation (uint8_t port)
+
+   .. tab :: Example
+      .. highlight:: c
+      ::
+
+        #define IMU_PORT 1
+
+        void initialize() {
+          imu_reset(IMU_PORT);
+            printf("IMU orientation %d\n", imu_get_physical_orientation(IMU_PORT));
+
+        }
+
+============ =================================================================================================================
+ Parameters
+============ =================================================================================================================
+ port         The V5 port number from (1-21)
+============ =================================================================================================================
+
+**Returns:** The Inertial Sensor's physical orientation, or ``PROS_ERR`` if the operation failed, setting ``errno``. 
 
 ---
 
@@ -1180,6 +1220,33 @@ E_IMU_STATUS_ERROR                  Used to indicate that an error state was rea
 ================================== =====================================================================================
 
 ---
+
+imu_orientation_e_t
+-------------------
+
+Indicates IMU physical orientation.
+
+::
+
+typedef enum imu_orientation_e {
+	E_IMU_Z_UP = 0,    // IMU has the Z axis UP (VEX Logo facing DOWN)
+	E_IMU_Z_DOWN = 1,  // IMU has the Z axis DOWN (VEX Logo facing UP)
+	E_IMU_X_UP = 2,    // IMU has the X axis UP
+	E_IMU_X_DOWN = 3,  // IMU has the X axis DOWN
+	E_IMU_Y_UP = 4,    // IMU has the Y axis UP
+	E_IMU_Y_DOWN = 5,  // IMU has the Y axis DOWN
+} imu_orientation_e_t;
+
+================================== =====================================================================================
+ Value
+================================== =====================================================================================
+E_IMU_Z_UP                          IMU has the Z axis UP (VEX Logo facing DOWN)
+E_IMU_Z_DOWN                        IMU has the Z axis DOWN (VEX Logo facing UP)
+E_IMU_X_UP                          IMU has the X axis UP
+E_IMU_X_DOWN                        IMU has the X axis DOWN 
+E_IMU_Y_UP                          IMU has the Y axis UP
+E_IMU_Y_DOWN                        IMU has the Y axis DOWN 
+================================== =====================================================================================
 
 Structures
 ==========
