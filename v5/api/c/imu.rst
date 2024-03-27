@@ -559,6 +559,7 @@ Analogous to `pros::Imu::get_status <../cpp/imu.html#get_status>`_.
 **Returns:** The Inertial Sensor's status code, or ``PROS_ERR`` if the operation failed, setting ``errno``. 
 
 ---
+
 imu_get_orientation
 --------------
 
