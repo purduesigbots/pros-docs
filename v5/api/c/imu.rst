@@ -1222,7 +1222,7 @@ E_IMU_STATUS_ERROR                  Used to indicate that an error state was rea
 ---
 
 imu_orientation_e_t
---------------
+-------------------
 
 Indicates IMU physical orientation.
 
