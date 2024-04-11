@@ -1173,7 +1173,7 @@ Analogous to `motor_is_stopped <../c/motors.html#motor-is-stopped>`_.
       .. highlight:: cpp
       ::
 
-        std::int32_t motor_is_stopped ( )
+        std::int32_t pros::Motor::is_stopped ( )
 
    .. tab :: Example
       .. highlight:: cpp
