@@ -1,0 +1,23 @@
+[
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/branchline/okapilib/okapilib@4.8.0.zip"
+    },
+    "version": "4.8.0",
+    "supported_kernels": ">=3.3.1"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/releases/okapilib@4.6.0.zip"
+    },
+    "version": "4.6.0",
+    "supported_kernels": ">=3.3.1"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/releases/okapilib@4.5.0.zip"
+    },
+    "version": "4.5.0",
+    "supported_kernels": ">=3.3.1"
+  }
+]
