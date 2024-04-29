@@ -4,20 +4,31 @@
       "versions": "pros-branchline/templates/kernel.json"
     },
     "name": "kernel",
-    "target": "v5"
+    "target": "v5",
+    "repository": "purduesigbots/pros"
   },
   {
     "metadata": {
       "versions": "pros-branchline/templates/okapilib.json"
     },
     "name": "okapilib",
-    "target": "v5"
+    "target": "v5",
+    "repository": "purduesigbots/OkapiLib"
   },
   {
     "metadata": {
       "versions": "pros-branchline/templates/LemLib.json"
     },
     "name": "LemLib",
-    "target": "v5"
+    "target": "v5",
+    "repository": "lemlib/lemlib"
+  },
+  {
+    "metadata": {
+      "versions": "pros-branchline/templates/ARMS.json"
+    },
+    "name": "ARMS",
+    "target": "v5",
+    "repository": "purduesigbots/ARMS"
   }
 ]
