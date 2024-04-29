@@ -1,16 +1,9 @@
 [
   {
     "metadata": {
-      "location": "https://pros.cs.purdue.edu/v5/_static/releases/kernel@3.5.2.zip"
+      "location": "https://pros.cs.purdue.edu/v5/_static/branchline/kernel/kernel@3.8.2.zip"
     },
-    "supported_kernels": null,
-    "version": "3.5.2"
-  },
-  {
-    "metadata": {
-      "location": "https://pros.cs.purdue.edu/v5/_static/releases/kernel@3.8.0.zip"
-    },
-    "supported_kernels": null,
-    "version": "3.8.0"
+    "version": "3.8.2",
+    "supported_kernels": "null"
   }
 ]
