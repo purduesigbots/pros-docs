@@ -1,0 +1,9 @@
+[
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/branchline/ARMS/ARMS@3.2.0.zip"
+    },
+    "version": "3.2.0",
+    "supported_kernels": ">=3.3.1"
+  }
+]
