@@ -1,0 +1,39 @@
+=========================
+PROS Kernel 4.0.7 Release
+=========================
+
+.. post:: 5 May, 2024
+   :tags: blog, kernel-release, PROS-4
+
+This update serves as the release candidate for PROS 4.
+Assuming no bugs are found, this will be reuploaded as 4.1.0 and become the global default for new projects later this week
+
+Changelog
+---------
+
+Changes since 4.0.6:
+ - All the changes from PROS 3.8 that are relevant for PROS 4
+ - Devices are no longer explicit
+ - = operator overload removed for motors and motor groups
+ - Adds static getters for IMU, GPS and vision sensor so PROS can detect their ports at run time
+ - Adds constructors to allow better usage of the device superclass
+ - Adds functionality to get all the objects corresponding to a physical device type
+ - Adds get_distance function to the distance sensor (that has identical behavior to the existing get function)
+ - Overhauls the GPS api
+ - better getters for field control
+ - removes the need for "/usd/" at the beginning of most files
+ - fixed negative port for rotation sensor
+
+Highlighted changes from pros 3:
+- = operator overload removed for motors and motor groups
+- LVGL is now a defualt template and updated to lvgl 8.3.4 (you can switch to lvgl 5.3.2 by running pros c apply liblvgl@5.3.3)
+- Better Motor group implementation
+- Different GPS sensor API
+- removes the need for "/usd/" at the beginning of most files
+- Adds a device superclass
+- Removed explicit from devices
+- Adds << overloads for devices to improve debugging
+- adds cpp literals support for devices
+- Adds abstract motor base class
+
+
