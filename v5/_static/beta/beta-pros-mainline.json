@@ -1,112 +1,132 @@
 [
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.0.zip"
-      },
-      "name": "kernel",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": null,
-      "target": "v5",
-      "version": "4.0.0"
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.0.zip"
     },
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.0.zip"
-      },
-      "name": "liblvgl",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": ">=4.0.0",
-      "target": "v5",
-      "version": "8.3.0"
+    "name": "kernel",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": null,
+    "target": "v5",
+    "version": "4.0.0"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.0.zip"
     },
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.3.zip"
-      },
-      "name": "kernel",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": null,
-      "target": "v5",
-      "version": "4.0.3"
+    "name": "liblvgl",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": ">=4.0.0",
+    "target": "v5",
+    "version": "8.3.0"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.3.zip"
     },
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.4.zip"
-      },
-      "name": "kernel",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": null,
-      "target": "v5",
-      "version": "4.0.4"
+    "name": "kernel",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": null,
+    "target": "v5",
+    "version": "4.0.3"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.4.zip"
     },
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.2.zip"
-      },
-      "name": "liblvgl",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": ">=4.0.3",
-      "target": "v5",
-      "version": "8.3.2"
+    "name": "kernel",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": null,
+    "target": "v5",
+    "version": "4.0.4"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.2.zip"
     },
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.3.zip"
-      },
-      "name": "liblvgl",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": ">=4.0.4",
-      "target": "v5",
-      "version": "8.3.3"
+    "name": "liblvgl",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": ">=4.0.3",
+    "target": "v5",
+    "version": "8.3.2"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.3.zip"
     },
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/okapilib@5.0.0.zip"
-      },
-      "name": "okapilib",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": ">=4.0.3",
-      "target": "v5",
-      "version": "5.0.0"
+    "name": "liblvgl",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": ">=4.0.4",
+    "target": "v5",
+    "version": "8.3.3"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/okapilib@5.0.0.zip"
     },
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@5.3.3.zip"
-      },
-      "name": "liblvgl",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": ">=4.0.4",
-      "target": "v5",
-      "version": "5.3.3"
+    "name": "okapilib",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": ">=4.0.3",
+    "target": "v5",
+    "version": "5.0.0"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@5.3.3.zip"
     },
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.5.zip"
-      },
-      "name": "kernel",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": null,
-      "target": "v5",
-      "version": "4.0.5"
+    "name": "liblvgl",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": ">=4.0.4",
+    "target": "v5",
+    "version": "5.3.3"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.5.zip"
     },
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.6.zip"
-      },
-      "name": "kernel",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": null,
-      "target": "v5",
-      "version": "4.0.6"
+    "name": "kernel",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": null,
+    "target": "v5",
+    "version": "4.0.5"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.6.zip"
     },
-    {
-      "metadata": {
-        "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.6.zip"
-      },
-      "name": "liblvgl",
-      "py/object": "pros.conductor.templates.base_template.BaseTemplate",
-      "supported_kernels": ">=4.0.3",
-      "target": "v5",
-      "version": "8.3.6"
-    }
-  ]
+    "name": "kernel",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": null,
+    "target": "v5",
+    "version": "4.0.6"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.6.zip"
+    },
+    "name": "liblvgl",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": ">=4.0.3",
+    "target": "v5",
+    "version": "8.3.6"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.8.zip"
+    },
+    "name": "liblvgl",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": ">=4.0.7",
+    "target": "v5",
+    "version": "8.3.8"
+  },
+  {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/kernel@4.0.7.zip"
+    },
+    "name": "kernel",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": null,
+    "target": "v5",
+    "version": "4.0.7"
+  }
+]
