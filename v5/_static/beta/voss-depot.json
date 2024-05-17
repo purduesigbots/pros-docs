@@ -1,0 +1,12 @@
+[
+  {
+    "metadata": {
+      "location": "https://github.com/purduesigbots/VOSS/releases/download/0.1.2/VOSS@0.1.2.zip"
+    },
+    "name": "VOSS",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": ">=4.0.7",
+    "target": "v5",
+    "version": "0.1.2"
+  }
+]
