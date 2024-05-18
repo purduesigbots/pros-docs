@@ -23,6 +23,14 @@ VSCode
 ------
 Your extension should automatically update. If it doesn't, you can manually update by opening the extensions tab and clicking the update button next to PROS.
 
+macOS
+-----
+
+To update Homebrew, run ``homebrew update``.
+To upgrade a previous installation, run ``brew upgrade pros-cli``.
+
+If you are installing for the first time, see `the getting started guide for macOS <https://pros.cs.purdue.edu/v5/getting-started/macos.html>`_ for instructions.
+
 Windows / Linux / macOS / Python PIP
 ------------------------------------
 
