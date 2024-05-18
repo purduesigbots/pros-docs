@@ -32,16 +32,7 @@ Notes:
 
 - You may be stopped by Windows SmartScreen when running the installer. This is expected, and we are working to resolve this issue. In the meantime, click "more info" and "run anyway" (if your system is set to block unknown apps and programs, you'll have to change the SmartScreen settings to "warn" or disable checking entirely [which we don't recommend]).
 
-macOS
------
-
-To upgrade a previous installation, run ``brew upgrade pros-cli``.
-UPDATE (as of March 23, 2024): Homebrew is currently not working due to a dependency build issue. Please use pip while we investigate the issue.
-
-
-If you are installing for the first time, see `the getting started guide for macOS <https://pros.cs.purdue.edu/v5/getting-started/macos.html>`_ for instructions.
-
-Linux / Python PIP
+Linux / macOS / Python PIP
 ----------
 
 Run ``pip install --upgrade pros-cli`` (or pip3, depending on your system)
