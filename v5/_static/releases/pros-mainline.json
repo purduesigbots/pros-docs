@@ -596,5 +596,25 @@
         "supported_kernels": null,
         "target": "v5",
         "version": "3.8.3"
+    },
+    {
+    "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@8.3.8.zip"
+    },
+    "name": "liblvgl",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": ">=4.0.7",
+    "target": "v5",
+    "version": "8.3.8"
+  },
+     {
+        "metadata": {
+            "location": "https://pros.cs.purdue.edu/v5/_static/releases/kernel@4.1.0.zip"
+        },
+        "name": "kernel",
+        "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+        "supported_kernels": null,
+        "target": "v5",
+        "version": "4.1.0"
     }
 ]
