@@ -24,11 +24,11 @@ jobs:
     - name: Install Requirements
       run: python3 -m pip install --upgrade pip && pip3 install -r requirements.txt
 
-    - name: Build & Upload Artifact
+    - name: Build Artifact
       run: ./scripts/build.sh
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
-        name: pros-website.tar.gz
-        path: pros-website.tar.gz
+        name: pros-docs
+        path: ./build

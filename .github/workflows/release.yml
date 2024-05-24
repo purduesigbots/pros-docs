@@ -6,7 +6,7 @@ on:
     types:
       - completed
     branches:
-      - main
+      - master
 
 jobs:
   release:
@@ -18,14 +18,27 @@ jobs:
       - name: Download Artifact
         uses: actions/download-artifact@v4
         with:
-          name: pros-website.tar.gz
-          path: pros-website.tar.gz
+          # name: pros-docs.tar.gz
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: Compress Artifact
+        run: |
+            cd pros-docs
+            tar -czf ../pros-docs.tar.gz *
+            cd ..
 
       - name: Send Artifact to Server
         uses: betanzos/scp-upload@v1
         with:
-          source: pros-website.tar.gz
+          source: pros-docs.tar.gz
           host: ${{ vars.SSH_HOST }}
           username: ${{ vars.SSH_USER }}
           key: ${{ secrets.SSH_KEY }}
           remote_dir: ~/pros-website
+
+      - name: Deploy!
+        run: |
+            echo "${{ secrets.SSH_KEY }}" > key
+            chmod 400 key
+            ssh -o StrictHostKeyChecking=no -i key ${{ vars.SSH_USER }}@${{ vars.SSH_HOST }} '~/pros-website/deploy.sh'
