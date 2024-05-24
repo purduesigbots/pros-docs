@@ -1,4 +1,4 @@
-name: Build site
+name: Build Site
 
 on:
   push:
@@ -25,15 +25,10 @@ jobs:
       run: python3 -m pip install --upgrade pip && pip3 install -r requirements.txt
 
     - name: Build & Upload Artifact
-      run: make
-      
-    - uses: a7ul/tar-action@v1.2.0
-      with:
-        command: c
-        files: build
-        outPath: pros-website.tar.gz
+      run: ./scripts/build.sh
 
-    - uses: actions/upload-artifact@v4
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
       with:
         name: pros-website.tar.gz
         path: pros-website.tar.gz

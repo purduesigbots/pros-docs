@@ -1,0 +1,31 @@
+name: Release Site
+
+on:
+  workflow_run:
+    workflows: ["Build Site"]
+    types:
+      - completed
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: 
+      name: legion
+      url: https://pros.cs.purdue.edu
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: pros-website.tar.gz
+          path: pros-website.tar.gz
+
+      - name: Send Artifact to Server
+        uses: betanzos/scp-upload@v1
+        with:
+          source: pros-website.tar.gz
+          host: ${{ vars.SSH_HOST }}
+          username: ${{ vars.SSH_USER }}
+          key: ${{ secrets.SSH_KEY }}
+          remote_dir: ~/pros-website
