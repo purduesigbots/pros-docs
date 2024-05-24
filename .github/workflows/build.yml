@@ -1,0 +1,39 @@
+name: Build site
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3.1.0
+      with:
+        fetch-depth: 0
+
+    - name: Checkout submodules
+      run: git submodule update --init --recursive
+
+    - name: Setup Python
+      uses: actions/setup-python@v4.3.0
+      with:
+        python-version: 3.9
+        cache: 'pip'
+              
+    - name: Install Requirements
+      run: python3 -m pip install --upgrade pip && pip3 install -r requirements.txt
+
+    - name: Build & Upload Artifact
+      run: make
+      
+    - uses: a7ul/tar-action@v1.2.0
+      with:
+        command: c
+        files: build
+        outPath: pros-website.tar.gz
+
+    - uses: actions/upload-artifact@v4
+      with:
+        name: pros-website.tar.gz
+        path: pros-website.tar.gz
