@@ -14,7 +14,7 @@ What's Changed:
 * Remove Okapilib as a default template for PROS 4
 * Downgrade rich click
 
-If there are any problems encountered with this release, please make a post in the help section of VTOW, or a new issue on the [CLI github](https://github.com/purduesigbots/pros-cli/issues).
+If there are any problems encountered with this release, please make a post in the help section of VTOW, or a new issue on the `CLI github <https://github.com/purduesigbots/pros-cli/issues>`_.
 
 Updating to the new version
 ===========================

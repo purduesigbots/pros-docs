@@ -27,7 +27,7 @@ Bugfixes:
 * Disable windows_expand_args
 * Fix default template selection
 
-If there are any problems encountered with this release, please make a post in the help section of VTOW, or a new issue on the [CLI github](https://github.com/purduesigbots/pros-cli/issues).
+If there are any problems encountered with this release, please make a post in the help section of VTOW, or a new issue on the `CLI github <https://github.com/purduesigbots/pros-cli/issues>`_.
 
 Updating to the new version
 ===========================

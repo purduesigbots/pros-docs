@@ -25,7 +25,7 @@ Bugfixes:
 🐛 Better error message for File not found on fetch #328
 🐛 Fix offline resolve templates #321
 
-If there are any problems encountered with this release, please make a post in the help section of VTOW, or a new issue on the [CLI github](https://github.com/purduesigbots/pros-cli/issues). 
+If there are any problems encountered with this release, please make a post in the help section of VTOW, or a new issue on the `CLI github <https://github.com/purduesigbots/pros-cli/issues>`_. 
 
 - The PROS Development Team
 Updating to the new version
