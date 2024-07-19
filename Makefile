@@ -23,8 +23,8 @@ v5:
 	sphinx-build ./v5/ ./build/v5/
 
 clean:
-	-rm -rf ./home
-	ls ./build || true
+	-rm -rf ./build
+	ls ./home || true
 
 linkcheck:
 	sphinx-build -b linkcheck ./cortex/ ./build/cortex
