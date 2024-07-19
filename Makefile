@@ -9,6 +9,7 @@ cortex:
 
 home:
 	mkdir -p ./build
+	ls ./build || true 
 	sphinx-build ./home/ ./build/
 	mv ./build/_static/githubupdate.php ./build || true
 	mv ./build/_static/pros-tux-b-b.png ./build || true
@@ -22,7 +23,7 @@ v5:
 	sphinx-build ./v5/ ./build/v5/
 
 clean:
-	-rm -rf ./build
+	-rm -rf ./home
 	ls ./build || true
 
 linkcheck:
