@@ -16,7 +16,7 @@ module.exports = function (grunt) {
       sphinx: {
         // Need to clean first because sphinx doesn't do incremental builds with
         // static files
-        command: "rm -rf ./build && sphinx-build ./home/ ./build/",
+        command: "ls -la && rm -rf ./build && sphinx-build ./home/ ./build/",
         options: {
           stdout: true,
         },
