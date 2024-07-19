@@ -11,6 +11,9 @@ jobs:
     inputs:
       versionSpec: '3'
 
+  - script: pip install sphinx
+    displayName: 'Install Sphinx'
+
   - task: PipAuthenticate@0
     inputs:
       artifactFeeds: 'pros-cli'

@@ -8,8 +8,6 @@ cortex:
 	sphinx-build ./cortex/ ./build/cortex
 
 home:
-	mkdir -p ./build
-	ls ./build || true 
 	sphinx-build ./home/ ./build/
 	mv ./build/_static/githubupdate.php ./build || true
 	mv ./build/_static/pros-tux-b-b.png ./build || true
@@ -24,7 +22,6 @@ v5:
 
 clean:
 	-rm -rf ./build
-	ls ./home || true
 
 linkcheck:
 	sphinx-build -b linkcheck ./cortex/ ./build/cortex
