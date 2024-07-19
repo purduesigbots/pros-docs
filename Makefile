@@ -22,6 +22,7 @@ v5:
 
 clean:
 	-rm -rf ./build
+	ls -la
 
 linkcheck:
 	sphinx-build -b linkcheck ./cortex/ ./build/cortex
