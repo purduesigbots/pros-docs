@@ -43,7 +43,7 @@ below.
    :code:`tar -xjvf gcc-arm-none-eabi-X-20XX-qX-update-linux.tar.bz2`:.
    The Xs should be replaced with those present in the name of the file
    you downloaded.
-3. Add this line to your :code:`.bashrc` file (if using bash), replacing
+3. Add this line to your :code:`~/.bashrc` if using bash, replacing
    :code:`<your user>` with your username: :code:`export PATH=$PATH:/home/<your user>/gcc-arm-none-eabi-8-2019-q3-update/bin/`.
    If you are using a shell other than bash, refer to that shell's documentation
    for how and where to add entries to your PATH when logging in.
@@ -64,11 +64,10 @@ Installing the CLI
 1. If you do not already have one installed, install a version of Python greater
    than or equal to 3.6
 2. Install the latest version of the PROS CLI from the Python Package Index,
-   using :code:`python3 -m pip install --user pros-cli`. If you wish to install
-   for all users, run the command with :code:`sudo` and remove the :code:`--user`
-   flag.
-3. Run :code:`pros --version` to verify the CLI was installed correctly. If the
-   command doesn't work, try restarting your machine.
+   using :code:`root # python3 -m pip install pros-cli`. this will install like packages for :code:`apt` or :code:`pacman`
+   you can localy with :code:`user # python3 -m pip install --user pros-cli`
+3. Run :code:`user # pros --version` to verify the CLI was installed correctly. If the
+   command doesn't work, try restarting your machine or check Troubleshooting down below.
 
 Installing the Editor
 ---------------------
@@ -76,6 +75,9 @@ Installing the Editor
 .. note::
     The following instructions are for installing Atom and cquery. If you intend
     to use an editor other than Atom, this section is optional.
+
+.. note::
+    The Atom editer is `deprecated <https://github.blog/news-insights/product-news/sunsetting-atom/>`_ and you should move to the CLI or VS Code.
 
 1. Follow the instructions `here <https://github.com/cquery-project/cquery/wiki/Building-cquery>`_
    to build and install cquery.
@@ -109,3 +111,12 @@ Installing the Vision Utility
 3. Now run :code:`sudo nwjs-sdk-v0.31.4-linux-ia32/nw vcs_vision.exe` to execute
    VCS. :code:`sudo` is needed to interface with the camera, even if you are a
    part of the :code:`dialout` group.
+
+Troubleshooting CLI
+---------------
+
+1. If :code:`user # pros --version` did not work add :code:`export PATH="/home/<username>/.local/bin:$PATH"` to your :code:`~/.bashrc`
+   if you use zsh as a shell add it to :code:`~/.zshrc` and open a new shell.
+2. You may not be able to upload your code to the robot you may need to add your self to the :code:`dialout`
+   user group. you can do this with the command :code:`adduser $USER dialout` and reboot
+2.5. still cant upload 
