@@ -119,4 +119,4 @@ Troubleshooting CLI
    if you use zsh as a shell add it to :code:`~/.zshrc` and open a new shell.
 2. You may not be able to upload your code to the robot you may need to add your self to the :code:`dialout`
    user group. you can do this with the command :code:`adduser $USER dialout` and reboot
-2.5. still cant upload 
+   if you still cant upload with an error like :code:`could not open port '/dev/ttyACM0'. Try closing any other VEX IDEs such as VEXCode, Robot Mesh Studio, or firmware utilities; moving to a different USB port; adding yourself to dialout group or restarting the device.` then run :code:`root # chmod 777 /dev/ttyACM0` and it should work.
