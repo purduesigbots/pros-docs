@@ -112,7 +112,7 @@ Installing the Vision Utility
    VCS. :code:`sudo` is needed to interface with the camera, even if you are a
    part of the :code:`dialout` group.
 
-Troubleshooting CLI
+Troubleshooting
 ---------------
 
 1. If :code:`user # pros --version` did not work add :code:`export PATH="/home/<username>/.local/bin:$PATH"` to your :code:`~/.bashrc`
