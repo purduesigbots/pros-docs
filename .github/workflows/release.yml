@@ -34,10 +34,10 @@ jobs:
         run: |
             echo "${{ secrets.SSH_KEY }}" > key
             chmod 400 key
-            scp -i key -A -J ${{ vars.JUMP_USER }}@${{ vars.JUMP_HOST}} pros-docs.tar.gz ${{ vars.SSH_USER }}@${{ vars.SSH_HOST }}:~/pros-website
+            scp -o "StrictHostKeyChecking no" -i key -A -J ${{ vars.JUMP_USER }}@${{ vars.JUMP_HOST}} pros-docs.tar.gz ${{ vars.SSH_USER }}@${{ vars.SSH_HOST }}:~/pros-website
 
       - name: Deploy!
         run: |
             echo "${{ secrets.SSH_KEY }}" > key
             chmod 400 key
-            ssh -i key -A -J ${{ vars.JUMP_USER }}@${{ vars.JUMP_HOST}} ${{ vars.SSH_USER }}@${{ vars.SSH_HOST }} '~/pros-website/deploy.sh'
+            ssh -o "StrictHostKeyChecking no" -i key -A -J ${{ vars.JUMP_USER }}@${{ vars.JUMP_HOST}} ${{ vars.SSH_USER }}@${{ vars.SSH_HOST }} '~/pros-website/deploy.sh'
