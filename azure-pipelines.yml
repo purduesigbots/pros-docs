@@ -1,6 +1,6 @@
 jobs:
 - job: Build
-  timeoutInMinutes: '10'
+  timeoutInMinutes: 10
   pool:
     vmImage: ubuntu-latest
 
