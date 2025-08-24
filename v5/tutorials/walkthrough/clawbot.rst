@@ -223,7 +223,7 @@ and then we'll run the tank drive code.
 
          void opcontrol() {
            pros::Motor left_wheels (LEFT_WHEELS_PORT);
-           pros::Motor right_wheels (RIGHT_WHEELS_PORT, true); // This reverses the motor
+           pros::Motor right_wheels (-RIGHT_WHEELS_PORT); // Setting the port value to negative reverses the motor.
            pros::Controller master (CONTROLLER_MASTER);
 
            while (true) {
