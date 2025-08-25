@@ -71,6 +71,16 @@
   },
   {
     "metadata": {
+      "location": "https://pros.cs.purdue.edu/v5/_static/beta/okapilib@5.1.0.zip"
+    },
+    "name": "okapilib",
+    "py/object": "pros.conductor.templates.base_template.BaseTemplate",
+    "supported_kernels": ">=4.1.2",
+    "target": "v5",
+    "version": "5.1.0"
+  },
+  {
+    "metadata": {
       "location": "https://pros.cs.purdue.edu/v5/_static/beta/liblvgl@5.3.3.zip"
     },
     "name": "liblvgl",
