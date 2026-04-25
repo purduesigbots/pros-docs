@@ -14,7 +14,7 @@ Installing the toolchain
 The steps for installing the toolchain can differ greatly per distribution. The
 first step is to check whether your package manager offers the arm-none-eabi
 toolchain. If so, make sure that the version available is greater than or equal
-to 7.2 before installing.
+to 7.2 and less than 14.3 before installing.
 
 .. note::
     For some distributions such as Arch and Fedora, :code:`arm-none-eabi-newlib`
@@ -33,7 +33,7 @@ below.
     using a Debian-based distribution or Ubuntu, please follow the instructions
     below.
 
-1. Download the latest version of the toolchain from `the Arm developer site <https://developer.arm.com/tools-and-software/open-source-software/developer-tools/gnu-toolchain/gnu-rm/downloads>`_.
+1. Download the latest version of the toolchain from `the Arm developer site <https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads>`_.
    We recommend the "Linux x86_64" release. In the rare event that you are
    running on an aarch64 machine, use the Linux aarch64 release instead. If you
    can't use either of those for some reason (e.g. you have a 32-bit system),
@@ -50,7 +50,7 @@ below.
 4. Close and re-open your terminal, or run :code:`source ~/.bashrc` (if running
    bash).
 5. Test by running :code:`arm-none-eabi-gcc --version`. The output should confirm
-   that the version is greater than or equal to 7.2. If it is not, make sure you
+   that the version is greater than or equal to 7.2 and less than 14.3. If it is not, make sure you
    don't have conflicting versions installed through a package manager.
 
 .. note::
@@ -63,29 +63,12 @@ Installing the CLI
 
 1. If you do not already have one installed, install a version of Python greater
    than or equal to 3.6
-2. Install the latest version of the PROS CLI from the Python Package Index,
-   using :code:`python3 -m pip install --user pros-cli`. If you wish to install
-   for all users, run the command with :code:`sudo` and remove the :code:`--user`
-   flag.
-3. Run :code:`pros --version` to verify the CLI was installed correctly. If the
+2. Create virtual environment using :code:`python3 -m venv pros`
+3. Activate venv using :code:`source pros/bin/activate`
+4. Install the latest version of the PROS CLI from the Python Package Index,
+   using :code:`pip -m install pros-cli`.
+5. Run :code:`pros --version` to verify the CLI was installed correctly. If the
    command doesn't work, try restarting your machine.
-
-Installing the Editor
----------------------
-
-.. note::
-    The following instructions are for installing Atom and cquery. If you intend
-    to use an editor other than Atom, this section is optional.
-
-1. Follow the instructions `here <https://github.com/cquery-project/cquery/wiki/Building-cquery>`_
-   to build and install cquery.
-2. `Install Atom <https://atom.io>`_.
-3. Run :code:`apm install pros-bootstrapper@0.0.12`.
-4. Open Atom and wait for any plugins to finish installing.
-5. Happy coding!
-
-.. note::
-    If Atom seems to get stuck during step 4, restart Atom every few minutes.
 
 Installing the Vision Utility
 -----------------------------
