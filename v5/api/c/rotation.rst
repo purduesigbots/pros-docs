@@ -149,7 +149,9 @@ Analogous to `pros::Rotation::reset_position <../cpp/rotation.html#reset-positio
 rotation_get_position
 ---------------------
 
-Get the Rotation Sensor's current position in centidegrees
+Get the Rotation Sensor's current angle in centidegrees (0-36000).  This means the absolute position
+of the sensor in relation to its position when initialized or reset. The value will continue to increment or decrement
+as the sensor rotates past 36000 centidegrees.
 
 This function uses the following values of ``errno`` when an error state is reached:
 
@@ -234,7 +236,9 @@ Analogous to `pros::Rotation::get_velocity <../cpp/rotation.html#get-velocity>`_
 rotation_get_angle
 ------------------
 
-Get the Rotation Sensor's current angle in centidegrees (0-36000)
+Get the Rotation Sensor's current position in centidegrees. This means the absolute position
+of the sensor in relation to its position when initialized or reset. The value is continuous, 
+meaning it will wrap around to zero after it passes 36000 centidegrees. 
 
 This function uses the following values of ``errno`` when an error state is reached:
 
