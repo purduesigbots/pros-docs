@@ -6,3 +6,4 @@ ablog==0.9.4
 sphinx-click==2.0.1
 click
 jinja2<3.1.0
+setuptools<81
